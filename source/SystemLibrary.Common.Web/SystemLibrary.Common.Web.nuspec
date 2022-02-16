@@ -1,0 +1,49 @@
+﻿<?xml version = "1.0" ?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>SystemLibrary.Common.Web</id>
+
+        <version>2.0.0.6</version>
+
+        <authors>System Library</authors>
+        
+        <owners>System Library</owners>
+        
+        <projectUrl>https://systemlibrary.com/package/SystemLibrary.Common.Web</projectUrl>
+         
+        <license type="expression">Apache-2.0</license>
+		
+		<icon>nuget-icon.png</icon>
+        
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+
+		<releaseNotes>
+			Latest version:
+			https://github.com/systemlibrary/systemlibrary-common-web#latest-version
+		</releaseNotes>
+		
+        <description>
+			SystemLibrary.Common.Web for any .NET &gt;= 5 web application - get default settings, routes, etc configured out of the box
+
+			Selling points:
+			* Configure a default IApplicationBuilder in one line
+				- Able to serve default media types (css, svg, js, etc...)
+			* Configure a defafult ServiceLocation in one lone
+				- Register MVC, Razor and defalut ViewLocations
+			* Extensions for web
+		</description>
+
+        <copyright>Copyright © System Library</copyright>
+
+        <tags>C# .NET web extensions setup initialization</tags>
+
+        <dependencies>
+			<dependency id="Microsoft.Extensions.FileProviders.Physical" version="5.0.0" />
+        </dependencies>
+    </metadata>
+
+	<files>
+		<file src="nuget-icon.png" target="" />
+	</files>	
+</package>
+<!-- Command: nuget pack SystemLibrary.Common.Web.csproj -p Configuration=Release -->
