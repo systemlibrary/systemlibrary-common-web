@@ -24,6 +24,7 @@ div.inheritance,
 h1.h1-class-header,
 h3#classes,
 h3#enums,
+h3#interfaces,
 div.implements,
 h3#implements,
 div.implements-content,
@@ -38,6 +39,7 @@ h3#methods,
 .inheritedMembers,
 h3#extensionmethods,
 div.extensionmethods-content,
+h1#projectdisplayname,
 h3#constructors,
 h3#properties,
 h3#fields {
@@ -101,7 +103,7 @@ article.content {
 }
 @media (min-width: 1380px) {
   div.article-row-container {
-    margin-left: 330px;
+    margin-left: 385px;
   }
 }
 @media (max-width: 1379px) {
@@ -166,7 +168,7 @@ body > div#wrapper div.container.hide-when-search > ul {
 @media (min-width: 1380px) {
   div.sidenav > div.sidetoggle > #sidetoc > div > div.sidefilter,
   div.sidenav > div.sidetoggle > #sidetoc > div > div.sidetoc {
-    width: 330px;
+    width: 385px;
   }
 }
 @media (max-width: 768px) {
@@ -196,6 +198,10 @@ div.sidenav > div.sidetoggle > #sidetoc div.sidetoc > .toc a {
   font-size: 16px;
 }
 
+div.sidenav > div.sidetoggle > #sidetoc div.sidetoc > .toc ul.nav.level2 a {
+  font-size: 14px;
+}
+
 img#logo {
   width: 100%;
   height: 100%;
@@ -221,8 +227,12 @@ div.container.body-content > footer > div.footer {
 }
 
 /* DOCUMENTATION AREA ELEMENTS STYLING */
+.content.wrap > h1 {
+  margin-bottom: 16px;
+}
+
 article.content h4:not([class]) * {
-  color: var(--red);
+  color: var(--purple);
 }
 
 article.content > section > p:not([class]) {
@@ -253,13 +263,14 @@ div.custom-menu-data a.anchorjs-link {
 div.custom-menu-data.custom-menu-data-first > h5 > span.custom-class-example {
   cursor: pointer;
   position: absolute;
-  top: -75px;
+  top: -58px;
   float: right;
   right: 0;
 }
 
 /* VIEW SOURCE LINK ON RIGHT */
 div.custom-source-code-link-container span.pull-right.mobile-hide > a {
+  text-decoration: underline;
   z-index: 98;
   position: absolute;
   font-size: 14px;
@@ -272,7 +283,7 @@ div.custom-source-code-link-container span.pull-right.mobile-hide > a {
 }
 
 div.custom-source-code-link-container span.pull-right.mobile-hide > a:hover {
-  border-bottom: 1px solid var(--grey);
+  text-decoration-color: var(--grey);
 }
 
 /* CODE EDITOR */
@@ -338,6 +349,10 @@ h6,
 article h4 {
   margin-top: 4px;
 }
+article > h4 > a.xref.text-break {
+  font-size: 18px;
+  text-decoration: underline;
+}
 
 /*.h1-class-codewrapper span[data-text="public"],
 .h1-class-codewrapper span[data-text="private"] {
@@ -387,20 +402,32 @@ div.summary.h1-class-summary * {
   margin-bottom: 3px !important;
 }
 
-.markdown.level0.summary.h1-class-summary p {
+.h1-class-summary-container > .markdown.level0.summary.h1-class-summary p,
+.h1-class-summary-container > .markdown.level0.summary.h1-class-summary ul {
   position: relative;
-  padding-left: 18px;
+  padding-left: 20px;
   overflow: hidden;
   margin-bottom: 4px;
   margin-top: 2px;
+  font-size: 15px;
+}
+.h1-class-summary-container > .markdown.level0.summary.h1-class-summary ul > li {
+  font-size: 15px;
 }
 
-.markdown.level0.summary.h1-class-summary p:before {
+.h1-class-summary-container > .markdown.level0.summary.h1-class-summary p:before,
+.h1-class-summary-container > .markdown.level0.summary.h1-class-summary ul:before {
   content: "//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a//\a";
   white-space: pre;
   position: absolute;
   left: 0;
   top: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.h1-class-summary-container > .markdown.level0.summary.h1-class-summary ul > li {
+  margin-left: 30px;
 }
 
 .custom-menu-data.custom-menu-data-first > .custom-menu-data-container {
@@ -418,10 +445,15 @@ h1.h1-custom-display span.class-generic {
   font-family: var(--font-code);
   font-weight: 500;
 }
-
+h1.h1-custom-display {
+  color: var(--red);
+  font-size: 16px;
+  font-family: var(--font-code);
+  font-weight: 500;
+}
 h1.h1-custom-display > * {
   color: var(--red);
-  font-size: 18px;
+  font-size: 16px;
   font-family: var(--font-code);
   font-weight: 500;
 }
@@ -438,9 +470,13 @@ p.classMargin {
   font-size: 16px !important;
 }
 
+p.classMargin--end {
+  margin-top: -24px;
+}
+
 /* CLASS CONTENT CONTAINER -  ALL METHODS, PROPERTIES AND MORE... */
 div.custom-class-content-inline {
-  padding-left: 30px;
+  padding-left: 38px;
 }
 @media screen and (max-width: 768px) {
   .custom-class-content-inline {
@@ -449,6 +485,10 @@ div.custom-class-content-inline {
 }
 
 /* MODAL: CUSTOM MENU DATA */
+.custom-menu-data > div.custom-menu-data-container {
+  padding-bottom: 3em !important;
+}
+
 div.custom-menu-data-first {
   margin: 0 !important;
   padding: 0 !important;
@@ -553,18 +593,25 @@ div.custom-menu-data > h4:hover {
 
 .custom-class-example {
   font-size: 14px;
-  color: var(--dark-blue);
+  color: var(--purple);
   cursor: pointer;
   user-select: none;
+  text-decoration: underline;
+}
+
+.docfxhide-attribute {
+  display: none;
+  visibility: hidden;
 }
 
 .custom-class-example:hover,
 .custom-name-onclick:hover {
-  border-bottom: 1px solid var(--grey);
+  text-decoration-color: var(--grey);
 }
 
 .custom-menu-data-no-text {
   color: var(--black);
+  text-decoration: none !important;
 }
 .custom-menu-data-no-text:hover {
   border: 0 !important;
@@ -592,6 +639,7 @@ div.custom-menu-data > h4:hover {
 }
 
 .custom-name-onclick {
+  text-decoration: underline;
   user-select: none;
   cursor: pointer;
 }
@@ -635,14 +683,15 @@ div.col-md-10 > article.content.wrap > ol > li:hover {
 
 div.col-md-10 > article.content.wrap > ol > li > a {
   color: var(--purple);
-  font-size: 14px;
+  font-size: 15px;
+  line-height: 18px;
 }
 
 div.col-md-10
   > article.content.wrap
   > ol
   > li.index-navigation-item--namespace {
-  margin-top: 1em;
+  margin-top: 20px;
 }
 
 div.col-md-10
@@ -652,4 +701,196 @@ div.col-md-10
   * {
   color: var(--black);
   font-size: 18px;
+  font-weight: 500;
 }
+
+
+
+@media print {
+  *,
+  *:before,
+  *:after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  a[href^="#"]:after,
+  a[href^="javascript:"]:after {
+    content: "";
+  }
+
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
+
+pre,
+code {
+  font-family: Menlo, Monaco, "Courier New", monospace;
+}
+
+pre {
+  padding: .5rem;
+  line-height: 1.25;
+  overflow-x: scroll;
+}
+
+a,
+a:visited {
+  color: #3498db;
+}
+
+a:hover,
+a:focus,
+a:active {
+  color: #2980b9;
+}
+
+.modest-no-decoration {
+  text-decoration: none;
+}
+
+html {
+  font-size: 12px;
+}
+
+@media screen and (min-width: 32rem) and (max-width: 48rem) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 48rem) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+  line-height: 1.85;
+}
+
+p,
+.modest-p {
+  font-size: 1rem;
+  margin-bottom: 1.3rem;
+}
+
+h1,
+.modest-h1,
+h2,
+.modest-h2,
+h3,
+.modest-h3,
+h4,
+.modest-h4 {
+  margin: 1.414rem 0 .5rem;
+  font-weight: inherit;
+  line-height: 1.42;
+}
+
+h1,
+.modest-h1 {
+  margin-top: 0;
+  font-size: 50px;
+}
+
+h2,
+.modest-h2 {
+  font-size: 32px;
+}
+
+h3,
+.modest-h3 {
+  font-size: 24px;
+}
+
+h4,
+.modest-h4 {
+  font-size: 20px;
+}
+
+h5,
+.modest-h5 {
+  font-size: 18px;
+}
+
+h6,
+.modest-h6 {
+  font-size: 14px;
+}
+
+small,
+.modest-small {
+  font-size: 13px;
+}
+
+section > ul > li,
+section > ul > li > ul > li,
+section > ul > li > ul > li > ul > li,
+section > ul > li > ul > li > ul > li > ul > li {
+  color: var(--grey);
+}
+
+section > p > em {
+  font-size: 16px;
+  color: var(--grey);
+}
+
+/* https://github.com/mrmrs/fluidity */
+
+img,
+canvas,
+iframe,
+video,
+svg,
+select,
+textarea {
+  max-width: 100%;
+}
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700);
+
+@import url(http://fonts.googleapis.com/css?family=Arimo:700,700italic);
