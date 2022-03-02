@@ -24,7 +24,6 @@
 appSettings.json:
 ```json  
 	{
-
 		"systemLibraryCommonWeb": {
 		}
 	}
