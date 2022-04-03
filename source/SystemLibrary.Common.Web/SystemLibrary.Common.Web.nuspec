@@ -3,7 +3,7 @@
     <metadata>
         <id>SystemLibrary.Common.Web</id>
 
-        <version>2.0.0.6</version>
+        <version>2.0.1.1</version>
 
         <authors>System Library</authors>
         
@@ -31,6 +31,7 @@
 			* Configure a defafult ServiceLocation in one lone
 				- Register MVC, Razor and defalut ViewLocations
 			* Extensions for web
+			* HttpBaseClient one client which caches TCP connections for up to 5 minutes
 		</description>
 
         <copyright>Copyright © System Library</copyright>
@@ -39,6 +40,8 @@
 
         <dependencies>
 			<dependency id="Microsoft.Extensions.FileProviders.Physical" version="5.0.0" />
+			<dependency id="System.Net.Http" version="4.3.4" />
+			<dependency id="SystemLibrary.Common.Net" version="2.0.1.1" />
         </dependencies>
     </metadata>
 
