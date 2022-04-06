@@ -26,10 +26,11 @@ appSettings.json:
 	{
 		"systemLibraryCommonWeb": {
 			"httpBaseClient": {
-				"timeoutSeconds": 60,
+				"TimeoutMilliseconds": 60,
 				"retryRequestTimeoutSeconds": 12,
-				"cacheDurationSeconds": 320
+				"cacheClientConnectionSeconds": 320
 			}
 		}
 	}
 ```  
+ 
