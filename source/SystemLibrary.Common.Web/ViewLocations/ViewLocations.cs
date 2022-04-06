@@ -16,12 +16,16 @@ namespace SystemLibrary.Common.Web.Extensions
         };
 
         static string[] GetViewsForPages() => new string[] {
+            "~/Content/Pages/{0}/Index.cshtml",
+            "~/Content/Pages/{1}/{0}.cshtml",
             "~/Pages/{0}/Index.cshtml",
             "~/Pages/{1}/{0}.cshtml"
         };
 
         static string[] GetViewsForComponents() => new string[]
         {
+            "~/Content/Blocks/{1}/{0}.cshtml",
+            "~/Content/Blocks/{0}.cshtml",
             "~/Views/Components/{0}.cshtml",
             "~/Views/Components/{1}/{0}.cshtml",
             "~/Components/{0}.cshtml",

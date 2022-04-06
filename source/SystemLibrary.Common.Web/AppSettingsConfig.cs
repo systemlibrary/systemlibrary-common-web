@@ -21,7 +21,7 @@ namespace SystemLibrary.Common.Web
     /// }
     /// </code>
     /// </example>
-    public class AppSettingsConfig : Config<AppSettingsConfig>
+    internal class AppSettingsConfig : Config<AppSettingsConfig>
     {
         public AppSettingsConfig()
         {

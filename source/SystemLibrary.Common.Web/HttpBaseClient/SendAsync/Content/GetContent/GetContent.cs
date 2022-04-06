@@ -22,6 +22,8 @@ namespace SystemLibrary.Common.Web
                         break;
 
                     case MediaType.json:
+                        if(jsonSerializerOptions != null)
+                            jsonSerializerOptions.ReadCommentHandling = JsonCommentHandling.Skip;
                         content = GetBodyJson(data, null, jsonSerializerOptions);
                         break;
 

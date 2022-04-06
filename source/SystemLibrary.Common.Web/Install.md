@@ -12,6 +12,8 @@
 
 - Sample:
 ```csharp  
+	using SystemLibrary.Common.Web.Extensions;
+	
 	public void ConfigureServices(IServiceCollection services)
 	{
 		services.CommonServices(); //Extension inside this package
@@ -19,16 +21,16 @@
 ```
 
 ## Package Configurations
-* Default (and modifiable) configurations in this package:
+* Default and modifiable configurations for this package:
 
 appSettings.json:
 ```json  
 	{
 		"systemLibraryCommonWeb": {
 			"httpBaseClient": {
-				"TimeoutMilliseconds": 60,
-				"retryRequestTimeoutSeconds": 12,
-				"cacheClientConnectionSeconds": 320
+				"timeoutMilliseconds": 60000,
+				"retryRequestTimeoutSeconds": 10,
+				"cacheClientConnectionSeconds": 300
 			}
 		}
 	}

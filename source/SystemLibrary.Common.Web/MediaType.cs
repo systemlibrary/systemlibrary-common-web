@@ -5,7 +5,7 @@ namespace SystemLibrary.Common.Web
     /// <summary>
     /// An enum of various media types that can be sent to the HttpBaseClient request methods
     /// 
-    /// Not all of them have been implemented yet though
+    /// NOTE: Not all of them have been implemented yet though
     /// </summary>
     public enum MediaType
     {

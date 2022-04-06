@@ -1,7 +1,21 @@
 # SystemLibrary Common Web
 
+## Description
+A library of classes and methods for any .NET &gt;= 5 web application
+
+* Setup IApplicationBuilder in one line
+    * Enables your app to use both Mvc and Razor out of the box
+    * Serves a default set of file types (css, js, svg, png, jpg, etc...)
+    * Enables Authorization and Authentication
+* Configure IServiceCollection in one line
+    * Registers default view locations for both Razor and Mvc so it does not matter which one you use
+    * Registers IHttpContextAccessor as a service so the interface is injectable
+* Extensions for web
+* HttpBaseClient (instead of HttpClient from .Net...) to cache underlying TCP connections, so your API calls reuses the same TCP connection for 5 minutes...
+
 ## Requirements
 - &gt;= .NET 5
+- SystemLibrary.Common.Net
 - Microsoft.AspNetCore.App
 - Microsoft.Extensions.FileProviders.Physical &gt;= 5.0.0
 
@@ -10,20 +24,7 @@
 - Added media types for pdf, jpg and png
 - Redone views and media types registration, the default ones that comes with this library is always registered, and your custom ones are appended
 
-## Description
-SystemLibrary.Common.Web for any .NET &gt;= 5 web application - get default settings, routes, etc configured out of the box
-
-Selling points:
-* Setup IApplicationBuilder in one line
-    * Enables app to use Mvc, Razor and able to serve certain file types (css, js, svg, jpg, png, etc...)
-    * Enabled Authorization and Authentication
-* Configure IServiceCollection in one line
-    * Registers default view locations
-    * Registers IHttpContextAccessor as a Service so inject
-    * Register MVC, Razor and default ViewLocations
-* Extensions for web
-
-## Docs			
+## Docs
 Documentation with samples:
 https://systemlibrary.github.io/systemlibrary-common-web/
 
