@@ -143,6 +143,7 @@
   <h3 id="methods">Methods
   </h3>
   
+  <div class="custom-container">
   <div class="custom-menu-summary-data">
   	<div class="markdown level1 summary member-summary"><p>Check if principal is in any role</p>
 <p>Returns true if so, else false</p>
@@ -214,6 +215,7 @@ principal.IsInAnyRole(roles);</p>
   			</table>
   		</div>
   	</div>
+  </div>
   </div>
   
   
@@ -470,8 +472,17 @@ principal.IsInAnyRole(roles);</p>
   				continue;
   			}
   
-  			if (value.includes('[DocfxHide]')) {
-  				items[i].classList.add("docfxhide-attribute");
+  			if (value.includes('[DocFxHide]')) {
+  				let parent = items[i].parentNode;
+  				if(parent) {
+  					if(parent.parentNode !== null && parent.parentNode.classList.contains("custom-container")) {
+  						parent.parentNode.classList.add("docfxhide-attribute");
+  					} else {
+  						parent.classList.add("docfxhide-attribute");
+  					}
+  				} else {
+  					items[i].classList.add("docfxhide-attribute");
+  				}
   				continue;
   			}
   

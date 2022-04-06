@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>SystemLibrary.Common.Web
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="SystemLibrary.Common.Web
+   ">
+    <meta name="generator" content="docfx 2.58.0.0">
+    
+    <link rel="shortcut icon" href="/systemlibrary-common-web/favicon.ico">
+    <link rel="stylesheet" href="/systemlibrary-common-web/styles/docfx.vendor.css">
+    <link rel="stylesheet" href="/systemlibrary-common-web/styles/docfx.css">
+    <link rel="stylesheet" href="/systemlibrary-common-web/styles/main.css">
+    <link rel="stylesheet" href="/systemlibrary-common-web/styles/custom.css">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <script>
+      function display() {
+        var articles = document.querySelectorAll('article.hideonload');
+        if(articles && articles.length) {
+          for(var i = 0; i < articles.length; i++) {
+            if(articles[i].classList.contains('hideonload')) {
+              articles[i].classList.remove('hideonload');
+            }
+          }
+        }
+      }
+      setTimeout(display, 80);
+    </script>
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="..//systemlibrary-common-web/index.html">
+                <img id="logo" class="svg" src="..//systemlibrary-common-web/logo.png" alt="">
+              </a>
+              
+              <span class="navbar-title">System Library Common Web</span>    </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+      
+      <div class="sidenav hide-when-search">
+        <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+        <div class="sidetoggle collapse" id="sidetoggle">
+          <div id="sidetoc"></div>
+        </div>
+      </div>
+
+      <div class="article-row-container">
+        <div class="article row grid-right">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Web">
+  
+  <h1 id="SystemLibrary_Common_Web" data-uid="SystemLibrary.Common.Web" class="text-break">SystemLibrary.Common.Web
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"></div>
+    <h3 id="classes">Classes
+  </h3>
+      <h4><a class="xref" href="SystemLibrary.Common.Web.AppSettingsConfig.html">AppSettingsConfig</a></h4>
+      <section><p>Override default configurations in 'SystemLibrary.Common.Web' by adding 'systemLibraryCommonWeb' object to 'appSettings.json'</p>
+</section>
+      <h4><a class="xref" href="SystemLibrary.Common.Web.AppSettingsConfig.Configuration.html">AppSettingsConfig.Configuration</a></h4>
+      <section></section>
+      <h4><a class="xref" href="SystemLibrary.Common.Web.AppSettingsConfig.Configuration.HttpBaseClientConfiguration.html">AppSettingsConfig.Configuration.HttpBaseClientConfiguration</a></h4>
+      <section></section>
+      <h4><a class="xref" href="SystemLibrary.Common.Web.CalleeCancelledRequestException.html">CalleeCancelledRequestException</a></h4>
+      <section><p>The Callee Cancelled Request Exception is thrown when the callee (you) cancel's the request.</p>
+<ul>
+<li>To cancel a request you must pass a 'Cancellation Token', and then cancel the request through the Cancellation Token</li>
+</ul>
+</section>
+      <h4><a class="xref" href="SystemLibrary.Common.Web.ClientResponse-1.html">ClientResponse&lt;T&gt;</a></h4>
+      <section><p>The main response class that all http requests in the HttpBaseClient returns</p>
+</section>
+      <h4><a class="xref" href="SystemLibrary.Common.Web.HttpBaseClient.html">HttpBaseClient</a></h4>
+      <section><p>HttpBaseClient is a class for all http(s) requests in your project</p>
+<p>Has:</p>
+<ul>
+<li><p>a retry handler configured through constructor</p>
+</li>
+<li><p>if request fails and retry is True, the retry request uses a new tcp connection and gets a fixed 10 seconds timeout</p>
+</li>
+<li><p>a retry request occurs only for GET, HEAD or OPTION request methods, never for PUT/POST/DELETE</p>
+</li>
+<li><p>a timeout handler configurable through constructor, but also per method</p>
+</li>
+<li><p>each underlying tcp connection is cached for up to 5 minutes</p>
+</li>
+</ul>
+<p>Use HttpBaseClient directly or inherit from it, see the examples</p>
+</section>
+      <h4><a class="xref" href="SystemLibrary.Common.Web.RetryRequestException.html">RetryRequestException</a></h4>
+      <section><p>A retry request exception is thrown if:</p>
+<ul>
+<li>&quot;retryOnceOnRequestCancelled&quot; is set to True, and if both the normal request and the retry request errors, this exception is thrown to the callee (you)</li>
+<li>a retry request exception can only occur on GET, HEAD or OPTION requests</li>
+</ul>
+<p>If retryOnceOnRequestCancelled is False or if request method is POST, PUT or DELETE, this exception will never occur for the callee (you)</p>
+<p>Note: A retry request gets a fixed timeout of 10 seconds to finish the request</p>
+</section>
+    <h3 id="enums">Enums
+  </h3>
+      <h4><a class="xref" href="SystemLibrary.Common.Web.MediaType.html">MediaType</a></h4>
+      <section><p>An enum of various media types that can be sent to the HttpBaseClient request methods</p>
+<p>Not all of them have been implemented yet though</p>
+</section>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      
+      <footer id="page-footer">
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span>Package: <a href="https://www.nuget.org/packages/SystemLibrary.Common.Web/">nuget</a></span><br>
+            <span>Source: <a href="https://github.com/systemlibrary/systemlibrary-common-web/">github</a></span><br>
+            <span>Website: <a href="https://www.systemlibrary.com/">System Library Common Web</a></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="..//systemlibrary-common-web/styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="..//systemlibrary-common-web/styles/docfx.js"></script>
+    <script type="text/javascript" src="..//systemlibrary-common-web/styles/main.js"></script>
+  </div></body>
+</html>

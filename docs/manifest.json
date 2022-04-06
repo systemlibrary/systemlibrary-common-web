@@ -5,14 +5,74 @@
   "files": [
     {
       "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.AppSettingsConfig.Configuration.HttpBaseClientConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.AppSettingsConfig.Configuration.HttpBaseClientConfiguration.html",
+          "hash": "nCtEwdsjHaYJMuYK+FhligLn5EshGxxDqXZffW6WQGs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.AppSettingsConfig.Configuration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.AppSettingsConfig.Configuration.html",
+          "hash": "2s0QGQiN0xH4588Nr0hjxyM5in5hzHE/Yg9r9b4Mghc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.AppSettingsConfig.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.AppSettingsConfig.html",
+          "hash": "D/LVZIHBna6RTtBoIRMW3zGcecR5nNwqwmWSiRyBVb8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.CalleeCancelledRequestException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.CalleeCancelledRequestException.html",
+          "hash": "/6DivZes9+ZsnywD/uyTxoYYpqwkJrp1Bvfs/se2XD4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.ClientResponse-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.ClientResponse-1.html",
+          "hash": "fdvf/y9ldE46OjVa+0lNdZ3JSgHVOzv2YTlIAR0f64o="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.yml",
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.html",
-          "hash": "SCS6lghrCGI7FomE1bNdDEh4FqqvB/h6xoqrv24xKY8="
+          "hash": "HdR7FsBvkhTsez6TD89bn3+GLM/FEA+IsRaeVKbiIQI="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -21,10 +81,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.html",
-          "hash": "MGaptI0H9hAERR0Iwgd8hD5GwqDWIVWKFTskTTRfMB0="
+          "hash": "s3UM8dMH2+hN4wYnGNG6o6Fe9SzBfboes8AxPcghreQ="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -33,10 +93,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IPrincipalExtensions.html",
-          "hash": "cae6H1nGVgN/8nRoD9+1Vj01kvcNWV1BMMjmmzJIUbg="
+          "hash": "zcqTQp8yr0trm6ISZPMeYbaxuaR3mRVIDnV4tQX8pIY="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -45,10 +105,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.html",
-          "hash": "UoUPDOfKfV8DoxoTd5EjuQTuaBXX3M4fGtqM/8D8xro="
+          "hash": "kD2hbQYcC8cZKspRu1Y6m3nU1m217IC14ZE6lp/JIqI="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -57,10 +117,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.html",
-          "hash": "Q+L27x5UpKLWeXdRJCRavgrxIfpWWE7D4Umdfvw9rxU="
+          "hash": "79y3LbSKvTOC6zTDwpHGUbGEQZoSUYS4+FJ9pks6ewc="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -72,7 +132,55 @@
           "hash": "QtZH3GVGpwDuhiakKTBi67okFnvHI9ejBj/hbeMIu+M="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.html",
+          "hash": "+12PZGgccQY+GoVdXtCfrN8H6XzVTZkqVpo4vYK2p1U="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.MediaType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.MediaType.html",
+          "hash": "g+SdvQNZELdm6oyGAYM2Ybba+7s99pL6DfXrqDIsda0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.RetryRequestException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.RetryRequestException.html",
+          "hash": "bT92gVhj/hd9PTxz4+T/0Y7HhE+ggA0oZPDtvm9ST94="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.html",
+          "hash": "GYR3heuazq77OvNWMhFmlmgxxLzdx+RaLIwqLOa1ErU="
+        }
+      },
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -81,7 +189,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/toc.html",
-          "hash": "Q+GIGtfLWamoFiQGREe8pYqCRY/y3opyg7ooV66+0Fo="
+          "hash": "kGJPkiMkKn8K+T/18ReRKzbK0uCYBlPb1jaeUCvNLEc="
         }
       },
       "is_incremental": false,
@@ -96,30 +204,32 @@
           "hash": "EsY78+Kn7PjFn2r4ymlGJipCwejZJiI1/eMDe3yH2kg="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     }
   ],
   "incremental_info": [
     {
       "status": {
-        "can_incremental": true,
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
         "incrementalPhase": "build",
         "total_file_count": 0,
-        "skipped_file_count": 0
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
       },
       "processors": {
         "ConceptualDocumentProcessor": {
-          "can_incremental": true,
+          "can_incremental": false,
           "incrementalPhase": "build",
           "total_file_count": 1,
-          "skipped_file_count": 1
+          "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {
-          "can_incremental": true,
+          "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 6,
-          "skipped_file_count": 6
+          "total_file_count": 15,
+          "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
           "can_incremental": false,
@@ -132,8 +242,8 @@
     },
     {
       "status": {
-        "can_incremental": true,
-        "details": "Can support incremental post processing.",
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
         "incrementalPhase": "postProcessing",
         "total_file_count": 0,
         "skipped_file_count": 0

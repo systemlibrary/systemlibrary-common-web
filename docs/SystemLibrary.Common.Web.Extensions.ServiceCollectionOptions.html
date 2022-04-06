@@ -164,6 +164,7 @@ public void ConfigureServices(IServiceCollection services)
   <h3 id="properties">Properties
   </h3>
   
+  <div class="custom-container">
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddControllers">
   	<span class="small pull-right mobile-hide">
@@ -183,6 +184,7 @@ public void ConfigureServices(IServiceCollection services)
   
   	</div>
   </div>
+  </div>
   
   
   <h5 class="propertyValue">Property Value</h5>
@@ -201,6 +203,7 @@ public void ConfigureServices(IServiceCollection services)
   	</tbody>
   </table>
   
+  <div class="custom-container">
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddMvcPages">
   	<span class="small pull-right mobile-hide">
@@ -220,6 +223,7 @@ public void ConfigureServices(IServiceCollection services)
   
   	</div>
   </div>
+  </div>
   
   
   <h5 class="propertyValue">Property Value</h5>
@@ -238,6 +242,7 @@ public void ConfigureServices(IServiceCollection services)
   	</tbody>
   </table>
   
+  <div class="custom-container">
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddRazorPages">
   	<span class="small pull-right mobile-hide">
@@ -257,6 +262,7 @@ public void ConfigureServices(IServiceCollection services)
   
   	</div>
   </div>
+  </div>
   
   
   <h5 class="propertyValue">Property Value</h5>
@@ -275,6 +281,7 @@ public void ConfigureServices(IServiceCollection services)
   	</tbody>
   </table>
   
+  <div class="custom-container">
   <div class="custom-menu-summary-data">
   	<div class="markdown level1 summary member-summary"><p>Create your own class that inherits 'StringOutputFormatter' which sets all 'SupportedMediaTypes' in its constructor,
 and pass a new instance of your class as this variable</p>
@@ -301,6 +308,7 @@ and pass a new instance of your class as this variable</p>
   
   	</div>
   </div>
+  </div>
   
   
   <h5 class="propertyValue">Property Value</h5>
@@ -319,6 +327,7 @@ and pass a new instance of your class as this variable</p>
   	</tbody>
   </table>
   
+  <div class="custom-container">
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_ViewLocations">
   	<span class="small pull-right mobile-hide">
@@ -337,6 +346,7 @@ and pass a new instance of your class as this variable</p>
   		</div>
   
   	</div>
+  </div>
   </div>
   
   
@@ -608,8 +618,17 @@ and pass a new instance of your class as this variable</p>
   				continue;
   			}
   
-  			if (value.includes('[DocfxHide]')) {
-  				items[i].classList.add("docfxhide-attribute");
+  			if (value.includes('[DocFxHide]')) {
+  				let parent = items[i].parentNode;
+  				if(parent) {
+  					if(parent.parentNode !== null && parent.parentNode.classList.contains("custom-container")) {
+  						parent.parentNode.classList.add("docfxhide-attribute");
+  					} else {
+  						parent.classList.add("docfxhide-attribute");
+  					}
+  				} else {
+  					items[i].classList.add("docfxhide-attribute");
+  				}
   				continue;
   			}
   

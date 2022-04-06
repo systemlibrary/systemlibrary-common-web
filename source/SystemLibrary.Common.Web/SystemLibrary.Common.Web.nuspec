@@ -3,7 +3,7 @@
     <metadata>
         <id>SystemLibrary.Common.Web</id>
 
-        <version>2.0.1.1</version>
+        <version>2.0.1.2</version>
 
         <authors>System Library</authors>
         
@@ -41,7 +41,7 @@
         <dependencies>
 			<dependency id="Microsoft.Extensions.FileProviders.Physical" version="5.0.0" />
 			<dependency id="System.Net.Http" version="4.3.4" />
-			<dependency id="SystemLibrary.Common.Net" version="2.0.1.1" />
+			<dependency id="SystemLibrary.Common.Net" version="2.0.1.2" />
         </dependencies>
     </metadata>
 

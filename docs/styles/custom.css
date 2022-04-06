@@ -600,8 +600,8 @@ div.custom-menu-data > h4:hover {
 }
 
 .docfxhide-attribute {
-  display: none;
-  visibility: hidden;
+  display: none !important;
+  visibility: hidden !important;
 }
 
 .custom-class-example:hover,

@@ -157,6 +157,7 @@
   <h3 id="fields">Fields
   </h3>
   
+  <div class="custom-container">
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ApplicationBuilderOptions_UseAuthenticationAndAuthorization">
   	<span class="small pull-right mobile-hide">
@@ -175,6 +176,7 @@
   
   	</div>
   </div>
+  </div>
   
   
   <h5 class="fieldValue">Field Value</h5>
@@ -193,6 +195,7 @@
   	</tbody>
   </table>
   
+  <div class="custom-container">
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ApplicationBuilderOptions_UseControllerAndRazorPages">
   	<span class="small pull-right mobile-hide">
@@ -211,6 +214,7 @@
   
   	</div>
   </div>
+  </div>
   
   
   <h5 class="fieldValue">Field Value</h5>
@@ -229,6 +233,7 @@
   	</tbody>
   </table>
   
+  <div class="custom-container">
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ApplicationBuilderOptions_UseHttpRedirectionAndHsts">
   	<span class="small pull-right mobile-hide">
@@ -247,6 +252,7 @@
   
   	</div>
   </div>
+  </div>
   
   
   <h5 class="fieldValue">Field Value</h5>
@@ -265,6 +271,7 @@
   	</tbody>
   </table>
   
+  <div class="custom-container">
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ApplicationBuilderOptions_UseRouting">
   	<span class="small pull-right mobile-hide">
@@ -283,6 +290,7 @@
   
   	</div>
   </div>
+  </div>
   
   
   <h5 class="fieldValue">Field Value</h5>
@@ -301,6 +309,7 @@
   	</tbody>
   </table>
   
+  <div class="custom-container">
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ApplicationBuilderOptions_UseStaticFiles">
   	<span class="small pull-right mobile-hide">
@@ -318,6 +327,7 @@
   		</div>
   
   	</div>
+  </div>
   </div>
   
   
@@ -589,8 +599,17 @@
   				continue;
   			}
   
-  			if (value.includes('[DocfxHide]')) {
-  				items[i].classList.add("docfxhide-attribute");
+  			if (value.includes('[DocFxHide]')) {
+  				let parent = items[i].parentNode;
+  				if(parent) {
+  					if(parent.parentNode !== null && parent.parentNode.classList.contains("custom-container")) {
+  						parent.parentNode.classList.add("docfxhide-attribute");
+  					} else {
+  						parent.classList.add("docfxhide-attribute");
+  					}
+  				} else {
+  					items[i].classList.add("docfxhide-attribute");
+  				}
   				continue;
   			}
   

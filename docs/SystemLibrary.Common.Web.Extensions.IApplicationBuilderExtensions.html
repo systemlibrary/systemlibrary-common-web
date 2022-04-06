@@ -144,6 +144,7 @@
   <h3 id="methods">Methods
   </h3>
   
+  <div class="custom-container">
   <div class="custom-menu-summary-data">
   	<div class="markdown level1 summary member-summary"><p>Registers:
 Http to Https redirection, usage of Authentication and Authorization, Static File Handlers, Forwarded Headers and Endpoints for RazorPage and Controllers</p>
@@ -218,6 +219,7 @@ Http to Https redirection, usage of Authentication and Authorization, Static Fil
   			</table>
   		</div>
   	</div>
+  </div>
   </div>
   
   
@@ -474,8 +476,17 @@ Http to Https redirection, usage of Authentication and Authorization, Static Fil
   				continue;
   			}
   
-  			if (value.includes('[DocfxHide]')) {
-  				items[i].classList.add("docfxhide-attribute");
+  			if (value.includes('[DocFxHide]')) {
+  				let parent = items[i].parentNode;
+  				if(parent) {
+  					if(parent.parentNode !== null && parent.parentNode.classList.contains("custom-container")) {
+  						parent.parentNode.classList.add("docfxhide-attribute");
+  					} else {
+  						parent.classList.add("docfxhide-attribute");
+  					}
+  				} else {
+  					items[i].classList.add("docfxhide-attribute");
+  				}
   				continue;
   			}
   
