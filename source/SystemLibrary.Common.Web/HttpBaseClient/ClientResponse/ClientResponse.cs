@@ -9,8 +9,9 @@ namespace SystemLibrary.Common.Web
     /// <typeparam name="T">T can be a string that you later can convert to json, or it can be a class, or a list of a class that will automatically be converted from json, assuming json response</typeparam>
     public partial class ClientResponse<T>
     {
-        public ClientResponse(HttpResponseMessage response, T data) : this(response)
+        public ClientResponse(HttpResponseMessage response, T data)
         {
+            Response = response;
             Data = data;
         }
 

@@ -20,9 +20,8 @@ A library of classes and methods for any .NET &gt;= 5 web application
 - Microsoft.Extensions.FileProviders.Physical &gt;= 5.0.0
 
 ## Latest Version
-- Added option to pass in your own implementation of 'StringOutputFormatter' for media types
-- Added media types for pdf, jpg and png
-- Redone views and media types registration, the default ones that comes with this library is always registered, and your custom ones are appended
+- Updated SystemLibrary.Common.Net dependency to latest
+- Content/Components folder registered as a view location
 
 ## Docs
 Documentation with samples:

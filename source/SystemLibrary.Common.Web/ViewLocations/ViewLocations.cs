@@ -24,8 +24,9 @@ namespace SystemLibrary.Common.Web.Extensions
 
         static string[] GetViewsForComponents() => new string[]
         {
-            "~/Content/Blocks/{1}/{0}.cshtml",
-            "~/Content/Blocks/{0}.cshtml",
+            "~/Content/Components/{0}.cshtml",
+            "~/Content/Components/{0}/Index.cshtml",
+            "~/Content/Components/{1}/{0}.cshtml",
             "~/Views/Components/{0}.cshtml",
             "~/Views/Components/{1}/{0}.cshtml",
             "~/Components/{0}.cshtml",
