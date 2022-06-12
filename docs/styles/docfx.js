@@ -489,13 +489,15 @@ $(function () {
           return $(e).siblings().length === 0
         }).each(function (i, anchor) {
           var text = $(anchor).attr('title');
+          var additionalsearchdata = $(anchor).attr('additionalsearchdata');
           var parent = $(anchor).parent();
           var parentNodes = parent.parents('ul>li');
+
           for (var i = 0; i < parentNodes.length; i++) {
             var parentText = $(parentNodes[i]).children('a').attr('title');
             if (parentText) text = parentText + '.' + text;
           };
-          if (filterNavItem(text, val)) {
+          if (filterNavItem(text, val, additionalsearchdata)) {
             parent.addClass(show);
             parent.removeClass(hide);
           } else {
@@ -518,9 +520,10 @@ $(function () {
           }
         })
 
-        function filterNavItem(name, text) {
+        function filterNavItem(name, text, additionalSearchData) {
           if (!text) return true;
           if (name && name.toLowerCase().indexOf(text.toLowerCase()) > -1) return true;
+          if (additionalSearchData && additionalSearchData !== "" && additionalSearchData.toLowerCase().indexOf(text.toLowerCase()) > -1) return true;
           return false;
         }
       });

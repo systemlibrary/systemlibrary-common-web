@@ -27,7 +27,7 @@ namespace SystemLibrary.Common.Web
                 }
                 else if (data is ExpandoObject expando)
                 {
-                    throw new System.Exception("Expando is currently not fully implemented");
+                    throw new System.Exception("Expando is currently not fully implemented in GetBodyXwwwFormUrlEncoded()");
                 }
                 else if (data is string text)
                 {
@@ -38,7 +38,7 @@ namespace SystemLibrary.Common.Web
                     return new ByteArrayContent(bytes, 0, bytes.Length);
                 }
                 else if (data.GetType().IsClass)
-                    throw new System.Exception("Class to wwwformurlencoded string is not currently fully implemented");
+                    throw new System.Exception("Class to wwwformurlencoded string is not currently fully implemented  in GetBodyXwwwFormUrlEncoded()");
                     
                 throw new System.Exception("x-www-form-urlencoded media type requires data sent to be either: List<KeyValuePair<string, string>> or IDictionary, or a string or a byte[] or as null, but then the URL you pass into the method must already contain the key/values in the url");
             }

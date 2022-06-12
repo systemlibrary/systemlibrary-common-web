@@ -52,9 +52,10 @@
               
               <a class="navbar-brand" href="..//systemlibrary-common-web/index.html">
                 <img id="logo" class="svg" src="..//systemlibrary-common-web/logo.png" alt="">
+                <span class="navbar-title">System Library Common Web</span>
               </a>
               
-              <span class="navbar-title">System Library Common Web</span>    </div>
+            </div>
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
@@ -106,7 +107,8 @@
   
   <div class="h1-class-summary-container">
     <div class="markdown level0 summary h1-class-summary"><p>An enum of various media types that can be sent to the HttpBaseClient request methods</p>
-<p>NOTE: Not all of them have been implemented yet though</p>
+<p>The 'MediaType' is sent as an 'Accept' HEADER in the request</p>
+<p>NOTE: Not all of them have been implemented yet though, unless you specify 'MediaType.None'</p>
 </div>
   </div>
   
@@ -119,7 +121,14 @@
   <div class="custom-menu-data custom-menu-data-first">
     <h5 id="SystemLibrary_Common_Web_MediaType_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
   
-    <div class="custom-menu-data-container">
+    <div class="custom-menu-data-container custom-menu-data-container--example">
+      <div class="custom-menu-data-class-example" style="display: none;">
+        <div class="syslib-tab-menu-data--close">X</div>
+        <div class="codewrapper"><pre><code>  var httpClient = new HttpBaseClient();
+  var response = httpClient.Post&lt;string>(&quot;http://httpbin.org/post&quot;, data, MediaType.textplain);</code></pre>
+</div>
+        <div class="comment-examples-container-bottom"></div>
+      </div>
     </div>
   </div>
   
@@ -136,13 +145,20 @@
     </div>
   </div>
   
-  <div class='custom-class-content-inline'><h3 id="fields">Fields
+  <div class='custom-class-content-inline'>
+  <div class="custom-source-code-link-container custom-source-code-link-container--enum custom-source-code-link--SystemLibrary_Common_Web_MediaType">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/MediaType.cs/#L18">View Source</a>
+  	</span>
+  </div>
+  
+  <h3 id="fields">Fields
   </h3>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Name</th>
-        <th>Description</th>
+        <th>Summary</th>
       </tr>
     <thead>
     <tbody>
@@ -160,7 +176,8 @@
       </tr>
       <tr>
         <td id="SystemLibrary_Common_Web_MediaType_json">json</td>
-        <td></td>
+        <td><p>Sends data as application/json, if 'data' passed to the client through put/post/get already is a string, no conversion is made, else it is being converted to json string before data is sent</p>
+</td>
       </tr>
       <tr>
         <td id="SystemLibrary_Common_Web_MediaType_multipartFormData">multipartFormData</td>
@@ -180,11 +197,13 @@
       </tr>
       <tr>
         <td id="SystemLibrary_Common_Web_MediaType_textplain">textplain</td>
-        <td></td>
+        <td><p>Sends data as text/plain, if 'data' passed to the client through put/post/get already is a string, no conversion is made, else it is being converted to json string before data is sent</p>
+</td>
       </tr>
       <tr>
         <td id="SystemLibrary_Common_Web_MediaType_xwwwformUrlEncoded">xwwwformUrlEncoded</td>
-        <td></td>
+        <td><p>Sends data as application/x-www-form-urlencoded</p>
+</td>
       </tr>
       <tr>
         <td id="SystemLibrary_Common_Web_MediaType_zip">zip</td>
@@ -192,15 +211,544 @@
       </tr>
     </tbody>
   </thead></thead></table>
-</div></article>
-          
+  
+  <script>
+  	function getItems(selector) {
+  		return document.querySelectorAll(selector);
+  	}
+  
+  	//CLASS FUNCTIONS
+  	function getClassOrInterfaceNameIndex(parts) {
+  		for (var i = 0; i < parts.length; i++) {
+  			if (parts[i] === "class") {
+  				return i + 1;
+  			}
+  			if (parts[i] === "interface") {
+  				return i + 1;
+  			}
+  			if (parts[i] === "enum") {
+  				return i + 1;
+  			}
+  		}
+  		return 0;
+  	}
+  
+  	function getClassGenericStartIndex(parts, classNameIndex) {
+  		let part = parts[classNameIndex];
+  		if (part.includes("&lt;") && part.includes("&gt;")) {
+  			return part.indexOf("&lt;");
+  		}
+  		if (part.includes("&lt;") && part.includes(",")) {
+  			return part.indexOf("&lt;");
+  		}
+  		return 0;
+  	}
+  
+  	function classHasMultipleGenerics(parts, classNameIndex) {
+  		let part = parts[classNameIndex];
+  		if (part.includes("&lt;")) {
+  			if (part.includes(',')) {
+  				return true;
+  			}
+  		}
+  		return false;
+  	}
+  
+  	function getClassName(parts, classNameIndex) {
+  		var genericStartIndex = getClassGenericStartIndex(parts, classNameIndex);
+  		var hasMultipleGenerics = classHasMultipleGenerics(parts, classNameIndex);
+  
+  		if (genericStartIndex > 0) {
+  			parts[classNameIndex] = parts[classNameIndex].substring(0, genericStartIndex);
+  
+  			if (hasMultipleGenerics) {
+  				return '<span class="classNameHeading">' + parts[classNameIndex] + '</span><span class="class-multigeneric">&lt;&gt;</span>';
+  			} else {
+  				return '<span class="classNameHeading">' + parts[classNameIndex] + '</span><span class="class-generic">&lt;&gt;</span>';
+  			}
+  		}
+  		return '<span class="classNameHeading">' + parts[classNameIndex] + '</span>';
+  	}
+  
+  	function cleanCssName(text) {
+  		if (text) {
+  			text = text.replace('>', '').replace('<', '').replace('.', '').replace(']', '').replace('[', '');
+  			text = text.replace(' ', '').replace('(', '').replace(')', '').replace(',', '');
+  			text = text.replace('=', '').replace('?', '').replace(';', '').replace('!', '');
+  
+  			var genericIndex = text.indexOf('&lt');
+  			if (genericIndex > 0) {
+  				text = text.substring(0, genericIndex) + "_generic_";
+  			} else {
+  				text = text.replace('&', '');
+  			}
+  
+  			text = text.toLowerCase();
+  
+  			if (text.includes('attributeusage')) {
+  				text = 'attributeusage';
+  			}
+  			return text;
+  		}
+  		return "";
+  	}
+  
+  	function updateClassNames() {
+  		var items = getItems(".h1-custom-display.className");
+  		//.text-break.h1-class-header
+  		for (var i = 0; i < items.length; i++) {
+  			var value = items[i].innerHTML;
+  			if (!value || value.length < 4 || !value.includes(' ')) {
+  				console.warn("Class is wrong: " + value);
+  				continue;
+  			}
+  
+  			var parts = value.split(' ');
+  			var classNameIndex = getClassOrInterfaceNameIndex(parts);
+  
+  			var startIndex = 0;
+  			var tempIndex = classNameIndex;
+  			while (tempIndex > 1) {
+  				startIndex++;
+  				tempIndex--;
+  			}
+  
+  			for (var j = 0; j < parts.length; j++) {
+  
+  				if (j < startIndex) {
+  					parts[j] = "";
+  				}
+  				else if (j > classNameIndex || parts[j] === "sealed" || parts[j] === "public") {
+  					parts[j] = "";
+  				} else if (j === classNameIndex) {
+  					parts[classNameIndex] = getClassName(parts, classNameIndex);
+  				} else {
+  					var cleanedClassSuffix = cleanCssName(parts[j]);
+  					if (cleanedClassSuffix !== null && cleanedClassSuffix.length > 1) {
+  						parts[j] = "<span class='classNameHeader className--" + cleanedClassSuffix + "'>" + parts[j] + "</span> ";
+  					}
+  				}
+  			}
+  
+  			var innerHtml = parts.join('');
+  			items[i].innerHTML = innerHtml + "<p class='classMargin'>{</p>";
+  		}
+  	}
+  	//CLASS FUNCTIONS END
+  
+  	//FUNCTION FUNCTIONS
+  	function getFunctionNameIndex(parts) {
+  		for (var i = 0; i < parts.length; i++) {
+  			if (parts[i].startsWith('[') || parts[i].endsWith(']') || parts[i] === "" || parts[i] === " ") {
+  				continue;
+  			}
+  			var index = parts[i].indexOf('(');
+  
+  			if (index > 0) {
+  				var greaterthan = parts[i].indexOf("&gt;");
+  				if (greaterthan == -1) {
+  					//Non-generic function
+  					return i;
+  				}
+  
+  				var lessthan = parts[i].indexOf("&lt;");
+  				if (lessthan == - 1) {
+  					return i - 1;
+  				}
+  				return i;
+  			}
+  		}
+  		return 0;
+  	}
+  
+  	function functionIsGeneric(parts, functionNameIndex) {
+  		var part = parts[functionNameIndex];
+  		var isGeneric = part.indexOf("&gt;") >= 0 || part.indexOf("&lt;") >= 0;
+  
+  		if(isGeneric) {
+  			var genericStart = part.indexOf("&gt;");
+  			var argumentsStart = part.indexOf('(');
+  
+  			if(argumentsStart > 0 && genericStart > 0)
+  			{
+  				return genericStart < argumentsStart;
+  			}
+  		}
+  		return isGeneric;
+  	}
+  
+  	function functionHasMultipleGenerics(parts, functionNameIndex) {
+  		var part = parts[functionNameIndex];
+  		return part.indexOf("&lt;") >= 0 && part.indexOf("&gt;") === -1
+  	}
+  
+  	function functionHasArguments(parts, functionNameIndex) {
+  		var p = parts[functionNameIndex];
+  
+  		var emptyArguments = p.includes("()");
+  
+  		if (emptyArguments) {
+  			return !emptyArguments;
+  		}
+  
+  		if (p.indexOf(',') >= 0) {
+  			var nextPart = parts[functionNameIndex + 1];
+  			emptyArguments = nextPart.includes("()");
+  			if (emptyArguments) {
+  				return !emptyArguments;
+  			} else {
+  				//Multigeneric function here
+  				for (var i = functionNameIndex + 1; i < parts.length; i++) {
+  					if (parts[i].indexOf('(') >= 0) {
+  						emptyArguments = parts[i].includes("()");
+  						break;
+  					}
+  				}
+  				return !emptyArguments;
+  			}
+  		} else {
+  			if (parts[functionNameIndex + 1].indexOf(',') >= 0) {
+  				//Multigeneric function here
+  			}
+  		}
+  		return !emptyArguments;
+  	}
+  
+  	function getFunctionName(parts, functionNameIndex) {
+  		var part = parts[functionNameIndex];
+  
+  		var hasArguments = functionHasArguments(parts, functionNameIndex);
+  
+  		var isGeneric = functionIsGeneric(parts, functionNameIndex);
+  
+  		var isMultiGeneric = functionHasMultipleGenerics(parts, functionNameIndex);
+  
+  		var genericStartIndex = part.indexOf('&lt;');
+  		var funcStartIndex = part.indexOf('(');
+  
+  		if (genericStartIndex >= 0) {
+  			part = part.substring(0, genericStartIndex);
+  		}
+  		if (funcStartIndex >= 0) {
+  			part = part.substring(0, funcStartIndex);
+  		}
+  
+  		var arg = hasArguments ? "<span class='custom-arguments custom-arguments-onclick'>( )</span>" : "<span class='custom-arguments custom-arguments-onclick custom-arguments--none'>( )</span>";
+  
+  		part = "<span class='custom-name custom-name-onclick'>" + part + "</span>";
+  		if (isMultiGeneric) {
+  			return part + "<span class='custom-arguments custom-arguments-onclick function-multigeneric'>&lt;&gt;</span>" + arg;
+  		} else if (isGeneric) {
+  			return part + "<span class='custom-arguments custom-arguments-onclick function-generic'>&lt;&gt;</span>" + arg;
+  		}
+  		return part + arg;
+  	}
+  
+  	function updateFunctionNames() {
+  		var items = getItems(".h4-custom-functionName");
+  
+  		for (var i = 0; i < items.length; i++) {
+  			var value = items[i].innerHTML;
+  
+  			if (!value || value.length < 5 || !value.includes(' ') || !value.includes('(')) {
+  				items[i].classList.add("non-function-element");
+  				if (value.includes('{') && value.includes('}')) {
+  					items[i].classList.add("property-name");
+  				} else {
+  					if (value.includes('protected ') || value.includes('private ') || value.includes('public ')) {
+  						items[i].classList.add("field-name");
+  					}
+  				}
+  				items[i].innerHTML = items[i].innerHTML.replace('public ', '').replace('override ', '').replace('protected ', '');
+  				continue;
+  			}
+  
+  			if (value.includes('[DocFxHide]')) {
+  				let parent = items[i].parentNode;
+  				if(parent) {
+  					if(parent.parentNode !== null && parent.parentNode.classList.contains("custom-container")) {
+  						parent.parentNode.classList.add("docfxhide-attribute");
+  					} else {
+  						parent.classList.add("docfxhide-attribute");
+  					}
+  				} else {
+  					items[i].classList.add("docfxhide-attribute");
+  				}
+  				continue;
+  			}
+  
+  			var parts = value.split(' ');
+  
+  			var functionNameIndex = getFunctionNameIndex(parts);
+  
+  			parts[functionNameIndex] = getFunctionName(parts, functionNameIndex);
+  
+  			for (var j = 0; j < parts.length; j++) {
+  				if (j > functionNameIndex || parts[j] === "public" || parts[j].startsWith("[") || parts[j].endsWith("]")) {
+  					parts[j] = "";
+  				}
+  				else if (j < functionNameIndex) {
+  					parts[j] = "<span class='custom-keywords custom-keywords--" + cleanCssName(parts[j]) + "'>" + parts[j] + "</span> ";
+  				}
+  			}
+  
+  			parts = parts.filter(x => typeof (x) !== 'undefined' && x !== "" && x !== null && x !== " ");
+  
+  			/*var argumentsPart = parts[parts.length-1];
+  			if(argumentsPart) {
+  				argumentsPart = "<span class='custom-arguments custom-arguments-onclick'>" + argumentsPart + "</span>";
+  				parts[parts.length-1] = argumentsPart;
+  			}*/
+  
+  			if (parts.length > 1) {
+  				var returnTypePart = parts[parts.length - 2];
+  				if (returnTypePart) {
+  					returnTypePart = returnTypePart.replace('custom-keywords', '').replace('custom-keywords', '');
+  					returnTypePart = "<span class='custom-returntype custom-returntype-onclick'>" + returnTypePart + "</span>";
+  					parts[parts.length - 2] = returnTypePart;
+  				}
+  			}
+  
+  			var innerHtml = parts.join(' ');
+  
+  			innerHtml = innerHtml.toString()
+  				.replace('override', '')
+  				.replace('override', '')
+  				.replace('protected', '')
+  				.replace('protected', '');
+  			items[i].innerHTML = innerHtml;
+  		}
+  	}
+  
+  	function addEventsToTabCloseButtons() {
+  		var i;
+  
+  		var closeButtons = document.getElementsByClassName("syslib-tab-menu-data--close");
+  
+  		for (i = 0; i < closeButtons.length; i++) {
+  			closeButtons[i].addEventListener("click", function () {
+  				let par = this.parentNode;
+  				if (par.style.display === "block") {
+  					par.style.display = "none";
+  				}
+  			})
+  		}
+  	}
+  
+  	function addEventDisplayMenuDataOnClickPart(partName) {
+  		var i;
+  
+  		var parts = document.getElementsByClassName("custom-" + partName + "-onclick");
+  
+  		var menuDataClass = 'custom-menu-data-' + partName;
+  		for (i = 0; i < parts.length; i++) {
+  			var container = parts[i];
+  			while (container) {
+  				container = container.parentNode;
+  				if (container && container.classList && container.classList.contains('custom-menu-data')) {
+  					break;
+  				}
+  			}
+  			if (container) {
+  				var menuData = container.getElementsByClassName(menuDataClass)[0];
+  
+  				//MenuData do not exist at all, change button layout to red
+  				if (!menuData || !menuData.classList || !menuData.classList.contains(menuDataClass)) {
+  					if (menuDataClass.includes('-class-') >= 1) {
+  						parts[i].classList.toggle('hidden');
+  					} else {
+  						var h4 = container.getElementsByClassName('h4-custom-functionName');
+  						if (h4 && h4.length && h4.length > 0 && h4[0] && h4[0].id && h4[0].id.includes('_ctor_')) {
+  							//CTOR has no example, then just hide the whole CTOR line
+  							container.classList.toggle('hidden');
+  						}
+  						parts[i].classList.toggle('custom-menu-data-no-text');
+  					}
+  				}
+  				else {
+  					//MenuData is empty or contains only the "X" button, change button layout to red
+  					if (menuData.children === null || typeof (menuData.children) === 'undefined' || menuData.children.length <= 1) {
+  						if (menuDataClass.includes('-class-') >= 1) {
+  							parts[i].classList.toggle('hidden');
+  						} else {
+  
+  							var h4 = container.getElementsByClassName('h4-custom-functionName');
+  							if (h4 && h4.length && h4.length > 0 && h4[0] && h4[0].id && h4[0].id.includes('_ctor_')) {
+  								//CTOR has no example, then just hide the whole CTOR line
+  								container.classList.toggle('hidden');
+  							} else {
+  								parts[i].classList.toggle('custom-menu-data-no-text');
+  							}
+  						}
+  					}
+  				}
+  			}
+  		}
+  
+  		for (i = 0; i < parts.length; i++) {
+  			if (parts[i].classList.contains('custom-menu-data-no-text')) {
+  				continue;
+  			}
+  			parts[i].addEventListener("click", function (e) {
+  				e.preventDefault();
+  				var container = this.parentNode
+  				while (container) {
+  					container = container.parentNode;
+  					if (container && container.classList && container.classList.contains('custom-menu-data')) {
+  						break;
+  					}
+  				}
+  
+  				if (container) {
+  					var menuData = container.getElementsByClassName(menuDataClass)[0];
+  
+  					if (menuData && menuData.classList && menuData.classList.contains(menuDataClass)) {
+  
+  						if (menuData.classList.contains('active')) {
+  							//Hide current Menu Data if clicking the "function name" again
+  							menuData.style.display = "none";
+  							menuData.classList.toggle('active');
+  
+  							//Show footer when modal is not active
+  							var footer = document.getElementById("page-footer");
+  							if (footer && footer.classList) {
+  								if (footer.classList.contains('hidden')) {
+  									footer.classList.toggle('hidden');
+  								}
+  							}
+  						} else {
+  							//Hide footer when modal is active
+  							var footer = document.getElementById("page-footer");
+  							if (footer && footer.classList) {
+  								if (!footer.classList.contains('hidden')) {
+  									footer.classList.toggle('hidden');
+  								}
+  							}
+  							//Hide all existing Menu Data's
+  							var menuDatas = document.getElementsByClassName(menuDataClass);
+  							if (menuDatas && menuDatas.length) {
+  								for (var j = 0; j < menuDatas.length; j++) {
+  									if (menuDatas[j].classList.contains('active')) {
+  										menuDatas[j].classList.toggle('active');
+  										menuDatas[j].style.display = 'none';
+  									}
+  								}
+  							}
+  
+  							//Show just one Menu Data, the one we clicked
+  							menuData.style.display = "block";
+  							menuData.classList.toggle('active');
+  						}
+  					}
+  				}
+  			});
+  		}
+  	}
+  
+  	function removeEmptyPopup(query) {
+  		var popup = document.getElementsByClassName(query);
+  		if (popup) {
+  			for (var i = 0; i < popup.length; i++) {
+  				if (popup[i]) {
+  					var data = popup[i].nextElementSibling;
+  					if (!data || data.childElementCount <= 1) {
+  						popup[i].remove();
+  						i = i - 1;
+  					}
+  				}
+  			}
+  		}
+  	}
+  	function removeEmptyPopups() {
+  		removeEmptyPopup("custom-menu-data-class-arguments");
+  		removeEmptyPopup("custom-menu-data-class-example");
+  		removeEmptyPopup("custom-menu-data-name");
+  		removeEmptyPopup("custom-menu-data-arguments");
+  		removeEmptyPopup("custom-menu-data-returntype");
+  		removeEmptyPopup("custom-menu-data-container");
+  	}
+  
+  	function hideAllEmptyMarkdowns() {
+  		var items = getItems('.markdown.level1.summary.member-summary');
+  		if (items && items.length) {
+  			for (var i = 0; i < items.length; i++) {
+  				if (items[i].children && items[i].children.length === 0) {
+  					items[i].classList.add("hidden");
+  				}
+  				if (items[i].value) {
+  					if (items[i].value.length <= 1) {
+  						items[i].classList.add("hidden");
+  					}
+  				}
+  
+  				if (items[i].innerHTML) {
+  					if (items[i].innerHTML.length <= 1) {
+  						items[i].classList.add("hidden");
+  					}
+  				}
+  
+  				if (items[i].innerText) {
+  					if (items[i].innerText.length <= 1) {
+  						items[i].classList.add("hidden");
+  					}
+  				}
+  			}
+  		}
+  	}
+  
+  	function hideSourceLinksForDocfxHideAttribute() {
+  		var items = getItems('.custom-source-code-link-container');
+  		if (items != null && items.length > 0) {
+  			for (var i = 0; i < items.length; i++) {
+  				var next = items[i].nextElementSibling;
+  				if(!next.classList.contains('custom-menu-data')) {
+  					next = next.nextElementSibling;
+  				}
+  
+  				if(next.classList.contains('custom-menu-data')) {
+  					var docfxhideElement = next.getElementsByClassName('docfxhide-attribute');
+  					if(docfxhideElement !== null && docfxhideElement.length !== null && docfxhideElement.length === 1) {
+  						items[i].classList.add('docfxhide-attribute');
+  					}
+  				}
+  			}
+  		}
+  	}
+  
+  	//FUNCTION FUNCTIONS END
+  	setTimeout(updateFunctionNames, 5);
+  	setTimeout(updateClassNames, 10);
+  
+  	setTimeout(() => addEventDisplayMenuDataOnClickPart('class-example'), 15);
+  	setTimeout(() => addEventDisplayMenuDataOnClickPart('class-arguments'), 20);
+  	setTimeout(() => addEventDisplayMenuDataOnClickPart('name'), 25);
+  	//NOTE: Disabled clicking on args and return type - the sample should give enough info
+  	//setTimeout(() => addEventDisplayMenuDataOnClickPart('arguments'), 45);
+  	//setTimeout(() => addEventDisplayMenuDataOnClickPart('returntype'), 50);
+  
+  	setTimeout(() => hideAllEmptyMarkdowns(), 30);
+  
+  	setTimeout(() => hideSourceLinksForDocfxHideAttribute(), 35);
+  
+  	setTimeout(addEventsToTabCloseButtons, 40);
+  
+  	//setTimeout(removeEmptyPopups, 50);
+  </script>
+  
+  
+  <p class='classMargin classMargin--end classMargin--end-enum'>}</p>
+  
+  	</div>
+  	
+  </article></div>
+          </div>
           
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/MediaType.cs/#L10" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/MediaType.cs/#L18" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -210,9 +758,9 @@
               </nav>
             </div>
           </div>
-        
-        
-      
+        </div>
+        </div>
+      </div>
       
       <footer id="page-footer">
         <div class="grad-bottom"></div>
@@ -224,10 +772,10 @@
           </div>
         </div>
       </footer>
-    
+    </div>
     
     <script type="text/javascript" src="..//systemlibrary-common-web/styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="..//systemlibrary-common-web/styles/docfx.js"></script>
     <script type="text/javascript" src="..//systemlibrary-common-web/styles/main.js"></script>
-  </div></div></div></div></div></div></body>
+  </body>
 </html>

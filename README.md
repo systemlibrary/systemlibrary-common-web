@@ -21,7 +21,7 @@ A library of classes and methods for any .NET &gt;= 5 web application
 
 ## Latest Version
 - Updated SystemLibrary.Common.Net dependency to latest
-- Content/Components folder registered as a view location
+- Updated docs layout
 
 ## Docs
 Documentation with samples:

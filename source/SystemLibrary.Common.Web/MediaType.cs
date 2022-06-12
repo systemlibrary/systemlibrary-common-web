@@ -5,16 +5,33 @@ namespace SystemLibrary.Common.Web
     /// <summary>
     /// An enum of various media types that can be sent to the HttpBaseClient request methods
     /// 
-    /// NOTE: Not all of them have been implemented yet though
+    /// The 'MediaType' is sent as an 'Accept' HEADER in the request
+    /// 
+    /// NOTE: Not all of them have been implemented yet though, unless you specify 'MediaType.None'
     /// </summary>
+    /// <example>
+    /// <code>
+    ///   var httpClient = new HttpBaseClient();
+    ///   var response = httpClient.Post&lt;string&gt;("http://httpbin.org/post", data, MediaType.textplain);
+    /// </code>
+    /// </example>
     public enum MediaType
     {
+        /// <summary>
+        /// Sends data as application/json, if 'data' passed to the client through put/post/get already is a string, no conversion is made, else it is being converted to json string before data is sent
+        /// </summary>
         [EnumValue("application/json")]
         json,
 
+        /// <summary>
+        /// Sends data as application/x-www-form-urlencoded
+        /// </summary>
         [EnumValue("application/x-www-form-urlencoded")]
         xwwwformUrlEncoded,
 
+        /// <summary>
+        /// Sends data as text/plain, if 'data' passed to the client through put/post/get already is a string, no conversion is made, else it is being converted to json string before data is sent
+        /// </summary>
         [EnumValue("text/plain")]
         textplain,
 

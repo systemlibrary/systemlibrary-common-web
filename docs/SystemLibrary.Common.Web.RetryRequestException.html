@@ -52,9 +52,10 @@
               
               <a class="navbar-brand" href="..//systemlibrary-common-web/index.html">
                 <img id="logo" class="svg" src="..//systemlibrary-common-web/logo.png" alt="">
+                <span class="navbar-title">System Library Common Web</span>
               </a>
               
-              <span class="navbar-title">System Library Common Web</span>    </div>
+            </div>
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
@@ -172,7 +173,7 @@
   <div class="custom-menu-data custom-menu-data-first">
     <h5 id="SystemLibrary_Common_Web_RetryRequestException_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
   
-    <div class="custom-menu-data-container">
+    <div class="custom-menu-data-container custom-menu-data-container--example">
     </div>
   </div>
   
@@ -546,6 +547,18 @@
   				.replace('protected', '');
   			items[i].innerHTML = innerHtml;
   		}
+  
+  		//Show 'view source' link for the class constructor next to 'Example'
+  		if(items != null && items.length > 0) {
+  			if(items[0] != null && items[0].id != null && items[0].id.includes('__ctor_') === true) {
+  				var viewSources = getItems('.custom-source-code-link-container');
+  				if(viewSources != null && viewSources.length > 0) {
+  					if(viewSources.length > 1) {
+  						viewSources[0].classList.add('custom-source-code-link-container--class');
+  					}
+  				}
+  			}
+  		}
   	}
   
   	function addEventsToTabCloseButtons() {
@@ -726,6 +739,7 @@
   
   	function hideSourceLinksForDocfxHideAttribute() {
   		var items = getItems('.custom-source-code-link-container');
+  
   		if (items != null && items.length > 0) {
   			for (var i = 0; i < items.length; i++) {
   				var next = items[i].nextElementSibling;
@@ -763,9 +777,11 @@
   	//setTimeout(removeEmptyPopups, 50);
   </script>
   
-  </div>
+  <p class='classMargin classMargin--end'>}</p>
   
-  <p class='classMargin classMargin--end'>}</p></article>
+  	</div>
+  	
+  </article></div>
           </div>
           
           <div class="hidden-sm col-md-2" role="complementary">
@@ -802,5 +818,5 @@
     <script type="text/javascript" src="..//systemlibrary-common-web/styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="..//systemlibrary-common-web/styles/docfx.js"></script>
     <script type="text/javascript" src="..//systemlibrary-common-web/styles/main.js"></script>
-  </div></body>
+  </body>
 </html>
