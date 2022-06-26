@@ -21,8 +21,11 @@ A library of classes and methods for any .NET &gt;= 5 web application
 
 ## Latest Version
 - Updated SystemLibrary.Common.Net dependency to latest
-- Internal class AppSettingsConfig is now named AppSettings to it reads the appSettings.json in latest SysLib.Common.Net package
-- Dump.Write() has been removed from GetBodyJson()
+- Added a lot more common static files media types to serve "out of the box" (ttf, webp, ...)
+- Updated comments to a CommonServices and CommonAppBuilder
+- Breaking change: renamed CommonServices to CommonWebApplicationServices 
+- Breaking change: renamed CommonAppBuilder to CommonWebApplicationBuilder
+- Breaking change: a few view locations has been removed (shared/components/...). Now view engine only has /Views/ and Views/folder/index.cshtml out of the box registered
 
 ## Version history
 - View git history of this file if interested

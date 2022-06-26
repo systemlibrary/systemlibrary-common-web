@@ -11,15 +11,6 @@ namespace SystemLibrary.Common.Web.Extensions
         {
             "~/Views/{1}/{0}.cshtml",
             "~/Views/{0}.cshtml",
-            "~/Views/Shared/{0}.cshtml",
-            "~/Views/Shared/{1}/{0}.cshtml"
-        };
-
-        static string[] GetViewsForPages() => new string[] {
-            "~/Content/Pages/{0}/Index.cshtml",
-            "~/Content/Pages/{1}/{0}.cshtml",
-            "~/Pages/{0}/Index.cshtml",
-            "~/Pages/{1}/{0}.cshtml"
         };
 
         static string[] GetViewsForComponents() => new string[]
@@ -37,7 +28,6 @@ namespace SystemLibrary.Common.Web.Extensions
 
         static string[] AllViews = (_AllViews != null) ? _AllViews :
             (_AllViews = GetViewsForComponents()
-            .Concat(GetViewsForPages())
             .Concat(GetViews()).ToArray());
 
         public IEnumerable<string> ExpandViewLocations(ViewLocationExpanderContext context, IEnumerable<string> viewLocations)

@@ -193,19 +193,19 @@ references:
   commentId: T:SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions
   fullName: SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions
   nameWithType: IApplicationBuilderExtensions
-- uid: SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.CommonAppBuilder(Microsoft.AspNetCore.Builder.IApplicationBuilder,SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions)
-  name: CommonAppBuilder(IApplicationBuilder, ApplicationBuilderOptions)
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.html#SystemLibrary_Common_Web_Extensions_IApplicationBuilderExtensions_CommonAppBuilder_Microsoft_AspNetCore_Builder_IApplicationBuilder_SystemLibrary_Common_Web_Extensions_ApplicationBuilderOptions_
-  commentId: M:SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.CommonAppBuilder(Microsoft.AspNetCore.Builder.IApplicationBuilder,SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions)
-  fullName: SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.CommonAppBuilder(Microsoft.AspNetCore.Builder.IApplicationBuilder, SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions)
-  nameWithType: IApplicationBuilderExtensions.CommonAppBuilder(IApplicationBuilder, ApplicationBuilderOptions)
-- uid: SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.CommonAppBuilder*
-  name: CommonAppBuilder
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.html#SystemLibrary_Common_Web_Extensions_IApplicationBuilderExtensions_CommonAppBuilder_
-  commentId: Overload:SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.CommonAppBuilder
+- uid: SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.CommonWebApplicationBuilder(Microsoft.AspNetCore.Builder.IApplicationBuilder,SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions)
+  name: CommonWebApplicationBuilder(IApplicationBuilder, ApplicationBuilderOptions)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.html#SystemLibrary_Common_Web_Extensions_IApplicationBuilderExtensions_CommonWebApplicationBuilder_Microsoft_AspNetCore_Builder_IApplicationBuilder_SystemLibrary_Common_Web_Extensions_ApplicationBuilderOptions_
+  commentId: M:SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.CommonWebApplicationBuilder(Microsoft.AspNetCore.Builder.IApplicationBuilder,SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions)
+  fullName: SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.CommonWebApplicationBuilder(Microsoft.AspNetCore.Builder.IApplicationBuilder, SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions)
+  nameWithType: IApplicationBuilderExtensions.CommonWebApplicationBuilder(IApplicationBuilder, ApplicationBuilderOptions)
+- uid: SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.CommonWebApplicationBuilder*
+  name: CommonWebApplicationBuilder
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.html#SystemLibrary_Common_Web_Extensions_IApplicationBuilderExtensions_CommonWebApplicationBuilder_
+  commentId: Overload:SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.CommonWebApplicationBuilder
   isSpec: "True"
-  fullName: SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.CommonAppBuilder
-  nameWithType: IApplicationBuilderExtensions.CommonAppBuilder
+  fullName: SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.CommonWebApplicationBuilder
+  nameWithType: IApplicationBuilderExtensions.CommonWebApplicationBuilder
 - uid: SystemLibrary.Common.Web.Extensions.IPrincipalExtensions
   name: IPrincipalExtensions
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IPrincipalExtensions.html
@@ -234,19 +234,19 @@ references:
   commentId: T:SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions
   fullName: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions
   nameWithType: IServiceCollectionExtensions
-- uid: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.CommonServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions)
-  name: CommonServices(IServiceCollection, ServiceCollectionOptions)
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.html#SystemLibrary_Common_Web_Extensions_IServiceCollectionExtensions_CommonServices_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_
-  commentId: M:SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.CommonServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions)
-  fullName: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.CommonServices(Microsoft.Extensions.DependencyInjection.IServiceCollection, SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions)
-  nameWithType: IServiceCollectionExtensions.CommonServices(IServiceCollection, ServiceCollectionOptions)
-- uid: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.CommonServices*
-  name: CommonServices
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.html#SystemLibrary_Common_Web_Extensions_IServiceCollectionExtensions_CommonServices_
-  commentId: Overload:SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.CommonServices
+- uid: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.CommonWebApplicationServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions)
+  name: CommonWebApplicationServices(IServiceCollection, ServiceCollectionOptions)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.html#SystemLibrary_Common_Web_Extensions_IServiceCollectionExtensions_CommonWebApplicationServices_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_
+  commentId: M:SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.CommonWebApplicationServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions)
+  fullName: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.CommonWebApplicationServices(Microsoft.Extensions.DependencyInjection.IServiceCollection, SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions)
+  nameWithType: IServiceCollectionExtensions.CommonWebApplicationServices(IServiceCollection, ServiceCollectionOptions)
+- uid: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.CommonWebApplicationServices*
+  name: CommonWebApplicationServices
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.html#SystemLibrary_Common_Web_Extensions_IServiceCollectionExtensions_CommonWebApplicationServices_
+  commentId: Overload:SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.CommonWebApplicationServices
   isSpec: "True"
-  fullName: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.CommonServices
-  nameWithType: IServiceCollectionExtensions.CommonServices
+  fullName: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.CommonWebApplicationServices
+  nameWithType: IServiceCollectionExtensions.CommonWebApplicationServices
 - uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions
   name: ServiceCollectionOptions
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.html

@@ -13,19 +13,29 @@ namespace SystemLibrary.Common.Web.Extensions
     public static class IApplicationBuilderExtensions
     {
         /// <summary>
-        /// Registers:
-        /// Http to Https redirection, usage of Authentication and Authorization, Static File Handlers, Forwarded Headers and Endpoints for RazorPage and Controllers
+        /// Register a common web application builder in one-line.
+        /// 
+        /// This adds various middleware to your ApplicationBuilder:
+        /// - Https middleware
+        /// - Http to Https redirection middleware
+        /// - Routing middleware
+        /// - Authentication and Authorization middleware
+        /// - Serving Static files (CSS, jpg, js...) middleware
+        /// - Forwarded headers middleware
+        /// - Controllers middleware to run your Controllers based on Routing
+        /// - RazorPages middleware to compile your Razor Views to serve the HTML
+        /// - Default ControllerRoute registered to: controller=Home,action=Index
         /// </summary>
         /// <example>
         /// Inside your 'Startup' class:
         /// <code>
         /// public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         /// {
-        ///     app.CommonAppBuilder();
+        ///     app.CommonWebApplicationBuilder();
         /// }
         /// </code>
         /// </example>
-        public static IApplicationBuilder CommonAppBuilder(this IApplicationBuilder app, ApplicationBuilderOptions options = null)
+        public static IApplicationBuilder CommonWebApplicationBuilder(this IApplicationBuilder app, ApplicationBuilderOptions options = null)
         {
             if (options == null)
                 options = new ApplicationBuilderOptions();
@@ -53,8 +63,12 @@ namespace SystemLibrary.Common.Web.Extensions
                 staticFileOptions.HttpsCompression = HttpsCompressionMode.Compress;
                 staticFileOptions.RedirectToAppendTrailingSlash = false;
 
+                //TODO: Sure about GetCurrentDirectory? It returns "root" of the application
+                //while AppContext.BaseDirectory returns "one folder deeper", inside /bin/, where APP is running
+                //but App static files are of course, usually, not copied to bin, so far so good
                 staticFileOptions.FileProvider = new PhysicalFileProvider(Directory.GetCurrentDirectory());
                 staticFileOptions.RequestPath = new PathString();
+
                 app.UseStaticFiles(staticFileOptions);
             }
 
@@ -69,7 +83,7 @@ namespace SystemLibrary.Common.Web.Extensions
                     endpoints.MapRazorPages();
 
                     endpoints.MapControllerRoute(
-                        name: "default-controller-action-mapping",
+                        name: "systemlibrary-common-web-default-controller-action-id",
                         pattern: "{controller=Home}/{action=Index}/{id?}");
                 });
             }

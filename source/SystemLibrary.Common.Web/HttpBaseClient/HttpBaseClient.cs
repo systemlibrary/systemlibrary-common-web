@@ -4,8 +4,6 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
-using SystemLibrary.Common.Net;
-
 namespace SystemLibrary.Common.Web
 {
     /// <summary>
@@ -92,7 +90,7 @@ namespace SystemLibrary.Common.Web
         public HttpBaseClient(
             bool retryOnceOnRequestCancelled = false,
             bool ignoreSslErrors = true,
-            int defaultTimeoutMilliseconds = 60000)
+            int defaultTimeoutMilliseconds = DefaultTimeoutMilliseconds)
         {
             RetryOnceOnRequestCancelled = retryOnceOnRequestCancelled;
             IgnoreSslErrors = ignoreSslErrors;

@@ -15,6 +15,7 @@ namespace SystemLibrary.Common.Web
             {
                 var disposedTime = DateTime.Now.AddSeconds(-ClientExpiresInSeconds);
                 var keys = DisposeQueue.Keys;
+
                 foreach (var key in keys)
                 {
                     try

@@ -9,7 +9,7 @@ namespace SystemLibrary.Common.Web.Extensions
     /// <example>
     /// Inside your 'Startup' class:
     /// <code>
-    /// //custom view locations
+    /// //Add your custom view locations, where your app has views located
     /// public class CustomViewLocations : IViewLocationExpander
     /// {
     ///    //...implement the interface

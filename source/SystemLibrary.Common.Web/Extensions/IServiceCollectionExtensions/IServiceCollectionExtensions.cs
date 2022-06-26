@@ -13,18 +13,20 @@ namespace SystemLibrary.Common.Web.Extensions
     public static class IServiceCollectionExtensions
     {
         /// <summary>
-        /// Configures ServiceCollection to be used with Mvc, RazorPages, Routing, ViewLocations, ForwardedHeaders, configures which Media Types are allowed to be hosted as Static Files (css, js, etc...)
+        /// Configures ServiceCollection in one-line
+        /// 
+        /// This registered: MVC, RazorPages, Routing, default set of ViewLocations, ForwardedProtocol and ForwardedIp (XForwardedFor) headers and loading Controllers from your Default Assembly (usually your Web Application assembly)
         /// </summary>
         /// <example>
-        /// //the familiar 'startup.cs':
+        /// //Inside your Initialization class/Startup class where you have the method "ConfigureServices":
         /// <code>
         /// public void ConfigureServices(IServiceCollection services)
         /// {
-        ///     app.CommonServices();
+        ///     services.CommonWebApplicationServices(); //This extension method
         /// }
         /// </code>
         /// </example>
-        public static IServiceCollection CommonServices(this IServiceCollection services, ServiceCollectionOptions options = null)
+        public static IServiceCollection CommonWebApplicationServices(this IServiceCollection services, ServiceCollectionOptions options = null)
         {
             if (options == null)
                 options = new ServiceCollectionOptions();
@@ -103,6 +105,7 @@ namespace SystemLibrary.Common.Web.Extensions
             services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
 
             services.Configure<IISServerOptions>(options => { options.AllowSynchronousIO = true; });
+
             return services;
         }
     }
