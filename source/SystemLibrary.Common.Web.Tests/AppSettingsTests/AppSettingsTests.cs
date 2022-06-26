@@ -6,12 +6,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using SystemLibrary.Common.Net.Extensions;
 
-namespace SystemLibrary.Common.Web.HttpBaseClientTests
+namespace SystemLibrary.Common.Web.Tests
 {
-    partial class HttpBaseClientTests
+    [TestClass]
+    public partial class AppSettingsTests
     {
         [TestMethod]
-        public void AppSettingsTests()
+        public void Read_AppSettingsConfiguration()
         {
             var config = GetConfigurationByName("httpBaseClient");
 
@@ -65,7 +66,7 @@ namespace SystemLibrary.Common.Web.HttpBaseClientTests
 
         static object GetAppSettingsConfig()
         {
-            var type = Type.GetType("SystemLibrary.Common.Web.AppSettingsConfig, SystemLibrary.Common.Web");
+            var type = Type.GetType("SystemLibrary.Common.Web.AppSettings, SystemLibrary.Common.Web");
 
             var config = type.GetProperties(BindingFlags.FlattenHierarchy | BindingFlags.Static | BindingFlags.Public)
                 .Where(x => x.Name == "Current")

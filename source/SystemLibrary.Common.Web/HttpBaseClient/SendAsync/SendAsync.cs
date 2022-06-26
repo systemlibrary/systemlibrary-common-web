@@ -18,8 +18,8 @@ namespace SystemLibrary.Common.Web
                     timeoutMilliseconds = TimeoutMilliseconds;
 
                 //Is it overridden by having a valid appSettings value?
-                else if (AppSettingsConfig.Current.SystemLibraryCommonWeb.HttpBaseClient.TimeoutMilliseconds != 60000 && AppSettingsConfig.Current.SystemLibraryCommonWeb.HttpBaseClient.TimeoutMilliseconds > 0)
-                    timeoutMilliseconds = AppSettingsConfig.Current.SystemLibraryCommonWeb.HttpBaseClient.TimeoutMilliseconds;
+                else if (AppSettings.Current.SystemLibraryCommonWeb.HttpBaseClient.TimeoutMilliseconds != 60000 && AppSettings.Current.SystemLibraryCommonWeb.HttpBaseClient.TimeoutMilliseconds > 0)
+                    timeoutMilliseconds = AppSettings.Current.SystemLibraryCommonWeb.HttpBaseClient.TimeoutMilliseconds;
             }
 
             if (url.IsNot())

@@ -1,4 +1,4 @@
-﻿namespace SystemLibrary.Common.Web.HttpBaseClientTests
+﻿namespace SystemLibrary.Common.Web.Tests
 {
     public class Form
     {

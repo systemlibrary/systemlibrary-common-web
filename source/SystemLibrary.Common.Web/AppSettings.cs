@@ -21,9 +21,9 @@ namespace SystemLibrary.Common.Web
     /// }
     /// </code>
     /// </example>
-    internal class AppSettingsConfig : Config<AppSettingsConfig>
+    internal class AppSettings : Config<AppSettings>
     {
-        public AppSettingsConfig()
+        public AppSettings()
         {
             SystemLibraryCommonWeb = new Configuration();
         }
@@ -40,6 +40,7 @@ namespace SystemLibrary.Common.Web
             public class HttpBaseClientConfiguration
             {
                 public int TimeoutMilliseconds { get; set; } = 60000;
+
                 public int RetryRequestTimeoutSeconds { get; set; } = 10;
                 public int CacheClientConnectionSeconds { get; set; } = 300;
             }

@@ -3,7 +3,7 @@ using System.Threading;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace SystemLibrary.Common.Web.HttpBaseClientTests
+namespace SystemLibrary.Common.Web.Tests
 {
     partial class HttpBaseClientTests
     {

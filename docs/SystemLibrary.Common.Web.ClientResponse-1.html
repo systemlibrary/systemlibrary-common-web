@@ -463,6 +463,7 @@
   
   
   <script>
+  	let wrapperCloseModalClickEnabled = false;
   	function getItems(selector) {
   		return document.querySelectorAll(selector);
   	}
@@ -702,14 +703,39 @@
   
   			if (!value || value.length < 5 || !value.includes(' ') || !value.includes('(')) {
   				items[i].classList.add("non-function-element");
+  				let isClickable = false;
   				if (value.includes('{') && value.includes('}')) {
-  					items[i].classList.add("property-name");
+  					items[i].classList.add("custom-property-name");
+  					items[i].classList.add("custom-property-name-onclick");
+  					var dataContainerTemp = items[i].nextElementSibling;
+  					if(dataContainerTemp && dataContainerTemp.classList.contains('custom-menu-data-container')) {
+  						var propertyCustomMenuData = dataContainerTemp.getElementsByClassName('custom-menu-data-name');
+  						if(typeof propertyCustomMenuData !== 'undefined' && propertyCustomMenuData && propertyCustomMenuData.length) {
+  							var propertyCustomMenuDataFirst = propertyCustomMenuData[0];
+  							if(propertyCustomMenuDataFirst) {
+  								propertyCustomMenuDataFirst.classList.remove('custom-menu-data-name');
+  								propertyCustomMenuDataFirst.classList.add('custom-menu-data-property-name');
+  								isClickable = true;
+  							}
+  						}
+  					}
   				} else {
   					if (value.includes('protected ') || value.includes('private ') || value.includes('public ')) {
   						items[i].classList.add("field-name");
   					}
   				}
   				items[i].innerHTML = items[i].innerHTML.replace('public ', '').replace('override ', '').replace('protected ', '');
+  
+  				if(isClickable === true) {
+  					let txt = items[i].innerHTML;
+  					if(txt && txt.length > 5 && txt[0] !== ' ') {
+  						txt = txt.replace(" ", "|<span|class='property-name-text'>");
+  						txt = txt.replace(" ", "</span> ");
+  						txt = txt.replace("|", " ").replace("|", " ");
+  						items[i].innerHTML = txt;
+  					}
+  				}
+  
   				continue;
   			}
   
@@ -789,12 +815,58 @@
   
   		for (i = 0; i < closeButtons.length; i++) {
   			closeButtons[i].addEventListener("click", function () {
+  				wrapperCloseModalClickEnabled = false;
   				let par = this.parentNode;
   				if (par.style.display === "block") {
   					par.style.display = "none";
+  					if(par && par.classList && par.classList.contains('active')) {
+  						par.classList.toggle('active');
+  					}
+  
+  					//Show footer when modal is not active
+  					var footer = document.getElementById("page-footer");
+  					if (footer && footer.classList) {
+  						if (footer.classList.contains('hidden')) {
+  							footer.classList.toggle('hidden');
+  						}
+  					}
   				}
   			})
   		}
+  
+  		setTimeout(() => {
+  				var sidetocs = document.getElementsByClassName('sidetoc');
+  				if(sidetocs) {
+  					let wrapper = sidetocs[0];
+  					if(wrapper) {
+  						wrapper.addEventListener('click', function () {
+  							if(wrapperCloseModalClickEnabled === true) {
+  								wrapperCloseModalClickEnabled = false;
+  								var activeElements = document.getElementsByClassName('active');
+  								if(activeElements) {
+  									for(var i = 0; i < activeElements.length; i++){
+  										let activeEle = activeElements[i];
+  										if(activeEle && activeEle.style && activeEle.style.display === 'block') {
+  											activeEle.style.display = 'none';
+  											activeEle.classList.toggle('active');
+  
+  											//Show footer when modal is not active
+  											var footer = document.getElementById("page-footer");
+  											if (footer && footer.classList) {
+  												if (footer.classList.contains('hidden')) {
+  													footer.classList.toggle('hidden');
+  												}
+  											}
+  										}
+  									}
+  								}
+  							}
+  						});
+  					}
+  				}
+  			},
+  			500
+  		);
   	}
   
   	function addEventDisplayMenuDataOnClickPart(partName) {
@@ -803,6 +875,7 @@
   		var parts = document.getElementsByClassName("custom-" + partName + "-onclick");
   
   		var menuDataClass = 'custom-menu-data-' + partName;
+  
   		for (i = 0; i < parts.length; i++) {
   			var container = parts[i];
   			while (container) {
@@ -812,7 +885,11 @@
   				}
   			}
   			if (container) {
-  				var menuData = container.getElementsByClassName(menuDataClass)[0];
+  				var menuDataCollection = container.getElementsByClassName(menuDataClass);
+  				if(typeof(menuDataCollection) === 'undefined' || !menuDataCollection) {
+  					continue;
+  				}
+  				var menuData = menuDataCollection[0];
   
   				//MenuData do not exist at all, change button layout to red
   				if (!menuData || !menuData.classList || !menuData.classList.contains(menuDataClass)) {
@@ -829,16 +906,22 @@
   				}
   				else {
   					//MenuData is empty or contains only the "X" button, change button layout to red
-  					if (menuData.children === null || typeof (menuData.children) === 'undefined' || menuData.children.length <= 1) {
-  						if (menuDataClass.includes('-class-') >= 1) {
+  					if (typeof menuData.children === 'undefined' || menuData.children === null || menuData.children.length <= 1) 
+  					{
+  						if (menuDataClass.includes('-class-') >= 1)
+  						{
   							parts[i].classList.toggle('hidden');
-  						} else {
-  
+  						} 
+  						else 
+  						{
   							var h4 = container.getElementsByClassName('h4-custom-functionName');
-  							if (h4 && h4.length && h4.length > 0 && h4[0] && h4[0].id && h4[0].id.includes('_ctor_')) {
+  							if (h4 && h4.length && h4.length > 0 && h4[0] && h4[0].id && (h4[0].id.includes('_ctor_') || h4[0].classList.contains('non-function-element'))) 
+  							{
   								//CTOR has no example, then just hide the whole CTOR line
   								container.classList.toggle('hidden');
-  							} else {
+  							} 
+  							else 
+  							{
   								parts[i].classList.toggle('custom-menu-data-no-text');
   							}
   						}
@@ -851,17 +934,25 @@
   			if (parts[i].classList.contains('custom-menu-data-no-text')) {
   				continue;
   			}
+  
   			parts[i].addEventListener("click", function (e) {
   				e.preventDefault();
-  				var container = this.parentNode
+  				e.stopPropagation();
+  				var container = this.parentNode;
   				while (container) {
-  					container = container.parentNode;
   					if (container && container.classList && container.classList.contains('custom-menu-data')) {
   						break;
   					}
+  
+  					if(container && container.classList && container.classList.contains('col-md-10')) {
+  						break;
+  					}
+  
+  					container = container.parentNode;
   				}
   
   				if (container) {
+  					
   					var menuData = container.getElementsByClassName(menuDataClass)[0];
   
   					if (menuData && menuData.classList && menuData.classList.contains(menuDataClass)) {
@@ -900,6 +991,10 @@
   							//Show just one Menu Data, the one we clicked
   							menuData.style.display = "block";
   							menuData.classList.toggle('active');
+  
+  							setTimeout(() => {
+  								wrapperCloseModalClickEnabled = true;
+  							} , 25);
   						}
   					}
   				}
@@ -985,6 +1080,7 @@
   	setTimeout(() => addEventDisplayMenuDataOnClickPart('class-example'), 15);
   	setTimeout(() => addEventDisplayMenuDataOnClickPart('class-arguments'), 20);
   	setTimeout(() => addEventDisplayMenuDataOnClickPart('name'), 25);
+  	setTimeout(() => addEventDisplayMenuDataOnClickPart('property-name'), 66);
   	//NOTE: Disabled clicking on args and return type - the sample should give enough info
   	//setTimeout(() => addEventDisplayMenuDataOnClickPart('arguments'), 45);
   	//setTimeout(() => addEventDisplayMenuDataOnClickPart('returntype'), 50);

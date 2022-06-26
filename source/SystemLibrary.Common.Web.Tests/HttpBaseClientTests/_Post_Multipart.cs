@@ -2,7 +2,7 @@
 
 using SystemLibrary.Common.Net;
 
-namespace SystemLibrary.Common.Web.HttpBaseClientTests
+namespace SystemLibrary.Common.Web.Tests
 {
     partial class HttpBaseClientTests
     {

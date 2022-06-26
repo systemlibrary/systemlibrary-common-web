@@ -453,7 +453,9 @@
   			if (!value || value.length < 5 || !value.includes(' ') || !value.includes('(')) {
   				items[i].classList.add("non-function-element");
   				if (value.includes('{') && value.includes('}')) {
-  					items[i].classList.add("property-name");
+  					items[i].classList.add("custom-property-name");
+  					items[i].classList.add("custom-property-name-onclick");
+  					alert("enum property?");
   				} else {
   					if (value.includes('protected ') || value.includes('private ') || value.includes('public ')) {
   						items[i].classList.add("field-name");
@@ -541,6 +543,7 @@
   		var parts = document.getElementsByClassName("custom-" + partName + "-onclick");
   
   		var menuDataClass = 'custom-menu-data-' + partName;
+  
   		for (i = 0; i < parts.length; i++) {
   			var container = parts[i];
   			while (container) {
@@ -722,6 +725,7 @@
   	setTimeout(() => addEventDisplayMenuDataOnClickPart('class-example'), 15);
   	setTimeout(() => addEventDisplayMenuDataOnClickPart('class-arguments'), 20);
   	setTimeout(() => addEventDisplayMenuDataOnClickPart('name'), 25);
+  	setTimeout(() => addEventDisplayMenuDataOnClickPart('property-name'), 66);
   	//NOTE: Disabled clicking on args and return type - the sample should give enough info
   	//setTimeout(() => addEventDisplayMenuDataOnClickPart('arguments'), 45);
   	//setTimeout(() => addEventDisplayMenuDataOnClickPart('returntype'), 50);

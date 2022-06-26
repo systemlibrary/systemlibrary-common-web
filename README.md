@@ -21,7 +21,11 @@ A library of classes and methods for any .NET &gt;= 5 web application
 
 ## Latest Version
 - Updated SystemLibrary.Common.Net dependency to latest
-- Updated docs layout
+- Internal class AppSettingsConfig is now named AppSettings to it reads the appSettings.json in latest SysLib.Common.Net package
+- Dump.Write() has been removed from GetBodyJson()
+
+## Version history
+- View git history of this file if interested
 
 ## Docs
 Documentation with samples:

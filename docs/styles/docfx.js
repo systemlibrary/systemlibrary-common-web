@@ -172,7 +172,6 @@ $(function () {
 
     // Search factory
     function localSearch() {
-      console.log("using local search");
       var lunrIndex = lunr(function () {
         this.ref('href');
         this.field('title', { boost: 50 });
@@ -211,7 +210,6 @@ $(function () {
     }
 
     function webWorkerSearch() {
-      console.log("using Web Worker");
       var indexReady = $.Deferred();
 
       worker.onmessage = function (oEvent) {

@@ -23,7 +23,7 @@ namespace SystemLibrary.Common.Web
                     try
                     {
                         options.ForceNewClient = true;
-                        options.TimeoutMilliseconds = AppSettingsConfig.Current.SystemLibraryCommonWeb.HttpBaseClient.RetryRequestTimeoutSeconds;
+                        options.TimeoutMilliseconds = AppSettings.Current.SystemLibraryCommonWeb.HttpBaseClient.RetryRequestTimeoutSeconds;
                         response = await SendAsync(options).ConfigureAwait(false);
                     }
                     catch (Exception ex)

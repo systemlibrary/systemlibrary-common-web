@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace SystemLibrary.Common.Web.HttpBaseClientTests
+namespace SystemLibrary.Common.Web.Tests
 {
     class HttpBinClient : HttpBaseClient
     {

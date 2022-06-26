@@ -10,7 +10,7 @@ namespace SystemLibrary.Common.Web
         {
             static int _ClientExpiresInSeconds = -1;
             static int ClientExpiresInSeconds => _ClientExpiresInSeconds > -1 ? _ClientExpiresInSeconds : 
-                (_ClientExpiresInSeconds = AppSettingsConfig.Current.SystemLibraryCommonWeb.HttpBaseClient.CacheClientConnectionSeconds);
+                (_ClientExpiresInSeconds = AppSettings.Current.SystemLibraryCommonWeb.HttpBaseClient.CacheClientConnectionSeconds);
 
             static ConcurrentDictionary<string, CacheModel> Cache;
             static ConcurrentDictionary<string, CacheModel> DisposeQueue;

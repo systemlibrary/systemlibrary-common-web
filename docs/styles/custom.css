@@ -240,6 +240,9 @@ body > div#wrapper div.container.hide-when-search > ul {
 div#breadcrumb {
   background-color: var(--brown);
 }
+header > div.subnav.navbar.navbar-default {
+  background-color: var(--brown);
+}
 
 .breadcrumb a:hover,
 .breadcrumb a:focus {
@@ -704,7 +707,7 @@ div.custom-menu-data {
 }
 
 .custom-menu-data
-  > h4.h4-custom-functionName.non-function-element.property-name {
+  > h4.h4-custom-functionName.non-function-element.name {
   color: var(--dark-blue);
 }
 
@@ -747,6 +750,7 @@ div.custom-menu-summary-data * {
   z-index: 100;
 }
 
+.custom-menu-data-property-name.active,
 .custom-menu-data-name.active,
 .custom-menu-data-arguments.active,
 .custom-menu-data-returntype.active {
@@ -761,6 +765,7 @@ div.custom-menu-summary-data * {
 }
 
 @media screen and (max-width: 768px) {
+  .custom-menu-data-property-name.active,
   .custom-menu-data-name.active,
   .custom-menu-data-arguments.active,
   .custom-menu-data-returntype.active {
@@ -845,6 +850,25 @@ div.custom-menu-data > h4:hover {
   text-decoration: underline;
   user-select: none;
   cursor: pointer;
+}
+
+.custom-property-name-onclick {
+  cursor: pointer;
+  user-select: none;
+  font-weight: 500;
+}
+
+.property-name-text {
+  text-decoration: underline;
+  font-size: 15px;
+  color: var(--purple);
+  font-family: var(--font-code);
+}
+
+.custom-property-name-onclick.custom-menu-data-no-text {
+  cursor: default !important;
+  user-select: unset !important;
+  text-decoration: none !important;
 }
 
 .syslib-tab-menu-data--close {
