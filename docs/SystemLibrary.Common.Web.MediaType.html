@@ -213,6 +213,8 @@
   </thead></thead></table>
   
   <script>
+  	let wrapperCloseModalClickEnabled = false;
+  
   	function getItems(selector) {
   		return document.querySelectorAll(selector);
   	}
@@ -452,16 +454,39 @@
   
   			if (!value || value.length < 5 || !value.includes(' ') || !value.includes('(')) {
   				items[i].classList.add("non-function-element");
+  				let isClickable = false;
   				if (value.includes('{') && value.includes('}')) {
   					items[i].classList.add("custom-property-name");
   					items[i].classList.add("custom-property-name-onclick");
-  					alert("enum property?");
+  					var dataContainerTemp = items[i].nextElementSibling;
+  					if(dataContainerTemp && dataContainerTemp.classList.contains('custom-menu-data-container')) {
+  						var propertyCustomMenuData = dataContainerTemp.getElementsByClassName('custom-menu-data-name');
+  						if(typeof propertyCustomMenuData !== 'undefined' && propertyCustomMenuData && propertyCustomMenuData.length) {
+  							var propertyCustomMenuDataFirst = propertyCustomMenuData[0];
+  							if(propertyCustomMenuDataFirst) {
+  								propertyCustomMenuDataFirst.classList.remove('custom-menu-data-name');
+  								propertyCustomMenuDataFirst.classList.add('custom-menu-data-property-name');
+  								isClickable = true;
+  							}
+  						}
+  					}
   				} else {
   					if (value.includes('protected ') || value.includes('private ') || value.includes('public ')) {
   						items[i].classList.add("field-name");
   					}
   				}
   				items[i].innerHTML = items[i].innerHTML.replace('public ', '').replace('override ', '').replace('protected ', '');
+  
+  				if(isClickable === true) {
+  					let txt = items[i].innerHTML;
+  					if(txt && txt.length > 5 && txt[0] !== ' ') {
+  						txt = txt.replace(" ", "|<span|class='property-name-text'>");
+  						txt = txt.replace(" ", "</span> ");
+  						txt = txt.replace("|", " ").replace("|", " ");
+  						items[i].innerHTML = txt;
+  					}
+  				}
+  
   				continue;
   			}
   
@@ -520,6 +545,18 @@
   				.replace('protected', '');
   			items[i].innerHTML = innerHtml;
   		}
+  
+  		//Show 'view source' link for the class constructor next to 'Example'
+  		if(items != null && items.length > 0) {
+  			if(items[0] != null && items[0].id != null && items[0].id.includes('__ctor_') === true) {
+  				var viewSources = getItems('.custom-source-code-link-container');
+  				if(viewSources != null && viewSources.length > 0) {
+  					if(viewSources.length > 1) {
+  						viewSources[0].classList.add('custom-source-code-link-container--class');
+  					}
+  				}
+  			}
+  		}
   	}
   
   	function addEventsToTabCloseButtons() {
@@ -529,12 +566,58 @@
   
   		for (i = 0; i < closeButtons.length; i++) {
   			closeButtons[i].addEventListener("click", function () {
+  				wrapperCloseModalClickEnabled = false;
   				let par = this.parentNode;
   				if (par.style.display === "block") {
   					par.style.display = "none";
+  					if(par && par.classList && par.classList.contains('active')) {
+  						par.classList.toggle('active');
+  					}
+  
+  					//Show footer when modal is not active
+  					var footer = document.getElementById("page-footer");
+  					if (footer && footer.classList) {
+  						if (footer.classList.contains('hidden')) {
+  							footer.classList.toggle('hidden');
+  						}
+  					}
   				}
   			})
   		}
+  
+  		setTimeout(() => {
+  				var sidetocs = document.getElementsByClassName('sidetoc');
+  				if(sidetocs) {
+  					let wrapper = sidetocs[0];
+  					if(wrapper) {
+  						wrapper.addEventListener('click', function () {
+  							if(wrapperCloseModalClickEnabled === true) {
+  								wrapperCloseModalClickEnabled = false;
+  								var activeElements = document.getElementsByClassName('active');
+  								if(activeElements) {
+  									for(var i = 0; i < activeElements.length; i++){
+  										let activeEle = activeElements[i];
+  										if(activeEle && activeEle.style && activeEle.style.display === 'block') {
+  											activeEle.style.display = 'none';
+  											activeEle.classList.toggle('active');
+  
+  											//Show footer when modal is not active
+  											var footer = document.getElementById("page-footer");
+  											if (footer && footer.classList) {
+  												if (footer.classList.contains('hidden')) {
+  													footer.classList.toggle('hidden');
+  												}
+  											}
+  										}
+  									}
+  								}
+  							}
+  						});
+  					}
+  				}
+  			},
+  			500
+  		);
   	}
   
   	function addEventDisplayMenuDataOnClickPart(partName) {

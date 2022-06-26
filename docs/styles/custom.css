@@ -818,9 +818,13 @@ div.custom-menu-data > h4:hover {
 }
 
 .custom-menu-data-no-text {
-  color: var(--black);
+  color: var(--dark-blue);
+  font-size: 14px;
   text-decoration: none !important;
+  font-family: var(--font-code) !important;
+  font-weight: 600 !important;
 }
+
 .custom-menu-data-no-text:hover {
   border: 0 !important;
   cursor: text;
@@ -855,7 +859,6 @@ div.custom-menu-data > h4:hover {
 .custom-property-name-onclick {
   cursor: pointer;
   user-select: none;
-  font-weight: 500;
 }
 
 .property-name-text {
@@ -1164,4 +1167,13 @@ div.codewrapper > ul > li > p.modest-p {
   font-size: 14px !important;
   line-height: 1.4 !important;
   margin-bottom: 10px !important;
+}
+
+
+.custom-class-content-inline > .table-responsive > table.table > tbody > tr > td > p {
+  font-size: 13.5px;
+}
+
+article.content.wrap > h1.text-break {
+  font-size: 42px;
 }
