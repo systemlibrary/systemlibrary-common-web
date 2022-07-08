@@ -4,14 +4,15 @@
 A library of classes and methods for any .NET &gt;= 5 web application
 
 * Setup IApplicationBuilder in one line
-    * Enables your app to use both Mvc and Razor out of the box
-    * Serves a default set of file types (css, js, svg, png, jpg, etc...)
-    * Enables Authorization and Authentication
-* Configure IServiceCollection in one line
-    * Registers default view locations for both Razor and Mvc so it does not matter which one you use
-    * Registers IHttpContextAccessor as a service so the interface is injectable
-* Extensions for web
-* HttpBaseClient (instead of HttpClient from .Net...) to cache underlying TCP connections, so your API calls reuses the same TCP connection for 5 minutes...
+* Setup CollectionServices in one line
+    * Enables your app instantly to serve static files (css, js, png, jpg, etc...)
+	* Enables your app instnatly to route requests to your controllers
+	* Enables your app with http to https redirection out of the box
+	* Enables your app with authorization and authentication middleware out of the box
+		* the one that comes with .NET of course, but we enable the middleware for you
+	* Enables your app with a few default view locations which you can easily extend
+* Contains helpful extension methods for web in general
+* Most importantly: Contains HttpBaseClient, no more connection exhaustion on your server, it caches the underlying TCP connection for 5 minutes
 
 ## Requirements
 - &gt;= .NET 5
@@ -20,12 +21,12 @@ A library of classes and methods for any .NET &gt;= 5 web application
 - Microsoft.Extensions.FileProviders.Physical &gt;= 5.0.0
 
 ## Latest Version
-- Updated SystemLibrary.Common.Net dependency to latest
-- Added a lot more common static files media types to serve "out of the box" (ttf, webp, ...)
-- Updated comments to a CommonServices and CommonAppBuilder
-- Breaking change: renamed CommonServices to CommonWebApplicationServices 
-- Breaking change: renamed CommonAppBuilder to CommonWebApplicationBuilder
-- Breaking change: a few view locations has been removed (shared/components/...). Now view engine only has /Views/ and Views/folder/index.cshtml out of the box registered
+- Updated target framework to .NET 6
+- Updated docs
+- Adjusted mime-types, removed some, added others like gif, webm...
+- Rewritten logic for which view locations to register
+- Added a string array for additional view locations 
+- Removed some view locations registered by default, now only Views/Components is registered by default
 
 ## Version history
 - View git history of this file if interested

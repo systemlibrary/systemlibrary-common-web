@@ -19,7 +19,7 @@
     public class ApplicationBuilderOptions
     {
         public bool UseHttpRedirectionAndHsts = true;
-        public bool UseRouting = true;
+        public bool UseDefaultRouting = true;
         public bool UseAuthenticationAndAuthorization = true;
         public bool UseControllerAndRazorPages = true;
         public bool UseStaticFiles = true;

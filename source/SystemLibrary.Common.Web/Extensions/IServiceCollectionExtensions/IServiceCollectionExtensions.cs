@@ -2,6 +2,7 @@
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -36,71 +37,70 @@ namespace SystemLibrary.Common.Web.Extensions
                 forwardOption.ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto | Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor;
             });
 
-            if (options.AddControllers)
-            {
-                services.AddControllers()
-                    .AddApplicationPart(Assembly.GetExecutingAssembly())
-                    .AddApplicationPart(Assembly.GetEntryAssembly());
-            }
+            IMvcBuilder builder = null;
 
-            //TODO: This is most likely wrong, never used 'RazorPages' nor 'MvcPages' in .NET 5/6...
-            //So which views goes where, and what, no clue, just registering something to begin with...
             if (options.AddMvcPages)
             {
-                var mvc = services.AddMvc(mvc =>
-                {
+                builder = services.AddMvc(mvc => {
                     mvc.OutputFormatters.Add(new DefaultSupportedMediaTypes());
+
                     if (options.StringOutputFormatter != null)
                         mvc.OutputFormatters.Add(options.StringOutputFormatter);
                 });
-
-                if (!options.AddRazorPages)
-                {
-                    mvc.AddRazorOptions(razor =>
-                    {
-                        razor.ViewLocationExpanders.Add(new ViewLocations());
-                        if (options.ViewLocations != null)
-                            razor.ViewLocationExpanders.Add(options.ViewLocations);
-                    });
-                }
             }
 
-            if (options.AddRazorPages)
+            else if (options.AddRazorPages)
+                builder = services.AddRazorPages();
+
+            if (options.AddMvcPages || options.AddRazorPages || options.AddControllers)
             {
-                services.AddRazorPages()
-                    .AddRazorOptions(razor =>
-                    {
-                        razor.ViewLocationExpanders.Add(new ViewLocations());
-                        if (options.ViewLocations != null)
-                            razor.ViewLocationExpanders.Add(options.ViewLocations);
-                    });
+                if (builder == null)
+                    builder = services.AddControllers();
+
+                var executingAssembliy = Assembly.GetExecutingAssembly();
+                var entryAssembly = Assembly.GetEntryAssembly();
+
+                if (executingAssembliy != null)
+                    builder.AddApplicationPart(executingAssembliy);
+
+                if (executingAssembliy?.FullName != entryAssembly?.FullName)
+                    builder.AddApplicationPart(entryAssembly);
             }
 
-            if (!options.AddMvcPages && !options.AddRazorPages)
+            if (options.AddRazorRuntimeCompilation)
             {
-                var defaultViewLocations = new ViewLocations();
-                var defaultViews = defaultViewLocations.ExpandViewLocations(null, null);
+                if (builder != null)
+                    builder.AddRazorRuntimeCompilation();
+            }
 
-                services.Configure<RazorViewEngineOptions>(o =>
-                {
-                    foreach (var view in defaultViews)
-                    {
-                        o.ViewLocationFormats.Add(view);
-                    }
-                });
-                if (options.ViewLocations != null)
-                {
-                    var views = options.ViewLocations.ExpandViewLocations(null, null);
+            services.Configure<RazorViewEngineOptions>(razorViews => {
+                razorViews.ViewLocationExpanders.Add(new ViewLocations());
 
-                    services.Configure<RazorViewEngineOptions>(o =>
+                if (options.ViewLocationExpander != null)
+                {
+                    var views = options.ViewLocationExpander.ExpandViewLocations(null, null);
+
+                    if (views != null)
                     {
                         foreach (var view in views)
                         {
-                            o.ViewLocationFormats.Add(view);
+                            if (view.IsNot()) continue;
+
+                            razorViews.ViewLocationFormats.Add(view);
                         }
-                    });
+                    }
                 }
-            }
+
+                if (options.ViewLocations != null)
+                {
+                    foreach (var view in options.ViewLocations)
+                    {
+                        if (view.IsNot()) continue;
+
+                        razorViews.ViewLocationFormats.Add(view);
+                    }
+                }
+            });
 
             services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
 

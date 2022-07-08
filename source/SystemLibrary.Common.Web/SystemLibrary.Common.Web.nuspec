@@ -3,7 +3,7 @@
     <metadata>
         <id>SystemLibrary.Common.Web</id>
 
-        <version>2.1.1.1</version>
+        <version>3.0.0.1</version>
 
         <authors>System Library</authors>
         
@@ -24,23 +24,24 @@
 		
         <description>
 ## Description
-A library of classes and methods for any .NET &gt;= 5 web application
+A library of classes and methods for any .NET &gt;= 6 web application
 
 * Setup IApplicationBuilder in one line
-* Enables your app to use both Mvc and Razor out of the box
-* Serves a default set of file types (css, js, svg, png, jpg, etc...)
-* Enables Authorization and Authentication
-* Configure IServiceCollection in one line
-* Registers default view locations for both Razor and Mvc so it does not matter which one you use
-* Registers IHttpContextAccessor as a service so the interface is injectable
-* Extensions for web
-* HttpBaseClient (instead of HttpClient from .Net...) to cache underlying TCP connections, so your API calls reuses the same TCP connection for 5 minutes...
+* Setup CollectionServices in one line
+    * Enables your app instantly to serve static files (css, js, png, jpg, etc...)
+	* Enables your app instnatly to route requests to your controllers
+	* Enables your app with http to https redirection out of the box
+	* Enables your app with authorization and authentication middleware out of the box
+		* the one that comes with .NET of course, but we enable the middleware for you
+	* Enables your app with a few default view locations which you can easily extend
+* Contains helpful extension methods for web in general
+* Most importantly: Contains HttpBaseClient, no more connection exhaustion on your server, it caches the underlying TCP connection for 5 minutes
 
 ## Requirements
-- &gt;= .NET 5
+- &gt;= .NET 6
 - SystemLibrary.Common.Net
 - Microsoft.AspNetCore.App
-- Microsoft.Extensions.FileProviders.Physical &gt;= 5.0.0
+- Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
 https://github.com/systemlibrary/systemlibrary-common-web#latest-version

@@ -46,8 +46,16 @@ namespace SystemLibrary.Common.Web.Extensions
                 app.UseHttpsRedirection();
             }
 
-            if (options.UseRouting)
+            if (options.UseDefaultRouting)
+            {
                 app.UseRouting();
+
+                app.UseEndpoints(endpoints =>
+                {
+                    endpoints.MapDefaultControllerRoute();
+                    endpoints.MapControllerRoute("api/{controller}/{action}", "api/{controller}/{action}/{id?}");
+                });
+            }
 
             if (options.UseAuthenticationAndAuthorization)
             {

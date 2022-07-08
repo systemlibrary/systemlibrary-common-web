@@ -67,7 +67,7 @@ namespace SystemLibrary.Common.Web
     /// {
     ///     var client = new HttpBaseClient();
     /// 
-    ///     var response = client.Get&lt;string&gt;("http://httpbing.org.get/");
+    ///     var response = client.Get&lt;string&gt;("http://httpbin.org/get");
     /// 
     ///     Assert.IsTrue(response.Contains("http"));
     ///     //Response is now the whole json text that the url: http://httpbin.org/get is returning

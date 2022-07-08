@@ -7,28 +7,18 @@ namespace SystemLibrary.Common.Web.Extensions
 {
     internal class ViewLocations : IViewLocationExpander
     {
-        static string[] GetViews() => new string[]
-        {
-            "~/Views/{1}/{0}.cshtml",
-            "~/Views/{0}.cshtml",
-        };
-
         static string[] GetViewsForComponents() => new string[]
         {
-            "~/Content/Components/{0}.cshtml",
-            "~/Content/Components/{0}/Index.cshtml",
-            "~/Content/Components/{1}/{0}.cshtml",
-            "~/Views/Components/{0}.cshtml",
+            "~/Views/Components/{0}/Index.cshtml",
+            "~/Views/Components/{0}/{0}.cshtml",
             "~/Views/Components/{1}/{0}.cshtml",
-            "~/Components/{0}.cshtml",
-            "~/Components/{1}/{0}.cshtml"
+            "~/Views/Components/{0}.cshtml"
         };
 
         static string[] _AllViews;
 
         static string[] AllViews = (_AllViews != null) ? _AllViews :
-            (_AllViews = GetViewsForComponents()
-            .Concat(GetViews()).ToArray());
+            (_AllViews = GetViewsForComponents().ToArray());
 
         public IEnumerable<string> ExpandViewLocations(ViewLocationExpanderContext context, IEnumerable<string> viewLocations)
         {

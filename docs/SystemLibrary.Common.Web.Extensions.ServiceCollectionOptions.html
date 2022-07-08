@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="ServiceCollectionOptions
    ">
-    <meta name="generator" content="docfx 2.58.0.0">
+    <meta name="generator" content="docfx 2.59.3.0">
     
     <link rel="shortcut icon" href="/systemlibrary-common-web/favicon.ico">
     <link rel="stylesheet" href="/systemlibrary-common-web/styles/docfx.vendor.css">
@@ -140,7 +140,7 @@ public void ConfigureServices(IServiceCollection services)
     var options = new ServiceCollectionOptions();
     options.AddControllers = false;
     options.ViewLocations = new CustomViewLocations();
-    app.CommonServices(options);
+    app.CommonWebApplicationServices(options);
 }</code></pre>
 </div>
         <div class="comment-examples-container-bottom"></div>
@@ -205,10 +205,15 @@ public void ConfigureServices(IServiceCollection services)
   </table>
   
   <div class="custom-container">
+  <div class="custom-menu-summary-data">
+  	<div class="markdown level1 summary member-summary"><p>Enables MVC and also adds then default media types output formatters, making your application able to serve: tiff, woff, json, xml, pdf, jpg, png, and a few other default media types</p>
+</div>
+  	<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  </div>
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddMvcPages">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServiceCollectionOptions.cs/#L31">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServiceCollectionOptions.cs/#L34">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddMvcPages_" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddMvcPages*"></a>
@@ -247,13 +252,61 @@ public void ConfigureServices(IServiceCollection services)
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddRazorPages">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServiceCollectionOptions.cs/#L32">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServiceCollectionOptions.cs/#L35">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddRazorPages_" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddRazorPages*"></a>
   
   <div class="custom-menu-data">
   	<h4 id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddRazorPages" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddRazorPages" class="h4-custom-functionName">public bool AddRazorPages { get; set; }</h4>
+  	<div class="custom-menu-data-container">
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Boolean</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  <div class="custom-container">
+  <div class="custom-menu-summary-data">
+  	<div class="markdown level1 summary member-summary"><p>Enables re-compilation of cshtml files upon saving</p>
+<ul>
+<li>avoids the need of re-compilation of whole application if you only change a cshtml file</li>
+<li>Package System.Security.Cryptography.Pkcs is not added as dependency, so if you turn this on; you might need to install that package too</li>
+</ul>
+</div>
+  	<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  </div>
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddRazorRuntimeCompilation">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServiceCollectionOptions.cs/#L42">View Source</a>
+  	</span>
+  </div>
+  <a id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddRazorRuntimeCompilation_" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddRazorRuntimeCompilation*"></a>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddRazorRuntimeCompilation" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddRazorRuntimeCompilation" class="h4-custom-functionName">public bool AddRazorRuntimeCompilation { get; set; }</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
@@ -293,7 +346,7 @@ and pass a new instance of your class as this variable</p>
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_StringOutputFormatter">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServiceCollectionOptions.cs/#L41">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServiceCollectionOptions.cs/#L62">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_StringOutputFormatter_" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.StringOutputFormatter*"></a>
@@ -329,16 +382,24 @@ and pass a new instance of your class as this variable</p>
   </table>
   
   <div class="custom-container">
+  <div class="custom-menu-summary-data">
+  	<div class="markdown level1 summary member-summary"><p>Pass in an object that implements the interface if you want to extend View Locations</p>
+<ul>
+<li>Another option is to simply set 'ViewLocations' variable</li>
+</ul>
+</div>
+  	<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  </div>
   
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_ViewLocations">
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_ViewLocationExpander">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServiceCollectionOptions.cs/#L33">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServiceCollectionOptions.cs/#L48">View Source</a>
   	</span>
   </div>
-  <a id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_ViewLocations_" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.ViewLocations*"></a>
+  <a id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_ViewLocationExpander_" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.ViewLocationExpander*"></a>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_ViewLocations" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.ViewLocations" class="h4-custom-functionName">public IViewLocationExpander ViewLocations { get; set; }</h4>
+  	<h4 id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_ViewLocationExpander" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.ViewLocationExpander" class="h4-custom-functionName">public IViewLocationExpander ViewLocationExpander { get; set; }</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
@@ -362,6 +423,51 @@ and pass a new instance of your class as this variable</p>
   	<tbody>
   		<tr>
   			<td><span class="xref">Microsoft.AspNetCore.Mvc.Razor.IViewLocationExpander</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  <div class="custom-container">
+  <div class="custom-menu-summary-data">
+  	<div class="markdown level1 summary member-summary"><p>Pass in a string array of view location formats, for instance:
+ViewLocations = new string[] { &quot;~/Pages/{0}/{1}.cshtml&quot; };</p>
+</div>
+  	<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  </div>
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_ViewLocations">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServiceCollectionOptions.cs/#L54">View Source</a>
+  	</span>
+  </div>
+  <a id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_ViewLocations_" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.ViewLocations*"></a>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_ViewLocations" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.ViewLocations" class="h4-custom-functionName">public string[] ViewLocations { get; set; }</h4>
+  	<div class="custom-menu-data-container">
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.String</span>[]</td>
   			<td></td>
   		</tr>
   	</tbody>

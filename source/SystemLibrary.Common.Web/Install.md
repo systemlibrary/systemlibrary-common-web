@@ -16,7 +16,7 @@
 	
 	public void ConfigureServices(IServiceCollection services)
 	{
-		services.CommonServices(); //Extension inside this package
+		services.CommonWebApplicationServices(); //Extension inside this package
 	}
 ```
 

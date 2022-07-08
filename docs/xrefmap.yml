@@ -169,18 +169,18 @@ references:
   commentId: F:SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseControllerAndRazorPages
   fullName: SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseControllerAndRazorPages
   nameWithType: ApplicationBuilderOptions.UseControllerAndRazorPages
+- uid: SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseDefaultRouting
+  name: UseDefaultRouting
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_ApplicationBuilderOptions_UseDefaultRouting
+  commentId: F:SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseDefaultRouting
+  fullName: SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseDefaultRouting
+  nameWithType: ApplicationBuilderOptions.UseDefaultRouting
 - uid: SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseHttpRedirectionAndHsts
   name: UseHttpRedirectionAndHsts
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_ApplicationBuilderOptions_UseHttpRedirectionAndHsts
   commentId: F:SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseHttpRedirectionAndHsts
   fullName: SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseHttpRedirectionAndHsts
   nameWithType: ApplicationBuilderOptions.UseHttpRedirectionAndHsts
-- uid: SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseRouting
-  name: UseRouting
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_ApplicationBuilderOptions_UseRouting
-  commentId: F:SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseRouting
-  fullName: SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseRouting
-  nameWithType: ApplicationBuilderOptions.UseRouting
 - uid: SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseStaticFiles
   name: UseStaticFiles
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_ApplicationBuilderOptions_UseStaticFiles
@@ -292,6 +292,19 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddRazorPages
   nameWithType: ServiceCollectionOptions.AddRazorPages
+- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddRazorRuntimeCompilation
+  name: AddRazorRuntimeCompilation
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddRazorRuntimeCompilation
+  commentId: P:SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddRazorRuntimeCompilation
+  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddRazorRuntimeCompilation
+  nameWithType: ServiceCollectionOptions.AddRazorRuntimeCompilation
+- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddRazorRuntimeCompilation*
+  name: AddRazorRuntimeCompilation
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddRazorRuntimeCompilation_
+  commentId: Overload:SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddRazorRuntimeCompilation
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddRazorRuntimeCompilation
+  nameWithType: ServiceCollectionOptions.AddRazorRuntimeCompilation
 - uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.StringOutputFormatter
   name: StringOutputFormatter
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_StringOutputFormatter
@@ -305,6 +318,19 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.StringOutputFormatter
   nameWithType: ServiceCollectionOptions.StringOutputFormatter
+- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.ViewLocationExpander
+  name: ViewLocationExpander
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_ViewLocationExpander
+  commentId: P:SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.ViewLocationExpander
+  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.ViewLocationExpander
+  nameWithType: ServiceCollectionOptions.ViewLocationExpander
+- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.ViewLocationExpander*
+  name: ViewLocationExpander
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_ViewLocationExpander_
+  commentId: Overload:SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.ViewLocationExpander
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.ViewLocationExpander
+  nameWithType: ServiceCollectionOptions.ViewLocationExpander
 - uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.ViewLocations
   name: ViewLocations
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_ViewLocations

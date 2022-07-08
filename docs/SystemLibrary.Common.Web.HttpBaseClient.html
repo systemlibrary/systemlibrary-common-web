@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="HttpBaseClient
    ">
-    <meta name="generator" content="docfx 2.58.0.0">
+    <meta name="generator" content="docfx 2.59.3.0">
     
     <link rel="shortcut icon" href="/systemlibrary-common-web/favicon.ico">
     <link rel="stylesheet" href="/systemlibrary-common-web/styles/docfx.vendor.css">
@@ -176,7 +176,7 @@ public void Test()
 {
     var client = new HttpBaseClient();
 
-    var response = client.Get&lt;string>(&quot;http://httpbing.org.get/&quot;);
+    var response = client.Get&lt;string>(&quot;http://httpbin.org/get&quot;);
 
     Assert.IsTrue(response.Contains(&quot;http&quot;));
     //Response is now the whole json text that the url: http://httpbin.org/get is returning
