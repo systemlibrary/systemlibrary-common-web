@@ -82,17 +82,11 @@ namespace SystemLibrary.Common.Web.Extensions
 
             app.UseForwardedHeaders();
 
-            if (options.UseControllerAndRazorPages)
+            if (options.UseRazorPagesEndpoints)
             {
                 app.UseEndpoints(endpoints =>
                 {
-                    endpoints.MapControllers();
-
                     endpoints.MapRazorPages();
-
-                    endpoints.MapControllerRoute(
-                        name: "systemlibrary-common-web-default-controller-action-id",
-                        pattern: "{controller=Home}/{action=Index}/{id?}");
                 });
             }
 

@@ -21,7 +21,7 @@
         public bool UseHttpRedirectionAndHsts = true;
         public bool UseDefaultRouting = true;
         public bool UseAuthenticationAndAuthorization = true;
-        public bool UseControllerAndRazorPages = true;
+        public bool UseRazorPagesEndpoints = true;
         public bool UseStaticFiles = true;
     }
 }

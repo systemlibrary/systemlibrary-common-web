@@ -163,12 +163,6 @@ references:
   commentId: F:SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseAuthenticationAndAuthorization
   fullName: SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseAuthenticationAndAuthorization
   nameWithType: ApplicationBuilderOptions.UseAuthenticationAndAuthorization
-- uid: SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseControllerAndRazorPages
-  name: UseControllerAndRazorPages
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_ApplicationBuilderOptions_UseControllerAndRazorPages
-  commentId: F:SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseControllerAndRazorPages
-  fullName: SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseControllerAndRazorPages
-  nameWithType: ApplicationBuilderOptions.UseControllerAndRazorPages
 - uid: SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseDefaultRouting
   name: UseDefaultRouting
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_ApplicationBuilderOptions_UseDefaultRouting
@@ -181,6 +175,12 @@ references:
   commentId: F:SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseHttpRedirectionAndHsts
   fullName: SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseHttpRedirectionAndHsts
   nameWithType: ApplicationBuilderOptions.UseHttpRedirectionAndHsts
+- uid: SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseRazorPagesEndpoints
+  name: UseRazorPagesEndpoints
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_ApplicationBuilderOptions_UseRazorPagesEndpoints
+  commentId: F:SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseRazorPagesEndpoints
+  fullName: SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseRazorPagesEndpoints
+  nameWithType: ApplicationBuilderOptions.UseRazorPagesEndpoints
 - uid: SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseStaticFiles
   name: UseStaticFiles
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_ApplicationBuilderOptions_UseStaticFiles

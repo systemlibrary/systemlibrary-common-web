@@ -33,10 +33,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.html",
-          "hash": "LL12sw9RjXnwJWzzfFn2QNH4P5HaM5/+WOvtsh3uR6w="
+          "hash": "ZnL5hZwsBiS60LeRogQ906/seA941I0HeoOG/y5wUK4="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -48,7 +48,7 @@
           "hash": "3Yqs9tvK+j0cscQRvunvdqS/ml7GcznaeG6oQbsg4O0="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -96,7 +96,7 @@
           "hash": "K1TDeoYIw3s05DkrevBIbVBtLxMXPMbFQXChZUqmIqk="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -191,7 +191,7 @@
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 12,
-          "skipped_file_count": 12
+          "skipped_file_count": 11
         },
         "TocDocumentProcessor": {
           "can_incremental": false,
