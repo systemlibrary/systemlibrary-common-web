@@ -33,6 +33,7 @@ namespace SystemLibrary.Common.Web.Extensions
         /// </summary>
         public bool AddMvcPages { get; set; } = true;
         public bool AddRazorPages { get; set; } = true;
+        public bool AddHttpsAndSecureCookiePolicy { get; set; } = true;
 
         /// <summary>
         /// Enables re-compilation of cshtml files upon saving
@@ -60,5 +61,6 @@ namespace SystemLibrary.Common.Web.Extensions
         /// If not set, a default string output formatter will be set
         /// </summary>
         public StringOutputFormatter StringOutputFormatter { get; set; }
+        
     }
 }

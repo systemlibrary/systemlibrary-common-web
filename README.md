@@ -21,12 +21,7 @@ A library of classes and methods for any .NET &gt;= 5 web application
 - Microsoft.Extensions.FileProviders.Physical &gt;= 5.0.0
 
 ## Latest Version
-- Updated target framework to .NET 6
-- Updated docs
-- Adjusted mime-types, removed some, added others like gif, webm...
-- Rewritten logic for which view locations to register
-- Added a string array for additional view locations 
-- Removed some view locations registered by default, now only Views/Components is registered by default
+- Added Cookie Middleware with default turned on http secure and http only
 
 ## Version history
 - View git history of this file if interested

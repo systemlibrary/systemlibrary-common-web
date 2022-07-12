@@ -3,7 +3,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
+
+using SystemLibrary.Common.Net;
 
 namespace SystemLibrary.Common.Web.Extensions
 {
@@ -13,18 +17,20 @@ namespace SystemLibrary.Common.Web.Extensions
     public static class IApplicationBuilderExtensions
     {
         /// <summary>
-        /// Register a common web application builder in one-line.
+        /// Initialize app with common web application middlewares in one-line
         /// 
-        /// This adds various middleware to your ApplicationBuilder:
-        /// - Https middleware
+        /// All middlewares can be turned on/off through the 'options' variable, by default they are all enabled:
+        /// Adds middleware for:
         /// - Http to Https redirection middleware
         /// - Routing middleware
         /// - Authentication and Authorization middleware
         /// - Serving Static files (CSS, jpg, js...) middleware
         /// - Forwarded headers middleware
-        /// - Controllers middleware to run your Controllers based on Routing
-        /// - RazorPages middleware to compile your Razor Views to serve the HTML
-        /// - Default ControllerRoute registered to: controller=Home,action=Index
+        /// - Controllers to Endpoints middleware
+        /// - RazorPages to Endpoints middleware
+        /// - Recompile RazorPage On Saved middleware
+        /// - Static file serving middleware
+        /// - Use Exception Page middleware
         /// </summary>
         /// <example>
         /// Inside your 'Startup' class:
@@ -40,6 +46,11 @@ namespace SystemLibrary.Common.Web.Extensions
             if (options == null)
                 options = new ApplicationBuilderOptions();
 
+            if (options.UseExceptionPageInTestAndDev && !EnvironmentConfig.Current.IsProd)
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
             if (options.UseHttpRedirectionAndHsts)
             {
                 app.UseHsts();
@@ -49,19 +60,43 @@ namespace SystemLibrary.Common.Web.Extensions
             if (options.UseDefaultRouting)
             {
                 app.UseRouting();
-
-                app.UseEndpoints(endpoints =>
-                {
-                    endpoints.MapDefaultControllerRoute();
-                    endpoints.MapControllerRoute("api/{controller}/{action}", "api/{controller}/{action}/{id?}");
-                });
             }
+
+            if (options.UseHttpsAndSecureCookiePolicy)
+            {
+                app.UseCookiePolicy();
+            }
+
+            app.UseForwardedHeaders();
 
             if (options.UseAuthenticationAndAuthorization)
             {
                 app.UseAuthentication();
-
                 app.UseAuthorization();
+            }
+
+            var httpContextAccessor = app.ApplicationServices.GetRequiredService<IHttpContextAccessor>();
+            HttpContextInstance.Initialize(httpContextAccessor);
+
+            var actionContextAccessor = app.ApplicationServices.GetRequiredService<IActionContextAccessor>();
+            ActionContextInstance.Initialize(actionContextAccessor);
+
+            if (options.UseControllerEndpoints)
+            {
+                app.UseEndpoints(endpoints =>
+                {
+                    endpoints.MapDefaultControllerRoute();
+                    endpoints.MapControllerRoute("api/{controller}/{action}", "api/{controller}/{action}/{id?}");
+                    endpoints.MapRazorPages();
+                });
+            }
+
+            if (options.UseRazorPagesEndpoints)
+            {
+                app.UseEndpoints(endpoints =>
+                {
+                    endpoints.MapRazorPages();
+                });
             }
 
             if (options.UseStaticFiles)
@@ -80,16 +115,7 @@ namespace SystemLibrary.Common.Web.Extensions
                 app.UseStaticFiles(staticFileOptions);
             }
 
-            app.UseForwardedHeaders();
-
-            if (options.UseRazorPagesEndpoints)
-            {
-                app.UseEndpoints(endpoints =>
-                {
-                    endpoints.MapRazorPages();
-                });
-            }
-
+   
             return app;
         }
     }

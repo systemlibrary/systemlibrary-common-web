@@ -1,5 +1,7 @@
 ﻿using SystemLibrary.Common.Net;
 
+//Small note to self: IViewComponentSelector exist, which can grab html elements by Id? or DomQuerySelector? So ... frontend tests much?
+
 namespace SystemLibrary.Common.Web
 {
     /// <summary>

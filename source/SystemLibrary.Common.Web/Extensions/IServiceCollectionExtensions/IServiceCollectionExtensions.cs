@@ -1,8 +1,9 @@
 ﻿using System.Reflection;
 
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -77,19 +78,7 @@ namespace SystemLibrary.Common.Web.Extensions
                 razorViews.ViewLocationExpanders.Add(new ViewLocations());
 
                 if (options.ViewLocationExpander != null)
-                {
-                    var views = options.ViewLocationExpander.ExpandViewLocations(null, null);
-
-                    if (views != null)
-                    {
-                        foreach (var view in views)
-                        {
-                            if (view.IsNot()) continue;
-
-                            razorViews.ViewLocationFormats.Add(view);
-                        }
-                    }
-                }
+                    razorViews.ViewLocationExpanders.Add(options.ViewLocationExpander);
 
                 if (options.ViewLocations != null)
                 {
@@ -102,7 +91,21 @@ namespace SystemLibrary.Common.Web.Extensions
                 }
             });
 
-            services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
+            if(options.AddHttpsAndSecureCookiePolicy)
+            {
+                services.Configure<CookiePolicyOptions>(options =>
+                {
+                    options.HttpOnly = HttpOnlyPolicy.Always;
+
+                    options.Secure = CookieSecurePolicy.SameAsRequest;
+
+                    options.MinimumSameSitePolicy = SameSiteMode.Strict;
+                });
+            }
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+            services.AddTransient<HtmlHelperFactory, HtmlHelperFactory>();
 
             services.Configure<IISServerOptions>(options => { options.AllowSynchronousIO = true; });
 
