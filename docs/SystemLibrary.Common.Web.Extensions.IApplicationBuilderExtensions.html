@@ -147,18 +147,20 @@
   
   <div class="custom-container">
   <div class="custom-menu-summary-data">
-  	<div class="markdown level1 summary member-summary"><p>Register a common web application builder in one-line.</p>
-<p>This adds various middleware to your ApplicationBuilder:</p>
+  	<div class="markdown level1 summary member-summary"><p>Initialize app with common web application middlewares in one-line</p>
+<p>All middlewares can be turned on/off through the 'options' variable, by default they are all enabled:
+Adds middleware for:</p>
 <ul>
-<li>Https middleware</li>
 <li>Http to Https redirection middleware</li>
 <li>Routing middleware</li>
 <li>Authentication and Authorization middleware</li>
 <li>Serving Static files (CSS, jpg, js...) middleware</li>
 <li>Forwarded headers middleware</li>
-<li>Controllers middleware to run your Controllers based on Routing</li>
-<li>RazorPages middleware to compile your Razor Views to serve the HTML</li>
-<li>Default ControllerRoute registered to: controller=Home,action=Index</li>
+<li>Controllers to Endpoints middleware</li>
+<li>RazorPages to Endpoints middleware</li>
+<li>Recompile RazorPage On Saved middleware</li>
+<li>Static file serving middleware</li>
+<li>Use Exception Page middleware</li>
 </ul>
 </div>
   	<div class="markdown level1 conceptual member-summary-conceptual"></div>
@@ -166,7 +168,7 @@
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_IApplicationBuilderExtensions_CommonWebApplicationBuilder_Microsoft_AspNetCore_Builder_IApplicationBuilder_SystemLibrary_Common_Web_Extensions_ApplicationBuilderOptions_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/IApplicationBuilderExtensions.cs/#L38">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/IApplicationBuilderExtensions.cs/#L44">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_Extensions_IApplicationBuilderExtensions_CommonWebApplicationBuilder_" data-uid="SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.CommonWebApplicationBuilder*"></a>
@@ -881,7 +883,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/IApplicationBuilderExtensions.cs/#L13" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/IApplicationBuilderExtensions.cs/#L17" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

@@ -7,6 +7,25 @@ references:
   commentId: N:SystemLibrary.Common.Web
   fullName: SystemLibrary.Common.Web
   nameWithType: SystemLibrary.Common.Web
+- uid: SystemLibrary.Common.Web.ActionContextInstance
+  name: ActionContextInstance
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.ActionContextInstance.html
+  commentId: T:SystemLibrary.Common.Web.ActionContextInstance
+  fullName: SystemLibrary.Common.Web.ActionContextInstance
+  nameWithType: ActionContextInstance
+- uid: SystemLibrary.Common.Web.ActionContextInstance.Current
+  name: Current
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.ActionContextInstance.html#SystemLibrary_Common_Web_ActionContextInstance_Current
+  commentId: P:SystemLibrary.Common.Web.ActionContextInstance.Current
+  fullName: SystemLibrary.Common.Web.ActionContextInstance.Current
+  nameWithType: ActionContextInstance.Current
+- uid: SystemLibrary.Common.Web.ActionContextInstance.Current*
+  name: Current
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.ActionContextInstance.html#SystemLibrary_Common_Web_ActionContextInstance_Current_
+  commentId: Overload:SystemLibrary.Common.Web.ActionContextInstance.Current
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.ActionContextInstance.Current
+  nameWithType: ActionContextInstance.Current
 - uid: SystemLibrary.Common.Web.CalleeCancelledRequestException
   name: CalleeCancelledRequestException
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.CalleeCancelledRequestException.html
@@ -163,18 +182,43 @@ references:
   commentId: F:SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseAuthenticationAndAuthorization
   fullName: SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseAuthenticationAndAuthorization
   nameWithType: ApplicationBuilderOptions.UseAuthenticationAndAuthorization
+- uid: SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseControllerEndpoints
+  name: UseControllerEndpoints
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_ApplicationBuilderOptions_UseControllerEndpoints
+  commentId: F:SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseControllerEndpoints
+  fullName: SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseControllerEndpoints
+  nameWithType: ApplicationBuilderOptions.UseControllerEndpoints
 - uid: SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseDefaultRouting
   name: UseDefaultRouting
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_ApplicationBuilderOptions_UseDefaultRouting
   commentId: F:SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseDefaultRouting
   fullName: SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseDefaultRouting
   nameWithType: ApplicationBuilderOptions.UseDefaultRouting
+- uid: SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseExceptionPageInTestAndDev
+  name: UseExceptionPageInTestAndDev
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_ApplicationBuilderOptions_UseExceptionPageInTestAndDev
+  commentId: F:SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseExceptionPageInTestAndDev
+  fullName: SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseExceptionPageInTestAndDev
+  nameWithType: ApplicationBuilderOptions.UseExceptionPageInTestAndDev
 - uid: SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseHttpRedirectionAndHsts
   name: UseHttpRedirectionAndHsts
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_ApplicationBuilderOptions_UseHttpRedirectionAndHsts
   commentId: F:SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseHttpRedirectionAndHsts
   fullName: SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseHttpRedirectionAndHsts
   nameWithType: ApplicationBuilderOptions.UseHttpRedirectionAndHsts
+- uid: SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseHttpsAndSecureCookiePolicy
+  name: UseHttpsAndSecureCookiePolicy
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_ApplicationBuilderOptions_UseHttpsAndSecureCookiePolicy
+  commentId: P:SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseHttpsAndSecureCookiePolicy
+  fullName: SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseHttpsAndSecureCookiePolicy
+  nameWithType: ApplicationBuilderOptions.UseHttpsAndSecureCookiePolicy
+- uid: SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseHttpsAndSecureCookiePolicy*
+  name: UseHttpsAndSecureCookiePolicy
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_ApplicationBuilderOptions_UseHttpsAndSecureCookiePolicy_
+  commentId: Overload:SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseHttpsAndSecureCookiePolicy
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseHttpsAndSecureCookiePolicy
+  nameWithType: ApplicationBuilderOptions.UseHttpsAndSecureCookiePolicy
 - uid: SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseRazorPagesEndpoints
   name: UseRazorPagesEndpoints
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_ApplicationBuilderOptions_UseRazorPagesEndpoints
@@ -266,6 +310,19 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddControllers
   nameWithType: ServiceCollectionOptions.AddControllers
+- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddHttpsAndSecureCookiePolicy
+  name: AddHttpsAndSecureCookiePolicy
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddHttpsAndSecureCookiePolicy
+  commentId: P:SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddHttpsAndSecureCookiePolicy
+  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddHttpsAndSecureCookiePolicy
+  nameWithType: ServiceCollectionOptions.AddHttpsAndSecureCookiePolicy
+- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddHttpsAndSecureCookiePolicy*
+  name: AddHttpsAndSecureCookiePolicy
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddHttpsAndSecureCookiePolicy_
+  commentId: Overload:SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddHttpsAndSecureCookiePolicy
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddHttpsAndSecureCookiePolicy
+  nameWithType: ServiceCollectionOptions.AddHttpsAndSecureCookiePolicy
 - uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddMvcPages
   name: AddMvcPages
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddMvcPages
@@ -344,6 +401,34 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.ViewLocations
   nameWithType: ServiceCollectionOptions.ViewLocations
+- uid: SystemLibrary.Common.Web.HtmlHelperFactory
+  name: HtmlHelperFactory
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HtmlHelperFactory.html
+  commentId: T:SystemLibrary.Common.Web.HtmlHelperFactory
+  fullName: SystemLibrary.Common.Web.HtmlHelperFactory
+  nameWithType: HtmlHelperFactory
+- uid: SystemLibrary.Common.Web.HtmlHelperFactory.Build
+  name: Build()
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HtmlHelperFactory.html#SystemLibrary_Common_Web_HtmlHelperFactory_Build
+  commentId: M:SystemLibrary.Common.Web.HtmlHelperFactory.Build
+  fullName: SystemLibrary.Common.Web.HtmlHelperFactory.Build()
+  nameWithType: HtmlHelperFactory.Build()
+- uid: SystemLibrary.Common.Web.HtmlHelperFactory.Build*
+  name: Build
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HtmlHelperFactory.html#SystemLibrary_Common_Web_HtmlHelperFactory_Build_
+  commentId: Overload:SystemLibrary.Common.Web.HtmlHelperFactory.Build
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.HtmlHelperFactory.Build
+  nameWithType: HtmlHelperFactory.Build
+- uid: SystemLibrary.Common.Web.HtmlHelperFactory.Build``1
+  name: Build<T>()
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HtmlHelperFactory.html#SystemLibrary_Common_Web_HtmlHelperFactory_Build__1
+  commentId: M:SystemLibrary.Common.Web.HtmlHelperFactory.Build``1
+  name.vb: Build(Of T)()
+  fullName: SystemLibrary.Common.Web.HtmlHelperFactory.Build<T>()
+  fullName.vb: SystemLibrary.Common.Web.HtmlHelperFactory.Build(Of T)()
+  nameWithType: HtmlHelperFactory.Build<T>()
+  nameWithType.vb: HtmlHelperFactory.Build(Of T)()
 - uid: SystemLibrary.Common.Web.HttpBaseClient
   name: HttpBaseClient
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.html
@@ -523,6 +608,25 @@ references:
   fullName.vb: SystemLibrary.Common.Web.HttpBaseClient.PutAsync(Of T)(System.String, System.Object, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary(Of System.String, System.String), System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken)
   nameWithType: HttpBaseClient.PutAsync<T>(String, Object, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken)
   nameWithType.vb: HttpBaseClient.PutAsync(Of T)(String, Object, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken)
+- uid: SystemLibrary.Common.Web.HttpContextInstance
+  name: HttpContextInstance
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpContextInstance.html
+  commentId: T:SystemLibrary.Common.Web.HttpContextInstance
+  fullName: SystemLibrary.Common.Web.HttpContextInstance
+  nameWithType: HttpContextInstance
+- uid: SystemLibrary.Common.Web.HttpContextInstance.Current
+  name: Current
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpContextInstance.html#SystemLibrary_Common_Web_HttpContextInstance_Current
+  commentId: P:SystemLibrary.Common.Web.HttpContextInstance.Current
+  fullName: SystemLibrary.Common.Web.HttpContextInstance.Current
+  nameWithType: HttpContextInstance.Current
+- uid: SystemLibrary.Common.Web.HttpContextInstance.Current*
+  name: Current
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpContextInstance.html#SystemLibrary_Common_Web_HttpContextInstance_Current_
+  commentId: Overload:SystemLibrary.Common.Web.HttpContextInstance.Current
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.HttpContextInstance.Current
+  nameWithType: HttpContextInstance.Current
 - uid: SystemLibrary.Common.Web.MediaType
   name: MediaType
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.MediaType.html

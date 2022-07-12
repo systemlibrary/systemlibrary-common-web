@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>ServiceCollectionOptions
+    <title>HtmlHelperFactory
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="ServiceCollectionOptions
+    <meta name="title" content="HtmlHelperFactory
    ">
     <meta name="generator" content="docfx 2.59.3.0">
     
@@ -98,59 +98,38 @@
         <div class="article row grid-right">
         <div class="article row grid">
           <div class="col-md-10">
-            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions">
+            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Web.HtmlHelperFactory">
   
   
-  <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Web.Extensions.html">SystemLibrary.Common.Web.Extensions</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Web.dll</span></h6>
+  <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Web.html">SystemLibrary.Common.Web</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Web.dll</span></h6>
   
   <div class="markdown level0 conceptual h1-class-conceptual"></div>
   
   <div class="h1-class-summary-container">
-    <div class="markdown level0 summary h1-class-summary"><p>Options class for Service registration</p>
-</div>
+    <div class="markdown level0 summary h1-class-summary"></div>
   </div>
   
-  <h1 id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions" class="text-break h1-class-header">ServiceCollectionOptions
+  <h1 id="SystemLibrary_Common_Web_HtmlHelperFactory" data-uid="SystemLibrary.Common.Web.HtmlHelperFactory" class="text-break h1-class-header">HtmlHelperFactory
   </h1>
-  <h1 id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions" class="h1-custom-display className">public class ServiceCollectionOptions</h1>
+  <h1 id="SystemLibrary_Common_Web_HtmlHelperFactory" data-uid="SystemLibrary.Common.Web.HtmlHelperFactory" class="h1-custom-display className">public class HtmlHelperFactory</h1>
   
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">ServiceCollectionOptions</span></div>
+    <div class="level1"><span class="xref">HtmlHelperFactory</span></div>
   </div>
   
   
   <div class="custom-menu-data custom-menu-data-first">
-    <h5 id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
+    <h5 id="SystemLibrary_Common_Web_HtmlHelperFactory_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
   
     <div class="custom-menu-data-container custom-menu-data-container--example">
-      <div class="custom-menu-data-class-example" style="display: none;">
-        <div class="syslib-tab-menu-data--close">X</div>
-        <div class="codewrapper"><p>Inside your 'Startup' class:</p>
-<pre><code>//Add your custom view locations, where your app has views located
-public class CustomViewLocations : IViewLocationExpander
-{
-   //...implement the interface
-}
-
-//the familiar &apos;startup.cs&apos;:
-public void ConfigureServices(IServiceCollection services)
-{
-    var options = new ServiceCollectionOptions();
-    options.AddControllers = false;
-    options.ViewLocations = new CustomViewLocations();
-    app.CommonWebApplicationServices(options);
-}</code></pre>
-</div>
-        <div class="comment-examples-container-bottom"></div>
-      </div>
     </div>
   </div>
   
   
   <div class="custom-menu-data">
-    <h5 id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
+    <h5 id="SystemLibrary_Common_Web_HtmlHelperFactory_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
   
     <div class="custom-menu-data-container">
       <div class="custom-menu-data-class-arguments" style="display: none;">
@@ -162,20 +141,20 @@ public void ConfigureServices(IServiceCollection services)
   </div>
   
   <div class='custom-class-content-inline'>
-  <h3 id="properties">Properties
+  <h3 id="methods">Methods
   </h3>
   
   <div class="custom-container">
   
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddControllers">
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_HtmlHelperFactory_Build">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServiceCollectionOptions.cs/#L30">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HtmlHelperFactory/HtmlHelperFactory.cs/#L38">View Source</a>
   	</span>
   </div>
-  <a id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddControllers_" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddControllers*"></a>
+  <a id="SystemLibrary_Common_Web_HtmlHelperFactory_Build_" data-uid="SystemLibrary.Common.Web.HtmlHelperFactory.Build*"></a>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddControllers" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddControllers" class="h4-custom-functionName">public bool AddControllers { get; set; }</h4>
+  	<h4 id="SystemLibrary_Common_Web_HtmlHelperFactory_Build" data-uid="SystemLibrary.Common.Web.HtmlHelperFactory.Build" class="h4-custom-functionName">public IHtmlHelper Build()</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
@@ -183,334 +162,88 @@ public void ConfigureServices(IServiceCollection services)
   
   		</div>
   
+  		<div class="custom-menu-data-returntype" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  			<table class="table table-bordered table-striped table-condensed table-return">
+  				<thead>
+  					<tr>
+  						<th>Type</th>
+  						<th>Description</th>
+  					</tr>
+  				</thead>
+  				<tbody>
+  					<tr>
+  						<td><span class="xref">Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper</span></td>
+  						<td></td>
+  					</tr>
+  				</tbody>
+  			</table>
+  		</div>
   	</div>
   </div>
   </div>
   
   
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Boolean</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
   
   <div class="custom-container">
   
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddHttpsAndSecureCookiePolicy">
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_HtmlHelperFactory_Build__1">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServiceCollectionOptions.cs/#L36">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HtmlHelperFactory/HtmlHelperFactory.cs/#L28">View Source</a>
   	</span>
   </div>
-  <a id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddHttpsAndSecureCookiePolicy_" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddHttpsAndSecureCookiePolicy*"></a>
+  <a id="SystemLibrary_Common_Web_HtmlHelperFactory_Build_" data-uid="SystemLibrary.Common.Web.HtmlHelperFactory.Build*"></a>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddHttpsAndSecureCookiePolicy" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddHttpsAndSecureCookiePolicy" class="h4-custom-functionName">public bool AddHttpsAndSecureCookiePolicy { get; set; }</h4>
+  	<h4 id="SystemLibrary_Common_Web_HtmlHelperFactory_Build__1" data-uid="SystemLibrary.Common.Web.HtmlHelperFactory.Build``1" class="h4-custom-functionName">public IHtmlHelper&lt;T&gt; Build&lt;T&gt;()
+
+    where T : class</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
   			<div class="syslib-tab-menu-data--close">X</div>
+  			<h5 class="typeParameters class-tmpl-partial-typeParameters">Generic types</h5>
+  			<table class="table table-bordered table-striped table-condensed class-tmpl-partial-typeParameters-table">
+  				<thead>
+  					<tr>
+  						<th>Name</th>
+  						<th>Description</th>
+  					</tr>
+  				</thead>
+  				<tbody>
+  					<tr>
+  						<td><span class="parametername">T</span></td>
+  						<td></td>
+  					</tr>
+  				</tbody>
+  			</table>
   
   		</div>
   
+  		<div class="custom-menu-data-returntype" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  			<table class="table table-bordered table-striped table-condensed table-return">
+  				<thead>
+  					<tr>
+  						<th>Type</th>
+  						<th>Description</th>
+  					</tr>
+  				</thead>
+  				<tbody>
+  					<tr>
+  						<td><span class="xref">Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper</span>&lt;T&gt;</td>
+  						<td></td>
+  					</tr>
+  				</tbody>
+  			</table>
+  		</div>
   	</div>
   </div>
   </div>
   
   
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Boolean</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  <div class="custom-container">
-  <div class="custom-menu-summary-data">
-  	<div class="markdown level1 summary member-summary"><p>Enables MVC and also adds then default media types output formatters, making your application able to serve: tiff, woff, json, xml, pdf, jpg, png, and a few other default media types</p>
-</div>
-  	<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  </div>
-  
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddMvcPages">
-  	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServiceCollectionOptions.cs/#L34">View Source</a>
-  	</span>
-  </div>
-  <a id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddMvcPages_" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddMvcPages*"></a>
-  
-  <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddMvcPages" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddMvcPages" class="h4-custom-functionName">public bool AddMvcPages { get; set; }</h4>
-  	<div class="custom-menu-data-container">
-  
-  		<div class="custom-menu-data-arguments" style="display: none;">
-  			<div class="syslib-tab-menu-data--close">X</div>
-  
-  		</div>
-  
-  	</div>
-  </div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Boolean</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  <div class="custom-container">
-  
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddRazorPages">
-  	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServiceCollectionOptions.cs/#L35">View Source</a>
-  	</span>
-  </div>
-  <a id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddRazorPages_" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddRazorPages*"></a>
-  
-  <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddRazorPages" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddRazorPages" class="h4-custom-functionName">public bool AddRazorPages { get; set; }</h4>
-  	<div class="custom-menu-data-container">
-  
-  		<div class="custom-menu-data-arguments" style="display: none;">
-  			<div class="syslib-tab-menu-data--close">X</div>
-  
-  		</div>
-  
-  	</div>
-  </div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Boolean</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  <div class="custom-container">
-  <div class="custom-menu-summary-data">
-  	<div class="markdown level1 summary member-summary"><p>Enables re-compilation of cshtml files upon saving</p>
-<ul>
-<li>avoids the need of re-compilation of whole application if you only change a cshtml file</li>
-<li>Package System.Security.Cryptography.Pkcs is not added as dependency, so if you turn this on; you might need to install that package too</li>
-</ul>
-</div>
-  	<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  </div>
-  
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddRazorRuntimeCompilation">
-  	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServiceCollectionOptions.cs/#L43">View Source</a>
-  	</span>
-  </div>
-  <a id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddRazorRuntimeCompilation_" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddRazorRuntimeCompilation*"></a>
-  
-  <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddRazorRuntimeCompilation" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddRazorRuntimeCompilation" class="h4-custom-functionName">public bool AddRazorRuntimeCompilation { get; set; }</h4>
-  	<div class="custom-menu-data-container">
-  
-  		<div class="custom-menu-data-arguments" style="display: none;">
-  			<div class="syslib-tab-menu-data--close">X</div>
-  
-  		</div>
-  
-  	</div>
-  </div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Boolean</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  <div class="custom-container">
-  <div class="custom-menu-summary-data">
-  	<div class="markdown level1 summary member-summary"><p>Create your own class that inherits 'StringOutputFormatter' which sets all 'SupportedMediaTypes' in its constructor,
-and pass a new instance of your class as this variable</p>
-<p>If not set, a default string output formatter will be set</p>
-</div>
-  	<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  </div>
-  
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_StringOutputFormatter">
-  	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServiceCollectionOptions.cs/#L63">View Source</a>
-  	</span>
-  </div>
-  <a id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_StringOutputFormatter_" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.StringOutputFormatter*"></a>
-  
-  <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_StringOutputFormatter" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.StringOutputFormatter" class="h4-custom-functionName">public StringOutputFormatter StringOutputFormatter { get; set; }</h4>
-  	<div class="custom-menu-data-container">
-  
-  		<div class="custom-menu-data-arguments" style="display: none;">
-  			<div class="syslib-tab-menu-data--close">X</div>
-  
-  		</div>
-  
-  	</div>
-  </div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  <div class="custom-container">
-  <div class="custom-menu-summary-data">
-  	<div class="markdown level1 summary member-summary"><p>Pass in an object that implements the interface if you want to extend View Locations</p>
-<ul>
-<li>Another option is to simply set 'ViewLocations' variable</li>
-</ul>
-</div>
-  	<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  </div>
-  
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_ViewLocationExpander">
-  	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServiceCollectionOptions.cs/#L49">View Source</a>
-  	</span>
-  </div>
-  <a id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_ViewLocationExpander_" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.ViewLocationExpander*"></a>
-  
-  <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_ViewLocationExpander" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.ViewLocationExpander" class="h4-custom-functionName">public IViewLocationExpander ViewLocationExpander { get; set; }</h4>
-  	<div class="custom-menu-data-container">
-  
-  		<div class="custom-menu-data-arguments" style="display: none;">
-  			<div class="syslib-tab-menu-data--close">X</div>
-  
-  		</div>
-  
-  	</div>
-  </div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">Microsoft.AspNetCore.Mvc.Razor.IViewLocationExpander</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  <div class="custom-container">
-  <div class="custom-menu-summary-data">
-  	<div class="markdown level1 summary member-summary"><p>Pass in a string array of view location formats, for instance:
-ViewLocations = new string[] { &quot;~/Pages/{0}/{1}.cshtml&quot; };</p>
-</div>
-  	<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  </div>
-  
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_ViewLocations">
-  	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServiceCollectionOptions.cs/#L55">View Source</a>
-  	</span>
-  </div>
-  <a id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_ViewLocations_" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.ViewLocations*"></a>
-  
-  <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_ViewLocations" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.ViewLocations" class="h4-custom-functionName">public string[] ViewLocations { get; set; }</h4>
-  	<div class="custom-menu-data-container">
-  
-  		<div class="custom-menu-data-arguments" style="display: none;">
-  			<div class="syslib-tab-menu-data--close">X</div>
-  
-  		</div>
-  
-  	</div>
-  </div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.String</span>[]</td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
   
   
   <script>
@@ -1157,7 +890,7 @@ ViewLocations = new string[] { &quot;~/Pages/{0}/{1}.cshtml&quot; };</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServiceCollectionOptions.cs/#L28" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HtmlHelperFactory/HtmlHelperFactory.cs/#L15" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
