@@ -6,6 +6,8 @@ namespace SystemLibrary.Common.Web
 {
     partial class HttpBaseClient
     {
+        //TODO: https://stackoverflow.com/questions/20661652/progress-bar-with-httpclient/69826649#69826649
+        //A way to get "current percentage of downloaded file/stream/uploading..."
         partial class Client
         {
             static int _ClientExpiresInSeconds = -1;

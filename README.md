@@ -22,6 +22,7 @@ A library of classes and methods for any .NET &gt;= 5 web application
 
 ## Latest Version
 - Added Cookie Middleware with default turned on http secure and http only
+- Updated nuspec dependencies
 
 ## Version history
 - View git history of this file if interested

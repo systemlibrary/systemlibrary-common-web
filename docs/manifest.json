@@ -24,7 +24,7 @@
           "hash": "CaBdl+GUkzhX7bEbI9buYBHvxNXZoRKzUQ70fNOHaHc="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -117,10 +117,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.HtmlHelperFactory.html",
-          "hash": "C8DzAOK4pBlkCmTL5j9fP7xNkSdgLXDOW6p4evsix6w="
+          "hash": "zjpz2Rby4ZkOg5WpUSs1l7kwJvAhXCGQoZnvuEVxoSA="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -168,7 +168,7 @@
           "hash": "mDnccqMT9A5GxjCKjWlpiLfO4/Ek0od/c7zhAsU3L1Q="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -180,7 +180,7 @@
           "hash": "56fMfDi+wTPjLTDPr3QOkZeYZYG8/ebJvFltZdhfnfw="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -227,7 +227,7 @@
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 15,
-          "skipped_file_count": 15
+          "skipped_file_count": 12
         },
         "TocDocumentProcessor": {
           "can_incremental": false,
