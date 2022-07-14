@@ -28,10 +28,10 @@ public static class IServiceCollectionExtensions
     /// }
     /// </code>
     /// </example>
-    public static IServiceCollection CommonWebApplicationServices(this IServiceCollection services, ServiceCollectionOptions options = null)
+    public static IServiceCollection CommonWebApplicationServices(this IServiceCollection services, ServiceCollectionCommonWebOptions options = null)
     {
         if (options == null)
-            options = new ServiceCollectionOptions();
+            options = new ServiceCollectionCommonWebOptions();
 
         services.Configure<ForwardedHeadersOptions>(forwardOption =>
         {

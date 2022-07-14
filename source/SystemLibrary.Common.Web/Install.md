@@ -23,7 +23,7 @@ public class Initialize
 	
 	public void ConfigureServices(IServiceCollection services)
 	{
-		var options = new ServiceCollectionOptions();
+		var options = new ServiceCollectionCommonWebOptions();
 		services.CommonWebApplicationServices(options);
 	}
 }

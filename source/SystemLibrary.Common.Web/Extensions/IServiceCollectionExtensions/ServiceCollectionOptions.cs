@@ -25,7 +25,7 @@ namespace SystemLibrary.Common.Web.Extensions;
 /// }
 /// </code>
 /// </example>
-public class ServiceCollectionOptions
+public class ServiceCollectionCommonWebOptions
 {
     public bool AddControllers { get; set; } = true;
     /// <summary>
