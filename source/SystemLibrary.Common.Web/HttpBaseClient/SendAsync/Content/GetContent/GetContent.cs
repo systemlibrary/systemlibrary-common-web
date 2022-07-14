@@ -17,7 +17,7 @@ namespace SystemLibrary.Common.Web
 
                 switch (mediaType)
                 {
-                    case MediaType.textplain:
+                    case MediaType.plain:
                         content = GetBodyPlainText(data);
                         break;
 

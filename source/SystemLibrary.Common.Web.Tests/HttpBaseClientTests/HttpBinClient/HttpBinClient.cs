@@ -43,7 +43,7 @@ namespace SystemLibrary.Common.Web.Tests
 
         public async Task<ClientResponse<string>> PostAsync(string data)
         {
-            return await PostAsync<string>(clientUrl + "/post", data, MediaType.textplain, 10000);
+            return await PostAsync<string>(clientUrl + "/post", data, MediaType.plain, 10000);
         }
 
         public ClientResponse<string> Get_Retry_Request_Against_Firewall(CancellationToken cancellationToken = default)

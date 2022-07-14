@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Formatters;
 
-namespace SystemLibrary.Common.Web.Extensions;
+namespace SystemLibrary.Common.Web;
 
 internal class DefaultSupportedMediaTypes : StringOutputFormatter
 {

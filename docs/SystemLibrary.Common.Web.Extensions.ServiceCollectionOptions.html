@@ -434,22 +434,21 @@ public void ConfigureServices(IServiceCollection services)
   
   <div class="custom-container">
   <div class="custom-menu-summary-data">
-  	<div class="markdown level1 summary member-summary"><p>Create your own class that inherits 'StringOutputFormatter' which sets all 'SupportedMediaTypes' in its constructor,
-and pass a new instance of your class as this variable</p>
-<p>If not set, a default string output formatter will be set</p>
+  	<div class="markdown level1 summary member-summary"><p>Create your own class that inherits 'StringOutputFormatter' which sets all 'SupportedMediaTypes' in its constructor</p>
+<p>A default 'string output formatter' will always be added to your application, so responses/files like CSS, JS, JPG, PNG, JSON, etc are allowed</p>
 </div>
   	<div class="markdown level1 conceptual member-summary-conceptual"></div>
   </div>
   
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_StringOutputFormatter">
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_SupportedMediaTypes">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServiceCollectionOptions.cs/#L63">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServiceCollectionOptions.cs/#L62">View Source</a>
   	</span>
   </div>
-  <a id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_StringOutputFormatter_" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.StringOutputFormatter*"></a>
+  <a id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_SupportedMediaTypes_" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.SupportedMediaTypes*"></a>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_StringOutputFormatter" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.StringOutputFormatter" class="h4-custom-functionName">public StringOutputFormatter StringOutputFormatter { get; set; }</h4>
+  	<h4 id="SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_SupportedMediaTypes" data-uid="SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.SupportedMediaTypes" class="h4-custom-functionName">public StringOutputFormatter SupportedMediaTypes { get; set; }</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">

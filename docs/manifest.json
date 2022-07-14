@@ -9,10 +9,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.ActionContextInstance.html",
-          "hash": "gMj+y4bResd+oaIN2U1oltrB2Lck6In9P3frT6+dhag="
+          "hash": "mVrpVIoXSVTTU+/+umAF2+0MOlqxTggMLaF1JVVpygs="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -24,7 +24,7 @@
           "hash": "40WsEUMY9IWGXc5BIf86HVjm734N5fdMT0l4ZV/4FgI="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -36,19 +36,7 @@
           "hash": "hZID+dlo6aEu3FkJjnzT4jn0a+TrzoZpu5Tu+Tfr7ME="
         }
       },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.html",
-          "hash": "QQaGYC4W36SiGUnFOrABS5LLE/PZjRQ5Bpdi2QFT8VI="
-        }
-      },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -57,10 +45,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.html",
-          "hash": "7lcBhIVLy9bz2PO4mQrnDrkDI9fnDdIiw61/p7HYgLc="
+          "hash": "8EnCOGn2lu74DeSZHWyYOXDRsIvq/EypMjbDlW9gURI="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -69,10 +57,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IPrincipalExtensions.html",
-          "hash": "V6f++k9gF2NbhEAvH6xCIiG8G5rzhqDWTbrfXyAfNbU="
+          "hash": "PSwM2rjxjyuBYcjduS0iAtM81xLLNSFOCUDSvmA0PCs="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -84,7 +72,7 @@
           "hash": "1wFCEWGeH8thr+mHrXR3HAUPN8gyKMGVUdjhZ/kFOFw="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -93,10 +81,22 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.html",
-          "hash": "KI6iuCZGLHTm1rwIKrIdnmli6VD0Q3PegHzf//SEaaA="
+          "hash": "dDPPnaavMjgQbWuSQ6OXev7AYEwRFM/xiM9jKD6pA10="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.WebApplicationBuilderOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.WebApplicationBuilderOptions.html",
+          "hash": "dAb4GZtJ1fr3t3IXk0u5lLLM1kv49lVF9BIwzBcXCbE="
+        }
+      },
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -105,10 +105,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.html",
-          "hash": "rDOY3XqI6Lg9TEklKjVaLNF6myHxdw+hwoE5PQW7qJo="
+          "hash": "mEulioITJQbNRmzs1kEe+ooSn7Z6Lun9+PFC4vG8208="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -117,10 +117,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.HtmlHelperFactory.html",
-          "hash": "pTLIXKtdaoERpSgV1cSCHYHhucM0MYQWO12bpP10Dh8="
+          "hash": "I1vCAt5Y/rwohTwnLbtn28yaVyLPb0J07MbAtNc67jQ="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -132,7 +132,7 @@
           "hash": "oZ0j5clYoNNbbb9K/r/MPwYF8NyezzyXKLovqBuzAhA="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -141,10 +141,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpContextInstance.html",
-          "hash": "dzYbUla/SNkxSls9h9oNysSI/hBZZctSpreCE4pg/hs="
+          "hash": "VCc2wENgrDvkijghLIkpDueePmVijvHid6Vd0wiwIb4="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -153,10 +153,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.MediaType.html",
-          "hash": "/BlMqLDUKr8SHR1SKh++yWKZ61E3lbiA4P77LgvXUMw="
+          "hash": "DSyV+S9Jrh5TbkcC/HW53BAsaqCEMoSf4DBkILqEbfk="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -168,7 +168,7 @@
           "hash": "dalui5/fF5Tp3PfL9ScPsryyh6smaU8rdyht8qUy0F0="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -177,10 +177,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.html",
-          "hash": "+VQ1y/cW37bTArhs/CpDmzY8NHDe00fBQrKDrzXZ3DQ="
+          "hash": "YODVPQ2vFQQhtAU4k5VSzlPgqN7P3YECcF+m1vCA7wc="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -189,7 +189,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/toc.html",
-          "hash": "3kQe10/AMlkdf75KLP3Ls+LwDjqqFCa3W8A9rnG3XvM="
+          "hash": "D0Za+IrDT6Ph/VEOgmRPr91fLoSlQ4GnyQIvREp1WN8="
         }
       },
       "is_incremental": false,
@@ -227,7 +227,7 @@
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 15,
-          "skipped_file_count": 15
+          "skipped_file_count": 4
         },
         "TocDocumentProcessor": {
           "can_incremental": false,

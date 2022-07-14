@@ -12,19 +12,17 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace SystemLibrary.Common.Web;
 
+/// <summary>
+/// HtmlHelperFactory lets you get a new HtmlBuilder in the backend, outside of your View Context
+/// - Either use injection or simply call its ctor
+/// </summary>
 public class HtmlHelperFactory
 {
-    internal class DummyView : IView
-    {
-        public Task RenderAsync(ViewContext context)
-        {
-            return Task.CompletedTask;
-        }
-
-        public string Path => "Index";
-    }
-
     //Creds to: https://stackoverflow.com/questions/42039269/create-custom-html-helper-in-asp-net-core/51466436#51466436
+
+    /// <summary>
+    /// Returns a built generic HtmlHelper
+    /// </summary>
     public IHtmlHelper<T> Build<T>() where T : class
     {
         var viewContext = GetViewContext();
@@ -35,6 +33,10 @@ public class HtmlHelperFactory
         return htmlHelper;
     }
 
+    /// <summary>
+    /// Returns a built HtmlHelper
+    /// </summary>
+    /// <returns></returns>
     public IHtmlHelper Build()
     {
         var viewContext = GetViewContext();
@@ -59,5 +61,15 @@ public class HtmlHelperFactory
             TextWriter.Null,
             new HtmlHelperOptions()
         );
+    }
+
+    internal class DummyView : IView
+    {
+        public Task RenderAsync(ViewContext context)
+        {
+            return Task.CompletedTask;
+        }
+
+        public string Path => "Index";
     }
 }

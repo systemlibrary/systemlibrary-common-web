@@ -166,7 +166,7 @@
   <div class="h1-class-summary-container">
     <div class="markdown level0 summary h1-class-summary"><p>An enum of various media types that can be sent to the HttpBaseClient request methods</p>
 <p>The 'MediaType' is sent as an 'Accept' HEADER in the request</p>
-<p>NOTE: Not all of them have been implemented yet though, unless you specify 'MediaType.None'</p>
+<p>NOTE: Not all of them have been implemented yet though, but all will be sent as 'ACCEPT' header if specified, if you specify MediaType.none, no accept header is sent</p>
 </div>
   </div>
   
@@ -183,7 +183,7 @@
       <div class="custom-menu-data-class-example" style="display: none;">
         <div class="syslib-tab-menu-data--close">X</div>
         <div class="codewrapper"><pre><code>  var httpClient = new HttpBaseClient();
-  var response = httpClient.Post&lt;string>(&quot;http://httpbin.org/post&quot;, data, MediaType.textplain);</code></pre>
+  var response = httpClient.Post&lt;string>(&quot;https://systemlibrary.com/post&quot;, data, MediaType.textplain);</code></pre>
 </div>
         <div class="comment-examples-container-bottom"></div>
       </div>
@@ -254,7 +254,7 @@
         <td></td>
       </tr>
       <tr>
-        <td id="SystemLibrary_Common_Web_MediaType_textplain">textplain</td>
+        <td id="SystemLibrary_Common_Web_MediaType_plain">plain</td>
         <td><p>Sends data as text/plain, if 'data' passed to the client through put/post/get already is a string, no conversion is made, else it is being converted to json string before data is sent</p>
 </td>
       </tr>

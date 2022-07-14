@@ -166,7 +166,8 @@
     <h3 id="classes">Classes
   </h3>
       <h4><a class="xref" href="SystemLibrary.Common.Web.ActionContextInstance.html">ActionContextInstance</a></h4>
-      <section></section>
+      <section><p>An implementation of the 'old' thread safe singleton ActionContext we all know and love from .NET Framework</p>
+</section>
       <h4><a class="xref" href="SystemLibrary.Common.Web.CalleeCancelledRequestException.html">CalleeCancelledRequestException</a></h4>
       <section><p>The Callee Cancelled Request Exception is thrown when the callee (you) cancel's the request.</p>
 <ul>
@@ -177,7 +178,11 @@
       <section><p>The main response class that all http requests in the HttpBaseClient returns</p>
 </section>
       <h4><a class="xref" href="SystemLibrary.Common.Web.HtmlHelperFactory.html">HtmlHelperFactory</a></h4>
-      <section></section>
+      <section><p>HtmlHelperFactory lets you get a new HtmlBuilder in the backend, outside of your View Context</p>
+<ul>
+<li>Either use injection or simply call its ctor</li>
+</ul>
+</section>
       <h4><a class="xref" href="SystemLibrary.Common.Web.HttpBaseClient.html">HttpBaseClient</a></h4>
       <section><p>HttpBaseClient is a class for all http(s) requests in your project</p>
 <p>Has:</p>
@@ -196,7 +201,8 @@
 <p>Use HttpBaseClient directly or inherit from it, see the examples</p>
 </section>
       <h4><a class="xref" href="SystemLibrary.Common.Web.HttpContextInstance.html">HttpContextInstance</a></h4>
-      <section></section>
+      <section><p>An implementation of the 'old' thread safe singleton HttpContext we all know and love from .NET Framework</p>
+</section>
       <h4><a class="xref" href="SystemLibrary.Common.Web.RetryRequestException.html">RetryRequestException</a></h4>
       <section><p>A retry request exception is thrown if:</p>
 <ul>
@@ -211,7 +217,7 @@
       <h4><a class="xref" href="SystemLibrary.Common.Web.MediaType.html">MediaType</a></h4>
       <section><p>An enum of various media types that can be sent to the HttpBaseClient request methods</p>
 <p>The 'MediaType' is sent as an 'Accept' HEADER in the request</p>
-<p>NOTE: Not all of them have been implemented yet though, unless you specify 'MediaType.None'</p>
+<p>NOTE: Not all of them have been implemented yet though, but all will be sent as 'ACCEPT' header if specified, if you specify MediaType.none, no accept header is sent</p>
 </section>
 </article>
           </div>

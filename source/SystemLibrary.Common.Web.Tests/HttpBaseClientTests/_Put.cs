@@ -9,7 +9,7 @@ namespace SystemLibrary.Common.Web.Tests
         {
             var webService = new HttpBinClient();
 
-            var response = webService.Put("Hello world!", MediaType.textplain);
+            var response = webService.Put("Hello world!", MediaType.plain);
 
             Assert.IsTrue(response.Data.Contains("Hello world!"));
         }
@@ -19,7 +19,7 @@ namespace SystemLibrary.Common.Web.Tests
         {
             var webService = new HttpBinClient();
 
-            var response = webService.Put("{ \"hello\": \"world\" }", MediaType.textplain);
+            var response = webService.Put("{ \"hello\": \"world\" }", MediaType.plain);
 
             Assert.IsTrue(response.Data.Contains(": \"world\""));
         }
