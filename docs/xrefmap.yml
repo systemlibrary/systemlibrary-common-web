@@ -217,12 +217,12 @@ references:
   commentId: T:SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions
   fullName: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions
   nameWithType: IServiceCollectionExtensions
-- uid: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.CommonWebApplicationServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions)
-  name: CommonWebApplicationServices(IServiceCollection, ServiceCollectionOptions)
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.html#SystemLibrary_Common_Web_Extensions_IServiceCollectionExtensions_CommonWebApplicationServices_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_
-  commentId: M:SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.CommonWebApplicationServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions)
-  fullName: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.CommonWebApplicationServices(Microsoft.Extensions.DependencyInjection.IServiceCollection, SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions)
-  nameWithType: IServiceCollectionExtensions.CommonWebApplicationServices(IServiceCollection, ServiceCollectionOptions)
+- uid: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.CommonWebApplicationServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions)
+  name: CommonWebApplicationServices(IServiceCollection, ServiceCollectionCommonWebOptions)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.html#SystemLibrary_Common_Web_Extensions_IServiceCollectionExtensions_CommonWebApplicationServices_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Web_Extensions_ServiceCollectionCommonWebOptions_
+  commentId: M:SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.CommonWebApplicationServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions)
+  fullName: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.CommonWebApplicationServices(Microsoft.Extensions.DependencyInjection.IServiceCollection, SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions)
+  nameWithType: IServiceCollectionExtensions.CommonWebApplicationServices(IServiceCollection, ServiceCollectionCommonWebOptions)
 - uid: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.CommonWebApplicationServices*
   name: CommonWebApplicationServices
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.html#SystemLibrary_Common_Web_Extensions_IServiceCollectionExtensions_CommonWebApplicationServices_
@@ -230,116 +230,116 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.CommonWebApplicationServices
   nameWithType: IServiceCollectionExtensions.CommonWebApplicationServices
-- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions
-  name: ServiceCollectionOptions
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.html
-  commentId: T:SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions
-  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions
-  nameWithType: ServiceCollectionOptions
-- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddControllers
+- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions
+  name: ServiceCollectionCommonWebOptions
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.html
+  commentId: T:SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions
+  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions
+  nameWithType: ServiceCollectionCommonWebOptions
+- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddControllers
   name: AddControllers
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddControllers
-  commentId: P:SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddControllers
-  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddControllers
-  nameWithType: ServiceCollectionOptions.AddControllers
-- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddControllers*
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionCommonWebOptions_AddControllers
+  commentId: P:SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddControllers
+  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddControllers
+  nameWithType: ServiceCollectionCommonWebOptions.AddControllers
+- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddControllers*
   name: AddControllers
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddControllers_
-  commentId: Overload:SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddControllers
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionCommonWebOptions_AddControllers_
+  commentId: Overload:SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddControllers
   isSpec: "True"
-  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddControllers
-  nameWithType: ServiceCollectionOptions.AddControllers
-- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddHttpsAndSecureCookiePolicy
+  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddControllers
+  nameWithType: ServiceCollectionCommonWebOptions.AddControllers
+- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddHttpsAndSecureCookiePolicy
   name: AddHttpsAndSecureCookiePolicy
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddHttpsAndSecureCookiePolicy
-  commentId: P:SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddHttpsAndSecureCookiePolicy
-  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddHttpsAndSecureCookiePolicy
-  nameWithType: ServiceCollectionOptions.AddHttpsAndSecureCookiePolicy
-- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddHttpsAndSecureCookiePolicy*
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionCommonWebOptions_AddHttpsAndSecureCookiePolicy
+  commentId: P:SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddHttpsAndSecureCookiePolicy
+  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddHttpsAndSecureCookiePolicy
+  nameWithType: ServiceCollectionCommonWebOptions.AddHttpsAndSecureCookiePolicy
+- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddHttpsAndSecureCookiePolicy*
   name: AddHttpsAndSecureCookiePolicy
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddHttpsAndSecureCookiePolicy_
-  commentId: Overload:SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddHttpsAndSecureCookiePolicy
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionCommonWebOptions_AddHttpsAndSecureCookiePolicy_
+  commentId: Overload:SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddHttpsAndSecureCookiePolicy
   isSpec: "True"
-  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddHttpsAndSecureCookiePolicy
-  nameWithType: ServiceCollectionOptions.AddHttpsAndSecureCookiePolicy
-- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddMvcPages
+  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddHttpsAndSecureCookiePolicy
+  nameWithType: ServiceCollectionCommonWebOptions.AddHttpsAndSecureCookiePolicy
+- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddMvcPages
   name: AddMvcPages
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddMvcPages
-  commentId: P:SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddMvcPages
-  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddMvcPages
-  nameWithType: ServiceCollectionOptions.AddMvcPages
-- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddMvcPages*
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionCommonWebOptions_AddMvcPages
+  commentId: P:SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddMvcPages
+  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddMvcPages
+  nameWithType: ServiceCollectionCommonWebOptions.AddMvcPages
+- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddMvcPages*
   name: AddMvcPages
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddMvcPages_
-  commentId: Overload:SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddMvcPages
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionCommonWebOptions_AddMvcPages_
+  commentId: Overload:SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddMvcPages
   isSpec: "True"
-  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddMvcPages
-  nameWithType: ServiceCollectionOptions.AddMvcPages
-- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddRazorPages
+  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddMvcPages
+  nameWithType: ServiceCollectionCommonWebOptions.AddMvcPages
+- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddRazorPages
   name: AddRazorPages
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddRazorPages
-  commentId: P:SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddRazorPages
-  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddRazorPages
-  nameWithType: ServiceCollectionOptions.AddRazorPages
-- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddRazorPages*
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionCommonWebOptions_AddRazorPages
+  commentId: P:SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddRazorPages
+  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddRazorPages
+  nameWithType: ServiceCollectionCommonWebOptions.AddRazorPages
+- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddRazorPages*
   name: AddRazorPages
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddRazorPages_
-  commentId: Overload:SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddRazorPages
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionCommonWebOptions_AddRazorPages_
+  commentId: Overload:SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddRazorPages
   isSpec: "True"
-  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddRazorPages
-  nameWithType: ServiceCollectionOptions.AddRazorPages
-- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddRazorRuntimeCompilation
+  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddRazorPages
+  nameWithType: ServiceCollectionCommonWebOptions.AddRazorPages
+- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddRazorRuntimeCompilation
   name: AddRazorRuntimeCompilation
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddRazorRuntimeCompilation
-  commentId: P:SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddRazorRuntimeCompilation
-  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddRazorRuntimeCompilation
-  nameWithType: ServiceCollectionOptions.AddRazorRuntimeCompilation
-- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddRazorRuntimeCompilation*
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionCommonWebOptions_AddRazorRuntimeCompilation
+  commentId: P:SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddRazorRuntimeCompilation
+  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddRazorRuntimeCompilation
+  nameWithType: ServiceCollectionCommonWebOptions.AddRazorRuntimeCompilation
+- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddRazorRuntimeCompilation*
   name: AddRazorRuntimeCompilation
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_AddRazorRuntimeCompilation_
-  commentId: Overload:SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddRazorRuntimeCompilation
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionCommonWebOptions_AddRazorRuntimeCompilation_
+  commentId: Overload:SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddRazorRuntimeCompilation
   isSpec: "True"
-  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.AddRazorRuntimeCompilation
-  nameWithType: ServiceCollectionOptions.AddRazorRuntimeCompilation
-- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.SupportedMediaTypes
+  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddRazorRuntimeCompilation
+  nameWithType: ServiceCollectionCommonWebOptions.AddRazorRuntimeCompilation
+- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.SupportedMediaTypes
   name: SupportedMediaTypes
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_SupportedMediaTypes
-  commentId: P:SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.SupportedMediaTypes
-  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.SupportedMediaTypes
-  nameWithType: ServiceCollectionOptions.SupportedMediaTypes
-- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.SupportedMediaTypes*
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionCommonWebOptions_SupportedMediaTypes
+  commentId: P:SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.SupportedMediaTypes
+  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.SupportedMediaTypes
+  nameWithType: ServiceCollectionCommonWebOptions.SupportedMediaTypes
+- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.SupportedMediaTypes*
   name: SupportedMediaTypes
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_SupportedMediaTypes_
-  commentId: Overload:SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.SupportedMediaTypes
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionCommonWebOptions_SupportedMediaTypes_
+  commentId: Overload:SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.SupportedMediaTypes
   isSpec: "True"
-  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.SupportedMediaTypes
-  nameWithType: ServiceCollectionOptions.SupportedMediaTypes
-- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.ViewLocationExpander
+  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.SupportedMediaTypes
+  nameWithType: ServiceCollectionCommonWebOptions.SupportedMediaTypes
+- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.ViewLocationExpander
   name: ViewLocationExpander
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_ViewLocationExpander
-  commentId: P:SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.ViewLocationExpander
-  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.ViewLocationExpander
-  nameWithType: ServiceCollectionOptions.ViewLocationExpander
-- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.ViewLocationExpander*
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionCommonWebOptions_ViewLocationExpander
+  commentId: P:SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.ViewLocationExpander
+  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.ViewLocationExpander
+  nameWithType: ServiceCollectionCommonWebOptions.ViewLocationExpander
+- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.ViewLocationExpander*
   name: ViewLocationExpander
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_ViewLocationExpander_
-  commentId: Overload:SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.ViewLocationExpander
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionCommonWebOptions_ViewLocationExpander_
+  commentId: Overload:SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.ViewLocationExpander
   isSpec: "True"
-  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.ViewLocationExpander
-  nameWithType: ServiceCollectionOptions.ViewLocationExpander
-- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.ViewLocations
+  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.ViewLocationExpander
+  nameWithType: ServiceCollectionCommonWebOptions.ViewLocationExpander
+- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.ViewLocations
   name: ViewLocations
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_ViewLocations
-  commentId: P:SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.ViewLocations
-  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.ViewLocations
-  nameWithType: ServiceCollectionOptions.ViewLocations
-- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.ViewLocations*
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionCommonWebOptions_ViewLocations
+  commentId: P:SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.ViewLocations
+  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.ViewLocations
+  nameWithType: ServiceCollectionCommonWebOptions.ViewLocations
+- uid: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.ViewLocations*
   name: ViewLocations
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionOptions_ViewLocations_
-  commentId: Overload:SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.ViewLocations
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.html#SystemLibrary_Common_Web_Extensions_ServiceCollectionCommonWebOptions_ViewLocations_
+  commentId: Overload:SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.ViewLocations
   isSpec: "True"
-  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionOptions.ViewLocations
-  nameWithType: ServiceCollectionOptions.ViewLocations
+  fullName: SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.ViewLocations
+  nameWithType: ServiceCollectionCommonWebOptions.ViewLocations
 - uid: SystemLibrary.Common.Web.Extensions.WebApplicationBuilderOptions
   name: WebApplicationBuilderOptions
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.WebApplicationBuilderOptions.html
