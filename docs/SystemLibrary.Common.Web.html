@@ -87,8 +87,8 @@
       <div role="main" class="container body-content hide-when-search">
 
       
-      <div id="custom-empty-namespaces" style="visibility: hidden; position: absolute; margin-left: -4000px;">
-        [%empty-namespaces%]</div>
+      <div id="custom-skipDocumentationFor" style="visibility: hidden; position: absolute; margin-left: -4000px;">
+        [%custom-skipDocumentationFor%]</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -97,38 +97,54 @@
       </div>
       
       <script>
-        var customEmptyNamespacesContainerCompleted = false;
-      
         function sideTocShowOnLoad() {
           var sidetoc = document.getElementById('sidetoc');
           sidetoc.classList.remove('hideonload');
         }
       
-        function hideNamespacesInTocOnLoad() {
-          if (customEmptyNamespacesContainerCompleted == true) {
-            return;
-          }
-          var customEmptyNamespacesContainer = document.getElementById('custom-empty-namespaces');
-          if (customEmptyNamespacesContainer) {
-            var innerHtml = customEmptyNamespacesContainer.innerHTML;
+        function hideLinksQueryBasedInToc() {
+          var skipDocumentationForContainer = document.getElementById('custom-skipDocumentationFor');
+          if (skipDocumentationForContainer) {
+      
+            var innerHtml = skipDocumentationForContainer.innerHTML;
             if (innerHtml && innerHtml.length > 1) {
       
               var toc = document.getElementById('toc');
-      
               if (toc && toc.querySelector) {
-                customEmptyNamespacesContainerCompleted = true;
-                var namespaces = innerHtml.split(',');
-                if (namespaces && namespaces.length > 0) {
-                  for (var i = 0; i < namespaces.length; i++) {
-                    var namespace = namespaces[i].replace(/(\r\n|\n|\r)/gm, "");
-                    if (namespace && namespace.length > 1) {
-                      namespace = namespace.replace(/ /g, '');
-                      var q = '[title="' + namespace + '"]';
-                      var href = toc.querySelector(q);
-                      if (typeof (href) !== 'undefined' && href && href.classList) {
-                        var parent = href.parentNode;
-                        if (parent && parent.remove) {
-                          parent.remove();
+      
+                var queries = innerHtml.split(',');
+                if (queries && queries.length > 0) {
+      
+                  for (var i = 0; i < queries.length; i++) {
+                    var query = queries[i].replace(/(\r\n|\n|\r)/gm, "");
+                    if (query && query.length > 1) {
+                      query = query.replace(/ /g, '');
+      
+                      if (query.includes('.')) {
+                        var links = toc.getElementsByTagName('a');
+      
+                        if (links) {
+                          var queryLowered = query.toLowerCase();
+                          for (var j = 0; j < links.length; j++) {
+                            var link = links[j];
+      
+                            if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
+                              var parent = link.parentNode;
+                              if (parent && parent.remove) {
+                                parent.remove();
+                              }
+                            }
+                          }
+                        }
+                      }
+                      else {
+                        var q = '[title="' + query + '"]';
+                        var href = toc.querySelector(q);
+                        if (typeof (href) !== 'undefined' && href && href.classList) {
+                          var parent = href.parentNode;
+                          if (parent && parent.remove) {
+                            parent.remove();
+                          }
                         }
                       }
                     }
@@ -141,15 +157,7 @@
           }
         }
       
-      
-        setTimeout(() => sideTocShowOnLoad(), 225);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 225);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 188);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 155);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 132);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 99);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 66);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 33);
+        setTimeout(() => sideTocShowOnLoad(), 500);
       
       </script>
       <div class="article-row-container">
@@ -166,25 +174,25 @@
     <h3 id="classes">Classes
   </h3>
       <h4><a class="xref" href="SystemLibrary.Common.Web.ActionContextInstance.html">ActionContextInstance</a></h4>
-      <section><p>An implementation of the 'old' thread safe singleton ActionContext we all know and love from .NET Framework</p>
+      <section id="SystemLibrary.Common.Web.ActionContextInstance--description"><p>An implementation of the 'old' thread safe singleton ActionContext we all know and love from .NET Framework</p>
 </section>
       <h4><a class="xref" href="SystemLibrary.Common.Web.CalleeCancelledRequestException.html">CalleeCancelledRequestException</a></h4>
-      <section><p>The Callee Cancelled Request Exception is thrown when the callee (you) cancel's the request.</p>
+      <section id="SystemLibrary.Common.Web.CalleeCancelledRequestException--description"><p>The Callee Cancelled Request Exception is thrown when the callee (you) cancel's the request.</p>
 <ul>
 <li>To cancel a request you must pass a 'Cancellation Token', and then cancel the request through the Cancellation Token</li>
 </ul>
 </section>
       <h4><a class="xref" href="SystemLibrary.Common.Web.ClientResponse-1.html">ClientResponse&lt;T&gt;</a></h4>
-      <section><p>The main response class that all http requests in the HttpBaseClient returns</p>
+      <section id="SystemLibrary.Common.Web.ClientResponse`1--description"><p>The main response class that all http requests in the HttpBaseClient returns</p>
 </section>
       <h4><a class="xref" href="SystemLibrary.Common.Web.HtmlHelperFactory.html">HtmlHelperFactory</a></h4>
-      <section><p>HtmlHelperFactory lets you get a new HtmlBuilder in the backend, outside of your View Context</p>
+      <section id="SystemLibrary.Common.Web.HtmlHelperFactory--description"><p>HtmlHelperFactory lets you get a new HtmlBuilder in the backend, outside of your View Context</p>
 <ul>
 <li>Either use injection or simply call its ctor</li>
 </ul>
 </section>
       <h4><a class="xref" href="SystemLibrary.Common.Web.HttpBaseClient.html">HttpBaseClient</a></h4>
-      <section><p>HttpBaseClient is a class for all http(s) requests in your project</p>
+      <section id="SystemLibrary.Common.Web.HttpBaseClient--description"><p>HttpBaseClient is a class for all http(s) requests in your project</p>
 <p>Has:</p>
 <ul>
 <li><p>a retry handler configured through constructor</p>
@@ -201,10 +209,10 @@
 <p>Use HttpBaseClient directly or inherit from it, see the examples</p>
 </section>
       <h4><a class="xref" href="SystemLibrary.Common.Web.HttpContextInstance.html">HttpContextInstance</a></h4>
-      <section><p>An implementation of the 'old' thread safe singleton HttpContext we all know and love from .NET Framework</p>
+      <section id="SystemLibrary.Common.Web.HttpContextInstance--description"><p>An implementation of the 'old' thread safe singleton HttpContext we all know and love from .NET Framework</p>
 </section>
       <h4><a class="xref" href="SystemLibrary.Common.Web.RetryRequestException.html">RetryRequestException</a></h4>
-      <section><p>A retry request exception is thrown if:</p>
+      <section id="SystemLibrary.Common.Web.RetryRequestException--description"><p>A retry request exception is thrown if:</p>
 <ul>
 <li>&quot;retryOnceOnRequestCancelled&quot; is set to True, and if both the normal request and the retry request errors, this exception is thrown to the callee (you)</li>
 <li>a retry request exception can only occur on GET, HEAD or OPTION requests</li>
@@ -215,7 +223,7 @@
     <h3 id="enums">Enums
   </h3>
       <h4><a class="xref" href="SystemLibrary.Common.Web.MediaType.html">MediaType</a></h4>
-      <section><p>An enum of various media types that can be sent to the HttpBaseClient request methods</p>
+      <section id="SystemLibrary.Common.Web.MediaType--description"><p>An enum of various media types that can be sent to the HttpBaseClient request methods</p>
 <p>The 'MediaType' is sent as an 'Accept' HEADER in the request</p>
 <p>NOTE: Not all of them have been implemented yet though, but all will be sent as 'ACCEPT' header if specified, if you specify MediaType.none, no accept header is sent</p>
 </section>

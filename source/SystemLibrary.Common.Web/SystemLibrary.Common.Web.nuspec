@@ -3,7 +3,7 @@
     <metadata>
         <id>SystemLibrary.Common.Web</id>
 
-        <version>3.2.0.1</version>
+        <version>3.2.0.2</version>
 
         <authors>System Library</authors>
         
@@ -64,7 +64,7 @@ support@systemlibrary.com
         <dependencies>
 			<dependency id="Microsoft.Extensions.FileProviders.Physical" version="6.0.0" />
 			<dependency id="System.Net.Http" version="4.3.4" />
-			<dependency id="SystemLibrary.Common.Net" version="3.0.0.2" />
+			<dependency id="SystemLibrary.Common.Net" version="3.1.0.2" />
         </dependencies>
     </metadata>
 

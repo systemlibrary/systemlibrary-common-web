@@ -85,8 +85,8 @@
       <div role="main" class="container body-content hide-when-search">
 
       
-      <div id="custom-empty-namespaces" style="visibility: hidden; position: absolute; margin-left: -4000px;">
-        [%empty-namespaces%]</div>
+      <div id="custom-skipDocumentationFor" style="visibility: hidden; position: absolute; margin-left: -4000px;">
+        [%custom-skipDocumentationFor%]</div>
       <div class="sidenav hide-when-search sidenav--index">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -95,38 +95,54 @@
       </div>
       
       <script>
-        var customEmptyNamespacesContainerCompleted = false;
-      
         function sideTocShowOnLoad() {
           var sidetoc = document.getElementById('sidetoc');
           sidetoc.classList.remove('hideonload');
         }
       
-        function hideNamespacesInTocOnLoad() {
-          if (customEmptyNamespacesContainerCompleted == true) {
-            return;
-          }
-          var customEmptyNamespacesContainer = document.getElementById('custom-empty-namespaces');
-          if (customEmptyNamespacesContainer) {
-            var innerHtml = customEmptyNamespacesContainer.innerHTML;
+        function hideLinksQueryBasedInToc() {
+          var skipDocumentationForContainer = document.getElementById('custom-skipDocumentationFor');
+          if (skipDocumentationForContainer) {
+      
+            var innerHtml = skipDocumentationForContainer.innerHTML;
             if (innerHtml && innerHtml.length > 1) {
       
               var toc = document.getElementById('toc');
-      
               if (toc && toc.querySelector) {
-                customEmptyNamespacesContainerCompleted = true;
-                var namespaces = innerHtml.split(',');
-                if (namespaces && namespaces.length > 0) {
-                  for (var i = 0; i < namespaces.length; i++) {
-                    var namespace = namespaces[i].replace(/(\r\n|\n|\r)/gm, "");
-                    if (namespace && namespace.length > 1) {
-                      namespace = namespace.replace(/ /g, '');
-                      var q = '[title="' + namespace + '"]';
-                      var href = toc.querySelector(q);
-                      if (typeof (href) !== 'undefined' && href && href.classList) {
-                        var parent = href.parentNode;
-                        if (parent && parent.remove) {
-                          parent.remove();
+      
+                var queries = innerHtml.split(',');
+                if (queries && queries.length > 0) {
+      
+                  for (var i = 0; i < queries.length; i++) {
+                    var query = queries[i].replace(/(\r\n|\n|\r)/gm, "");
+                    if (query && query.length > 1) {
+                      query = query.replace(/ /g, '');
+      
+                      if (query.includes('.')) {
+                        var links = toc.getElementsByTagName('a');
+      
+                        if (links) {
+                          var queryLowered = query.toLowerCase();
+                          for (var j = 0; j < links.length; j++) {
+                            var link = links[j];
+      
+                            if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
+                              var parent = link.parentNode;
+                              if (parent && parent.remove) {
+                                parent.remove();
+                              }
+                            }
+                          }
+                        }
+                      }
+                      else {
+                        var q = '[title="' + query + '"]';
+                        var href = toc.querySelector(q);
+                        if (typeof (href) !== 'undefined' && href && href.classList) {
+                          var parent = href.parentNode;
+                          if (parent && parent.remove) {
+                            parent.remove();
+                          }
                         }
                       }
                     }
@@ -139,15 +155,7 @@
           }
         }
       
-      
-        setTimeout(() => sideTocShowOnLoad(), 225);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 225);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 188);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 155);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 132);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 99);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 66);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 33);
+        setTimeout(() => sideTocShowOnLoad(), 500);
       
       </script>
       <div class="article-row-container article-row-container--index">
@@ -157,7 +165,7 @@
             <article class="content wrap hideonload" id="_content" data-uid="">
 <h1 id="projectdisplayname">SystemLibrary Common Web</h1>
 
-<p><ol class='navigation-list-item'><li class='install' title='Install'><a class='index-navigation-item' href='/systemlibrary-common-web/\Install.html'>Install Documentation</a></li><li class=' index-navigation-item--namespace' title='namespace'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.html'>SystemLibrary.Common.Web</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.ActionContextInstance.html'>SystemLibrary.Common.Web.ActionContextInstance</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.CalleeCancelledRequestException.html'>SystemLibrary.Common.Web.CalleeCancelledRequestException</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.ClientResponse-1.html'>SystemLibrary.Common.Web.ClientResponse<></a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.HtmlHelperFactory.html'>SystemLibrary.Common.Web.HtmlHelperFactory</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.HttpBaseClient.html'>SystemLibrary.Common.Web.HttpBaseClient</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.HttpContextInstance.html'>SystemLibrary.Common.Web.HttpContextInstance</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.MediaType.html'>SystemLibrary.Common.Web.MediaType</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.RetryRequestException.html'>SystemLibrary.Common.Web.RetryRequestException</a></li> <li class=' index-navigation-item--namespace' title='namespace'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.Extensions.html'>SystemLibrary.Common.Web.Extensions</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.html'>SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.Extensions.IPrincipalExtensions.html'>SystemLibrary.Common.Web.Extensions.IPrincipalExtensions</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.html'>SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.html'>SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.Extensions.WebApplicationBuilderOptions.html'>SystemLibrary.Common.Web.Extensions.WebApplicationBuilderOptions</a></li></ol></p>
+<p><ol class='navigation-list-item'><li class='install' title='Install'><a class='index-navigation-item' href='/systemlibrary-common-web/Install.html'>Install Documentation</a></li><li class='index-navigation-item--namespace' title='namespace'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.html'>SystemLibrary.Common.Web</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.ActionContextInstance.html'>SystemLibrary.Common.Web.ActionContextInstance</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.CalleeCancelledRequestException.html'>SystemLibrary.Common.Web.CalleeCancelledRequestException</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.ClientResponse-1.html'>SystemLibrary.Common.Web.ClientResponse<></a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.HtmlHelperFactory.html'>SystemLibrary.Common.Web.HtmlHelperFactory</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.HttpBaseClient.html'>SystemLibrary.Common.Web.HttpBaseClient</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.HttpContextInstance.html'>SystemLibrary.Common.Web.HttpContextInstance</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.MediaType.html'>SystemLibrary.Common.Web.MediaType</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.RetryRequestException.html'>SystemLibrary.Common.Web.RetryRequestException</a></li> <li class='index-navigation-item--namespace' title='namespace'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.Extensions.html'>SystemLibrary.Common.Web.Extensions</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.html'>SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.Extensions.IPrincipalExtensions.html'>SystemLibrary.Common.Web.Extensions.IPrincipalExtensions</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.html'>SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.html'>SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.Extensions.WebApplicationBuilderOptions.html'>SystemLibrary.Common.Web.Extensions.WebApplicationBuilderOptions</a></li></ol></p>
 </article>
           </div>
           

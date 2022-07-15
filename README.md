@@ -1,7 +1,7 @@
 # SystemLibrary Common Web
 
 ## Description
-A library of classes and methods for any .NET &gt;= 5 web application
+A library of classes and methods for any .NET &gt;= 6 web application
 
 * Setup IApplicationBuilder in one line
 * Setup CollectionServices in one line
@@ -15,10 +15,10 @@ A library of classes and methods for any .NET &gt;= 5 web application
 * Most importantly: Contains HttpBaseClient, no more connection exhaustion on your server, it caches the underlying TCP connection for 5 minutes
 
 ## Requirements
-- &gt;= .NET 5
+- &gt;= .NET 6
 - SystemLibrary.Common.Net
 - Microsoft.AspNetCore.App
-- Microsoft.Extensions.FileProviders.Physical &gt;= 5.0.0
+- Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
 - Added Cookie Middleware with default turned on http secure and http only

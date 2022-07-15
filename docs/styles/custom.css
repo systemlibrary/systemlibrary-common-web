@@ -541,9 +541,11 @@ div.h1-class-summary-container {
 div.summary.h1-class-summary * {
   margin-bottom: 1em;
   color: var(--green) !important;
-  font-size: 14px;
-  font-weight: 600;
   font-family: var(--font-code);
+
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 400;
 }
 
 .markdown.level0.summary.h1-class-summary ul li,
@@ -663,7 +665,7 @@ p.classMargin {
 }
 
 p.classMargin--end {
-  margin-top: -24px;
+  margin-top: -14px;
   margin-left: -36px;
 }
 p.classMargin--end-enum {
@@ -688,6 +690,7 @@ div.custom-class-content-inline {
 div.custom-menu-data-first {
   margin: 0 !important;
   padding: 0 !important;
+  margin-top: -12px !important;
 }
 
 div.custom-menu-data-first ~ .custom-menu-data {
@@ -699,15 +702,14 @@ div.custom-menu-data {
   width: 100%;
   position: relative;
   margin: 0;
-  margin-bottom: 40px;
+  margin-bottom: 28px;
 }
 
 .custom-menu-data > h4.h4-custom-functionName.non-function-element {
   font-size: 14px;
 }
 
-.custom-menu-data
-  > h4.h4-custom-functionName.non-function-element.name {
+.custom-menu-data > h4.h4-custom-functionName.non-function-element.name {
   color: var(--dark-blue);
 }
 
@@ -780,6 +782,7 @@ div.custom-menu-summary-data * {
 
 .div.custom-menu-data > h4.h4-custom-functionName {
   user-select: none;
+  line-height: 1.2 !important;
 }
 
 div.custom-menu-summary-data:hover,
@@ -1169,8 +1172,13 @@ div.codewrapper > ul > li > p.modest-p {
   margin-bottom: 10px !important;
 }
 
-
-.custom-class-content-inline > .table-responsive > table.table > tbody > tr > td > p {
+.custom-class-content-inline
+  > .table-responsive
+  > table.table
+  > tbody
+  > tr
+  > td
+  > p {
   font-size: 13.5px;
 }
 

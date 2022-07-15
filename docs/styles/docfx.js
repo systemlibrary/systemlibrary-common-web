@@ -23,6 +23,7 @@ $(function () {
 
   breakText();
   renderTabs();
+  
 
   window.refresh = function (article) {
     // Update markup result
@@ -443,6 +444,7 @@ $(function () {
       }
 
       renderBreadcrumb();
+      hideLinksQueryBasedInToc();
     }
 
     function registerTocEvents() {
@@ -1140,7 +1142,10 @@ $(function () {
      */
     function breakPlainText(text) {
       if (!text) return text;
-      return text.replace(/([a-z])([A-Z])|(\.)(\w)/g, '$1$3<wbr>$2$4')
+      if(text.includes(' ')) 
+        return text.replace(/([a-z])([A-Z])|(\.)(\w)/g, '$1$3<wbr>$2$4')
+
+      return text;
     }
 
     /**
