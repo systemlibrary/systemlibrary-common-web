@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Routing;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace SystemLibrary.Common.Web;
 
@@ -27,7 +26,7 @@ public class HtmlHelperFactory
     {
         var viewContext = GetViewContext();
 
-        var htmlHelper = HttpContextInstance.Current.RequestServices.GetRequiredService<IHtmlHelper<T>>();
+        var htmlHelper = Services.Get<IHtmlHelper<T>>();
 
         ((IViewContextAware)htmlHelper).Contextualize(viewContext);
         return htmlHelper;
@@ -41,7 +40,7 @@ public class HtmlHelperFactory
     {
         var viewContext = GetViewContext();
 
-        var htmlHelper = HttpContextInstance.Current.RequestServices.GetRequiredService<IHtmlHelper>();
+        var htmlHelper = Services.Get<IHtmlHelper>();
 
         ((IViewContextAware)htmlHelper).Contextualize(viewContext);
         return htmlHelper;
@@ -49,9 +48,9 @@ public class HtmlHelperFactory
 
     static ViewContext GetViewContext()
     {
-        var modelMetadataProvider = HttpContextInstance.Current.RequestServices.GetRequiredService<IModelMetadataProvider>();
+        var modelMetadataProvider = Services.Get<IModelMetadataProvider>();
 
-        var tempDataProvider = HttpContextInstance.Current.RequestServices.GetRequiredService<ITempDataProvider>();
+        var tempDataProvider = Services.Get<ITempDataProvider>();
 
         return new ViewContext(
             new ActionContext(HttpContextInstance.Current, HttpContextInstance.Current.GetRouteData(), new ControllerActionDescriptor()),

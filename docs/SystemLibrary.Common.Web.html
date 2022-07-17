@@ -176,6 +176,32 @@
       <h4><a class="xref" href="SystemLibrary.Common.Web.ActionContextInstance.html">ActionContextInstance</a></h4>
       <section id="SystemLibrary.Common.Web.ActionContextInstance--description"><p>An implementation of the 'old' thread safe singleton ActionContext we all know and love from .NET Framework</p>
 </section>
+      <h4><a class="xref" href="SystemLibrary.Common.Web.Cache.html">Cache</a></h4>
+      <section id="SystemLibrary.Common.Web.Cache--description"><p>Caching for web applications</p>
+<p>Default duration is 180 seconds</p>
+<ul>
+<li>configurable in appSettings.json</li>
+</ul>
+<p>Auto-generates a cachekey for you if you dont specify one</p>
+<ul>
+<li>works then on per role and isAuthenticated level, never per user</li>
+</ul>
+<p>Required skip conditions:</p>
+<ul>
+<li>if not in a web context</li>
+</ul>
+<p>Optional skip cache scenarios by paramters can be applied</p>
+<ul>
+<li>skipForAuthenticatedUsers</li>
+<li>skipForAdmins</li>
+</ul>
+<ul>
+<li>admins are if current principal is in either of these roles &quot;Admins&quot;, &quot;Administrators&quot;, &quot;CmsAdmins&quot; or &quot;WebAdmins&quot;, case sensitive</li>
+</ul>
+<ul>
+<li>skipFor, your own implementation which returns true to skip</li>
+</ul>
+</section>
       <h4><a class="xref" href="SystemLibrary.Common.Web.CalleeCancelledRequestException.html">CalleeCancelledRequestException</a></h4>
       <section id="SystemLibrary.Common.Web.CalleeCancelledRequestException--description"><p>The Callee Cancelled Request Exception is thrown when the callee (you) cancel's the request.</p>
 <ul>
@@ -211,6 +237,19 @@
       <h4><a class="xref" href="SystemLibrary.Common.Web.HttpContextInstance.html">HttpContextInstance</a></h4>
       <section id="SystemLibrary.Common.Web.HttpContextInstance--description"><p>An implementation of the 'old' thread safe singleton HttpContext we all know and love from .NET Framework</p>
 </section>
+      <h4><a class="xref" href="SystemLibrary.Common.Web.Log.html">Log</a></h4>
+      <section id="SystemLibrary.Common.Web.Log--description"><p>One log class for your whole application</p>
+<ul>
+<li><p>You implement the actual LogWriter : ILogWriter of where the message should be stored</p>
+</li>
+<li><p>Remember to register your LogWriter as a service in your application</p>
+</li>
+<li><p>After implementing ILogWriter, simply call Log.Error, Log.Warning or Log.Write to create a log message and it will passed to your implementation of ILogWriter</p>
+</li>
+<li><p>If you have not registered an ILogWriter interface this simply calls on Dump.Write() with the message</p>
+</li>
+</ul>
+</section>
       <h4><a class="xref" href="SystemLibrary.Common.Web.RetryRequestException.html">RetryRequestException</a></h4>
       <section id="SystemLibrary.Common.Web.RetryRequestException--description"><p>A retry request exception is thrown if:</p>
 <ul>
@@ -220,8 +259,24 @@
 <p>If retryOnceOnRequestCancelled is False or if request method is POST, PUT or DELETE, this exception will never occur for the callee (you)</p>
 <p>Note: A retry request gets a fixed timeout of 10 seconds to finish the request</p>
 </section>
+      <h4><a class="xref" href="SystemLibrary.Common.Web.Services.html">Services</a></h4>
+      <section id="SystemLibrary.Common.Web.Services--description"><p>Dependency injection registry with all services</p>
+<ul>
+<li>Look at it as ServiceLocator</li>
+<li>Works both in Unit Tests (console app's) and in your Web Application</li>
+</ul>
+<p>Note: Requires a call in your Startup services.CommonWebApplicationServices() before it can be used</p>
+</section>
+    <h3 id="interfaces">Interfaces
+  </h3>
+      <h4><a class="xref" href="SystemLibrary.Common.Web.ILogWriter.html">ILogWriter</a></h4>
+      <section id="SystemLibrary.Common.Web.ILogWriter--description"><p>Implement ILogWriter in your application and register it as a Service in Startup.cs</p>
+<p>Your logwriter will then be used whenever you use the static logger: Log.Errror(), Log.Warning(), Log.Write()</p>
+</section>
     <h3 id="enums">Enums
   </h3>
+      <h4><a class="xref" href="SystemLibrary.Common.Web.LogLevel.html">LogLevel</a></h4>
+      <section id="SystemLibrary.Common.Web.LogLevel--description"></section>
       <h4><a class="xref" href="SystemLibrary.Common.Web.MediaType.html">MediaType</a></h4>
       <section id="SystemLibrary.Common.Web.MediaType--description"><p>An enum of various media types that can be sent to the HttpBaseClient request methods</p>
 <p>The 'MediaType' is sent as an 'Accept' HEADER in the request</p>

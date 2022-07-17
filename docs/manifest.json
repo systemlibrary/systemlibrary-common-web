@@ -17,6 +17,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html",
+          "hash": "KTNFu6PqJ8d5EA9p3tCgJJtuUC+hKFiK57Gq0BraIH4="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.CalleeCancelledRequestException.yml",
       "output": {
         ".html": {
@@ -117,7 +129,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.HtmlHelperFactory.html",
-          "hash": "gfXJ2vyKOd2iQ7tmIuU6MzfdVIghlJmjhmtVltrYWag="
+          "hash": "V9ojiyy7YNKgp/64YPoeSPjBn8whwqtQW736mgSucOQ="
         }
       },
       "is_incremental": true,
@@ -149,6 +161,42 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.ILogWriter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.ILogWriter.html",
+          "hash": "vHd+4Qv+QmZa4mZszcTCZjv9vfB0PF5uX4SPm+5Ht1w="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Log.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Log.html",
+          "hash": "ICBim2BEHm0k1oadhZgdhgO9u6iNy1Bbk0lpgFxB5Zc="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.LogLevel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.LogLevel.html",
+          "hash": "ouPQ615DWSsr972+xneY0ecH6y4mBqBC2aDyBWBUSuI="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.MediaType.yml",
       "output": {
         ".html": {
@@ -173,11 +221,23 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Services.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Services.html",
+          "hash": "oX+pTrdswEDonGz7IKML5L/dqu0Vte05K4ABKGoy2qM="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.yml",
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.html",
-          "hash": "UtKWsnUSYmHKBROYb92WiT7tCz3Sl7SLU4kYroE4KXQ="
+          "hash": "DGxiU0h6cbn2kY80Zgzcs8an2GncEKN5dwkR/9xoEhg="
         }
       },
       "is_incremental": true,
@@ -189,7 +249,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/toc.html",
-          "hash": "oHDqv1Y1Kf7K5KJgweFwgA9M65G6bPCjMeiUuhax9y4="
+          "hash": "WpmzNRjG2spTX2SBwRodb0cDQQi50Mj2D76BwLrtXWw="
         }
       },
       "is_incremental": false,
@@ -226,8 +286,8 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 15,
-          "skipped_file_count": 15
+          "total_file_count": 20,
+          "skipped_file_count": 20
         },
         "TocDocumentProcessor": {
           "can_incremental": false,

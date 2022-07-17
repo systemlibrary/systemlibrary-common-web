@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>HtmlHelperFactory
+    <title>Log
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="HtmlHelperFactory
+    <meta name="title" content="Log
    ">
     <meta name="generator" content="docfx 2.59.3.0">
     
@@ -164,7 +164,7 @@
         <div class="article row grid-right">
         <div class="article row grid">
           <div class="col-md-10">
-            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Web.HtmlHelperFactory">
+            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Web.Log">
   
   
   <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Web.html">SystemLibrary.Common.Web</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Web.dll</span></h6>
@@ -172,34 +172,64 @@
   <div class="markdown level0 conceptual h1-class-conceptual"></div>
   
   <div class="h1-class-summary-container">
-    <div class="markdown level0 summary h1-class-summary"><p>HtmlHelperFactory lets you get a new HtmlBuilder in the backend, outside of your View Context</p>
+    <div class="markdown level0 summary h1-class-summary"><p>One log class for your whole application</p>
 <ul>
-<li>Either use injection or simply call its ctor</li>
+<li><p>You implement the actual LogWriter : ILogWriter of where the message should be stored</p>
+</li>
+<li><p>Remember to register your LogWriter as a service in your application</p>
+</li>
+<li><p>After implementing ILogWriter, simply call Log.Error, Log.Warning or Log.Write to create a log message and it will passed to your implementation of ILogWriter</p>
+</li>
+<li><p>If you have not registered an ILogWriter interface this simply calls on Dump.Write() with the message</p>
+</li>
 </ul>
 </div>
   </div>
   
-  <h1 id="SystemLibrary_Common_Web_HtmlHelperFactory" data-uid="SystemLibrary.Common.Web.HtmlHelperFactory" class="text-break h1-class-header">HtmlHelperFactory
+  <h1 id="SystemLibrary_Common_Web_Log" data-uid="SystemLibrary.Common.Web.Log" class="text-break h1-class-header">Log
   </h1>
-  <h1 id="SystemLibrary_Common_Web_HtmlHelperFactory" data-uid="SystemLibrary.Common.Web.HtmlHelperFactory" class="h1-custom-display className">public class HtmlHelperFactory</h1>
+  <h1 id="SystemLibrary_Common_Web_Log" data-uid="SystemLibrary.Common.Web.Log" class="h1-custom-display className">public static class Log</h1>
   
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">HtmlHelperFactory</span></div>
+    <div class="level1"><span class="xref">Log</span></div>
   </div>
   
   
   <div class="custom-menu-data custom-menu-data-first">
-    <h5 id="SystemLibrary_Common_Web_HtmlHelperFactory_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
+    <h5 id="SystemLibrary_Common_Web_Log_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
   
     <div class="custom-menu-data-container custom-menu-data-container--example">
+      <div class="custom-menu-data-class-example" style="display: none;">
+        <div class="syslib-tab-menu-data--close">X</div>
+        <div class="codewrapper"><p>Configure log options in appSettings.json</p>
+<pre><code>{
+    &quot;systemLibraryCommonWeb&quot;: {
+        &quot;log&quot; { 
+            &quot;level&quot;: &quot;0/info/Info/debug/Debug/warning/Warning/Error/error&quot;,
+            &quot;isEnabled&quot;: true/false
+        },
+        &quot;logMessageBuilderOptions&quot; {
+            &quot;appendLoggedInState&quot;: true,
+            &quot;appendLoggedInState&quot;: true,
+            &quot;appendCurrentPage&quot;: true,
+            &quot;appendCurrentUrl&quot;: true,
+            &quot;appendIp&quot;: true,
+            &quot;appendBrowser&quot;: true,
+            &quot;appendCookieInfo&quot;: true
+        }
+    }
+}</code></pre>
+</div>
+        <div class="comment-examples-container-bottom"></div>
+      </div>
     </div>
   </div>
   
   
   <div class="custom-menu-data">
-    <h5 id="SystemLibrary_Common_Web_HtmlHelperFactory_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
+    <h5 id="SystemLibrary_Common_Web_Log_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
   
     <div class="custom-menu-data-container">
       <div class="custom-menu-data-class-arguments" style="display: none;">
@@ -216,45 +246,45 @@
   
   <div class="custom-container">
   <div class="custom-menu-summary-data">
-  	<div class="markdown level1 summary member-summary"><p>Returns a built HtmlHelper</p>
+  	<div class="markdown level1 summary member-summary"><p>Write a debug message</p>
 </div>
   	<div class="markdown level1 conceptual member-summary-conceptual"></div>
   </div>
   
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_HtmlHelperFactory_Build">
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Log_Debug_System_Object_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HtmlHelperFactory/HtmlHelperFactory.cs/#L39">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L70">View Source</a>
   	</span>
   </div>
-  <a id="SystemLibrary_Common_Web_HtmlHelperFactory_Build_" data-uid="SystemLibrary.Common.Web.HtmlHelperFactory.Build*"></a>
+  <a id="SystemLibrary_Common_Web_Log_Debug_" data-uid="SystemLibrary.Common.Web.Log.Debug*"></a>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Web_HtmlHelperFactory_Build" data-uid="SystemLibrary.Common.Web.HtmlHelperFactory.Build" class="h4-custom-functionName">public IHtmlHelper Build()</h4>
+  	<h4 id="SystemLibrary_Common_Web_Log_Debug_System_Object_" data-uid="SystemLibrary.Common.Web.Log.Debug(System.Object)" class="h4-custom-functionName">public static void Debug(object obj)</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
   			<div class="syslib-tab-menu-data--close">X</div>
   
-  		</div>
-  
-  		<div class="custom-menu-data-returntype" style="display: none;">
-  			<div class="syslib-tab-menu-data--close">X</div>
-  
-  			<table class="table table-bordered table-striped table-condensed table-return">
+  			<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  			<table class="table table-bordered table-striped table-condensed">
   				<thead>
   					<tr>
   						<th>Type</th>
+  						<th>Name</th>
   						<th>Description</th>
   					</tr>
   				</thead>
   				<tbody>
   					<tr>
-  						<td><span class="xref">Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper</span></td>
-  						<td></td>
+  						<td><span class="xref">System.Object</span></td>
+  						<td><span class="parametername">obj</span></td>
+  						<td><p>Object can be of any type, a string, list, dictionary, etc...</p>
+</td>
   					</tr>
   				</tbody>
   			</table>
   		</div>
+  
   	</div>
   </div>
   </div>
@@ -263,62 +293,191 @@
   
   <div class="custom-container">
   <div class="custom-menu-summary-data">
-  	<div class="markdown level1 summary member-summary"><p>Returns a built generic HtmlHelper</p>
+  	<div class="markdown level1 summary member-summary"><p>Write an error message</p>
 </div>
   	<div class="markdown level1 conceptual member-summary-conceptual"></div>
   </div>
   
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_HtmlHelperFactory_Build__1">
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Log_Error_System_Object_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HtmlHelperFactory/HtmlHelperFactory.cs/#L25">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L52">View Source</a>
   	</span>
   </div>
-  <a id="SystemLibrary_Common_Web_HtmlHelperFactory_Build_" data-uid="SystemLibrary.Common.Web.HtmlHelperFactory.Build*"></a>
+  <a id="SystemLibrary_Common_Web_Log_Error_" data-uid="SystemLibrary.Common.Web.Log.Error*"></a>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Web_HtmlHelperFactory_Build__1" data-uid="SystemLibrary.Common.Web.HtmlHelperFactory.Build``1" class="h4-custom-functionName">public IHtmlHelper&lt;T&gt; Build&lt;T&gt;()
-
-    where T : class</h4>
+  	<h4 id="SystemLibrary_Common_Web_Log_Error_System_Object_" data-uid="SystemLibrary.Common.Web.Log.Error(System.Object)" class="h4-custom-functionName">public static void Error(object obj)</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
   			<div class="syslib-tab-menu-data--close">X</div>
-  			<h5 class="typeParameters class-tmpl-partial-typeParameters">Generic types</h5>
-  			<table class="table table-bordered table-striped table-condensed class-tmpl-partial-typeParameters-table">
+  
+  			<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  			<table class="table table-bordered table-striped table-condensed">
   				<thead>
   					<tr>
+  						<th>Type</th>
   						<th>Name</th>
   						<th>Description</th>
   					</tr>
   				</thead>
   				<tbody>
   					<tr>
-  						<td><span class="parametername">T</span></td>
-  						<td></td>
+  						<td><span class="xref">System.Object</span></td>
+  						<td><span class="parametername">obj</span></td>
+  						<td><p>Object can be of any type, a string, list, dictionary, etc...</p>
+</td>
   					</tr>
   				</tbody>
   			</table>
-  
   		</div>
   
-  		<div class="custom-menu-data-returntype" style="display: none;">
+  	</div>
+  </div>
+  </div>
+  
+  
+  
+  <div class="custom-container">
+  <div class="custom-menu-summary-data">
+  	<div class="markdown level1 summary member-summary"><p>Write an information message</p>
+</div>
+  	<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  </div>
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Log_Info_System_Object_">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L80">View Source</a>
+  	</span>
+  </div>
+  <a id="SystemLibrary_Common_Web_Log_Info_" data-uid="SystemLibrary.Common.Web.Log.Info*"></a>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Web_Log_Info_System_Object_" data-uid="SystemLibrary.Common.Web.Log.Info(System.Object)" class="h4-custom-functionName">public static void Info(object obj)</h4>
+  	<div class="custom-menu-data-container">
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
   			<div class="syslib-tab-menu-data--close">X</div>
   
-  			<table class="table table-bordered table-striped table-condensed table-return">
+  			<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  			<table class="table table-bordered table-striped table-condensed">
   				<thead>
   					<tr>
   						<th>Type</th>
+  						<th>Name</th>
   						<th>Description</th>
   					</tr>
   				</thead>
   				<tbody>
   					<tr>
-  						<td><span class="xref">Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper</span>&lt;T&gt;</td>
-  						<td></td>
+  						<td><span class="xref">System.Object</span></td>
+  						<td><span class="parametername">obj</span></td>
+  						<td><p>Object can be of any type, a string, list, dictionary, etc...</p>
+</td>
   					</tr>
   				</tbody>
   			</table>
   		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  
+  <div class="custom-container">
+  <div class="custom-menu-summary-data">
+  	<div class="markdown level1 summary member-summary"><p>Write a warning message</p>
+</div>
+  	<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  </div>
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Log_Warning_System_Object_">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L61">View Source</a>
+  	</span>
+  </div>
+  <a id="SystemLibrary_Common_Web_Log_Warning_" data-uid="SystemLibrary.Common.Web.Log.Warning*"></a>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Web_Log_Warning_System_Object_" data-uid="SystemLibrary.Common.Web.Log.Warning(System.Object)" class="h4-custom-functionName">public static void Warning(object obj)</h4>
+  	<div class="custom-menu-data-container">
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  			<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  			<table class="table table-bordered table-striped table-condensed">
+  				<thead>
+  					<tr>
+  						<th>Type</th>
+  						<th>Name</th>
+  						<th>Description</th>
+  					</tr>
+  				</thead>
+  				<tbody>
+  					<tr>
+  						<td><span class="xref">System.Object</span></td>
+  						<td><span class="parametername">obj</span></td>
+  						<td><p>Object can be of any type, a string, list, dictionary, etc...</p>
+</td>
+  					</tr>
+  				</tbody>
+  			</table>
+  		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  
+  <div class="custom-container">
+  <div class="custom-menu-summary-data">
+  	<div class="markdown level1 summary member-summary"><p>Writing the object to your logwriter</p>
+<ul>
+<li>This ignores logging 'isEnabled' option in appSettings</li>
+<li>This ignores 'log level' option in appSettings</li>
+</ul>
+<p>This simply logs no matter what</p>
+</div>
+  	<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  </div>
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Log_Write_System_Object_">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L94">View Source</a>
+  	</span>
+  </div>
+  <a id="SystemLibrary_Common_Web_Log_Write_" data-uid="SystemLibrary.Common.Web.Log.Write*"></a>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Web_Log_Write_System_Object_" data-uid="SystemLibrary.Common.Web.Log.Write(System.Object)" class="h4-custom-functionName">public static void Write(object obj)</h4>
+  	<div class="custom-menu-data-container">
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  			<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  			<table class="table table-bordered table-striped table-condensed">
+  				<thead>
+  					<tr>
+  						<th>Type</th>
+  						<th>Name</th>
+  						<th>Description</th>
+  					</tr>
+  				</thead>
+  				<tbody>
+  					<tr>
+  						<td><span class="xref">System.Object</span></td>
+  						<td><span class="parametername">obj</span></td>
+  						<td><p>Object can be of any type, a string, list, dictionary, etc...</p>
+</td>
+  					</tr>
+  				</tbody>
+  			</table>
+  		</div>
+  
   	</div>
   </div>
   </div>
@@ -970,7 +1129,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HtmlHelperFactory/HtmlHelperFactory.cs/#L18" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/LogMessage/LogMessageBuilder.cs/#L15" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

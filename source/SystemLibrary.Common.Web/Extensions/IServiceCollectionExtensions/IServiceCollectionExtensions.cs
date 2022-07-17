@@ -30,6 +30,8 @@ public static class IServiceCollectionExtensions
     /// </example>
     public static IServiceCollection CommonWebApplicationServices(this IServiceCollection services, ServiceCollectionCommonWebOptions options = null)
     {
+        Services.Collection = services;
+
         if (options == null)
             options = new ServiceCollectionCommonWebOptions();
 

@@ -2,41 +2,40 @@
 
 using SystemLibrary.Common.Web.Extensions;
 
-namespace SystemLibrary.Common.Web.Tests
+namespace SystemLibrary.Common.Web.Tests;
+
+[TestClass]
+public class IPrincipalExtensionsTests
 {
-    [TestClass]
-    public class IPrincipalExtensionsTests
+    [TestMethod]
+    public void IsInRole_Success()
     {
-        [TestMethod]
-        public void IsInRole_Success()
-        {
-            var principal = Fakes.GetPrincipal();
+        var principal = Fakes.GetPrincipal();
 
-            var isInRole = principal.IsInAnyRole("admin", "Admin", "Administrator", "Administrators");
+        var isInRole = principal.IsInAnyRole("admin", "Admin", "Administrator", "Administrators");
 
-            Assert.IsTrue(isInRole);
-        }
+        Assert.IsTrue(isInRole);
+    }
 
-        [TestMethod]
-        public void IsInRole_False()
-        {
-            var principal = Fakes.GetPrincipal();
+    [TestMethod]
+    public void IsInRole_False()
+    {
+        var principal = Fakes.GetPrincipal();
 
-            var isInRole = principal.IsInAnyRole("Web", "Admin");
+        var isInRole = principal.IsInAnyRole("Web", "Admin");
 
-            Assert.IsFalse(isInRole);
-        }
+        Assert.IsFalse(isInRole);
+    }
 
-        [TestMethod]
-        public void IsInRole_False_WhenNull()
-        {
-            var principal = Fakes.GetPrincipal();
+    [TestMethod]
+    public void IsInRole_False_WhenNull()
+    {
+        var principal = Fakes.GetPrincipal();
 
-            var role = (string)null;
+        var role = (string)null;
 
-            var isInRole = principal.IsInAnyRole(role);
+        var isInRole = principal.IsInAnyRole(role);
 
-            Assert.IsFalse(isInRole);
-        }
+        Assert.IsFalse(isInRole);
     }
 }

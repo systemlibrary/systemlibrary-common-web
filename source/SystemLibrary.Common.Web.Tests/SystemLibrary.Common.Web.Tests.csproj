@@ -7,20 +7,23 @@
 		<Configurations>Release</Configurations>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<GenerateProgramFile>true</GenerateProgramFile>
+		<ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+	</PropertyGroup>
+
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<DefineConstants />
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Remove="appSettings.json" />
 		<None Remove="HttpBaseClientTests\Files\icon.png" />
 		<None Remove="HttpBaseClientTests\Files\text.json" />
+		<None Remove="testhost.deps.json" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Include="appSettings.json">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
+		<Resource Include="testhost.deps.json" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -36,6 +39,12 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\SystemLibrary.Common.Web\SystemLibrary.Common.Web.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="appSettings.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 
 </Project>

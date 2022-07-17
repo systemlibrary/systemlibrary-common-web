@@ -26,6 +26,63 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Web.ActionContextInstance.Current
   nameWithType: ActionContextInstance.Current
+- uid: SystemLibrary.Common.Web.Cache
+  name: Cache
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html
+  commentId: T:SystemLibrary.Common.Web.Cache
+  fullName: SystemLibrary.Common.Web.Cache
+  nameWithType: Cache
+- uid: SystemLibrary.Common.Web.Cache.Clear
+  name: Clear()
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_Clear
+  commentId: M:SystemLibrary.Common.Web.Cache.Clear
+  fullName: SystemLibrary.Common.Web.Cache.Clear()
+  nameWithType: Cache.Clear()
+- uid: SystemLibrary.Common.Web.Cache.Clear*
+  name: Clear
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_Clear_
+  commentId: Overload:SystemLibrary.Common.Web.Cache.Clear
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Cache.Clear
+  nameWithType: Cache.Clear
+- uid: SystemLibrary.Common.Web.Cache.Get*
+  name: Get
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_Get_
+  commentId: Overload:SystemLibrary.Common.Web.Cache.Get
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Cache.Get
+  nameWithType: Cache.Get
+- uid: SystemLibrary.Common.Web.Cache.Get``1(System.Func{``0},System.String,System.TimeSpan,System.Func{``0,System.Boolean},System.Boolean,System.Boolean,System.Func{System.Boolean},System.Boolean)
+  name: Get<T>(Func<T>, String, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>, Boolean)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_Get__1_System_Func___0__System_String_System_TimeSpan_System_Func___0_System_Boolean__System_Boolean_System_Boolean_System_Func_System_Boolean__System_Boolean_
+  commentId: M:SystemLibrary.Common.Web.Cache.Get``1(System.Func{``0},System.String,System.TimeSpan,System.Func{``0,System.Boolean},System.Boolean,System.Boolean,System.Func{System.Boolean},System.Boolean)
+  name.vb: Get(Of T)(Func(Of T), String, TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean), Boolean)
+  fullName: SystemLibrary.Common.Web.Cache.Get<T>(System.Func<T>, System.String, System.TimeSpan, System.Func<T, System.Boolean>, System.Boolean, System.Boolean, System.Func<System.Boolean>, System.Boolean)
+  fullName.vb: SystemLibrary.Common.Web.Cache.Get(Of T)(System.Func(Of T), System.String, System.TimeSpan, System.Func(Of T, System.Boolean), System.Boolean, System.Boolean, System.Func(Of System.Boolean), System.Boolean)
+  nameWithType: Cache.Get<T>(Func<T>, String, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>, Boolean)
+  nameWithType.vb: Cache.Get(Of T)(Func(Of T), String, TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean), Boolean)
+- uid: SystemLibrary.Common.Web.Cache.Get``1(System.String)
+  name: Get<T>(String)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_Get__1_System_String_
+  commentId: M:SystemLibrary.Common.Web.Cache.Get``1(System.String)
+  name.vb: Get(Of T)(String)
+  fullName: SystemLibrary.Common.Web.Cache.Get<T>(System.String)
+  fullName.vb: SystemLibrary.Common.Web.Cache.Get(Of T)(System.String)
+  nameWithType: Cache.Get<T>(String)
+  nameWithType.vb: Cache.Get(Of T)(String)
+- uid: SystemLibrary.Common.Web.Cache.Remove(System.String)
+  name: Remove(String)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_Remove_System_String_
+  commentId: M:SystemLibrary.Common.Web.Cache.Remove(System.String)
+  fullName: SystemLibrary.Common.Web.Cache.Remove(System.String)
+  nameWithType: Cache.Remove(String)
+- uid: SystemLibrary.Common.Web.Cache.Remove*
+  name: Remove
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_Remove_
+  commentId: Overload:SystemLibrary.Common.Web.Cache.Remove
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Cache.Remove
+  nameWithType: Cache.Remove
 - uid: SystemLibrary.Common.Web.CalleeCancelledRequestException
   name: CalleeCancelledRequestException
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.CalleeCancelledRequestException.html
@@ -627,6 +684,178 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Web.HttpContextInstance.Current
   nameWithType: HttpContextInstance.Current
+- uid: SystemLibrary.Common.Web.ILogWriter
+  name: ILogWriter
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.ILogWriter.html
+  commentId: T:SystemLibrary.Common.Web.ILogWriter
+  fullName: SystemLibrary.Common.Web.ILogWriter
+  nameWithType: ILogWriter
+- uid: SystemLibrary.Common.Web.ILogWriter.Debug(System.String)
+  name: Debug(String)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.ILogWriter.html#SystemLibrary_Common_Web_ILogWriter_Debug_System_String_
+  commentId: M:SystemLibrary.Common.Web.ILogWriter.Debug(System.String)
+  fullName: SystemLibrary.Common.Web.ILogWriter.Debug(System.String)
+  nameWithType: ILogWriter.Debug(String)
+- uid: SystemLibrary.Common.Web.ILogWriter.Debug*
+  name: Debug
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.ILogWriter.html#SystemLibrary_Common_Web_ILogWriter_Debug_
+  commentId: Overload:SystemLibrary.Common.Web.ILogWriter.Debug
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.ILogWriter.Debug
+  nameWithType: ILogWriter.Debug
+- uid: SystemLibrary.Common.Web.ILogWriter.Error(System.String)
+  name: Error(String)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.ILogWriter.html#SystemLibrary_Common_Web_ILogWriter_Error_System_String_
+  commentId: M:SystemLibrary.Common.Web.ILogWriter.Error(System.String)
+  fullName: SystemLibrary.Common.Web.ILogWriter.Error(System.String)
+  nameWithType: ILogWriter.Error(String)
+- uid: SystemLibrary.Common.Web.ILogWriter.Error*
+  name: Error
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.ILogWriter.html#SystemLibrary_Common_Web_ILogWriter_Error_
+  commentId: Overload:SystemLibrary.Common.Web.ILogWriter.Error
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.ILogWriter.Error
+  nameWithType: ILogWriter.Error
+- uid: SystemLibrary.Common.Web.ILogWriter.Info(System.String)
+  name: Info(String)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.ILogWriter.html#SystemLibrary_Common_Web_ILogWriter_Info_System_String_
+  commentId: M:SystemLibrary.Common.Web.ILogWriter.Info(System.String)
+  fullName: SystemLibrary.Common.Web.ILogWriter.Info(System.String)
+  nameWithType: ILogWriter.Info(String)
+- uid: SystemLibrary.Common.Web.ILogWriter.Info*
+  name: Info
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.ILogWriter.html#SystemLibrary_Common_Web_ILogWriter_Info_
+  commentId: Overload:SystemLibrary.Common.Web.ILogWriter.Info
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.ILogWriter.Info
+  nameWithType: ILogWriter.Info
+- uid: SystemLibrary.Common.Web.ILogWriter.Warning(System.String)
+  name: Warning(String)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.ILogWriter.html#SystemLibrary_Common_Web_ILogWriter_Warning_System_String_
+  commentId: M:SystemLibrary.Common.Web.ILogWriter.Warning(System.String)
+  fullName: SystemLibrary.Common.Web.ILogWriter.Warning(System.String)
+  nameWithType: ILogWriter.Warning(String)
+- uid: SystemLibrary.Common.Web.ILogWriter.Warning*
+  name: Warning
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.ILogWriter.html#SystemLibrary_Common_Web_ILogWriter_Warning_
+  commentId: Overload:SystemLibrary.Common.Web.ILogWriter.Warning
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.ILogWriter.Warning
+  nameWithType: ILogWriter.Warning
+- uid: SystemLibrary.Common.Web.ILogWriter.Write(System.String)
+  name: Write(String)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.ILogWriter.html#SystemLibrary_Common_Web_ILogWriter_Write_System_String_
+  commentId: M:SystemLibrary.Common.Web.ILogWriter.Write(System.String)
+  fullName: SystemLibrary.Common.Web.ILogWriter.Write(System.String)
+  nameWithType: ILogWriter.Write(String)
+- uid: SystemLibrary.Common.Web.ILogWriter.Write*
+  name: Write
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.ILogWriter.html#SystemLibrary_Common_Web_ILogWriter_Write_
+  commentId: Overload:SystemLibrary.Common.Web.ILogWriter.Write
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.ILogWriter.Write
+  nameWithType: ILogWriter.Write
+- uid: SystemLibrary.Common.Web.Log
+  name: Log
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Log.html
+  commentId: T:SystemLibrary.Common.Web.Log
+  fullName: SystemLibrary.Common.Web.Log
+  nameWithType: Log
+- uid: SystemLibrary.Common.Web.Log.Debug(System.Object)
+  name: Debug(Object)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Log.html#SystemLibrary_Common_Web_Log_Debug_System_Object_
+  commentId: M:SystemLibrary.Common.Web.Log.Debug(System.Object)
+  fullName: SystemLibrary.Common.Web.Log.Debug(System.Object)
+  nameWithType: Log.Debug(Object)
+- uid: SystemLibrary.Common.Web.Log.Debug*
+  name: Debug
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Log.html#SystemLibrary_Common_Web_Log_Debug_
+  commentId: Overload:SystemLibrary.Common.Web.Log.Debug
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Log.Debug
+  nameWithType: Log.Debug
+- uid: SystemLibrary.Common.Web.Log.Error(System.Object)
+  name: Error(Object)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Log.html#SystemLibrary_Common_Web_Log_Error_System_Object_
+  commentId: M:SystemLibrary.Common.Web.Log.Error(System.Object)
+  fullName: SystemLibrary.Common.Web.Log.Error(System.Object)
+  nameWithType: Log.Error(Object)
+- uid: SystemLibrary.Common.Web.Log.Error*
+  name: Error
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Log.html#SystemLibrary_Common_Web_Log_Error_
+  commentId: Overload:SystemLibrary.Common.Web.Log.Error
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Log.Error
+  nameWithType: Log.Error
+- uid: SystemLibrary.Common.Web.Log.Info(System.Object)
+  name: Info(Object)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Log.html#SystemLibrary_Common_Web_Log_Info_System_Object_
+  commentId: M:SystemLibrary.Common.Web.Log.Info(System.Object)
+  fullName: SystemLibrary.Common.Web.Log.Info(System.Object)
+  nameWithType: Log.Info(Object)
+- uid: SystemLibrary.Common.Web.Log.Info*
+  name: Info
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Log.html#SystemLibrary_Common_Web_Log_Info_
+  commentId: Overload:SystemLibrary.Common.Web.Log.Info
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Log.Info
+  nameWithType: Log.Info
+- uid: SystemLibrary.Common.Web.Log.Warning(System.Object)
+  name: Warning(Object)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Log.html#SystemLibrary_Common_Web_Log_Warning_System_Object_
+  commentId: M:SystemLibrary.Common.Web.Log.Warning(System.Object)
+  fullName: SystemLibrary.Common.Web.Log.Warning(System.Object)
+  nameWithType: Log.Warning(Object)
+- uid: SystemLibrary.Common.Web.Log.Warning*
+  name: Warning
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Log.html#SystemLibrary_Common_Web_Log_Warning_
+  commentId: Overload:SystemLibrary.Common.Web.Log.Warning
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Log.Warning
+  nameWithType: Log.Warning
+- uid: SystemLibrary.Common.Web.Log.Write(System.Object)
+  name: Write(Object)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Log.html#SystemLibrary_Common_Web_Log_Write_System_Object_
+  commentId: M:SystemLibrary.Common.Web.Log.Write(System.Object)
+  fullName: SystemLibrary.Common.Web.Log.Write(System.Object)
+  nameWithType: Log.Write(Object)
+- uid: SystemLibrary.Common.Web.Log.Write*
+  name: Write
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Log.html#SystemLibrary_Common_Web_Log_Write_
+  commentId: Overload:SystemLibrary.Common.Web.Log.Write
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Log.Write
+  nameWithType: Log.Write
+- uid: SystemLibrary.Common.Web.LogLevel
+  name: LogLevel
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.LogLevel.html
+  commentId: T:SystemLibrary.Common.Web.LogLevel
+  fullName: SystemLibrary.Common.Web.LogLevel
+  nameWithType: LogLevel
+- uid: SystemLibrary.Common.Web.LogLevel.Debug
+  name: Debug
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.LogLevel.html#SystemLibrary_Common_Web_LogLevel_Debug
+  commentId: F:SystemLibrary.Common.Web.LogLevel.Debug
+  fullName: SystemLibrary.Common.Web.LogLevel.Debug
+  nameWithType: LogLevel.Debug
+- uid: SystemLibrary.Common.Web.LogLevel.Error
+  name: Error
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.LogLevel.html#SystemLibrary_Common_Web_LogLevel_Error
+  commentId: F:SystemLibrary.Common.Web.LogLevel.Error
+  fullName: SystemLibrary.Common.Web.LogLevel.Error
+  nameWithType: LogLevel.Error
+- uid: SystemLibrary.Common.Web.LogLevel.Info
+  name: Info
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.LogLevel.html#SystemLibrary_Common_Web_LogLevel_Info
+  commentId: F:SystemLibrary.Common.Web.LogLevel.Info
+  fullName: SystemLibrary.Common.Web.LogLevel.Info
+  nameWithType: LogLevel.Info
+- uid: SystemLibrary.Common.Web.LogLevel.Warning
+  name: Warning
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.LogLevel.html#SystemLibrary_Common_Web_LogLevel_Warning
+  commentId: F:SystemLibrary.Common.Web.LogLevel.Warning
+  fullName: SystemLibrary.Common.Web.LogLevel.Warning
+  nameWithType: LogLevel.Warning
 - uid: SystemLibrary.Common.Web.MediaType
   name: MediaType
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.MediaType.html
@@ -718,3 +947,41 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Web.RetryRequestException.RetryRequestException
   nameWithType: RetryRequestException.RetryRequestException
+- uid: SystemLibrary.Common.Web.Services
+  name: Services
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Services.html
+  commentId: T:SystemLibrary.Common.Web.Services
+  fullName: SystemLibrary.Common.Web.Services
+  nameWithType: Services
+- uid: SystemLibrary.Common.Web.Services.Get*
+  name: Get
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Services.html#SystemLibrary_Common_Web_Services_Get_
+  commentId: Overload:SystemLibrary.Common.Web.Services.Get
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Services.Get
+  nameWithType: Services.Get
+- uid: SystemLibrary.Common.Web.Services.Get``1
+  name: Get<T>()
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Services.html#SystemLibrary_Common_Web_Services_Get__1
+  commentId: M:SystemLibrary.Common.Web.Services.Get``1
+  name.vb: Get(Of T)()
+  fullName: SystemLibrary.Common.Web.Services.Get<T>()
+  fullName.vb: SystemLibrary.Common.Web.Services.Get(Of T)()
+  nameWithType: Services.Get<T>()
+  nameWithType.vb: Services.Get(Of T)()
+- uid: SystemLibrary.Common.Web.Services.Remove*
+  name: Remove
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Services.html#SystemLibrary_Common_Web_Services_Remove_
+  commentId: Overload:SystemLibrary.Common.Web.Services.Remove
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Services.Remove
+  nameWithType: Services.Remove
+- uid: SystemLibrary.Common.Web.Services.Remove``1
+  name: Remove<T>()
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Services.html#SystemLibrary_Common_Web_Services_Remove__1
+  commentId: M:SystemLibrary.Common.Web.Services.Remove``1
+  name.vb: Remove(Of T)()
+  fullName: SystemLibrary.Common.Web.Services.Remove<T>()
+  fullName.vb: SystemLibrary.Common.Web.Services.Remove(Of T)()
+  nameWithType: Services.Remove<T>()
+  nameWithType.vb: Services.Remove(Of T)()

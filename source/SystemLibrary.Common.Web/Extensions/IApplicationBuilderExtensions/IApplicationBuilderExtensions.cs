@@ -43,6 +43,8 @@ public static class IApplicationBuilderExtensions
     /// </example>
     public static IApplicationBuilder CommonWebApplicationBuilder(this IApplicationBuilder app, WebApplicationBuilderOptions options = null)
     {
+        Services.ServiceProviderInstance = app.ApplicationServices;
+
         if (options == null)
             options = new WebApplicationBuilderOptions();
 
@@ -114,7 +116,6 @@ public static class IApplicationBuilderExtensions
 
             app.UseStaticFiles(staticFileOptions);
         }
-
 
         return app;
     }

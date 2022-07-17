@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>HtmlHelperFactory
+    <title>Interface ILogWriter
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="HtmlHelperFactory
+    <meta name="title" content="Interface ILogWriter
    ">
     <meta name="generator" content="docfx 2.59.3.0">
     
@@ -164,7 +164,7 @@
         <div class="article row grid-right">
         <div class="article row grid">
           <div class="col-md-10">
-            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Web.HtmlHelperFactory">
+            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Web.ILogWriter">
   
   
   <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Web.html">SystemLibrary.Common.Web</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Web.dll</span></h6>
@@ -172,26 +172,19 @@
   <div class="markdown level0 conceptual h1-class-conceptual"></div>
   
   <div class="h1-class-summary-container">
-    <div class="markdown level0 summary h1-class-summary"><p>HtmlHelperFactory lets you get a new HtmlBuilder in the backend, outside of your View Context</p>
-<ul>
-<li>Either use injection or simply call its ctor</li>
-</ul>
+    <div class="markdown level0 summary h1-class-summary"><p>Implement ILogWriter in your application and register it as a Service in Startup.cs</p>
+<p>Your logwriter will then be used whenever you use the static logger: Log.Errror(), Log.Warning(), Log.Write()</p>
 </div>
   </div>
   
-  <h1 id="SystemLibrary_Common_Web_HtmlHelperFactory" data-uid="SystemLibrary.Common.Web.HtmlHelperFactory" class="text-break h1-class-header">HtmlHelperFactory
+  <h1 id="SystemLibrary_Common_Web_ILogWriter" data-uid="SystemLibrary.Common.Web.ILogWriter" class="text-break h1-class-header">Interface ILogWriter
   </h1>
-  <h1 id="SystemLibrary_Common_Web_HtmlHelperFactory" data-uid="SystemLibrary.Common.Web.HtmlHelperFactory" class="h1-custom-display className">public class HtmlHelperFactory</h1>
+  <h1 id="SystemLibrary_Common_Web_ILogWriter" data-uid="SystemLibrary.Common.Web.ILogWriter" class="h1-custom-display className">public interface ILogWriter</h1>
   
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">HtmlHelperFactory</span></div>
-  </div>
   
   
   <div class="custom-menu-data custom-menu-data-first">
-    <h5 id="SystemLibrary_Common_Web_HtmlHelperFactory_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
+    <h5 id="SystemLibrary_Common_Web_ILogWriter_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
   
     <div class="custom-menu-data-container custom-menu-data-container--example">
     </div>
@@ -199,7 +192,7 @@
   
   
   <div class="custom-menu-data">
-    <h5 id="SystemLibrary_Common_Web_HtmlHelperFactory_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
+    <h5 id="SystemLibrary_Common_Web_ILogWriter_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
   
     <div class="custom-menu-data-container">
       <div class="custom-menu-data-class-arguments" style="display: none;">
@@ -216,45 +209,44 @@
   
   <div class="custom-container">
   <div class="custom-menu-summary-data">
-  	<div class="markdown level1 summary member-summary"><p>Returns a built HtmlHelper</p>
+  	<div class="markdown level1 summary member-summary"><p>Implement where Log.Debug() is going to be stored, for instance your own DB, a file, or some services like CloudWatch, FireBase, Sentry, ...</p>
 </div>
   	<div class="markdown level1 conceptual member-summary-conceptual"></div>
   </div>
   
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_HtmlHelperFactory_Build">
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_ILogWriter_Debug_System_String_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HtmlHelperFactory/HtmlHelperFactory.cs/#L39">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/ILogWriter.cs/#L23">View Source</a>
   	</span>
   </div>
-  <a id="SystemLibrary_Common_Web_HtmlHelperFactory_Build_" data-uid="SystemLibrary.Common.Web.HtmlHelperFactory.Build*"></a>
+  <a id="SystemLibrary_Common_Web_ILogWriter_Debug_" data-uid="SystemLibrary.Common.Web.ILogWriter.Debug*"></a>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Web_HtmlHelperFactory_Build" data-uid="SystemLibrary.Common.Web.HtmlHelperFactory.Build" class="h4-custom-functionName">public IHtmlHelper Build()</h4>
+  	<h4 id="SystemLibrary_Common_Web_ILogWriter_Debug_System_String_" data-uid="SystemLibrary.Common.Web.ILogWriter.Debug(System.String)" class="h4-custom-functionName">void Debug(string message)</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
   			<div class="syslib-tab-menu-data--close">X</div>
   
-  		</div>
-  
-  		<div class="custom-menu-data-returntype" style="display: none;">
-  			<div class="syslib-tab-menu-data--close">X</div>
-  
-  			<table class="table table-bordered table-striped table-condensed table-return">
+  			<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  			<table class="table table-bordered table-striped table-condensed">
   				<thead>
   					<tr>
   						<th>Type</th>
+  						<th>Name</th>
   						<th>Description</th>
   					</tr>
   				</thead>
   				<tbody>
   					<tr>
-  						<td><span class="xref">Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper</span></td>
+  						<td><span class="xref">System.String</span></td>
+  						<td><span class="parametername">message</span></td>
   						<td></td>
   					</tr>
   				</tbody>
   			</table>
   		</div>
+  
   	</div>
   </div>
   </div>
@@ -263,62 +255,183 @@
   
   <div class="custom-container">
   <div class="custom-menu-summary-data">
-  	<div class="markdown level1 summary member-summary"><p>Returns a built generic HtmlHelper</p>
+  	<div class="markdown level1 summary member-summary"><p>Implement where Log.Error() is going to be stored, for instance your own DB, a file, or some services like CloudWatch, FireBase, Sentry, ...</p>
 </div>
   	<div class="markdown level1 conceptual member-summary-conceptual"></div>
   </div>
   
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_HtmlHelperFactory_Build__1">
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_ILogWriter_Error_System_String_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HtmlHelperFactory/HtmlHelperFactory.cs/#L25">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/ILogWriter.cs/#L13">View Source</a>
   	</span>
   </div>
-  <a id="SystemLibrary_Common_Web_HtmlHelperFactory_Build_" data-uid="SystemLibrary.Common.Web.HtmlHelperFactory.Build*"></a>
+  <a id="SystemLibrary_Common_Web_ILogWriter_Error_" data-uid="SystemLibrary.Common.Web.ILogWriter.Error*"></a>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Web_HtmlHelperFactory_Build__1" data-uid="SystemLibrary.Common.Web.HtmlHelperFactory.Build``1" class="h4-custom-functionName">public IHtmlHelper&lt;T&gt; Build&lt;T&gt;()
-
-    where T : class</h4>
+  	<h4 id="SystemLibrary_Common_Web_ILogWriter_Error_System_String_" data-uid="SystemLibrary.Common.Web.ILogWriter.Error(System.String)" class="h4-custom-functionName">void Error(string message)</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
   			<div class="syslib-tab-menu-data--close">X</div>
-  			<h5 class="typeParameters class-tmpl-partial-typeParameters">Generic types</h5>
-  			<table class="table table-bordered table-striped table-condensed class-tmpl-partial-typeParameters-table">
+  
+  			<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  			<table class="table table-bordered table-striped table-condensed">
   				<thead>
   					<tr>
+  						<th>Type</th>
   						<th>Name</th>
   						<th>Description</th>
   					</tr>
   				</thead>
   				<tbody>
   					<tr>
-  						<td><span class="parametername">T</span></td>
+  						<td><span class="xref">System.String</span></td>
+  						<td><span class="parametername">message</span></td>
   						<td></td>
   					</tr>
   				</tbody>
   			</table>
-  
   		</div>
   
-  		<div class="custom-menu-data-returntype" style="display: none;">
+  	</div>
+  </div>
+  </div>
+  
+  
+  
+  <div class="custom-container">
+  <div class="custom-menu-summary-data">
+  	<div class="markdown level1 summary member-summary"><p>Implement where Log.Info() is going to be stored, for instance your own DB, a file, or some services like CloudWatch, FireBase, Sentry, ...</p>
+</div>
+  	<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  </div>
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_ILogWriter_Info_System_String_">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/ILogWriter.cs/#L28">View Source</a>
+  	</span>
+  </div>
+  <a id="SystemLibrary_Common_Web_ILogWriter_Info_" data-uid="SystemLibrary.Common.Web.ILogWriter.Info*"></a>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Web_ILogWriter_Info_System_String_" data-uid="SystemLibrary.Common.Web.ILogWriter.Info(System.String)" class="h4-custom-functionName">void Info(string message)</h4>
+  	<div class="custom-menu-data-container">
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
   			<div class="syslib-tab-menu-data--close">X</div>
   
-  			<table class="table table-bordered table-striped table-condensed table-return">
+  			<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  			<table class="table table-bordered table-striped table-condensed">
   				<thead>
   					<tr>
   						<th>Type</th>
+  						<th>Name</th>
   						<th>Description</th>
   					</tr>
   				</thead>
   				<tbody>
   					<tr>
-  						<td><span class="xref">Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper</span>&lt;T&gt;</td>
+  						<td><span class="xref">System.String</span></td>
+  						<td><span class="parametername">message</span></td>
   						<td></td>
   					</tr>
   				</tbody>
   			</table>
   		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  
+  <div class="custom-container">
+  <div class="custom-menu-summary-data">
+  	<div class="markdown level1 summary member-summary"><p>Implement where Log.Warning() is going to be stored, for instance your own DB, a file, or some services like CloudWatch, FireBase, Sentry, ...</p>
+</div>
+  	<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  </div>
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_ILogWriter_Warning_System_String_">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/ILogWriter.cs/#L18">View Source</a>
+  	</span>
+  </div>
+  <a id="SystemLibrary_Common_Web_ILogWriter_Warning_" data-uid="SystemLibrary.Common.Web.ILogWriter.Warning*"></a>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Web_ILogWriter_Warning_System_String_" data-uid="SystemLibrary.Common.Web.ILogWriter.Warning(System.String)" class="h4-custom-functionName">void Warning(string message)</h4>
+  	<div class="custom-menu-data-container">
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  			<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  			<table class="table table-bordered table-striped table-condensed">
+  				<thead>
+  					<tr>
+  						<th>Type</th>
+  						<th>Name</th>
+  						<th>Description</th>
+  					</tr>
+  				</thead>
+  				<tbody>
+  					<tr>
+  						<td><span class="xref">System.String</span></td>
+  						<td><span class="parametername">message</span></td>
+  						<td></td>
+  					</tr>
+  				</tbody>
+  			</table>
+  		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  
+  <div class="custom-container">
+  <div class="custom-menu-summary-data">
+  	<div class="markdown level1 summary member-summary"><p>Implement where Log.Write() is going to be stored, for instance your own DB, a file, or some services like CloudWatch, FireBase, Sentry, ...</p>
+<p>Write() is always Invoked, no matter if you disable logging or set to invald log levels, it will be logged</p>
+</div>
+  	<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  </div>
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_ILogWriter_Write_System_String_">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/ILogWriter.cs/#L35">View Source</a>
+  	</span>
+  </div>
+  <a id="SystemLibrary_Common_Web_ILogWriter_Write_" data-uid="SystemLibrary.Common.Web.ILogWriter.Write*"></a>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Web_ILogWriter_Write_System_String_" data-uid="SystemLibrary.Common.Web.ILogWriter.Write(System.String)" class="h4-custom-functionName">void Write(string message)</h4>
+  	<div class="custom-menu-data-container">
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  			<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  			<table class="table table-bordered table-striped table-condensed">
+  				<thead>
+  					<tr>
+  						<th>Type</th>
+  						<th>Name</th>
+  						<th>Description</th>
+  					</tr>
+  				</thead>
+  				<tbody>
+  					<tr>
+  						<td><span class="xref">System.String</span></td>
+  						<td><span class="parametername">message</span></td>
+  						<td></td>
+  					</tr>
+  				</tbody>
+  			</table>
+  		</div>
+  
   	</div>
   </div>
   </div>
@@ -970,7 +1083,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HtmlHelperFactory/HtmlHelperFactory.cs/#L18" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/ILogWriter.cs/#L8" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

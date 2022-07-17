@@ -50,14 +50,32 @@ static void main(string[] args) {
 
 appSettings.json:
 ```json  
-	{
-		"systemLibraryCommonWeb": {
-			"httpBaseClient": {
-				"timeoutMilliseconds": 60000,
-				"retryRequestTimeoutSeconds": 10,
-				"cacheClientConnectionSeconds": 300
-			}
+{
+	"systemLibraryCommonWeb": {
+		"httpBaseClient": {
+			"timeoutMilliseconds": 60000,
+			"retryRequestTimeoutSeconds": 10,
+			"cacheClientConnectionSeconds": 300
+		},
+
+		"log": {
+			"isEnabled": true,
+			"level": "Info"
+		},
+
+		"logMessageBuilderOptions": {
+			"appendLoggedInState": true,
+			"appendCurrentPage": true,
+			"appendCurrentUrl": true,
+			"appendIp": true,
+			"appendBrowser": true,
+			"appendCookieInfo": true
+		},
+
+		"cache": {
+			"defaultDuration": 180
 		}
 	}
+}
 ```  
  
