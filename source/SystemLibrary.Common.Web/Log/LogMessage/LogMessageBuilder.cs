@@ -30,28 +30,28 @@ partial class Log
             if ((int)level != 99999)
                 message.Append(level.ToString() + ": ");
 
-            var context = HttpContextInstance.Current;
-
             AppendMessage(obj, message);
 
             if (level == LogLevel.Error && obj as Exception == null)
                 AppendStackTrace(message);
 
-            AppendRequestPath(message, context?.Request);
+            var context = HttpContextInstance.Current;
+            if (context != null)
+                AppendRequestPath(message, context.Request);
 
-            if (!IsLocal)
+            if (!IsLocal && context != null)
             {
                 if (LogMessageBuilderOptions.AppendLoggedInState)
                     AppendLoggedInState(message, context);
 
                 if (LogMessageBuilderOptions.AppendBrowser)
-                    AppendBrowser(message, context?.Request);
+                    AppendBrowser(message, context.Request);
 
                 if (LogMessageBuilderOptions.AppendIp)
                     AppendUserIp(message, context);
 
                 if (LogMessageBuilderOptions.AppendCookieInfo)
-                    AppendCookieInfo(message, context?.Request);
+                    AppendCookieInfo(message, context.Request);
             }
 
             return message.ToString();

@@ -10,10 +10,23 @@ public class LogWriterTests
     const string DumpFullPath = @"C:\Logs\systemlibrary-common-web-unit-tests.txt";
 
     [TestMethod]
+    public void Write_Various_Log_Levels_Without_Registering_ILogWriter_Success()
+    {
+        if (System.IO.File.Exists(DumpFullPath))
+            System.IO.File.Delete(DumpFullPath);
+
+        Assert.IsFalse(System.IO.File.Exists(DumpFullPath));
+
+        Log.Write("Err");
+
+        Assert.IsTrue(System.IO.File.Exists(DumpFullPath));
+    }
+
+    [TestMethod]
     public void Write_Various_Log_Levels_Success()
     {
         App.Start<ILogWriter, LogWriter>();
-        
+
         Dump.Clear();
 
         Log.Error("12345");
