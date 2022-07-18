@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="visibility: hidden; position: absolute; margin-left: -4000px;">
-        [%custom-skipDocumentationFor%]</div>
+        MediaType,LogLevel,ClientResponse__-1_T__-2_,CalleeCancelledRequestException,RetryRequestException</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -117,8 +117,16 @@
       
                   for (var i = 0; i < queries.length; i++) {
                     var query = queries[i].replace(/(\r\n|\n|\r)/gm, "");
+      
                     if (query && query.length > 1) {
                       query = query.replace(/ /g, '');
+      
+                      console.log(query);
+      
+                      query = query.replace('__-1_', '<');
+                      query = query.replace('__-2_', '>');
+                      
+                      console.log(query);
       
                       if (query.includes('.')) {
                         var links = toc.getElementsByTagName('a');
@@ -390,7 +398,7 @@ var response = new HttpBaseClient().Delete&lt;string>(&quot;https://www.systemli
   						<td></td>
   					</tr>
   					<tr>
-  						<td><a class="xref" href="SystemLibrary.Common.Web.MediaType.html">MediaType</a></td>
+  						<td><a class="xref" href="SystemLibrary.Common.Web.MediaType.html"></a></td>
   						<td><span class="parametername">mediaType</span></td>
   						<td></td>
   					</tr>
@@ -506,7 +514,7 @@ var response = await new HttpBaseClient().DeleteAsync&lt;string>(&quot;https://w
   						<td></td>
   					</tr>
   					<tr>
-  						<td><a class="xref" href="SystemLibrary.Common.Web.MediaType.html">MediaType</a></td>
+  						<td><a class="xref" href="SystemLibrary.Common.Web.MediaType.html"></a></td>
   						<td><span class="parametername">mediaType</span></td>
   						<td></td>
   					</tr>
@@ -628,7 +636,7 @@ var json = client.Get();
   						<td></td>
   					</tr>
   					<tr>
-  						<td><a class="xref" href="SystemLibrary.Common.Web.MediaType.html">MediaType</a></td>
+  						<td><a class="xref" href="SystemLibrary.Common.Web.MediaType.html"></a></td>
   						<td><span class="parametername">mediaType</span></td>
   						<td></td>
   					</tr>
@@ -739,7 +747,7 @@ var response = new await HttpBaseClient().GetAsync&lt;string>(&quot;https://www.
   						<td></td>
   					</tr>
   					<tr>
-  						<td><a class="xref" href="SystemLibrary.Common.Web.MediaType.html">MediaType</a></td>
+  						<td><a class="xref" href="SystemLibrary.Common.Web.MediaType.html"></a></td>
   						<td><span class="parametername">mediaType</span></td>
   						<td></td>
   					</tr>
@@ -849,7 +857,7 @@ var response = new await HttpBaseClient().GetAsync&lt;string>(&quot;https://www.
   						<td></td>
   					</tr>
   					<tr>
-  						<td><a class="xref" href="SystemLibrary.Common.Web.MediaType.html">MediaType</a></td>
+  						<td><a class="xref" href="SystemLibrary.Common.Web.MediaType.html"></a></td>
   						<td><span class="parametername">mediaType</span></td>
   						<td></td>
   					</tr>
@@ -959,7 +967,7 @@ var response = new await HttpBaseClient().GetAsync&lt;string>(&quot;https://www.
   						<td></td>
   					</tr>
   					<tr>
-  						<td><a class="xref" href="SystemLibrary.Common.Web.MediaType.html">MediaType</a></td>
+  						<td><a class="xref" href="SystemLibrary.Common.Web.MediaType.html"></a></td>
   						<td><span class="parametername">mediaType</span></td>
   						<td></td>
   					</tr>
@@ -1075,7 +1083,7 @@ var response = new HttpBaseClient().Post&lt;string>(&quot;https://www.systemlibr
   						<td></td>
   					</tr>
   					<tr>
-  						<td><a class="xref" href="SystemLibrary.Common.Web.MediaType.html">MediaType</a></td>
+  						<td><a class="xref" href="SystemLibrary.Common.Web.MediaType.html"></a></td>
   						<td><span class="parametername">mediaType</span></td>
   						<td></td>
   					</tr>
@@ -1191,7 +1199,7 @@ var response = await new HttpBaseClient().PostAsync&lt;string>(&quot;https://www
   						<td></td>
   					</tr>
   					<tr>
-  						<td><a class="xref" href="SystemLibrary.Common.Web.MediaType.html">MediaType</a></td>
+  						<td><a class="xref" href="SystemLibrary.Common.Web.MediaType.html"></a></td>
   						<td><span class="parametername">mediaType</span></td>
   						<td></td>
   					</tr>
@@ -1307,7 +1315,7 @@ var response = new HttpBaseClient().Put&lt;string>(&quot;https://www.systemlibra
   						<td></td>
   					</tr>
   					<tr>
-  						<td><a class="xref" href="SystemLibrary.Common.Web.MediaType.html">MediaType</a></td>
+  						<td><a class="xref" href="SystemLibrary.Common.Web.MediaType.html"></a></td>
   						<td><span class="parametername">mediaType</span></td>
   						<td></td>
   					</tr>
@@ -1423,7 +1431,7 @@ var response = await new HttpBaseClient().PutAsync&lt;string>(&quot;https://www.
   						<td></td>
   					</tr>
   					<tr>
-  						<td><a class="xref" href="SystemLibrary.Common.Web.MediaType.html">MediaType</a></td>
+  						<td><a class="xref" href="SystemLibrary.Common.Web.MediaType.html"></a></td>
   						<td><span class="parametername">mediaType</span></td>
   						<td></td>
   					</tr>

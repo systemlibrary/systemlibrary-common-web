@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Log
+    <title>CommonWebApplicationServicesOptions
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Log
+    <meta name="title" content="CommonWebApplicationServicesOptions
    ">
     <meta name="generator" content="docfx 2.59.3.0">
     
@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="visibility: hidden; position: absolute; margin-left: -4000px;">
-        [%custom-skipDocumentationFor%]</div>
+        MediaType,LogLevel,ClientResponse__-1_T__-2_,CalleeCancelledRequestException,RetryRequestException</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -117,8 +117,16 @@
       
                   for (var i = 0; i < queries.length; i++) {
                     var query = queries[i].replace(/(\r\n|\n|\r)/gm, "");
+      
                     if (query && query.length > 1) {
                       query = query.replace(/ /g, '');
+      
+                      console.log(query);
+      
+                      query = query.replace('__-1_', '<');
+                      query = query.replace('__-2_', '>');
+                      
+                      console.log(query);
       
                       if (query.includes('.')) {
                         var links = toc.getElementsByTagName('a');
@@ -164,62 +172,49 @@
         <div class="article row grid-right">
         <div class="article row grid">
           <div class="col-md-10">
-            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Web.Log">
+            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions">
   
   
-  <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Web.html">SystemLibrary.Common.Web</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Web.dll</span></h6>
+  <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Web.Extensions.html">SystemLibrary.Common.Web.Extensions</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Web.dll</span></h6>
   
   <div class="markdown level0 conceptual h1-class-conceptual"></div>
   
   <div class="h1-class-summary-container">
-    <div class="markdown level0 summary h1-class-summary"><p>One log class for your whole application</p>
-<ul>
-<li><p>You implement the actual LogWriter : ILogWriter of where the message should be stored</p>
-</li>
-<li><p>Remember to register your LogWriter as a service in your application</p>
-</li>
-<li><p>After implementing ILogWriter, simply call Log.Error, Log.Warning or Log.Write to create a log message and it will passed to your implementation of ILogWriter</p>
-</li>
-<li><p>If you have not registered an ILogWriter interface this simply calls on Dump.Write() with the message</p>
-</li>
-</ul>
+    <div class="markdown level0 summary h1-class-summary"><p>Options class for Service registration</p>
 </div>
   </div>
   
-  <h1 id="SystemLibrary_Common_Web_Log" data-uid="SystemLibrary.Common.Web.Log" class="text-break h1-class-header">Log
+  <h1 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions" class="text-break h1-class-header">CommonWebApplicationServicesOptions
   </h1>
-  <h1 id="SystemLibrary_Common_Web_Log" data-uid="SystemLibrary.Common.Web.Log" class="h1-custom-display className">public static class Log</h1>
+  <h1 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions" class="h1-custom-display className">public class CommonWebApplicationServicesOptions</h1>
   
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">Log</span></div>
+    <div class="level1"><span class="xref">CommonWebApplicationServicesOptions</span></div>
   </div>
   
   
   <div class="custom-menu-data custom-menu-data-first">
-    <h5 id="SystemLibrary_Common_Web_Log_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
+    <h5 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
   
     <div class="custom-menu-data-container custom-menu-data-container--example">
       <div class="custom-menu-data-class-example" style="display: none;">
         <div class="syslib-tab-menu-data--close">X</div>
-        <div class="codewrapper"><p>Configure log options in appSettings.json</p>
-<pre><code>{
-    &quot;systemLibraryCommonWeb&quot;: {
-        &quot;log&quot; { 
-            &quot;level&quot;: &quot;0/info/Info/debug/Debug/warning/Warning/Error/error&quot;,
-            &quot;isEnabled&quot;: true/false
-        },
-        &quot;logMessageBuilderOptions&quot; {
-            &quot;appendLoggedInState&quot;: true,
-            &quot;appendLoggedInState&quot;: true,
-            &quot;appendCurrentPage&quot;: true,
-            &quot;appendCurrentUrl&quot;: true,
-            &quot;appendIp&quot;: true,
-            &quot;appendBrowser&quot;: true,
-            &quot;appendCookieInfo&quot;: true
-        }
-    }
+        <div class="codewrapper"><p>Inside your 'Startup' class:</p>
+<pre><code>//Add your custom view locations, where your app has views located
+public class CustomViewLocations : IViewLocationExpander
+{
+   //...implement the interface
+}
+
+//the familiar &apos;startup.cs&apos;:
+public void ConfigureServices(IServiceCollection services)
+{
+    var options = new CommonWebApplicationServicesOptions();
+    options.AddControllers = false;
+    options.ViewLocations = new CustomViewLocations();
+    app.CommonWebApplicationServices(options);
 }</code></pre>
 </div>
         <div class="comment-examples-container-bottom"></div>
@@ -229,7 +224,7 @@
   
   
   <div class="custom-menu-data">
-    <h5 id="SystemLibrary_Common_Web_Log_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
+    <h5 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
   
     <div class="custom-menu-data-container">
       <div class="custom-menu-data-class-arguments" style="display: none;">
@@ -241,48 +236,30 @@
   </div>
   
   <div class='custom-class-content-inline'>
-  <h3 id="methods">Methods
+  <h3 id="properties">Properties
   </h3>
   
   <div class="custom-container">
   <div class="custom-menu-summary-data">
-  	<div class="markdown level1 summary member-summary"><p>Write a debug message</p>
+  	<div class="markdown level1 summary member-summary"><p>Enables routing to controllers, if 'AddMvcPages' is true, this setting is ignored, as MVC already enables routing to controllers</p>
 </div>
   	<div class="markdown level1 conceptual member-summary-conceptual"></div>
   </div>
   
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Log_Debug_System_Object_">
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddControllers">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L70">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L41">View Source</a>
   	</span>
   </div>
-  <a id="SystemLibrary_Common_Web_Log_Debug_" data-uid="SystemLibrary.Common.Web.Log.Debug*"></a>
+  <a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddControllers_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddControllers*"></a>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Web_Log_Debug_System_Object_" data-uid="SystemLibrary.Common.Web.Log.Debug(System.Object)" class="h4-custom-functionName">public static void Debug(object obj)</h4>
+  	<h4 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddControllers" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddControllers" class="h4-custom-functionName">public bool AddControllers { get; set; }</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
   			<div class="syslib-tab-menu-data--close">X</div>
   
-  			<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
-  			<table class="table table-bordered table-striped table-condensed">
-  				<thead>
-  					<tr>
-  						<th>Type</th>
-  						<th>Name</th>
-  						<th>Description</th>
-  					</tr>
-  				</thead>
-  				<tbody>
-  					<tr>
-  						<td><span class="xref">System.Object</span></td>
-  						<td><span class="parametername">obj</span></td>
-  						<td><p>Object can be of any type, a string, list, dictionary, etc...</p>
-</td>
-  					</tr>
-  				</tbody>
-  			</table>
   		</div>
   
   	</div>
@@ -290,46 +267,43 @@
   </div>
   
   
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Boolean</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
   
   <div class="custom-container">
   <div class="custom-menu-summary-data">
-  	<div class="markdown level1 summary member-summary"><p>Write an error message</p>
+  	<div class="markdown level1 summary member-summary"><p>Sets HttpOnly to Always, Secure as 'SameAsRequest' and MinimumSitePolicy to 'Strict'</p>
 </div>
   	<div class="markdown level1 conceptual member-summary-conceptual"></div>
   </div>
   
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Log_Error_System_Object_">
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddHttpsAndSecureCookiePolicy">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L52">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L46">View Source</a>
   	</span>
   </div>
-  <a id="SystemLibrary_Common_Web_Log_Error_" data-uid="SystemLibrary.Common.Web.Log.Error*"></a>
+  <a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddHttpsAndSecureCookiePolicy_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddHttpsAndSecureCookiePolicy*"></a>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Web_Log_Error_System_Object_" data-uid="SystemLibrary.Common.Web.Log.Error(System.Object)" class="h4-custom-functionName">public static void Error(object obj)</h4>
+  	<h4 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddHttpsAndSecureCookiePolicy" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddHttpsAndSecureCookiePolicy" class="h4-custom-functionName">public bool AddHttpsAndSecureCookiePolicy { get; set; }</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
   			<div class="syslib-tab-menu-data--close">X</div>
   
-  			<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
-  			<table class="table table-bordered table-striped table-condensed">
-  				<thead>
-  					<tr>
-  						<th>Type</th>
-  						<th>Name</th>
-  						<th>Description</th>
-  					</tr>
-  				</thead>
-  				<tbody>
-  					<tr>
-  						<td><span class="xref">System.Object</span></td>
-  						<td><span class="parametername">obj</span></td>
-  						<td><p>Object can be of any type, a string, list, dictionary, etc...</p>
-</td>
-  					</tr>
-  				</tbody>
-  			</table>
   		</div>
   
   	</div>
@@ -337,46 +311,43 @@
   </div>
   
   
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Boolean</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
   
   <div class="custom-container">
   <div class="custom-menu-summary-data">
-  	<div class="markdown level1 summary member-summary"><p>Write an information message</p>
+  	<div class="markdown level1 summary member-summary"><p>Enables MVC and also adds then default media types output formatters, making your application able to serve: tiff, woff, json, xml, pdf, jpg, png, and a few other default media types</p>
 </div>
   	<div class="markdown level1 conceptual member-summary-conceptual"></div>
   </div>
   
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Log_Info_System_Object_">
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddMvcPages">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L80">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L33">View Source</a>
   	</span>
   </div>
-  <a id="SystemLibrary_Common_Web_Log_Info_" data-uid="SystemLibrary.Common.Web.Log.Info*"></a>
+  <a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddMvcPages_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddMvcPages*"></a>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Web_Log_Info_System_Object_" data-uid="SystemLibrary.Common.Web.Log.Info(System.Object)" class="h4-custom-functionName">public static void Info(object obj)</h4>
+  	<h4 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddMvcPages" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddMvcPages" class="h4-custom-functionName">public bool AddMvcPages { get; set; }</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
   			<div class="syslib-tab-menu-data--close">X</div>
   
-  			<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
-  			<table class="table table-bordered table-striped table-condensed">
-  				<thead>
-  					<tr>
-  						<th>Type</th>
-  						<th>Name</th>
-  						<th>Description</th>
-  					</tr>
-  				</thead>
-  				<tbody>
-  					<tr>
-  						<td><span class="xref">System.Object</span></td>
-  						<td><span class="parametername">obj</span></td>
-  						<td><p>Object can be of any type, a string, list, dictionary, etc...</p>
-</td>
-  					</tr>
-  				</tbody>
-  			</table>
   		</div>
   
   	</div>
@@ -384,46 +355,43 @@
   </div>
   
   
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Boolean</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
   
   <div class="custom-container">
   <div class="custom-menu-summary-data">
-  	<div class="markdown level1 summary member-summary"><p>Write a warning message</p>
+  	<div class="markdown level1 summary member-summary"><p>Enables Razor Pages, but if 'AddMvcPages' is true, this setting is ignored, as MVC already enables razor pages</p>
 </div>
   	<div class="markdown level1 conceptual member-summary-conceptual"></div>
   </div>
   
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Log_Warning_System_Object_">
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddRazorPages">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L61">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L37">View Source</a>
   	</span>
   </div>
-  <a id="SystemLibrary_Common_Web_Log_Warning_" data-uid="SystemLibrary.Common.Web.Log.Warning*"></a>
+  <a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddRazorPages_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorPages*"></a>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Web_Log_Warning_System_Object_" data-uid="SystemLibrary.Common.Web.Log.Warning(System.Object)" class="h4-custom-functionName">public static void Warning(object obj)</h4>
+  	<h4 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddRazorPages" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorPages" class="h4-custom-functionName">public bool AddRazorPages { get; set; }</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
   			<div class="syslib-tab-menu-data--close">X</div>
   
-  			<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
-  			<table class="table table-bordered table-striped table-condensed">
-  				<thead>
-  					<tr>
-  						<th>Type</th>
-  						<th>Name</th>
-  						<th>Description</th>
-  					</tr>
-  				</thead>
-  				<tbody>
-  					<tr>
-  						<td><span class="xref">System.Object</span></td>
-  						<td><span class="parametername">obj</span></td>
-  						<td><p>Object can be of any type, a string, list, dictionary, etc...</p>
-</td>
-  					</tr>
-  				</tbody>
-  			</table>
   		</div>
   
   	</div>
@@ -431,51 +399,50 @@
   </div>
   
   
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Boolean</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
   
   <div class="custom-container">
   <div class="custom-menu-summary-data">
-  	<div class="markdown level1 summary member-summary"><p>Writing the object to your logwriter</p>
+  	<div class="markdown level1 summary member-summary"><p>Enabled re-compilation of .cshtml files upon saving .cshtml files</p>
 <ul>
-<li>This ignores logging 'isEnabled' option in appSettings</li>
-<li>This ignores 'log level' option in appSettings</li>
+<li>Avoids the need of a re-compilation of whole application for one small view change</li>
+<li>Package 'System.Security.Cryptography.Pkcs' is not added as dependency, so if you turn this on it will throw exception for a missing package that you must manually add</li>
 </ul>
-<p>This simply logs no matter what</p>
+<ul>
+<li>Don't want a dependency on that package, as that package is quite large, and this package is also meant for API development</li>
+</ul>
 </div>
   	<div class="markdown level1 conceptual member-summary-conceptual"></div>
   </div>
   
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Log_Write_System_Object_">
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddRazorRuntimeReCompilationOnViewChanged">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L94">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L55">View Source</a>
   	</span>
   </div>
-  <a id="SystemLibrary_Common_Web_Log_Write_" data-uid="SystemLibrary.Common.Web.Log.Write*"></a>
+  <a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddRazorRuntimeReCompilationOnViewChanged_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorRuntimeReCompilationOnViewChanged*"></a>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Web_Log_Write_System_Object_" data-uid="SystemLibrary.Common.Web.Log.Write(System.Object)" class="h4-custom-functionName">public static void Write(object obj)</h4>
+  	<h4 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddRazorRuntimeReCompilationOnViewChanged" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorRuntimeReCompilationOnViewChanged" class="h4-custom-functionName">public bool AddRazorRuntimeReCompilationOnViewChanged { get; set; }</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
   			<div class="syslib-tab-menu-data--close">X</div>
   
-  			<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
-  			<table class="table table-bordered table-striped table-condensed">
-  				<thead>
-  					<tr>
-  						<th>Type</th>
-  						<th>Name</th>
-  						<th>Description</th>
-  					</tr>
-  				</thead>
-  				<tbody>
-  					<tr>
-  						<td><span class="xref">System.Object</span></td>
-  						<td><span class="parametername">obj</span></td>
-  						<td><p>Object can be of any type, a string, list, dictionary, etc...</p>
-</td>
-  					</tr>
-  				</tbody>
-  			</table>
   		</div>
   
   	</div>
@@ -483,6 +450,158 @@
   </div>
   
   
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Boolean</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  <div class="custom-container">
+  <div class="custom-menu-summary-data">
+  	<div class="markdown level1 summary member-summary"><p>Create your own class that inherits 'StringOutputFormatter' which sets all 'SupportedMediaTypes' in its constructor</p>
+<p>A default 'string output formatter' will always be added to your application, so responses/files like CSS, JS, JPG, PNG, JSON, etc are allowed</p>
+</div>
+  	<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  </div>
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_SupportedMediaTypes">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L74">View Source</a>
+  	</span>
+  </div>
+  <a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_SupportedMediaTypes_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.SupportedMediaTypes*"></a>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_SupportedMediaTypes" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.SupportedMediaTypes" class="h4-custom-functionName">public StringOutputFormatter SupportedMediaTypes { get; set; }</h4>
+  	<div class="custom-menu-data-container">
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  <div class="custom-container">
+  <div class="custom-menu-summary-data">
+  	<div class="markdown level1 summary member-summary"><p>Pass in an object that implements the interface if you want to extend View Locations</p>
+<ul>
+<li>Another option is to simply set 'ViewLocations' variable</li>
+</ul>
+</div>
+  	<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  </div>
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ViewLocationExpander">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L61">View Source</a>
+  	</span>
+  </div>
+  <a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ViewLocationExpander_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ViewLocationExpander*"></a>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ViewLocationExpander" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ViewLocationExpander" class="h4-custom-functionName">public IViewLocationExpander ViewLocationExpander { get; set; }</h4>
+  	<div class="custom-menu-data-container">
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">Microsoft.AspNetCore.Mvc.Razor.IViewLocationExpander</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  <div class="custom-container">
+  <div class="custom-menu-summary-data">
+  	<div class="markdown level1 summary member-summary"><p>Pass in a string array of view location formats, for instance:
+ViewLocations = new string[] { &quot;~/Pages/{0}/{1}.cshtml&quot; };</p>
+</div>
+  	<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  </div>
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ViewLocations">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L67">View Source</a>
+  	</span>
+  </div>
+  <a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ViewLocations_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ViewLocations*"></a>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ViewLocations" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ViewLocations" class="h4-custom-functionName">public string[] ViewLocations { get; set; }</h4>
+  	<div class="custom-menu-data-container">
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.String</span>[]</td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
   
   
   <script>
@@ -1129,7 +1248,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/LogMessage/LogMessageBuilder.cs/#L15" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L28" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

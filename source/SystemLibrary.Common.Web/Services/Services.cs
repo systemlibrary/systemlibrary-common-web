@@ -12,6 +12,26 @@ namespace SystemLibrary.Common.Web;
 /// 
 /// Note: Requires a call in your Startup services.CommonWebApplicationServices() before it can be used
 /// </summary>
+/// <example>
+/// <code class="language-csharp hljs">
+/// public class Car : IVehicle 
+/// { 
+///     public string Name = "Some car name";
+/// }
+/// 
+/// //Inside your startup/initialize class
+/// public void ConfigureServices(IServiceCollection services)
+/// {
+///    var options = new CommonWebApplicationServicesOptions();
+///    services.CommonWebApplicationServices(options);
+///    services.AddTransient&lt;IVehicle, Car&gt;();
+/// }
+/// 
+/// //Anywhere in your solution, for instance in a Controller? In a view? In ...
+/// var car = Services.Get&gt;IVehicle&lt;
+/// car.Name //car is not null, it has been constructed for you, so this is allowed
+/// </code>
+/// </example>
 public static class Services
 {
     internal static IServiceCollection Collection;
@@ -39,6 +59,13 @@ public static class Services
     /// <summary>
     /// Returns the service registered for the type T or null if not found
     /// </summary>
+    /// <example>
+    /// Usage:
+    /// <code class="language-csharp hljs">
+    /// var obj = Services.Get&lt;IVehicle&gt;();
+    /// //obj is now null if IVehicle is not a registered service, otherwise it is new'd up and ready to be used
+    /// </code>
+    /// </example>
     public static T Get<T>() where T : class
     {
         return ServiceProvider?.GetService<T>();
@@ -49,6 +76,16 @@ public static class Services
     /// 
     /// Throws exception if called too early in the "middleware pipeline"
     /// </summary>
+    /// <example>
+    /// Usage:
+    /// <code class="language-csharp hljs">
+    /// Services.Remove&lt;IVehicle&gt;();
+    /// // Removes IVehicle if it exists
+    /// // If it does not exist, it calls Log.Error() with message, it does not throw exception
+    /// 
+    /// // Note: It can throw exception if called before services.CommonWebApplicationServices()
+    /// </code>
+    /// </example>
     public static void Remove<T>()
     {
         if (Collection == null)

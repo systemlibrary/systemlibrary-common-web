@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="visibility: hidden; position: absolute; margin-left: -4000px;">
-        [%custom-skipDocumentationFor%]</div>
+        MediaType,LogLevel,ClientResponse__-1_T__-2_,CalleeCancelledRequestException,RetryRequestException</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -117,8 +117,16 @@
       
                   for (var i = 0; i < queries.length; i++) {
                     var query = queries[i].replace(/(\r\n|\n|\r)/gm, "");
+      
                     if (query && query.length > 1) {
                       query = query.replace(/ /g, '');
+      
+                      console.log(query);
+      
+                      query = query.replace('__-1_', '<');
+                      query = query.replace('__-2_', '>');
+                      
+                      console.log(query);
       
                       if (query.includes('.')) {
                         var links = toc.getElementsByTagName('a');
@@ -177,21 +185,18 @@
 <ul>
 <li>configurable in appSettings.json</li>
 </ul>
-<p>Auto-generates a cachekey for you if you dont specify one</p>
+<p>Auto-generates a cachekey for you if you don't specify one</p>
 <ul>
-<li>works then on per role and isAuthenticated level, never per user</li>
-</ul>
-<p>Required skip conditions:</p>
-<ul>
-<li>if not in a web context</li>
+<li>if current user is authenticated and a ClaimsPrincipal, it adds all roles for the user to the cacheKey</li>
+<li>if current user is authenticated and is not a ClaimsPrincipal, the &quot;isAuthenticated&quot; value is appended to cacheKey only, no roles</li>
 </ul>
 <p>Optional skip cache scenarios by paramters can be applied</p>
 <ul>
-<li>skipForAuthenticatedUsers</li>
-<li>skipForAdmins</li>
+<li>skipForAuthenticatedUsers, false by default</li>
+<li>skipForAdmins, true by default</li>
 </ul>
 <ul>
-<li>admins are if current principal is in either of these roles &quot;Admins&quot;, &quot;Administrators&quot;, &quot;CmsAdmins&quot; or &quot;WebAdmins&quot;, case sensitive</li>
+<li>true if current principal is in either of these case sensitive roles: &quot;Admin&quot;, &quot;Admins&quot;, &quot;Administrator&quot;, &quot;Administrators&quot;, &quot;WebAdmins&quot;, &quot;CmsAdmins&quot;</li>
 </ul>
 <ul>
 <li>skipFor, your own implementation which returns true to skip</li>
@@ -256,7 +261,7 @@
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Cache_Clear">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L235">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L263">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_Cache_Clear_" data-uid="SystemLibrary.Common.Web.Cache.Clear*"></a>
@@ -286,26 +291,25 @@
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Cache_Get__1_System_Func___0__System_String_System_TimeSpan_System_Func___0_System_Boolean__System_Boolean_System_Boolean_System_Func_System_Boolean__System_Boolean_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L130">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L158">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_Cache_Get_" data-uid="SystemLibrary.Common.Web.Cache.Get*"></a>
   
   <div class="custom-menu-data">
   	<h4 id="SystemLibrary_Common_Web_Cache_Get__1_System_Func___0__System_String_System_TimeSpan_System_Func___0_System_Boolean__System_Boolean_System_Boolean_System_Func_System_Boolean__System_Boolean_" data-uid="SystemLibrary.Common.Web.Cache.Get``1(System.Func{``0},System.String,System.TimeSpan,System.Func{``0,System.Boolean},System.Boolean,System.Boolean,System.Func{System.Boolean},System.Boolean)" class="h4-custom-functionName">public static T Get&lt;T&gt;(Func&lt;T&gt; getItem, string cacheKey = null, TimeSpan duration = default(TimeSpan), Func&lt;T, bool&gt; condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func&lt;bool&gt; skipFor = null, bool debug = false)
-
     where T : class</h4>
   	<div class="custom-menu-data-container">
   		<div class="custom-menu-data-name" style="display: none;">
   			<div class="syslib-tab-menu-data--close">X</div>
-  			<div class="codewrapper"><pre><code>var cacheKey = &quot;hello-world-key&quot;;
+  			<div class="codewrapper"><p>Simplest example:</p>
+<pre><code>var cacheKey = &quot;hello-world-key&quot;;
 var data = Cache.Get(() => {
     return &quot;hello world&quot;;
 });
-//&apos;data&apos; is now &apos;hello world&apos;, if called multiple times within the default cache duration of 180 seconds, &quot;hello world&quot; is returned from the cache for all non-admin users
-
-//Another example with more options:
-var cacheKey = &quot;hello-world-key&quot;;
+//&apos;data&apos; is now &apos;hello world&apos;, if called multiple times within the default cache duration of 180 seconds, &quot;hello world&quot; is returned from the cache for all non-admin users</code></pre>
+<p>Example with multiple options passed, and a condition that always fails:</p>
+<pre><code>var cacheKey = &quot;hello-world-key&quot;;
 var data = Cache.Get(() => {
         return &quot;hello world&quot;;
     },
@@ -316,6 +320,29 @@ var data = Cache.Get(() => {
 
 //&apos;data&apos; is equal to &apos;hello world&apos;, cache duration is 1 second, but it only adds the result to cache, if it is not equal to &quot;hello world&quot;
 //So in this scenario - &quot;hello world&quot; is never added to cache, and our function that returns &quot;hello world&quot; is always invoked</code></pre>
+<p>Example without a cache key and with 'external' variables</p>
+<pre><code>namespace: Company.Services
+
+class CarService
+{
+    public string GetCars() 
+    {
+        var url = &quot;https://systemlibrary.com/api/cars&quot;;
+        var urlQueryValue = &quot;?filter=none&quot;;
+        var top = 10
+        //urlQueryValue could be an input variable to GetCars() 
+
+        return Cache.Get&lt;string>(getItem: () => {
+            return HttpBaseClient.Get&lt;string>(url + urlQueryValue + &quot; top=&quot; + top);
+        });
+    }
+}
+
+//GetCars returns response either from the API, or if called upon multiple times within default cache duration of 180 seconds, it would return the data from cache
+
+//Note: cache key is created with the outside variables (converted using .ToString(), so a class, &apos;User&apos; for instance, would just be .ToString&apos;d  and not differentiated on properties like emails/firstname, etc...)
+//Note: cache key would look like this: Company.Services.CarService.GetCars__uniqueLambdaBackingName_https//systemlibrary.com/api/cars?filter=none10
+//Note: cache key for an authenticated user would minimum append &apos;true&apos; to the above cacheKey, and if it is a ClaimsPrincipal user, it would append all roles that user belongs to</code></pre>
 </div>
   			<div class="comment-examples-container-bottom"></div>
   		</div>
@@ -430,21 +457,21 @@ var data = Cache.Get(() => {
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Cache_Get__1_System_String_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L91">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L90">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_Cache_Get_" data-uid="SystemLibrary.Common.Web.Cache.Get*"></a>
   
   <div class="custom-menu-data">
   	<h4 id="SystemLibrary_Common_Web_Cache_Get__1_System_String_" data-uid="SystemLibrary.Common.Web.Cache.Get``1(System.String)" class="h4-custom-functionName">public static T Get&lt;T&gt;(string cacheKey)
-
     where T : class</h4>
   	<div class="custom-menu-data-container">
   		<div class="custom-menu-data-name" style="display: none;">
   			<div class="syslib-tab-menu-data--close">X</div>
-  			<div class="codewrapper"><pre><code>var cacheKey = &quot;hello-world-key&quot;;
+  			<div class="codewrapper"><p>Simple get object from cache based on a cache key:</p>
+<pre><code>var cacheKey = &quot;hello-world-key&quot;;
 
-var data = Cache.Get>string&lt;(cacheKey);
+var data = Cache.Get&lt;string>(cacheKey);
 
 //If &apos;hello-world-key&apos; exists in cache, the variable &apos;data&apos; now holds that value</code></pre>
 </div>
@@ -525,7 +552,7 @@ var data = Cache.Get>string&lt;(cacheKey);
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Cache_Remove_System_String_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L225">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L253">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_Cache_Remove_" data-uid="SystemLibrary.Common.Web.Cache.Remove*"></a>
@@ -1207,7 +1234,7 @@ var data = Cache.Get>string&lt;(cacheKey);
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L46" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L44" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

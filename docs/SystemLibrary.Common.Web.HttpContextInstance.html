@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="visibility: hidden; position: absolute; margin-left: -4000px;">
-        [%custom-skipDocumentationFor%]</div>
+        MediaType,LogLevel,ClientResponse__-1_T__-2_,CalleeCancelledRequestException,RetryRequestException</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -117,8 +117,16 @@
       
                   for (var i = 0; i < queries.length; i++) {
                     var query = queries[i].replace(/(\r\n|\n|\r)/gm, "");
+      
                     if (query && query.length > 1) {
                       query = query.replace(/ /g, '');
+      
+                      console.log(query);
+      
+                      query = query.replace('__-1_', '<');
+                      query = query.replace('__-2_', '>');
+                      
+                      console.log(query);
       
                       if (query.includes('.')) {
                         var links = toc.getElementsByTagName('a');
@@ -220,7 +228,7 @@
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_HttpContextInstance_Current">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HttpContextInstance/HttpContextInstance.cs/#L15">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HttpContextInstance/HttpContextInstance.cs/#L22">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_HttpContextInstance_Current_" data-uid="SystemLibrary.Common.Web.HttpContextInstance.Current*"></a>
@@ -228,6 +236,14 @@
   <div class="custom-menu-data">
   	<h4 id="SystemLibrary_Common_Web_HttpContextInstance_Current" data-uid="SystemLibrary.Common.Web.HttpContextInstance.Current" class="h4-custom-functionName">public static HttpContext Current { get; }</h4>
   	<div class="custom-menu-data-container">
+  		<div class="custom-menu-data-name" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  			<div class="codewrapper"><p>Usage:</p>
+<pre><code>var httpContext = HttpContextInstance.Current;
+//Note: httpContext can be null, for instance in an Console Application or a Unit Test Application</code></pre>
+</div>
+  			<div class="comment-examples-container-bottom"></div>
+  		</div>
   
   		<div class="custom-menu-data-arguments" style="display: none;">
   			<div class="syslib-tab-menu-data--close">X</div>

@@ -13,8 +13,11 @@ public static class IPrincipalExtensions
     /// Returns true if so, else false
     /// </summary>
     /// <example>
+    /// Usage:
+    /// <code>
     /// var roles = new object[] { "Admin", "Guest" };
     /// principal.IsInAnyRole(roles);
+    /// </code>
     /// </example>
     public static bool IsInAnyRole(this IPrincipal principal, params object[] roles)
     {

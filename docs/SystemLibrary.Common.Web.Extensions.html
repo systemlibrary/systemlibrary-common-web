@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="visibility: hidden; position: absolute; margin-left: -4000px;">
-        [%custom-skipDocumentationFor%]</div>
+        MediaType,LogLevel,ClientResponse__-1_T__-2_,CalleeCancelledRequestException,RetryRequestException</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -117,8 +117,16 @@
       
                   for (var i = 0; i < queries.length; i++) {
                     var query = queries[i].replace(/(\r\n|\n|\r)/gm, "");
+      
                     if (query && query.length > 1) {
                       query = query.replace(/ /g, '');
+      
+                      console.log(query);
+      
+                      query = query.replace('__-1_', '<');
+                      query = query.replace('__-2_', '>');
+                      
+                      console.log(query);
       
                       if (query.includes('.')) {
                         var links = toc.getElementsByTagName('a');
@@ -173,6 +181,13 @@
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
+      <h4><a class="xref" href="SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.html">CommonWebApplicationBuilderOptions</a></h4>
+      <section id="SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions--description"><p>Application builder options</p>
+<p>For instance: control wether or not you want to force http redirection to https (both server and client side)</p>
+</section>
+      <h4><a class="xref" href="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html">CommonWebApplicationServicesOptions</a></h4>
+      <section id="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions--description"><p>Options class for Service registration</p>
+</section>
       <h4><a class="xref" href="SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.html">IApplicationBuilderExtensions</a></h4>
       <section id="SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions--description"><p>Extension methods for ApplicationBuilder object</p>
 </section>
@@ -181,13 +196,6 @@
 </section>
       <h4><a class="xref" href="SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.html">IServiceCollectionExtensions</a></h4>
       <section id="SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions--description"><p>Extension methods for IServiceCollection object</p>
-</section>
-      <h4><a class="xref" href="SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.html">ServiceCollectionCommonWebOptions</a></h4>
-      <section id="SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions--description"><p>Options class for Service registration</p>
-</section>
-      <h4><a class="xref" href="SystemLibrary.Common.Web.Extensions.WebApplicationBuilderOptions.html">WebApplicationBuilderOptions</a></h4>
-      <section id="SystemLibrary.Common.Web.Extensions.WebApplicationBuilderOptions--description"><p>Application builder options</p>
-<p>For instance: control wether or not you want to force http redirection to https (both server and client side)</p>
 </section>
 </article>
           </div>

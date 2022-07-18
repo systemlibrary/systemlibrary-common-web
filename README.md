@@ -3,16 +3,20 @@
 ## Description
 A library of classes and methods for any .NET &gt;= 6 web application
 
-* Setup IApplicationBuilder in one line
-* Setup CollectionServices in one line
-    * Enables your app instantly to serve static files (css, js, png, jpg, etc...)
-	* Enables your app instnatly to route requests to your controllers
-	* Enables your app with http to https redirection out of the box
-	* Enables your app with authorization and authentication middleware out of the box
-		* the one that comes with .NET of course, but we enable the middleware for you
-	* Enables your app with a few default view locations which you can easily extend
-* Contains helpful extension methods for web in general
-* Most importantly: Contains HttpBaseClient, no more connection exhaustion on your server, it caches the underlying TCP connection for 5 minutes
+* Setup IApplicationBuilder in one line: app.CommonWebApplicationBuilder();
+* Setup IServiceCollection in one line: services.CommonWebApplicationServices();
+
+The two methods in short enables:
+* serving of static common file types (css, js, png, jpg, ...)
+* routing requests to controllers
+* registers services for AspNet.Mvc
+* registers and enabled Authorization and Authentication
+
+Contains simple modules for common tasks in any web application:
+* HttpBaseClient - reuses the underlying tcp connection for up to 5 minutes, no more socket exhaustion
+* Log - added to global namespace, available from anywhere
+  * Log.Write - "equivalent" to console.log in javascript
+* Cache - a wrapper over the .NET memory cache with auto-creation of cache keys
 
 ## Requirements
 - &gt;= .NET 6
@@ -21,8 +25,14 @@ A library of classes and methods for any .NET &gt;= 6 web application
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-- Added Cookie Middleware with default turned on http secure and http only
-- Updated nuspec dependencies
+- 6.0.0.1
+- AddRazorRuntimeCompilation option renamed to AddRazorRuntimeReCompilationOnViewChanged (Breaking Change)
+- New features: Log, Services and Cache modules, before they lived in "SystemLibrary.Common.Episerver", but removed the Episerver dependency parts and added to this package
+- ServiceCollectionOptions renamed to CommonServiceCollectionOptions
+- CommonWebApplicationOptions renamed to CommonWebApplicationBuilderOptions
+- Updated dependency of SystemLibrary.Common.Net to &gt;= 6.0.0.1
+- Added a lot of more comments and sample code for most public functions inside this library
+- Update docs
 
 ## Version history
 - View git history of this file if interested

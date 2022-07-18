@@ -12,6 +12,13 @@ public static class HttpContextInstance
     /// <summary>
     /// Returns current Http Context
     /// </summary>
+    /// <example>
+    /// Usage:
+    /// <code class="language-csharp hljs">
+    /// var httpContext = HttpContextInstance.Current;
+    /// //Note: httpContext can be null, for instance in an Console Application or a Unit Test Application
+    /// </code>
+    /// </example>
     public static HttpContext Current => HttpContextAccessor?.HttpContext;
 
     internal static void Initialize(IHttpContextAccessor httpContextAccessor)

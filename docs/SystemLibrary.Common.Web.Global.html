@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>SystemLibrary.Common.Web
+    <title>SystemLibrary.Common.Web.Global
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="SystemLibrary.Common.Web
+    <meta name="title" content="SystemLibrary.Common.Web.Global
    ">
     <meta name="generator" content="docfx 2.59.3.0">
     
@@ -172,109 +172,33 @@
         <div class="article row grid-right">
         <div class="article row grid">
           <div class="col-md-10">
-            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Web">
+            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Web.Global">
   
-  <h1 id="SystemLibrary_Common_Web" data-uid="SystemLibrary.Common.Web" class="text-break">SystemLibrary.Common.Web
+  <h1 id="SystemLibrary_Common_Web_Global" data-uid="SystemLibrary.Common.Web.Global" class="text-break">SystemLibrary.Common.Web.Global
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
-      <h4><a class="xref" href="SystemLibrary.Common.Web.ActionContextInstance.html">ActionContextInstance</a></h4>
-      <section id="SystemLibrary.Common.Web.ActionContextInstance--description"><p>An implementation of the 'old' thread safe singleton ActionContext we all know and love from .NET Framework</p>
-</section>
-      <h4><a class="xref" href="SystemLibrary.Common.Web.Cache.html">Cache</a></h4>
-      <section id="SystemLibrary.Common.Web.Cache--description"><p>Caching for web applications</p>
-<p>Default duration is 180 seconds</p>
+      <h4><a class="xref" href="SystemLibrary.Common.Web.Global.Log.html">Log</a></h4>
+      <section id="SystemLibrary.Common.Web.Global.Log--description"><p>One log class for your whole application</p>
+<p>This lives in the Global Namespace - so it is available inside your views, controllers, services, anywhere, as long as the nuget package is added</p>
 <ul>
-<li>configurable in appSettings.json</li>
-</ul>
-<p>Auto-generates a cachekey for you if you don't specify one</p>
-<ul>
-<li>if current user is authenticated and a ClaimsPrincipal, it adds all roles for the user to the cacheKey</li>
-<li>if current user is authenticated and is not a ClaimsPrincipal, the &quot;isAuthenticated&quot; value is appended to cacheKey only, no roles</li>
-</ul>
-<p>Optional skip cache scenarios by paramters can be applied</p>
-<ul>
-<li>skipForAuthenticatedUsers, false by default</li>
-<li>skipForAdmins, true by default</li>
-</ul>
-<ul>
-<li>true if current principal is in either of these case sensitive roles: &quot;Admin&quot;, &quot;Admins&quot;, &quot;Administrator&quot;, &quot;Administrators&quot;, &quot;WebAdmins&quot;, &quot;CmsAdmins&quot;</li>
-</ul>
-<ul>
-<li>skipFor, your own implementation which returns true to skip</li>
-</ul>
-</section>
-      <h4><a class="xref" href="SystemLibrary.Common.Web.CalleeCancelledRequestException.html"></a></h4>
-      <section id="SystemLibrary.Common.Web.CalleeCancelledRequestException--description"><p>The Callee Cancelled Request Exception is thrown when the callee (you) cancel's the request.</p>
-<ul>
-<li>To cancel a request you must pass a 'Cancellation Token', and then cancel the request through the Cancellation Token</li>
-</ul>
-</section>
-      <h4><a class="xref" href="SystemLibrary.Common.Web.ClientResponse-1.html">ClientResponse&lt;T&gt;</a></h4>
-      <section id="SystemLibrary.Common.Web.ClientResponse`1--description"><p>The main response class that all http requests in the HttpBaseClient returns</p>
-</section>
-      <h4><a class="xref" href="SystemLibrary.Common.Web.HtmlHelperFactory.html">HtmlHelperFactory</a></h4>
-      <section id="SystemLibrary.Common.Web.HtmlHelperFactory--description"><p>HtmlHelperFactory lets you get a new HtmlBuilder in the backend, outside of your View Context</p>
-<ul>
-<li>Either use injection or simply call its ctor</li>
-</ul>
-</section>
-      <h4><a class="xref" href="SystemLibrary.Common.Web.HttpBaseClient.html">HttpBaseClient</a></h4>
-      <section id="SystemLibrary.Common.Web.HttpBaseClient--description"><p>HttpBaseClient is a class for all http(s) requests in your project</p>
-<p>Has:</p>
-<ul>
-<li><p>a retry handler configured through constructor</p>
+<li><p>You implement the actual LogWriter : ILogWriter of where the message should be stored</p>
 </li>
-<li><p>if request fails and retry is True, the retry request uses a new tcp connection and gets a fixed 10 seconds timeout</p>
+<li><p>Remember to register your LogWriter as a service in your application</p>
 </li>
-<li><p>a retry request occurs only for GET, HEAD or OPTION request methods, never for PUT/POST/DELETE</p>
+<li><p>After implementing ILogWriter, simply call Log.Error, Log.Warning or Log.Write to create a log message and it will passed to your implementation of ILogWriter</p>
 </li>
-<li><p>a timeout handler configurable through constructor, but also per method</p>
+<li><p>If you have not registered an ILogWriter interface this simply calls on Dump.Write() with the message</p>
 </li>
-<li><p>each underlying tcp connection is cached for up to 5 minutes</p>
-</li>
-</ul>
-<p>Use HttpBaseClient directly or inherit from it, see the examples</p>
-</section>
-      <h4><a class="xref" href="SystemLibrary.Common.Web.HttpContextInstance.html">HttpContextInstance</a></h4>
-      <section id="SystemLibrary.Common.Web.HttpContextInstance--description"><p>An implementation of the 'old' thread safe singleton HttpContext we all know and love from .NET Framework</p>
-</section>
-      <h4><a class="xref" href="SystemLibrary.Common.Web.RetryRequestException.html"></a></h4>
-      <section id="SystemLibrary.Common.Web.RetryRequestException--description"><p>A retry request exception is thrown if:</p>
-<ul>
-<li>&quot;retryOnceOnRequestCancelled&quot; is set to True, and if both the normal request and the retry request errors, this exception is thrown to the callee (you)</li>
-<li>a retry request exception can only occur on GET, HEAD or OPTION requests</li>
-</ul>
-<p>If retryOnceOnRequestCancelled is False or if request method is POST, PUT or DELETE, this exception will never occur for the callee (you)</p>
-<p>Note: A retry request gets a fixed timeout of 10 seconds to finish the request</p>
-</section>
-      <h4><a class="xref" href="SystemLibrary.Common.Web.Services.html">Services</a></h4>
-      <section id="SystemLibrary.Common.Web.Services--description"><p>Dependency injection registry with all services</p>
-<ul>
-<li>Look at it as ServiceLocator</li>
-<li>Works both in Unit Tests (console app's) and in your Web Application</li>
-</ul>
-<p>Note: Requires a call in your Startup services.CommonWebApplicationServices() before it can be used</p>
-</section>
-    <h3 id="interfaces">Interfaces
-  </h3>
-      <h4><a class="xref" href="SystemLibrary.Common.Web.ILogWriter.html">ILogWriter</a></h4>
-      <section id="SystemLibrary.Common.Web.ILogWriter--description"><p>ILogWriter is responsible to store the log messages inside your application</p>
-<ul>
-<li>Create a new class and implement the interface</li>
-<li>Register the interface and class as a 'service'</li>
-<li>Calling any of the public Log. methods will send the log message to your log writer which you control where to store</li>
 </ul>
 </section>
     <h3 id="enums">Enums
   </h3>
-      <h4><a class="xref" href="SystemLibrary.Common.Web.MediaType.html"></a></h4>
-      <section id="SystemLibrary.Common.Web.MediaType--description"><p>An enum of various media types that can be sent to the HttpBaseClient request methods</p>
-<p>The 'MediaType' is sent as an 'Accept' HEADER in the request</p>
-<p>NOTE: Not all of them have been implemented yet though, but all will be sent as 'ACCEPT' header if specified, if you specify MediaType.none, no accept header is sent</p>
+      <h4><a class="xref" href="SystemLibrary.Common.Web.Global.LogLevel.html"></a></h4>
+      <section id="SystemLibrary.Common.Web.Global.LogLevel--description"><p>The log levels you can chose between</p>
 </section>
 </article>
           </div>

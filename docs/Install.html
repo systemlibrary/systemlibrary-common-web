@@ -390,43 +390,40 @@
 * Search and install SystemLibrary.Common.Web
 
 ## First time usage
-
-- Initialize your web application with a default set of services (classes, injectable) and middlewares (pipeline, classes runs in order they are registered):
+- Setup your web application with the most common settings in the AspNet Mvc world targetting .NET &gt;= 6
  
 !====!!====!!====!csharp 
 using SystemLibrary.Common.Web.Extensions;
 
-public class Initialize 
+public class Startup 
 {
+	static void Main(string[] args) {
+		var host = Host.CreateDefaultBuilder(args);
+
+		host.ConfigureWebHostDefaults(config =&gt; {
+			config.UseStartup&lt;Startup&gt;();
+		})
+
+		//other options...
+
+		host.Buidler().Run();
+	}
+
 	public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 	{
-		var options = new WebApplicationBuilderOptions();
+		var options = new CommonWebApplicationBuilderOptions();
 		app.CommonWebApplicationBuilder(options);
 	}
 	
 	public void ConfigureServices(IServiceCollection services)
 	{
-		var options = new ServiceCollectionCommonWebOptions();
+		var options = new CommonWebApplicationServicesOptions();
 		services.CommonWebApplicationServices(options);
 	}
 }
 !====!!====!!====!
 
-Then inside your program.cs (main method) use the !@@@@!Initialize!@@@@! class
-!====!!====!!====!csharp 
-static void main(string[] args) {
-	Host.CreateDefaultBuilder(args)
-		.ConfigureWebHostDefaults(config =&gt;
-		{
-			config.UseStartup&lt;Initialize&gt;();
-		})
-		//other options...
-		.Build()
-		.Run();
-}
-!====!!====!!====!
-
-- After setup your web application is running, ready to host and serve your controllers and files
+- Now your web application is ready to host the most common things in AspNet (controllers, razor views, css files, js files, jpg files, etc...)
 
 ## Package Configurations
 * Default and modifiable configurations for this package:
@@ -443,12 +440,11 @@ appSettings.json:
 
 		!????!log!????!: {
 			!????!isEnabled!????!: true,
-			!????!level!????!: !????!Info!????!
+			!????!level!????!: !????!Info/Debug/Warning/Error!????!
 		},
 
 		!????!logMessageBuilderOptions!????!: {
 			!????!appendLoggedInState!????!: true,
-			!????!appendCurrentPage!????!: true,
 			!????!appendCurrentUrl!????!: true,
 			!????!appendIp!????!: true,
 			!????!appendBrowser!????!: true,

@@ -11,15 +11,31 @@ namespace SystemLibrary.Common.Web;
 /// 'appSettings.json'
 /// <code class="language-csharp hljs">
 /// {
-///     ...,
-///     "systemLibraryCommonWeb": {
-///         "httpBaseClient": {
-///             "timeoutMilliseconds": 60000,
-///             "retryRequestTimeoutSeconds": 10,
-///             "cacheClientConnectionSeconds": 300
+/// 	"systemLibraryCommonWeb": {
+/// 		"httpBaseClient": {
+/// 			"timeoutMilliseconds": 60000,
+/// 			"retryRequestTimeoutSeconds": 10,
+/// 			"cacheClientConnectionSeconds": 300
+/// 		},
+/// 
+/// 		"log": {
+///             "isEnabled": true,
+/// 			"level": "Info/Debug/Warning/Error"
+/// 
+///         },
+/// 
+/// 		"logMessageBuilderOptions": {
+///             "appendLoggedInState": true,
+/// 			"appendCurrentUrl": true,
+/// 			"appendIp": true,
+/// 			"appendBrowser": true,
+/// 			"appendCookieInfo": true
+///         },
+/// 
+/// 		"cache": {
+///             "defaultDuration": 180
 ///         }
-///     },
-///     ...
+/// 	}
 /// }
 /// </code>
 /// </example>
@@ -67,7 +83,6 @@ internal class AppSettings : Config<AppSettings>
         public class LogMessageBuilderOptions
         {
             public bool AppendLoggedInState { get; set; } = true;
-            public bool AppendCurrentPage { get; set; } = true;
             public bool AppendCurrentUrl { get; set; } = true;
             public bool AppendIp { get; set; } = false;
             public bool AppendBrowser { get; set; } = false;

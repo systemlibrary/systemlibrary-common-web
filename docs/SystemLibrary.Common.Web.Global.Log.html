@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Enum LogLevel
+    <title>Log
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Enum LogLevel
+    <meta name="title" content="Log
    ">
     <meta name="generator" content="docfx 2.59.3.0">
     
@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="visibility: hidden; position: absolute; margin-left: -4000px;">
-        [%custom-skipDocumentationFor%]</div>
+        MediaType,LogLevel,ClientResponse__-1_T__-2_,CalleeCancelledRequestException,RetryRequestException</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -117,8 +117,16 @@
       
                   for (var i = 0; i < queries.length; i++) {
                     var query = queries[i].replace(/(\r\n|\n|\r)/gm, "");
+      
                     if (query && query.length > 1) {
                       query = query.replace(/ /g, '');
+      
+                      console.log(query);
+      
+                      query = query.replace('__-1_', '<');
+                      query = query.replace('__-2_', '>');
+                      
+                      console.log(query);
       
                       if (query.includes('.')) {
                         var links = toc.getElementsByTagName('a');
@@ -164,33 +172,72 @@
         <div class="article row grid-right">
         <div class="article row grid">
           <div class="col-md-10">
-            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Web.LogLevel">
+            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Web.Global.Log">
   
   
-  <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Web.html">SystemLibrary.Common.Web</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Web.dll</span></h6>
+  <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Web.Global.html">SystemLibrary.Common.Web.Global</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Web.dll</span></h6>
   
   <div class="markdown level0 conceptual h1-class-conceptual"></div>
   
   <div class="h1-class-summary-container">
-    <div class="markdown level0 summary h1-class-summary"></div>
+    <div class="markdown level0 summary h1-class-summary"><p>One log class for your whole application</p>
+<p>This lives in the Global Namespace - so it is available inside your views, controllers, services, anywhere, as long as the nuget package is added</p>
+<ul>
+<li><p>You implement the actual LogWriter : ILogWriter of where the message should be stored</p>
+</li>
+<li><p>Remember to register your LogWriter as a service in your application</p>
+</li>
+<li><p>After implementing ILogWriter, simply call Log.Error, Log.Warning or Log.Write to create a log message and it will passed to your implementation of ILogWriter</p>
+</li>
+<li><p>If you have not registered an ILogWriter interface this simply calls on Dump.Write() with the message</p>
+</li>
+</ul>
+</div>
   </div>
   
-  <h1 id="SystemLibrary_Common_Web_LogLevel" data-uid="SystemLibrary.Common.Web.LogLevel" class="text-break h1-class-header">Enum LogLevel
+  <h1 id="SystemLibrary_Common_Web_Global_Log" data-uid="SystemLibrary.Common.Web.Global.Log" class="text-break h1-class-header">Log
   </h1>
-  <h1 id="SystemLibrary_Common_Web_LogLevel" data-uid="SystemLibrary.Common.Web.LogLevel" class="h1-custom-display className">public enum LogLevel</h1>
+  <h1 id="SystemLibrary_Common_Web_Global_Log" data-uid="SystemLibrary.Common.Web.Global.Log" class="h1-custom-display className">public static class Log</h1>
   
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">Log</span></div>
+  </div>
   
   
   <div class="custom-menu-data custom-menu-data-first">
-    <h5 id="SystemLibrary_Common_Web_LogLevel_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
+    <h5 id="SystemLibrary_Common_Web_Global_Log_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
   
     <div class="custom-menu-data-container custom-menu-data-container--example">
+      <div class="custom-menu-data-class-example" style="display: none;">
+        <div class="syslib-tab-menu-data--close">X</div>
+        <div class="codewrapper"><p>Configure log options in appSettings.json</p>
+<pre><code>{
+    &quot;systemLibraryCommonWeb&quot;: {
+        &quot;log&quot; { 
+            &quot;level&quot;: &quot;0/info/Info/debug/Debug/warning/Warning/Error/error&quot;,
+            &quot;isEnabled&quot;: true/false
+        },
+        &quot;logMessageBuilderOptions&quot; {
+            &quot;appendLoggedInState&quot;: true,
+            &quot;appendLoggedInState&quot;: true,
+            &quot;appendCurrentUrl&quot;: true,
+            &quot;appendIp&quot;: true,
+            &quot;appendBrowser&quot;: true,
+            &quot;appendCookieInfo&quot;: true
+        }
+    }
+}</code></pre>
+</div>
+        <div class="comment-examples-container-bottom"></div>
+      </div>
     </div>
   </div>
   
   
   <div class="custom-menu-data">
-    <h5 id="SystemLibrary_Common_Web_LogLevel_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
+    <h5 id="SystemLibrary_Common_Web_Global_Log_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
   
     <div class="custom-menu-data-container">
       <div class="custom-menu-data-class-arguments" style="display: none;">
@@ -202,44 +249,296 @@
   </div>
   
   <div class='custom-class-content-inline'>
-  <div class="custom-source-code-link-container custom-source-code-link-container--enum custom-source-code-link--SystemLibrary_Common_Web_LogLevel">
-  	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L143">View Source</a>
-  	</span>
+  <h3 id="methods">Methods
+  </h3>
+  
+  <div class="custom-container">
+  <div class="custom-menu-summary-data">
+  	<div class="markdown level1 summary member-summary"><p>Write a debug message</p>
+</div>
+  	<div class="markdown level1 conceptual member-summary-conceptual"></div>
   </div>
   
-  <h3 id="fields">Fields
-  </h3>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Summary</th>
-      </tr>
-    <thead>
-    <tbody>
-      <tr>
-        <td id="SystemLibrary_Common_Web_LogLevel_Debug">Debug</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td id="SystemLibrary_Common_Web_LogLevel_Error">Error</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td id="SystemLibrary_Common_Web_LogLevel_Info">Info</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td id="SystemLibrary_Common_Web_LogLevel_Warning">Warning</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </thead></thead></table>
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Global_Log_Debug_System_Object_">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L271">View Source</a>
+  	</span>
+  </div>
+  <a id="SystemLibrary_Common_Web_Global_Log_Debug_" data-uid="SystemLibrary.Common.Web.Global.Log.Debug*"></a>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Web_Global_Log_Debug_System_Object_" data-uid="SystemLibrary.Common.Web.Global.Log.Debug(System.Object)" class="h4-custom-functionName">public static void Debug(object obj)</h4>
+  	<div class="custom-menu-data-container">
+  		<div class="custom-menu-data-name" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  			<div class="codewrapper"><p>Usage:</p>
+<pre><code>Log.Debug(&quot;hello world&quot;);
+//This creates a log message with prefix &apos;Debug&apos;, timestamp and your input text &quot;hello world&quot; and sends it to your LogWriter</code></pre>
+</div>
+  			<div class="comment-examples-container-bottom"></div>
+  		</div>
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  			<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  			<table class="table table-bordered table-striped table-condensed">
+  				<thead>
+  					<tr>
+  						<th>Type</th>
+  						<th>Name</th>
+  						<th>Description</th>
+  					</tr>
+  				</thead>
+  				<tbody>
+  					<tr>
+  						<td><span class="xref">System.Object</span></td>
+  						<td><span class="parametername">obj</span></td>
+  						<td><p>Object can be of any type, a string, list, dictionary, etc...</p>
+</td>
+  					</tr>
+  				</tbody>
+  			</table>
+  		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  
+  <div class="custom-container">
+  <div class="custom-menu-summary-data">
+  	<div class="markdown level1 summary member-summary"><p>Write an error message</p>
+</div>
+  	<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  </div>
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Global_Log_Error_System_Object_">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L239">View Source</a>
+  	</span>
+  </div>
+  <a id="SystemLibrary_Common_Web_Global_Log_Error_" data-uid="SystemLibrary.Common.Web.Global.Log.Error*"></a>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Web_Global_Log_Error_System_Object_" data-uid="SystemLibrary.Common.Web.Global.Log.Error(System.Object)" class="h4-custom-functionName">public static void Error(object obj)</h4>
+  	<div class="custom-menu-data-container">
+  		<div class="custom-menu-data-name" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  			<div class="codewrapper"><p>Usage:</p>
+<pre><code>Log.Error(&quot;hello world&quot;);
+//This creates a log message with prefix &apos;Error&apos;, timestamp, stacktrace and your input text &quot;hello world&quot; and sends it to your LogWriter</code></pre>
+</div>
+  			<div class="comment-examples-container-bottom"></div>
+  		</div>
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  			<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  			<table class="table table-bordered table-striped table-condensed">
+  				<thead>
+  					<tr>
+  						<th>Type</th>
+  						<th>Name</th>
+  						<th>Description</th>
+  					</tr>
+  				</thead>
+  				<tbody>
+  					<tr>
+  						<td><span class="xref">System.Object</span></td>
+  						<td><span class="parametername">obj</span></td>
+  						<td><p>Object can be of any type, a string, list, dictionary, etc...</p>
+</td>
+  					</tr>
+  				</tbody>
+  			</table>
+  		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  
+  <div class="custom-container">
+  <div class="custom-menu-summary-data">
+  	<div class="markdown level1 summary member-summary"><p>Write an information message</p>
+</div>
+  	<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  </div>
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Global_Log_Info_System_Object_">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L288">View Source</a>
+  	</span>
+  </div>
+  <a id="SystemLibrary_Common_Web_Global_Log_Info_" data-uid="SystemLibrary.Common.Web.Global.Log.Info*"></a>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Web_Global_Log_Info_System_Object_" data-uid="SystemLibrary.Common.Web.Global.Log.Info(System.Object)" class="h4-custom-functionName">public static void Info(object obj)</h4>
+  	<div class="custom-menu-data-container">
+  		<div class="custom-menu-data-name" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  			<div class="codewrapper"><p>Usage:</p>
+<pre><code>Log.Info(&quot;hello world&quot;);
+//This creates a log message with prefix &apos;Info&apos;, timestamp and your input text &quot;hello world&quot; and sends it to your LogWriter</code></pre>
+</div>
+  			<div class="comment-examples-container-bottom"></div>
+  		</div>
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  			<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  			<table class="table table-bordered table-striped table-condensed">
+  				<thead>
+  					<tr>
+  						<th>Type</th>
+  						<th>Name</th>
+  						<th>Description</th>
+  					</tr>
+  				</thead>
+  				<tbody>
+  					<tr>
+  						<td><span class="xref">System.Object</span></td>
+  						<td><span class="parametername">obj</span></td>
+  						<td><p>Object can be of any type, a string, list, dictionary, etc...</p>
+</td>
+  					</tr>
+  				</tbody>
+  			</table>
+  		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  
+  <div class="custom-container">
+  <div class="custom-menu-summary-data">
+  	<div class="markdown level1 summary member-summary"><p>Write a warning message</p>
+</div>
+  	<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  </div>
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Global_Log_Warning_System_Object_">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L255">View Source</a>
+  	</span>
+  </div>
+  <a id="SystemLibrary_Common_Web_Global_Log_Warning_" data-uid="SystemLibrary.Common.Web.Global.Log.Warning*"></a>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Web_Global_Log_Warning_System_Object_" data-uid="SystemLibrary.Common.Web.Global.Log.Warning(System.Object)" class="h4-custom-functionName">public static void Warning(object obj)</h4>
+  	<div class="custom-menu-data-container">
+  		<div class="custom-menu-data-name" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  			<div class="codewrapper"><p>Usage:</p>
+<pre><code>Log.Warning(&quot;hello world&quot;);
+//This creates a log message with prefix &apos;Warning&apos;, timestamp and your input text &quot;hello world&quot; and sends it to your LogWriter</code></pre>
+</div>
+  			<div class="comment-examples-container-bottom"></div>
+  		</div>
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  			<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  			<table class="table table-bordered table-striped table-condensed">
+  				<thead>
+  					<tr>
+  						<th>Type</th>
+  						<th>Name</th>
+  						<th>Description</th>
+  					</tr>
+  				</thead>
+  				<tbody>
+  					<tr>
+  						<td><span class="xref">System.Object</span></td>
+  						<td><span class="parametername">obj</span></td>
+  						<td><p>Object can be of any type, a string, list, dictionary, etc...</p>
+</td>
+  					</tr>
+  				</tbody>
+  			</table>
+  		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  
+  <div class="custom-container">
+  <div class="custom-menu-summary-data">
+  	<div class="markdown level1 summary member-summary"><p>Writing the object to your logwriter</p>
+<ul>
+<li>This ignores logging 'isEnabled' option in appSettings</li>
+<li>This ignores 'log level' option in appSettings</li>
+</ul>
+<p>This simply logs no matter what</p>
+</div>
+  	<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  </div>
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Global_Log_Write_System_Object_">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L313">View Source</a>
+  	</span>
+  </div>
+  <a id="SystemLibrary_Common_Web_Global_Log_Write_" data-uid="SystemLibrary.Common.Web.Global.Log.Write*"></a>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Web_Global_Log_Write_System_Object_" data-uid="SystemLibrary.Common.Web.Global.Log.Write(System.Object)" class="h4-custom-functionName">public static void Write(object obj)</h4>
+  	<div class="custom-menu-data-container">
+  		<div class="custom-menu-data-name" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  			<div class="codewrapper"><p>Usage:</p>
+<pre><code>var list = new List&lt;User>
+list.Add(new User { firstName = &quot;hello&quot;, LastName = &quot;World&quot; });
+
+Log.Write(list);
+//This creates a log message with your input and sends it as a string to your LogWriter
+//Note Log.Write() can never be disabled/turned off, remove the calls if you dont want them in production</code></pre>
+</div>
+  			<div class="comment-examples-container-bottom"></div>
+  		</div>
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  			<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  			<table class="table table-bordered table-striped table-condensed">
+  				<thead>
+  					<tr>
+  						<th>Type</th>
+  						<th>Name</th>
+  						<th>Description</th>
+  					</tr>
+  				</thead>
+  				<tbody>
+  					<tr>
+  						<td><span class="xref">System.Object</span></td>
+  						<td><span class="parametername">obj</span></td>
+  						<td><p>Object can be of any type, a string, list, dictionary, etc...</p>
+</td>
+  					</tr>
+  				</tbody>
+  			</table>
+  		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  
   
   <script>
   	let wrapperCloseModalClickEnabled = false;
-  
   	function getItems(selector) {
   		return document.querySelectorAll(selector);
   	}
@@ -661,7 +960,11 @@
   				}
   			}
   			if (container) {
-  				var menuData = container.getElementsByClassName(menuDataClass)[0];
+  				var menuDataCollection = container.getElementsByClassName(menuDataClass);
+  				if(typeof(menuDataCollection) === 'undefined' || !menuDataCollection) {
+  					continue;
+  				}
+  				var menuData = menuDataCollection[0];
   
   				//MenuData do not exist at all, change button layout to red
   				if (!menuData || !menuData.classList || !menuData.classList.contains(menuDataClass)) {
@@ -678,16 +981,22 @@
   				}
   				else {
   					//MenuData is empty or contains only the "X" button, change button layout to red
-  					if (menuData.children === null || typeof (menuData.children) === 'undefined' || menuData.children.length <= 1) {
-  						if (menuDataClass.includes('-class-') >= 1) {
+  					if (typeof menuData.children === 'undefined' || menuData.children === null || menuData.children.length <= 1) 
+  					{
+  						if (menuDataClass.includes('-class-') >= 1)
+  						{
   							parts[i].classList.toggle('hidden');
-  						} else {
-  
+  						} 
+  						else 
+  						{
   							var h4 = container.getElementsByClassName('h4-custom-functionName');
-  							if (h4 && h4.length && h4.length > 0 && h4[0] && h4[0].id && h4[0].id.includes('_ctor_')) {
+  							if (h4 && h4.length && h4.length > 0 && h4[0] && h4[0].id && (h4[0].id.includes('_ctor_') || h4[0].classList.contains('non-function-element'))) 
+  							{
   								//CTOR has no example, then just hide the whole CTOR line
   								container.classList.toggle('hidden');
-  							} else {
+  							} 
+  							else 
+  							{
   								parts[i].classList.toggle('custom-menu-data-no-text');
   							}
   						}
@@ -700,17 +1009,25 @@
   			if (parts[i].classList.contains('custom-menu-data-no-text')) {
   				continue;
   			}
+  
   			parts[i].addEventListener("click", function (e) {
   				e.preventDefault();
-  				var container = this.parentNode
+  				e.stopPropagation();
+  				var container = this.parentNode;
   				while (container) {
-  					container = container.parentNode;
   					if (container && container.classList && container.classList.contains('custom-menu-data')) {
   						break;
   					}
+  
+  					if(container && container.classList && container.classList.contains('col-md-10')) {
+  						break;
+  					}
+  
+  					container = container.parentNode;
   				}
   
   				if (container) {
+  					
   					var menuData = container.getElementsByClassName(menuDataClass)[0];
   
   					if (menuData && menuData.classList && menuData.classList.contains(menuDataClass)) {
@@ -749,6 +1066,10 @@
   							//Show just one Menu Data, the one we clicked
   							menuData.style.display = "block";
   							menuData.classList.toggle('active');
+  
+  							setTimeout(() => {
+  								wrapperCloseModalClickEnabled = true;
+  							} , 25);
   						}
   					}
   				}
@@ -809,6 +1130,7 @@
   
   	function hideSourceLinksForDocfxHideAttribute() {
   		var items = getItems('.custom-source-code-link-container');
+  
   		if (items != null && items.length > 0) {
   			for (var i = 0; i < items.length; i++) {
   				var next = items[i].nextElementSibling;
@@ -847,8 +1169,7 @@
   	//setTimeout(removeEmptyPopups, 50);
   </script>
   
-  
-  <p class='classMargin classMargin--end classMargin--end-enum'>}</p>
+  <p class='classMargin classMargin--end'>}</p>
   
   	</div>
   	
@@ -860,7 +1181,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L143" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L226" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

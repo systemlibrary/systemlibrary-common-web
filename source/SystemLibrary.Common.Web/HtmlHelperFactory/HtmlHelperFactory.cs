@@ -22,6 +22,13 @@ public class HtmlHelperFactory
     /// <summary>
     /// Returns a built generic HtmlHelper
     /// </summary>
+    /// <example>
+    /// Usage:
+    /// <code class="language-csharp hljs">
+    /// var factory = new HtmlHelperFactory();
+    /// var htmlHelper = factory.Build&lt;Car&gt;();
+    /// </code>
+    /// </example>
     public IHtmlHelper<T> Build<T>() where T : class
     {
         var viewContext = GetViewContext();
@@ -35,7 +42,13 @@ public class HtmlHelperFactory
     /// <summary>
     /// Returns a built HtmlHelper
     /// </summary>
-    /// <returns></returns>
+    /// <example>
+    /// Usage:
+    /// <code class="language-csharp hljs">
+    /// var factory = new HtmlHelperFactory();
+    /// var htmlHelper = factory.Build();
+    /// </code>
+    /// </example>
     public IHtmlHelper Build()
     {
         var viewContext = GetViewContext();

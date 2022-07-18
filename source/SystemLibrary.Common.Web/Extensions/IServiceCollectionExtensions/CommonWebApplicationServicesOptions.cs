@@ -18,29 +18,41 @@ namespace SystemLibrary.Common.Web.Extensions;
 /// //the familiar 'startup.cs':
 /// public void ConfigureServices(IServiceCollection services)
 /// {
-///     var options = new ServiceCollectionOptions();
+///     var options = new CommonWebApplicationServicesOptions();
 ///     options.AddControllers = false;
 ///     options.ViewLocations = new CustomViewLocations();
 ///     app.CommonWebApplicationServices(options);
 /// }
 /// </code>
 /// </example>
-public class ServiceCollectionCommonWebOptions
+public class CommonWebApplicationServicesOptions
 {
-    public bool AddControllers { get; set; } = true;
     /// <summary>
     /// Enables MVC and also adds then default media types output formatters, making your application able to serve: tiff, woff, json, xml, pdf, jpg, png, and a few other default media types
     /// </summary>
     public bool AddMvcPages { get; set; } = true;
+    /// <summary>
+    /// Enables Razor Pages, but if 'AddMvcPages' is true, this setting is ignored, as MVC already enables razor pages
+    /// </summary>
     public bool AddRazorPages { get; set; } = true;
+    /// <summary>
+    /// Enables routing to controllers, if 'AddMvcPages' is true, this setting is ignored, as MVC already enables routing to controllers
+    /// </summary>
+    public bool AddControllers { get; set; } = true;
+
+    /// <summary>
+    /// Sets HttpOnly to Always, Secure as 'SameAsRequest' and MinimumSitePolicy to 'Strict'
+    /// </summary>
     public bool AddHttpsAndSecureCookiePolicy { get; set; } = true;
 
     /// <summary>
-    /// Enables re-compilation of cshtml files upon saving
-    /// - avoids the need of re-compilation of whole application if you only change a cshtml file
-    /// - Package System.Security.Cryptography.Pkcs is not added as dependency, so if you turn this on; you might need to install that package too
+    /// Enabled re-compilation of .cshtml files upon saving .cshtml files
+    /// 
+    /// - Avoids the need of a re-compilation of whole application for one small view change
+    /// - Package 'System.Security.Cryptography.Pkcs' is not added as dependency, so if you turn this on it will throw exception for a missing package that you must manually add
+    /// * Don't want a dependency on that package, as that package is quite large, and this package is also meant for API development
     /// </summary>
-    public bool AddRazorRuntimeCompilation { get; set; } = false;
+    public bool AddRazorRuntimeReCompilationOnViewChanged { get; set; } = false;
 
     /// <summary>
     /// Pass in an object that implements the interface if you want to extend View Locations

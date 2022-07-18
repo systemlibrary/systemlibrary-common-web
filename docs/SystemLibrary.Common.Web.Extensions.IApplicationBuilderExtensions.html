@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="visibility: hidden; position: absolute; margin-left: -4000px;">
-        [%custom-skipDocumentationFor%]</div>
+        MediaType,LogLevel,ClientResponse__-1_T__-2_,CalleeCancelledRequestException,RetryRequestException</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -117,8 +117,16 @@
       
                   for (var i = 0; i < queries.length; i++) {
                     var query = queries[i].replace(/(\r\n|\n|\r)/gm, "");
+      
                     if (query && query.length > 1) {
                       query = query.replace(/ /g, '');
+      
+                      console.log(query);
+      
+                      query = query.replace('__-1_', '<');
+                      query = query.replace('__-2_', '>');
+                      
+                      console.log(query);
       
                       if (query.includes('.')) {
                         var links = toc.getElementsByTagName('a');
@@ -232,21 +240,22 @@ Adds middleware for:</p>
   	<div class="markdown level1 conceptual member-summary-conceptual"></div>
   </div>
   
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_IApplicationBuilderExtensions_CommonWebApplicationBuilder_Microsoft_AspNetCore_Builder_IApplicationBuilder_SystemLibrary_Common_Web_Extensions_WebApplicationBuilderOptions_">
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_IApplicationBuilderExtensions_CommonWebApplicationBuilder_Microsoft_AspNetCore_Builder_IApplicationBuilder_SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/IApplicationBuilderExtensions.cs/#L44">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/IApplicationBuilderExtensions.cs/#L45">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_Extensions_IApplicationBuilderExtensions_CommonWebApplicationBuilder_" data-uid="SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.CommonWebApplicationBuilder*"></a>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Web_Extensions_IApplicationBuilderExtensions_CommonWebApplicationBuilder_Microsoft_AspNetCore_Builder_IApplicationBuilder_SystemLibrary_Common_Web_Extensions_WebApplicationBuilderOptions_" data-uid="SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.CommonWebApplicationBuilder(Microsoft.AspNetCore.Builder.IApplicationBuilder,SystemLibrary.Common.Web.Extensions.WebApplicationBuilderOptions)" class="h4-custom-functionName">public static IApplicationBuilder CommonWebApplicationBuilder(this IApplicationBuilder app, WebApplicationBuilderOptions options = null)</h4>
+  	<h4 id="SystemLibrary_Common_Web_Extensions_IApplicationBuilderExtensions_CommonWebApplicationBuilder_Microsoft_AspNetCore_Builder_IApplicationBuilder_SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_" data-uid="SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.CommonWebApplicationBuilder(Microsoft.AspNetCore.Builder.IApplicationBuilder,SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions)" class="h4-custom-functionName">public static IApplicationBuilder CommonWebApplicationBuilder(this IApplicationBuilder app, CommonWebApplicationBuilderOptions options = null)</h4>
   	<div class="custom-menu-data-container">
   		<div class="custom-menu-data-name" style="display: none;">
   			<div class="syslib-tab-menu-data--close">X</div>
   			<div class="codewrapper"><p>Inside your 'Startup' class:</p>
 <pre><code>public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 {
+    var options = new CommonWebApplicationBuilderOptions();
     app.CommonWebApplicationBuilder();
 }</code></pre>
 </div>
@@ -272,7 +281,7 @@ Adds middleware for:</p>
   						<td></td>
   					</tr>
   					<tr>
-  						<td><a class="xref" href="SystemLibrary.Common.Web.Extensions.WebApplicationBuilderOptions.html">WebApplicationBuilderOptions</a></td>
+  						<td><a class="xref" href="SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.html">CommonWebApplicationBuilderOptions</a></td>
   						<td><span class="parametername">options</span></td>
   						<td></td>
   					</tr>

@@ -19,16 +19,14 @@ namespace SystemLibrary.Common.Web;
 /// Default duration is 180 seconds
 /// - configurable in appSettings.json
 /// 
-/// Auto-generates a cachekey for you if you dont specify one
-/// - works then on per role and isAuthenticated level, never per user
-///
-/// Required skip conditions:
-/// - if not in a web context
+/// Auto-generates a cachekey for you if you don't specify one
+/// - if current user is authenticated and a ClaimsPrincipal, it adds all roles for the user to the cacheKey
+/// - if current user is authenticated and is not a ClaimsPrincipal, the "isAuthenticated" value is appended to cacheKey only, no roles
 ///
 /// Optional skip cache scenarios by paramters can be applied
-/// - skipForAuthenticatedUsers
-/// - skipForAdmins
-///     * admins are if current principal is in either of these roles "Admins", "Administrators", "CmsAdmins" or "WebAdmins", case sensitive
+/// - skipForAuthenticatedUsers, false by default
+/// - skipForAdmins, true by default
+///     * true if current principal is in either of these case sensitive roles: "Admin", "Admins", "Administrator", "Administrators", "WebAdmins", "CmsAdmins"
 /// - skipFor, your own implementation which returns true to skip
 /// </summary>
 /// <example>
@@ -80,10 +78,11 @@ public static class Cache
     /// Get data from cache as T, or default T if it does not exist in cache or if you are not in a web-context
     /// </summary>
     /// <example>
+    /// Simple get object from cache based on a cache key:
     /// <code class="language-csharp hljs">
     /// var cacheKey = "hello-world-key";
     /// 
-    /// var data = Cache.Get&gt;string&lt;(cacheKey);
+    /// var data = Cache.Get&lt;string&gt;(cacheKey);
     /// 
     /// //If 'hello-world-key' exists in cache, the variable 'data' now holds that value
     /// </code>
@@ -100,15 +99,23 @@ public static class Cache
     /// 
     /// Note: null is never added to cache
     /// </summary>
+    /// <param name="condition">Add to cache only if condition is met, for instance: data != null</param>
+    /// <param name="skipForAuthenticatedUsers">Skip cache for any user that is authenticated, but is not part of any of the admin roles: Admins, Administrators, WebAdmins, CmsAdmins</param>
+    /// <param name="skipForAdmins">Skip cache for current principal that is authenticated and is part of either of the roles: Admins, Administrators, WebAdmins, CmsAdmins</param>
+    /// <param name="skipFor">Implement your own logic for when to skip cache, let it return true on your conditions to avoid caching</param>
+    /// <returns>Returns data either from cache or the getItem() method</returns>
     /// <example>
+    /// Simplest example:
     /// <code class="language-csharp hljs">
     /// var cacheKey = "hello-world-key";
     /// var data = Cache.Get(() => {
     ///     return "hello world";
     /// });
     /// //'data' is now 'hello world', if called multiple times within the default cache duration of 180 seconds, "hello world" is returned from the cache for all non-admin users
+    /// </code>
     /// 
-    /// //Another example with more options:
+    /// Example with multiple options passed, and a condition that always fails:
+    /// <code class="language-csharp hljs">
     /// var cacheKey = "hello-world-key";
     /// var data = Cache.Get(() => {
     ///         return "hello world";
@@ -121,12 +128,33 @@ public static class Cache
     /// //'data' is equal to 'hello world', cache duration is 1 second, but it only adds the result to cache, if it is not equal to "hello world"
     /// //So in this scenario - "hello world" is never added to cache, and our function that returns "hello world" is always invoked
     /// </code>
+    /// 
+    /// Example without a cache key and with 'external' variables
+    /// <code class="language-csharp hljs">
+    /// namespace: Company.Services
+    /// 
+    /// class CarService
+    /// {
+    ///     public string GetCars() 
+    ///     {
+    ///         var url = "https://systemlibrary.com/api/cars";
+    ///         var urlQueryValue = "?filter=none";
+    ///         var top = 10
+    ///         //urlQueryValue could be an input variable to GetCars() 
+    ///         
+    ///         return Cache.Get&lt;string&gt;(getItem: () => {
+    ///             return HttpBaseClient.Get&lt;string&gt;(url + urlQueryValue + " top=" + top);
+    ///         });
+    ///     }
+    /// }
+    /// 
+    /// //GetCars returns response either from the API, or if called upon multiple times within default cache duration of 180 seconds, it would return the data from cache
+    /// 
+    /// //Note: cache key is created with the outside variables (converted using .ToString(), so a class, 'User' for instance, would just be .ToString'd  and not differentiated on properties like emails/firstname, etc...)
+    /// //Note: cache key would look like this: Company.Services.CarService.GetCars__uniqueLambdaBackingName_https//systemlibrary.com/api/cars?filter=none10
+    /// //Note: cache key for an authenticated user would minimum append 'true' to the above cacheKey, and if it is a ClaimsPrincipal user, it would append all roles that user belongs to
+    /// </code>
     /// </example>
-    /// <param name="condition">Add to cache only if condition is met, for instance: data != null</param>
-    /// <param name="skipForAuthenticatedUsers">Skip cache for any user that is authenticated, but is not part of any of the admin roles: Admins, Administrators, WebAdmins, CmsAdmins</param>
-    /// <param name="skipForAdmins">Skip cache for current principal that is authenticated and is part of either of the roles: Admins, Administrators, WebAdmins, CmsAdmins</param>
-    /// <param name="skipFor">Implement your own logic for when to skip cache, let it return true on your conditions to avoid caching</param>
-    /// <returns>Returns data either from cache or the getItem() method</returns>
     public static T Get<T>(Func<T> getItem, string cacheKey = null, TimeSpan duration = default, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null, bool debug = false) where T : class
     {
         if (SkipCache(skipForAuthenticatedUsers, skipForAdmins, skipFor))
@@ -281,6 +309,6 @@ public static class Cache
 
     static bool IsCurrentUserAdmin()
     {
-        return Principal?.Identity?.IsAuthenticated == true && Principal.IsInAnyRole("Admin", "Administrators", "WebAdmins", "CmsAdmins");
+        return Principal?.Identity?.IsAuthenticated == true && Principal.IsInAnyRole("Admin", "Admins", "Administrator", "Administrators", "WebAdmins", "CmsAdmins");
     }
 }

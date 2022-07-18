@@ -17,23 +17,24 @@ public static class IServiceCollectionExtensions
     /// <summary>
     /// Configures ServiceCollection in one-line
     /// 
-    /// This registered: MVC, RazorPages, Routing, default set of ViewLocations, ForwardedProtocol and ForwardedIp (XForwardedFor) headers and loading Controllers from your Default Assembly (usually your Web Application assembly)
+    /// This registers: MVC, RazorPages, Routing, default set of ViewLocations for 'Components' only, ForwardedProtocol and ForwardedIp (XForwardedFor) headers and loading Controllers from your Default Assembly (usually your Web Application assembly)
     /// </summary>
     /// <example>
     /// //Inside your Initialization class/Startup class where you have the method "ConfigureServices":
     /// <code>
     /// public void ConfigureServices(IServiceCollection services)
     /// {
-    ///     services.CommonWebApplicationServices(); //This extension method
+    ///     var options = new CommonWebApplicationServicesOptions();
+    ///     services.CommonWebApplicationServices(options);
     /// }
     /// </code>
     /// </example>
-    public static IServiceCollection CommonWebApplicationServices(this IServiceCollection services, ServiceCollectionCommonWebOptions options = null)
+    public static IServiceCollection CommonWebApplicationServices(this IServiceCollection services, CommonWebApplicationServicesOptions options = null)
     {
         Services.Collection = services;
 
         if (options == null)
-            options = new ServiceCollectionCommonWebOptions();
+            options = new CommonWebApplicationServicesOptions();
 
         services.Configure<ForwardedHeadersOptions>(forwardOption =>
         {
@@ -71,7 +72,7 @@ public static class IServiceCollectionExtensions
                 builder.AddApplicationPart(entryAssembly);
         }
 
-        if (options.AddRazorRuntimeCompilation)
+        if (options.AddRazorRuntimeReCompilationOnViewChanged)
         {
             if (builder != null)
                 builder.AddRazorRuntimeCompilation();

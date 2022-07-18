@@ -37,16 +37,17 @@ public static class IApplicationBuilderExtensions
     /// <code>
     /// public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     /// {
+    ///     var options = new CommonWebApplicationBuilderOptions();
     ///     app.CommonWebApplicationBuilder();
     /// }
     /// </code>
     /// </example>
-    public static IApplicationBuilder CommonWebApplicationBuilder(this IApplicationBuilder app, WebApplicationBuilderOptions options = null)
+    public static IApplicationBuilder CommonWebApplicationBuilder(this IApplicationBuilder app, CommonWebApplicationBuilderOptions options = null)
     {
         Services.ServiceProviderInstance = app.ApplicationServices;
 
         if (options == null)
-            options = new WebApplicationBuilderOptions();
+            options = new CommonWebApplicationBuilderOptions();
 
         if (options.UseExceptionPageInTestAndDev && !EnvironmentConfig.Current.IsProd)
         {
