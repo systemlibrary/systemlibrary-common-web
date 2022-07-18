@@ -33,7 +33,7 @@ The two methods in short enables:
 * serving of static common file types (css, js, png, jpg, ...)
 * routing requests to controllers
 * registers services for AspNet.Mvc
-* registers and enabled Authorization and Authentication
+* registers and enables the Authorization and Authentication attributes
 
 Contains simple modules for common tasks in any web application:
 * HttpBaseClient - reuses the underlying tcp connection for up to 5 minutes, no more socket exhaustion

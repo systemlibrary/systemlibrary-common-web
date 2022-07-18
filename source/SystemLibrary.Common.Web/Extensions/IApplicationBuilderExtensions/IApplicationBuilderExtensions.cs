@@ -23,7 +23,7 @@ public static class IApplicationBuilderExtensions
     /// Adds middleware for:
     /// - Http to Https redirection middleware
     /// - Routing middleware
-    /// - Authentication and Authorization middleware
+    /// - Authentication and Authorization attributes' middleware
     /// - Serving Static files (CSS, jpg, js...) middleware
     /// - Forwarded headers middleware
     /// - Controllers to Endpoints middleware
