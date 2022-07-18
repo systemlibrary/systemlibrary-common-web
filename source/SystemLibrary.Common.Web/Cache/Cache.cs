@@ -110,7 +110,8 @@ public static class Cache
     /// var cacheKey = "hello-world-key";
     /// var data = Cache.Get(() => {
     ///     return "hello world";
-    /// });
+    /// },
+    /// cacheKey: cacheKey);
     /// //'data' is now 'hello world', if called multiple times within the default cache duration of 180 seconds, "hello world" is returned from the cache for all non-admin users
     /// </code>
     /// 
@@ -127,6 +128,23 @@ public static class Cache
     ///     
     /// //'data' is equal to 'hello world', cache duration is 1 second, but it only adds the result to cache, if it is not equal to "hello world"
     /// //So in this scenario - "hello world" is never added to cache, and our function that returns "hello world" is always invoked
+    /// </code>
+    /// 
+    /// Example without a cache key
+    /// <code class="language-csharp hljs">
+    /// namespace: Company.Services
+    /// 
+    /// class CarService
+    /// {
+    ///     public string GetCars() 
+    ///     {
+    ///         return Cache.Get&lt;string&gt;(getItem: () => {
+    ///             return HttpBaseClient.Get&lt;string&gt;("https://systemlibrary.com/api/cars?top=1");
+    ///         },
+    ///         skipForAdmins: false);
+    ///     }
+    /// }
+    /// //Note: This will cache the top 1 car for everyone, even logged in administrators/admins
     /// </code>
     /// 
     /// Example without a cache key and with 'external' variables
@@ -174,7 +192,7 @@ public static class Cache
         if (cached != null)
         {
             if (debug)
-                Log.Debug("Cache.Get() debug flag=true: item is returned from cache");
+                Log.Debug(obj: "Cache.Get() debug flag=true: item is returned from cache");
             return cached;
         }
 
