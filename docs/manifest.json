@@ -9,10 +9,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.ActionContextInstance.html",
-          "hash": "cwxLJomgG6WFRqr0k95uZzUB8RQm+g26k/Ni4flSBrk="
+          "hash": "lVB7BQW90VMT/yWp/mASWcnvqIHP4xa3hh+glVVMdSI="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -21,7 +21,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html",
-          "hash": "63KxlaSyk1MIYzIZwqn6q2PVCF7aaXPlTuPuGBkh3TA="
+          "hash": "NfelYUl9VShVHXDq0AIzHCWF1hVlQpkneCv+zxjMVxQ="
         }
       },
       "is_incremental": false,
@@ -33,10 +33,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.CalleeCancelledRequestException.html",
-          "hash": "FycVGnPca+/t5iPuo77VP0FLamflb6nOhdujwmv0d3w="
+          "hash": "pSYk/uvbpByA9V2ogsbZHdKplpPaGVoYPbOsr8zaLtk="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -45,10 +45,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.ClientResponse-1.html",
-          "hash": "FC6YmU5YntkIjIJ9dQO38RARI/4Rl5mcYRg9E3zQUDA="
+          "hash": "3gGLdupbvYptuWf8QK+Yhyv+6RCPnO6mwgkdtI6Q3NE="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -57,10 +57,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.html",
-          "hash": "wX+Dai1mAIVyyUgj3ICiyDVBrYxqR2TfcM3IxrjAHTc="
+          "hash": "/RGIL/dpgl0M+6ccRhEpS9MIbdplkKoI6LZcDy0PVgE="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -69,10 +69,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html",
-          "hash": "iZSD6Ax8JWPYdiSeu00CEuJqWn1LHhBtl7Xvm4jiD2I="
+          "hash": "lHp1Z9QTzLRbPwCYBw+HP3xRUhcm1XyqfqXeYtw/Ybw="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -81,7 +81,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.html",
-          "hash": "A+3Lo1cu+FkxEuB5RKmfNxvIocsc1w4/xNrZOIHVPDw="
+          "hash": "j+yZHYh5RifUz7lU3rLMohRFpXlmV812vkAG0ijJdAQ="
         }
       },
       "is_incremental": false,
@@ -93,10 +93,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IPrincipalExtensions.html",
-          "hash": "EBNnpezyZwLE+B/nmP03Kgaz79CilvxBkMIfkG99n04="
+          "hash": "bQrORmAWSzDUQ+fl2JzOisDSukBDN67KdIgWKZPh0xk="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -105,10 +105,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.html",
-          "hash": "QDEg7ILrJQbZGrNkxqOZCzCZCBE2NA2gpvFqgFUB1eY="
+          "hash": "MMHz0fuljsVJzwElcyUy4xFz5sBT05/o2tPGnjAlcnA="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -117,7 +117,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.html",
-          "hash": "203rXWy4Td9pRBIpcrg4Yi6j7T/qPLQ4mVXifpe/zKU="
+          "hash": "g38O4iNjs6HgE0KReMF3wRHuErF+N7DpS0mKAwGzu5c="
         }
       },
       "is_incremental": false,
@@ -129,10 +129,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.Log.html",
-          "hash": "Fwi2ksrbonq2PmQSZ46PZD5OkQChXpO4X7KedNtE0Mo="
+          "hash": "cVQvEj9vfaCn7FJ5i7LTa/n1y96RgkFXMvbxUJm0fKc="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -141,10 +141,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.LogLevel.html",
-          "hash": "r4f8Dysss4GRaHkUlke0i8/upE29jeNoSoJ9qoDwXU8="
+          "hash": "E3BFzWWQzsn6G9ACOgpp74spIhfzZpdQFzJmVKCKORo="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -153,10 +153,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.html",
-          "hash": "G6SJwq38JpKa5HSdXuCxcZ21LGt99HeStyhqyZj+B2w="
+          "hash": "F0/hKfad1SVR7z3LtzZR3GsTqpbkEuxcfdS32zPt8sI="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -165,10 +165,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.HtmlHelperFactory.html",
-          "hash": "//lmln9XJZMSjnXybQKWtwhIkJ1j8/7eVaaZ3Gi5uzw="
+          "hash": "kPKd5ml9WmsQxDxTpgts/mgfN7wWOzaXj2PR9lpCVWw="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -177,10 +177,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.html",
-          "hash": "nckZyR0Rn9PszfZyIslsAc7zvwAevW5yVLRZTdC+RiE="
+          "hash": "S10H6nhmLD+wvVFF7f3SCA6UTjgw6FmKbdtT0/DT2Ac="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -189,10 +189,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpContextInstance.html",
-          "hash": "aoXhPjD2YsZi6R312aBCWiUUQdgECFIlyw7U2qpdTVs="
+          "hash": "BABbAF13ekTLKznxSvLzSyI1kWWS638zO0V2DvfQen0="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -201,10 +201,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.ILogWriter.html",
-          "hash": "hjzVlR4OoGfoIs8Vgqfc4LwlCksVcV1pFgWiatVpxD4="
+          "hash": "0wTvgmzVQO3iqvS55jdqkFsTEOmv3Lx+qPNIhgTXnOA="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -213,10 +213,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.MediaType.html",
-          "hash": "ob96ot9EUy9gJ3NDsYDYbSwiVVX6Wc18zPJSduBF12I="
+          "hash": "RqRnPNEyPQTFUyFGw9pSFJxWw9vqSLVaj5T8IClVDvo="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -225,10 +225,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.RetryRequestException.html",
-          "hash": "1BtaB8U8qjI1SZWyTEZ/U/uQx5GUMgQRal/Q2JQLlWY="
+          "hash": "z17VxdfpTpEy380DeXFegZBx2W2isdssN7ZyGeqoZzo="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -237,10 +237,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Services.html",
-          "hash": "kREPR4IHUFfZOkQ9hu4sJM/b1r2jChlyW1AvUgINzbQ="
+          "hash": "wIQMFzdxUSvbHqykEDkJ9H3/oywvy5Q/dCO/JioFiVc="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -249,7 +249,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.html",
-          "hash": "i9i++ZYUWSpNzntzk2435xoHpR4E74l6+t69qDcRyw8="
+          "hash": "UoMr74yStQS7aAnCzaea79RHpZzLuZ+TOUy63awnDZU="
         }
       },
       "is_incremental": false,
@@ -273,33 +273,35 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web_index.html",
-          "hash": "P0oHPBklOEiTHM6UAx0aPXesRng7Rz9Xc31zLk6PodI="
+          "hash": "Sh9A35luGOHr36Cw5FlRH+YZnN9z1GbAcSUTTG0LGG4="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     }
   ],
   "incremental_info": [
     {
       "status": {
-        "can_incremental": true,
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
         "incrementalPhase": "build",
         "total_file_count": 0,
-        "skipped_file_count": 0
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
       },
       "processors": {
         "ConceptualDocumentProcessor": {
-          "can_incremental": true,
+          "can_incremental": false,
           "incrementalPhase": "build",
           "total_file_count": 1,
-          "skipped_file_count": 1
+          "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {
-          "can_incremental": true,
+          "can_incremental": false,
           "incrementalPhase": "build",
           "total_file_count": 21,
-          "skipped_file_count": 19
+          "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
           "can_incremental": false,
@@ -312,8 +314,8 @@
     },
     {
       "status": {
-        "can_incremental": true,
-        "details": "Can support incremental post processing.",
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
         "incrementalPhase": "postProcessing",
         "total_file_count": 0,
         "skipped_file_count": 0

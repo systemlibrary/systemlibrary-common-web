@@ -25,14 +25,8 @@ Contains simple modules for common tasks in any web application:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-- 6.0.0.2
-- Nuspec dependency forgotten updated to systemLibrary.Common.Net 6.0.0.1
-- AddRazorRuntimeCompilation option renamed to AddRazorRuntimeReCompilationOnViewChanged (Breaking Change)
-- New features: Log, Services and Cache modules, before they lived in "SystemLibrary.Common.Episerver", but removed the Episerver dependency parts and added to this package
-- ServiceCollectionOptions renamed to CommonServiceCollectionOptions
-- CommonWebApplicationOptions renamed to CommonWebApplicationBuilderOptions
-- Updated dependency of SystemLibrary.Common.Net to &gt;= 6.0.0.1
-- Added a lot of more comments and sample code for most public functions inside this library
+- 6.0.0.3
+- Updated systemLibrary.Common.Net to 6.0.0.2
 - Update docs
 
 ## Version history

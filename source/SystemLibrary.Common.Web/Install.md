@@ -7,8 +7,11 @@
 * Search and install SystemLibrary.Common.Web
 
 ## First time usage
-- Setup your web application with the most common settings in the AspNet Mvc world targetting .NET >= 6
- 
+1. Create a new empty .NET 6 project
+2. Add SystemLibrary.Common.Web
+3. Add Startup.cs at root of the web project
+4. Add appSettings.json at root of the web project
+
 ```csharp 
 using SystemLibrary.Common.Web.Extensions;
 
@@ -40,7 +43,7 @@ public class Startup
 }
 ```
 
-- Now your web application is ready to host the most common things in AspNet (controllers, razor views, css files, js files, jpg files, etc...)
+- Now you can run your web application out of the box (mapping requests to controllers, .cshtml compilation, serving static files like 'css', 'js', 'jpg', etc...)
 
 ## Package Configurations
 * Default and modifiable configurations for this package:
@@ -57,7 +60,7 @@ appSettings.json:
 
 		"log": {
 			"isEnabled": true,
-			"level": "Info/Debug/Warning/Error"
+			"level": "Info" //Pick between: Info, Debug, Warning, Error
 		},
 
 		"logMessageBuilderOptions": {
