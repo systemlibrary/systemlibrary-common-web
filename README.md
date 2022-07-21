@@ -21,7 +21,8 @@ Contains simple modules for common tasks in any web application:
 ## Requirements
 - &gt;= .NET 6
 - SystemLibrary.Common.Net
-- Microsoft.AspNetCore.App
+- Microsoft.AspNetCore.App Framework
+- Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
