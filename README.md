@@ -27,6 +27,7 @@ Contains simple modules for common tasks in any web application:
 ## Latest Version
 - 6.0.0.3
 - Updated systemLibrary.Common.Net to 6.0.0.2
+- Added nuspec dependency on Mvc.Razor.RuntimeCompilation 6.0.7 as 6.0.6 throws error
 - Update docs
 
 ## Version history
