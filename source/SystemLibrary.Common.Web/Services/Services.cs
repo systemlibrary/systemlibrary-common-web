@@ -45,12 +45,11 @@ public static class Services
         get
         {
             if (_ServiceProvider == null)
-            {
-                _ServiceProvider = HttpContextInstance.Current?.RequestServices;
+                _ServiceProvider = ServiceProviderInstance;
 
-                if (_ServiceProvider == null)
-                    _ServiceProvider = ServiceProviderInstance;
-            }
+            //Commented out: Should never use the HttpContextInstance with RequestServices - as it might be null/disposed there depending on "when" we use it
+            //if (_ServiceProvider == null)
+            //    _ServiceProvider = HttpContextInstance.Current.RequestServices;
 
             return _ServiceProvider;
         }
