@@ -26,7 +26,7 @@ Additionally this package contains modules such as:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-- 6.0.0.4
+- 6.0.0.7
 - Updated systemLibrary.Common.Net to 6.0.0.5
 - Added nuspec dependency on Mvc.Razor.RuntimeCompilation 6.0.7 as 6.0.6 throws error
 - Throwing error if SupportedMediaTypes are sent as Options to CommonWebApplicationServices() when Mvc and Controllers are not being registered

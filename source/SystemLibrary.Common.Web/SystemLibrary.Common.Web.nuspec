@@ -3,7 +3,7 @@
     <metadata>
         <id>SystemLibrary.Common.Web</id>
 
-        <version>6.0.0.6</version>
+        <version>6.0.0.7</version>
 
         <authors>System Library</authors>
         
@@ -70,7 +70,7 @@ support@systemlibrary.com
 			<dependency id="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" version="6.0.7" />
 			<dependency id="Microsoft.Extensions.FileProviders.Physical" version="6.0.0" />
 			<dependency id="System.Net.Http" version="4.3.4" />
-			<dependency id="SystemLibrary.Common.Net" version="6.0.0.4" />
+			<dependency id="SystemLibrary.Common.Net" version="6.0.0.5" />
         </dependencies>
     </metadata>
 
