@@ -12,7 +12,7 @@
           "hash": "lVB7BQW90VMT/yWp/mASWcnvqIHP4xa3hh+glVVMdSI="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -24,7 +24,7 @@
           "hash": "NfelYUl9VShVHXDq0AIzHCWF1hVlQpkneCv+zxjMVxQ="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -36,7 +36,7 @@
           "hash": "pSYk/uvbpByA9V2ogsbZHdKplpPaGVoYPbOsr8zaLtk="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -48,7 +48,7 @@
           "hash": "3gGLdupbvYptuWf8QK+Yhyv+6RCPnO6mwgkdtI6Q3NE="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -60,7 +60,7 @@
           "hash": "/RGIL/dpgl0M+6ccRhEpS9MIbdplkKoI6LZcDy0PVgE="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -72,7 +72,7 @@
           "hash": "lHp1Z9QTzLRbPwCYBw+HP3xRUhcm1XyqfqXeYtw/Ybw="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -84,7 +84,7 @@
           "hash": "j+yZHYh5RifUz7lU3rLMohRFpXlmV812vkAG0ijJdAQ="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -96,7 +96,7 @@
           "hash": "bQrORmAWSzDUQ+fl2JzOisDSukBDN67KdIgWKZPh0xk="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -108,7 +108,7 @@
           "hash": "MMHz0fuljsVJzwElcyUy4xFz5sBT05/o2tPGnjAlcnA="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -120,7 +120,7 @@
           "hash": "g38O4iNjs6HgE0KReMF3wRHuErF+N7DpS0mKAwGzu5c="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -132,7 +132,7 @@
           "hash": "cVQvEj9vfaCn7FJ5i7LTa/n1y96RgkFXMvbxUJm0fKc="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -144,7 +144,7 @@
           "hash": "E3BFzWWQzsn6G9ACOgpp74spIhfzZpdQFzJmVKCKORo="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -156,7 +156,7 @@
           "hash": "F0/hKfad1SVR7z3LtzZR3GsTqpbkEuxcfdS32zPt8sI="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -168,7 +168,7 @@
           "hash": "kPKd5ml9WmsQxDxTpgts/mgfN7wWOzaXj2PR9lpCVWw="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -180,7 +180,7 @@
           "hash": "S10H6nhmLD+wvVFF7f3SCA6UTjgw6FmKbdtT0/DT2Ac="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -192,7 +192,7 @@
           "hash": "BABbAF13ekTLKznxSvLzSyI1kWWS638zO0V2DvfQen0="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -204,7 +204,7 @@
           "hash": "0wTvgmzVQO3iqvS55jdqkFsTEOmv3Lx+qPNIhgTXnOA="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -216,7 +216,7 @@
           "hash": "RqRnPNEyPQTFUyFGw9pSFJxWw9vqSLVaj5T8IClVDvo="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -228,7 +228,7 @@
           "hash": "z17VxdfpTpEy380DeXFegZBx2W2isdssN7ZyGeqoZzo="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -237,10 +237,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Services.html",
-          "hash": "wIQMFzdxUSvbHqykEDkJ9H3/oywvy5Q/dCO/JioFiVc="
+          "hash": "HnXW9PiJw7Of4sdBYXCGiDyJGG6EpaIiFf5c1P+1vJo="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -252,7 +252,7 @@
           "hash": "UoMr74yStQS7aAnCzaea79RHpZzLuZ+TOUy63awnDZU="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -276,32 +276,30 @@
           "hash": "Sh9A35luGOHr36Cw5FlRH+YZnN9z1GbAcSUTTG0LGG4="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     }
   ],
   "incremental_info": [
     {
       "status": {
-        "can_incremental": false,
-        "details": "Cannot build incrementally because last build info is missing.",
+        "can_incremental": true,
         "incrementalPhase": "build",
         "total_file_count": 0,
-        "skipped_file_count": 0,
-        "full_build_reason_code": "NoAvailableBuildCache"
+        "skipped_file_count": 0
       },
       "processors": {
         "ConceptualDocumentProcessor": {
-          "can_incremental": false,
+          "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 1,
-          "skipped_file_count": 0
+          "skipped_file_count": 1
         },
         "ManagedReferenceDocumentProcessor": {
-          "can_incremental": false,
+          "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 21,
-          "skipped_file_count": 0
+          "skipped_file_count": 21
         },
         "TocDocumentProcessor": {
           "can_incremental": false,
@@ -314,8 +312,8 @@
     },
     {
       "status": {
-        "can_incremental": false,
-        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
+        "can_incremental": true,
+        "details": "Can support incremental post processing.",
         "incrementalPhase": "postProcessing",
         "total_file_count": 0,
         "skipped_file_count": 0

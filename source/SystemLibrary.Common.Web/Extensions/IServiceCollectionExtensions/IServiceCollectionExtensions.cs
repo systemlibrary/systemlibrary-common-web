@@ -60,7 +60,15 @@ public static class IServiceCollectionExtensions
         if (options.AddMvcPages || options.AddRazorPages || options.AddControllers)
         {
             if (builder == null)
-                builder = services.AddControllers();
+            {
+                builder = services.AddControllers(config =>
+                {
+                    config.OutputFormatters.Add(new DefaultSupportedMediaTypes());
+
+                    if (options.SupportedMediaTypes != null)
+                        config.OutputFormatters.Add(options.SupportedMediaTypes);
+                });
+            }
 
             var executingAssembliy = Assembly.GetExecutingAssembly();
             var entryAssembly = Assembly.GetEntryAssembly();
@@ -70,6 +78,11 @@ public static class IServiceCollectionExtensions
 
             if (executingAssembliy?.FullName != entryAssembly?.FullName)
                 builder.AddApplicationPart(entryAssembly);
+        }
+        else
+        {
+            if (options.SupportedMediaTypes != null && options.AddMvcPages == false && options.AddControllers == false)
+                throw new System.Exception("You've set MvcPages and AddControllers to false, but yet registering SupportedMediaTypes. You need to register the supported media types yourself in this scenario, instaed of passing them down to CommonWebApplicationServices()");
         }
 
         if (options.AddRazorRuntimeReCompilationOnViewChanged)
