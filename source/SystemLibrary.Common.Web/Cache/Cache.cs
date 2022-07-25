@@ -219,6 +219,8 @@ public static class Cache
             var fields = type.GetFields(BindingFlags.FlattenHierarchy | BindingFlags.Instance | BindingFlags.Public);
             if(fields.Length > 0)
             {
+                //TODO: Consider throwing exception if field is of "unsupported type" as CacheKey
+                //as this works fine on string, int, bool, DateTime, double, but a List or a POCO object would be ToString()'d which does not make much sense
                 foreach (var field in fields)
                     key.Append(field.GetValue(target) + "");
             }
