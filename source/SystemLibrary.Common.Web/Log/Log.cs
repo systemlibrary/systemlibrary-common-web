@@ -154,7 +154,7 @@ public static partial class Log
 
         if (LogWriter == null)
         {
-            Dump.Write("Warn: SystemLibrary.Common.Web.ILogWriter is not implemented and registered as a service.");
+            Dump.Write("Warning: SystemLibrary.Common.Web.ILogWriter is not implemented and registered as a service.");
             Dump.Write(message);
             return;
         }
