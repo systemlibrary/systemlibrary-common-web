@@ -53,7 +53,7 @@ public class CommonWebApplicationBuilderOptions
 
     /// <summary>
     /// Adds middleware which responds with a exception page
-    /// - The exception page is never shown if Environment.IsProd is true
+    /// - The exception page is never shown if Environment.IsProd is true, unless you set this to false and you call on 'UseDeveloperExceptionPage' yourself
     /// - Unless you set this flag to false, and register the Dev page yourself under your conditions
     /// </summary>
     public bool UseExceptionPageInTestAndDev = true;

@@ -17,13 +17,13 @@ namespace SystemLibrary.Common.Web;
 /// Caching for web applications
 ///
 /// Default duration is 180 seconds
-/// - configurable in appSettings.json
+/// - configurable in appSettings.json or per Get() invokation
 /// 
 /// Auto-generates a cachekey for you if you don't specify one
-/// - if current user is authenticated and a ClaimsPrincipal, it adds all roles for the user to the cacheKey
-/// - if current user is authenticated and is not a ClaimsPrincipal, the "isAuthenticated" value is appended to cacheKey only, no roles
+/// - if current user is authenticated and user's identity is a 'ClaimsPrincipal', it adds all roles for the user to the cacheKey
+/// - if current user is authenticated and user's identity is not a 'ClaimsPrincipal', then only the "isAuthenticated" value is appended to cacheKey, no user roles
 ///
-/// Optional skip cache scenarios by paramters can be applied
+/// Optionally, you can skip cache by setting parameters:
 /// - skipForAuthenticatedUsers, false by default
 /// - skipForAdmins, true by default
 ///     * true if current principal is in either of these case sensitive roles: "Admin", "Admins", "Administrator", "Administrators", "WebAdmins", "CmsAdmins"
@@ -112,6 +112,7 @@ public static class Cache
     ///     return "hello world";
     /// },
     /// cacheKey: cacheKey);
+    /// 
     /// //'data' is now 'hello world', if called multiple times within the default cache duration of 180 seconds, "hello world" is returned from the cache for all non-admin users
     /// </code>
     /// 
@@ -125,7 +126,7 @@ public static class Cache
     ///     duration: TimeSpan.FromSeconds(1),
     ///     condition: x => x != "hello world",
     ///     skipForAuthenticatedUsers: false);
-    ///     
+    /// 
     /// //'data' is equal to 'hello world', cache duration is 1 second, but it only adds the result to cache, if it is not equal to "hello world"
     /// //So in this scenario - "hello world" is never added to cache, and our function that returns "hello world" is always invoked
     /// </code>
@@ -144,7 +145,8 @@ public static class Cache
     ///         skipForAdmins: false);
     ///     }
     /// }
-    /// //Note: This will cache the top 1 car for everyone, even logged in administrators/admins
+    /// //Note: This will cache the top 1 car for everyone, even logged in administrators/admins because we set 'skipForAdmins' to false,
+    /// //If we should set skipForAdmins: true, then administrators would always invoke our method, the data would never come from cache for those users
     /// </code>
     /// 
     /// Example without a cache key and with 'external' variables
@@ -185,14 +187,14 @@ public static class Cache
             cacheKey = CreateCacheKey(getItem, condition);
 
         if (debug)
-            Log.Debug("Cache.Get() debug flag=true: cache key is " + cacheKey);
+            Log.Debug("Cache.Get() debug parameter is true, cache key is: " + cacheKey);
 
         var cached = cache.Get(cacheKey) as T;
 
         if (cached != null)
         {
             if (debug)
-                Log.Debug(obj: "Cache.Get() debug flag=true: item is returned from cache");
+                Log.Debug(obj: "Cache.Get() debug parameter is true: item is returned from cache");
             return cached;
         }
 

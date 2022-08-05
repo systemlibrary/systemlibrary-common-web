@@ -4,8 +4,8 @@
 /// ILogWriter is responsible to store the log messages inside your application
 /// 
 /// - Create a new class and implement the interface
-/// - Register the interface and class as a 'service'
-/// - Calling any of the public Log. methods will send the log message to your log writer which you control where to store
+/// - Register the interface and class as a 'service' in your 'Startup.cs'
+/// - Calling any of the public Log.() methods will send the log message to your log writer which you control where to store
 /// </summary>
 /// <example>
 /// <code class="language-csharp hljs">
