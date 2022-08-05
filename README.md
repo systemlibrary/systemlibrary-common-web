@@ -1,22 +1,22 @@
 # SystemLibrary Common Web
 
 ## Description
-A library of classes and methods for any .NET &gt;= 6 web application
+Library with classes and methods for every .NET &gt;= 6 web application
 
-* Setup IApplicationBuilder in one line: app.CommonWebApplicationBuilder();
-* Setup IServiceCollection in one line: services.CommonWebApplicationServices();
+### Features
+- Setup IApplicationBuilder in one line: app.CommonWebApplicationBuilder();
+- Setup IServiceCollection in one line: services.CommonWebApplicationServices();
 
 The two methods in short enables:
-* serving of static common file types (css, js, png, jpg, ...)
-* routing requests to controllers
-* registers services for AspNet.Mvc
-* registers and enables the two attributes: Authorization and Authentication
+- serving of static common file types (css, js, png, jpg, ...)
+- routes requests to controllers
+- registers AspNet.Mvc services
+- enables usage of Authorization and Authentication attributes
 
-Additionally this package contains modules such as:
-* HttpBaseClient - reuses the underlying tcp connection for up to 5 minutes, no more socket exhaustion
-* Log - added to global namespace, so Log.Error() is available anywhere
-  * Log contains Log.Write(), "equivalent" to console.log in javascript
-* Cache - a wrapper over the .NET memory cache with auto-creation of cache keys if you dont need per user cache
+- HttpBaseClient which reuses the underlyinc TCP connection, no more socket exhaustion, saving 10's of milliseconds each subsequent request
+- Log class in global namespace
+  * Log.Write() is "equivalent" to console.log in javascript  
+- Cache class with auto-generating cache keys
 
 ## Requirements
 - &gt;= .NET 6
@@ -26,25 +26,28 @@ Additionally this package contains modules such as:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-- 6.0.0.7
-- Updated systemLibrary.Common.Net to 6.0.0.5
-- Added nuspec dependency on Mvc.Razor.RuntimeCompilation 6.0.7 as 6.0.6 throws error
-- Throwing error if SupportedMediaTypes are sent as Options to CommonWebApplicationServices() when Mvc and Controllers are not being registered
-- SupportedMediaTypes are now registered if AddControllers is true when sent to CommonWebApplicationServices()
-- Update docs
+- 6.0.0.14
+- Updated deps
+- Added readme.md to nupkg
 
-## Version history
+#### Version history
 - View git history of this file if interested
 
+## Installation
+https://systemlibrary.github.io/systemlibrary-common-web/Install.html
+
 ## Docs
-Documentation with samples:
+Documentation with code samples:  
 https://systemlibrary.github.io/systemlibrary-common-web/
 
 ## Nuget
 https://www.nuget.org/packages/SystemLibrary.Common.Web/
 
+## Source
+https://github.com/systemlibrary/systemlibrary-common-web
+
 ## Suggestions and feedback
 support@systemlibrary.com
 
 ## Lisence
-- It's free forever, copy paste as you'd like
+- Free

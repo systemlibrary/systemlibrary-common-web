@@ -3,7 +3,7 @@
     <metadata>
         <id>SystemLibrary.Common.Web</id>
 
-        <version>6.0.0.13</version>
+        <version>6.0.0.14</version>
 
         <authors>System Library</authors>
         
@@ -23,14 +23,13 @@
 		</releaseNotes>
 		
         <description>
-## Description
-A library of classes and methods for every .NET &gt;= 6 web application
+Library with classes and methods for every .NET &gt;= 6 web application
 https://github.com/systemlibrary/systemlibrary-common-web/#Description
 
-## Installation
+Installation
 https://systemlibrary.github.io/systemlibrary-common-web/Install.html
 
-## Documentation with samples
+Documentation with sample code
 https://systemlibrary.github.io/systemlibrary-common-web/
 		</description>
 
@@ -38,16 +37,19 @@ https://systemlibrary.github.io/systemlibrary-common-web/
 
         <tags>C# .NET web extensions setup initialization</tags>
 
+		<readme>docs\readme.md</readme>
+		
         <dependencies>
 			<dependency id="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" version="6.0.7" />
 			<dependency id="Microsoft.Extensions.FileProviders.Physical" version="6.0.0" />
 			<dependency id="System.Net.Http" version="4.3.4" />
-			<dependency id="SystemLibrary.Common.Net" version="6.1.0.3" />
+			<dependency id="SystemLibrary.Common.Net" version="6.1.0.6" />
         </dependencies>
     </metadata>
 
 	<files>
 		<file src="nuget-icon.png" target="" />
+		<file src="..\..\readme.md" target="docs\" />
 	</files>	
 </package>
 <!-- Command: nuget pack SystemLibrary.Common.Web.csproj -p Configuration=Release -->
