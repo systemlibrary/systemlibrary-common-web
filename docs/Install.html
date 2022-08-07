@@ -22,7 +22,7 @@
             --red: #cf222e;
             --purple: #8250df;
             --grey: #6e7781;
-            --green: #1a7f37;
+            --green: #0aa336;
             --dark-blue: #0a3069;
             --black: #24292f;
             --yellow: #fff8c5;
@@ -32,6 +32,8 @@
             --pink: #b84d8c;
             --brown: #b88d4d;
             --blue: #5c94c4;
+
+            --light-black: #414141;
         }
 
         * {
@@ -287,7 +289,7 @@
         }
 
         .subnav.navbar.navbar-default {
-            background-color: var(--brown);
+            background-color: var(--light-black);
         }
 
         h1 {
@@ -396,8 +398,8 @@
 * Search and install SystemLibrary.Common.Web
 
 ## First time usage
-1. Create a new empty .NET 6 project
-2. Add SystemLibrary.Common.Web
+1. Create a new Asp.Net Core Empty .NET 6 project
+2. Add SystemLibrary.Common.Web nuget package
 3. Add Startup.cs at root of the web project
 4. Add appSettings.json at root of the web project
 
@@ -432,7 +434,11 @@ public class Startup
 }
 !====!!====!!====!
 
-- Now you can run your web application out of the box (mapping requests to controllers, .cshtml compilation, serving static files like !@@@@!css!@@@@!, !@@@@!js!@@@@!, !@@@@!jpg!@@@@!, etc...)
+- Now you can run your web application out of the box
+- Requests will be mapped to a controller
+- .cshtml files will be re-compiled during save 
+- Static content such as jpg, png, pdf, js, etc... is allowed to be hosted from your app
+- See the docs for the two methods: CommonWebApplicationServices and CommonWebApplicationBuilder for more info
 
 ## Package Configurations
 * Default and modifiable configurations for this package:

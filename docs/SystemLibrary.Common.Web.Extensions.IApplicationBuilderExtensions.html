@@ -130,13 +130,34 @@
                         if (links) {
                           var queryLowered = query.toLowerCase();
                           for (var j = 0; j < links.length; j++) {
-                            var link = links[j];
+                            try {
+                              var link = links[j];
       
-                            if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
-                              var parent = link.parentNode;
-                              if (parent && parent.remove) {
-                                parent.remove();
+                              if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
+                                var parent = link.parentNode;
+                                if (parent && parent.remove) {
+                                  var namespaceParent = parent.parentNode;
+      
+                                  parent.remove();
+      
+                                  if (namespaceParent && namespaceParent.parentNode) {
+                                    if (namespaceParent.classList.contains('level2')) {
+                                      var namespaceRemainingListItems = namespaceParent.children;
+                                      if (namespaceRemainingListItems && namespaceRemainingListItems.length
+                                        && namespaceRemainingListItems.length > 1) {
+                                      } else {
+                                        var namespaceLink = namespaceParent.parentNode;
+                                        if (namespaceLink && namespaceLink.remove) {
+                                          namespaceLink.remove();
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
                               }
+                            }
+                            catch (e) {
+                              console.warn("Error cleaning a link in sidetoc, continuing...");
                             }
                           }
                         }
@@ -217,20 +238,21 @@
   
   <div class="custom-container">
   <div class="custom-menu-summary-data">
-  	<div class="markdown level1 summary member-summary"><p>Initialize app with common web application middlewares in one-line</p>
-<p>All middlewares can be turned on/off through the 'options' variable, by default they are all enabled:
-Adds middleware for:</p>
+  	<div class="markdown level1 summary member-summary"><p>Register common middlewares for a web application</p>
+<p>Note: register all of your own middlewares after this one is called</p>
+<p>This will register:</p>
 <ul>
-<li>Http to Https redirection middleware</li>
-<li>Routing middleware</li>
+<li>Http to Https redirection middleware, client side and server side</li>
+<li>Routing urls to controllers middleware</li>
+<li>/api/ urls to controllers middleware</li>
 <li>Authentication and Authorization attributes' middleware</li>
-<li>Serving Static files (CSS, jpg, js...) middleware</li>
+<li>Servince static files such as .css, .js, .jpg, etc... middleware</li>
 <li>Forwarded headers middleware</li>
-<li>Controllers to Endpoints middleware</li>
-<li>RazorPages to Endpoints middleware</li>
-<li>Recompile RazorPage On Saved middleware</li>
-<li>Static file serving middleware</li>
-<li>Use Exception Page middleware</li>
+<li>Razor pages and Mvc middleware</li>
+<li>Secure cookie policy middleware</li>
+<li>Secure cookie policy (http only middleware</li>
+<li>Recompiling razor pages (saving a cshtml file) middleware</li>
+<li>Exception page middleware</li>
 </ul>
 </div>
   	<div class="markdown level1 conceptual member-summary-conceptual"></div>
@@ -238,7 +260,7 @@ Adds middleware for:</p>
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_IApplicationBuilderExtensions_CommonWebApplicationBuilder_Microsoft_AspNetCore_Builder_IApplicationBuilder_SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/IApplicationBuilderExtensions.cs/#L45">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/IApplicationBuilderExtensions.cs/#L46">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_Extensions_IApplicationBuilderExtensions_CommonWebApplicationBuilder_" data-uid="SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.CommonWebApplicationBuilder*"></a>
@@ -248,11 +270,12 @@ Adds middleware for:</p>
   	<div class="custom-menu-data-container">
   		<div class="custom-menu-data-name" style="display: none;">
   			<div class="syslib-tab-menu-data--close">X</div>
-  			<div class="codewrapper"><p>Inside your 'Startup' class:</p>
+  			<div class="codewrapper"><p>Startup.cs/Program.cs:</p>
 <pre><code>public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 {
     var options = new CommonWebApplicationBuilderOptions();
-    app.CommonWebApplicationBuilder();
+
+    app.CommonWebApplicationBuilder(options);
 }</code></pre>
 </div>
   			<div class="comment-examples-container-bottom"></div>
@@ -954,7 +977,7 @@ Adds middleware for:</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/IApplicationBuilderExtensions.cs/#L17" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/IApplicationBuilderExtensions.cs/#L15" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

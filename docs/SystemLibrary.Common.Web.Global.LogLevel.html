@@ -130,13 +130,34 @@
                         if (links) {
                           var queryLowered = query.toLowerCase();
                           for (var j = 0; j < links.length; j++) {
-                            var link = links[j];
+                            try {
+                              var link = links[j];
       
-                            if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
-                              var parent = link.parentNode;
-                              if (parent && parent.remove) {
-                                parent.remove();
+                              if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
+                                var parent = link.parentNode;
+                                if (parent && parent.remove) {
+                                  var namespaceParent = parent.parentNode;
+      
+                                  parent.remove();
+      
+                                  if (namespaceParent && namespaceParent.parentNode) {
+                                    if (namespaceParent.classList.contains('level2')) {
+                                      var namespaceRemainingListItems = namespaceParent.children;
+                                      if (namespaceRemainingListItems && namespaceRemainingListItems.length
+                                        && namespaceRemainingListItems.length > 1) {
+                                      } else {
+                                        var namespaceLink = namespaceParent.parentNode;
+                                        if (namespaceLink && namespaceLink.remove) {
+                                          namespaceLink.remove();
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
                               }
+                            }
+                            catch (e) {
+                              console.warn("Error cleaning a link in sidetoc, continuing...");
                             }
                           }
                         }
@@ -209,7 +230,7 @@
   <div class='custom-class-content-inline'>
   <div class="custom-source-code-link-container custom-source-code-link-container--enum custom-source-code-link--SystemLibrary_Common_Web_Global_LogLevel">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L322">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L326">View Source</a>
   	</span>
   </div>
   
@@ -865,7 +886,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L322" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L326" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

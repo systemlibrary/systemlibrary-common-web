@@ -130,13 +130,34 @@
                         if (links) {
                           var queryLowered = query.toLowerCase();
                           for (var j = 0; j < links.length; j++) {
-                            var link = links[j];
+                            try {
+                              var link = links[j];
       
-                            if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
-                              var parent = link.parentNode;
-                              if (parent && parent.remove) {
-                                parent.remove();
+                              if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
+                                var parent = link.parentNode;
+                                if (parent && parent.remove) {
+                                  var namespaceParent = parent.parentNode;
+      
+                                  parent.remove();
+      
+                                  if (namespaceParent && namespaceParent.parentNode) {
+                                    if (namespaceParent.classList.contains('level2')) {
+                                      var namespaceRemainingListItems = namespaceParent.children;
+                                      if (namespaceRemainingListItems && namespaceRemainingListItems.length
+                                        && namespaceRemainingListItems.length > 1) {
+                                      } else {
+                                        var namespaceLink = namespaceParent.parentNode;
+                                        if (namespaceLink && namespaceLink.remove) {
+                                          namespaceLink.remove();
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
                               }
+                            }
+                            catch (e) {
+                              console.warn("Error cleaning a link in sidetoc, continuing...");
                             }
                           }
                         }
@@ -176,8 +197,11 @@
   <div class="markdown level0 conceptual h1-class-conceptual"></div>
   
   <div class="h1-class-summary-container">
-    <div class="markdown level0 summary h1-class-summary"><p>Application builder options</p>
-<p>For instance: control wether or not you want to force http redirection to https (both server and client side)</p>
+    <div class="markdown level0 summary h1-class-summary"><p>Web Application Builder Options</p>
+<p>All options are 'true' (on) by default</p>
+<ul>
+<li>Used as argument in 'app.CommonWebApplicationBuilder' function</li>
+</ul>
 </div>
   </div>
   
@@ -198,12 +222,14 @@
     <div class="custom-menu-data-container custom-menu-data-container--example">
       <div class="custom-menu-data-class-example" style="display: none;">
         <div class="syslib-tab-menu-data--close">X</div>
-        <div class="codewrapper"><p>Inside your 'Startup' class:</p>
+        <div class="codewrapper"><p>Startup.cs/Program.cs:</p>
 <pre><code>public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 {
     var options = new CommonWebApplicationBuilderOptions();
+
     options.UseHttpRedrectionAndHsts = false;
-    app.CommonAppBuilder(options);
+
+    app.CommonWebApplicationBuilder(options);
 }</code></pre>
 </div>
         <div class="comment-examples-container-bottom"></div>
@@ -237,7 +263,7 @@
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_UseAuthenticationAndAuthorization">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/CommonWebApplicationBuilderOptions.cs/#L34">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/CommonWebApplicationBuilderOptions.cs/#L38">View Source</a>
   	</span>
   </div>
   
@@ -280,7 +306,7 @@
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_UseControllerEndpoints">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/CommonWebApplicationBuilderOptions.cs/#L39">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/CommonWebApplicationBuilderOptions.cs/#L43">View Source</a>
   	</span>
   </div>
   
@@ -323,7 +349,7 @@
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_UseDefaultRouting">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/CommonWebApplicationBuilderOptions.cs/#L29">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/CommonWebApplicationBuilderOptions.cs/#L33">View Source</a>
   	</span>
   </div>
   
@@ -361,7 +387,7 @@
   <div class="custom-menu-summary-data">
   	<div class="markdown level1 summary member-summary"><p>Adds middleware which responds with a exception page</p>
 <ul>
-<li>The exception page is never shown if Environment.IsProd is true</li>
+<li>The exception page is never shown if Environment.IsProd is true, unless you set this to false and you call on 'UseDeveloperExceptionPage' yourself</li>
 <li>Unless you set this flag to false, and register the Dev page yourself under your conditions</li>
 </ul>
 </div>
@@ -370,7 +396,7 @@
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_UseExceptionPageInTestAndDev">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/CommonWebApplicationBuilderOptions.cs/#L59">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/CommonWebApplicationBuilderOptions.cs/#L63">View Source</a>
   	</span>
   </div>
   
@@ -411,14 +437,14 @@
   	<div class="markdown level1 conceptual member-summary-conceptual"></div>
   </div>
   
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_UseHttpRedirectionAndHsts">
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_UseHttpToHttpsRedirectionAndHsts">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/CommonWebApplicationBuilderOptions.cs/#L24">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/CommonWebApplicationBuilderOptions.cs/#L28">View Source</a>
   	</span>
   </div>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_UseHttpRedirectionAndHsts" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseHttpRedirectionAndHsts" class="h4-custom-functionName">public bool UseHttpRedirectionAndHsts</h4>
+  	<h4 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_UseHttpToHttpsRedirectionAndHsts" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseHttpToHttpsRedirectionAndHsts" class="h4-custom-functionName">public bool UseHttpToHttpsRedirectionAndHsts</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
@@ -456,7 +482,7 @@
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_UseRazorPagesEndpoints">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/CommonWebApplicationBuilderOptions.cs/#L44">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/CommonWebApplicationBuilderOptions.cs/#L48">View Source</a>
   	</span>
   </div>
   
@@ -504,7 +530,7 @@
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_UseStaticFiles">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/CommonWebApplicationBuilderOptions.cs/#L52">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/CommonWebApplicationBuilderOptions.cs/#L56">View Source</a>
   	</span>
   </div>
   
@@ -549,7 +575,7 @@
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_UseHttpsAndSecureCookiePolicy">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/CommonWebApplicationBuilderOptions.cs/#L64">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/CommonWebApplicationBuilderOptions.cs/#L68">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_UseHttpsAndSecureCookiePolicy_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseHttpsAndSecureCookiePolicy*"></a>
@@ -1229,7 +1255,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/CommonWebApplicationBuilderOptions.cs/#L19" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/CommonWebApplicationBuilderOptions.cs/#L23" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

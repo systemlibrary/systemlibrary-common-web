@@ -8,7 +8,7 @@
 
 ## First time usage
 1. Create a new Asp.Net Core Empty .NET 6 project
-2. Add SystemLibrary.Common.Web
+2. Add SystemLibrary.Common.Web nuget package
 3. Add Startup.cs at root of the web project
 4. Add appSettings.json at root of the web project
 

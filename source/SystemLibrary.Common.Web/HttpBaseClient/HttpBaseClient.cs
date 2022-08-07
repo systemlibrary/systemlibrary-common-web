@@ -8,6 +8,7 @@ namespace SystemLibrary.Common.Web;
 
 /// <summary>
 /// HttpBaseClient is a class for all http(s) requests in your project
+/// - Note: Polly (nuget package) does similar thing which does similar thing about Retry, and it does a few other things, but last time I checked; it does not reuse the TCP connection)
 /// 
 /// Has:
 /// - a retry handler configured through constructor
@@ -206,9 +207,32 @@ public partial class HttpBaseClient
     /// 
     /// var client = new Client();
     /// 
-    /// var json = client.Get();
-    /// //json the text from the response, if server sent json formatted text, that is what it now contains
-    /// //if server sends XML response, the XML is not converted to json... the response from server is at is it in string format
+    /// var data = client.Get();
+    ///
+    /// //'data' contains the response as string
+    /// </code>
+    /// 
+    /// A sample with a Class as return type:
+    /// <code>
+    /// public class Car 
+    /// {
+    ///     public string Name { get; set; }
+    /// }
+    /// 
+    /// class Client : HttpBaseClient 
+    /// {
+    ///     public string Get()
+    ///     {
+    ///         return base.Get&lt;Car&gt;("https://www.systemlibrary.com/", MediaType.json, 2000).Data;
+    ///     }
+    /// }
+    /// 
+    /// var data = new Client().Get();
+    /// 
+    /// //'data' is now a Car (or null, if server responsed with nothing)
+    /// //Note: This assumes response is on json formatted text, so it can be de-serialized into a Car
+    /// //Note2: There's no de-serialization for XML responses
+    /// //Note3: There's 'de-serialization' for plain text responses if the response contans only one value type: bool, a datetime, an int. For instance a response '999' can be converted to &lt;int&gt;
     /// </code>
     /// </example>
     public ClientResponse<T> Get<T>(string url, MediaType mediaType = MediaType.json, int timeoutMilliseconds = DefaultTimeoutMilliseconds, IDictionary<string, string> headers = null, JsonSerializerOptions jsonSerializerOptions = default, CancellationToken cancellationToken = default)

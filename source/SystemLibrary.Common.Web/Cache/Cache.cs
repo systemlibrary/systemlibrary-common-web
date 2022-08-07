@@ -75,7 +75,11 @@ public static class Cache
     }
 
     /// <summary>
-    /// Get data from cache as T, or default T if it does not exist in cache or if you are not in a web-context
+    /// Get data from cache as T
+    /// 
+    /// Returns default T if it does not exist in cache
+    /// 
+    /// Returns default T in a non-web-context
     /// </summary>
     /// <example>
     /// Simple get object from cache based on a cache key:
@@ -272,6 +276,12 @@ public static class Cache
     /// - If it does not exist, it does nothing
     /// - If context is not web, it does nothing
     /// </summary>
+    /// <example>
+    /// <code>
+    /// string removeCacheKey = "hello world";
+    /// Cache.Remove(removeCacheKey);
+    /// </code>
+    /// </example>
     public static void Remove(string cacheKey)
     {
         if (cacheKey.IsNot()) return;
@@ -282,6 +292,11 @@ public static class Cache
     /// <summary>
     /// Clear everything found in cache
     /// </summary>
+    /// <example>
+    /// <code>
+    /// Cache.Clear();
+    /// </code>
+    /// </example>
     public static void Clear()
     {
         var entries = typeof(MemoryCache).GetProperty("EntriesCollection", BindingFlags.NonPublic | BindingFlags.Instance);

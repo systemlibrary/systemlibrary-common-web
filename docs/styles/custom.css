@@ -2,7 +2,7 @@
   --red: #cf222e;
   --purple: #8250df;
   --grey: #6e7781;
-  --green: #1a7f37;
+  --green: #0aa336;
   --dark-blue: #0a3069;
   --black: #24292f;
   --yellow: #fff8c5;
@@ -12,6 +12,8 @@
   --pink: #b84d8c;
   --brown: #b88d4d;
   --blue: #5c94c4;
+
+  --light-black: #414141;
 }
 
 * {
@@ -238,10 +240,10 @@ body > div#wrapper div.container.hide-when-search > ul {
 }
 
 div#breadcrumb {
-  background-color: var(--brown);
+  background-color: var(--light-black);
 }
 header > div.subnav.navbar.navbar-default {
-  background-color: var(--brown);
+  background-color: var(--light-black);
 }
 
 .breadcrumb a:hover,
@@ -541,7 +543,7 @@ div.h1-class-summary-container {
 div.summary.h1-class-summary * {
   margin-bottom: 1em;
   color: var(--green) !important;
-  font-family: var(--font-code);
+  font-family: var(--font-text);
 
   font-size: 16px;
   line-height: 1.4;
@@ -563,16 +565,12 @@ div.summary.h1-class-summary * {
 .h1-class-summary-container > .markdown.level0.summary.h1-class-summary > p,
 .h1-class-summary-container > .markdown.level0.summary.h1-class-summary > ul {
   position: relative;
-  padding-left: 20px;
   overflow: hidden;
-  margin-bottom: 4px;
-  margin-top: 2px;
   font-size: 15px;
-  line-height: 21px;
-  font-size: 15px;
+  line-height: 1.6;
   margin: 0;
   padding: 0;
-  padding-left: 2em;
+  margin-bottom: 6px;
 }
 .h1-class-summary-container
   > .markdown.level0.summary.h1-class-summary
@@ -585,7 +583,8 @@ div.summary.h1-class-summary * {
   padding-left: 0px !important;
 }
 
-.h1-class-summary-container
+/* Not using these 'comments' in front of a 'summary comment' */
+/* .h1-class-summary-container
   > .markdown.level0.summary.h1-class-summary
   > p:before,
 .h1-class-summary-container
@@ -598,7 +597,7 @@ div.summary.h1-class-summary * {
   font-size: 15px;
   line-height: 24px;
   top: -2px;
-}
+} */
 
 .h1-class-summary-container
   > .markdown.level0.summary.h1-class-summary
@@ -723,7 +722,8 @@ div.custom-menu-summary-data {
 
 div.custom-menu-summary-data * {
   font-weight: 400;
-  font-family: var(--font-code);
+  font-family: var(--font-text);
+  font-size: 15px;
 }
 
 .custom-menu-data-container {
@@ -1185,3 +1185,4 @@ div.codewrapper > ul > li > p.modest-p {
 article.content.wrap > h1.text-break {
   font-size: 42px;
 }
+

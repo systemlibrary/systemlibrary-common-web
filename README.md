@@ -4,6 +4,7 @@
 Library with classes and methods for every .NET &gt;= 6 web application
 
 ### Features
+#### One line setup
 - Setup IApplicationBuilder in one line: app.CommonWebApplicationBuilder();
 - Setup IServiceCollection in one line: services.CommonWebApplicationServices();
 
@@ -12,7 +13,8 @@ The two methods in short enables:
 - routes requests to controllers
 - registers AspNet.Mvc services
 - enables usage of Authorization and Authentication attributes
-
+  
+#### Modules
 - HttpBaseClient which reuses the underlyinc TCP connection, no more socket exhaustion, saving 10's of milliseconds each subsequent request
 - Log class in global namespace
   * Log.Write() is "equivalent" to console.log in javascript  
@@ -26,9 +28,14 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-- 6.0.0.14
+- 6.1.0.1
+- Default view locations is removed, up to app developers to register all view locations (breaking change)
+- AreaViewLocations is now an option to pass to CommonWebApplicationServices()
+- UseHttpRedirectionAndHsts renamed to UseHttpToHttpsRedirectionAndHsts (breaking change)
+- UseDeveloperExceptionPage previously never was set in environment 'Prod', this is now removed, it is either used or not used, no longer environment dependent
+- Use HttpsAndSecureCookieOptions - now actually sets those options
 - Updated deps
-- Added readme.md to nupkg
+- Updated docs
 
 #### Version history
 - View git history of this file if interested

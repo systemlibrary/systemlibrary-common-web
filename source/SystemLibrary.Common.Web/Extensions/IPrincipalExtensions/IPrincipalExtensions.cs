@@ -8,7 +8,7 @@ namespace SystemLibrary.Common.Web.Extensions;
 public static class IPrincipalExtensions
 {
     /// <summary>
-    /// Check if principal is in any role
+    /// Check if principal is in any role, case sensitive
     /// 
     /// Returns true if so, else false
     /// </summary>

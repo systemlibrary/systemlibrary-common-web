@@ -12,24 +12,26 @@ using Microsoft.AspNetCore.Routing;
 namespace SystemLibrary.Common.Web;
 
 /// <summary>
-/// HtmlHelperFactory lets you get a new HtmlBuilder in the backend, outside of your View Context
-/// - Either use injection or simply call its ctor
+/// HtmlHelperFactory builds a new instance of a HtmlBuilder outside of your View Context
 /// </summary>
 public class HtmlHelperFactory
 {
     //Creds to: https://stackoverflow.com/questions/42039269/create-custom-html-helper-in-asp-net-core/51466436#51466436
 
     /// <summary>
-    /// Returns a built generic HtmlHelper
+    /// Returns a generic HtmlHelper instance
     /// </summary>
     /// <example>
     /// Usage:
     /// <code class="language-csharp hljs">
-    /// var factory = new HtmlHelperFactory();
-    /// var htmlHelper = factory.Build&lt;Car&gt;();
+    /// class ViewModel 
+    /// {
+    ///     public string Title { get; set; }
+    /// }
+    /// var htmlHelper = HtmlHelperFactory.Build&lt;ViewModel&gt;();
     /// </code>
     /// </example>
-    public IHtmlHelper<T> Build<T>() where T : class
+    public static IHtmlHelper<T> Build<T>() where T : class
     {
         var viewContext = GetViewContext();
 
@@ -40,16 +42,15 @@ public class HtmlHelperFactory
     }
 
     /// <summary>
-    /// Returns a built HtmlHelper
+    /// Returns a HtmlHelper instance
     /// </summary>
     /// <example>
     /// Usage:
     /// <code class="language-csharp hljs">
-    /// var factory = new HtmlHelperFactory();
-    /// var htmlHelper = factory.Build();
+    /// var htmlHelper = HtmlHelperFactory.Build();
     /// </code>
     /// </example>
-    public IHtmlHelper Build()
+    public static IHtmlHelper Build()
     {
         var viewContext = GetViewContext();
 

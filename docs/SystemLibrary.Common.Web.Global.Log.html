@@ -130,13 +130,34 @@
                         if (links) {
                           var queryLowered = query.toLowerCase();
                           for (var j = 0; j < links.length; j++) {
-                            var link = links[j];
+                            try {
+                              var link = links[j];
       
-                            if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
-                              var parent = link.parentNode;
-                              if (parent && parent.remove) {
-                                parent.remove();
+                              if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
+                                var parent = link.parentNode;
+                                if (parent && parent.remove) {
+                                  var namespaceParent = parent.parentNode;
+      
+                                  parent.remove();
+      
+                                  if (namespaceParent && namespaceParent.parentNode) {
+                                    if (namespaceParent.classList.contains('level2')) {
+                                      var namespaceRemainingListItems = namespaceParent.children;
+                                      if (namespaceRemainingListItems && namespaceRemainingListItems.length
+                                        && namespaceRemainingListItems.length > 1) {
+                                      } else {
+                                        var namespaceLink = namespaceParent.parentNode;
+                                        if (namespaceLink && namespaceLink.remove) {
+                                          namespaceLink.remove();
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
                               }
+                            }
+                            catch (e) {
+                              console.warn("Error cleaning a link in sidetoc, continuing...");
                             }
                           }
                         }
@@ -257,7 +278,7 @@
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Global_Log_Debug_System_Object_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L271">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L275">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_Global_Log_Debug_" data-uid="SystemLibrary.Common.Web.Global.Log.Debug*"></a>
@@ -312,7 +333,7 @@
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Global_Log_Error_System_Object_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L239">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L243">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_Global_Log_Error_" data-uid="SystemLibrary.Common.Web.Global.Log.Error*"></a>
@@ -367,7 +388,7 @@
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Global_Log_Info_System_Object_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L288">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L292">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_Global_Log_Info_" data-uid="SystemLibrary.Common.Web.Global.Log.Info*"></a>
@@ -422,7 +443,7 @@
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Global_Log_Warning_System_Object_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L255">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L259">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_Global_Log_Warning_" data-uid="SystemLibrary.Common.Web.Global.Log.Warning*"></a>
@@ -482,7 +503,7 @@
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Global_Log_Write_System_Object_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L313">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L317">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_Global_Log_Write_" data-uid="SystemLibrary.Common.Web.Global.Log.Write*"></a>
@@ -1177,7 +1198,7 @@ Log.Write(list);
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L226" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L230" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

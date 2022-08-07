@@ -257,12 +257,6 @@ references:
   commentId: F:SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseExceptionPageInTestAndDev
   fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseExceptionPageInTestAndDev
   nameWithType: CommonWebApplicationBuilderOptions.UseExceptionPageInTestAndDev
-- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseHttpRedirectionAndHsts
-  name: UseHttpRedirectionAndHsts
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_UseHttpRedirectionAndHsts
-  commentId: F:SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseHttpRedirectionAndHsts
-  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseHttpRedirectionAndHsts
-  nameWithType: CommonWebApplicationBuilderOptions.UseHttpRedirectionAndHsts
 - uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseHttpsAndSecureCookiePolicy
   name: UseHttpsAndSecureCookiePolicy
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_UseHttpsAndSecureCookiePolicy
@@ -276,6 +270,12 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseHttpsAndSecureCookiePolicy
   nameWithType: CommonWebApplicationBuilderOptions.UseHttpsAndSecureCookiePolicy
+- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseHttpToHttpsRedirectionAndHsts
+  name: UseHttpToHttpsRedirectionAndHsts
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_UseHttpToHttpsRedirectionAndHsts
+  commentId: F:SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseHttpToHttpsRedirectionAndHsts
+  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseHttpToHttpsRedirectionAndHsts
+  nameWithType: CommonWebApplicationBuilderOptions.UseHttpToHttpsRedirectionAndHsts
 - uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseRazorPagesEndpoints
   name: UseRazorPagesEndpoints
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_UseRazorPagesEndpoints
@@ -359,6 +359,19 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorRuntimeReCompilationOnViewChanged
   nameWithType: CommonWebApplicationServicesOptions.AddRazorRuntimeReCompilationOnViewChanged
+- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AreaViewLocations
+  name: AreaViewLocations
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AreaViewLocations
+  commentId: P:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AreaViewLocations
+  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AreaViewLocations
+  nameWithType: CommonWebApplicationServicesOptions.AreaViewLocations
+- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AreaViewLocations*
+  name: AreaViewLocations
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AreaViewLocations_
+  commentId: Overload:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AreaViewLocations
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AreaViewLocations
+  nameWithType: CommonWebApplicationServicesOptions.AreaViewLocations
 - uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.SupportedMediaTypes
   name: SupportedMediaTypes
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_SupportedMediaTypes

@@ -4,23 +4,38 @@ using Microsoft.AspNetCore.Mvc.Razor;
 namespace SystemLibrary.Common.Web.Extensions;
 
 /// <summary>
-/// Options class for Service registration
+///  Web Application Services Options
+/// 
+/// All options are 'true' (on) by default
 /// </summary>
 /// <example>
-/// Inside your 'Startup' class:
+/// Inside your startup.cs/program.cs...
 /// <code>
-/// //Add your custom view locations, where your app has views located
 /// public class CustomViewLocations : IViewLocationExpander
 /// {
-///    //...implement the interface
+///     //...implement the interface
+///     public IEnumerable&lt;string&gt; ExpandViewLocations(ViewLocationExpanderContext context, IEnumerable&lt;string&gt; viewLocations)
+///     {
+///         return new string[] {   
+///             "~/Folder2/{0}/Index.cshtml"
+///         }
+///     }
 /// }
 /// 
-/// //the familiar 'startup.cs':
 /// public void ConfigureServices(IServiceCollection services)
 /// {
 ///     var options = new CommonWebApplicationServicesOptions();
+///     
 ///     options.AddControllers = false;
-///     options.ViewLocations = new CustomViewLocations();
+///     //Note: two ways to add view locations, either through an Expander class
+///     options.ViewLocationExpander = new CustomViewLocations();
+///     
+///     //Or directly adding a string array
+///     options.ViewLocations = new string[] {
+///         "~/Folder/{0}/Index.cshtml",
+///         "~/Folder/{1}/{0}.cshtml"
+///     }
+///     
 ///     app.CommonWebApplicationServices(options);
 /// }
 /// </code>
@@ -56,15 +71,43 @@ public class CommonWebApplicationServicesOptions
 
     /// <summary>
     /// Pass in an object that implements the interface if you want to extend View Locations
-    /// - Another option is to simply set 'ViewLocations' variable
+    /// - Another option is to simply set 'ViewLocations' variable or 'AreaViewLocations'
     /// </summary>
     public IViewLocationExpander ViewLocationExpander { get; set; }
 
     /// <summary>
-    /// Pass in a string array of view location formats, for instance:
-    /// ViewLocations = new string[] { "~/Pages/{0}/{1}.cshtml" };
-    /// </summary>
+    /// Pass in a string array of view location formats
+    /// 
+    /// Example:
+    /// ViewLocations = new string[] { "~/Pages/{1}/{0}.cshtml" };
+    /// 
+    /// Note: This sets non-area view locations
+    /// </summary
+    /// <example>
+    /// Simple example:
+    /// <code>
+    /// var options = new CommonWebApplicationServicesOptions();
+    /// options.ViewLocations = new string[] { "~/Pages/{2}/{1}/{0}.cshtml" }
+    /// </code>
+    /// </example>
     public string[] ViewLocations { get; set; }
+
+    /// <summary>
+    /// Pass in a string array of area view location formats
+    /// 
+    /// Example:
+    /// AreaViewLocations = new string[] { "~/Area/{2}/{1}/{0}.cshtml" };
+    /// 
+    /// Note: This sets area view locations
+    /// </summary
+    /// <example>
+    /// Simple example:
+    /// <code>
+    /// var options = new CommonWebApplicationServicesOptions();
+    /// options.ViewLocations = new string[] { "~/Pages/{2}/{1}/{0}.cshtml" }
+    /// </code>
+    /// </example>
+    public string[] AreaViewLocations { get; set; }
 
     /// <summary>
     /// Create your own class that inherits 'StringOutputFormatter' which sets all 'SupportedMediaTypes' in its constructor
@@ -72,5 +115,5 @@ public class CommonWebApplicationServicesOptions
     /// A default 'string output formatter' will always be added to your application, so responses/files like CSS, JS, JPG, PNG, JSON, etc are allowed
     /// </summary>
     public StringOutputFormatter SupportedMediaTypes { get; set; }
-    
+
 }

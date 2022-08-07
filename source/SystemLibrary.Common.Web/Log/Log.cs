@@ -1,15 +1,19 @@
 ﻿using SystemLibrary.Common.Web;
 
 /// <summary>
-/// One log class for your whole application
+/// Log class, responsible for taking a message or exception, appending some more data based on the current request, and send that data as one message to your LogWriter
 /// 
-/// This lives in the Global Namespace - so it is available inside your views, controllers, services, anywhere, as long as the nuget package is added
+/// Log exists in the global namespace
 /// 
-/// - You implement the actual LogWriter : ILogWriter of where the message should be stored
-/// - Remember to register your LogWriter as a service in your application
-/// - After implementing ILogWriter, simply call Log.Error, Log.Warning or Log.Write to create a log message and it will passed to your implementation of ILogWriter
+/// - You implement LogWriter : ILogWriter, which controls where you store the message
+/// - You register LogWriter as a service in your application
 /// 
-/// - If you have not registered an ILogWriter interface this simply calls on Dump.Write() with the message
+/// Usage:
+/// Log.Error() creates a log message which again calls your LogWriter with the message
+/// - You can then add additional data to the message before storing, up to you
+/// 
+/// Note:
+/// If you do not register ILogWriter this calls Dump.Write(message);
 /// </summary>
 /// <example>
 /// Configure log options in appSettings.json

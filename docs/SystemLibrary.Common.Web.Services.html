@@ -130,13 +130,34 @@
                         if (links) {
                           var queryLowered = query.toLowerCase();
                           for (var j = 0; j < links.length; j++) {
-                            var link = links[j];
+                            try {
+                              var link = links[j];
       
-                            if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
-                              var parent = link.parentNode;
-                              if (parent && parent.remove) {
-                                parent.remove();
+                              if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
+                                var parent = link.parentNode;
+                                if (parent && parent.remove) {
+                                  var namespaceParent = parent.parentNode;
+      
+                                  parent.remove();
+      
+                                  if (namespaceParent && namespaceParent.parentNode) {
+                                    if (namespaceParent.classList.contains('level2')) {
+                                      var namespaceRemainingListItems = namespaceParent.children;
+                                      if (namespaceRemainingListItems && namespaceRemainingListItems.length
+                                        && namespaceRemainingListItems.length > 1) {
+                                      } else {
+                                        var namespaceLink = namespaceParent.parentNode;
+                                        if (namespaceLink && namespaceLink.remove) {
+                                          namespaceLink.remove();
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
                               }
+                            }
+                            catch (e) {
+                              console.warn("Error cleaning a link in sidetoc, continuing...");
                             }
                           }
                         }
@@ -176,12 +197,17 @@
   <div class="markdown level0 conceptual h1-class-conceptual"></div>
   
   <div class="h1-class-summary-container">
-    <div class="markdown level0 summary h1-class-summary"><p>Dependency injection registry with all services</p>
+    <div class="markdown level0 summary h1-class-summary"><p>Dependency injection registry</p>
 <ul>
-<li>Look at it as ServiceLocator</li>
-<li>Works both in Unit Tests (console app's) and in your Web Application</li>
+<li><p>look at it as 'Service Locator'</p>
+</li>
+<li><p>works in unit tests, console app's and web applications</p>
+</li>
 </ul>
-<p>Note: Requires a call in your Startup services.CommonWebApplicationServices() before it can be used</p>
+<p>Usage:</p>
+<ul>
+<li>requires a call in startup/program to 'services.CommonWebApplicationServices()' before usage</li>
+</ul>
 </div>
   </div>
   
@@ -205,19 +231,20 @@
         <div class="codewrapper"><pre><code>public class Car : IVehicle 
 { 
     public string Name = &quot;Some car name&quot;;
-}
-
-//Inside your startup/initialize class
-public void ConfigureServices(IServiceCollection services)
+}</code></pre>
+<p>Startup.cs/Program.cs:</p>
+<pre><code>public void ConfigureServices(IServiceCollection services)
 {
    var options = new CommonWebApplicationServicesOptions();
-   services.CommonWebApplicationServices(options);
-   services.AddTransient&lt;IVehicle, Car>();
-}
 
-//Anywhere in your solution, for instance in a Controller? In a view? In ...
-var car = Services.Get>IVehicle&lt;
-car.Name //car is not null, it has been constructed for you, so this is allowed</code></pre>
+   services.CommonWebApplicationServices(options);
+
+   services.AddTransient&lt;IVehicle, Car>();
+}</code></pre>
+<p>In a controller or anywhere after the initialization of services has ran:</p>
+<pre><code>var car = Services.Get>IVehicle&lt;
+car.Name //&apos;car&apos; is constructed so it&apos;s not null
+Dump.Write(car.GetType()); //dumps &apos;Car&apos;, not &apos;IVehicle&apos;</code></pre>
 </div>
         <div class="comment-examples-container-bottom"></div>
       </div>
@@ -250,13 +277,14 @@ car.Name //car is not null, it has been constructed for you, so this is allowed<
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Services_Get__1">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Services/Services.cs/#L68">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Services/Services.cs/#L73">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_Services_Get_" data-uid="SystemLibrary.Common.Web.Services.Get*"></a>
   
   <div class="custom-menu-data">
   	<h4 id="SystemLibrary_Common_Web_Services_Get__1" data-uid="SystemLibrary.Common.Web.Services.Get``1" class="h4-custom-functionName">public static T Get&lt;T&gt;()
+
     where T : class</h4>
   	<div class="custom-menu-data-container">
   		<div class="custom-menu-data-name" style="display: none;">
@@ -315,14 +343,14 @@ car.Name //car is not null, it has been constructed for you, so this is allowed<
   <div class="custom-container">
   <div class="custom-menu-summary-data">
   	<div class="markdown level1 summary member-summary"><p>Tries to remove the service registered, or does nothing if already removed</p>
-<p>Throws exception if called too early in the &quot;middleware pipeline&quot;</p>
+<p>Note: can throw exception if it is invoked on too early in the 'middleware pipeline'</p>
 </div>
   	<div class="markdown level1 conceptual member-summary-conceptual"></div>
   </div>
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Services_Remove__1">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Services/Services.cs/#L88">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Services/Services.cs/#L93">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_Services_Remove_" data-uid="SystemLibrary.Common.Web.Services.Remove*"></a>
@@ -1013,7 +1041,7 @@ car.Name //car is not null, it has been constructed for you, so this is allowed<
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Services/Services.cs/#L35" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Services/Services.cs/#L45" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

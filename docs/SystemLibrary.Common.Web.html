@@ -130,13 +130,34 @@
                         if (links) {
                           var queryLowered = query.toLowerCase();
                           for (var j = 0; j < links.length; j++) {
-                            var link = links[j];
+                            try {
+                              var link = links[j];
       
-                            if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
-                              var parent = link.parentNode;
-                              if (parent && parent.remove) {
-                                parent.remove();
+                              if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
+                                var parent = link.parentNode;
+                                if (parent && parent.remove) {
+                                  var namespaceParent = parent.parentNode;
+      
+                                  parent.remove();
+      
+                                  if (namespaceParent && namespaceParent.parentNode) {
+                                    if (namespaceParent.classList.contains('level2')) {
+                                      var namespaceRemainingListItems = namespaceParent.children;
+                                      if (namespaceRemainingListItems && namespaceRemainingListItems.length
+                                        && namespaceRemainingListItems.length > 1) {
+                                      } else {
+                                        var namespaceLink = namespaceParent.parentNode;
+                                        if (namespaceLink && namespaceLink.remove) {
+                                          namespaceLink.remove();
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
                               }
+                            }
+                            catch (e) {
+                              console.warn("Error cleaning a link in sidetoc, continuing...");
                             }
                           }
                         }
@@ -184,14 +205,14 @@
       <section id="SystemLibrary.Common.Web.Cache--description"><p>Caching for web applications</p>
 <p>Default duration is 180 seconds</p>
 <ul>
-<li>configurable in appSettings.json</li>
+<li>configurable in appSettings.json or per Get() invokation</li>
 </ul>
 <p>Auto-generates a cachekey for you if you don't specify one</p>
 <ul>
-<li>if current user is authenticated and a ClaimsPrincipal, it adds all roles for the user to the cacheKey</li>
-<li>if current user is authenticated and is not a ClaimsPrincipal, the &quot;isAuthenticated&quot; value is appended to cacheKey only, no roles</li>
+<li>if current user is authenticated and user's identity is a 'ClaimsPrincipal', it adds all roles for the user to the cacheKey</li>
+<li>if current user is authenticated and user's identity is not a 'ClaimsPrincipal', then only the &quot;isAuthenticated&quot; value is appended to cacheKey, no user roles</li>
 </ul>
-<p>Optional skip cache scenarios by paramters can be applied</p>
+<p>Optionally, you can skip cache by setting parameters:</p>
 <ul>
 <li>skipForAuthenticatedUsers, false by default</li>
 <li>skipForAdmins, true by default</li>
@@ -213,13 +234,13 @@
       <section id="SystemLibrary.Common.Web.ClientResponse`1--description"><p>The main response class that all http requests in the HttpBaseClient returns</p>
 </section>
       <h4><a class="xref" href="SystemLibrary.Common.Web.HtmlHelperFactory.html">HtmlHelperFactory</a></h4>
-      <section id="SystemLibrary.Common.Web.HtmlHelperFactory--description"><p>HtmlHelperFactory lets you get a new HtmlBuilder in the backend, outside of your View Context</p>
-<ul>
-<li>Either use injection or simply call its ctor</li>
-</ul>
+      <section id="SystemLibrary.Common.Web.HtmlHelperFactory--description"><p>HtmlHelperFactory builds a new instance of a HtmlBuilder outside of your View Context</p>
 </section>
       <h4><a class="xref" href="SystemLibrary.Common.Web.HttpBaseClient.html">HttpBaseClient</a></h4>
       <section id="SystemLibrary.Common.Web.HttpBaseClient--description"><p>HttpBaseClient is a class for all http(s) requests in your project</p>
+<ul>
+<li>Note: Polly (nuget package) does similar thing which does similar thing about Retry, and it does a few other things, but last time I checked; it does not reuse the TCP connection)</li>
+</ul>
 <p>Has:</p>
 <ul>
 <li><p>a retry handler configured through constructor</p>
@@ -248,21 +269,25 @@
 <p>Note: A retry request gets a fixed timeout of 10 seconds to finish the request</p>
 </section>
       <h4><a class="xref" href="SystemLibrary.Common.Web.Services.html">Services</a></h4>
-      <section id="SystemLibrary.Common.Web.Services--description"><p>Dependency injection registry with all services</p>
+      <section id="SystemLibrary.Common.Web.Services--description"><p>Dependency injection registry</p>
 <ul>
-<li>Look at it as ServiceLocator</li>
-<li>Works both in Unit Tests (console app's) and in your Web Application</li>
+<li><p>look at it as 'Service Locator'</p>
+</li>
+<li><p>works in unit tests, console app's and web applications</p>
+</li>
 </ul>
-<p>Note: Requires a call in your Startup services.CommonWebApplicationServices() before it can be used</p>
+<p>Usage:</p>
+<ul>
+<li>requires a call in startup/program to 'services.CommonWebApplicationServices()' before usage</li>
+</ul>
 </section>
     <h3 id="interfaces">Interfaces
   </h3>
       <h4><a class="xref" href="SystemLibrary.Common.Web.ILogWriter.html">ILogWriter</a></h4>
-      <section id="SystemLibrary.Common.Web.ILogWriter--description"><p>ILogWriter is responsible to store the log messages inside your application</p>
+      <section id="SystemLibrary.Common.Web.ILogWriter--description"><p>ILogWriter is responsible for storing log messages</p>
 <ul>
-<li>Create a new class and implement the interface</li>
-<li>Register the interface and class as a 'service'</li>
-<li>Calling any of the public Log. methods will send the log message to your log writer which you control where to store</li>
+<li>Create a new class that implements ILogWriter</li>
+<li>Register your class as singleton implementation of the ILogWriter</li>
 </ul>
 </section>
     <h3 id="enums">Enums

@@ -6,11 +6,14 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 namespace SystemLibrary.Common.Web;
 
 /// <summary>
-/// Dependency injection registry with all services
-/// - Look at it as ServiceLocator
-/// - Works both in Unit Tests (console app's) and in your Web Application
+/// Dependency injection registry
 /// 
-/// Note: Requires a call in your Startup services.CommonWebApplicationServices() before it can be used
+/// - look at it as 'Service Locator'
+/// 
+/// - works in unit tests, console app's and web applications
+/// 
+/// Usage:
+/// - requires a call in startup/program to 'services.CommonWebApplicationServices()' before usage
 /// </summary>
 /// <example>
 /// <code class="language-csharp hljs">
@@ -18,18 +21,25 @@ namespace SystemLibrary.Common.Web;
 /// { 
 ///     public string Name = "Some car name";
 /// }
+/// </code>
 /// 
-/// //Inside your startup/initialize class
+/// Startup.cs/Program.cs:
+/// <code>
 /// public void ConfigureServices(IServiceCollection services)
 /// {
 ///    var options = new CommonWebApplicationServicesOptions();
+///    
 ///    services.CommonWebApplicationServices(options);
+///    
 ///    services.AddTransient&lt;IVehicle, Car&gt;();
 /// }
+/// </code>
 /// 
-/// //Anywhere in your solution, for instance in a Controller? In a view? In ...
+/// In a controller or anywhere after the initialization of services has ran:
+/// <code>
 /// var car = Services.Get&gt;IVehicle&lt;
-/// car.Name //car is not null, it has been constructed for you, so this is allowed
+/// car.Name //'car' is constructed so it's not null
+/// Dump.Write(car.GetType()); //dumps 'Car', not 'IVehicle'
 /// </code>
 /// </example>
 public static class Services
@@ -46,11 +56,6 @@ public static class Services
         {
             if (_ServiceProvider == null)
                 _ServiceProvider = ServiceProviderInstance;
-
-            //Commented out: Should never use the HttpContextInstance with RequestServices - as it might be null/disposed there depending on "when" we use it
-            //if (_ServiceProvider == null)
-            //    _ServiceProvider = HttpContextInstance.Current.RequestServices;
-
             return _ServiceProvider;
         }
     }
@@ -73,7 +78,7 @@ public static class Services
     /// <summary>
     /// Tries to remove the service registered, or does nothing if already removed
     /// 
-    /// Throws exception if called too early in the "middleware pipeline"
+    /// Note: can throw exception if it is invoked on too early in the 'middleware pipeline'
     /// </summary>
     /// <example>
     /// Usage:

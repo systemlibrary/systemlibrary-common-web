@@ -130,13 +130,34 @@
                         if (links) {
                           var queryLowered = query.toLowerCase();
                           for (var j = 0; j < links.length; j++) {
-                            var link = links[j];
+                            try {
+                              var link = links[j];
       
-                            if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
-                              var parent = link.parentNode;
-                              if (parent && parent.remove) {
-                                parent.remove();
+                              if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
+                                var parent = link.parentNode;
+                                if (parent && parent.remove) {
+                                  var namespaceParent = parent.parentNode;
+      
+                                  parent.remove();
+      
+                                  if (namespaceParent && namespaceParent.parentNode) {
+                                    if (namespaceParent.classList.contains('level2')) {
+                                      var namespaceRemainingListItems = namespaceParent.children;
+                                      if (namespaceRemainingListItems && namespaceRemainingListItems.length
+                                        && namespaceRemainingListItems.length > 1) {
+                                      } else {
+                                        var namespaceLink = namespaceParent.parentNode;
+                                        if (namespaceLink && namespaceLink.remove) {
+                                          namespaceLink.remove();
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
                               }
+                            }
+                            catch (e) {
+                              console.warn("Error cleaning a link in sidetoc, continuing...");
                             }
                           }
                         }
@@ -176,11 +197,10 @@
   <div class="markdown level0 conceptual h1-class-conceptual"></div>
   
   <div class="h1-class-summary-container">
-    <div class="markdown level0 summary h1-class-summary"><p>ILogWriter is responsible to store the log messages inside your application</p>
+    <div class="markdown level0 summary h1-class-summary"><p>ILogWriter is responsible for storing log messages</p>
 <ul>
-<li>Create a new class and implement the interface</li>
-<li>Register the interface and class as a 'service'</li>
-<li>Calling any of the public Log. methods will send the log message to your log writer which you control where to store</li>
+<li>Create a new class that implements ILogWriter</li>
+<li>Register your class as singleton implementation of the ILogWriter</li>
 </ul>
 </div>
   </div>
@@ -197,29 +217,27 @@
     <div class="custom-menu-data-container custom-menu-data-container--example">
       <div class="custom-menu-data-class-example" style="display: none;">
         <div class="syslib-tab-menu-data--close">X</div>
-        <div class="codewrapper"><pre><code>public class LogWriter : ILogWriter
+        <div class="codewrapper"><p>Program.cs/Startup.cs:</p>
+<pre><code>public void ConfigureServices(IServiceCollection services)
+{
+    services.AddSingleton(typeof(YourLogWriter), typeof(ILogWriter));
+}</code></pre>
+<p>Your LogWriter implementation:</p>
+<pre><code>public class YourLogWriter : ILogWriter
 { 
     public void Error(string message) 
     {
+        //Write message to slack? CloudWatch? Sentry.io? Local disc? Its up to you
     }
     ...
-}
-
-//Inside your startup/initialize class
-public void ConfigureServices(IServiceCollection services)
-{
-   var options = new CommonWebApplicationServicesOptions();
-   services.CommonWebApplicationServices(options);
-   services.AddTransient&lt;ILogWriter, LogWriter>();
-   //all other services you want to add...
-}
-
-//Usage
-Log.Error(&quot;hello world&quot;);
+}</code></pre>
+<p>Usage</p>
+<pre><code>Log.Error(&quot;hello world&quot;);
 Log.Warning(&quot;hello world&quot;);
 Log.Debug(&quot;hello world&quot;);
 Log.Info(&quot;hello world&quot;);
 Log.Write(&quot;hello world&quot;);</code></pre>
+<p>All calls to method in 'Log' will create a message, append various data, and pass it to your log writer</p>
 </div>
         <div class="comment-examples-container-bottom"></div>
       </div>
@@ -245,14 +263,14 @@ Log.Write(&quot;hello world&quot;);</code></pre>
   
   <div class="custom-container">
   <div class="custom-menu-summary-data">
-  	<div class="markdown level1 summary member-summary"><p>Implement where Log.Debug() is going to be stored, for instance your own DB, a file, or some services like CloudWatch, FireBase, Sentry, ...</p>
+  	<div class="markdown level1 summary member-summary"><p>Implement the writing of debug messages</p>
 </div>
   	<div class="markdown level1 conceptual member-summary-conceptual"></div>
   </div>
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_ILogWriter_Debug_System_String_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/ILogWriter.cs/#L52">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/ILogWriter.cs/#L55">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_ILogWriter_Debug_" data-uid="SystemLibrary.Common.Web.ILogWriter.Debug*"></a>
@@ -291,14 +309,14 @@ Log.Write(&quot;hello world&quot;);</code></pre>
   
   <div class="custom-container">
   <div class="custom-menu-summary-data">
-  	<div class="markdown level1 summary member-summary"><p>Implement where Log.Error() is going to be stored, for instance your own DB, a file, or some services like CloudWatch, FireBase, Sentry, ...</p>
+  	<div class="markdown level1 summary member-summary"><p>Implement the writing of error messages</p>
 </div>
   	<div class="markdown level1 conceptual member-summary-conceptual"></div>
   </div>
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_ILogWriter_Error_System_String_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/ILogWriter.cs/#L42">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/ILogWriter.cs/#L45">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_ILogWriter_Error_" data-uid="SystemLibrary.Common.Web.ILogWriter.Error*"></a>
@@ -337,14 +355,14 @@ Log.Write(&quot;hello world&quot;);</code></pre>
   
   <div class="custom-container">
   <div class="custom-menu-summary-data">
-  	<div class="markdown level1 summary member-summary"><p>Implement where Log.Info() is going to be stored, for instance your own DB, a file, or some services like CloudWatch, FireBase, Sentry, ...</p>
+  	<div class="markdown level1 summary member-summary"><p>Implement the writing of info messages</p>
 </div>
   	<div class="markdown level1 conceptual member-summary-conceptual"></div>
   </div>
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_ILogWriter_Info_System_String_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/ILogWriter.cs/#L57">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/ILogWriter.cs/#L60">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_ILogWriter_Info_" data-uid="SystemLibrary.Common.Web.ILogWriter.Info*"></a>
@@ -383,14 +401,14 @@ Log.Write(&quot;hello world&quot;);</code></pre>
   
   <div class="custom-container">
   <div class="custom-menu-summary-data">
-  	<div class="markdown level1 summary member-summary"><p>Implement where Log.Warning() is going to be stored, for instance your own DB, a file, or some services like CloudWatch, FireBase, Sentry, ...</p>
+  	<div class="markdown level1 summary member-summary"><p>Implement the writing of warning messages</p>
 </div>
   	<div class="markdown level1 conceptual member-summary-conceptual"></div>
   </div>
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_ILogWriter_Warning_System_String_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/ILogWriter.cs/#L47">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/ILogWriter.cs/#L50">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_ILogWriter_Warning_" data-uid="SystemLibrary.Common.Web.ILogWriter.Warning*"></a>
@@ -429,15 +447,15 @@ Log.Write(&quot;hello world&quot;);</code></pre>
   
   <div class="custom-container">
   <div class="custom-menu-summary-data">
-  	<div class="markdown level1 summary member-summary"><p>Implement where Log.Write() is going to be stored, for instance your own DB, a file, or some services like CloudWatch, FireBase, Sentry, ...</p>
-<p>Write() is always Invoked, no matter if you disable logging or set to invald log levels, it will be logged</p>
+  	<div class="markdown level1 summary member-summary"><p>Implement the writing of warning messages</p>
+<p>Note: Write() will always be invoked, even if you disable logging in appSettings</p>
 </div>
   	<div class="markdown level1 conceptual member-summary-conceptual"></div>
   </div>
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_ILogWriter_Write_System_String_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/ILogWriter.cs/#L64">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/ILogWriter.cs/#L67">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_ILogWriter_Write_" data-uid="SystemLibrary.Common.Web.ILogWriter.Write*"></a>
@@ -1119,7 +1137,7 @@ Log.Write(&quot;hello world&quot;);</code></pre>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/ILogWriter.cs/#L37" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/ILogWriter.cs/#L40" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

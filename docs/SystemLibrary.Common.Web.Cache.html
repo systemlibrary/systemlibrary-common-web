@@ -130,13 +130,34 @@
                         if (links) {
                           var queryLowered = query.toLowerCase();
                           for (var j = 0; j < links.length; j++) {
-                            var link = links[j];
+                            try {
+                              var link = links[j];
       
-                            if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
-                              var parent = link.parentNode;
-                              if (parent && parent.remove) {
-                                parent.remove();
+                              if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
+                                var parent = link.parentNode;
+                                if (parent && parent.remove) {
+                                  var namespaceParent = parent.parentNode;
+      
+                                  parent.remove();
+      
+                                  if (namespaceParent && namespaceParent.parentNode) {
+                                    if (namespaceParent.classList.contains('level2')) {
+                                      var namespaceRemainingListItems = namespaceParent.children;
+                                      if (namespaceRemainingListItems && namespaceRemainingListItems.length
+                                        && namespaceRemainingListItems.length > 1) {
+                                      } else {
+                                        var namespaceLink = namespaceParent.parentNode;
+                                        if (namespaceLink && namespaceLink.remove) {
+                                          namespaceLink.remove();
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
                               }
+                            }
+                            catch (e) {
+                              console.warn("Error cleaning a link in sidetoc, continuing...");
                             }
                           }
                         }
@@ -179,14 +200,14 @@
     <div class="markdown level0 summary h1-class-summary"><p>Caching for web applications</p>
 <p>Default duration is 180 seconds</p>
 <ul>
-<li>configurable in appSettings.json</li>
+<li>configurable in appSettings.json or per Get() invokation</li>
 </ul>
 <p>Auto-generates a cachekey for you if you don't specify one</p>
 <ul>
-<li>if current user is authenticated and a ClaimsPrincipal, it adds all roles for the user to the cacheKey</li>
-<li>if current user is authenticated and is not a ClaimsPrincipal, the &quot;isAuthenticated&quot; value is appended to cacheKey only, no roles</li>
+<li>if current user is authenticated and user's identity is a 'ClaimsPrincipal', it adds all roles for the user to the cacheKey</li>
+<li>if current user is authenticated and user's identity is not a 'ClaimsPrincipal', then only the &quot;isAuthenticated&quot; value is appended to cacheKey, no user roles</li>
 </ul>
-<p>Optional skip cache scenarios by paramters can be applied</p>
+<p>Optionally, you can skip cache by setting parameters:</p>
 <ul>
 <li>skipForAuthenticatedUsers, false by default</li>
 <li>skipForAdmins, true by default</li>
@@ -257,7 +278,7 @@
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Cache_Clear">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L283">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L300">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_Cache_Clear_" data-uid="SystemLibrary.Common.Web.Cache.Clear*"></a>
@@ -265,6 +286,12 @@
   <div class="custom-menu-data">
   	<h4 id="SystemLibrary_Common_Web_Cache_Clear" data-uid="SystemLibrary.Common.Web.Cache.Clear" class="h4-custom-functionName">public static void Clear()</h4>
   	<div class="custom-menu-data-container">
+  		<div class="custom-menu-data-name" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  			<div class="codewrapper"><pre><code>Cache.Clear();</code></pre>
+</div>
+  			<div class="comment-examples-container-bottom"></div>
+  		</div>
   
   		<div class="custom-menu-data-arguments" style="display: none;">
   			<div class="syslib-tab-menu-data--close">X</div>
@@ -287,13 +314,14 @@
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Cache_Get__1_System_Func___0__System_String_System_TimeSpan_System_Func___0_System_Boolean__System_Boolean_System_Boolean_System_Func_System_Boolean__System_Boolean_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L176">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L182">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_Cache_Get_" data-uid="SystemLibrary.Common.Web.Cache.Get*"></a>
   
   <div class="custom-menu-data">
   	<h4 id="SystemLibrary_Common_Web_Cache_Get__1_System_Func___0__System_String_System_TimeSpan_System_Func___0_System_Boolean__System_Boolean_System_Boolean_System_Func_System_Boolean__System_Boolean_" data-uid="SystemLibrary.Common.Web.Cache.Get``1(System.Func{``0},System.String,System.TimeSpan,System.Func{``0,System.Boolean},System.Boolean,System.Boolean,System.Func{System.Boolean},System.Boolean)" class="h4-custom-functionName">public static T Get&lt;T&gt;(Func&lt;T&gt; getItem, string cacheKey = null, TimeSpan duration = default(TimeSpan), Func&lt;T, bool&gt; condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func&lt;bool&gt; skipFor = null, bool debug = false)
+
     where T : class</h4>
   	<div class="custom-menu-data-container">
   		<div class="custom-menu-data-name" style="display: none;">
@@ -304,6 +332,7 @@ var data = Cache.Get(() => {
     return &quot;hello world&quot;;
 },
 cacheKey: cacheKey);
+
 //&apos;data&apos; is now &apos;hello world&apos;, if called multiple times within the default cache duration of 180 seconds, &quot;hello world&quot; is returned from the cache for all non-admin users</code></pre>
 <p>Example with multiple options passed, and a condition that always fails:</p>
 <pre><code>var cacheKey = &quot;hello-world-key&quot;;
@@ -330,7 +359,8 @@ class CarService
         skipForAdmins: false);
     }
 }
-//Note: This will cache the top 1 car for everyone, even logged in administrators/admins</code></pre>
+//Note: This will cache the top 1 car for everyone, even logged in administrators/admins because we set &apos;skipForAdmins&apos; to false,
+//If we should set skipForAdmins: true, then administrators would always invoke our method, the data would never come from cache for those users</code></pre>
 <p>Example without a cache key and with 'external' variables</p>
 <pre><code>namespace: Company.Services
 
@@ -461,20 +491,23 @@ class CarService
   
   <div class="custom-container">
   <div class="custom-menu-summary-data">
-  	<div class="markdown level1 summary member-summary"><p>Get data from cache as T, or default T if it does not exist in cache or if you are not in a web-context</p>
+  	<div class="markdown level1 summary member-summary"><p>Get data from cache as T</p>
+<p>Returns default T if it does not exist in cache</p>
+<p>Returns default T in a non-web-context</p>
 </div>
   	<div class="markdown level1 conceptual member-summary-conceptual"></div>
   </div>
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Cache_Get__1_System_String_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L90">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L94">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_Cache_Get_" data-uid="SystemLibrary.Common.Web.Cache.Get*"></a>
   
   <div class="custom-menu-data">
   	<h4 id="SystemLibrary_Common_Web_Cache_Get__1_System_String_" data-uid="SystemLibrary.Common.Web.Cache.Get``1(System.String)" class="h4-custom-functionName">public static T Get&lt;T&gt;(string cacheKey)
+
     where T : class</h4>
   	<div class="custom-menu-data-container">
   		<div class="custom-menu-data-name" style="display: none;">
@@ -563,7 +596,7 @@ var data = Cache.Get&lt;string>(cacheKey);
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Cache_Remove_System_String_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L273">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L285">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_Cache_Remove_" data-uid="SystemLibrary.Common.Web.Cache.Remove*"></a>
@@ -571,6 +604,13 @@ var data = Cache.Get&lt;string>(cacheKey);
   <div class="custom-menu-data">
   	<h4 id="SystemLibrary_Common_Web_Cache_Remove_System_String_" data-uid="SystemLibrary.Common.Web.Cache.Remove(System.String)" class="h4-custom-functionName">public static void Remove(string cacheKey)</h4>
   	<div class="custom-menu-data-container">
+  		<div class="custom-menu-data-name" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  			<div class="codewrapper"><pre><code>string removeCacheKey = &quot;hello world&quot;;
+Cache.Remove(removeCacheKey);</code></pre>
+</div>
+  			<div class="comment-examples-container-bottom"></div>
+  		</div>
   
   		<div class="custom-menu-data-arguments" style="display: none;">
   			<div class="syslib-tab-menu-data--close">X</div>

@@ -7,8 +7,6 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 
-using SystemLibrary.Common.Net;
-
 namespace SystemLibrary.Common.Web.Extensions;
 
 /// <summary>
@@ -17,28 +15,31 @@ namespace SystemLibrary.Common.Web.Extensions;
 public static class IApplicationBuilderExtensions
 {
     /// <summary>
-    /// Initialize app with common web application middlewares in one-line
+    /// Register common middlewares for a web application
     /// 
-    /// All middlewares can be turned on/off through the 'options' variable, by default they are all enabled:
-    /// Adds middleware for:
-    /// - Http to Https redirection middleware
-    /// - Routing middleware
+    /// Note: register all of your own middlewares after this one is called
+    /// 
+    /// This will register:
+    /// - Http to Https redirection middleware, client side and server side
+    /// - Routing urls to controllers middleware
+    /// - /api/ urls to controllers middleware
     /// - Authentication and Authorization attributes' middleware
-    /// - Serving Static files (CSS, jpg, js...) middleware
+    /// - Servince static files such as .css, .js, .jpg, etc... middleware
     /// - Forwarded headers middleware
-    /// - Controllers to Endpoints middleware
-    /// - RazorPages to Endpoints middleware
-    /// - Recompile RazorPage On Saved middleware
-    /// - Static file serving middleware
-    /// - Use Exception Page middleware
+    /// - Razor pages and Mvc middleware
+    /// - Secure cookie policy middleware
+    /// - Secure cookie policy (http only middleware
+    /// - Recompiling razor pages (saving a cshtml file) middleware
+    /// - Exception page middleware
     /// </summary>
     /// <example>
-    /// Inside your 'Startup' class:
+    /// Startup.cs/Program.cs:
     /// <code>
     /// public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     /// {
     ///     var options = new CommonWebApplicationBuilderOptions();
-    ///     app.CommonWebApplicationBuilder();
+    ///     
+    ///     app.CommonWebApplicationBuilder(options);
     /// }
     /// </code>
     /// </example>
@@ -49,12 +50,12 @@ public static class IApplicationBuilderExtensions
         if (options == null)
             options = new CommonWebApplicationBuilderOptions();
 
-        if (options.UseExceptionPageInTestAndDev && !EnvironmentConfig.Current.IsProd)
+        if (options.UseExceptionPageInTestAndDev)
         {
             app.UseDeveloperExceptionPage();
         }
 
-        if (options.UseHttpRedirectionAndHsts)
+        if (options.UseHttpToHttpsRedirectionAndHsts)
         {
             app.UseHsts();
             app.UseHttpsRedirection();
@@ -67,7 +68,11 @@ public static class IApplicationBuilderExtensions
 
         if (options.UseHttpsAndSecureCookiePolicy)
         {
-            app.UseCookiePolicy();
+            var cookieOptions = new CookiePolicyOptions() { };
+            cookieOptions.Secure = CookieSecurePolicy.SameAsRequest;
+            cookieOptions.HttpOnly = Microsoft.AspNetCore.CookiePolicy.HttpOnlyPolicy.Always;
+            cookieOptions.MinimumSameSitePolicy = SameSiteMode.Strict;
+            app.UseCookiePolicy(cookieOptions);
         }
 
         app.UseForwardedHeaders();

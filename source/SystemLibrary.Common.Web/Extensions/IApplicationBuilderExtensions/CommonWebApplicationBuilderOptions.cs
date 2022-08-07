@@ -1,18 +1,22 @@
 ﻿namespace SystemLibrary.Common.Web.Extensions;
 
 /// <summary>
-/// Application builder options
+/// Web Application Builder Options
 /// 
-/// For instance: control wether or not you want to force http redirection to https (both server and client side)
+/// All options are 'true' (on) by default
+/// 
+/// - Used as argument in 'app.CommonWebApplicationBuilder' function
 /// </summary>
 /// <example>
-/// Inside your 'Startup' class:
+/// Startup.cs/Program.cs:
 /// <code>
 /// public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 /// {
 ///     var options = new CommonWebApplicationBuilderOptions();
+///     
 ///     options.UseHttpRedrectionAndHsts = false;
-///     app.CommonAppBuilder(options);
+///     
+///     app.CommonWebApplicationBuilder(options);
 /// }
 /// </code>
 /// </example>
@@ -21,7 +25,7 @@ public class CommonWebApplicationBuilderOptions
     /// <summary>
     /// Adds middleware for http to https redirect
     /// </summary>
-    public bool UseHttpRedirectionAndHsts = true;
+    public bool UseHttpToHttpsRedirectionAndHsts = true;
 
     /// <summary>
     /// Adds the default routing middleware that comes with Aspnet

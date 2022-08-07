@@ -130,13 +130,34 @@
                         if (links) {
                           var queryLowered = query.toLowerCase();
                           for (var j = 0; j < links.length; j++) {
-                            var link = links[j];
+                            try {
+                              var link = links[j];
       
-                            if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
-                              var parent = link.parentNode;
-                              if (parent && parent.remove) {
-                                parent.remove();
+                              if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
+                                var parent = link.parentNode;
+                                if (parent && parent.remove) {
+                                  var namespaceParent = parent.parentNode;
+      
+                                  parent.remove();
+      
+                                  if (namespaceParent && namespaceParent.parentNode) {
+                                    if (namespaceParent.classList.contains('level2')) {
+                                      var namespaceRemainingListItems = namespaceParent.children;
+                                      if (namespaceRemainingListItems && namespaceRemainingListItems.length
+                                        && namespaceRemainingListItems.length > 1) {
+                                      } else {
+                                        var namespaceLink = namespaceParent.parentNode;
+                                        if (namespaceLink && namespaceLink.remove) {
+                                          namespaceLink.remove();
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
                               }
+                            }
+                            catch (e) {
+                              console.warn("Error cleaning a link in sidetoc, continuing...");
                             }
                           }
                         }
@@ -176,7 +197,8 @@
   <div class="markdown level0 conceptual h1-class-conceptual"></div>
   
   <div class="h1-class-summary-container">
-    <div class="markdown level0 summary h1-class-summary"><p>Options class for Service registration</p>
+    <div class="markdown level0 summary h1-class-summary"><p>Web Application Services Options</p>
+<p>All options are 'true' (on) by default</p>
 </div>
   </div>
   
@@ -197,19 +219,32 @@
     <div class="custom-menu-data-container custom-menu-data-container--example">
       <div class="custom-menu-data-class-example" style="display: none;">
         <div class="syslib-tab-menu-data--close">X</div>
-        <div class="codewrapper"><p>Inside your 'Startup' class:</p>
-<pre><code>//Add your custom view locations, where your app has views located
-public class CustomViewLocations : IViewLocationExpander
+        <div class="codewrapper"><p>Inside your startup.cs/program.cs...</p>
+<pre><code>public class CustomViewLocations : IViewLocationExpander
 {
-   //...implement the interface
+    //...implement the interface
+    public IEnumerable&lt;string> ExpandViewLocations(ViewLocationExpanderContext context, IEnumerable&lt;string> viewLocations)
+    {
+        return new string[] {   
+            &quot;~/Folder2/{0}/Index.cshtml&quot;
+        }
+    }
 }
 
-//the familiar &apos;startup.cs&apos;:
 public void ConfigureServices(IServiceCollection services)
 {
     var options = new CommonWebApplicationServicesOptions();
+
     options.AddControllers = false;
-    options.ViewLocations = new CustomViewLocations();
+    //Note: two ways to add view locations, either through an Expander class
+    options.ViewLocationExpander = new CustomViewLocations();
+
+    //Or directly adding a string array
+    options.ViewLocations = new string[] {
+        &quot;~/Folder/{0}/Index.cshtml&quot;,
+        &quot;~/Folder/{1}/{0}.cshtml&quot;
+    }
+
     app.CommonWebApplicationServices(options);
 }</code></pre>
 </div>
@@ -244,7 +279,7 @@ public void ConfigureServices(IServiceCollection services)
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddControllers">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L41">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L56">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddControllers_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddControllers*"></a>
@@ -288,7 +323,7 @@ public void ConfigureServices(IServiceCollection services)
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddHttpsAndSecureCookiePolicy">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L46">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L61">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddHttpsAndSecureCookiePolicy_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddHttpsAndSecureCookiePolicy*"></a>
@@ -332,7 +367,7 @@ public void ConfigureServices(IServiceCollection services)
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddMvcPages">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L33">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L48">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddMvcPages_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddMvcPages*"></a>
@@ -376,7 +411,7 @@ public void ConfigureServices(IServiceCollection services)
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddRazorPages">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L37">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L52">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddRazorPages_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorPages*"></a>
@@ -427,7 +462,7 @@ public void ConfigureServices(IServiceCollection services)
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddRazorRuntimeReCompilationOnViewChanged">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L55">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L70">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddRazorRuntimeReCompilationOnViewChanged_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorRuntimeReCompilationOnViewChanged*"></a>
@@ -463,6 +498,45 @@ public void ConfigureServices(IServiceCollection services)
   </table>
   
   <div class="custom-container">
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AreaViewLocations">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L110">View Source</a>
+  	</span>
+  </div>
+  <a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AreaViewLocations_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AreaViewLocations*"></a>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AreaViewLocations" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AreaViewLocations" class="h4-custom-functionName">public string[] AreaViewLocations { get; set; }</h4>
+  	<div class="custom-menu-data-container">
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.String</span>[]</td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  <div class="custom-container">
   <div class="custom-menu-summary-data">
   	<div class="markdown level1 summary member-summary"><p>Create your own class that inherits 'StringOutputFormatter' which sets all 'SupportedMediaTypes' in its constructor</p>
 <p>A default 'string output formatter' will always be added to your application, so responses/files like CSS, JS, JPG, PNG, JSON, etc are allowed</p>
@@ -472,7 +546,7 @@ public void ConfigureServices(IServiceCollection services)
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_SupportedMediaTypes">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L74">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L117">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_SupportedMediaTypes_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.SupportedMediaTypes*"></a>
@@ -511,7 +585,7 @@ public void ConfigureServices(IServiceCollection services)
   <div class="custom-menu-summary-data">
   	<div class="markdown level1 summary member-summary"><p>Pass in an object that implements the interface if you want to extend View Locations</p>
 <ul>
-<li>Another option is to simply set 'ViewLocations' variable</li>
+<li>Another option is to simply set 'ViewLocations' variable or 'AreaViewLocations'</li>
 </ul>
 </div>
   	<div class="markdown level1 conceptual member-summary-conceptual"></div>
@@ -519,7 +593,7 @@ public void ConfigureServices(IServiceCollection services)
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ViewLocationExpander">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L61">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L76">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ViewLocationExpander_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ViewLocationExpander*"></a>
@@ -555,16 +629,10 @@ public void ConfigureServices(IServiceCollection services)
   </table>
   
   <div class="custom-container">
-  <div class="custom-menu-summary-data">
-  	<div class="markdown level1 summary member-summary"><p>Pass in a string array of view location formats, for instance:
-ViewLocations = new string[] { &quot;~/Pages/{0}/{1}.cshtml&quot; };</p>
-</div>
-  	<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  </div>
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ViewLocations">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L67">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L93">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ViewLocations_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ViewLocations*"></a>
@@ -1244,7 +1312,7 @@ ViewLocations = new string[] { &quot;~/Pages/{0}/{1}.cshtml&quot; };</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L28" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L43" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
