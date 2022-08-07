@@ -94,7 +94,7 @@ public static class IApplicationBuilderExtensions
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();
-                endpoints.MapControllerRoute("api/{controller}/{action}", "api/{controller}/{action}/{id?}");
+                endpoints.MapControllerRoute("api/{controller}/{action}/{id?}", "api/{controller}/{action}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
