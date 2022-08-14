@@ -28,12 +28,7 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-- 6.1.0.1
-- Default view locations is removed, up to app developers to register all view locations (breaking change)
-- AreaViewLocations is now an option to pass to CommonWebApplicationServices()
-- UseHttpRedirectionAndHsts renamed to UseHttpToHttpsRedirectionAndHsts (breaking change)
-- UseDeveloperExceptionPage previously never was set in environment 'Prod', this is now removed, it is either used or not used, no longer environment dependent
-- Use HttpsAndSecureCookieOptions - now actually sets those options
+- 6.1.0.2
 - Updated deps
 - Updated docs
 
