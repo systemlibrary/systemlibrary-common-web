@@ -1,16 +1,17 @@
 ﻿using System.Net.Http;
 using System.Text;
 
-namespace SystemLibrary.Common.Web
+using SystemLibrary.Common.Net.Extensions;
+
+namespace SystemLibrary.Common.Web;
+
+partial class HttpBaseClient
 {
-    partial class HttpBaseClient
+    partial class Content
     {
-        partial class Content
+        static HttpContent GetBodyPlainText(object data, Encoding encoding = null, MediaType mediaType = MediaType.plain)
         {
-            static HttpContent GetBodyPlainText(object data, Encoding encoding = null)
-            {
-                return new StringContent(data is string ? data as string : data.ToString(), encoding != null ? encoding : Encoding.UTF8);
-            }
+            return new StringContent(data is string ? data as string : data.ToString(), encoding != null ? encoding : Encoding.UTF8, mediaType.ToValue());
         }
     }
 }

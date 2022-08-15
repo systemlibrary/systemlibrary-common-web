@@ -5,7 +5,7 @@
 		<Configurations>Release</Configurations>
 		<RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
 		<DefaultItemExcludes>$(DefaultItemExcludes);Release.cmd;**\*.nupkg;nuget-icon.png;</DefaultItemExcludes>
-		<Version>6.1.0.2</Version>
+		<Version>6.1.0.3</Version>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

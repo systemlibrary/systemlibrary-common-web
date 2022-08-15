@@ -1,4 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+using static System.Net.WebRequestMethods;
 
 namespace SystemLibrary.Common.Web.Tests
 {
@@ -8,7 +11,7 @@ namespace SystemLibrary.Common.Web.Tests
         public void Post_PlainText_Success()
         {
             var webService = new HttpBinClient();
-            
+
             var response = webService.Post("hello world", MediaType.plain);
 
             Assert.IsTrue(response.Data.Contains("hello world"));
@@ -33,7 +36,7 @@ namespace SystemLibrary.Common.Web.Tests
 
             Assert.IsTrue(response.Data.Contains("world"));
         }
-        
+
         [TestMethod]
         public void Post_Poco_As_Json_Success()
         {

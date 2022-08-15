@@ -13,18 +13,20 @@ namespace SystemLibrary.Common.Web
             internal static HttpContent GetContent(object data, MediaType mediaType, JsonSerializerOptions jsonSerializerOptions)
             {
                 HttpContent content = null;
+
                 if (data == null) return content;
 
                 switch (mediaType)
                 {
                     case MediaType.plain:
-                        content = GetBodyPlainText(data);
+                        content = GetBodyPlainText(data, null, mediaType);
                         break;
 
                     case MediaType.json:
                         if(jsonSerializerOptions != null)
                             jsonSerializerOptions.ReadCommentHandling = JsonCommentHandling.Skip;
-                        content = GetBodyJson(data, null, jsonSerializerOptions);
+
+                        content = GetBodyJson(data, null, jsonSerializerOptions, mediaType);
                         break;
 
                     case MediaType.xwwwformUrlEncoded:
@@ -47,7 +49,16 @@ namespace SystemLibrary.Common.Web
                     //MediaTypeFormatter bsonFormatter = new BsonMediaTypeFormatter();
 
                     default:
-                        content = new StringContent(data is string ? data as string : data.ToString(), Encoding.UTF8);
+
+                        if (data is byte[] bytes)
+                        {
+                            var byteContent = new ByteArrayContent(bytes, 0, bytes.Length);
+                            if (mediaType != MediaType.None)
+                                byteContent.Headers.Add("Content-Type", mediaType.ToValue());
+
+                            return byteContent;
+                        }
+                        content = new StringContent(data is string ? data as string : data.ToString(), Encoding.UTF8, mediaType.ToValue());
                         break;
                 }
 

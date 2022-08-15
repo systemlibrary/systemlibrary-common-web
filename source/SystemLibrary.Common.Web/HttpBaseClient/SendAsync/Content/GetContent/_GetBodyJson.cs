@@ -10,11 +10,11 @@ namespace SystemLibrary.Common.Web
     {
         partial class Content
         {
-            static HttpContent GetBodyJson(object data, Encoding encoding = null, JsonSerializerOptions jsonSerializerOptions = null)
+            static HttpContent GetBodyJson(object data, Encoding encoding = null, JsonSerializerOptions jsonSerializerOptions = null, MediaType mediaType = MediaType.json)
             {
-                if (data is string text) return new StringContent(text, encoding != null ? encoding : Encoding.UTF8);
+                if (data is string text) return new StringContent(text, encoding != null ? encoding : Encoding.UTF8, mediaType.ToValue());
 
-                return new StringContent(data.ToJson(jsonSerializerOptions), encoding != null ? encoding : Encoding.UTF8);
+                return new StringContent(data.ToJson(jsonSerializerOptions), encoding != null ? encoding : Encoding.UTF8, mediaType.ToValue());
             }
         }
     }
