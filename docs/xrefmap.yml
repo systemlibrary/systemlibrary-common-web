@@ -61,6 +61,15 @@ references:
   fullName.vb: SystemLibrary.Common.Web.Cache.Get(Of T)(System.Func(Of T), System.String, System.TimeSpan, System.Func(Of T, System.Boolean), System.Boolean, System.Boolean, System.Func(Of System.Boolean), System.Boolean)
   nameWithType: Cache.Get<T>(Func<T>, String, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>, Boolean)
   nameWithType.vb: Cache.Get(Of T)(Func(Of T), String, TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean), Boolean)
+- uid: SystemLibrary.Common.Web.Cache.Get``1(System.Func{``0},System.TimeSpan,System.Func{``0,System.Boolean},System.Boolean,System.Boolean,System.Func{System.Boolean},System.Boolean)
+  name: Get<T>(Func<T>, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>, Boolean)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_Get__1_System_Func___0__System_TimeSpan_System_Func___0_System_Boolean__System_Boolean_System_Boolean_System_Func_System_Boolean__System_Boolean_
+  commentId: M:SystemLibrary.Common.Web.Cache.Get``1(System.Func{``0},System.TimeSpan,System.Func{``0,System.Boolean},System.Boolean,System.Boolean,System.Func{System.Boolean},System.Boolean)
+  name.vb: Get(Of T)(Func(Of T), TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean), Boolean)
+  fullName: SystemLibrary.Common.Web.Cache.Get<T>(System.Func<T>, System.TimeSpan, System.Func<T, System.Boolean>, System.Boolean, System.Boolean, System.Func<System.Boolean>, System.Boolean)
+  fullName.vb: SystemLibrary.Common.Web.Cache.Get(Of T)(System.Func(Of T), System.TimeSpan, System.Func(Of T, System.Boolean), System.Boolean, System.Boolean, System.Func(Of System.Boolean), System.Boolean)
+  nameWithType: Cache.Get<T>(Func<T>, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>, Boolean)
+  nameWithType.vb: Cache.Get(Of T)(Func(Of T), TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean), Boolean)
 - uid: SystemLibrary.Common.Web.Cache.Get``1(System.String)
   name: Get<T>(String)
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_Get__1_System_String_

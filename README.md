@@ -28,7 +28,9 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-- 6.1.0.4
+- 6.1.0.6
+- HttpBaseClient logs an error, and continues, if 'IgnoreSslError' is set when an Ssl error occurs, instead of no logging
+- New overload method for Cache.Get((), duration), so one does not have to set "null" as cacheKey just to set a duration when using 'auto-generated cache key'
 - Updated deps
 
 #### Version history

@@ -15,7 +15,7 @@ namespace SystemLibrary.Common.Web
                     InnerHandler = new HttpClientHandler();
                     if (ignoreSslErrors && InnerHandler is HttpClientHandler handler)
                     {
-                        handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
+                        handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { Log.Error("HttpBaseClient: ssl exception occured (invalid or expired), but ignoreSslErrors is set to true, continuing..."); return true; };
                     }
                 }
 

@@ -101,8 +101,40 @@ public static class Cache
     /// <summary>
     /// Get data from cache, or add it to cache before it is returned
     /// 
+    /// - Auto-generates a cacheKey based on input params
+    /// 
     /// Note: null is never added to cache
     /// </summary>
+    /// <example>
+    /// Example without a cache key
+    /// <code class="language-csharp hljs">
+    /// namespace: Company.Services
+    /// 
+    /// class CarService
+    /// {
+    ///     public string GetCars() 
+    ///     {
+    ///         return Cache.Get&lt;string&gt;(getItem: () => {
+    ///             return HttpBaseClient.Get&lt;string&gt;("https://systemlibrary.com/api/cars?top=1");
+    ///         },
+    ///         TimeSpan.FromSeconds(5));
+    ///     }
+    /// }
+    /// //Note: This will cache the top 1 car for everyone except 'Administrators' for 5 seconds
+    /// //If we should set skipForAdmins: false, then administrators will also get cached content
+    /// </code>
+    /// </example>
+    public static T Get<T>(Func<T> getItem, TimeSpan duration, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null, bool debug = false) where T : class
+    {
+        return Get<T>(getItem, null, duration, condition, skipForAuthenticatedUsers, skipForAdmins, skipFor, debug);
+    }
+
+    /// <summary>
+    /// Get data from cache, or add it to cache before it is returned
+    /// 
+    /// Note: null is never added to cache
+    /// </summary>
+    /// <param name="cacheKey">Set to null if you want a cache key auto-generated for you</param>
     /// <param name="condition">Add to cache only if condition is met, for instance: data != null</param>
     /// <param name="skipForAuthenticatedUsers">Skip cache for any user that is authenticated, but is not part of any of the admin roles: Admins, Administrators, WebAdmins, CmsAdmins</param>
     /// <param name="skipForAdmins">Skip cache for current principal that is authenticated and is part of either of the roles: Admins, Administrators, WebAdmins, CmsAdmins</param>
