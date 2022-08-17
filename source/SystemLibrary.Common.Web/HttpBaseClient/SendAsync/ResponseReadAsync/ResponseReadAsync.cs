@@ -48,21 +48,9 @@ namespace SystemLibrary.Common.Web
 
             //TODO: Support XML serialization/deserialization?
 
-            if(jsonSerializerOptions == default)
-            {
-                jsonSerializerOptions = new JsonSerializerOptions()
-                {
-                    AllowTrailingCommas = true,
-                    IgnoreNullValues = true,
-                    PropertyNameCaseInsensitive = false,
-                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                    MaxDepth = 32
-                };
-            }
-
             using (response)
                 using (var contentStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false))
-                    using (var streamReader = new StreamReader(contentStream))
+                    //using (var streamReader = new StreamReader(contentStream))
                         return await JsonSerializer.DeserializeAsync<T>(contentStream, jsonSerializerOptions, cancellationToken).ConfigureAwait(false);
         }
     }

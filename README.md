@@ -28,9 +28,9 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-- 6.1.0.6
-- HttpBaseClient logs an error, and continues, if 'IgnoreSslError' is set when an Ssl error occurs, instead of no logging
-- New overload method for Cache.Get((), duration), so one does not have to set "null" as cacheKey just to set a duration when using 'auto-generated cache key'
+- 6.2.0.1
+- Removed serialization upon converting data inside "httpbaseclient", and now using SystemLibrary.Common.Net's default json serialization options, which contains various converters additionally to what comes with the standard "System.Text.Json"
+- Updated docs
 - Updated deps
 
 #### Version history
