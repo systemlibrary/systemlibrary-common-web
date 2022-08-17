@@ -28,8 +28,8 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-- 6.1.0.3
-- MediaType was not added to and requests being sent through HttpBaseClient
+- 6.1.0.4
+- Updated deps
 
 #### Version history
 - View git history of this file if interested

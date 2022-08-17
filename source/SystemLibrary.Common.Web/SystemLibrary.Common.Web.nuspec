@@ -3,7 +3,7 @@
     <metadata>
         <id>SystemLibrary.Common.Web</id>
 
-        <version>6.1.0.3</version>
+        <version>6.1.0.4</version>
 
         <authors>System Library</authors>
         
@@ -40,10 +40,10 @@ https://systemlibrary.github.io/systemlibrary-common-web/
 		<readme>docs\readme.md</readme>
 		
         <dependencies>
-			<dependency id="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" version="6.0.7" />
+			<dependency id="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" version="6.0.8" />
 			<dependency id="Microsoft.Extensions.FileProviders.Physical" version="6.0.0" />
 			<dependency id="System.Net.Http" version="4.3.4" />
-			<dependency id="SystemLibrary.Common.Net" version="6.1.0.9" />
+			<dependency id="SystemLibrary.Common.Net" version="6.2.0.2" />
         </dependencies>
     </metadata>
 
