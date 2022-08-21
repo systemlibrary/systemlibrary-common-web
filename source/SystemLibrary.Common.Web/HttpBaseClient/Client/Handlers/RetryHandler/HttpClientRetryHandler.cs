@@ -15,7 +15,16 @@ namespace SystemLibrary.Common.Web
                     InnerHandler = new HttpClientHandler();
                     if (ignoreSslErrors && InnerHandler is HttpClientHandler handler)
                     {
-                        handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { Log.Error("HttpBaseClient: ssl exception occured (invalid or expired), but ignoreSslErrors is set to true, continuing..."); return true; };
+                        handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) =>
+                        {
+                            if (errors == System.Net.Security.SslPolicyErrors.RemoteCertificateChainErrors ||
+                                errors == System.Net.Security.SslPolicyErrors.RemoteCertificateNameMismatch ||
+                                errors == System.Net.Security.SslPolicyErrors.RemoteCertificateNotAvailable)
+                            {
+                                Log.Warning("HttpBaseClient: SslPolicy error occured, " + errors + ". Usually invalid or expired. IgnoreSslErrors is set to 'true' so continuing...");
+                            }
+                            return true;
+                        };
                     }
                 }
 

@@ -15,7 +15,7 @@ The two methods in short enables:
 - enables usage of Authorization and Authentication attributes
   
 #### Modules
-- HttpBaseClient which reuses the underlyinc TCP connection, no more socket exhaustion, saving 10's of milliseconds each subsequent request
+- HttpBaseClient reuses the underlying TCP connection, no more socket exhaustion, saving 10's of milliseconds each subsequent request
 - Log class in global namespace
   * Log.Write() is "equivalent" to console.log in javascript  
 - Cache class with auto-generating cache keys
@@ -28,8 +28,9 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-- 6.2.0.1
-- Removed serialization upon converting data inside "httpbaseclient", and now using SystemLibrary.Common.Net's default json serialization options, which contains various converters additionally to what comes with the standard "System.Text.Json"
+- 6.2.0.3
+- HttpBaseClient: Validation of ssl now only logs warning, and only if "errors" is something, in 6.2.0.1 it always logged
+- Removed serialization upon converting data inside "httpbaseclient", it now uses SystemLibrary.Common.Net's json serialization options, which contains various converters
 - Updated docs
 - Updated deps
 
