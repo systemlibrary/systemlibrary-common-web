@@ -28,11 +28,11 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-- 6.2.0.3
-- HttpBaseClient: Validation of ssl now only logs warning, and only if "errors" is something, in 6.2.0.1 it always logged
-- Removed serialization upon converting data inside "httpbaseclient", it now uses SystemLibrary.Common.Net's json serialization options, which contains various converters
+- 6.2.0.4
+- Log-class now logs classes and lists/arrays of classes instead of just the Type so one can see all variables and their values
 - Updated docs
 - Updated deps
+
 
 #### Version history
 - View git history of this file if interested

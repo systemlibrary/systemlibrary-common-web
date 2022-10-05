@@ -121,7 +121,7 @@ public static partial class Log
     /// - This ignores logging 'isEnabled' option in appSettings
     /// - This ignores 'log level' option in appSettings
     /// 
-    /// This simply logs no matter what
+    /// This builds a log message no matter what
     /// </summary>
     /// <param name="obj">Object can be of any type, a string, list, dictionary, etc...</param>
     /// <example>
@@ -132,7 +132,7 @@ public static partial class Log
     /// 
     /// Log.Write(list);
     /// //This creates a log message with your input and sends it as a string to your LogWriter
-    /// //Note Log.Write() can never be disabled/turned off, remove the calls if you dont want them in production
+    /// //Note: Log.Write() can never be disabled/turned off, remove the calls if you dont want them in production
     /// </code>
     /// </example>
     public static void Write(object obj)

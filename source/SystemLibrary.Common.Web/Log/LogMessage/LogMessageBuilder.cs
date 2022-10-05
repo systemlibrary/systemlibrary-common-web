@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -30,7 +32,7 @@ partial class Log
             if ((int)level != 99999)
                 message.Append(level.ToString() + ": ");
 
-            AppendMessage(obj, message);
+            AppendMessage(obj, message, 0);
 
             if (level == LogLevel.Error && obj as Exception == null)
                 AppendStackTrace(message);
@@ -86,6 +88,7 @@ partial class Log
             }
             catch
             {
+                message.Append("\nUser Ip: unknown");
             }
         }
 
@@ -123,8 +126,10 @@ partial class Log
             }
         }
 
-        static void AppendMessage(object obj, StringBuilder message)
+        static void AppendMessage(object obj, StringBuilder message, int level)
         {
+            if (level > 2) return;
+
             if (obj == null)
                 message.Append("(null)");
 
@@ -158,56 +163,103 @@ partial class Log
                 else
                 {
                     foreach (var val in enumerable)
-                        message.Append(val + " ");
+                        AppendMessage(val, message, level++);
                 }
             }
+            else if (IsLogableClass(obj))
+                AppendClass(message, obj);
             else
                 message.Append(obj.ToString());
         }
+    }
 
-        static void AppendBrowser(StringBuilder message, HttpRequest request)
+    static void AppendClass(StringBuilder message, object obj)
+    {
+        var dump = Type.GetType(typeName: "Dump, SystemLibrary.Common.Net");
+
+        if (dump == null)
+            throw new Exception("SystemLibrary.Common.Net.Dump is not loaded or type is renamed in version you are using");
+
+        var method = dump.GetMethods(BindingFlags.Static | BindingFlags.NonPublic)
+           .Where(x => x.Name == "Build")
+           .FirstOrDefault();
+
+        if (method == null)
+            throw new Exception("Method 'Build' is renamed or do not exist");
+
+        method.Invoke(null, new object[] { message, obj, 0, 3 });
+    }
+
+    static bool IsLogableClass(object o)
+    {
+        var type = o.GetType();
+
+        return type.IsClass &&
+            !type.IsEnum &&
+            !type.IsArray &&
+            type != SystemType.StringType &&
+            type != SystemType.ExceptionType &&
+            type != typeof(StringBuilder) &&
+            type != typeof(Nullable) &&
+            type != typeof(Nullable<>) &&
+            type != typeof(NullReferenceException) &&
+            type != typeof(RuntimeWrappedException);
+    }
+
+
+    static void AppendBrowser(StringBuilder message, HttpRequest request)
+    {
+        string userAgent = null;
+
+        if (request?.Headers?.ContainsKey(HeaderNames.UserAgent) == true)
+            userAgent = request.Headers[HeaderNames.UserAgent];
+
+        message.Append("\nAgent: " + userAgent ?? "<empty>");
+    }
+
+    static void AppendStackTrace(StringBuilder message)
+    {
+        try
         {
-            string userAgent = null;
+            message.Append("\nStacktrace:");
 
-            if (request?.Headers?.ContainsKey(HeaderNames.UserAgent) == true)
-                userAgent = request.Headers[HeaderNames.UserAgent];
-
-            message.Append("\nAgent: " + userAgent ?? "<empty>");
-        }
-
-        static void AppendStackTrace(StringBuilder message)
-        {
-            try
+            var stackTrace = Environment.StackTrace?.ToString();
+            if (stackTrace != null)
             {
-                message.Append("\nStacktrace: ");
+                var traces = stackTrace.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
 
-                var stackTrace = Environment.StackTrace?.ToString();
-                if (stackTrace != null)
+                for (int i = 0; i < Math.Min(traces.Length, 9); i++)
                 {
-                    var traces = stackTrace.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
-
-                    for (int i = 0; i < Math.Min(traces.Length, 8); i++)
+                    if (traces[i].StartsWithAny(
+                        "   at System.RuntimeMethodHandle",
+                        "   at System.Reflection.RuntimeMethodInfo"))
                     {
-                        if (traces[i].StartsWithAny(
-                            "   at System.RuntimeMethodHandle",
-                            "   at System.Reflection.RuntimeMethodInfo"))
-                        {
-                            break;
-                        }
-
-                        message.Append(traces[i] + "\n");
+                        break;
                     }
+
+                    if (traces[i].StartsWithAny(
+                        "   at Log.Write(Object obj, LogLevel level)",
+                        "   at Log.LogMessageBuilder",
+                        "   at System.Environment.get_",
+                            "   at Log.AppendStackTrace"))
+                    {
+                        continue;
+                    }
+
+
+                    message.Append(traces[i] + "\n");
                 }
             }
-            catch
-            {
-            }
         }
-
-        static void AppendRequestPath(StringBuilder message, HttpRequest request)
+        catch
         {
-            if (HttpContextInstance.Current != null)
-                message.Append("\nPath: " + request?.Path.Value ?? "<empty>");
+            message.Append(" unknown");
         }
+    }
+
+    static void AppendRequestPath(StringBuilder message, HttpRequest request)
+    {
+        if (HttpContextInstance.Current != null)
+            message.Append("\nPath: " + request?.Path.Value ?? "<empty>");
     }
 }
