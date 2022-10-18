@@ -28,11 +28,9 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-- 6.2.0.4
-- Log-class now logs classes and lists/arrays of classes instead of just the Type so one can see all variables and their values
-- Updated docs
-- Updated deps
-
+- 6.2.1.1
+- Updated deps 
+- Updated 'deps' minimum version to 1000 in csproj - as most packages should just always work although the "exact version" as the "exact version" in csproj works diff than nuspec (?)
 
 #### Version history
 - View git history of this file if interested

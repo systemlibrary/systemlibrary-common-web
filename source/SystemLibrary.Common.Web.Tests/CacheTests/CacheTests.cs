@@ -120,7 +120,7 @@ public class CacheTests
         var b = 555;
         var c = true;
 
-        var getItems = () => GetText(a,b,c);
+        var getItems = () => GetText(a, b, c);
 
         var cached = Cache.Get(getItems);
         Assert.IsTrue(cached.Contains("555"));
@@ -128,7 +128,7 @@ public class CacheTests
         cached = Cache.Get(getItems);
         Assert.IsTrue(cached.Contains("555"));
 
-        var cacheKey = "<Auto_Create_CacheKey_By_Passing_Function_With_Outside_Vars_Success>b__0SystemLibrary.Common.Web.Tests.CacheTests+<>c__DisplayClass8_0System.StringHello555True";
+        var cacheKey = "<" + nameof(Auto_Create_CacheKey_By_Passing_Function_With_Outside_Vars_Success) + ">b__0SystemLibrary.Common.Web.Tests." + nameof(CacheTests) + "+<>c__DisplayClass8_0System.String" + a + b + c;
         var cachedItem = Cache.Get<string>(cacheKey);
         Assert.IsTrue(cachedItem.Contains("555"));
     }
