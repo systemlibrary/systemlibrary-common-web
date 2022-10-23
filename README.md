@@ -28,9 +28,9 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-- 6.2.1.3
+- 6.2.1.4
+- Added audio mediatypes, video/ogg and a few more default media types to be served "out of the box"
 - Updated deps 
-- Updated 'deps' minimum version to 1000 in csproj - as most packages should just always work although the "exact version" as the "exact version" in csproj works diff than nuspec (?)
 
 #### Version history
 - View git history of this file if interested
