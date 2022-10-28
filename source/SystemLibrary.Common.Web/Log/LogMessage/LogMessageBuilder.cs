@@ -22,7 +22,7 @@ partial class Log
         static LogMessageBuilder()
         {
             IsLocal = EnvironmentConfig.Current.IsLocal;
-            LogMessageBuilderOptions = AppSettings.Current.SystemLibraryCommonWeb.LogMessageBuilder;
+            LogMessageBuilderOptions = AppSettings.Current?.SystemLibraryCommonWeb?.LogMessageBuilder;
         }
 
         internal static string Get(object obj, LogLevel level)
@@ -32,31 +32,42 @@ partial class Log
             if ((int)level != 99999)
                 message.Append(level.ToString() + ": ");
 
-            AppendMessage(obj, message, 0);
-
-            if (level == LogLevel.Error && obj as Exception == null)
-                AppendStackTrace(message);
-
-            var context = HttpContextInstance.Current;
-            if (context != null)
-                AppendRequestPath(message, context.Request);
-
-            if (!IsLocal && context != null)
+            try
             {
-                if (LogMessageBuilderOptions.AppendLoggedInState)
-                    AppendLoggedInState(message, context);
+                AppendMessage(obj, message, 0);
 
-                if (LogMessageBuilderOptions.AppendBrowser)
-                    AppendBrowser(message, context.Request);
+                if (!IsLocal && level == LogLevel.Error && obj as Exception == null)
+                    AppendStackTrace(message);
 
-                if (LogMessageBuilderOptions.AppendIp)
-                    AppendUserIp(message, context);
+                var context = HttpContextInstance.Current;
+                if (context != null)
+                    AppendRequestPath(message, context.Request);
 
-                if (LogMessageBuilderOptions.AppendCookieInfo)
-                    AppendCookieInfo(message, context.Request);
+                if (!IsLocal && context != null && LogMessageBuilderOptions != null)
+                {
+                    if (LogMessageBuilderOptions.AppendLoggedInState)
+                        AppendLoggedInState(message, context);
+
+                    if (level == LogLevel.Error)
+                    {
+                        if (LogMessageBuilderOptions.AppendBrowser)
+                            AppendBrowser(message, context.Request);
+
+                        if (LogMessageBuilderOptions.AppendIp)
+                            AppendUserIp(message, context);
+
+                        if (LogMessageBuilderOptions.AppendCookieInfo)
+                            AppendCookieInfo(message, context.Request);
+                    }
+                }
+
+                return message.ToString();
             }
-
-            return message.ToString();
+            catch(Exception ex)
+            {
+                message.Append("Internal error: " + ex.Message + " when logging: " + obj);
+                return message.ToString();
+            }
         }
 
         static void AppendUserIp(StringBuilder message, HttpContext httpContext)
@@ -101,28 +112,15 @@ partial class Log
 
         static void AppendCookieInfo(StringBuilder message, HttpRequest request)
         {
-            if (request?.Cookies?.Keys != null)
+            try
             {
-                try
+                if (request?.Cookies?.Keys != null)
                 {
                     message.Append("\nCookies: " + string.Join(", ", request.Cookies.Keys));
-                    var maxCookieValueLength = 0;
-                    var maxCookieName = "";
-                    foreach (var key in request.Cookies.Keys)
-                    {
-                        var value = request.Cookies[key];
-                        if (value.Is() && value.Length > maxCookieValueLength)
-                        {
-                            maxCookieName = key;
-                            maxCookieValueLength = value.Length;
-                        }
-                    }
-                    if (maxCookieValueLength > 0)
-                        message.Append("\nCookies Max Length: " + maxCookieValueLength + " chars, in cookie: " + maxCookieName);
                 }
-                catch
-                {
-                }
+            }
+            catch
+            {
             }
         }
 
@@ -259,7 +257,7 @@ partial class Log
 
     static void AppendRequestPath(StringBuilder message, HttpRequest request)
     {
-        if (HttpContextInstance.Current != null)
-            message.Append("\nPath: " + request?.Path.Value ?? "<empty>");
+        if (request?.Path != null)
+            message.Append("\nPath: " + request.Path.Value ?? "<empty>");
     }
 }
