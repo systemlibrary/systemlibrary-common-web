@@ -21,7 +21,7 @@ partial class Log
         static LogMessageBuilderOptions LogMessageBuilderOptions;
         static LogMessageBuilder()
         {
-            IsLocal = EnvironmentConfig.Current.IsLocal;
+            IsLocal = EnvironmentConfig.Current?.IsLocal == true;
             LogMessageBuilderOptions = AppSettings.Current?.SystemLibraryCommonWeb?.LogMessageBuilder;
         }
 
@@ -29,11 +29,11 @@ partial class Log
         {
             var message = new StringBuilder("");
 
-            if ((int)level != 99999)
-                message.Append(level.ToString() + ": ");
-
             try
             {
+                if ((int)level != 99999)
+                    message.Append(level.ToString() + ": ");
+
                 AppendMessage(obj, message, 0);
 
                 if (!IsLocal && level == LogLevel.Error && obj as Exception == null)

@@ -144,11 +144,11 @@ public static partial class Log
     {
         if ((int)level != 99999)
         {
-            var isEnabled = AppSettings.Current.SystemLibraryCommonWeb.Log.IsEnabled;
+            var isEnabled = AppSettings.Current?.SystemLibraryCommonWeb?.Log?.IsEnabled == true;
 
             if (!isEnabled) return;
 
-            var minLevel = AppSettings.Current.SystemLibraryCommonWeb.Log.Level;
+            var minLevel = AppSettings.Current?.SystemLibraryCommonWeb?.Log?.Level ?? LogLevel.Info;
 
             if((int)level < (int)minLevel)
                 return;
