@@ -247,7 +247,9 @@ public static class Cache
         var key = new StringBuilder("");
         var getItemMethod = getItem.Method;
 
-        key.Append(getItemMethod.Name + getItemMethod.DeclaringType?.FullName + getItemMethod.ReturnType?.FullName);
+        key.Append(getItemMethod.Name);
+        key.Append(getItemMethod.DeclaringType?.FullName);
+        key.Append(getItemMethod.ReturnType?.FullName);
 
         //getItem.GetInvocationList()[0].Target - about 3-4 times slower than getItem.Target
         var target = getItem.Target;
@@ -260,7 +262,11 @@ public static class Cache
                 //TODO: Consider throwing exception if field is of "unsupported type" as CacheKey
                 //as this works fine on string, int, bool, DateTime, double, but a List or a POCO object would be ToString()'d which does not make much sense
                 foreach (var field in fields)
-                    key.Append(field.GetValue(target) + "");
+                {
+                    var value = field.GetValue(target);
+                    if (value != null)
+                        key.Append(value.ToString());
+                }
             }
         }
         

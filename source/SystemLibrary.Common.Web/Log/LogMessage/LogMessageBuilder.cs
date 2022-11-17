@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -40,33 +41,72 @@ partial class Log
                     AppendStackTrace(message);
 
                 var context = HttpContextInstance.Current;
-                if (context != null)
+                
+                if (!IsLocal && context != null)
+                {
                     AppendRequestPath(message, context.Request);
 
-                if (!IsLocal && context != null && LogMessageBuilderOptions != null)
-                {
-                    if (LogMessageBuilderOptions.AppendLoggedInState)
-                        AppendLoggedInState(message, context);
-
-                    if (level == LogLevel.Error)
+                    if (LogMessageBuilderOptions != null)
                     {
-                        if (LogMessageBuilderOptions.AppendBrowser)
-                            AppendBrowser(message, context.Request);
+                        if (LogMessageBuilderOptions.AppendLoggedInState)
+                            AppendLoggedInState(message, context);
 
-                        if (LogMessageBuilderOptions.AppendIp)
-                            AppendUserIp(message, context);
+                        if (level == LogLevel.Error)
+                        {
+                            if (LogMessageBuilderOptions.AppendBrowser)
+                                AppendBrowser(message, context.Request);
 
-                        if (LogMessageBuilderOptions.AppendCookieInfo)
-                            AppendCookieInfo(message, context.Request);
+                            if (LogMessageBuilderOptions.AppendIp)
+                                AppendUserIp(message, context);
+
+                            if (LogMessageBuilderOptions.AppendCookieInfo)
+                                AppendCookieInfo(message, context.Request);
+                        }
                     }
+
+                    AppendCorrelationGuid(message, context);
                 }
 
                 return message.ToString();
             }
             catch(Exception ex)
             {
-                message.Append("Internal error: " + ex.Message + " when logging: " + obj);
+                message.Append("Internal error: ");
+                message.Append(ex.Message);
+                message.Append(" when logging: " + obj);
                 return message.ToString();
+            }
+        }
+
+        static void AppendCorrelationGuid(StringBuilder message, HttpContext httpContext)
+        {
+            try
+            {
+                if (httpContext.Items == null || httpContext.Items.Count == 0) return;
+
+                var id = httpContext.Items["CorrelationId"];
+
+                if (id == null)
+                {
+                    id = httpContext.Items["correlationId"];
+
+                    if (id == null)
+                        id = httpContext.Items["CorrelationID"];
+                }
+
+                if (id != null)
+                    message.Append("\nCorrelation: " + id);
+                else
+                {
+                    var guid = Guid.NewGuid();
+                    var correlation = guid.ToString();
+                    message.Append("\nCorrelation: " + correlation);
+                    httpContext.Items.TryAdd("CorrelationId", correlation);
+                }
+            }
+            catch
+            {
+                message.Append("\nCorrelation: <empty>");
             }
         }
 
@@ -134,7 +174,8 @@ partial class Log
             else if (obj is Exception ex)
             {
                 message.Append(ex.Message);
-                message.Append("\n" + ex.StackTrace);
+                message.Append("\n");
+                message.Append(ex.StackTrace);
             }
 
             else if (obj is ITuple ituple)
@@ -156,7 +197,10 @@ partial class Log
                 {
                     message.Append("Dictionary (" + dictionary.Count + "): ");
                     foreach (var value in dictionary.Values)
-                        message.Append(value + " ");
+                    {
+                        message.Append(value);
+                        message.Append(" ");
+                    }
                 }
                 else
                 {

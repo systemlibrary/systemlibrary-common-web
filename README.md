@@ -28,8 +28,11 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-- 6.2.1.8
-- Updated deps
+- 6.2.1.9
+- Removed logging of path if youre in local environment (dev)
+- Few memory saves during auto generating cache keys in Cache.Get()
+- New nuget package icon
+- Updated deps of systemlibrary.common.net
 
 #### Version history
 - View git history of this file if interested
