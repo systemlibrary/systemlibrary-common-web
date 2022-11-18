@@ -98,7 +98,6 @@ public static partial class Log
         Write(obj, LogLevel.Debug);
     }
 
-
     /// <summary>
     /// Write an information message
     /// </summary>
