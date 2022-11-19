@@ -28,8 +28,8 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-- 6.3.1.1
-- Updated deps which contains breaking change so bumping this too
+- 6.3.1.2
+- Updated deps
 
 #### Version history
 - View git history of this file if interested
