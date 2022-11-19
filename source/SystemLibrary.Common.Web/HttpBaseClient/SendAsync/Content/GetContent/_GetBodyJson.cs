@@ -14,7 +14,7 @@ namespace SystemLibrary.Common.Web
             {
                 if (data is string text) return new StringContent(text, encoding != null ? encoding : Encoding.UTF8, mediaType.ToValue());
 
-                return new StringContent(data.ToJson(jsonSerializerOptions), encoding != null ? encoding : Encoding.UTF8, mediaType.ToValue());
+                return new StringContent(data.Json(jsonSerializerOptions), encoding != null ? encoding : Encoding.UTF8, mediaType.ToValue());
             }
         }
     }

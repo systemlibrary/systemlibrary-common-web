@@ -28,9 +28,8 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-- 6.2.1.10
-- Updated deps
-- new nuget icon
+- 6.3.1.1
+- Updated deps which contains breaking change so bumping this too
 
 #### Version history
 - View git history of this file if interested
