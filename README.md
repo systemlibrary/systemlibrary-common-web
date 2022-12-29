@@ -28,8 +28,9 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-- 6.3.1.4
+- 6.3.1.5
 - HttpBaseClient supports taking HttpContent already, and does not anymore convertin HttpContent to StringContent if passed into any of its public methods
+- Updated deps
 
 #### Version history
 - View git history of this file if interested
