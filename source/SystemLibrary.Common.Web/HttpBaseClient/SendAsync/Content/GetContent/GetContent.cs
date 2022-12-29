@@ -16,6 +16,15 @@ namespace SystemLibrary.Common.Web
 
                 if (data == null) return content;
 
+                if (data is FormUrlEncodedContent formUrlEncodedContent)
+                {
+                    return formUrlEncodedContent;
+                }
+                else if (data is HttpContent httpContent)
+                {
+                    return httpContent;
+                }
+
                 switch (mediaType)
                 {
                     case MediaType.plain:

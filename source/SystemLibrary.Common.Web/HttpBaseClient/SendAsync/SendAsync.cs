@@ -28,6 +28,9 @@ namespace SystemLibrary.Common.Web
 
             var content = Content.GetContent(data, mediaType, jsonSerializerOptions);
 
+            // TODO: Consider headers should here be added based on mediatype - "Content-Type", "Accept", etc... ?
+            // at least no Headers should be added inside "GetContent()" which it is currently
+
             var requestOptions = new RequestOptions()
             {
                 Method = method,
