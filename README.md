@@ -28,9 +28,11 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-- 6.3.1.5
+- 6.3.1.6
 - HttpBaseClient supports taking HttpContent already, and does not anymore convertin HttpContent to StringContent if passed into any of its public methods
+- Cache.Get now supports cacheKey, getItem, in that order - a new overload
 - Updated deps
+- Updated nuget icon
 
 #### Version history
 - View git history of this file if interested

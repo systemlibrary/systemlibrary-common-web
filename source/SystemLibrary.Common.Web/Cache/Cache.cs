@@ -101,6 +101,35 @@ public static class Cache
     /// <summary>
     /// Get data from cache, or add it to cache before it is returned
     /// 
+    /// Note: null is never added to cache
+    /// </summary>
+    /// <example>
+    /// Example with a cache key
+    /// <code class="language-csharp hljs">
+    /// namespace: Company.Services
+    /// 
+    /// class CarService
+    /// {
+    ///     public string GetCars() 
+    ///     {
+    ///         var cacheKey = "car_service_get_cars";
+    ///         
+    ///         return Cache.Get&lt;string&gt;(cacheKey, getItem: () => {
+    ///             return HttpBaseClient.Get&lt;string&gt;("https://systemlibrary.com/api/cars?top=1");
+    ///         },
+    ///         TimeSpan.FromSeconds(5));
+    ///     }
+    /// }
+    /// </code>
+    /// </example>
+    public static T Get<T>(string cacheKey, Func<T> getItem, TimeSpan duration = default, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null, bool debug = false) where T : class
+    {
+        return Get<T>(getItem, cacheKey, duration, condition, skipForAuthenticatedUsers, skipForAdmins, skipFor, debug);
+    }
+
+    /// <summary>
+    /// Get data from cache, or add it to cache before it is returned
+    /// 
     /// - Auto-generates a cacheKey based on input params
     /// 
     /// Note: null is never added to cache
