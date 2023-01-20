@@ -2,7 +2,10 @@
     "emptyObject": {
         "empty": ""
     },
-    "somethingAtTheEnd": {
-        "end": 0
-    }
+  "somethingAtTheEnd": {
+    "end": 0
+  },
+  "form": {
+    "file": "C:\\logs\\temp\\some-long-filenamelong-filename.json"
+  }
 }

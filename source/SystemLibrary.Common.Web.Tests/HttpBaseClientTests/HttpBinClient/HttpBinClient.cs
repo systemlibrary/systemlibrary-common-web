@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SystemLibrary.Common.Web.Tests
@@ -31,9 +32,9 @@ namespace SystemLibrary.Common.Web.Tests
             return Get<string>(clientUrl + "/get");
         }
 
-        public ClientResponse<string> Post(object data, MediaType mediaType)
+        public ClientResponse<string> Post(object data, MediaType mediaType, Dictionary<string, string> headers = null)
         {
-            return Post<string>(clientUrl + "/post", data, mediaType);
+            return Post<string>(clientUrl + "/post", data, mediaType, headers: headers);
         }
 
         public ClientResponse<string> PostUrlEncoded(object data)

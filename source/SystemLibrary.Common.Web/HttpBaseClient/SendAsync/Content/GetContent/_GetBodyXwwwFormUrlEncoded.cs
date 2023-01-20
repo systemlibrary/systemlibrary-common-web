@@ -4,6 +4,8 @@ using System.Dynamic;
 using System.Net.Http;
 using System.Text;
 
+using SystemLibrary.Common.Net.Extensions;
+
 namespace SystemLibrary.Common.Web
 {
     partial class HttpBaseClient
@@ -31,6 +33,24 @@ namespace SystemLibrary.Common.Web
                 }
                 else if (data is string text)
                 {
+                    if(text.Contains("&") && text.Contains("="))
+                    {
+                        var keyValues = new List<KeyValuePair<string, string>>();
+
+                        var inputs = text.Split('&');
+                        foreach(var input in inputs)
+                        {
+                            if (input.IsNot()) continue;
+
+                            var keyValue = input.Split('=');
+
+                            if (keyValue.IsNot()) continue;
+
+                            keyValues.Add(new KeyValuePair<string, string>(keyValue[0], keyValue.Length > 1 ? keyValue[1] : null));
+                        }
+
+                        return new FormUrlEncodedContent(keyValues);
+                    }
                     return new StringContent(text, Encoding.UTF8);
                 }
                 else if (data is byte[] bytes)

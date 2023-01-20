@@ -4,6 +4,8 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
+using SystemLibrary.Common.Net.Extensions;
+
 namespace SystemLibrary.Common.Web
 {
     partial class HttpBaseClient
@@ -28,15 +30,26 @@ namespace SystemLibrary.Common.Web
 
             var content = Content.GetContent(data, mediaType, jsonSerializerOptions);
 
-            // TODO: Consider headers should here be added based on mediatype - "Content-Type", "Accept", etc... ?
-            // at least no Headers should be added inside "GetContent()" which it is currently
+            if (content?.Headers != null)
+            {
+                if (headers != null)
+                {
+                    foreach (var header in headers)
+                        if (header.Key.Is())
+                            content.Headers.TryAddWithoutValidation(header.Key, header.Value);
+                }
+                else
+                {
+                    if (mediaType != MediaType.None)
+                        content.Headers.TryAddWithoutValidation("Content-Type", mediaType.ToValue());
+                }
+            }
 
             var requestOptions = new RequestOptions()
             {
                 Method = method,
                 Url = url,
                 MediaType = mediaType,
-                Headers = headers,
                 Content = content,
                 RetryOnceOnRequestCancelled = RetryOnceOnRequestCancelled,
                 IgnoreSslErrors = IgnoreSslErrors,

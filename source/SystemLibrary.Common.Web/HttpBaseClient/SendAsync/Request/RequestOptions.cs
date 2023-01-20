@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading;
 
 namespace SystemLibrary.Common.Web
@@ -10,7 +9,6 @@ namespace SystemLibrary.Common.Web
         {
             public HttpMethod Method;
             public string Url;
-            public IDictionary<string, string> Headers;
             public HttpContent Content;
             public int TimeoutMilliseconds;
             public bool ForceNewClient;

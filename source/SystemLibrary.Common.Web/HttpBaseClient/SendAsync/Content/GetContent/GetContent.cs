@@ -24,6 +24,10 @@ namespace SystemLibrary.Common.Web
                 {
                     return httpContent;
                 }
+                else if (mediaType != MediaType.multipartFormData && data is byte[] bytes)
+                {
+                    return new ByteArrayContent(bytes, 0, bytes.Length);
+                }
 
                 switch (mediaType)
                 {
@@ -58,22 +62,9 @@ namespace SystemLibrary.Common.Web
                     //MediaTypeFormatter bsonFormatter = new BsonMediaTypeFormatter();
 
                     default:
-
-                        if (data is byte[] bytes)
-                        {
-                            var byteContent = new ByteArrayContent(bytes, 0, bytes.Length);
-                            if (mediaType != MediaType.None)
-                                byteContent.Headers.Add("Content-Type", mediaType.ToValue());
-
-                            return byteContent;
-                        }
                         content = new StringContent(data is string ? data as string : data.ToString(), Encoding.UTF8, mediaType.ToValue());
                         break;
                 }
-
-                if (mediaType != MediaType.None)
-                    if (!content.Headers.TryGetValues("Content-Type", out _))
-                        content.Headers.TryAddWithoutValidation("Content-Type", mediaType.ToValue());
 
                 return content;
             }

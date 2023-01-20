@@ -28,11 +28,10 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-- 6.3.1.6
-- HttpBaseClient supports taking HttpContent already, and does not anymore convertin HttpContent to StringContent if passed into any of its public methods
-- Cache.Get now supports cacheKey, getItem, in that order - a new overload
+- 6.4.1.1
 - Updated deps
-- Updated nuget icon
+- HttpBaseClient: Headers such as accept and content-type are not set automatically, unless headers passed is null (Breaking Change)
+- HttpBaseClient: Posting string as urlform now sends the data as 'url form', same as posting bytes as multipartformdata also sends as 'file'
 
 #### Version history
 - View git history of this file if interested

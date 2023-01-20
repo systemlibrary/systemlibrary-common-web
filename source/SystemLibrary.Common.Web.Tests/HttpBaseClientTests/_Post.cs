@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-using static System.Net.WebRequestMethods;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace SystemLibrary.Common.Web.Tests
 {
@@ -24,7 +21,11 @@ namespace SystemLibrary.Common.Web.Tests
 
             var response = webService.PostUrlEncoded("hello=world&hello2=world2");
 
-            Assert.IsTrue(response.Data.Contains("hello=world&hello2=world2"));
+            var form = response.Data.PartialJson<Form>();
+            
+            Assert.IsTrue(response.Data.Contains("urlencoded"));
+            Assert.IsTrue(form != null, "!form posted");
+            Assert.IsTrue(form.hello.Is());
         }
 
         [TestMethod]

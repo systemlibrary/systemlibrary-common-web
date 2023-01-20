@@ -11,10 +11,11 @@ namespace SystemLibrary.Common.Web
             {
                 if(data is byte[] bytes)
                 {
-                    var content = new MultipartFormDataContent();
+                    var content = new MultipartFormDataContent
+                    {
+                        { new StreamContent(new MemoryStream(bytes)), "file" }
+                    };
 
-                    content.Add(new StreamContent(new MemoryStream(bytes)), "file");
-                    
                     return content;
                 }
 

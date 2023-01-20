@@ -59,7 +59,7 @@ namespace SystemLibrary.Common.Web
 
                 static bool ClientRequestedCancellation(CancellationToken cancellationToken)
                 {
-                    return cancellationToken != null && cancellationToken.IsCancellationRequested;
+                    return cancellationToken.IsCancellationRequested;
                 }
 
                 CancellationTokenSource GetTimeoutCancellationToken(CancellationToken cancellationToken)
@@ -74,7 +74,7 @@ namespace SystemLibrary.Common.Web
 
                 bool IsTimeoutRegistered()
                 {
-                    return RequestTimeoutSpan != null &&
+                    return 
                         RequestTimeoutSpan != TimeSpan.MinValue &&
                         RequestTimeoutSpan != TimeSpan.MaxValue &&
                         RequestTimeoutSpan != Timeout.InfiniteTimeSpan;
