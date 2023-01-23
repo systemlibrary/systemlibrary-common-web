@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Security.Claims;
@@ -269,6 +270,46 @@ public static class Cache
             Insert(cacheKey, cached, duration);
 
         return cached;
+    }
+
+    /// <summary>
+    /// Create a 'cache key' to 'lock' an if statement, to run only once within the duration passed in
+    /// 
+    /// Returns true if the key do not exist, or it has expired, so it is set again, else returns false
+    /// 
+    /// - Default duration is 60 seconds
+    /// 
+    /// Useful to run some code only once within time frame
+    /// 
+    /// NOTE: It uses the stack frame to read the current method name as cache key, so max 1 invocation per function
+    /// </summary>
+    /// <example>
+    /// Example
+    /// <code class="language-csharp hljs">
+    /// 
+    /// if(Cache.Lock("send-email", TimeSpan.FromSeconds(60)) 
+    /// {
+    ///     new Email(...).Send(); // Pseudo code
+    ///     // Example: invoking this code 66 times, one time per second starting from second one, will send two emails: one at the first second, and another at 61 second
+    /// }
+    /// </code>
+    /// </example>
+    public static bool Lock(TimeSpan duration = default)
+    {
+        if (duration == default)
+            duration = TimeSpan.FromSeconds(60);
+
+        var callee = new StackFrame(1).GetMethod();
+
+        var cacheKey = nameof(SystemLibrary) + nameof(Cache) + nameof(Lock) + callee.DeclaringType.Name + callee.Name + callee.IsStatic + callee.IsPublic + duration;
+
+        var exists = cache.Get<bool>(cacheKey);
+
+        if (exists) return false;
+
+        Insert(cacheKey, true, duration);
+
+        return true;
     }
 
     static string CreateCacheKey<T>(Func<T> getItem, Func<T, bool> condition) where T : class

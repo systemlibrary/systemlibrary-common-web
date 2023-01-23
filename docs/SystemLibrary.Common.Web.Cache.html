@@ -278,7 +278,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Cache_Clear">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L367">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L408">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_Cache_Clear_" data-uid="SystemLibrary.Common.Web.Cache.Clear*"></a>
@@ -314,7 +314,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Cache_Get__1_System_Func___0__System_String_System_TimeSpan_System_Func___0_System_Boolean__System_Boolean_System_Boolean_System_Func_System_Boolean__System_Boolean_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L243">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L244">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_Cache_Get_" data-uid="SystemLibrary.Common.Web.Cache.Get*"></a>
@@ -502,7 +502,7 @@ class CarService
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Cache_Get__1_System_Func___0__System_TimeSpan_System_Func___0_System_Boolean__System_Boolean_System_Boolean_System_Func_System_Boolean__System_Boolean_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L156">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L157">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_Cache_Get_" data-uid="SystemLibrary.Common.Web.Cache.Get*"></a>
@@ -634,7 +634,7 @@ class CarService
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Cache_Get__1_System_String_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L94">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L95">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_Cache_Get_" data-uid="SystemLibrary.Common.Web.Cache.Get*"></a>
@@ -726,7 +726,7 @@ var data = Cache.Get&lt;string>(cacheKey);
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Cache_Get__1_System_String_System_Func___0__System_TimeSpan_System_Func___0_System_Boolean__System_Boolean_System_Boolean_System_Func_System_Boolean__System_Boolean_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L125">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L126">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_Cache_Get_" data-uid="SystemLibrary.Common.Web.Cache.Get*"></a>
@@ -854,6 +854,87 @@ class CarService
   
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Create a 'cache key' to 'lock' an if statement, to run only once within the duration passed in</p>
+<p>Returns true if the key do not exist, or it has expired, so it is set again, else returns false</p>
+<ul>
+<li>Default duration is 60 seconds</li>
+</ul>
+<p>Useful to run some code only once within time frame</p>
+<p>NOTE: It uses the stack frame to read the current method name as cache key, so max 1 invocation per function</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Cache_Lock_System_TimeSpan_">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L297">View Source</a>
+  		</span>
+  	</div>
+  	<a id="SystemLibrary_Common_Web_Cache_Lock_" data-uid="SystemLibrary.Common.Web.Cache.Lock*"></a>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Web_Cache_Lock_System_TimeSpan_" data-uid="SystemLibrary.Common.Web.Cache.Lock(System.TimeSpan)" class="h4-custom-functionName">public static bool Lock(TimeSpan duration = default(TimeSpan))</h4>
+  		<div class="custom-menu-data-container">
+  			<div class="custom-menu-data-name" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  				<div class="codewrapper"><p>Example</p>
+<pre><code>if(Cache.Lock(&quot;send-email&quot;, TimeSpan.FromSeconds(60)) 
+{
+    new Email(...).Send(); // Pseudo code
+    // Example: invoking this code 66 times, one time per second starting from second one, will send two emails: one at the first second, and another at 61 second
+}</code></pre>
+</div>
+  				<div class="comment-examples-container-bottom"></div>
+  			</div>
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  				<table class="table table-bordered table-striped table-condensed">
+  					<thead>
+  						<tr>
+  							<th>Type</th>
+  							<th>Name</th>
+  							<th>Description</th>
+  						</tr>
+  					</thead>
+  					<tbody>
+  						<tr>
+  							<td><span class="xref">System.TimeSpan</span></td>
+  							<td><span class="parametername">duration</span></td>
+  							<td></td>
+  						</tr>
+  					</tbody>
+  				</table>
+  			</div>
+  
+  			<div class="custom-menu-data-returntype" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  				<table class="table table-bordered table-striped table-condensed table-return">
+  					<thead>
+  						<tr>
+  							<th>Type</th>
+  							<th>Description</th>
+  						</tr>
+  					</thead>
+  					<tbody>
+  						<tr>
+  							<td><span class="xref">System.Boolean</span></td>
+  							<td></td>
+  						</tr>
+  					</tbody>
+  				</table>
+  			</div>
+  		</div>
+  	</div>
+  </div>
+  
+  
+  
+  <div class="custom-container">
+  	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Remove a single item from cache based on cacheKey</p>
 <ul>
 <li>If it does not exist, it does nothing</li>
@@ -865,7 +946,7 @@ class CarService
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Cache_Remove_System_String_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L352">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L393">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_Cache_Remove_" data-uid="SystemLibrary.Common.Web.Cache.Remove*"></a>
@@ -1548,7 +1629,7 @@ Cache.Remove(removeCacheKey);</code></pre>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L44" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L45" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

@@ -88,6 +88,19 @@ references:
   fullName.vb: SystemLibrary.Common.Web.Cache.Get(Of T)(System.String, System.Func(Of T), System.TimeSpan, System.Func(Of T, System.Boolean), System.Boolean, System.Boolean, System.Func(Of System.Boolean), System.Boolean)
   nameWithType: Cache.Get<T>(String, Func<T>, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>, Boolean)
   nameWithType.vb: Cache.Get(Of T)(String, Func(Of T), TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean), Boolean)
+- uid: SystemLibrary.Common.Web.Cache.Lock(System.TimeSpan)
+  name: Lock(TimeSpan)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_Lock_System_TimeSpan_
+  commentId: M:SystemLibrary.Common.Web.Cache.Lock(System.TimeSpan)
+  fullName: SystemLibrary.Common.Web.Cache.Lock(System.TimeSpan)
+  nameWithType: Cache.Lock(TimeSpan)
+- uid: SystemLibrary.Common.Web.Cache.Lock*
+  name: Lock
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_Lock_
+  commentId: Overload:SystemLibrary.Common.Web.Cache.Lock
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Cache.Lock
+  nameWithType: Cache.Lock
 - uid: SystemLibrary.Common.Web.Cache.Remove(System.String)
   name: Remove(String)
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_Remove_System_String_

@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace SystemLibrary.Common.Web.Tests;
 
@@ -131,6 +133,55 @@ public class CacheTests
         var cacheKey = "<" + nameof(Auto_Create_CacheKey_By_Passing_Function_With_Outside_Vars_Success) + ">b__0SystemLibrary.Common.Web.Tests." + nameof(CacheTests) + "+<>c__DisplayClass8_0System.String" + a + b + c;
         var cachedItem = Cache.Get<string>(cacheKey);
         Assert.IsTrue(cachedItem.Contains("555"));
+    }
+
+    [TestMethod]
+    public void Upsert_Lock_Tests()
+    {
+        var a = 0;
+        var b = 0;
+        if (Cache.Lock(TimeSpan.FromSeconds(1)))
+        {
+            a++;
+        }
+        if (Cache.Lock(TimeSpan.FromSeconds(1)))
+        {
+            a++;
+        }
+        if (Cache.Lock())
+        {
+            b++;
+            a++;
+        }
+        if (Cache.Lock())
+        {
+            a++;
+        }
+        if (Cache.Lock())
+        {
+            a++;
+            b++;
+        }
+
+        if (Cache.Lock(TimeSpan.FromSeconds(1)))
+        {
+            a++;
+        }
+        Assert.IsTrue(a == 2 && b == 1, "A: " + a + ", B: " + b);
+
+        System.Threading.Thread.Sleep(1100);
+        if (Cache.Lock(TimeSpan.FromSeconds(1)))
+        {
+            a++;
+        }
+
+        Assert.IsTrue(a == 3 && b == 1, "A: " + a + ", B: " + b);
+
+        if (Cache.Lock(TimeSpan.FromSeconds(1)))
+        {
+            a++;
+        }
+        Assert.IsTrue(a == 3 && b == 1, "A: " + a + ", B: " + b);
     }
 
     static string GetText(string a, int b = 99, bool c = false)

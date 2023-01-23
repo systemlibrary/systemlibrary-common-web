@@ -28,10 +28,9 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-- 6.4.1.1
+- 6.4.1.2
 - Updated deps
-- HttpBaseClient: Headers such as accept and content-type are not set automatically, unless headers passed is null (Breaking Change)
-- HttpBaseClient: Posting string as urlform now sends the data as 'url form', same as posting bytes as multipartformdata also sends as 'file'
+- New function in Cache: Lock(), insert (not yet existing lock) or update (expired lock), and return true if so, else false
 
 #### Version history
 - View git history of this file if interested
