@@ -56,6 +56,9 @@ public enum MediaType
     [EnumValue("application/zip")]
     zip,
 
+    [EnumValue("text/xml")]
+    xml,
+
     [EnumValue("")]
-    None,
+    None
 }

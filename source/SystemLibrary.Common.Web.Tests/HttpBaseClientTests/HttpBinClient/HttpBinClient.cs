@@ -64,7 +64,7 @@ namespace SystemLibrary.Common.Web.Tests
 
         public ClientResponse<string> GetWithTimeout(int timeoutMilliseconds)
         {
-            return Get<string>(clientUrl + "/delay/1", MediaType.json, timeoutMilliseconds);
+            return Get<string>(clientUrl + "/delay/11", MediaType.json, timeoutMilliseconds);
         }
     }
 }

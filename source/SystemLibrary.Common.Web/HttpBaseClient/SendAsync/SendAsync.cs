@@ -30,25 +30,11 @@ namespace SystemLibrary.Common.Web
 
             var content = Content.GetContent(data, mediaType, jsonSerializerOptions);
 
-            if (content?.Headers != null)
-            {
-                if (headers != null)
-                {
-                    foreach (var header in headers)
-                        if (header.Key.Is())
-                            content.Headers.TryAddWithoutValidation(header.Key, header.Value);
-                }
-                else
-                {
-                    if (mediaType != MediaType.None)
-                        content.Headers.TryAddWithoutValidation("Content-Type", mediaType.ToValue());
-                }
-            }
-
             var requestOptions = new RequestOptions()
             {
                 Method = method,
                 Url = url,
+                Headers = headers,
                 MediaType = mediaType,
                 Content = content,
                 RetryOnceOnRequestCancelled = RetryOnceOnRequestCancelled,

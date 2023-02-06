@@ -50,5 +50,24 @@ namespace SystemLibrary.Common.Web.Tests
 
             Assert.IsTrue(response.Data.Contains("world"));
         }
+
+        [TestMethod]
+        public void Post_HttpRequestMessage_Success()
+        {
+
+        }
+
+        [TestMethod]
+        public void Post_ByteArrayContent_Success()
+        {
+
+        }
+
+
+        [TestMethod]
+        public void Post_StringContent_Success()
+        {
+
+        }
     }
 }

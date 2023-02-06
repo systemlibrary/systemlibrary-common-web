@@ -62,6 +62,11 @@ namespace SystemLibrary.Common.Web
                     //MediaTypeFormatter bsonFormatter = new BsonMediaTypeFormatter();
 
                     default:
+                        if(data is HttpRequestMessage msg)
+                        {
+                            return msg.Content;
+                        }
+
                         content = new StringContent(data is string ? data as string : data.ToString(), Encoding.UTF8, mediaType.ToValue());
                         break;
                 }

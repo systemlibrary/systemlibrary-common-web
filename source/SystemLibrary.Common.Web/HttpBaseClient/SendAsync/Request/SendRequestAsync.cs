@@ -24,11 +24,17 @@ namespace SystemLibrary.Common.Web
                     {
                         options.ForceNewClient = true;
                         options.TimeoutMilliseconds = AppSettings.Current.SystemLibraryCommonWeb.HttpBaseClient.RetryRequestTimeoutSeconds;
+
+                        if (options.TimeoutMilliseconds < 1)
+                            options.TimeoutMilliseconds = 10000;
+                        else 
+                            options.TimeoutMilliseconds = options.TimeoutMilliseconds * 1000;
+                        
                         response = await SendAsync(options).ConfigureAwait(false);
                     }
                     catch (Exception ex)
                     {
-                        throw new RetryRequestException(response?.StatusCode + ": " + response?.ReasonPhrase + " error on retrying " + options.Url, ex);
+                        throw new RetryRequestException(response?.StatusCode + ": " + response?.ReasonPhrase + " error on retrying " + options.Url + " timeout: " + options.TimeoutMilliseconds + " ms", ex);
                     }
                 }
 

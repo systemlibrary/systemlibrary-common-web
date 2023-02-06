@@ -28,9 +28,8 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-- 6.4.1.2
-- Updated deps
-- New function in Cache: Lock(), insert (not yet existing lock) or update (expired lock), and return true if so, else false
+- 6.4.1.4
+- Retry requests "seconds" configuration is now actually seconds and not used as milliseconds
 
 #### Version history
 - View git history of this file if interested
