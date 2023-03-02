@@ -79,9 +79,11 @@ public partial class HttpBaseClient
 {
     const int DefaultTimeoutMilliseconds = 60000;
 
+    
     bool RetryOnceOnRequestCancelled;
     bool IgnoreSslErrors;
     int TimeoutMilliseconds;
+    bool ThrowOnUnsuccessfulStatusCode;
 
     /// <summary>
     /// </summary>
@@ -91,11 +93,13 @@ public partial class HttpBaseClient
     public HttpBaseClient(
         bool retryOnceOnRequestCancelled = false,
         bool ignoreSslErrors = true,
-        int defaultTimeoutMilliseconds = DefaultTimeoutMilliseconds)
+        int defaultTimeoutMilliseconds = DefaultTimeoutMilliseconds,
+        bool throwOnUnsuccessfulStatusCode = true)
     {
         RetryOnceOnRequestCancelled = retryOnceOnRequestCancelled;
         IgnoreSslErrors = ignoreSslErrors;
         TimeoutMilliseconds = defaultTimeoutMilliseconds;
+        ThrowOnUnsuccessfulStatusCode = throwOnUnsuccessfulStatusCode;
     }
 
     /// <summary>

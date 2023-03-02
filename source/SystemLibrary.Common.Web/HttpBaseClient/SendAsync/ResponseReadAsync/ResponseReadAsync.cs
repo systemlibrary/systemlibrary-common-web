@@ -11,14 +11,19 @@ namespace SystemLibrary.Common.Web
 {
     partial class HttpBaseClient
     {
-        static async Task<T> ReadResponseAsync<T>(HttpResponseMessage response, CancellationToken cancellationToken, JsonSerializerOptions jsonSerializerOptions)
+        static async Task<T> ReadResponseAsync<T>(string url, HttpResponseMessage response, CancellationToken cancellationToken, JsonSerializerOptions jsonSerializerOptions, bool throwOnUnsuccessfulStatusCode)
         {
-            if (!response.IsSuccessStatusCode)
-                ThrowRequestException(response);
+            if (throwOnUnsuccessfulStatusCode && !response.IsSuccessStatusCode)
+                ThrowRequestException(url, response);
 
             if (response.Content == null) return default;
 
             var type = typeof(T);
+
+            if(type == typeof(HttpResponseMessage))
+            {
+                return (T)(object)response;
+            }
 
             //TODO: Strings should be read as a stream to then be simply returned, avoiding boxing and its prolly faster (measure it?)
             if (type.IsValueType || type == SystemType.StringType)

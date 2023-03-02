@@ -50,7 +50,7 @@ public static class IApplicationBuilderExtensions
         if (options == null)
             options = new CommonWebApplicationBuilderOptions();
 
-        if (options.UseExceptionPageInTestAndDev)
+        if (options.UseExceptionPage)
         {
             app.UseDeveloperExceptionPage();
         }

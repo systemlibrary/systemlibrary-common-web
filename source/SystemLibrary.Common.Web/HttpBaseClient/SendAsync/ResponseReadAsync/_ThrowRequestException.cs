@@ -5,7 +5,7 @@ namespace SystemLibrary.Common.Web
 {
     partial class HttpBaseClient
     {
-        static void ThrowRequestException(HttpResponseMessage response)
+        static void ThrowRequestException(string url, HttpResponseMessage response)
         {
             var message = GetResponseBodyAsync(response)
                 .ConfigureAwait(false)
@@ -20,10 +20,10 @@ namespace SystemLibrary.Common.Web
 
             if ((int)response.StatusCode == 422)
             {
-                throw new HttpRequestException(HttpStatusCode.BadRequest + " (actual: " + (int)response.StatusCode + "): " + response.ReasonPhrase + " " + message);
+                throw new HttpRequestException(HttpStatusCode.BadRequest + " (actual: " + (int)response.StatusCode + "): " + response.ReasonPhrase + " " + message + " Url: " + url);
             }
 
-            throw new HttpRequestException(response.StatusCode + ": " + response.ReasonPhrase + ". " + message);
+            throw new HttpRequestException(response.StatusCode + ": " + response.ReasonPhrase + ". " + message + " Url: " + url);
         }
     }
 }

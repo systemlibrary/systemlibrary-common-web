@@ -4,8 +4,6 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
-using SystemLibrary.Common.Net.Extensions;
-
 namespace SystemLibrary.Common.Web
 {
     partial class HttpBaseClient
@@ -46,7 +44,7 @@ namespace SystemLibrary.Common.Web
 
             var response = await Request.SendRequestAsync(requestOptions).ConfigureAwait(false);
 
-            var responseData = await ReadResponseAsync<T>(response, cancellationToken, jsonSerializerOptions).ConfigureAwait(false);
+            var responseData = await ReadResponseAsync<T>(url, response, cancellationToken, jsonSerializerOptions, ThrowOnUnsuccessfulStatusCode).ConfigureAwait(false);
 
             return new ClientResponse<T>(response, responseData);
         }

@@ -33,7 +33,7 @@ public partial class AppSettingsTests
             if (property.Name.ToLower() == "retryrequesttimeoutseconds")
             {
                 count++;
-                Assert.IsTrue(value == "71", "retryrequesttimeoutseconds is not 71: " + value);
+                Assert.IsTrue(value == "9", "retryrequesttimeoutseconds is not 9: " + value);
             }
 
             if (property.Name.ToLower() == "cacheclientconnectionseconds")

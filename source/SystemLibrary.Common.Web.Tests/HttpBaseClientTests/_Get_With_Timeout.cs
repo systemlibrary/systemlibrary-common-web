@@ -11,7 +11,7 @@ namespace SystemLibrary.Common.Web.Tests
         {
             var webService = new HttpBinClient();
 
-            var response = webService.GetWithTimeout(5000);
+            var response = webService.GetWithTimeout(12000);
             
             Assert.IsTrue(response.StatusCode == System.Net.HttpStatusCode.OK);
             Assert.IsTrue(response.Data.Contains("httpbin.org"));
@@ -59,6 +59,11 @@ namespace SystemLibrary.Common.Web.Tests
                 //If all unit tests are ran, the "Large_Timeout_Success()" might run before this one and
                 //we will get a cached response as the only difference in the request is the timeout
                 Assert.IsTrue(true);
+            }
+            catch(RetryRequestException retry)
+            {
+                Assert.IsTrue(true, "Retry thrown, short timeout, against a long delay request");
+
             }
             catch (Exception ex)
             {
