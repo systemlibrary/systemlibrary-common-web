@@ -282,12 +282,12 @@ references:
   commentId: F:SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseDefaultRouting
   fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseDefaultRouting
   nameWithType: CommonWebApplicationBuilderOptions.UseDefaultRouting
-- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseExceptionPageInTestAndDev
-  name: UseExceptionPageInTestAndDev
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_UseExceptionPageInTestAndDev
-  commentId: F:SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseExceptionPageInTestAndDev
-  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseExceptionPageInTestAndDev
-  nameWithType: CommonWebApplicationBuilderOptions.UseExceptionPageInTestAndDev
+- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseExceptionPage
+  name: UseExceptionPage
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_UseExceptionPage
+  commentId: F:SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseExceptionPage
+  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseExceptionPage
+  nameWithType: CommonWebApplicationBuilderOptions.UseExceptionPage
 - uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseHttpsAndSecureCookiePolicy
   name: UseHttpsAndSecureCookiePolicy
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_UseHttpsAndSecureCookiePolicy
@@ -643,12 +643,12 @@ references:
   commentId: T:SystemLibrary.Common.Web.HttpBaseClient
   fullName: SystemLibrary.Common.Web.HttpBaseClient
   nameWithType: HttpBaseClient
-- uid: SystemLibrary.Common.Web.HttpBaseClient.#ctor(System.Boolean,System.Boolean,System.Int32)
-  name: HttpBaseClient(Boolean, Boolean, Int32)
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.html#SystemLibrary_Common_Web_HttpBaseClient__ctor_System_Boolean_System_Boolean_System_Int32_
-  commentId: M:SystemLibrary.Common.Web.HttpBaseClient.#ctor(System.Boolean,System.Boolean,System.Int32)
-  fullName: SystemLibrary.Common.Web.HttpBaseClient.HttpBaseClient(System.Boolean, System.Boolean, System.Int32)
-  nameWithType: HttpBaseClient.HttpBaseClient(Boolean, Boolean, Int32)
+- uid: SystemLibrary.Common.Web.HttpBaseClient.#ctor(System.Boolean,System.Boolean,System.Int32,System.Boolean)
+  name: HttpBaseClient(Boolean, Boolean, Int32, Boolean)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.html#SystemLibrary_Common_Web_HttpBaseClient__ctor_System_Boolean_System_Boolean_System_Int32_System_Boolean_
+  commentId: M:SystemLibrary.Common.Web.HttpBaseClient.#ctor(System.Boolean,System.Boolean,System.Int32,System.Boolean)
+  fullName: SystemLibrary.Common.Web.HttpBaseClient.HttpBaseClient(System.Boolean, System.Boolean, System.Int32, System.Boolean)
+  nameWithType: HttpBaseClient.HttpBaseClient(Boolean, Boolean, Int32, Boolean)
 - uid: SystemLibrary.Common.Web.HttpBaseClient.#ctor*
   name: HttpBaseClient
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.html#SystemLibrary_Common_Web_HttpBaseClient__ctor_
@@ -966,6 +966,12 @@ references:
   commentId: F:SystemLibrary.Common.Web.MediaType.plain
   fullName: SystemLibrary.Common.Web.MediaType.plain
   nameWithType: MediaType.plain
+- uid: SystemLibrary.Common.Web.MediaType.xml
+  name: xml
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.MediaType.html#SystemLibrary_Common_Web_MediaType_xml
+  commentId: F:SystemLibrary.Common.Web.MediaType.xml
+  fullName: SystemLibrary.Common.Web.MediaType.xml
+  nameWithType: MediaType.xml
 - uid: SystemLibrary.Common.Web.MediaType.xwwwformUrlEncoded
   name: xwwwformUrlEncoded
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.MediaType.html#SystemLibrary_Common_Web_MediaType_xwwwformUrlEncoded

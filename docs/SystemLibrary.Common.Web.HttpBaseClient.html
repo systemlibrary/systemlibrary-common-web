@@ -300,15 +300,15 @@ public void Test()
   
   <div class="custom-container">
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_HttpBaseClient__ctor_System_Boolean_System_Boolean_System_Int32_">
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_HttpBaseClient__ctor_System_Boolean_System_Boolean_System_Int32_System_Boolean_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HttpBaseClient/HttpBaseClient.cs/#L91">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HttpBaseClient/HttpBaseClient.cs/#L93">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_HttpBaseClient__ctor_" data-uid="SystemLibrary.Common.Web.HttpBaseClient.#ctor*"></a>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_HttpBaseClient__ctor_System_Boolean_System_Boolean_System_Int32_" data-uid="SystemLibrary.Common.Web.HttpBaseClient.#ctor(System.Boolean,System.Boolean,System.Int32)" class="h4-custom-functionName">public HttpBaseClient(bool retryOnceOnRequestCancelled = false, bool ignoreSslErrors = true, int defaultTimeoutMilliseconds = 60000)</h4>
+  		<h4 id="SystemLibrary_Common_Web_HttpBaseClient__ctor_System_Boolean_System_Boolean_System_Int32_System_Boolean_" data-uid="SystemLibrary.Common.Web.HttpBaseClient.#ctor(System.Boolean,System.Boolean,System.Int32,System.Boolean)" class="h4-custom-functionName">public HttpBaseClient(bool retryOnceOnRequestCancelled = false, bool ignoreSslErrors = true, int defaultTimeoutMilliseconds = 60000, bool throwOnUnsuccessfulStatusCode = true)</h4>
   		<div class="custom-menu-data-container">
   
   			<div class="custom-menu-data-arguments" style="display: none;">
@@ -342,6 +342,11 @@ public void Test()
   							<td><p>Default is 60 seconds</p>
 </td>
   						</tr>
+  						<tr>
+  							<td><span class="xref">System.Boolean</span></td>
+  							<td><span class="parametername">throwOnUnsuccessfulStatusCode</span></td>
+  							<td></td>
+  						</tr>
   					</tbody>
   				</table>
   			</div>
@@ -363,7 +368,7 @@ public void Test()
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_HttpBaseClient_Delete__1_System_String_System_Object_SystemLibrary_Common_Web_MediaType_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HttpBaseClient/HttpBaseClient.cs/#L140">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HttpBaseClient/HttpBaseClient.cs/#L144">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_HttpBaseClient_Delete_" data-uid="SystemLibrary.Common.Web.HttpBaseClient.Delete*"></a>
@@ -479,7 +484,7 @@ var response = new HttpBaseClient().Delete&lt;string>(&quot;https://www.systemli
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_HttpBaseClient_DeleteAsync__1_System_String_System_Object_SystemLibrary_Common_Web_MediaType_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HttpBaseClient/HttpBaseClient.cs/#L157">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HttpBaseClient/HttpBaseClient.cs/#L161">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_HttpBaseClient_DeleteAsync_" data-uid="SystemLibrary.Common.Web.HttpBaseClient.DeleteAsync*"></a>
@@ -595,7 +600,7 @@ var response = await new HttpBaseClient().DeleteAsync&lt;string>(&quot;https://w
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_HttpBaseClient_Get__1_System_String_SystemLibrary_Common_Web_MediaType_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HttpBaseClient/HttpBaseClient.cs/#L238">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HttpBaseClient/HttpBaseClient.cs/#L242">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_HttpBaseClient_Get_" data-uid="SystemLibrary.Common.Web.HttpBaseClient.Get*"></a>
@@ -737,7 +742,7 @@ var data = new Client().Get();
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_HttpBaseClient_GetAsync__1_System_String_SystemLibrary_Common_Web_MediaType_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HttpBaseClient/HttpBaseClient.cs/#L255">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HttpBaseClient/HttpBaseClient.cs/#L259">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_HttpBaseClient_GetAsync_" data-uid="SystemLibrary.Common.Web.HttpBaseClient.GetAsync*"></a>
@@ -848,7 +853,7 @@ var response = new await HttpBaseClient().GetAsync&lt;string>(&quot;https://www.
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_HttpBaseClient_Head__1_System_String_SystemLibrary_Common_Web_MediaType_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HttpBaseClient/HttpBaseClient.cs/#L109">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HttpBaseClient/HttpBaseClient.cs/#L113">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_HttpBaseClient_Head_" data-uid="SystemLibrary.Common.Web.HttpBaseClient.Head*"></a>
@@ -958,7 +963,7 @@ var response = new await HttpBaseClient().GetAsync&lt;string>(&quot;https://www.
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_HttpBaseClient_HeadAsync__1_System_String_SystemLibrary_Common_Web_MediaType_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HttpBaseClient/HttpBaseClient.cs/#L125">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HttpBaseClient/HttpBaseClient.cs/#L129">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_HttpBaseClient_HeadAsync_" data-uid="SystemLibrary.Common.Web.HttpBaseClient.HeadAsync*"></a>
@@ -1068,7 +1073,7 @@ var response = new await HttpBaseClient().GetAsync&lt;string>(&quot;https://www.
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_HttpBaseClient_Post__1_System_String_System_Object_SystemLibrary_Common_Web_MediaType_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HttpBaseClient/HttpBaseClient.cs/#L270">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HttpBaseClient/HttpBaseClient.cs/#L274">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_HttpBaseClient_Post_" data-uid="SystemLibrary.Common.Web.HttpBaseClient.Post*"></a>
@@ -1184,7 +1189,7 @@ var response = new HttpBaseClient().Post&lt;string>(&quot;https://www.systemlibr
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_HttpBaseClient_PostAsync__1_System_String_System_Object_SystemLibrary_Common_Web_MediaType_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HttpBaseClient/HttpBaseClient.cs/#L287">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HttpBaseClient/HttpBaseClient.cs/#L291">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_HttpBaseClient_PostAsync_" data-uid="SystemLibrary.Common.Web.HttpBaseClient.PostAsync*"></a>
@@ -1300,7 +1305,7 @@ var response = await new HttpBaseClient().PostAsync&lt;string>(&quot;https://www
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_HttpBaseClient_Put__1_System_String_System_Object_SystemLibrary_Common_Web_MediaType_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HttpBaseClient/HttpBaseClient.cs/#L172">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HttpBaseClient/HttpBaseClient.cs/#L176">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_HttpBaseClient_Put_" data-uid="SystemLibrary.Common.Web.HttpBaseClient.Put*"></a>
@@ -1416,7 +1421,7 @@ var response = new HttpBaseClient().Put&lt;string>(&quot;https://www.systemlibra
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_HttpBaseClient_PutAsync__1_System_String_System_Object_SystemLibrary_Common_Web_MediaType_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HttpBaseClient/HttpBaseClient.cs/#L189">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HttpBaseClient/HttpBaseClient.cs/#L193">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_HttpBaseClient_PutAsync_" data-uid="SystemLibrary.Common.Web.HttpBaseClient.PutAsync*"></a>
@@ -2162,7 +2167,7 @@ var response = await new HttpBaseClient().PutAsync&lt;string>(&quot;https://www.
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HttpBaseClient/SendAsync/SendAsync.cs/#L11" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/HttpBaseClient/SendAsync/SendAsync.cs/#L9" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
