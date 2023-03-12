@@ -45,25 +45,24 @@ public static class IApplicationBuilderExtensions
     /// </example>
     public static IApplicationBuilder CommonWebApplicationBuilder(this IApplicationBuilder app, CommonWebApplicationBuilderOptions options = null)
     {
-        Services.ServiceProviderInstance = app.ApplicationServices;
 
         if (options == null)
             options = new CommonWebApplicationBuilderOptions();
 
         if (options.UseExceptionPage)
         {
-            app.UseDeveloperExceptionPage();
+            app = app.UseDeveloperExceptionPage();
         }
 
         if (options.UseHttpToHttpsRedirectionAndHsts)
         {
-            app.UseHsts();
-            app.UseHttpsRedirection();
+            app = app.UseHsts();
+            app = app.UseHttpsRedirection();
         }
 
         if (options.UseDefaultRouting)
         {
-            app.UseRouting();
+            app = app.UseRouting();
         }
 
         if (options.UseHttpsAndSecureCookiePolicy)
@@ -72,15 +71,15 @@ public static class IApplicationBuilderExtensions
             cookieOptions.Secure = CookieSecurePolicy.SameAsRequest;
             cookieOptions.HttpOnly = Microsoft.AspNetCore.CookiePolicy.HttpOnlyPolicy.Always;
             cookieOptions.MinimumSameSitePolicy = SameSiteMode.Strict;
-            app.UseCookiePolicy(cookieOptions);
+            app = app.UseCookiePolicy(cookieOptions);
         }
 
-        app.UseForwardedHeaders();
+        app = app.UseForwardedHeaders();
 
         if (options.UseAuthenticationAndAuthorization)
         {
-            app.UseAuthentication();
-            app.UseAuthorization();
+            app = app.UseAuthentication();
+            app = app.UseAuthorization();
         }
 
         var httpContextAccessor = app.ApplicationServices.GetRequiredService<IHttpContextAccessor>();
@@ -91,7 +90,7 @@ public static class IApplicationBuilderExtensions
 
         if (options.UseControllerEndpoints)
         {
-            app.UseEndpoints(endpoints =>
+            app = app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapControllerRoute("api/{controller}/{action}/{id?}", "api/{controller}/{action}/{id?}");
@@ -101,7 +100,7 @@ public static class IApplicationBuilderExtensions
 
         if (options.UseRazorPagesEndpoints)
         {
-            app.UseEndpoints(endpoints =>
+            app = app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
             });
@@ -120,8 +119,10 @@ public static class IApplicationBuilderExtensions
             staticFileOptions.FileProvider = new PhysicalFileProvider(Directory.GetCurrentDirectory());
             staticFileOptions.RequestPath = new PathString();
 
-            app.UseStaticFiles(staticFileOptions);
+            app = app.UseStaticFiles(staticFileOptions);
         }
+
+        Services.ServiceProviderInstance = app.ApplicationServices;
 
         return app;
     }

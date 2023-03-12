@@ -58,6 +58,10 @@ public class LogWriterTests
         var content = System.IO.File.ReadAllText(DumpFullPath);
 
         Assert.IsTrue(content.Contains("Ferrari"), "Ferrari");
+
+        var logwriter = Services.Get<ILogWriter>();
+
+        Assert.IsTrue(logwriter != null, "ILogWriter is null from Services()");
     }
 
     [TestMethod]

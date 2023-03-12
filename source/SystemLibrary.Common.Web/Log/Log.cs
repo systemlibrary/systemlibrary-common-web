@@ -139,6 +139,8 @@ public static partial class Log
         Write(obj, (LogLevel)99999);
     }
 
+    static bool WarningDumped = false;
+
     static void Write(object obj, LogLevel level)
     {
         if ((int)level != 99999)
@@ -157,7 +159,11 @@ public static partial class Log
 
         if (LogWriter == null)
         {
-            Dump.Write("Warning: SystemLibrary.Common.Web.ILogWriter is not registered as a service.");
+            if (!WarningDumped)
+            {
+                WarningDumped = true;
+                Dump.Write("Dump.Write invoked: SystemLibrary.Common.Web.ILogWriter is not yet registered as a service.");
+            }
             Dump.Write(message);
             return;
         }

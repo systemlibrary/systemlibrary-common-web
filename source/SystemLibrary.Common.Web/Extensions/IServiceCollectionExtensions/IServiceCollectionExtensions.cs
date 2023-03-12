@@ -1,8 +1,10 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.DependencyInjection;
@@ -54,45 +56,32 @@ public static class IServiceCollectionExtensions
     /// </example>
     public static IServiceCollection CommonWebApplicationServices(this IServiceCollection services, CommonWebApplicationServicesOptions options = null)
     {
-        Services.Collection = services;
-
         if (options == null)
             options = new CommonWebApplicationServicesOptions();
 
-        services.Configure<ForwardedHeadersOptions>(forwardOption =>
+        services = services.Configure<ForwardedHeadersOptions>(forwardOption =>
         {
             forwardOption.ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto | Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor;
         });
 
         IMvcBuilder builder = null;
 
-        if (options.AddMvcPages)
+        if (options.AddMvc)
         {
-            builder = services.AddMvc(mvc =>
-            {
-                mvc.OutputFormatters.Add(new DefaultSupportedMediaTypes());
-
-                if (options.SupportedMediaTypes != null)
-                    mvc.OutputFormatters.Add(options.SupportedMediaTypes);
-            });
+            builder = services.AddMvc(ConfigureMvcOptions(options));
         }
 
         else if (options.AddRazorPages)
-            builder = services.AddRazorPages();
-
-        if (options.AddMvcPages || options.AddRazorPages || options.AddControllers)
         {
-            if (builder == null)
-            {
-                builder = services.AddControllers(config =>
-                {
-                    config.OutputFormatters.Add(new DefaultSupportedMediaTypes());
+            builder = services.AddRazorPages();
+            builder.Services.Configure(ConfigureMvcOptions(options));
+        }
 
-                    if (options.SupportedMediaTypes != null)
-                        config.OutputFormatters.Add(options.SupportedMediaTypes);
-                });
-            }
+        else if (options.AddControllers)
+            builder = services.AddControllers(ConfigureMvcOptions(options));
 
+        if (builder != null)
+        {
             var executingAssembliy = Assembly.GetExecutingAssembly();
             var entryAssembly = Assembly.GetEntryAssembly();
 
@@ -102,11 +91,9 @@ public static class IServiceCollectionExtensions
             if (executingAssembliy?.FullName != entryAssembly?.FullName)
                 builder.AddApplicationPart(entryAssembly);
         }
-        else
-        {
-            if (options.SupportedMediaTypes != null && options.AddMvcPages == false && options.AddControllers == false)
-                throw new System.Exception("You've set MvcPages and AddControllers to false, but yet registering SupportedMediaTypes. You need to register the supported media types yourself in this scenario, instaed of passing them down to CommonWebApplicationServices()");
-        }
+        
+        else if(options.SupportedMediaTypes != null)
+            throw new Exception("AddMvcPages, AddRazorPages and AddControllers are false, yet you've set SupportedMediaTypes. Either set one of the flags to true, or register SupportedMediaTypes yourself");
 
         if (options.AddRazorRuntimeReCompilationOnViewChanged)
         {
@@ -114,7 +101,7 @@ public static class IServiceCollectionExtensions
                 builder.AddRazorRuntimeCompilation();
         }
 
-        services.Configure<RazorViewEngineOptions>(razorViews =>
+        services = services.Configure<RazorViewEngineOptions>(razorViews =>
         {
             if (options.ViewLocationExpander != null)
                 razorViews.ViewLocationExpanders.Add(options.ViewLocationExpander);
@@ -152,12 +139,24 @@ public static class IServiceCollectionExtensions
             });
         }
 
-        services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-        services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
-        services.AddTransient<HtmlHelperFactory, HtmlHelperFactory>();
+        services = services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>()
+            .AddSingleton<IActionContextAccessor, ActionContextAccessor>()
+            .AddTransient<HtmlHelperFactory, HtmlHelperFactory>()
+            .Configure<IISServerOptions>(options => { options.AllowSynchronousIO = true; });
 
-        services.Configure<IISServerOptions>(options => { options.AllowSynchronousIO = true; });
+        Services.Collection = services;
 
         return services;
+    }
+
+    static Action<MvcOptions> ConfigureMvcOptions(CommonWebApplicationServicesOptions options)
+    {
+        return mvc =>
+        {
+            mvc.OutputFormatters.Add(new DefaultSupportedMediaTypes());
+
+            if (options.SupportedMediaTypes != null)
+                mvc.OutputFormatters.Add(options.SupportedMediaTypes);
+        };
     }
 }

@@ -28,10 +28,8 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-- 6.5.1.1
-- Renamed option "UseExceptionPageInDevAndTest" to UseExceptionPage (breaking change)
-- HttpBaseClient new option "throwOnUnsuccessfulStatusCode" is true by default, can be set to false in the CTOR
-- HttpBaseClient can take a type of HttpResponseMessage where the "var response.Data" will then be the response message itself, unread, untouched
+- 6.5.1.3
+- RazorPages enabled now also registered default MediaTypes
 
 #### Version history
 - View git history of this file if interested

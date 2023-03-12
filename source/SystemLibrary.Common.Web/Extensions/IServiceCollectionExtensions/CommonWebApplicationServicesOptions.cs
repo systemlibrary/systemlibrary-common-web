@@ -43,9 +43,9 @@ namespace SystemLibrary.Common.Web.Extensions;
 public class CommonWebApplicationServicesOptions
 {
     /// <summary>
-    /// Enables MVC and also adds then default media types output formatters, making your application able to serve: tiff, woff, json, xml, pdf, jpg, png, and a few other default media types
+    /// Enables MV and also enables razor pages, and then enable default media types output formatters, making your application able to serve: tiff, woff, json, xml, pdf, jpg, png, js, css, and a few other default media types
     /// </summary>
-    public bool AddMvcPages { get; set; } = true;
+    public bool AddMvc { get; set; } = true;
     /// <summary>
     /// Enables Razor Pages, but if 'AddMvcPages' is true, this setting is ignored, as MVC already enables razor pages
     /// </summary>
