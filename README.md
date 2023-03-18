@@ -28,8 +28,13 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-- 6.5.1.3
-- RazorPages enabled now also registered default MediaTypes
+- 6.6.1.4
+- Adding floating patch/feature versions on dependencies
+- AddRazorRuntimeReCompilationOnViewChanged renamed to AddRazorRecompilationOnViewChanged (breaking change)
+- UseRazorPagesEndpoints renamed to MapRazorPagesEndpoints (breaking change)
+- UseControllerEndpoints renamed to MapControllerEndpoints (breaking change)
+- MapControllerEndpoints do not invoke MapRazorPages() (bugfix)
+- services are registered with TryAdd... for HttpContextAccessor, ActionContextAccessor and HtmlHelperFactory
 
 #### Version history
 - View git history of this file if interested

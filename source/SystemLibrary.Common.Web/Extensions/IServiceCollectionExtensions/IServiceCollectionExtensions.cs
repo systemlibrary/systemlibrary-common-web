@@ -1,20 +1,15 @@
-﻿using System;
-using System.Reflection;
-
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.CookiePolicy;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace SystemLibrary.Common.Web.Extensions;
 
 /// <summary>
 /// Extension methods for IServiceCollection object
 /// </summary>
-public static class IServiceCollectionExtensions
+public static partial class IServiceCollectionExtensions
 {
     /// <summary>
     /// Configures ServiceCollection in one-line
@@ -59,104 +54,42 @@ public static class IServiceCollectionExtensions
         if (options == null)
             options = new CommonWebApplicationServicesOptions();
 
-        services = services.Configure<ForwardedHeadersOptions>(forwardOption =>
-        {
-            forwardOption.ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto | Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor;
-        });
+        services = services.UseForwardedHeaders();
 
         IMvcBuilder builder = null;
 
         if (options.AddMvc)
         {
-            builder = services.AddMvc(ConfigureMvcOptions(options));
+            builder = services.UseAddMvc(options);
         }
-
         else if (options.AddRazorPages)
         {
-            builder = services.AddRazorPages();
-            builder.Services.Configure(ConfigureMvcOptions(options));
+            builder = services.UseAddRazorPages(options);
         }
-
         else if (options.AddControllers)
-            builder = services.AddControllers(ConfigureMvcOptions(options));
+            builder = services.UseAddControllers(options);
 
-        if (builder != null)
+        AddApplicationPart(builder, options);
+
+        if (options.AddRazorRecompilationOnViewChanged)
         {
-            var executingAssembliy = Assembly.GetExecutingAssembly();
-            var entryAssembly = Assembly.GetEntryAssembly();
-
-            if (executingAssembliy != null)
-                builder.AddApplicationPart(executingAssembliy);
-
-            if (executingAssembliy?.FullName != entryAssembly?.FullName)
-                builder.AddApplicationPart(entryAssembly);
-        }
-        
-        else if(options.SupportedMediaTypes != null)
-            throw new Exception("AddMvcPages, AddRazorPages and AddControllers are false, yet you've set SupportedMediaTypes. Either set one of the flags to true, or register SupportedMediaTypes yourself");
-
-        if (options.AddRazorRuntimeReCompilationOnViewChanged)
-        {
-            if (builder != null)
-                builder.AddRazorRuntimeCompilation();
+            AddRazorRuntimeRecompilation(builder);
         }
 
-        services = services.Configure<RazorViewEngineOptions>(razorViews =>
-        {
-            if (options.ViewLocationExpander != null)
-                razorViews.ViewLocationExpanders.Add(options.ViewLocationExpander);
-
-            if(options.AreaViewLocations != null)
-            {
-                foreach(var view in options.AreaViewLocations)
-                {
-                    if (view.IsNot()) continue;
-
-                    razorViews.AreaViewLocationFormats.Add(view);
-                }
-            }
-
-            if (options.ViewLocations != null)
-            {
-                foreach (var view in options.ViewLocations)
-                {
-                    if (view.IsNot()) continue;
-
-                    razorViews.ViewLocationFormats.Add(view);
-                }
-            }
-        });
+        services = services.UseViews(options);
 
         if (options.AddHttpsAndSecureCookiePolicy)
         {
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                options.HttpOnly = HttpOnlyPolicy.Always;
-
-                options.Secure = CookieSecurePolicy.SameAsRequest;
-
-                options.MinimumSameSitePolicy = SameSiteMode.Strict;
-            });
+            services = services.UseCookiePolicy();
         }
 
-        services = services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>()
-            .AddSingleton<IActionContextAccessor, ActionContextAccessor>()
-            .AddTransient<HtmlHelperFactory, HtmlHelperFactory>()
-            .Configure<IISServerOptions>(options => { options.AllowSynchronousIO = true; });
+        services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+        services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
+        services.TryAddTransient<HtmlHelperFactory, HtmlHelperFactory>();
+        services = services.Configure<IISServerOptions>(options => { options.AllowSynchronousIO = true; });
 
         Services.Collection = services;
 
         return services;
-    }
-
-    static Action<MvcOptions> ConfigureMvcOptions(CommonWebApplicationServicesOptions options)
-    {
-        return mvc =>
-        {
-            mvc.OutputFormatters.Add(new DefaultSupportedMediaTypes());
-
-            if (options.SupportedMediaTypes != null)
-                mvc.OutputFormatters.Add(options.SupportedMediaTypes);
-        };
     }
 }

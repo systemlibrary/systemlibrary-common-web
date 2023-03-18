@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
 
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace SystemLibrary.Common.Web;
 
@@ -17,6 +19,12 @@ namespace SystemLibrary.Common.Web;
 public class HtmlHelperFactory
 {
     //Creds to: https://stackoverflow.com/questions/42039269/create-custom-html-helper-in-asp-net-core/51466436#51466436
+
+    static ModelStateDictionary ModelStateDictionary = new ModelStateDictionary();
+    static HtmlHelperOptions HtmlHelperOptions = new HtmlHelperOptions();
+    static ControllerActionDescriptor ControllerActionDescriptor = new ControllerActionDescriptor();
+    static DummyIndexView DummyIndex = new DummyIndexView();
+    static ITempDataProvider TempDataProvider;
 
     /// <summary>
     /// Returns a generic HtmlHelper instance
@@ -33,11 +41,14 @@ public class HtmlHelperFactory
     /// </example>
     public static IHtmlHelper<T> Build<T>() where T : class
     {
-        var viewContext = GetViewContext();
+        var contextAccessor = Services.Get<IHttpContextAccessor>();
+
+        var viewContext = GetViewContext<T>(contextAccessor);
 
         var htmlHelper = Services.Get<IHtmlHelper<T>>();
 
         ((IViewContextAware)htmlHelper).Contextualize(viewContext);
+
         return htmlHelper;
     }
 
@@ -52,31 +63,55 @@ public class HtmlHelperFactory
     /// </example>
     public static IHtmlHelper Build()
     {
-        var viewContext = GetViewContext();
+        var contextAccessor = Services.Get<IHttpContextAccessor>();
+
+        var viewContext = GetViewContext(contextAccessor);
 
         var htmlHelper = Services.Get<IHtmlHelper>();
 
         ((IViewContextAware)htmlHelper).Contextualize(viewContext);
+
         return htmlHelper;
     }
 
-    static ViewContext GetViewContext()
+    static ViewContext GetViewContext<T>(IHttpContextAccessor contextAccessor)
     {
-        var modelMetadataProvider = Services.Get<IModelMetadataProvider>();
+        var modelMetadataProvider = contextAccessor.HttpContext.RequestServices.GetRequiredService<IModelMetadataProvider>();
 
-        var tempDataProvider = Services.Get<ITempDataProvider>();
+        var viewData = new ViewDataDictionary<T>(modelMetadataProvider, ModelStateDictionary);
+
+        return GetViewContext(contextAccessor, viewData);
+    }
+
+    static ViewContext GetViewContext(IHttpContextAccessor contextAccessor)
+    {
+        var modelMetadataProvider = contextAccessor.HttpContext.RequestServices.GetRequiredService<IModelMetadataProvider>();
+
+        var viewData = new ViewDataDictionary(modelMetadataProvider, ModelStateDictionary);
+
+        return GetViewContext(contextAccessor, viewData);
+    }
+
+    static ViewContext GetViewContext(IHttpContextAccessor contextAccessor, ViewDataDictionary viewData)
+    {
+        if (TempDataProvider == null)
+            TempDataProvider = contextAccessor.HttpContext.RequestServices.GetRequiredService<ITempDataProvider>();
+
+        var tempData = new TempDataDictionary(contextAccessor.HttpContext, TempDataProvider);
+
+        // using StringWriter writer = new StringWriter();
 
         return new ViewContext(
-            new ActionContext(HttpContextInstance.Current, HttpContextInstance.Current.GetRouteData(), new ControllerActionDescriptor()),
-            new DummyView(),
-            new ViewDataDictionary(modelMetadataProvider, new ModelStateDictionary()),
-            new TempDataDictionary(HttpContextInstance.Current, tempDataProvider),
+            new ActionContext(contextAccessor.HttpContext, contextAccessor.HttpContext.GetRouteData(), ControllerActionDescriptor),
+            DummyIndex,
+            viewData,
+            tempData,
             TextWriter.Null,
-            new HtmlHelperOptions()
+            HtmlHelperOptions
         );
     }
 
-    internal class DummyView : IView
+    internal class DummyIndexView : IView
     {
         public Task RenderAsync(ViewContext context)
         {

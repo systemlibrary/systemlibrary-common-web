@@ -1,0 +1,36 @@
+﻿using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace SystemLibrary.Common.Web.Extensions;
+
+static partial class IServiceCollectionExtensions
+{
+    static IServiceCollection UseViews(this IServiceCollection services, CommonWebApplicationServicesOptions options = null)
+    {
+        return services.Configure<RazorViewEngineOptions>(razorViews =>
+        {
+            if (options.ViewLocationExpander != null)
+                razorViews.ViewLocationExpanders.Add(options.ViewLocationExpander);
+
+            if(options.AreaViewLocations != null)
+            {
+                foreach(var view in options.AreaViewLocations)
+                {
+                    if (view.IsNot()) continue;
+
+                    razorViews.AreaViewLocationFormats.Add(view);
+                }
+            }
+
+            if (options.ViewLocations != null)
+            {
+                foreach (var view in options.ViewLocations)
+                {
+                    if (view.IsNot()) continue;
+
+                    razorViews.ViewLocationFormats.Add(view);
+                }
+            }
+        });
+    }
+}

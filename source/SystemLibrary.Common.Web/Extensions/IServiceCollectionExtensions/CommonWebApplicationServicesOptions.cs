@@ -67,7 +67,7 @@ public class CommonWebApplicationServicesOptions
     /// - Package 'System.Security.Cryptography.Pkcs' is not added as dependency, so if you turn this on it will throw exception for a missing package that you must manually add
     /// * Don't want a dependency on that package, as that package is quite large, and this package is also meant for API development
     /// </summary>
-    public bool AddRazorRuntimeReCompilationOnViewChanged { get; set; } = false;
+    public bool AddRazorRecompilationOnViewChanged { get; set; } = false;
 
     /// <summary>
     /// Pass in an object that implements the interface if you want to extend View Locations

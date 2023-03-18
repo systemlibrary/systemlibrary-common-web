@@ -40,12 +40,12 @@ public class CommonWebApplicationBuilderOptions
     /// <summary>
     /// Adds middleware to route urls to controllers
     /// </summary>
-    public bool UseControllerEndpoints = true;
+    public bool MapControllerEndpoints = true;
 
     /// <summary>
     /// Adds middleware for razor pages as endpoints aka 'MapRazorPages'
     /// </summary>
-    public bool UseRazorPagesEndpoints = true;
+    public bool MapRazorPagesEndpoints = true;
 
     /// <summary>
     /// Adds middleware for static files and sets a few default settings:

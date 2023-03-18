@@ -45,7 +45,6 @@ public static class IApplicationBuilderExtensions
     /// </example>
     public static IApplicationBuilder CommonWebApplicationBuilder(this IApplicationBuilder app, CommonWebApplicationBuilderOptions options = null)
     {
-
         if (options == null)
             options = new CommonWebApplicationBuilderOptions();
 
@@ -88,17 +87,16 @@ public static class IApplicationBuilderExtensions
         var actionContextAccessor = app.ApplicationServices.GetRequiredService<IActionContextAccessor>();
         ActionContextInstance.Initialize(actionContextAccessor);
 
-        if (options.UseControllerEndpoints)
+        if (options.MapControllerEndpoints)
         {
             app = app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapControllerRoute("api/{controller}/{action}/{id?}", "api/{controller}/{action}/{id?}");
-                endpoints.MapRazorPages();
             });
         }
 
-        if (options.UseRazorPagesEndpoints)
+        if (options.MapRazorPagesEndpoints)
         {
             app = app.UseEndpoints(endpoints =>
             {
