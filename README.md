@@ -28,13 +28,9 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-- 6.6.1.4
-- Adding floating patch/feature versions on dependencies
-- AddRazorRuntimeReCompilationOnViewChanged renamed to AddRazorRecompilationOnViewChanged (breaking change)
-- UseRazorPagesEndpoints renamed to MapRazorPagesEndpoints (breaking change)
-- UseControllerEndpoints renamed to MapControllerEndpoints (breaking change)
-- MapControllerEndpoints do not invoke MapRazorPages() (bugfix)
-- services are registered with TryAdd... for HttpContextAccessor, ActionContextAccessor and HtmlHelperFactory
+- 6.6.2.2
+- Updated deps
+
 
 #### Version history
 - View git history of this file if interested
