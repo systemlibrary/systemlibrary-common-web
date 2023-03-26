@@ -264,18 +264,24 @@ references:
   commentId: T:SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions
   fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions
   nameWithType: CommonWebApplicationBuilderOptions
+- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.MapControllerEndpoints
+  name: MapControllerEndpoints
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_MapControllerEndpoints
+  commentId: F:SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.MapControllerEndpoints
+  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.MapControllerEndpoints
+  nameWithType: CommonWebApplicationBuilderOptions.MapControllerEndpoints
+- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.MapRazorPagesEndpoints
+  name: MapRazorPagesEndpoints
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_MapRazorPagesEndpoints
+  commentId: F:SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.MapRazorPagesEndpoints
+  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.MapRazorPagesEndpoints
+  nameWithType: CommonWebApplicationBuilderOptions.MapRazorPagesEndpoints
 - uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseAuthenticationAndAuthorization
   name: UseAuthenticationAndAuthorization
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_UseAuthenticationAndAuthorization
   commentId: F:SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseAuthenticationAndAuthorization
   fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseAuthenticationAndAuthorization
   nameWithType: CommonWebApplicationBuilderOptions.UseAuthenticationAndAuthorization
-- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseControllerEndpoints
-  name: UseControllerEndpoints
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_UseControllerEndpoints
-  commentId: F:SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseControllerEndpoints
-  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseControllerEndpoints
-  nameWithType: CommonWebApplicationBuilderOptions.UseControllerEndpoints
 - uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseDefaultRouting
   name: UseDefaultRouting
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_UseDefaultRouting
@@ -307,12 +313,6 @@ references:
   commentId: F:SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseHttpToHttpsRedirectionAndHsts
   fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseHttpToHttpsRedirectionAndHsts
   nameWithType: CommonWebApplicationBuilderOptions.UseHttpToHttpsRedirectionAndHsts
-- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseRazorPagesEndpoints
-  name: UseRazorPagesEndpoints
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_UseRazorPagesEndpoints
-  commentId: F:SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseRazorPagesEndpoints
-  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseRazorPagesEndpoints
-  nameWithType: CommonWebApplicationBuilderOptions.UseRazorPagesEndpoints
 - uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseStaticFiles
   name: UseStaticFiles
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_UseStaticFiles
@@ -351,19 +351,19 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddHttpsAndSecureCookiePolicy
   nameWithType: CommonWebApplicationServicesOptions.AddHttpsAndSecureCookiePolicy
-- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddMvcPages
-  name: AddMvcPages
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddMvcPages
-  commentId: P:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddMvcPages
-  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddMvcPages
-  nameWithType: CommonWebApplicationServicesOptions.AddMvcPages
-- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddMvcPages*
-  name: AddMvcPages
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddMvcPages_
-  commentId: Overload:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddMvcPages
+- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddMvc
+  name: AddMvc
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddMvc
+  commentId: P:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddMvc
+  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddMvc
+  nameWithType: CommonWebApplicationServicesOptions.AddMvc
+- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddMvc*
+  name: AddMvc
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddMvc_
+  commentId: Overload:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddMvc
   isSpec: "True"
-  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddMvcPages
-  nameWithType: CommonWebApplicationServicesOptions.AddMvcPages
+  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddMvc
+  nameWithType: CommonWebApplicationServicesOptions.AddMvc
 - uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorPages
   name: AddRazorPages
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddRazorPages
@@ -377,19 +377,19 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorPages
   nameWithType: CommonWebApplicationServicesOptions.AddRazorPages
-- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorRuntimeReCompilationOnViewChanged
-  name: AddRazorRuntimeReCompilationOnViewChanged
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddRazorRuntimeReCompilationOnViewChanged
-  commentId: P:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorRuntimeReCompilationOnViewChanged
-  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorRuntimeReCompilationOnViewChanged
-  nameWithType: CommonWebApplicationServicesOptions.AddRazorRuntimeReCompilationOnViewChanged
-- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorRuntimeReCompilationOnViewChanged*
-  name: AddRazorRuntimeReCompilationOnViewChanged
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddRazorRuntimeReCompilationOnViewChanged_
-  commentId: Overload:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorRuntimeReCompilationOnViewChanged
+- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorRecompilationOnViewChanged
+  name: AddRazorRecompilationOnViewChanged
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddRazorRecompilationOnViewChanged
+  commentId: P:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorRecompilationOnViewChanged
+  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorRecompilationOnViewChanged
+  nameWithType: CommonWebApplicationServicesOptions.AddRazorRecompilationOnViewChanged
+- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorRecompilationOnViewChanged*
+  name: AddRazorRecompilationOnViewChanged
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddRazorRecompilationOnViewChanged_
+  commentId: Overload:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorRecompilationOnViewChanged
   isSpec: "True"
-  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorRuntimeReCompilationOnViewChanged
-  nameWithType: CommonWebApplicationServicesOptions.AddRazorRuntimeReCompilationOnViewChanged
+  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorRecompilationOnViewChanged
+  nameWithType: CommonWebApplicationServicesOptions.AddRazorRecompilationOnViewChanged
 - uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AreaViewLocations
   name: AreaViewLocations
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AreaViewLocations
@@ -442,6 +442,25 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ViewLocations
   nameWithType: CommonWebApplicationServicesOptions.ViewLocations
+- uid: SystemLibrary.Common.Web.Extensions.HttpRequestExtensions
+  name: HttpRequestExtensions
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.html
+  commentId: T:SystemLibrary.Common.Web.Extensions.HttpRequestExtensions
+  fullName: SystemLibrary.Common.Web.Extensions.HttpRequestExtensions
+  nameWithType: HttpRequestExtensions
+- uid: SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.Url(Microsoft.AspNetCore.Http.HttpRequest)
+  name: Url(HttpRequest)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.html#SystemLibrary_Common_Web_Extensions_HttpRequestExtensions_Url_Microsoft_AspNetCore_Http_HttpRequest_
+  commentId: M:SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.Url(Microsoft.AspNetCore.Http.HttpRequest)
+  fullName: SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.Url(Microsoft.AspNetCore.Http.HttpRequest)
+  nameWithType: HttpRequestExtensions.Url(HttpRequest)
+- uid: SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.Url*
+  name: Url
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.html#SystemLibrary_Common_Web_Extensions_HttpRequestExtensions_Url_
+  commentId: Overload:SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.Url
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.Url
+  nameWithType: HttpRequestExtensions.Url
 - uid: SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions
   name: IApplicationBuilderExtensions
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.html
