@@ -28,8 +28,8 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-- 6.7.1.1
-- Updated deps of SystemLibrary.Common.Net to 6.7.*
+- 6.7.2.1
+- HttpRequest extensions added: Referer() and IsAjaxRequest()
 
 
 #### Version history
