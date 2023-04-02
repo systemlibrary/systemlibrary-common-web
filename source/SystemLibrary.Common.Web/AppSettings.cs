@@ -26,7 +26,6 @@ namespace SystemLibrary.Common.Web;
 /// 
 /// 		"logMessageBuilderOptions": {
 ///             "appendLoggedInState": true,
-/// 			"appendCurrentUrl": true,
 /// 			"appendIp": true,
 /// 			"appendBrowser": true,
 /// 			"appendCookieInfo": true
@@ -83,7 +82,6 @@ internal class AppSettings : Config<AppSettings>
         public class LogMessageBuilderOptions
         {
             public bool AppendLoggedInState { get; set; } = true;
-            public bool AppendCurrentUrl { get; set; } = true;
             public bool AppendIp { get; set; } = false;
             public bool AppendBrowser { get; set; } = false;
             public bool AppendCookieInfo { get; set; } = false;

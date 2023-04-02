@@ -34,7 +34,6 @@ namespace SystemLibrary.Common.Web.Tests
             }
             catch(TimeoutException ex)
             {
-                Dump.Write("EX!");
                 Dump.Write(ex);
                 Assert.IsTrue(ex.Message.Contains(timeout.ToString() + " seconds"));
             }

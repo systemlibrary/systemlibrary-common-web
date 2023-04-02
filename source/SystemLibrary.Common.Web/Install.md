@@ -69,7 +69,6 @@ appSettings.json:
 
 		"logMessageBuilderOptions": {
 			"appendLoggedInState": true,
-			"appendCurrentUrl": true,
 			"appendIp": true,
 			"appendBrowser": true,
 			"appendCookieInfo": true

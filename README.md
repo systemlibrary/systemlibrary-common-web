@@ -24,12 +24,12 @@ The two methods in short enables:
 - &gt;= .NET 6
 - SystemLibrary.Common.Net
 - Microsoft.AspNetCore.App Framework
-- Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation
+- Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation &gt;= 6
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-- 6.7.2.1
-- HttpRequest extensions added: Referer() and IsAjaxRequest()
+- 6.8.0.1
+- Updated deps and docs
 
 
 #### Version history

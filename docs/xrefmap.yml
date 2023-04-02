@@ -448,6 +448,32 @@ references:
   commentId: T:SystemLibrary.Common.Web.Extensions.HttpRequestExtensions
   fullName: SystemLibrary.Common.Web.Extensions.HttpRequestExtensions
   nameWithType: HttpRequestExtensions
+- uid: SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.IsAjaxRequest(Microsoft.AspNetCore.Http.HttpRequest)
+  name: IsAjaxRequest(HttpRequest)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.html#SystemLibrary_Common_Web_Extensions_HttpRequestExtensions_IsAjaxRequest_Microsoft_AspNetCore_Http_HttpRequest_
+  commentId: M:SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.IsAjaxRequest(Microsoft.AspNetCore.Http.HttpRequest)
+  fullName: SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.IsAjaxRequest(Microsoft.AspNetCore.Http.HttpRequest)
+  nameWithType: HttpRequestExtensions.IsAjaxRequest(HttpRequest)
+- uid: SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.IsAjaxRequest*
+  name: IsAjaxRequest
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.html#SystemLibrary_Common_Web_Extensions_HttpRequestExtensions_IsAjaxRequest_
+  commentId: Overload:SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.IsAjaxRequest
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.IsAjaxRequest
+  nameWithType: HttpRequestExtensions.IsAjaxRequest
+- uid: SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.Referer(Microsoft.AspNetCore.Http.HttpRequest)
+  name: Referer(HttpRequest)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.html#SystemLibrary_Common_Web_Extensions_HttpRequestExtensions_Referer_Microsoft_AspNetCore_Http_HttpRequest_
+  commentId: M:SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.Referer(Microsoft.AspNetCore.Http.HttpRequest)
+  fullName: SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.Referer(Microsoft.AspNetCore.Http.HttpRequest)
+  nameWithType: HttpRequestExtensions.Referer(HttpRequest)
+- uid: SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.Referer*
+  name: Referer
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.html#SystemLibrary_Common_Web_Extensions_HttpRequestExtensions_Referer_
+  commentId: Overload:SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.Referer
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.Referer
+  nameWithType: HttpRequestExtensions.Referer
 - uid: SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.Url(Microsoft.AspNetCore.Http.HttpRequest)
   name: Url(HttpRequest)
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.html#SystemLibrary_Common_Web_Extensions_HttpRequestExtensions_Url_Microsoft_AspNetCore_Http_HttpRequest_

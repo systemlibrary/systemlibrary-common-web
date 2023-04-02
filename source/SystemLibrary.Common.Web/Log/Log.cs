@@ -27,7 +27,6 @@
 ///         "logMessageBuilderOptions" {
 ///             "appendLoggedInState": true,
 ///             "appendLoggedInState": true,
-///             "appendCurrentUrl": true,
 ///             "appendIp": true,
 ///             "appendBrowser": true,
 ///             "appendCookieInfo": true
@@ -223,7 +222,6 @@ namespace SystemLibrary.Common.Web.Global
     ///         "logMessageBuilderOptions" {
     ///             "appendLoggedInState": true,
     ///             "appendLoggedInState": true,
-    ///             "appendCurrentUrl": true,
     ///             "appendIp": true,
     ///             "appendBrowser": true,
     ///             "appendCookieInfo": true
