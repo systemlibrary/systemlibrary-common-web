@@ -28,7 +28,7 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-- 6.8.0.1
+- 6.8.0.2
 - Updated deps and docs
 
 

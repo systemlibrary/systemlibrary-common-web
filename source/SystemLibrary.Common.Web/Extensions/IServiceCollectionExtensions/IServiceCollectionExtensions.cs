@@ -69,7 +69,7 @@ public static partial class IServiceCollectionExtensions
         else if (options.AddControllers)
             builder = services.UseAddControllers(options);
 
-        AddApplicationPart(builder, options);
+        builder = AddApplicationPart(builder, options);
 
         if (options.AddRazorRecompilationOnViewChanged)
         {
