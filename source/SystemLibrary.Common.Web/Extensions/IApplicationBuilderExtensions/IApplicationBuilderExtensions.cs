@@ -59,6 +59,22 @@ public static class IApplicationBuilderExtensions
             app = app.UseHttpsRedirection();
         }
 
+        if (options.UseStaticFiles)
+        {
+            StaticFileOptions staticFileOptions = new StaticFileOptions();
+            staticFileOptions.ServeUnknownFileTypes = true;
+            staticFileOptions.HttpsCompression = HttpsCompressionMode.Compress;
+            staticFileOptions.RedirectToAppendTrailingSlash = false;
+
+            //TODO: Sure about GetCurrentDirectory? It returns "root" of the application
+            //while AppContext.BaseDirectory returns "one folder deeper", inside /bin/, where APP is running
+            //but App static files are of course, usually, not copied to bin, so far so good
+            staticFileOptions.FileProvider = new PhysicalFileProvider(Directory.GetCurrentDirectory());
+            staticFileOptions.RequestPath = new PathString();
+
+            app = app.UseStaticFiles(staticFileOptions);
+        }
+
         if (options.UseDefaultRouting)
         {
             app = app.UseRouting();
@@ -102,22 +118,6 @@ public static class IApplicationBuilderExtensions
             {
                 endpoints.MapRazorPages();
             });
-        }
-
-        if (options.UseStaticFiles)
-        {
-            StaticFileOptions staticFileOptions = new StaticFileOptions();
-            staticFileOptions.ServeUnknownFileTypes = true;
-            staticFileOptions.HttpsCompression = HttpsCompressionMode.Compress;
-            staticFileOptions.RedirectToAppendTrailingSlash = false;
-
-            //TODO: Sure about GetCurrentDirectory? It returns "root" of the application
-            //while AppContext.BaseDirectory returns "one folder deeper", inside /bin/, where APP is running
-            //but App static files are of course, usually, not copied to bin, so far so good
-            staticFileOptions.FileProvider = new PhysicalFileProvider(Directory.GetCurrentDirectory());
-            staticFileOptions.RequestPath = new PathString();
-
-            app = app.UseStaticFiles(staticFileOptions);
         }
 
         Services.ServiceProviderInstance = app.ApplicationServices;

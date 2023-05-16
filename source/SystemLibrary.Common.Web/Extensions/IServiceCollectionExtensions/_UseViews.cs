@@ -16,9 +16,8 @@ static partial class IServiceCollectionExtensions
             {
                 foreach(var view in options.AreaViewLocations)
                 {
-                    if (view.IsNot()) continue;
-
-                    razorViews.AreaViewLocationFormats.Add(view);
+                    if (view.Is())
+                        razorViews.AreaViewLocationFormats.Add(view);
                 }
             }
 
@@ -26,9 +25,8 @@ static partial class IServiceCollectionExtensions
             {
                 foreach (var view in options.ViewLocations)
                 {
-                    if (view.IsNot()) continue;
-
-                    razorViews.ViewLocationFormats.Add(view);
+                    if (view.Is())
+                        razorViews.ViewLocationFormats.Add(view);
                 }
             }
         });

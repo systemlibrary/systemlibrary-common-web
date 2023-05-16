@@ -28,9 +28,9 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-- 6.8.0.2
-- Updated deps and docs
-
+- 6.8.0.3
+- Updated deps
+- Moved "static files" further up in app registration
 
 #### Version history
 - View git history of this file if interested
