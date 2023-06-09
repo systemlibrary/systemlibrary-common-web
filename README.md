@@ -28,7 +28,7 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-- 6.8.1.2
+- 6.8.1.3
 - Cookie policy loosened up to "samesite=none" and httpflag is now also set to "none" so it can be true or false as this middleware overwrites cookies added after
 - Compression is added, with options for gzip and brotli
 - Removed unused option property for AuthSchemas

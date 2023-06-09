@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -75,8 +76,17 @@ public static class IApplicationBuilderExtensions
             app = app.UseStaticFiles(staticFileOptions);
         }
 
-        if(options.UseGzipResponseCompression || options.UseBrotliResponseCompression)
-            app.UseResponseCompression();
+        if (options.UseGzipResponseCompression || options.UseBrotliResponseCompression)
+        {
+            try
+            {
+                app.UseResponseCompression();
+            }
+            catch(Exception ex)
+            {
+                Log.Info(ex.Message + " Continues without compression...");
+            }
+        }
 
         if (options.UseDefaultRouting)
         {
