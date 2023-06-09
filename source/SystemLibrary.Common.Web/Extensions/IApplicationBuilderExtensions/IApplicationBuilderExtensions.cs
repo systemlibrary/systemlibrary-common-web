@@ -75,6 +75,9 @@ public static class IApplicationBuilderExtensions
             app = app.UseStaticFiles(staticFileOptions);
         }
 
+        if(options.UseGzipResponseCompression || options.UseBrotliResponseCompression)
+            app.UseResponseCompression();
+
         if (options.UseDefaultRouting)
         {
             app = app.UseRouting();
@@ -84,8 +87,8 @@ public static class IApplicationBuilderExtensions
         {
             var cookieOptions = new CookiePolicyOptions() { };
             cookieOptions.Secure = CookieSecurePolicy.SameAsRequest;
-            cookieOptions.HttpOnly = Microsoft.AspNetCore.CookiePolicy.HttpOnlyPolicy.Always;
-            cookieOptions.MinimumSameSitePolicy = SameSiteMode.Strict;
+            cookieOptions.HttpOnly = Microsoft.AspNetCore.CookiePolicy.HttpOnlyPolicy.None;
+            cookieOptions.MinimumSameSitePolicy = SameSiteMode.None;
             app = app.UseCookiePolicy(cookieOptions);
         }
 
@@ -102,6 +105,14 @@ public static class IApplicationBuilderExtensions
 
         var actionContextAccessor = app.ApplicationServices.GetRequiredService<IActionContextAccessor>();
         ActionContextInstance.Initialize(actionContextAccessor);
+        
+        if (options.MapRazorPagesEndpoints)
+        {
+            app = app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapRazorPages();
+            });
+        }
 
         if (options.MapControllerEndpoints)
         {
@@ -109,14 +120,6 @@ public static class IApplicationBuilderExtensions
             {
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapControllerRoute("api/{controller}/{action}/{id?}", "api/{controller}/{action}/{id?}");
-            });
-        }
-
-        if (options.MapRazorPagesEndpoints)
-        {
-            app = app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapRazorPages();
             });
         }
 

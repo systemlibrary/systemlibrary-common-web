@@ -15,7 +15,7 @@ static partial class IServiceCollectionExtensions
 
             options.Secure = CookieSecurePolicy.SameAsRequest;
 
-            options.MinimumSameSitePolicy = SameSiteMode.Strict;
+            options.MinimumSameSitePolicy = SameSiteMode.None;
         });
     }
 }

@@ -33,6 +33,16 @@ public class CommonWebApplicationBuilderOptions
     public bool UseDefaultRouting = true;
 
     /// <summary>
+    /// Adds response compression with Gzip after static file middleware
+    /// </summary>
+    public bool UseGzipResponseCompression = true;
+
+    /// <summary>
+    /// Adds response compression with Brotli after static file middleware
+    /// </summary>
+    public bool UseBrotliResponseCompression = false;
+
+    /// <summary>
     /// Adds middleware for Authorization and Authentication attributes
     /// </summary>
     public bool UseAuthenticationAndAuthorization = true;
