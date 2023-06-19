@@ -75,6 +75,17 @@ public static class Cache
         cache = new MemoryCache(options);
     }
 
+    public static void Set<T>(string cacheKey, T obj, TimeSpan duration = default) where T : class
+    {
+        if (cacheKey.IsNot()) 
+            return;
+
+        if (duration == default)
+            duration = TimeSpan.FromSeconds(DefaultDuration);
+
+        Insert(cacheKey, obj, duration);
+    }
+
     /// <summary>
     /// Get data from cache as T
     /// 
@@ -371,7 +382,7 @@ public static class Cache
         return key.ToString();
     }
 
-    static void Insert(string cacheKey, object value, TimeSpan duration = default)
+    static void Insert(string cacheKey, object value, TimeSpan duration)
     {
         if (value == null)
             Remove(cacheKey);
