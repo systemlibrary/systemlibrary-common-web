@@ -254,6 +254,9 @@ public static class Cache
     /// </example>
     public static T Get<T>(Func<T> getItem, string cacheKey = null, TimeSpan duration = default, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null, bool debug = false) where T : class
     {
+        if (cacheKey == "")
+            return getItem();
+
         if (SkipCache(skipForAuthenticatedUsers, skipForAdmins, skipFor))
             return getItem();
 

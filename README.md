@@ -28,8 +28,12 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-- 6.8.2.1
-- Cache.Set() has been added
+- 6.8.2.3
+- Cache.Get now can take a cacheKey to blank, "", which will always skip cache
+    - Get(null) will auto-create a cacheKey based on params
+    - Get("") will always skip
+    - Get("some-text") will check against the cache as normal
+
 
 #### Version history
 - View git history of this file if interested
