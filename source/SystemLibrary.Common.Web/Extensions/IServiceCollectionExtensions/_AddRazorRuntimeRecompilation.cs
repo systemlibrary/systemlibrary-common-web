@@ -2,7 +2,7 @@
 
 namespace SystemLibrary.Common.Web.Extensions;
 
-static partial class IServiceCollectionExtensions
+partial class IServiceCollectionExtensions
 {
     static void AddRazorRuntimeRecompilation(IMvcBuilder builder)
     {
@@ -10,6 +10,5 @@ static partial class IServiceCollectionExtensions
             builder.AddRazorRuntimeCompilation();
         else
             throw new System.Exception("RazorRuntimeCompilation was not registered, as you've set Controllers, Mvc and RazorPages to false. You must manually register it yourself");
-
     }
 }

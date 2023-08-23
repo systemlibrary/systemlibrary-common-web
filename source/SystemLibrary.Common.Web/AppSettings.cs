@@ -21,10 +21,10 @@ namespace SystemLibrary.Common.Web;
 /// 		"log": {
 ///             "isEnabled": true,
 /// 			"level": "Info/Debug/Warning/Error"
-/// 
 ///         },
 /// 
 /// 		"logMessageBuilderOptions": {
+///             "format": "json",
 ///             "appendLoggedInState": true,
 /// 			"appendIp": true,
 /// 			"appendBrowser": true,
@@ -83,8 +83,10 @@ internal class AppSettings : Config<AppSettings>
         {
             public bool AppendLoggedInState { get; set; } = true;
             public bool AppendIp { get; set; } = false;
+
             public bool AppendBrowser { get; set; } = false;
             public bool AppendCookieInfo { get; set; } = false;
+            public string Format { get; set; }  // json | null
         }
     }
 

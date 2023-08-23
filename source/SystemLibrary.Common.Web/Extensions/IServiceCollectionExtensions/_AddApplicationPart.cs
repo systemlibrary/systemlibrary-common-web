@@ -5,23 +5,20 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace SystemLibrary.Common.Web.Extensions;
 
-static partial class IServiceCollectionExtensions
+partial class IServiceCollectionExtensions
 {
-    static IMvcBuilder AddApplicationPart(IMvcBuilder builder, CommonWebApplicationServicesOptions options)
+    static IMvcBuilder AddApplicationPart(IMvcBuilder builder, CommonWebApplicationServicesOptions options, Assembly executing, Assembly entry)
     {
         if (builder != null)
         {
-            var executingAssembliy = Assembly.GetExecutingAssembly();
-            var entryAssembly = Assembly.GetEntryAssembly();
+            if (executing != null)
+                builder = builder.AddApplicationPart(executing);
 
-            if (executingAssembliy != null)
-                builder = builder.AddApplicationPart(executingAssembliy);
-
-            if (executingAssembliy?.FullName != entryAssembly?.FullName)
-                builder = builder.AddApplicationPart(entryAssembly);
+            if (entry != null && executing?.FullName != entry.FullName)
+                builder = builder.AddApplicationPart(entry);
         }
         else if (options.SupportedMediaTypes != null)
-            throw new Exception("AddMvcPages, AddRazorPages and AddControllers are false, yet you've set SupportedMediaTypes. Either set one of the flags to true, or register SupportedMediaTypes yourself");
+            throw new Exception("ConfigureMvc, ConfigureRazorPages and ConfigureControllers are false, yet you've set SupportedMediaTypes. Either set one of the flags to true, or register SupportedMediaTypes yourself");
 
         return builder;
     }

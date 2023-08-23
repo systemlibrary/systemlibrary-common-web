@@ -2,7 +2,7 @@
 
 namespace SystemLibrary.Common.Web.Extensions;
 
-static partial class IServiceCollectionExtensions
+partial class IServiceCollectionExtensions
 {
     static IMvcBuilder UseAddControllers(this IServiceCollection services, CommonWebApplicationServicesOptions options)
     {

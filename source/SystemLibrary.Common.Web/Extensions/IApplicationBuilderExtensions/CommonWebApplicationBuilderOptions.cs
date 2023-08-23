@@ -66,7 +66,7 @@ public class CommonWebApplicationBuilderOptions
     public bool UseStaticFiles = true;
 
     /// <summary>
-    /// Adds middleware which responds with a exception page
+    /// Adds middleware which responds with a exception page usually used in development environments and test environments
     /// </summary>
     public bool UseExceptionPage = true;
 

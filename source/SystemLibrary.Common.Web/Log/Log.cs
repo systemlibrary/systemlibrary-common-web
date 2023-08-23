@@ -140,6 +140,8 @@ public static partial class Log
 
     static bool WarningDumped = false;
 
+    static int minLevel = -1;
+
     static void Write(object obj, LogLevel level)
     {
         if ((int)level != 99999)
@@ -148,9 +150,10 @@ public static partial class Log
 
             if (!isEnabled) return;
 
-            var minLevel = AppSettings.Current?.SystemLibraryCommonWeb?.Log?.Level ?? LogLevel.Info;
+            if(minLevel == -1)
+                minLevel = (int)(AppSettings.Current?.SystemLibraryCommonWeb?.Log?.Level ?? LogLevel.Info);
 
-            if((int)level < (int)minLevel)
+            if((int)level < minLevel)
                 return;
         }
 

@@ -18,11 +18,11 @@ namespace SystemLibrary.Common.Web;
 /// Caching for web applications
 ///
 /// Default duration is 180 seconds
-/// - configurable in appSettings.json or per Get() invokation
+/// - configurable in appSettings.json or per Get() invocation
 /// 
 /// Auto-generates a cachekey for you if you don't specify one
-/// - if current user is authenticated and user's identity is a 'ClaimsPrincipal', it adds all roles for the user to the cacheKey
-/// - if current user is authenticated and user's identity is not a 'ClaimsPrincipal', then only the "isAuthenticated" value is appended to cacheKey, no user roles
+/// - the flag "IsAuthenticated" is added to the cache key so it varies based on either logged in or logged out
+/// - if IsAuthenticated is true and user's identity is of type "ClaimsPrincipal", it adds all roles to the cache key
 ///
 /// Optionally, you can skip cache by setting parameters:
 /// - skipForAuthenticatedUsers, false by default
@@ -267,21 +267,26 @@ public static class Cache
             cacheKey = CreateCacheKey(getItem, condition);
 
         if (debug)
-            Log.Debug("Cache.Get() debug parameter is true, cache key is: " + cacheKey);
+            Log.Debug("Cache.Get() debug parameter is true: cache key is " + cacheKey);
 
         var cached = cache.Get(cacheKey) as T;
 
         if (cached != null)
         {
             if (debug)
-                Log.Debug(obj: "Cache.Get() debug parameter is true: item is returned from cache");
+                Log.Debug(obj: "Cache.Get() debug parameter is true: item cached");
             return cached;
         }
 
         cached = getItem();
 
         if (cached != null && (condition == null || condition(cached)))
+        {
+            if (debug)
+                Log.Debug("Cache.Get() debug paramter is true: conditions are met, adding item to cache");
+
             Insert(cacheKey, cached, duration);
+        }
 
         return cached;
     }
@@ -293,7 +298,7 @@ public static class Cache
     /// 
     /// - Default duration is 60 seconds
     /// 
-    /// Useful to run some code only once within time frame
+    /// Useful to run some code only once within time frame per app instance
     /// 
     /// NOTE: It uses the stack frame to read the current method name as cache key, so max 1 invocation per function
     /// </summary>
@@ -304,7 +309,7 @@ public static class Cache
     /// if(Cache.Lock("send-email", TimeSpan.FromSeconds(60)) 
     /// {
     ///     new Email(...).Send(); // Pseudo code
-    ///     // Example: invoking this code 66 times, one time per second starting from second one, will send two emails: one at the first second, and another at 61 second
+    ///     // Example: invoking this code 66 times, one time per second, where first invocation is one second from "now", will send two emails: one at second 1, and another at second 61
     /// }
     /// </code>
     /// </example>
@@ -315,7 +320,7 @@ public static class Cache
 
         var callee = new StackFrame(1).GetMethod();
 
-        var cacheKey = nameof(SystemLibrary) + nameof(Cache) + nameof(Lock) + callee.DeclaringType.Name + callee.Name + callee.IsStatic + callee.IsPublic + duration;
+        var cacheKey = nameof(SystemLibrary) + nameof(Cache) + nameof(Lock) + callee.DeclaringType.Namespace + callee.DeclaringType.Name + callee.Name + callee.IsStatic + callee.IsPublic + duration;
 
         var exists = cache.Get<bool>(cacheKey);
 
@@ -328,7 +333,8 @@ public static class Cache
 
     static string CreateCacheKey<T>(Func<T> getItem, Func<T, bool> condition) where T : class
     {
-        var key = new StringBuilder("");
+        // NOTE: Optimization could be done of getItem + condition + T + currentUser.Roles as a cache key to cache the cache create itself, hashmap/whatever
+        var key = new StringBuilder("common.web.cache");
         var getItemMethod = getItem.Method;
 
         key.Append(getItemMethod.Name);
@@ -367,19 +373,17 @@ public static class Cache
             {
                 var claimsIdentity = claimsPrincipal?.Identity as ClaimsIdentity;
 
-                if (claimsIdentity != null)
+                if (claimsPrincipal?.Claims != null)
                 {
+                    // NOTE: Performance optimization should and could be done here
+
                     var roles = claimsPrincipal.Claims
-                        .Where(c => c.Type == claimsIdentity.RoleClaimType)
+                        .Where(c => c.Type == claimsIdentity.RoleClaimType || c.Type == "role" || c.Type == "Role")
                         .Select(x => x.Value);
 
                     if (roles != null)
                         key.Append(string.Join("", roles));
                 }
-            }
-            else
-            {
-                key.Append(IsCurrentUserAdmin());
             }
         }
         return key.ToString();

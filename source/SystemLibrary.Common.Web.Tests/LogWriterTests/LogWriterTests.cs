@@ -27,7 +27,7 @@ public class LogWriterTests
 
         var content = System.IO.File.ReadAllText(DumpFullPath);
 
-        Assert.IsTrue(content.Contains("Err"), "Err");
+        Assert.IsTrue(content.Contains("Err"), "Does not contain 'Err': " + content);
         Assert.IsTrue(content.Contains("Write in LogWriter:"), "Write in LogWriter:");
     }
 
@@ -90,7 +90,15 @@ public class LogWriterTests
 
         var content = System.IO.File.ReadAllText(DumpFullPath);
 
-        Assert.IsTrue(content.Contains("Error: "), "Error: prefix text was not added to message");
+        try
+        {
+            Assert.IsTrue(content.Contains("Error: "), "Prefix 'level' which is of type 'Error' was not added as plaintext format, try again with json format...");
+        }
+        catch
+        {
+            Assert.IsTrue(content.Contains("\"Error\","), "Prefix 'level' which is of type 'Error' was not added as json either");
+        }
+
         Assert.IsTrue(content.Contains("12345"), "Text 12345 was not logged");
 
         Dump.Clear();
@@ -99,7 +107,15 @@ public class LogWriterTests
 
         content = System.IO.File.ReadAllText(DumpFullPath);
 
-        Assert.IsTrue(content.Contains("Warning: "), "Warning: prefix text was not added to message");
+        try
+        {
+            Assert.IsTrue(content.Contains("Warning: "), "Prefix 'level' which is of type 'Warning' was not added as plaintext format, try again with json format...");
+        }
+        catch
+        {
+            Assert.IsTrue(content.Contains("\"Warning\","), "Prefix 'level' which is of type 'Warning' was not added as json either");
+        }
+
         Assert.IsTrue(content.Contains("67890"), "Text 67890 was not logged");
 
         Dump.Clear();
@@ -112,13 +128,46 @@ public class LogWriterTests
 
         Dump.Clear();
 
+        Log.Error("1234");
+        Log.Error("456");
+        Log.Error("789");
+
         Log.Info("abcdef");
 
+        content = System.IO.File.ReadAllText(DumpFullPath);
+
+        Assert.IsTrue(content.Contains("123"));
+        Assert.IsTrue(content.Contains("456"));
+        Assert.IsTrue(content.Contains("789"));
+
+        Assert.IsTrue(content.Contains("abcdef") == false, "abcdef is logged to file, Info level is enabled? Or bug?");
+
         //NOTE: appSettings.json has "Debug" assigned as log level, manually change it to Info to test this
-       //content = System.IO.File.ReadAllText(DumpFullPath);
-       //Assert.IsTrue(content.Contains("Info: "), "Info: prefix text was not added to message");
-       //Assert.IsTrue(content.Contains("abcdef"), "Text abcdef was not logged");
+        //Assert.IsTrue(content.Contains("Info: "), "Info: prefix text was not added to message");
+        //Assert.IsTrue(content.Contains("abcdef"), "Text abcdef was not logged");
 
         //Dump.Clear();
+    }
+
+    [TestMethod]
+    public void Write_Json_To_Log_Without_Conversion_As_Message()
+    {
+        System.Threading.Thread.Sleep(100);
+        if (System.IO.File.Exists(DumpFullPath))
+            System.IO.File.Delete(DumpFullPath);
+
+        Log.Error("[{ \"name\": \"ferrari\" }]");
+        Log.Error("{ \"name\": \"ferrari\" }");
+        Log.Error("[{ \"name\": \"ferrari2\" }]");
+        Log.Error("{ \"name\": \"ferrari3\" }");
+        Log.Error(2);
+        Log.Error(2);
+        Log.Error(9999);
+
+        var content = System.IO.File.ReadAllText(DumpFullPath);
+
+        Assert.IsTrue(content.Contains("ferrari2"));
+        Assert.IsTrue(content.Contains("ferrari3"));
+        Assert.IsTrue(content.Contains("9999"));
     }
 }

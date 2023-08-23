@@ -11,7 +11,7 @@ namespace SystemLibrary.Common.Web.Tests
         {
             var webService = new HttpBinClient();
 
-            var response = webService.GetWithTimeout(12000);
+            var response = webService.GetWithTimeout(12500);
             
             Assert.IsTrue(response.StatusCode == System.Net.HttpStatusCode.OK);
             Assert.IsTrue(response.Data.Contains("httpbin.org"));

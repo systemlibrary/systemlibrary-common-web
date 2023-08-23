@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 
+using SystemLibrary.Common.Net;
+
 namespace SystemLibrary.Common.Web.Extensions;
 
 /// <summary>
@@ -69,8 +71,12 @@ public static class IApplicationBuilderExtensions
 
             //TODO: Sure about GetCurrentDirectory? It returns "root" of the application
             //while AppContext.BaseDirectory returns "one folder deeper", inside /bin/, where APP is running
-            //but App static files are of course, usually, not copied to bin, so far so good
-            staticFileOptions.FileProvider = new PhysicalFileProvider(Directory.GetCurrentDirectory());
+            //but App static files are of course, usually, not copied to bin, so far so good,although "..parent" of BaseDir is 'safer'? 
+            var dir = Directory.GetCurrentDirectory();
+            if (dir.EndsWith("/bin") || dir.EndsWith("/bin/"))
+                dir = Directory.GetParent(dir).FullName;
+
+            staticFileOptions.FileProvider = new PhysicalFileProvider(dir);
             staticFileOptions.RequestPath = new PathString();
 
             app = app.UseStaticFiles(staticFileOptions);
@@ -111,6 +117,7 @@ public static class IApplicationBuilderExtensions
         }
 
         var httpContextAccessor = app.ApplicationServices.GetRequiredService<IHttpContextAccessor>();
+
         HttpContextInstance.Initialize(httpContextAccessor);
 
         var actionContextAccessor = app.ApplicationServices.GetRequiredService<IActionContextAccessor>();

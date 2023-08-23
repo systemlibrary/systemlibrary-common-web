@@ -2,7 +2,7 @@
 
 namespace SystemLibrary.Common.Web.Extensions;
 
-static partial class IServiceCollectionExtensions
+partial class IServiceCollectionExtensions
 {
     static IMvcBuilder UseAddMvc(this IServiceCollection services, CommonWebApplicationServicesOptions options)
     {

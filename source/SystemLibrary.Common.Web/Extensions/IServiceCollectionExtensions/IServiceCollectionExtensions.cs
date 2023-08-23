@@ -1,4 +1,9 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using System.IO;
+using System.Reflection;
+
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
@@ -54,24 +59,31 @@ public static partial class IServiceCollectionExtensions
         if (options == null)
             options = new CommonWebApplicationServicesOptions();
 
-        services = services.UseForwardedHeaders();
+        if (options.ConfigureForwardHeaders)
+            services = services.UseForwardedHeaders();
 
-        services = services.UseResponseCompression();
+        if (options.ConfigureResponseCompression)
+            services = services.UseResponseCompression();
 
         IMvcBuilder builder = null;
 
-        if (options.AddMvc)
+        if (options.ConfigureMvc)
         {
             builder = services.UseAddMvc(options);
         }
-        else if (options.AddRazorPages)
+        else if (options.ConfigureRazorPages)
         {
             builder = services.UseAddRazorPages(options);
         }
-        else if (options.AddControllers)
+        else if (options.ConfigureControllers)
             builder = services.UseAddControllers(options);
 
-        builder = AddApplicationPart(builder, options);
+        if(options.AddApplicationAssembly)
+        {
+            var executingAssembliy = Assembly.GetCallingAssembly();
+            var entryAssembly = Assembly.GetEntryAssembly();
+            builder = AddApplicationPart(builder, options, executingAssembliy, entryAssembly);
+        }
 
         if (options.AddRazorRecompilationOnViewChanged)
         {
@@ -94,4 +106,5 @@ public static partial class IServiceCollectionExtensions
 
         return services;
     }
+
 }
