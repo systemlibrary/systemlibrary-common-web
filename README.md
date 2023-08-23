@@ -28,7 +28,7 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-Release 6.9.0.4
+Release 6.9.0.5
 - AutoGenerateKeyFile set to true actually invokes the AutoGenerateKeyFile() method (bugfix)
 
 #### Version history

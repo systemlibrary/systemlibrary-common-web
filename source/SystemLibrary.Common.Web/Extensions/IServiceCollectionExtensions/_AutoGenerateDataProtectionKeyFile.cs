@@ -55,7 +55,7 @@ partial class IServiceCollectionExtensions
 
         if (hasCryptationKeyFile)
         {
-            rootDirectoryInfo = new DirectoryInfo(Path.GetFullPath(keyFullFileName));
+            rootDirectoryInfo = new DirectoryInfo(keyFullFileName.Replace(Path.GetFileName(keyFullFileName), ""));
 
             builder = builder.DisableAutomaticKeyGeneration();
         }
