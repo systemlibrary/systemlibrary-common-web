@@ -28,10 +28,8 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-Release 6.9.0.2
-- Update log descriptions 
-- AutoGenerateKeyFile - searches for root by checking for "bin" in 3 parents and if found returning the parent of bin
-- AppName contains no datetime anymore
+Release 6.9.0.4
+- AutoGenerateKeyFile set to true actually invokes the AutoGenerateKeyFile() method (bugfix)
 
 #### Version history
 - View git history of this file if interested

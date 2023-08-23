@@ -57,7 +57,7 @@ partial class IServiceCollectionExtensions
         {
             rootDirectoryInfo = new DirectoryInfo(Path.GetFullPath(keyFullFileName));
 
-            builder.DisableAutomaticKeyGeneration();
+            builder = builder.DisableAutomaticKeyGeneration();
         }
 
         builder.PersistKeysToFileSystem(rootDirectoryInfo)
