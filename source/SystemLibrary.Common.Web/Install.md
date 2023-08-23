@@ -67,11 +67,12 @@ appSettings.json:
 			"level": "Info" //Pick between: Info, Debug, Warning, Error
 		},
 
-		"logMessageBuilderOptions": {
+		"logMessageBuilder": {
 			"appendLoggedInState": true,
 			"appendIp": true,
 			"appendBrowser": true,
-			"appendCookieInfo": true
+			"appendCookieInfo": true,
+			"format": null
 		},
 
 		"cache": {

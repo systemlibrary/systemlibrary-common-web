@@ -19,33 +19,48 @@ partial class IServiceCollectionExtensions
         if (type == null)
             throw new Exception("SystemLibrary.Common.Net.CryptationKeyFile is not loaded or type is renamed in version you are using");
 
-        var method = type.GetMethods(BindingFlags.Static | BindingFlags.NonPublic)
+        var keyFileFullName = type.GetMethods(BindingFlags.Static | BindingFlags.NonPublic)
             .Where(x => x.Name == "GetKeyFileFullName")
             .FirstOrDefault();
 
-        if (method == null)
+        if (keyFileFullName == null)
             throw new Exception("Method 'GetKeyFileFullName' is renamed or do not exist");
 
         var baseDirectory = AppContext.BaseDirectory;
 
-        var keyFullFileName = method.Invoke(null, new object[] { baseDirectory }) + "";
+        var rootDirectoryInfo = new DirectoryInfo(baseDirectory);
+
+        int searchBinFolderDepth = 3;
+
+        var startSearch = new DirectoryInfo(baseDirectory);
+        while (searchBinFolderDepth > 0)
+        {
+            if (startSearch?.Name?.ToLower() == "bin")
+            {
+                rootDirectoryInfo = startSearch.Parent;
+                break;
+            }
+            startSearch = startSearch?.Parent;
+
+            searchBinFolderDepth--;
+        }
+        
+        var keyFullFileName = keyFileFullName.Invoke(null, new object[] { rootDirectoryInfo.FullName }) + "";
 
         var hasCryptationKeyFile = keyFullFileName.Is();
 
-        var appName = "AppName" + Assembly.GetEntryAssembly()?.FullName + (hasCryptationKeyFile ? keyFullFileName : baseDirectory);
-
-        var rootDirectory = new DirectoryInfo(baseDirectory);
+        var appName = "AppName" + (Assembly.GetEntryAssembly()?.FullName + (hasCryptationKeyFile ? keyFullFileName : baseDirectory)).ReplaceAllWith("-", ",", ".", " ", "=", "/", "\\");
 
         var builder = services.AddDataProtection();
 
         if (hasCryptationKeyFile)
         {
-            rootDirectory = new DirectoryInfo(Path.GetFullPath(keyFullFileName));
+            rootDirectoryInfo = new DirectoryInfo(Path.GetFullPath(keyFullFileName));
 
             builder.DisableAutomaticKeyGeneration();
         }
 
-        builder.PersistKeysToFileSystem(rootDirectory)
+        builder.PersistKeysToFileSystem(rootDirectoryInfo)
             .SetDefaultKeyLifetime(TimeSpan.FromDays(365 * 100))
             .SetApplicationName(appName);
 

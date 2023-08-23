@@ -24,12 +24,13 @@
 ///             "level": "0/info/Info/debug/Debug/warning/Warning/Error/error",
 ///             "isEnabled": true/false
 ///         },
-///         "logMessageBuilderOptions" {
+///         "logMessageBuilder" {
 ///             "appendLoggedInState": true,
 ///             "appendLoggedInState": true,
 ///             "appendIp": true,
 ///             "appendBrowser": true,
-///             "appendCookieInfo": true
+///             "appendCookieInfo": true,
+///             "format": null
 ///         }
 ///     }
 /// }
@@ -222,12 +223,13 @@ namespace SystemLibrary.Common.Web.Global
     ///             "level": "0/info/Info/debug/Debug/warning/Warning/Error/error",
     ///             "isEnabled": true/false
     ///         },
-    ///         "logMessageBuilderOptions" {
+    ///         "logMessageBuilder" {
     ///             "appendLoggedInState": true,
     ///             "appendLoggedInState": true,
     ///             "appendIp": true,
     ///             "appendBrowser": true,
-    ///             "appendCookieInfo": true
+    ///             "appendCookieInfo": true,
+    ///             "format": null
     ///         }
     ///     }
     /// }

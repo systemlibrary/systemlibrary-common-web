@@ -23,12 +23,13 @@ namespace SystemLibrary.Common.Web;
 /// 			"level": "Info/Debug/Warning/Error"
 ///         },
 /// 
-/// 		"logMessageBuilderOptions": {
+/// 		"logMessageBuilder": {
 ///             "format": "json",
 ///             "appendLoggedInState": true,
 /// 			"appendIp": true,
 /// 			"appendBrowser": true,
-/// 			"appendCookieInfo": true
+/// 			"appendCookieInfo": true,
+/// 			"format": null
 ///         },
 /// 
 /// 		"cache": {
