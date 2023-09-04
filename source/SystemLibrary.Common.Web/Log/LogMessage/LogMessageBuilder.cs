@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Net.Http.Headers;
 
 using SystemLibrary.Common.Net;
-using SystemLibrary.Common.Net.Extensions;
 using SystemLibrary.Common.Web;
 
 using static SystemLibrary.Common.Web.AppSettings.Configuration;
@@ -253,14 +252,16 @@ partial class Log
             else if(name == "message")
             {
                 if(obj == null)
-                    message.Append("(null)");
+                    message.Append("(null)\n");
                 else
                     message.Append(obj);
             }
             else if(obj == null)
-                message.Append(name + ": null");
-            else
+                message.Append(name + ": null\n");
+            else if (name == "stacktrace")
                 message.Append(name + ": " + obj);
+            else
+                message.Append(name + ": " + obj + "\n");
         }
 
         static MethodInfo DumpBuildMethod;
@@ -341,7 +342,7 @@ partial class Log
                         {
                             continue;
                         }
-                        stackTraceBuilder.Append(traces[i] + "\n");
+                        stackTraceBuilder.Append(traces[i].TrimStart() + "\n");
                     }
                 }
                 AppendMessageFormat("stacktrace", stackTraceBuilder.ToString(), message);
