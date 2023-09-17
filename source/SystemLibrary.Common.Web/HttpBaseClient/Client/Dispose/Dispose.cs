@@ -31,6 +31,7 @@ namespace SystemLibrary.Common.Web
                     }
                     catch
                     {
+                        // Note: Swalling due to if items are disposes twice within "same" cpu tick, multithreaded not tested, and I do not want to lock this
                     }
                 }
             }

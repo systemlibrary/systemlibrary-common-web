@@ -23,7 +23,7 @@ partial class Log
         static bool MessageFormatJson;
         static LogMessageBuilder()
         {
-            IsLocal = EnvironmentConfig.Current?.IsLocal == true;
+            IsLocal = EnvironmentConfig.IsLocal == true;
             LogMessageBuilderOptions = AppSettings.Current?.SystemLibraryCommonWeb?.LogMessageBuilder;
             MessageFormatJson = LogMessageBuilderOptions.Format?.Trim()?.ToLower() == "json";
         }
@@ -254,12 +254,12 @@ partial class Log
                 if(obj == null)
                     message.Append("(null)\n");
                 else
-                    message.Append(obj);
+                    message.Append(obj + "\n");
             }
             else if(obj == null)
                 message.Append(name + ": null\n");
             else if (name == "stacktrace")
-                message.Append(name + ": " + obj);
+                message.Append(name + ": " + obj + "\n");
             else
                 message.Append(name + ": " + obj + "\n");
         }
