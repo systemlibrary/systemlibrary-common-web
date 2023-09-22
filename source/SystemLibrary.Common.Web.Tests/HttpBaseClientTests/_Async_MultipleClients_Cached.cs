@@ -48,6 +48,33 @@ namespace SystemLibrary.Common.Web.Tests
 
                 Assert.IsTrue(result.Contains(body), "Response did not include body message: " + body);
             }
+
+            Thread.Sleep(221000);
+
+            responses = new List<string>();
+            for (int i = 0; i < repeat; i++)
+            {
+                var sleep = i * 300;
+                try
+                {
+                    tasks.Add(Task.Run(() =>
+                    {
+                        Thread.Sleep(sleep);
+
+                        var data = service.PostAsync(body).Result;
+
+                        responses.Add("HttpStatusCode " + (int)data.StatusCode + ", " + data.Data);
+                    }));
+                }
+                catch
+                {
+                    Assert.IsTrue(false, "Error occured!");
+                }
+            }
+            Task.WaitAll(tasks.ToArray());
+            Assert.IsTrue(responses.Count == repeat, "One or more requests failed after a sleep of almost 5 min, should have " + repeat + " results, but got only " + responses.Count);
+
+
         }
     }
 }
