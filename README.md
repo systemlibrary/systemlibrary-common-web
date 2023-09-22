@@ -28,8 +28,9 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-Release 6.9.0.7
-- Updated deps
+Release 6.9.0.8
+- Disposing of cached clients occurs minimum 2 minutes after it has expired
+- Cached clients are removed from cache after some time, even if currnt "client" is null
 
 #### Version history
 - View git history of this file if interested

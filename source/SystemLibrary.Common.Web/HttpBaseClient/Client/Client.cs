@@ -65,7 +65,7 @@ namespace SystemLibrary.Common.Web
 
             static bool HasExpired(CacheModel httpClientCached)
             {
-                return httpClientCached?.HttpClientCached == null || httpClientCached.Expires <= DateTime.Now;
+                return httpClientCached?.HttpClientCached == null || httpClientCached.Expires < DateTime.Now;
             }
 
             static void RemoveFromCache(string key)
@@ -75,7 +75,7 @@ namespace SystemLibrary.Common.Web
                 Dispose();
 
                 if (httpClientCached != null)
-                    DisposeQueue.TryAdd(key + DateTime.Now.ToString("hh:mm:ss.fffff"), httpClientCached);
+                    DisposeQueue.TryAdd(key + DateTime.Now.ToString("hh:mm:ss.fffff") + "#" + new Random().Next(1, 999999), httpClientCached);
             }
         }
     }

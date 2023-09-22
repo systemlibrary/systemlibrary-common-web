@@ -23,12 +23,12 @@ namespace SystemLibrary.Common.Web
                     try
                     {
                         options.ForceNewClient = true;
-                        options.TimeoutMilliseconds = AppSettings.Current.SystemLibraryCommonWeb.HttpBaseClient.RetryRequestTimeoutSeconds;
+                        var timeoutSeconds = AppSettings.Current.SystemLibraryCommonWeb.HttpBaseClient.RetryRequestTimeoutSeconds;
 
-                        if (options.TimeoutMilliseconds < 1)
+                        if (timeoutSeconds < 1)
                             options.TimeoutMilliseconds = 10000;
                         else 
-                            options.TimeoutMilliseconds = options.TimeoutMilliseconds * 1000;
+                            options.TimeoutMilliseconds = timeoutSeconds * 1000;
                         
                         response = await SendAsync(options).ConfigureAwait(false);
                     }
