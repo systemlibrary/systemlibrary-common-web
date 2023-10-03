@@ -79,7 +79,6 @@ public partial class HttpBaseClient
 {
     const int DefaultTimeoutMilliseconds = 60000;
 
-    
     bool RetryOnceOnRequestCancelled;
     bool IgnoreSslErrors;
     int TimeoutMilliseconds;

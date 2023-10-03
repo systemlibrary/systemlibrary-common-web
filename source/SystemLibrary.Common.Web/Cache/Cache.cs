@@ -49,7 +49,7 @@ public static class Cache
         (_Principal = HttpContextInstance.Current?.User);
 
     static IMemoryCache cache;
-    static object cacheLock = new object();
+    //static object cacheLock = new object();
 
     static int _DefaultDuration = -1;
     static int DefaultDuration
@@ -441,11 +441,12 @@ public static class Cache
                     keys.Add(key.ToString());
             }
         }
-        lock (cacheLock)
-        {
+        
+        //lock (cacheLock)
+        //{
             foreach (var key in keys)
                 cache.Remove(key);
-        }
+        //}
     }
 
     static bool SkipCache(bool skipForAuthenticatedUsers, bool skipForAdmins, Func<bool> skipFor)
