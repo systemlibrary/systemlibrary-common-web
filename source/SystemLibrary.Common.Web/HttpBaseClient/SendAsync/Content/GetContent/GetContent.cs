@@ -26,7 +26,12 @@ namespace SystemLibrary.Common.Web
                 }
                 else if (mediaType != MediaType.multipartFormData && data is byte[] bytes)
                 {
-                    return new ByteArrayContent(bytes, 0, bytes.Length);
+                    var byteContent = new ByteArrayContent(bytes, 0, bytes.Length);
+
+                    if (mediaType != MediaType.None)
+                        byteContent.Headers.Add("Content-Type", mediaType.ToValue());
+
+                    return byteContent;
                 }
 
                 switch (mediaType)

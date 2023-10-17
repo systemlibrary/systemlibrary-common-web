@@ -28,9 +28,8 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-Release 6.9.0.9
-- Removed a useless lock, internally theres a ConcurrentDict
-- Updated deps
+Release 6.9.0.10
+- Bugfix in BaseHttpClient sending byte[] as mediatype json, does not add the content-type header to the ByteArrayContent (fixed)
 
 #### Version history
 - View git history of this file if interested
