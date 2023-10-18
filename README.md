@@ -28,8 +28,9 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-Release 6.9.0.10
-- Bugfix in BaseHttpClient sending byte[] as mediatype json, does not add the content-type header to the ByteArrayContent (fixed)
+Release 6.9.1.2
+- Cache.Lock now supports an additional param "lockKey" which is appended to the auto lock key generated to diff between two locks in same scope
+- Generating Xml Doc File: true
 
 #### Version history
 - View git history of this file if interested
