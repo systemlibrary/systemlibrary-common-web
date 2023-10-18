@@ -20,6 +20,8 @@ public class ApiTest
     [TestMethod]
     public void Target_Local_Api_With_String_As_Json_Data_Success()
     {
+        if (LocalApiKey.IsNot()) return;
+
         var client = new HttpBaseClient(true, true, 20000, false);
 
         var headers = new Dictionary<string, string>()
@@ -49,6 +51,8 @@ public class ApiTest
     [TestMethod]
     public void Target_Local_Api_With_Bytes_As_Json_Data_Success()
     {
+        if (LocalApiKey.IsNot()) return;
+
         var client = new HttpBaseClient(true, true, 20000, false);
 
         var headers = new Dictionary<string, string>()

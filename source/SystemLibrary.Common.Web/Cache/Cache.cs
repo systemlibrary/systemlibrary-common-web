@@ -302,6 +302,7 @@ public static class Cache
     /// 
     /// NOTE: It uses the stack frame to read the current method name as cache key, so max 1 invocation per function
     /// </summary>
+    /// <param name="lockKey">Append data to the lock key, if multiple locks resides inside the same method scope you might want to differ them manually</param>
     /// <example>
     /// Example
     /// <code class="language-csharp hljs">
@@ -313,14 +314,14 @@ public static class Cache
     /// }
     /// </code>
     /// </example>
-    public static bool Lock(TimeSpan duration = default)
+    public static bool Lock(TimeSpan duration = default, string lockKey = null)
     {
         if (duration == default)
             duration = TimeSpan.FromSeconds(60);
 
         var callee = new StackFrame(1).GetMethod();
 
-        var cacheKey = nameof(SystemLibrary) + nameof(Cache) + nameof(Lock) + callee.DeclaringType.Namespace + callee.DeclaringType.Name + callee.Name + callee.IsStatic + callee.IsPublic + duration;
+        var cacheKey = nameof(SystemLibrary) + nameof(Cache) + nameof(Lock) + callee.DeclaringType.Namespace + callee.DeclaringType.Name + callee.Name + callee.IsStatic + callee.IsPublic + duration + lockKey;
 
         var exists = cache.Get<bool>(cacheKey);
 
