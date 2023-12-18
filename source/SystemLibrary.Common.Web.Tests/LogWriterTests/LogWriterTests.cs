@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -45,10 +46,30 @@ public class LogWriterTests
         Assert.IsTrue(content.Contains("Write in LogWriter:"), "Write in LogWriter:");
     }
 
+
     [TestMethod]
-    public void Write_Class_Success()
+    public void Write_StringList_And_Class_Success()
     {
         App.Start<ILogWriter, LogWriter>();
+
+        if (System.IO.File.Exists(DumpFullPath))
+            System.IO.File.Delete(DumpFullPath);
+
+        var list = new List<string>
+        {
+            "hello",
+            "world",
+            "!"
+        };
+
+        Log.Error(list);
+
+        Assert.IsTrue(System.IO.File.Exists(DumpFullPath));
+
+        var content = System.IO.File.ReadAllText(DumpFullPath);
+
+        Assert.IsTrue(content.Contains("world"), "world");
+
         if (System.IO.File.Exists(DumpFullPath))
             System.IO.File.Delete(DumpFullPath);
 
@@ -56,7 +77,7 @@ public class LogWriterTests
 
         car.Name = "Ferrari";
         car.Names = new string[] { "Hello1", "Hello2" };
-        car.LastNames = new System.Collections.Generic.List<string> { "LastName1", "LastName2", "LastName3" };
+        car.LastNames = new List<string> { "LastName1", "LastName2", "LastName3" };
         car.Ages = new int[] { 4, 5, 6, 7, 100 };
         car.Age = 1000;
         car.Vehicle = new Car() { Name = "Volvo" };
@@ -69,7 +90,7 @@ public class LogWriterTests
 
         Assert.IsTrue(System.IO.File.Exists(DumpFullPath));
 
-        var content = System.IO.File.ReadAllText(DumpFullPath);
+        content = System.IO.File.ReadAllText(DumpFullPath);
 
         Assert.IsTrue(content.Contains("Ferrari"), "Ferrari");
 

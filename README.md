@@ -21,15 +21,17 @@ The two methods in short enables:
 - Cache class with auto-generating cache keys
 
 ## Requirements
-- &gt;= .NET 6
+- &gt;= .NET 7
 - SystemLibrary.Common.Net
 - Microsoft.AspNetCore.App Framework
 - Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation &gt;= 6
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-Release 7.0.0.1
-- Updated to .NET7
+Release 7.0.0.2
+- LogBuilder: fixed crash appending Ip on localhost
+- LogBuilder: added option for "appendPath" to true/false
+- LogMessage: output adjusted slightly for lists, it uses now the Dump internal method to create the output
 
 #### Version history
 - View git history of this file if interested

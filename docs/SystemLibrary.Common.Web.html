@@ -205,12 +205,12 @@
       <section id="SystemLibrary.Common.Web.Cache--description"><p>Caching for web applications</p>
 <p>Default duration is 180 seconds</p>
 <ul>
-<li>configurable in appSettings.json or per Get() invokation</li>
+<li>configurable in appSettings.json or per Get() invocation</li>
 </ul>
 <p>Auto-generates a cachekey for you if you don't specify one</p>
 <ul>
-<li>if current user is authenticated and user's identity is a 'ClaimsPrincipal', it adds all roles for the user to the cacheKey</li>
-<li>if current user is authenticated and user's identity is not a 'ClaimsPrincipal', then only the &quot;isAuthenticated&quot; value is appended to cacheKey, no user roles</li>
+<li>the flag &quot;IsAuthenticated&quot; is added to the cache key so it varies based on either logged in or logged out</li>
+<li>if IsAuthenticated is true and user's identity is of type &quot;ClaimsPrincipal&quot;, it adds all roles to the cache key</li>
 </ul>
 <p>Optionally, you can skip cache by setting parameters:</p>
 <ul>

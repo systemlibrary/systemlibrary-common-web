@@ -225,7 +225,7 @@ namespace SystemLibrary.Common.Web.Global
     ///         },
     ///         "logMessageBuilder" {
     ///             "appendLoggedInState": true,
-    ///             "appendLoggedInState": true,
+    ///             "appendPath": true,
     ///             "appendIp": true,
     ///             "appendBrowser": true,
     ///             "appendCookieInfo": true,

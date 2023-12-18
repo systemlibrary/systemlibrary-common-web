@@ -88,12 +88,12 @@ references:
   fullName.vb: SystemLibrary.Common.Web.Cache.Get(Of T)(System.String, System.Func(Of T), System.TimeSpan, System.Func(Of T, System.Boolean), System.Boolean, System.Boolean, System.Func(Of System.Boolean), System.Boolean)
   nameWithType: Cache.Get<T>(String, Func<T>, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>, Boolean)
   nameWithType.vb: Cache.Get(Of T)(String, Func(Of T), TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean), Boolean)
-- uid: SystemLibrary.Common.Web.Cache.Lock(System.TimeSpan)
-  name: Lock(TimeSpan)
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_Lock_System_TimeSpan_
-  commentId: M:SystemLibrary.Common.Web.Cache.Lock(System.TimeSpan)
-  fullName: SystemLibrary.Common.Web.Cache.Lock(System.TimeSpan)
-  nameWithType: Cache.Lock(TimeSpan)
+- uid: SystemLibrary.Common.Web.Cache.Lock(System.TimeSpan,System.String)
+  name: Lock(TimeSpan, String)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_Lock_System_TimeSpan_System_String_
+  commentId: M:SystemLibrary.Common.Web.Cache.Lock(System.TimeSpan,System.String)
+  fullName: SystemLibrary.Common.Web.Cache.Lock(System.TimeSpan, System.String)
+  nameWithType: Cache.Lock(TimeSpan, String)
 - uid: SystemLibrary.Common.Web.Cache.Lock*
   name: Lock
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_Lock_
@@ -114,6 +114,22 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Web.Cache.Remove
   nameWithType: Cache.Remove
+- uid: SystemLibrary.Common.Web.Cache.Set*
+  name: Set
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_Set_
+  commentId: Overload:SystemLibrary.Common.Web.Cache.Set
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Cache.Set
+  nameWithType: Cache.Set
+- uid: SystemLibrary.Common.Web.Cache.Set``1(System.String,``0,System.TimeSpan)
+  name: Set<T>(String, T, TimeSpan)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_Set__1_System_String___0_System_TimeSpan_
+  commentId: M:SystemLibrary.Common.Web.Cache.Set``1(System.String,``0,System.TimeSpan)
+  name.vb: Set(Of T)(String, T, TimeSpan)
+  fullName: SystemLibrary.Common.Web.Cache.Set<T>(System.String, T, System.TimeSpan)
+  fullName.vb: SystemLibrary.Common.Web.Cache.Set(Of T)(System.String, T, System.TimeSpan)
+  nameWithType: Cache.Set<T>(String, T, TimeSpan)
+  nameWithType.vb: Cache.Set(Of T)(String, T, TimeSpan)
 - uid: SystemLibrary.Common.Web.CalleeCancelledRequestException
   name: CalleeCancelledRequestException
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.CalleeCancelledRequestException.html
@@ -282,6 +298,12 @@ references:
   commentId: F:SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseAuthenticationAndAuthorization
   fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseAuthenticationAndAuthorization
   nameWithType: CommonWebApplicationBuilderOptions.UseAuthenticationAndAuthorization
+- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseBrotliResponseCompression
+  name: UseBrotliResponseCompression
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_UseBrotliResponseCompression
+  commentId: F:SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseBrotliResponseCompression
+  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseBrotliResponseCompression
+  nameWithType: CommonWebApplicationBuilderOptions.UseBrotliResponseCompression
 - uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseDefaultRouting
   name: UseDefaultRouting
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_UseDefaultRouting
@@ -294,6 +316,12 @@ references:
   commentId: F:SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseExceptionPage
   fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseExceptionPage
   nameWithType: CommonWebApplicationBuilderOptions.UseExceptionPage
+- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseGzipResponseCompression
+  name: UseGzipResponseCompression
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_UseGzipResponseCompression
+  commentId: F:SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseGzipResponseCompression
+  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseGzipResponseCompression
+  nameWithType: CommonWebApplicationBuilderOptions.UseGzipResponseCompression
 - uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseHttpsAndSecureCookiePolicy
   name: UseHttpsAndSecureCookiePolicy
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationBuilderOptions_UseHttpsAndSecureCookiePolicy
@@ -325,19 +353,19 @@ references:
   commentId: T:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions
   fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions
   nameWithType: CommonWebApplicationServicesOptions
-- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddControllers
-  name: AddControllers
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddControllers
-  commentId: P:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddControllers
-  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddControllers
-  nameWithType: CommonWebApplicationServicesOptions.AddControllers
-- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddControllers*
-  name: AddControllers
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddControllers_
-  commentId: Overload:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddControllers
+- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddApplicationAssembly
+  name: AddApplicationAssembly
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddApplicationAssembly
+  commentId: P:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddApplicationAssembly
+  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddApplicationAssembly
+  nameWithType: CommonWebApplicationServicesOptions.AddApplicationAssembly
+- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddApplicationAssembly*
+  name: AddApplicationAssembly
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddApplicationAssembly_
+  commentId: Overload:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddApplicationAssembly
   isSpec: "True"
-  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddControllers
-  nameWithType: CommonWebApplicationServicesOptions.AddControllers
+  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddApplicationAssembly
+  nameWithType: CommonWebApplicationServicesOptions.AddApplicationAssembly
 - uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddHttpsAndSecureCookiePolicy
   name: AddHttpsAndSecureCookiePolicy
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddHttpsAndSecureCookiePolicy
@@ -351,32 +379,6 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddHttpsAndSecureCookiePolicy
   nameWithType: CommonWebApplicationServicesOptions.AddHttpsAndSecureCookiePolicy
-- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddMvc
-  name: AddMvc
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddMvc
-  commentId: P:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddMvc
-  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddMvc
-  nameWithType: CommonWebApplicationServicesOptions.AddMvc
-- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddMvc*
-  name: AddMvc
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddMvc_
-  commentId: Overload:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddMvc
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddMvc
-  nameWithType: CommonWebApplicationServicesOptions.AddMvc
-- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorPages
-  name: AddRazorPages
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddRazorPages
-  commentId: P:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorPages
-  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorPages
-  nameWithType: CommonWebApplicationServicesOptions.AddRazorPages
-- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorPages*
-  name: AddRazorPages
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddRazorPages_
-  commentId: Overload:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorPages
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorPages
-  nameWithType: CommonWebApplicationServicesOptions.AddRazorPages
 - uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorRecompilationOnViewChanged
   name: AddRazorRecompilationOnViewChanged
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddRazorRecompilationOnViewChanged
@@ -403,6 +405,84 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AreaViewLocations
   nameWithType: CommonWebApplicationServicesOptions.AreaViewLocations
+- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AutoGenerateDataProtectionKeyFile
+  name: AutoGenerateDataProtectionKeyFile
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AutoGenerateDataProtectionKeyFile
+  commentId: P:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AutoGenerateDataProtectionKeyFile
+  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AutoGenerateDataProtectionKeyFile
+  nameWithType: CommonWebApplicationServicesOptions.AutoGenerateDataProtectionKeyFile
+- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AutoGenerateDataProtectionKeyFile*
+  name: AutoGenerateDataProtectionKeyFile
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AutoGenerateDataProtectionKeyFile_
+  commentId: Overload:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AutoGenerateDataProtectionKeyFile
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AutoGenerateDataProtectionKeyFile
+  nameWithType: CommonWebApplicationServicesOptions.AutoGenerateDataProtectionKeyFile
+- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureControllers
+  name: ConfigureControllers
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ConfigureControllers
+  commentId: P:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureControllers
+  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureControllers
+  nameWithType: CommonWebApplicationServicesOptions.ConfigureControllers
+- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureControllers*
+  name: ConfigureControllers
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ConfigureControllers_
+  commentId: Overload:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureControllers
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureControllers
+  nameWithType: CommonWebApplicationServicesOptions.ConfigureControllers
+- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureForwardHeaders
+  name: ConfigureForwardHeaders
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ConfigureForwardHeaders
+  commentId: P:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureForwardHeaders
+  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureForwardHeaders
+  nameWithType: CommonWebApplicationServicesOptions.ConfigureForwardHeaders
+- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureForwardHeaders*
+  name: ConfigureForwardHeaders
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ConfigureForwardHeaders_
+  commentId: Overload:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureForwardHeaders
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureForwardHeaders
+  nameWithType: CommonWebApplicationServicesOptions.ConfigureForwardHeaders
+- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureMvc
+  name: ConfigureMvc
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ConfigureMvc
+  commentId: P:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureMvc
+  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureMvc
+  nameWithType: CommonWebApplicationServicesOptions.ConfigureMvc
+- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureMvc*
+  name: ConfigureMvc
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ConfigureMvc_
+  commentId: Overload:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureMvc
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureMvc
+  nameWithType: CommonWebApplicationServicesOptions.ConfigureMvc
+- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureRazorPages
+  name: ConfigureRazorPages
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ConfigureRazorPages
+  commentId: P:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureRazorPages
+  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureRazorPages
+  nameWithType: CommonWebApplicationServicesOptions.ConfigureRazorPages
+- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureRazorPages*
+  name: ConfigureRazorPages
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ConfigureRazorPages_
+  commentId: Overload:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureRazorPages
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureRazorPages
+  nameWithType: CommonWebApplicationServicesOptions.ConfigureRazorPages
+- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureResponseCompression
+  name: ConfigureResponseCompression
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ConfigureResponseCompression
+  commentId: P:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureResponseCompression
+  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureResponseCompression
+  nameWithType: CommonWebApplicationServicesOptions.ConfigureResponseCompression
+- uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureResponseCompression*
+  name: ConfigureResponseCompression
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ConfigureResponseCompression_
+  commentId: Overload:SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureResponseCompression
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureResponseCompression
+  nameWithType: CommonWebApplicationServicesOptions.ConfigureResponseCompression
 - uid: SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.SupportedMediaTypes
   name: SupportedMediaTypes
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html#SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_SupportedMediaTypes
@@ -534,6 +614,19 @@ references:
   commentId: T:SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions
   fullName: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions
   nameWithType: IServiceCollectionExtensions
+- uid: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.AutoGenerateDataProtectionKeyFile(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions)
+  name: AutoGenerateDataProtectionKeyFile(IServiceCollection, CommonWebApplicationServicesOptions)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.html#SystemLibrary_Common_Web_Extensions_IServiceCollectionExtensions_AutoGenerateDataProtectionKeyFile_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_
+  commentId: M:SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.AutoGenerateDataProtectionKeyFile(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions)
+  fullName: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.AutoGenerateDataProtectionKeyFile(Microsoft.Extensions.DependencyInjection.IServiceCollection, SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions)
+  nameWithType: IServiceCollectionExtensions.AutoGenerateDataProtectionKeyFile(IServiceCollection, CommonWebApplicationServicesOptions)
+- uid: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.AutoGenerateDataProtectionKeyFile*
+  name: AutoGenerateDataProtectionKeyFile
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.html#SystemLibrary_Common_Web_Extensions_IServiceCollectionExtensions_AutoGenerateDataProtectionKeyFile_
+  commentId: Overload:SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.AutoGenerateDataProtectionKeyFile
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.AutoGenerateDataProtectionKeyFile
+  nameWithType: IServiceCollectionExtensions.AutoGenerateDataProtectionKeyFile
 - uid: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.CommonWebApplicationServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions)
   name: CommonWebApplicationServices(IServiceCollection, CommonWebApplicationServicesOptions)
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.html#SystemLibrary_Common_Web_Extensions_IServiceCollectionExtensions_CommonWebApplicationServices_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_

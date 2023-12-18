@@ -48,10 +48,11 @@ partial class Log
                     AppendStackTrace(message);
 
                 var context = HttpContextInstance.Current;
-                
+
                 if (!IsLocal && context != null)
                 {
-                    AppendRequestPath(message, context.Request);
+                    if(LogMessageBuilderOptions.AppendPath)
+                        AppendRequestPath(message, context.Request);
 
                     if (LogMessageBuilderOptions != null)
                     {
@@ -71,10 +72,11 @@ partial class Log
                         }
                     }
 
-                    AppendCorrelationGuid(message, context);
+                    if (LogMessageBuilderOptions.AppendCorrelationId)
+                        AppendCorrelationId(message, context);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 AppendMessageFormat("logMessageError", ex.Message + " when logging: " + obj, message);
             }
@@ -85,43 +87,53 @@ partial class Log
             return message.ToString();
         }
 
-        static void AppendCorrelationGuid(StringBuilder message, HttpContext httpContext)
+        static void AppendCorrelationId(StringBuilder message, HttpContext httpContext)
         {
             try
             {
-                if (httpContext.Items == null || httpContext.Items.Count == 0) return;
+                if (httpContext?.Items == null) return;
 
-                var id = httpContext.Items["CorrelationId"];
+                var name = "CorrelationId";
+                var id = httpContext.Items[name];
 
                 if (id == null)
                 {
-                    id = httpContext.Items["correlationId"];
+                    name = "correlationId";
+                    id = httpContext.Items[name];
 
                     if (id == null)
-                        id = httpContext.Items["CorrelationID"];
+                    {
+                        name = "correlationid";
+                        id = httpContext.Items[name];
+                    }
 
                     if (id == null)
-                        id = httpContext.Items["corrId"];
+                    {
+                        name = "CorrelationID";
+                        id = httpContext.Items[name];
+                    }
 
                     if (id == null)
-                        id = httpContext.Items["corrID"];
+                    {
+                        name = "corrId";
+                        id = httpContext.Items[name];
+                    }
                 }
 
                 if (id != null)
-                    AppendMessageFormat("correlationid", id, message);
+                    AppendMessageFormat(name, id, message);
                 else
                 {
                     var correlation = Guid.NewGuid().ToString();
 
-                    if(httpContext?.Items != null)
-                        httpContext.Items.TryAdd("correlationid", correlation);
+                    httpContext.Items.TryAdd(name, correlation);
 
-                    AppendMessageFormat("correlationid", correlation, message);
+                    AppendMessageFormat(name, correlation, message);
                 }
             }
             catch
             {
-                AppendMessageFormat("correlationid", null, message);
+                AppendMessageFormat("correlationId", null, message);
             }
         }
 
@@ -130,30 +142,49 @@ partial class Log
             try
             {
                 var connection = httpContext?.Connection;
+
+                if (connection == null) return;
+
                 var remoteIpAddress = connection?.RemoteIpAddress;
-                var localIpAddress = connection?.LocalIpAddress;
 
-                if (remoteIpAddress == null && localIpAddress == null)
+                var userIp = remoteIpAddress?.ToString();
+
+                var wasLocal = false;
+
+                if (userIp.IsNot() || userIp == "::1" || userIp.StartsWith("10.") || userIp.StartsWith("127.0"))
                 {
-                    message.Append("\nUser Ip: ");
-                    return;
+                    userIp = httpContext.Request?.Headers["X-Forwarded-For"].FirstOrDefault();
+                    wasLocal = true;
                 }
-                //httpContext?.Request?.Headers["HTTP_X_FORWARDED_FOR"];
-                //httpContext?.Request?.Headers["REMOTE_ADDR"];
 
-                var part1 = localIpAddress?.ToString();
-                var part2 = remoteIpAddress?.ToString();
+                if (userIp.IsNot() || userIp == "::1" || userIp.StartsWith("10.") || userIp.StartsWith("127.0"))
+                {
+                    userIp = httpContext.Request?.Headers["REMOTE_ADDR"].FirstOrDefault();
+                    wasLocal = true;
+                }
 
-                if (part1.IsNot())
-                    AppendMessageFormat("ip", part2, message);
-                else if (part2.IsNot())
-                    AppendMessageFormat("ip", part1, message);
+                if (userIp?.Contains(",") == true)
+                {
+                    userIp = userIp.Split(',')[0];
+                }
+
+                if (userIp.IsNot())
+                {
+                    if(wasLocal)
+                        AppendMessageFormat("ip", "local", message);
+                    else
+                        AppendMessageFormat("ip", "empty", message);
+                }
+
+                else if (userIp == "::1" || userIp.StartsWith("10.") || userIp.StartsWith("127.0"))
+                    AppendMessageFormat("ip", "local", message);
+
                 else
-                    AppendMessageFormat("ip", part1 + ", "+ part2, message);
+                    AppendMessageFormat("ip", userIp, message);
             }
             catch
             {
-                AppendMessageFormat("ip", null, message);
+                AppendMessageFormat("ip", "unknown", message);
             }
         }
 
@@ -197,29 +228,8 @@ partial class Log
                 AppendMessageFormat("message", txt, message, level);
 
             else if (obj is IEnumerable enumerable)
-            {
-                if (obj is IList list)
-                    AppendMessageFormat("List (" + list.Count + ")", null, message, level);
-                if (obj is Array array)
-                    AppendMessageFormat("Array (" + array.Length + ")", null, message, level);
-                if (obj is ICollection collection)
-                    AppendMessageFormat("Collection (" + collection.Count + ")", null, message, level);
-
-                if (obj is IDictionary dictionary)
-                {
-                    var temp = new StringBuilder();
-                    foreach (var value in dictionary.Values)
-                        temp.Append(value + " ");
-
-                    AppendMessageFormat("Dictionary (" + dictionary.Count + ")", temp, message, level);
-                }
-                else
-                {
-                    foreach (var val in enumerable)
-                        AppendMessage(val, message, level++);
-                }
-            }
-            else if (IsLogableClass(obj))
+                AppendClass(message, enumerable);
+            else if (IsLoggableClass(obj))
                 AppendClass(message, obj);
             else
                 AppendMessageFormat("message", obj.ToString(), message);
@@ -245,18 +255,18 @@ partial class Log
 
         static void AppendPlainFormat(string name, object obj, StringBuilder message)
         {
-            if(name == "level")
+            if (name == "level")
             {
                 message.Append(obj + ": ");
             }
-            else if(name == "message")
+            else if (name == "message")
             {
-                if(obj == null)
+                if (obj == null)
                     message.Append("(null)\n");
                 else
                     message.Append(obj + "\n");
             }
-            else if(obj == null)
+            else if (obj == null)
                 message.Append(name + ": null\n");
             else if (name == "stacktrace")
                 message.Append(name + ": " + obj + "\n");
@@ -284,12 +294,18 @@ partial class Log
 
             var objAsString = new StringBuilder();
 
-            DumpBuildMethod.Invoke(null, new object[] { objAsString, obj, 0, 3 });
+            try
+            {
+                DumpBuildMethod.Invoke(null, new object[] { objAsString, obj, 0, 3 });
+            }
+            catch
+            {
+            }
 
             AppendMessageFormat("object", objAsString.ToString(), message);
         }
 
-        static bool IsLogableClass(object o)
+        static bool IsLoggableClass(object o)
         {
             var type = o.GetType();
 
@@ -329,7 +345,8 @@ partial class Log
                     {
                         if (traces[i].StartsWithAny(
                             "   at System.RuntimeMethodHandle",
-                            "   at System.Reflection.RuntimeMethodInfo"))
+                            "   at System.Reflection.RuntimeMethodInfo",
+                            "   at lambda_method"))
                         {
                             break;
                         }
@@ -342,7 +359,17 @@ partial class Log
                         {
                             continue;
                         }
-                        stackTraceBuilder.Append(traces[i].TrimStart() + "\n");
+
+                        if (i < Math.Min(traces.Length, 9) - 1)
+                        {
+                            if(MessageFormatJson)
+                                stackTraceBuilder.Append("\t" + traces[i].TrimStart() + "\n");
+                            else
+                            {
+                                stackTraceBuilder.Append("\t" + traces[i].TrimStart() + "\n");
+                            }
+                        }
+                            
                     }
                 }
                 AppendMessageFormat("stacktrace", stackTraceBuilder.ToString(), message);
@@ -356,7 +383,7 @@ partial class Log
         static void AppendRequestPath(StringBuilder message, HttpRequest request)
         {
             if (request?.Path != null)
-                AppendMessageFormat("path", request?.Path.Value, message);
+                AppendMessageFormat("path", request.Path.Value + (request.QueryString.Value), message);
         }
     }
 }
