@@ -28,9 +28,8 @@ The two methods in short enables:
 - Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-Release 6.9.1.2
-- Cache.Lock now supports an additional param "lockKey" which is appended to the auto lock key generated to diff between two locks in same scope
-- Generating Xml Doc File: true
+Release 7.0.0.1
+- Updated to .NET7
 
 #### Version history
 - View git history of this file if interested

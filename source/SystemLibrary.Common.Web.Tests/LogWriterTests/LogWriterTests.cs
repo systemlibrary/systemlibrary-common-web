@@ -12,6 +12,20 @@ public class LogWriterTests
     const string DumpFullPath = @"C:\Logs\systemlibrary-common-web-unit-tests.txt";
 
     [TestMethod]
+    public void Write_Same_CorrId_InARow()
+    {
+        System.Threading.Thread.Sleep(20);
+
+        if (System.IO.File.Exists(DumpFullPath))
+            System.IO.File.Delete(DumpFullPath);
+
+        Assert.IsFalse(System.IO.File.Exists(DumpFullPath));
+
+        Log.Write("Err");
+    }
+
+
+    [TestMethod]
     public void Write_Various_Log_Levels_Without_Registering_ILogWriter_Success()
     {
         System.Threading.Thread.Sleep(200);

@@ -75,7 +75,12 @@ public static class Cache
         cache = new MemoryCache(options);
     }
 
-    public static void Set<T>(string cacheKey, T obj, TimeSpan duration = default) where T : class
+    /// <summary>
+    /// Add item 'obj' to cache for a duration
+    /// 
+    /// Defaults to 180 seconds cache duration if not specified
+    /// </summary>
+    public static void Set<T>(string cacheKey, T obj, TimeSpan duration = default) 
     {
         if (cacheKey.IsNot()) 
             return;
@@ -292,17 +297,17 @@ public static class Cache
     }
 
     /// <summary>
-    /// Create a 'cache key' to 'lock' an if statement, to run only once within the duration passed in
+    /// Create a 'lock' to part of a function only once within the duration
     /// 
-    /// Returns true if the key do not exist, or it has expired, so it is set again, else returns false
+    /// Returns true if the key do not exist or has expired else returns false
     /// 
     /// - Default duration is 60 seconds
     /// 
-    /// Useful to run some code only once within time frame per app instance
+    /// Useful to execute code only once within the time frame per app instance
     /// 
-    /// NOTE: It uses the stack frame to read the current method name as cache key, so max 1 invocation per function
+    /// NOTE: Uses the stack frame to read current namespace and method as cache key, so max 1 invocation per function scope, else you must fill out the cacheLock parameter too
     /// </summary>
-    /// <param name="lockKey">Append data to the lock key, if multiple locks resides inside the same method scope you might want to differ them manually</param>
+    /// <param name="lockKey">Append data to the lock key, if multiple locks resides inside the same method scope</param>
     /// <example>
     /// Example
     /// <code class="language-csharp hljs">

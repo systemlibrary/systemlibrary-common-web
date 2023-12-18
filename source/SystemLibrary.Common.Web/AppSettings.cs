@@ -29,7 +29,6 @@ namespace SystemLibrary.Common.Web;
 /// 			"appendIp": true,
 /// 			"appendBrowser": true,
 /// 			"appendCookieInfo": true,
-/// 			"format": null
 ///         },
 /// 
 /// 		"cache": {
@@ -85,7 +84,10 @@ internal class AppSettings : Config<AppSettings>
             public bool AppendLoggedInState { get; set; } = true;
             public bool AppendIp { get; set; } = false;
 
+            public bool AppendPath { get; set; } = true;
+
             public bool AppendBrowser { get; set; } = false;
+            public bool AppendCorrelationId { get; set; } = true;
             public bool AppendCookieInfo { get; set; } = false;
             public string Format { get; set; }  // json | null
         }

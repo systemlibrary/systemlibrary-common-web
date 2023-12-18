@@ -99,8 +99,6 @@ public class HtmlHelperFactory
 
         var tempData = new TempDataDictionary(contextAccessor.HttpContext, TempDataProvider);
 
-        // using StringWriter writer = new StringWriter();
-
         return new ViewContext(
             new ActionContext(contextAccessor.HttpContext, contextAccessor.HttpContext.GetRouteData(), ControllerActionDescriptor),
             DummyIndex,
