@@ -15,7 +15,7 @@ namespace SystemLibrary.Common.Web;
 /// 		"httpBaseClient": {
 /// 			"timeoutMilliseconds": 60000,
 /// 			"retryRequestTimeoutSeconds": 10,
-/// 			"cacheClientConnectionSeconds": 300
+/// 			"cacheClientConnectionSeconds": 120
 /// 		},
 /// 
 /// 		"log": {
@@ -71,7 +71,7 @@ internal class AppSettings : Config<AppSettings>
             public int TimeoutMilliseconds { get; set; } = 60000;
 
             public int RetryRequestTimeoutSeconds { get; set; } = 10;
-            public int CacheClientConnectionSeconds { get; set; } = 300;
+            public int CacheClientConnectionSeconds { get; set; } = 120;
         }
 
         public class CacheConfiguration

@@ -1,13 +1,14 @@
 ﻿# Installation
 
 ## Requirements
-* .NET &gt;= 7.0
+* &gt;= .NET 7
 
 ## Install nuget package
 
 * Open your project/solution in Visual Studio
 * Open Nuget Project Manager
-* Search and install SystemLibrary.Common.Web
+* Search for SystemLibrary.Common.Web
+* Install SystemLibrary.Common.Web
 
 ## First time usage
 1. Create a new Asp.Net Core Empty .NET 7 project
@@ -46,28 +47,28 @@ public class Startup
 }
 ```
 
-- Now you can run your web application out of the box
-- Requests will be mapped to a controller
-- .cshtml files will be re-compiled during save 
-- Static content such as jpg, png, pdf, js, etc... is allowed to be hosted from your app
-- See the docs for the two methods: CommonWebApplicationServices and CommonWebApplicationBuilder for more info
+* Now you can run your web application out of the box
+* Requests will be mapped to a controller
+* .cshtml files will be re-compiled during save and your site will refresh auto 
+* Static content such as jpg, png, pdf, js, etc... is allowed to be hosted from your app
+* See the docs for the two methods: CommonWebApplicationServices and CommonWebApplicationBuilder for more info
 
 ## Package Configurations
-* Default and modifiable configurations for this package:
+* Below are the default and modifiable configurations for this package
 
-appSettings.json:
+###### appSettings.json:
 ```json  
 {
 	"systemLibraryCommonWeb": {
 		"httpBaseClient": {
 			"timeoutMilliseconds": 60000,
 			"retryRequestTimeoutSeconds": 10,
-			"cacheClientConnectionSeconds": 300
+			"cacheClientConnectionSeconds": 120
 		},
 
 		"log": {
 			"isEnabled": true,
-			"level": "Info" //Pick between: Info, Debug, Warning, Error
+			"level": "Info" // Info, Debug, Warning, Error
 		},
 
 		"logMessageBuilder": {
@@ -75,8 +76,9 @@ appSettings.json:
 			"appendIp": false,
 			"appendPath": true,
 			"appendBrowser": false,
+			"appendCorrelationId": true,
 			"appendCookieInfo": false,
-			"format": null
+			"format": null // "json", null
 		},
 
 		"cache": {

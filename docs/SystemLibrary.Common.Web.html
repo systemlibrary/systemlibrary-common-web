@@ -239,22 +239,30 @@
       <h4><a class="xref" href="SystemLibrary.Common.Web.HttpBaseClient.html">HttpBaseClient</a></h4>
       <section id="SystemLibrary.Common.Web.HttpBaseClient--description"><p>HttpBaseClient is a class for all http(s) requests in your project</p>
 <ul>
-<li>Note: Polly (nuget package) does similar thing which does similar thing about Retry, and it does a few other things, but last time I checked; it does not reuse the TCP connection)</li>
+<li>Note: Polly (nuget package) does a similar thing about Retry, and it does a few other things, but last time I checked; it does not reuse the TCP connection, so it is actually unusable)</li>
 </ul>
 <p>Has:</p>
 <ul>
 <li><p>a retry handler configured through constructor</p>
 </li>
-<li><p>if request fails and retry is True, the retry request uses a new tcp connection and gets a fixed 10 seconds timeout</p>
+<li><p>if request fails and retry is True, the retry request uses a new tcp connection with 10 seconds timeout</p>
 </li>
 <li><p>a retry request occurs only for GET, HEAD or OPTION request methods, never for PUT/POST/DELETE</p>
 </li>
 <li><p>a timeout handler configurable through constructor, but also per method</p>
 </li>
-<li><p>each underlying tcp connection is cached for up to 5 minutes</p>
+<li><p>each underlying tcp connection is cached for up to 2 minutes</p>
 </li>
 </ul>
 <p>Use HttpBaseClient directly or inherit from it, see the examples</p>
+<p>Configurations:
+&quot;systemLibraryCommonWeb&quot;: {
+&quot;httpBaseClient&quot;: {
+&quot;timeoutMilliseconds&quot;: 60000,
+&quot;retryRequestTimeoutSeconds&quot;: 10,
+&quot;cacheClientConnectionSeconds&quot;: 120
+}
+}</p>
 </section>
       <h4><a class="xref" href="SystemLibrary.Common.Web.HttpContextInstance.html">HttpContextInstance</a></h4>
       <section id="SystemLibrary.Common.Web.HttpContextInstance--description"><p>An implementation of the 'old' thread safe singleton HttpContext we all know and love from .NET Framework</p>

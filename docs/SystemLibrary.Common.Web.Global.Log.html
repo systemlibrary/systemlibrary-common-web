@@ -233,15 +233,16 @@
 <pre><code>{
     &quot;systemLibraryCommonWeb&quot;: {
         &quot;log&quot; { 
-            &quot;level&quot;: &quot;0/info/Info/debug/Debug/warning/Warning/Error/error&quot;,
-            &quot;isEnabled&quot;: true/false
+            &quot;level&quot;: &quot;info/debug/warning/error&quot;,
+            &quot;isEnabled&quot;: true
         },
         &quot;logMessageBuilder&quot; {
             &quot;appendLoggedInState&quot;: true,
             &quot;appendPath&quot;: true,
-            &quot;appendIp&quot;: true,
-            &quot;appendBrowser&quot;: true,
-            &quot;appendCookieInfo&quot;: true,
+            &quot;appendIp&quot;: false,
+            &quot;appendBrowser&quot;: false,
+            &quot;appendCorrelationId&quot;: true,
+            &quot;appendCookieInfo&quot;: false,
             &quot;format&quot;: null
         }
     }
@@ -278,7 +279,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Global_Log_Debug_System_Object_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L283">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L284">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_Global_Log_Debug_" data-uid="SystemLibrary.Common.Web.Global.Log.Debug*"></a>
@@ -333,7 +334,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Global_Log_Error_System_Object_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L251">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L252">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_Global_Log_Error_" data-uid="SystemLibrary.Common.Web.Global.Log.Error*"></a>
@@ -388,7 +389,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Global_Log_Info_System_Object_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L300">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L301">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_Global_Log_Info_" data-uid="SystemLibrary.Common.Web.Global.Log.Info*"></a>
@@ -443,7 +444,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Global_Log_Warning_System_Object_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L267">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L268">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_Global_Log_Warning_" data-uid="SystemLibrary.Common.Web.Global.Log.Warning*"></a>
@@ -503,7 +504,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Global_Log_Write_System_Object_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L325">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L326">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_Global_Log_Write_" data-uid="SystemLibrary.Common.Web.Global.Log.Write*"></a>
@@ -1192,7 +1193,7 @@ Log.Write(list);
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L238" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/Log.cs/#L239" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

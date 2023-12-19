@@ -1,56 +1,59 @@
 # SystemLibrary Common Web
 
 ## Description
-Library with classes and methods for every .NET &gt;= 6 web application
+Library with classes and methods for every &gt;=  .NET 7 web application
 
-### Features
-#### One line setup
-- Setup IApplicationBuilder in one line: app.CommonWebApplicationBuilder();
-- Setup IServiceCollection in one line: services.CommonWebApplicationServices();
+#### Features
+* Setup IApplicationBuilder and IServiceCollection in one line
+  * services.CommonWebApplicationServices();
+    * Registers services for compression, MVC, routing requests to controllers and more...
+  * app.CommonWebApplicationBuilder();
+    * Enables serving static file types (css, js, png, jpg, ...)
+    * Enables compression
+    * Maps requests to controllers
+    * Enables Authorization and Authentication attributes
 
-The two methods in short enables:
-- serving of static common file types (css, js, png, jpg, ...)
-- routes requests to controllers
-- registers AspNet.Mvc services
-- enables usage of Authorization and Authentication attributes
-  
 #### Modules
-- HttpBaseClient reuses the underlying TCP connection, no more socket exhaustion, saving 10's of milliseconds each subsequent request
-- Log class in global namespace
-  * Log.Write() is "equivalent" to console.log in javascript  
-- Cache class with auto-generating cache keys
+* HttpBaseClient
+  * Reuses the underlying TCP connection for 2 minutes, saving 10's of milliseconds on subsequent requests
+  * Retries once if a request fails, by recreating the TCP connection, and trying again with a short (10s) timeout
+* Cache
+  * Auto-generating cache keys based on variables in "function scope"
+  * A 3 minute default cache duration
+* HttpContextInstance
+  * Current 
+* ActionContextInstance
+  * Current
 
 ## Requirements
 - &gt;= .NET 7
-- SystemLibrary.Common.Net
 - Microsoft.AspNetCore.App Framework
-- Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation &gt;= 6
-- Microsoft.Extensions.FileProviders.Physical &gt;= 6.0.0
 
 ## Latest Version
-Release 7.0.0.2
-- LogBuilder: fixed crash appending Ip on localhost
-- LogBuilder: added option for "appendPath" to true/false
-- LogMessage: output adjusted slightly for lists, it uses now the Dump internal method to create the output
+- 7.0.0.3
+- Log.Write: fixed crash in "appendIp"
+- Log.Write: added option for "appendPath" to true/false
+- Log.Write: adjusted lists output slightly
 
 #### Version history
 - View git history of this file if interested
 
 ## Installation
-https://systemlibrary.github.io/systemlibrary-common-web/Install.html
+- Simply install the nuget package
+- [Installation guide](https://systemlibrary.github.io/systemlibrary-common-web/Install.html)
 
-## Docs
-Documentation with code samples:  
-https://systemlibrary.github.io/systemlibrary-common-web/
+
+## Documentation
+- [Documentation with code samples](https://systemlibrary.github.io/systemlibrary-common-web/)
 
 ## Nuget
-https://www.nuget.org/packages/SystemLibrary.Common.Web/
+- [Nuget package page](https://www.nuget.org/packages/SystemLibrary.Common.Web/)
 
 ## Source
-https://github.com/systemlibrary/systemlibrary-common-web
+- [Github](https://github.com/systemlibrary/systemlibrary-common-web)
 
 ## Suggestions and feedback
-support@systemlibrary.com
+- [Send us an email](mailto:support@systemlibrary.com)
 
-## Lisence
+## License
 - Free

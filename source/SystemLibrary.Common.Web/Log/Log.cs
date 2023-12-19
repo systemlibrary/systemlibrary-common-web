@@ -220,15 +220,16 @@ namespace SystemLibrary.Common.Web.Global
     /// {
     ///     "systemLibraryCommonWeb": {
     ///         "log" { 
-    ///             "level": "0/info/Info/debug/Debug/warning/Warning/Error/error",
-    ///             "isEnabled": true/false
+    ///             "level": "info/debug/warning/error",
+    ///             "isEnabled": true
     ///         },
     ///         "logMessageBuilder" {
     ///             "appendLoggedInState": true,
     ///             "appendPath": true,
-    ///             "appendIp": true,
-    ///             "appendBrowser": true,
-    ///             "appendCookieInfo": true,
+    ///             "appendIp": false,
+    ///             "appendBrowser": false,
+    ///             "appendCorrelationId": true,
+    ///             "appendCookieInfo": false,
     ///             "format": null
     ///         }
     ///     }

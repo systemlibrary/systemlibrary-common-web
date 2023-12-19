@@ -8,18 +8,27 @@ namespace SystemLibrary.Common.Web;
 
 /// <summary>
 /// HttpBaseClient is a class for all http(s) requests in your project
-/// - Note: Polly (nuget package) does similar thing which does similar thing about Retry, and it does a few other things, but last time I checked; it does not reuse the TCP connection)
+/// - Note: Polly (nuget package) does a similar thing about Retry, and it does a few other things, but last time I checked; it does not reuse the TCP connection, so it is actually unusable)
 /// 
 /// Has:
 /// - a retry handler configured through constructor
-///     - if request fails and retry is True, the retry request uses a new tcp connection and gets a fixed 10 seconds timeout
+///     - if request fails and retry is True, the retry request uses a new tcp connection with 10 seconds timeout
 ///     - a retry request occurs only for GET, HEAD or OPTION request methods, never for PUT/POST/DELETE
 /// 
 /// - a timeout handler configurable through constructor, but also per method
 /// 
-/// - each underlying tcp connection is cached for up to 5 minutes
+/// - each underlying tcp connection is cached for up to 2 minutes
 /// 
 /// Use HttpBaseClient directly or inherit from it, see the examples
+/// 
+/// Configurations:
+/// "systemLibraryCommonWeb": {
+/// 	"httpBaseClient": {
+/// 		"timeoutMilliseconds": 60000,
+/// 		"retryRequestTimeoutSeconds": 10,
+/// 		"cacheClientConnectionSeconds": 120
+/// 	}
+/// }
 /// </summary>
 /// <example>
 /// A simple class to hold our Response
@@ -89,6 +98,7 @@ public partial class HttpBaseClient
     /// <param name="retryOnceOnRequestCancelled">Retry with a fixed 10 seconds timeout upon a request was cancelled</param>
     /// <param name="ignoreSslErrors">Set to true if you want to ignore errors such as Ssl Cert Expired</param>
     /// <param name="defaultTimeoutMilliseconds">Default is 60 seconds</param>
+    /// <param name="throwOnUnsuccessfulStatusCode">Set to true if you want unsuccessful status codes to throw exceptions</param>
     public HttpBaseClient(
         bool retryOnceOnRequestCancelled = false,
         bool ignoreSslErrors = true,
