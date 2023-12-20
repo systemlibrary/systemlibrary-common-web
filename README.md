@@ -30,10 +30,10 @@ Library with classes and methods for every &gt;=  .NET 7 web application
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Version
-- 7.0.0.3
-- Log.Write: fixed crash in "appendIp"
-- Log.Write: added option for "appendPath" to true/false
-- Log.Write: adjusted lists output slightly
+- 7.1.0.2
+- Updated deps
+- Cache: Get()'s overloaded methods no longer restricts on class types
+- Updated descriptions on some few methods
 
 #### Version history
 - View git history of this file if interested

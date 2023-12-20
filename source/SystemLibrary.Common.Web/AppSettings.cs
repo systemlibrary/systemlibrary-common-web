@@ -1,43 +1,7 @@
 ﻿using SystemLibrary.Common.Net;
 
-//Small note to self: IViewComponentSelector exist, which can grab html elements by Id? or DomQuerySelector? So ... frontend tests much?
-
 namespace SystemLibrary.Common.Web;
 
-/// <summary>
-/// Override default configurations in 'SystemLibrary.Common.Web' by adding 'systemLibraryCommonWeb' object to 'appSettings.json'
-/// </summary>
-/// <example>
-/// 'appSettings.json'
-/// <code class="language-csharp hljs">
-/// {
-/// 	"systemLibraryCommonWeb": {
-/// 		"httpBaseClient": {
-/// 			"timeoutMilliseconds": 60000,
-/// 			"retryRequestTimeoutSeconds": 10,
-/// 			"cacheClientConnectionSeconds": 120
-/// 		},
-/// 
-/// 		"log": {
-///             "isEnabled": true,
-/// 			"level": "Info/Debug/Warning/Error"
-///         },
-/// 
-/// 		"logMessageBuilder": {
-///             "format": "json",
-///             "appendLoggedInState": true,
-/// 			"appendIp": true,
-/// 			"appendBrowser": true,
-/// 			"appendCookieInfo": true,
-///         },
-/// 
-/// 		"cache": {
-///             "defaultDuration": 180
-///         }
-/// 	}
-/// }
-/// </code>
-/// </example>
 internal class AppSettings : Config<AppSettings>
 {
     public AppSettings()

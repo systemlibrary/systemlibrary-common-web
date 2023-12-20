@@ -49,7 +49,6 @@ public static class Cache
         (_Principal = HttpContextInstance.Current?.User);
 
     static IMemoryCache cache;
-    //static object cacheLock = new object();
 
     static int _DefaultDuration = -1;
     static int DefaultDuration
@@ -94,9 +93,9 @@ public static class Cache
     /// <summary>
     /// Get data from cache as T
     /// 
-    /// Returns default T if it does not exist in cache
+    /// - returns default if cacheKey is null or empty
     /// 
-    /// Returns default T in a non-web-context
+    /// Returns default T if cacheKey do not exist in cache, else T
     /// </summary>
     /// <example>
     /// Simple get object from cache based on a cache key:
@@ -108,11 +107,15 @@ public static class Cache
     /// //If 'hello-world-key' exists in cache, the variable 'data' now holds that value
     /// </code>
     /// </example>
-    public static T Get<T>(string cacheKey) where T : class
+    public static T Get<T>(string cacheKey)
     {
         if (cacheKey.IsNot()) return default;
 
-        return cache.Get(cacheKey) as T;
+        var cached = cache.Get(cacheKey);
+
+        if (cached == null) return default;
+
+        return (T)cached;
     }
 
     /// <summary>
@@ -139,7 +142,7 @@ public static class Cache
     /// }
     /// </code>
     /// </example>
-    public static T Get<T>(string cacheKey, Func<T> getItem, TimeSpan duration = default, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null, bool debug = false) where T : class
+    public static T Get<T>(string cacheKey, Func<T> getItem, TimeSpan duration = default, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null, bool debug = false)
     {
         return Get<T>(getItem, cacheKey, duration, condition, skipForAuthenticatedUsers, skipForAdmins, skipFor, debug);
     }
@@ -170,7 +173,7 @@ public static class Cache
     /// //If we should set skipForAdmins: false, then administrators will also get cached content
     /// </code>
     /// </example>
-    public static T Get<T>(Func<T> getItem, TimeSpan duration, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null, bool debug = false) where T : class
+    public static T Get<T>(Func<T> getItem, TimeSpan duration, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null, bool debug = false)
     {
         return Get<T>(getItem, null, duration, condition, skipForAuthenticatedUsers, skipForAdmins, skipFor, debug);
     }
@@ -257,7 +260,7 @@ public static class Cache
     /// //Note: cache key for an authenticated user would minimum append 'true' to the above cacheKey, and if it is a ClaimsPrincipal user, it would append all roles that user belongs to
     /// </code>
     /// </example>
-    public static T Get<T>(Func<T> getItem, string cacheKey = null, TimeSpan duration = default, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null, bool debug = false) where T : class
+    public static T Get<T>(Func<T> getItem, string cacheKey = null, TimeSpan duration = default, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null, bool debug = false)
     {
         if (cacheKey == "")
             return getItem();
@@ -274,18 +277,18 @@ public static class Cache
         if (debug)
             Log.Debug("Cache.Get() debug parameter is true: cache key is " + cacheKey);
 
-        var cached = cache.Get(cacheKey) as T;
+        var cached = cache.Get(cacheKey);
 
         if (cached != null)
         {
             if (debug)
                 Log.Debug(obj: "Cache.Get() debug parameter is true: item cached");
-            return cached;
+            return (T)cached;
         }
 
         cached = getItem();
 
-        if (cached != null && (condition == null || condition(cached)))
+        if (cached != null && (condition == null || condition((T)cached)))
         {
             if (debug)
                 Log.Debug("Cache.Get() debug paramter is true: conditions are met, adding item to cache");
@@ -293,15 +296,15 @@ public static class Cache
             Insert(cacheKey, cached, duration);
         }
 
-        return cached;
+        return (T)cached;
     }
 
     /// <summary>
-    /// Create a 'lock' to part of a function only once within the duration
+    /// Create a 'lock' to part of a function, to run it only once within the duration
     /// 
     /// Returns true if the key do not exist or has expired else returns false
     /// 
-    /// - Default duration is 60 seconds
+    /// - Default lock duration is 60 seconds
     /// 
     /// Useful to execute code only once within the time frame per app instance
     /// 
@@ -337,9 +340,9 @@ public static class Cache
         return true;
     }
 
-    static string CreateCacheKey<T>(Func<T> getItem, Func<T, bool> condition) where T : class
+    static string CreateCacheKey<T>(Func<T> getItem, Func<T, bool> condition)
     {
-        // NOTE: Optimization could be done of getItem + condition + T + currentUser.Roles as a cache key to cache the cache create itself, hashmap/whatever
+        // NOTE: Optimization could be done of getItem + condition + T + currentUser.Roles as a cache key to cache the cache key creation itself, hashmap/whatever
         var key = new StringBuilder("common.web.cache");
         var getItemMethod = getItem.Method;
 

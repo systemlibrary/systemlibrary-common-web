@@ -66,6 +66,10 @@ public class Startup
 			"cacheClientConnectionSeconds": 120
 		},
 
+		"cache": {
+			"defaultDuration": 180
+		},
+
 		"log": {
 			"isEnabled": true,
 			"level": "Info" // Info, Debug, Warning, Error
@@ -79,10 +83,6 @@ public class Startup
 			"appendCorrelationId": true,
 			"appendCookieInfo": false,
 			"format": null // "json", null
-		},
-
-		"cache": {
-			"defaultDuration": 180
 		}
 	}
 }

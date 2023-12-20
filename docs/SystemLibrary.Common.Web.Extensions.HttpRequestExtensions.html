@@ -236,10 +236,15 @@
   </h3>
   
   <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Returns true if the request is an ajax request represented by the header 'X-Requested-With'</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_HttpRequestExtensions_IsAjaxRequest_Microsoft_AspNetCore_Http_HttpRequest_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/HttpRequestExtensions/HttpRequestExtensions.cs/#L17">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/HttpRequestExtensions/HttpRequestExtensions.cs/#L35">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_Extensions_HttpRequestExtensions_IsAjaxRequest_" data-uid="SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.IsAjaxRequest*"></a>
@@ -247,6 +252,13 @@
   	<div class="custom-menu-data">
   		<h4 id="SystemLibrary_Common_Web_Extensions_HttpRequestExtensions_IsAjaxRequest_Microsoft_AspNetCore_Http_HttpRequest_" data-uid="SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.IsAjaxRequest(Microsoft.AspNetCore.Http.HttpRequest)" class="h4-custom-functionName">public static bool IsAjaxRequest(this HttpRequest request)</h4>
   		<div class="custom-menu-data-container">
+  			<div class="custom-menu-data-name" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  				<div class="codewrapper"><pre><code>var isAjax = request.IsAjaxRequest();
+// true if header X-Requested-With was set to &quot;XMLHttpRequest&quot;, else false</code></pre>
+</div>
+  				<div class="comment-examples-container-bottom"></div>
+  			</div>
   
   			<div class="custom-menu-data-arguments" style="display: none;">
   				<div class="syslib-tab-menu-data--close">X</div>
@@ -295,10 +307,15 @@
   
   
   <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Returns the referer as Uri or null if not found</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_HttpRequestExtensions_Referer_Microsoft_AspNetCore_Http_HttpRequest_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/HttpRequestExtensions/HttpRequestExtensions.cs/#L28">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/HttpRequestExtensions/HttpRequestExtensions.cs/#L55">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_Extensions_HttpRequestExtensions_Referer_" data-uid="SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.Referer*"></a>
@@ -306,6 +323,13 @@
   	<div class="custom-menu-data">
   		<h4 id="SystemLibrary_Common_Web_Extensions_HttpRequestExtensions_Referer_Microsoft_AspNetCore_Http_HttpRequest_" data-uid="SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.Referer(Microsoft.AspNetCore.Http.HttpRequest)" class="h4-custom-functionName">public static Uri Referer(this HttpRequest request)</h4>
   		<div class="custom-menu-data-container">
+  			<div class="custom-menu-data-name" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  				<div class="codewrapper"><pre><code>var referer = request.IsAjaxRequest();
+// referer is now the referer from the Header request, or null if not existing</code></pre>
+</div>
+  				<div class="comment-examples-container-bottom"></div>
+  			</div>
   
   			<div class="custom-menu-data-arguments" style="display: none;">
   				<div class="syslib-tab-menu-data--close">X</div>
@@ -354,10 +378,15 @@
   
   
   <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Returns full url of the request, includes protocol, path and query:</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_HttpRequestExtensions_Url_Microsoft_AspNetCore_Http_HttpRequest_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/HttpRequestExtensions/HttpRequestExtensions.cs/#L10">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/HttpRequestExtensions/HttpRequestExtensions.cs/#L19">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_Extensions_HttpRequestExtensions_Url_" data-uid="SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.Url*"></a>
@@ -365,6 +394,13 @@
   	<div class="custom-menu-data">
   		<h4 id="SystemLibrary_Common_Web_Extensions_HttpRequestExtensions_Url_Microsoft_AspNetCore_Http_HttpRequest_" data-uid="SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.Url(Microsoft.AspNetCore.Http.HttpRequest)" class="h4-custom-functionName">public static string Url(this HttpRequest request)</h4>
   		<div class="custom-menu-data-container">
+  			<div class="custom-menu-data-name" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  				<div class="codewrapper"><pre><code>var url = request.Url();
+// for example, url is now: https://www.systemlibrary.com/hello?world=1</code></pre>
+</div>
+  				<div class="comment-examples-container-bottom"></div>
+  			</div>
   
   			<div class="custom-menu-data-arguments" style="display: none;">
   				<div class="syslib-tab-menu-data--close">X</div>
