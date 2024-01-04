@@ -30,9 +30,8 @@ Library with classes and methods for every &gt;=  .NET 7 web application
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Version
-- 7.1.0.4
-- Cache: size limit has now default value set to 200.000 items from 100.000
-- Cache.Set: sets each item as 1 size, didnt know it throws exception if size wasnt set (so now it creates a new object to pass in, more mem usage, strange behavior)
+- 7.1.0.5
+- RetryRequestTimeoutSeconds: Limiting between 1-30, default is 10 if not configured
 
 
 #### Version history

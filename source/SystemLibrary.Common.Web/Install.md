@@ -62,7 +62,7 @@ public class Startup
 	"systemLibraryCommonWeb": {
 		"httpBaseClient": {
 			"timeoutMilliseconds": 60000,
-			"retryRequestTimeoutSeconds": 10,
+			"retryRequestTimeoutSeconds": 10,	//Limited to 1-30
 			"cacheClientConnectionSeconds": 120
 		},
 
