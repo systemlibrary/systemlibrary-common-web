@@ -71,6 +71,8 @@ public static class Cache
     {
         MemoryCacheOptions options = new MemoryCacheOptions();
         options.ExpirationScanFrequency = TimeSpan.FromSeconds(120);
+        options.SizeLimit = 200000;
+        options.CompactionPercentage = 0.15;
         cache = new MemoryCache(options);
     }
 
@@ -403,7 +405,11 @@ public static class Cache
         if (value == null)
             Remove(cacheKey);
         else
-            cache.Set(cacheKey, value, DateTime.Now.Add(duration));
+            cache.Set(cacheKey, value, new MemoryCacheEntryOptions()
+            {
+                AbsoluteExpiration = DateTime.Now.Add(duration),
+                Size = 1,
+            });
     }
 
     /// <summary>

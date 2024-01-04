@@ -30,10 +30,10 @@ Library with classes and methods for every &gt;=  .NET 7 web application
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Version
-- 7.1.0.2
-- Updated deps
-- Cache: Get()'s overloaded methods no longer restricts on class types
-- Updated descriptions on some few methods
+- 7.1.0.4
+- Cache: size limit has now default value set to 200.000 items from 100.000
+- Cache.Set: sets each item as 1 size, didnt know it throws exception if size wasnt set (so now it creates a new object to pass in, more mem usage, strange behavior)
+
 
 #### Version history
 - View git history of this file if interested
