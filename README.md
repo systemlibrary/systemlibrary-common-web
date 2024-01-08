@@ -30,9 +30,8 @@ Library with classes and methods for every &gt;=  .NET 7 web application
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Version
-- 7.1.0.5
-- RetryRequestTimeoutSeconds: Limiting between 1-30, default is 10 if not configured
-
+- 7.1.0.7
+- Checking for null on "Cancelled" exception thrown
 
 #### Version history
 - View git history of this file if interested

@@ -329,17 +329,24 @@ public static class Cache
         if (duration == default)
             duration = TimeSpan.FromSeconds(60);
 
-        var callee = new StackFrame(1).GetMethod();
+        try
+        {
+            var callee = new StackFrame(1).GetMethod();
 
-        var cacheKey = nameof(SystemLibrary) + nameof(Cache) + nameof(Lock) + callee.DeclaringType.Namespace + callee.DeclaringType.Name + callee.Name + callee.IsStatic + callee.IsPublic + duration + lockKey;
+            var cacheKey = nameof(SystemLibrary) + nameof(Cache) + nameof(Lock) + callee.DeclaringType?.Namespace + callee.DeclaringType?.Name + callee.Name + callee.IsStatic + callee.IsPublic + duration + lockKey;
 
-        var exists = cache.Get<bool>(cacheKey);
+            var exists = cache.Get<bool>(cacheKey);
 
-        if (exists) return false;
+            if (exists) return false;
 
-        Insert(cacheKey, true, duration);
+            Insert(cacheKey, true, duration);
 
-        return true;
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     static string CreateCacheKey<T>(Func<T> getItem, Func<T, bool> condition)

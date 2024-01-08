@@ -8,8 +8,6 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 
-using SystemLibrary.Common.Net;
-
 namespace SystemLibrary.Common.Web.Extensions;
 
 /// <summary>
@@ -64,11 +62,17 @@ public static class IApplicationBuilderExtensions
 
         if (options.UseStaticFiles)
         {
-            StaticFileOptions staticFileOptions = new StaticFileOptions();
-            staticFileOptions.ServeUnknownFileTypes = true;
-            staticFileOptions.HttpsCompression = HttpsCompressionMode.Compress;
-            staticFileOptions.RedirectToAppendTrailingSlash = false;
-
+            StaticFileOptions staticFileOptions = new StaticFileOptions
+            {
+                ServeUnknownFileTypes = true,
+                HttpsCompression = HttpsCompressionMode.Compress,
+                RedirectToAppendTrailingSlash = false,
+                OnPrepareResponse = ctx =>
+                {
+                    if (ctx.Context.Response.Headers.ContainsKey("Cache-Control") != true)
+                        ctx.Context.Response.Headers.Append("Cache-Control", $"public, max-age=604,800");
+                }
+            };
             //TODO: Sure about GetCurrentDirectory? It returns "root" of the application
             //while AppContext.BaseDirectory returns "one folder deeper", inside /bin/, where APP is running
             //but App static files are of course, usually, not copied to bin, so far so good,although "..parent" of BaseDir is 'safer'? 

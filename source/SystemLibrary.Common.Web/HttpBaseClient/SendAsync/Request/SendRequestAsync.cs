@@ -18,7 +18,7 @@ namespace SystemLibrary.Common.Web
                 catch (RetryRequestException retry)
                 {
                     if (options.CancellationToken != null && options.CancellationToken.IsCancellationRequested)
-                        throw new Exception("Cancelled: " + retry.InnerException?.Message + ". " + retry.InnerException.StackTrace);
+                        throw new Exception("Cancelled: " + retry?.InnerException?.Message + ". " + retry?.InnerException?.StackTrace);
 
                     try
                     {
