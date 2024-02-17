@@ -41,7 +41,7 @@ namespace SystemLibrary.Common.Web
                         break;
 
                     case MediaType.json:
-                        if(jsonSerializerOptions != null)
+                        if (jsonSerializerOptions != null)
                             jsonSerializerOptions.ReadCommentHandling = JsonCommentHandling.Skip;
 
                         content = GetBodyJson(data, null, jsonSerializerOptions, mediaType);
@@ -67,7 +67,7 @@ namespace SystemLibrary.Common.Web
                     //MediaTypeFormatter bsonFormatter = new BsonMediaTypeFormatter();
 
                     default:
-                        if(data is HttpRequestMessage msg)
+                        if (data is HttpRequestMessage msg)
                         {
                             return msg.Content;
                         }

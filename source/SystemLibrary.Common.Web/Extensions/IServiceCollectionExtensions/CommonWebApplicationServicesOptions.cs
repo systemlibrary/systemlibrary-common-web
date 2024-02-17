@@ -71,7 +71,7 @@ public class CommonWebApplicationServicesOptions
     /// Add application assembly as a 'part' so controllers within your application assembly are tried matching against requests
     /// </summary>
     public bool AddApplicationAssembly { get; set; } = true;
-    
+
     /// <summary>
     /// Configure servcies for allowing forwarding of two headers: XForwardedProto and XForwardedFor
     /// </summary>

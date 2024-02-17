@@ -45,8 +45,7 @@ namespace SystemLibrary.Common.Web;
 public static class Cache
 {
     static IPrincipal _Principal;
-    static IPrincipal Principal => _Principal != null ? _Principal :
-        (_Principal = HttpContextInstance.Current?.User);
+    static IPrincipal Principal => _Principal ?? (_Principal = HttpContextInstance.Current?.User);
 
     static IMemoryCache cache;
 
@@ -81,9 +80,9 @@ public static class Cache
     /// 
     /// Defaults to 180 seconds cache duration if not specified
     /// </summary>
-    public static void Set<T>(string cacheKey, T obj, TimeSpan duration = default) 
+    public static void Set<T>(string cacheKey, T obj, TimeSpan duration = default)
     {
-        if (cacheKey.IsNot()) 
+        if (cacheKey.IsNot())
             return;
 
         if (duration == default)
@@ -115,9 +114,7 @@ public static class Cache
 
         var cached = cache.Get(cacheKey);
 
-        if (cached == null) return default;
-
-        return (T)cached;
+        return cached == null ? default : (T)cached;
     }
 
     /// <summary>
@@ -361,11 +358,11 @@ public static class Cache
 
         //getItem.GetInvocationList()[0].Target - about 3-4 times slower than getItem.Target
         var target = getItem.Target;
-        if(target != null)
+        if (target != null)
         {
             var type = target.GetType();
             var fields = type.GetFields(BindingFlags.FlattenHierarchy | BindingFlags.Instance | BindingFlags.Public);
-            if(fields.Length > 0)
+            if (fields.Length > 0)
             {
                 //TODO: Consider throwing exception if field is of "unsupported type" as CacheKey
                 //as this works fine on string, int, bool, DateTime, double, but a List or a POCO object would be ToString()'d which does not make much sense
@@ -377,7 +374,7 @@ public static class Cache
                 }
             }
         }
-        
+
         if (condition != null)
             key.Append(condition.Method?.Name + condition.Method?.ReturnType?.Name + "");
 
@@ -463,11 +460,11 @@ public static class Cache
                     keys.Add(key.ToString());
             }
         }
-        
+
         //lock (cacheLock)
         //{
-            foreach (var key in keys)
-                cache.Remove(key);
+        foreach (var key in keys)
+            cache.Remove(key);
         //}
     }
 

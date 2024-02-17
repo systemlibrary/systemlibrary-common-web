@@ -21,7 +21,7 @@ namespace SystemLibrary.Common.Web.Tests
             var responses = new List<string>();
             for (int i = 0; i < repeat; i++)
             {
-                var sleep = i * 300;
+                var sleep = i * 150;
                 try
                 {
                     tasks.Add(Task.Run(() =>
@@ -49,12 +49,12 @@ namespace SystemLibrary.Common.Web.Tests
                 Assert.IsTrue(result.Contains(body), "Response did not include body message: " + body);
             }
 
-            Thread.Sleep(221000);
+            Thread.Sleep(110500);
 
             responses = new List<string>();
             for (int i = 0; i < repeat; i++)
             {
-                var sleep = i * 300;
+                var sleep = i * 150;
                 try
                 {
                     tasks.Add(Task.Run(() =>

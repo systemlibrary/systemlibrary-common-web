@@ -33,12 +33,12 @@ namespace SystemLibrary.Common.Web
                 }
                 else if (data is string text)
                 {
-                    if(text.Contains("&") && text.Contains("="))
+                    if (text.Contains("&") && text.Contains("="))
                     {
                         var keyValues = new List<KeyValuePair<string, string>>();
 
                         var inputs = text.Split('&');
-                        foreach(var input in inputs)
+                        foreach (var input in inputs)
                         {
                             if (input.IsNot()) continue;
 
@@ -59,7 +59,7 @@ namespace SystemLibrary.Common.Web
                 }
                 else if (data.GetType().IsClass)
                     throw new System.Exception("Class to wwwformurlencoded string is not currently fully implemented  in GetBodyXwwwFormUrlEncoded()");
-                    
+
                 throw new System.Exception("x-www-form-urlencoded media type requires data sent to be either: List<KeyValuePair<string, string>> or IDictionary, or a string or a byte[] or as null, but then the URL you pass into the method must already contain the key/values in the url");
             }
         }

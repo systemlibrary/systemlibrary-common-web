@@ -37,7 +37,7 @@ public enum MediaType
 
     [EnumValue("multipart/form-data")]
     multipartFormData,
-    
+
     [EnumValue("application/octet-stream")]
     octetStream,
 
@@ -52,7 +52,7 @@ public enum MediaType
 
     [EnumValue("application/pdf")]
     pdf,
-    
+
     [EnumValue("application/zip")]
     zip,
 

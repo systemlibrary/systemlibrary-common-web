@@ -26,9 +26,9 @@ namespace SystemLibrary.Common.Web.Tests
             {
                 Assert.IsTrue(true);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Assert.IsTrue(false, "CalleeCancelledRequestException should be thrown: "  + ex.Message);
+                Assert.IsTrue(false, "CalleeCancelledRequestException should be thrown: " + ex.Message);
             }
         }
     }

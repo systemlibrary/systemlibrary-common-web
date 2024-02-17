@@ -92,7 +92,7 @@ public static class IApplicationBuilderExtensions
             {
                 app.UseResponseCompression();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Log.Info(ex.Message + " Continues without compression...");
             }
@@ -126,7 +126,7 @@ public static class IApplicationBuilderExtensions
 
         var actionContextAccessor = app.ApplicationServices.GetRequiredService<IActionContextAccessor>();
         ActionContextInstance.Initialize(actionContextAccessor);
-        
+
         if (options.MapRazorPagesEndpoints)
         {
             app = app.UseEndpoints(endpoints =>

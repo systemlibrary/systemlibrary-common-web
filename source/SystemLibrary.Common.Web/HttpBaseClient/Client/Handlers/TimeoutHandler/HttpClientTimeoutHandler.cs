@@ -50,7 +50,7 @@ namespace SystemLibrary.Common.Web
                     }
                     catch (RetryRequestException)
                     {
-                        if(ClientRequestedCancellation(cancellationToken))
+                        if (ClientRequestedCancellation(cancellationToken))
                             throw new CalleeCancelledRequestException("Callee cancelled the request, not retrying against " + request.RequestUri.AbsoluteUri);
 
                         throw;
@@ -74,7 +74,7 @@ namespace SystemLibrary.Common.Web
 
                 bool IsTimeoutRegistered()
                 {
-                    return 
+                    return
                         RequestTimeoutSpan != TimeSpan.MinValue &&
                         RequestTimeoutSpan != TimeSpan.MaxValue &&
                         RequestTimeoutSpan != Timeout.InfiniteTimeSpan;

@@ -43,7 +43,7 @@ public static partial class Log
     {
         get
         {
-            if(_LogWriter == null)
+            if (_LogWriter == null)
                 _LogWriter = Services.Get<ILogWriter>();
 
             return _LogWriter;
@@ -151,10 +151,10 @@ public static partial class Log
 
             if (!isEnabled) return;
 
-            if(minLevel == -1)
+            if (minLevel == -1)
                 minLevel = (int)(AppSettings.Current?.SystemLibraryCommonWeb?.Log?.Level ?? LogLevel.Info);
 
-            if((int)level < minLevel)
+            if ((int)level < minLevel)
                 return;
         }
 

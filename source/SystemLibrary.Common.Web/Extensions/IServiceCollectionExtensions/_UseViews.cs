@@ -7,16 +7,16 @@ static partial class IServiceCollectionExtensions
 {
     static IServiceCollection UseViews(this IServiceCollection services, CommonWebApplicationServicesOptions options = null)
     {
-        if (options.ViewLocationExpander == null && options.ViewLocations == null && options.AreaViewLocations == null) return services;
-
-        return services.Configure<RazorViewEngineOptions>(razorViews =>
+        return options.ViewLocationExpander == null && options.ViewLocations == null && options.AreaViewLocations == null
+            ? services
+            : services.Configure<RazorViewEngineOptions>(razorViews =>
         {
             if (options.ViewLocationExpander != null)
                 razorViews.ViewLocationExpanders.Add(options.ViewLocationExpander);
 
-            if(options.AreaViewLocations != null)
+            if (options.AreaViewLocations != null)
             {
-                foreach(var view in options.AreaViewLocations)
+                foreach (var view in options.AreaViewLocations)
                 {
                     if (view.Is())
                         razorViews.AreaViewLocationFormats.Add(view);

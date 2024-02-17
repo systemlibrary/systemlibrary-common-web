@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
@@ -20,7 +19,7 @@ namespace SystemLibrary.Common.Web
 
             var type = typeof(T);
 
-            if(type == typeof(HttpResponseMessage))
+            if (type == typeof(HttpResponseMessage))
             {
                 return (T)(object)response;
             }
@@ -32,7 +31,7 @@ namespace SystemLibrary.Common.Web
 
                 response.Dispose();
 
-                if (body == null) 
+                if (body == null)
                     return default;
 
                 if (type == SystemType.StringType)
@@ -54,9 +53,9 @@ namespace SystemLibrary.Common.Web
             //TODO: Support XML serialization/deserialization?
 
             using (response)
-                using (var contentStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false))
-                    //using (var streamReader = new StreamReader(contentStream))
-                        return await JsonSerializer.DeserializeAsync<T>(contentStream, jsonSerializerOptions, cancellationToken).ConfigureAwait(false);
+            using (var contentStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false))
+                //using (var streamReader = new StreamReader(contentStream))
+                return await JsonSerializer.DeserializeAsync<T>(contentStream, jsonSerializerOptions, cancellationToken).ConfigureAwait(false);
         }
     }
 }

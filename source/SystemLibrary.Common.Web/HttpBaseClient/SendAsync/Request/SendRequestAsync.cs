@@ -11,6 +11,7 @@ namespace SystemLibrary.Common.Web
             internal static async Task<HttpResponseMessage> SendRequestAsync(RequestOptions options)
             {
                 HttpResponseMessage response = null;
+
                 try
                 {
                     response = await SendAsync(options).ConfigureAwait(false);
@@ -26,13 +27,10 @@ namespace SystemLibrary.Common.Web
 
                         var timeoutSeconds = AppSettings.Current.SystemLibraryCommonWeb.HttpBaseClient.RetryRequestTimeoutSeconds;
 
-                        if (timeoutSeconds < 1)
-                            options.TimeoutMilliseconds = 10000;
-                        else 
-                            options.TimeoutMilliseconds = timeoutSeconds * 1000;
+                        options.TimeoutMilliseconds = timeoutSeconds < 1 ? 10000 : timeoutSeconds * 1000;
 
-                        if (options.TimeoutMilliseconds > 30000)
-                            options.TimeoutMilliseconds = 30000;
+                        if (options.TimeoutMilliseconds > 120000)
+                            options.TimeoutMilliseconds = 120000;
 
                         response = await SendAsync(options).ConfigureAwait(false);
                     }

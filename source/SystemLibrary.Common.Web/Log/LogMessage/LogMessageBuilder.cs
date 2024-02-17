@@ -44,14 +44,14 @@ partial class Log
                 else
                     AppendMessage(obj, message, MessageFormatJson ? 1 : 0);
 
-                if (!IsLocal && level == LogLevel.Error && obj as Exception == null)
+                if (!IsLocal && level == LogLevel.Error && (obj as Exception) == null)
                     AppendStackTrace(message);
 
                 var context = HttpContextInstance.Current;
 
                 if (!IsLocal && context != null)
                 {
-                    if(LogMessageBuilderOptions.AppendPath)
+                    if (LogMessageBuilderOptions.AppendPath)
                         AppendRequestPath(message, context.Request);
 
                     if (LogMessageBuilderOptions != null)
@@ -170,7 +170,7 @@ partial class Log
 
                 if (userIp.IsNot())
                 {
-                    if(wasLocal)
+                    if (wasLocal)
                         AppendMessageFormat("ip", "local", message);
                     else
                         AppendMessageFormat("ip", "empty", message);
@@ -362,14 +362,14 @@ partial class Log
 
                         if (i < Math.Min(traces.Length, 9) - 1)
                         {
-                            if(MessageFormatJson)
+                            if (MessageFormatJson)
                                 stackTraceBuilder.Append("\t" + traces[i].TrimStart() + "\n");
                             else
                             {
                                 stackTraceBuilder.Append("\t" + traces[i].TrimStart() + "\n");
                             }
                         }
-                            
+
                     }
                 }
                 AppendMessageFormat("stacktrace", stackTraceBuilder.ToString(), message);
@@ -383,7 +383,7 @@ partial class Log
         static void AppendRequestPath(StringBuilder message, HttpRequest request)
         {
             if (request?.Path != null)
-                AppendMessageFormat("path", request.Path.Value + (request.QueryString.Value), message);
+                AppendMessageFormat("path", request.Path.Value + request.QueryString.Value, message);
         }
     }
 }

@@ -12,9 +12,9 @@ namespace SystemLibrary.Common.Web
         {
             static HttpContent GetBodyJson(object data, Encoding encoding = null, JsonSerializerOptions jsonSerializerOptions = null, MediaType mediaType = MediaType.json)
             {
-                if (data is string text) return new StringContent(text, encoding != null ? encoding : Encoding.UTF8, mediaType.ToValue());
-
-                return new StringContent(data.Json(jsonSerializerOptions), encoding != null ? encoding : Encoding.UTF8, mediaType.ToValue());
+                return data is string text
+                    ? new StringContent(text, encoding ?? Encoding.UTF8, mediaType.ToValue())
+                    : (HttpContent)new StringContent(data.Json(jsonSerializerOptions), encoding ?? Encoding.UTF8, mediaType.ToValue());
             }
         }
     }

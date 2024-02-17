@@ -11,7 +11,7 @@ namespace SystemLibrary.Common.Web
         async Task<ClientResponse<T>> SendAsync<T>(HttpMethod method, string url, object data, MediaType mediaType, int timeoutMilliseconds, IDictionary<string, string> headers, JsonSerializerOptions jsonSerializerOptions, CancellationToken cancellationToken)
         {
             //Timeout is currently set to the default one, lets see if it shouldve been overridden by other settings
-            if(timeoutMilliseconds == DefaultTimeoutMilliseconds)
+            if (timeoutMilliseconds == DefaultTimeoutMilliseconds)
             {
                 //Is it overridden per HttpBaseClient?
                 if (TimeoutMilliseconds != DefaultTimeoutMilliseconds)

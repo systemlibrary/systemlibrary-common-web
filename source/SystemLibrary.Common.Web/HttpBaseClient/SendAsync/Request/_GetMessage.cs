@@ -14,11 +14,11 @@ namespace SystemLibrary.Common.Web
 
                 message.Content = options.Content;
 
-                if(options.Headers != null)
+                if (options.Headers != null)
                 {
                     foreach (var header in options.Headers)
                         if (header.Key.Is())
-                            message.Headers.TryAddWithoutValidation(header.Key, header.Value);                    
+                            message.Headers.TryAddWithoutValidation(header.Key, header.Value);
                 }
 
                 message.Headers.TryAddWithoutValidation("Accept", "*/*");

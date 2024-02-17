@@ -11,7 +11,7 @@ namespace SystemLibrary.Common.Web
         partial class Client
         {
             static int _ClientExpiresInSeconds = -1;
-            static int ClientExpiresInSeconds => _ClientExpiresInSeconds > -1 ? _ClientExpiresInSeconds : 
+            static int ClientExpiresInSeconds => _ClientExpiresInSeconds > -1 ? _ClientExpiresInSeconds :
                 (_ClientExpiresInSeconds = AppSettings.Current.SystemLibraryCommonWeb.HttpBaseClient.CacheClientConnectionSeconds);
 
             static ConcurrentDictionary<string, CacheModel> Cache;
@@ -71,7 +71,7 @@ namespace SystemLibrary.Common.Web
             static void RemoveFromCache(string key)
             {
                 Cache.TryRemove(key, out CacheModel httpClientCached);
-               
+
                 Dispose();
 
                 if (httpClientCached != null)

@@ -18,7 +18,7 @@ internal class AppSettings : Config<AppSettings>
             Log = new LogConfiguration();
             LogMessageBuilder = new LogMessageBuilderOptions();
         }
-        
+
         public CacheConfiguration Cache { get; set; }
         public HttpBaseClientConfiguration HttpBaseClient { get; set; }
         public LogConfiguration Log { get; set; }

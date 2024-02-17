@@ -8,15 +8,15 @@ namespace SystemLibrary.Common.Web.Tests;
 public class ApiTest
 {
     const string LocalApiUrl = "http://localhost/graphql";
-    
+
     const string LocalApiKeyName = "api-key";
     const string LocalApiKey = "";
-    
+
     const string LocalApiTokenName = "token";
     const string LocalApiToken = "";
 
     const string LocalClientId = "app";
-    
+
     [TestMethod]
     public void Target_Local_Api_With_String_As_Json_Data_Success()
     {

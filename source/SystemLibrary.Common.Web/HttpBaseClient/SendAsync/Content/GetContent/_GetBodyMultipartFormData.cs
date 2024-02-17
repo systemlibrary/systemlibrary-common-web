@@ -9,7 +9,7 @@ namespace SystemLibrary.Common.Web
         {
             static HttpContent GetBodyMultipartFormData(object data)
             {
-                if(data is byte[] bytes)
+                if (data is byte[] bytes)
                 {
                     var content = new MultipartFormDataContent
                     {

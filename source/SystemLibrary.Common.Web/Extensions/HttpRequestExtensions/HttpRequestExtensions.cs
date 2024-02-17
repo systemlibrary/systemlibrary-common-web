@@ -18,9 +18,7 @@ public static class HttpRequestExtensions
     /// </example>
     public static string Url(this HttpRequest request)
     {
-        if (request == null) return null;
-
-        return request.Scheme + "://" + request.Host + request.Path + request.QueryString.Value;
+        return request == null ? null : request.Scheme + "://" + request.Host + request.Path + request.QueryString.Value;
     }
 
     /// <summary>
@@ -34,13 +32,10 @@ public static class HttpRequestExtensions
     /// </example>
     public static bool IsAjaxRequest(this HttpRequest request)
     {
-        if (request == null)
-            throw new ArgumentNullException(nameof(request));
-
-        if (request.Headers != null && request.Headers.ContainsKey("X-Requested-With"))
-            return request.Headers["X-Requested-With"] == "XMLHttpRequest";
-
-        return false;
+        return request == null
+            ? throw new ArgumentNullException(nameof(request))
+            : request.Headers != null && request.Headers.ContainsKey("X-Requested-With")
+&& request.Headers["X-Requested-With"] == "XMLHttpRequest";
     }
 
     /// <summary>
@@ -54,7 +49,7 @@ public static class HttpRequestExtensions
     /// </example>
     public static Uri Referer(this HttpRequest request)
     {
-        if(request == null) throw new ArgumentNullException(nameof(request));
+        if (request == null) throw new ArgumentNullException(nameof(request));
 
         RequestHeaders header = request.GetTypedHeaders();
 

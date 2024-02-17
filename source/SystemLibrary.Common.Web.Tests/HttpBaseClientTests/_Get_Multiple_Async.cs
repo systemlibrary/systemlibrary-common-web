@@ -25,7 +25,7 @@ namespace SystemLibrary.Common.Web.Tests
             tasks.Add(Task.Run(() => Add(WebService.Get(), 1)));
             tasks.Add(Task.Run(() => Add(WebService.Get(), 2)));
             tasks.Add(Task.Run(() => Add(WebService.Get(), 3)));
-            tasks.Add(Task.Run(() => Add(WebService.Get(),4 )));
+            tasks.Add(Task.Run(() => Add(WebService.Get(), 4)));
 
             var task = Task.WhenAll(tasks.ToArray());
 

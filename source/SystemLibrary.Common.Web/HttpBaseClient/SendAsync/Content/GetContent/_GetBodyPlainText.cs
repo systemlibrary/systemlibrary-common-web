@@ -11,7 +11,7 @@ partial class HttpBaseClient
     {
         static HttpContent GetBodyPlainText(object data, Encoding encoding = null, MediaType mediaType = MediaType.plain)
         {
-            return new StringContent(data is string str ? str : data.ToString(), encoding != null ? encoding : Encoding.UTF8, mediaType.ToValue());
+            return new StringContent(data is string str ? str : data.ToString(), encoding ?? Encoding.UTF8, mediaType.ToValue());
         }
     }
 }
