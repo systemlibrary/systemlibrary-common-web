@@ -30,9 +30,8 @@ Library with classes and methods for every &gt;=  .NET 7 web application
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Version
-- 7.2.0.1
+- 7.2.0.2
 - Updated deps
-- HttpBaseClient deserialization of string to object passed in as Generic, now uses SystemLibrary.Common.Net's default json options for Enum, Long, Type and DateTime conversions
 
 #### Version history
 - View git history of this file if interested

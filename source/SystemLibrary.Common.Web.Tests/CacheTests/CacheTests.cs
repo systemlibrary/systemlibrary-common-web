@@ -40,6 +40,7 @@ public class CacheTests
         var getItems = () => GetText("Hello", 101, true);
 
         var cached = Cache.Get(GetItemsFromFunction, debug: true);
+
         Assert.IsTrue(cached.Is());
 
         cached = Cache.Get(GetItemsFromFunction);
