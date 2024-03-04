@@ -30,7 +30,7 @@ Library with classes and methods for every &gt;=  .NET 7 web application
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Version
-- 7.2.0.2
+- 7.2.0.3
 - Updated deps
 
 #### Version history
