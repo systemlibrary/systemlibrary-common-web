@@ -70,8 +70,8 @@ public static class Cache
     {
         MemoryCacheOptions options = new MemoryCacheOptions();
         options.ExpirationScanFrequency = TimeSpan.FromSeconds(120);
-        options.SizeLimit = 200000;
-        options.CompactionPercentage = 0.15;
+        options.SizeLimit = 150000;             // Storing 150.000 items in cache, not caring about memory per cached item
+        options.CompactionPercentage = 0.40;    // If size reached, 60% is removed from cache, ready to be GC'd
         cache = new MemoryCache(options);
     }
 

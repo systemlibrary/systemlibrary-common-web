@@ -5,7 +5,7 @@
 		<Configurations>Release</Configurations>
 		<RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
 		<DefaultItemExcludes>$(DefaultItemExcludes);Release.cmd;**\*.nupkg;nuget-icon.png;</DefaultItemExcludes>
-		<Version>7.2.0.3</Version>
+		<Version>7.2.0.4</Version>
 		<PackageOutputPath>..\$(Product)</PackageOutputPath>
 	</PropertyGroup>
 
@@ -13,7 +13,7 @@
 		<DefaultItemExcludes>$(DefaultItemExcludes);Release.cmd;**\*.nupkg;nuget-icon.png;</DefaultItemExcludes>
 		<RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
 		<DebugType>pdbonly</DebugType>
-		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<GenerateDocumentationFile>False</GenerateDocumentationFile>
 		<PackageOutputPath>..\$(MSBuildProjectName)</PackageOutputPath>
 		<Company>System Library</Company>
 		<Authors>System Library</Authors>

@@ -30,8 +30,8 @@ Library with classes and methods for every &gt;=  .NET 7 web application
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Version
-- 7.2.0.3
-- Updated deps
+- 7.2.0.4
+- Cache size limit reduced to 150K from 200K, also compact ratio is set to 40% up from 15% to avoid too long "compact time" when it occurs
 
 #### Version history
 - View git history of this file if interested
