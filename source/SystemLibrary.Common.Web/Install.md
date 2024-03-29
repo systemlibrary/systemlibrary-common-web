@@ -35,14 +35,14 @@ public class Startup
 
 	public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 	{
-		var options = new CommonWebApplicationBuilderOptions();
-		app.CommonWebApplicationBuilder(options);
+		var options = new CommonWebAppOptions();
+		app.UseCommonWebApp(options);
 	}
 	
 	public void ConfigureServices(IServiceCollection services)
 	{
-		var options = new CommonWebApplicationServicesOptions();
-		services.CommonWebApplicationServices(options);
+		var options = new CommonWebServicesOptions();
+		services.AddCommonWebServices(options);
 	}
 }
 ```
@@ -51,7 +51,7 @@ public class Startup
 * Requests will be mapped to a controller
 * .cshtml files will be re-compiled during save and your site will refresh auto 
 * Static content such as jpg, png, pdf, js, etc... is allowed to be hosted from your app
-* See the docs for the two methods: CommonWebApplicationServices and CommonWebApplicationBuilder for more info
+* See the docs for the two methods: AddCommonWebServices and UseCommonWebApp for more info
 
 ## Package Configurations
 * Below are the default and modifiable configurations for this package

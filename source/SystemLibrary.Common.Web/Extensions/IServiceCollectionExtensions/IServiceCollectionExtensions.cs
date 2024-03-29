@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Logging;
 
 namespace SystemLibrary.Common.Web.Extensions;
 
@@ -25,7 +26,7 @@ public static partial class IServiceCollectionExtensions
     /// - ForwardedProtocol and ForwardedIp (XForwardedFor) headers 
     /// - Registering Controllers in your Startup Assembly - usually your Web Application Project's assembly
     /// 
-    /// Optionally, through the argument CommonWebApplicationServicesOptions: 
+    /// Optionally, through the argument CommonWebServicesOptions: 
     /// - Can register view locations
     /// - Can register area view locations
     /// - Can register one ViewLocationExpander
@@ -35,7 +36,7 @@ public static partial class IServiceCollectionExtensions
     /// <code>
     /// public void ConfigureServices(IServiceCollection services)
     /// {
-    ///     var options = new CommonWebApplicationServicesOptions();
+    ///     var options = new CommonWebServicesOptions();
     ///     
     ///     options.ViewLocations = new string[] {
     ///         "~/Views/{0}/index.cshtml"
@@ -47,14 +48,14 @@ public static partial class IServiceCollectionExtensions
     ///     
     ///     options.ViewLocationExpander = null; //or create one based on the Interface 'IViewLocationExpander'
     /// 
-    ///     services.CommonWebApplicationServices(options);
+    ///     services.AddCommonWebServices(options);
     /// }
     /// </code>
     /// </example>
-    public static IServiceCollection CommonWebApplicationServices(this IServiceCollection services, CommonWebApplicationServicesOptions options = null)
+    public static IServiceCollection AddCommonWebServices(this IServiceCollection services, CommonWebServicesOptions options = null)
     {
         if (options == null)
-            options = new CommonWebApplicationServicesOptions();
+            options = new CommonWebServicesOptions();
 
         if (options.ConfigureForwardHeaders)
             services = services.UseForwardedHeaders();
@@ -85,20 +86,31 @@ public static partial class IServiceCollectionExtensions
             builder = AddApplicationPart(builder, options, executingAssembliy, entryAssembly);
         }
 
-        if (options.AddRazorRecompilationOnViewChanged)
+        if (options.EndpointAssemblies != null)
         {
-            AddRazorRuntimeRecompilation(builder);
+            foreach (var asm in options.EndpointAssemblies)
+                if (asm != null)
+                    builder = AddApplicationPart(builder, options, asm, null);
         }
+
+        if (options.AddRazorRecompilationOnViewChanged)
+            AddRazorRuntimeRecompilation(builder);
 
         services = services.UseViews(options);
 
         if (options.AddHttpsAndSecureCookiePolicy)
-        {
             services = services.UseCookiePolicy();
-        }
+
+        if (options.AddForwardStandardLogging)
+            services.AddLogging(builder =>
+            {
+                builder.AddProvider(new InternalLogProvider());
+            });
 
         services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
+
+        // NOTE: Can this be Scoped instead?
         services.TryAddTransient<HtmlHelperFactory, HtmlHelperFactory>();
         services = services.Configure<IISServerOptions>(options => { options.AllowSynchronousIO = true; });
 

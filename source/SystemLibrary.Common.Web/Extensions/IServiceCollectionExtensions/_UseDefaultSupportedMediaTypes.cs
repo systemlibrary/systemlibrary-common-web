@@ -6,7 +6,7 @@ namespace SystemLibrary.Common.Web.Extensions;
 
 static partial class IServiceCollectionExtensions
 {
-    static Action<MvcOptions> UseDefaultSupportedMediaTypes(CommonWebApplicationServicesOptions options)
+    static Action<MvcOptions> UseDefaultSupportedMediaTypes(CommonWebServicesOptions options)
     {
         return mvc =>
         {

@@ -13,7 +13,7 @@ namespace SystemLibrary.Common.Web;
 /// - works in unit tests, console app's and web applications
 /// 
 /// Usage:
-/// - requires a call in startup/program to 'services.CommonWebApplicationServices()' before usage
+/// - requires a call in startup/program to 'services.AddCommonWebServices()' before usage
 /// </summary>
 /// <example>
 /// <code class="language-csharp hljs">
@@ -27,9 +27,9 @@ namespace SystemLibrary.Common.Web;
 /// <code>
 /// public void ConfigureServices(IServiceCollection services)
 /// {
-///    var options = new CommonWebApplicationServicesOptions();
+///    var options = new CommonWebServicesOptions();
 ///    
-///    services.CommonWebApplicationServices(options);
+///    services.AddCommonWebServices(options);
 ///    
 ///    services.AddTransient&lt;IVehicle, Car&gt;();
 /// }
@@ -75,6 +75,26 @@ public static class Services
         return ServiceProvider?.GetService<T>();
     }
 
+    public static void AddScoped<T,TImpementation>()
+        where T : class
+        where TImpementation : class, T
+    {
+        if (Collection == null)
+            throw new Exception("You are calling 'Remove()' of " + typeof(T).Name + " too early, call after AddCommonWebServices() has been ran");
+
+        Collection.AddScoped<T, TImpementation>();
+    }
+
+    public static void AddSingleton<T, TImpementation>()
+        where T : class
+        where TImpementation : class, T
+    {
+        if (Collection == null)
+            throw new Exception("You are calling 'Remove()' of " + typeof(T).Name + " too early, call after AddCommonWebServices() has been ran");
+
+        Collection.AddSingleton<T, TImpementation>();
+    }
+
     /// <summary>
     /// Tries to remove the service registered, or does nothing if already removed
     /// 
@@ -87,13 +107,13 @@ public static class Services
     /// // Removes IVehicle if it exists
     /// // If it does not exist, it calls Log.Error() with message, it does not throw exception
     /// 
-    /// // Note: It can throw exception if called before services.CommonWebApplicationServices()
+    /// // Note: It can throw exception if called before services.AddCommonWebServices()
     /// </code>
     /// </example>
     public static void Remove<T>()
     {
         if (Collection == null)
-            throw new Exception("You are calling 'Remove()' of " + typeof(T).Name + " too early, call after CommonEpiserverServices() has been ran");
+            throw new Exception("You are calling 'Remove()' of " + typeof(T).Name + " too early, call after AddCommonWebServices() has been ran");
 
         var type = typeof(T);
         if (type.IsClass || type.IsInterface)

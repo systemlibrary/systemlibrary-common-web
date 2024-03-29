@@ -37,15 +37,16 @@ public static class App
         public Startup()
         {
         }
+
         public void ConfigureServices(IServiceCollection services)
         {
-            services.CommonWebApplicationServices();
+            services.AddCommonWebServices();
             services.AddTransient<TInterface, TImplementation>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.CommonWebApplicationBuilder();
+            app.UseCommonWebApp(env);
         }
     }
 }

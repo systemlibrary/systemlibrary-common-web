@@ -7,7 +7,7 @@ namespace SystemLibrary.Common.Web;
 /// </summary>
 public static class HttpContextInstance
 {
-    static IHttpContextAccessor HttpContextAccessor;
+    internal static IHttpContextAccessor HttpContextAccessor;
 
     /// <summary>
     /// Returns current Http Context
@@ -20,9 +20,4 @@ public static class HttpContextInstance
     /// </code>
     /// </example>
     public static HttpContext Current => HttpContextAccessor?.HttpContext;
-
-    internal static void Initialize(IHttpContextAccessor httpContextAccessor)
-    {
-        HttpContextAccessor = httpContextAccessor;
-    }
 }

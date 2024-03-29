@@ -7,7 +7,7 @@ namespace SystemLibrary.Common.Web;
 /// </summary>
 public static class ActionContextInstance
 {
-    static IActionContextAccessor ActionContextAccessor;
+    internal static IActionContextAccessor ActionContextAccessor;
 
     /// <summary>
     /// Returns current Action Context
@@ -20,9 +20,4 @@ public static class ActionContextInstance
     /// </code>
     /// </example>
     public static Microsoft.AspNetCore.Mvc.ActionContext Current => ActionContextAccessor?.ActionContext;
-
-    internal static void Initialize(IActionContextAccessor actionContextAccessor)
-    {
-        ActionContextAccessor = actionContextAccessor;
-    }
 }
