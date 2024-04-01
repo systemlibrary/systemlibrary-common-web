@@ -15,7 +15,7 @@ public class LogWriterTests
     [TestMethod]
     public void Write_Same_CorrId_InARow()
     {
-        System.Threading.Thread.Sleep(20);
+        System.Threading.Thread.Sleep(10);
 
         if (System.IO.File.Exists(DumpFullPath))
             System.IO.File.Delete(DumpFullPath);
@@ -29,7 +29,7 @@ public class LogWriterTests
     [TestMethod]
     public void Write_Various_Log_Levels_Without_Registering_ILogWriter_Success()
     {
-        System.Threading.Thread.Sleep(200);
+        System.Threading.Thread.Sleep(100);
 
         if (System.IO.File.Exists(DumpFullPath))
             System.IO.File.Delete(DumpFullPath);
@@ -37,19 +37,21 @@ public class LogWriterTests
         Assert.IsFalse(System.IO.File.Exists(DumpFullPath));
 
         Log.Write("Err");
-
         Assert.IsTrue(System.IO.File.Exists(DumpFullPath));
 
         var content = System.IO.File.ReadAllText(DumpFullPath);
 
         Assert.IsTrue(content.Contains("Err"), "Does not contain 'Err': " + content);
-        Assert.IsTrue(content.Contains("Write in LogWriter:"), "Write in LogWriter:");
+        Assert.IsTrue(!content.Contains("Error"));
+        Assert.IsTrue(!content.Contains("Warn"));
+        Assert.IsTrue(!content.Contains("Debug"));
     }
 
 
     [TestMethod]
     public void Write_StringList_And_Class_Success()
     {
+        System.Threading.Thread.Sleep(200);
         App.Start<ILogWriter, LogWriter>();
 
         if (System.IO.File.Exists(DumpFullPath))
@@ -102,7 +104,7 @@ public class LogWriterTests
     [TestMethod]
     public void Write_Exception_As_Warning()
     {
-        System.Threading.Thread.Sleep(100);
+        System.Threading.Thread.Sleep(400);
         if (System.IO.File.Exists(DumpFullPath))
             System.IO.File.Delete(DumpFullPath);
 
@@ -118,7 +120,7 @@ public class LogWriterTests
     [TestMethod]
     public void Write_Various_Log_Levels_Success()
     {
-        System.Threading.Thread.Sleep(300);
+        System.Threading.Thread.Sleep(600);
         Dump.Clear();
 
         Log.Error("12345");
@@ -187,7 +189,7 @@ public class LogWriterTests
     [TestMethod]
     public void Write_Json_To_Log_Without_Conversion_As_Message()
     {
-        System.Threading.Thread.Sleep(100);
+        System.Threading.Thread.Sleep(800);
         if (System.IO.File.Exists(DumpFullPath))
             System.IO.File.Delete(DumpFullPath);
 

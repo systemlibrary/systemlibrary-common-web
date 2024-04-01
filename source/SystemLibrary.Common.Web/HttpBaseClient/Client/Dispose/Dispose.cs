@@ -1,40 +1,39 @@
 ﻿using System;
 
-namespace SystemLibrary.Common.Web
+namespace SystemLibrary.Common.Web;
+
+partial class HttpBaseClient
 {
-    partial class HttpBaseClient
+    partial class Client
     {
-        partial class Client
+        const int MinimumLifetimeSeconds = 120;
+
+        static void Dispose()
         {
-            const int MinimumLifetimeSeconds = 120;
+            CleanDisposeQueue();
+        }
 
-            static void Dispose()
+        static void CleanDisposeQueue()
+        {
+            var disposedTime = DateTime.Now.AddSeconds(-ClientExpiresInSeconds - MinimumLifetimeSeconds);
+            var keys = DisposeQueue.Keys;
+
+            foreach (var key in keys)
             {
-                CleanDisposeQueue();
-            }
-
-            static void CleanDisposeQueue()
-            {
-                var disposedTime = DateTime.Now.AddSeconds(-ClientExpiresInSeconds - MinimumLifetimeSeconds);
-                var keys = DisposeQueue.Keys;
-
-                foreach (var key in keys)
+                try
                 {
-                    try
+                    if (DisposeQueue.TryGetValue(key, out CacheModel clientQueuedCachedModel))
                     {
-                        if (DisposeQueue.TryGetValue(key, out CacheModel clientQueuedCachedModel))
+                        if (clientQueuedCachedModel.Expires < disposedTime)
                         {
-                            if (clientQueuedCachedModel.Expires < disposedTime)
-                            {
-                                DisposeQueue.TryRemove(key, out _);
-                                clientQueuedCachedModel?.Dispose();
-                            }
+                            DisposeQueue.TryRemove(key, out _);
+                            clientQueuedCachedModel?.Dispose();
                         }
                     }
-                    catch
-                    {
-                        // Note: Swalling due to if items are disposed twice within "same" cpu tick, multithreaded not tested, and I do not want to lock this
-                    }
+                }
+                catch
+                {
+                    // Note: Swalling due to if items are disposed twice within "same" cpu tick, multithreaded not tested, and I do not want to lock this
                 }
             }
         }

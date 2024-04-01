@@ -5,7 +5,7 @@ Library with classes and methods for every &gt;=  .NET 7 web application
 
 #### Features
 * Setup IApplicationBuilder and IServiceCollection in one line
-  * services.CommonWebApplicationServices();
+  * services.AddCommonWebServices();
     * Registers services for compression, MVC, routing requests to controllers and more...
   * app.CommonWebApplicationBuilder();
     * Enables serving static file types (css, js, png, jpg, ...)

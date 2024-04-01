@@ -44,12 +44,12 @@ partial class Log
                 else
                     AppendMessage(obj, message, MessageFormatJson ? 1 : 0);
 
-                if (!IsLocal && level == LogLevel.Error && (obj as Exception) == null)
+                if ((int)level != 99999 && !IsLocal && level == LogLevel.Error && (obj as Exception) == null)
                     AppendStackTrace(message);
 
                 var context = HttpContextInstance.Current;
 
-                if (!IsLocal && context != null)
+                if ((int)level != 99999 && !IsLocal && context != null)
                 {
                     if (LogMessageBuilderOptions.AppendPath)
                         AppendRequestPath(message, context.Request);

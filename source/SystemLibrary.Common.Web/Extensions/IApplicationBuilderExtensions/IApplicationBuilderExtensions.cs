@@ -1,7 +1,8 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.CookiePolicy;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -13,15 +14,27 @@ namespace SystemLibrary.Common.Web.Extensions;
 /// <summary>
 /// Extension methods for ApplicationBuilder object
 /// </summary>
-public static class IApplicationBuilderExtensions
+public static partial class IApplicationBuilderExtensions
 {
+    public static IApplicationBuilder UseBranch(this IApplicationBuilder app, IWebHostEnvironment env, string branch, AppBuilderOptions options = null)
+    {
+        if (branch == null) throw new System.Exception("A branch cannot be null, either pass a branch like /api, or use the method UseCommonWebApp if you do not want a branch");
+
+        app.MapWhen(context => context?.Request != null && context.Request.Path.Value != null && context.Request.Path.StartsWithSegments(branch), branch =>
+        {
+            branch.UseCommonWebApp(env, options);
+        });
+
+        return app;
+    }
+
     /// <summary>
     /// Register common middlewares for a web application
     /// 
-    /// Note: register all of your own middlewares after this one is called
+    /// Note: This is usually the first registration of middlewares you have, unless your own logging middleware/tracing goes before
     /// 
     /// This will register:
-    /// - Http to Https redirection middleware, client side and server side
+    /// - Http to Https redirection middleware, client and server side
     /// - Routing urls to controllers middleware
     /// - /api/ urls to controllers middleware
     /// - Authentication and Authorization attributes' middleware
@@ -38,111 +51,104 @@ public static class IApplicationBuilderExtensions
     /// <code>
     /// public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     /// {
-    ///     var options = new CommonWebApplicationBuilderOptions();
+    ///     var options = new AppBuilderOptions();
     ///     
     ///     app.CommonWebApplicationBuilder(options);
     /// }
     /// </code>
     /// </example>
-    public static IApplicationBuilder CommonWebApplicationBuilder(this IApplicationBuilder app, CommonWebApplicationBuilderOptions options = null)
+    public static IApplicationBuilder UseCommonWebApp(this IApplicationBuilder app, IWebHostEnvironment env, AppBuilderOptions options = null)
     {
         if (options == null)
-            options = new CommonWebApplicationBuilderOptions();
+            options = new AppBuilderOptions();
 
-        if (options.UseExceptionPage)
-        {
-            app = app.UseDeveloperExceptionPage();
-        }
+        if (options.UseDeveloperPage)
+            app.UseDeveloperExceptionPage();
 
-        if (options.UseHttpToHttpsRedirectionAndHsts)
-        {
-            app = app.UseHsts();
-            app = app.UseHttpsRedirection();
-        }
+        if (options.UseForwardedHeaders)
+            app.UseForwardedHeaders();
+
+        if (options.UseHttpsRedirection)
+            app.UseHttpsRedirection();
+
+        if (options.UseHsts)
+            app.UseHsts();
+
+        if (options.UseBrotliResponseCompression || options.UseGzipResponseCompression)
+            app.UseResponseCompression();
 
         if (options.UseStaticFiles)
         {
             StaticFileOptions staticFileOptions = new StaticFileOptions
             {
-                ServeUnknownFileTypes = true,
+                ServeUnknownFileTypes = options.StaticFilesServeUnknownFileTypes,
                 HttpsCompression = HttpsCompressionMode.Compress,
                 RedirectToAppendTrailingSlash = false,
                 OnPrepareResponse = ctx =>
                 {
                     if (ctx.Context.Response.Headers.ContainsKey("Cache-Control") != true)
-                        ctx.Context.Response.Headers.Append("Cache-Control", $"public, max-age=604,800");
-                }
+                        ctx.Context.Response.Headers.Append("Cache-Control", $"public, max-age=" + options.StaticFilesMaxAgeSeconds);
+                },
             };
-            //TODO: Sure about GetCurrentDirectory? It returns "root" of the application
-            //while AppContext.BaseDirectory returns "one folder deeper", inside /bin/, where APP is running
-            //but App static files are of course, usually, not copied to bin, so far so good,although "..parent" of BaseDir is 'safer'? 
-            var dir = Directory.GetCurrentDirectory();
-            if (dir.EndsWith("/bin") || dir.EndsWith("/bin/"))
-                dir = Directory.GetParent(dir).FullName;
+
+            var dir = env?.WebRootPath ?? Directory.GetCurrentDirectory();
+
+            if (env?.WebRootPath == null)
+            {
+                if (dir.Contains("\\bin\\") || dir.Contains("/bin/"))
+                    dir = Directory.GetParent(dir).FullName;
+                if (dir.Contains("\\bin\\") || dir.Contains("/bin/"))
+                    dir = Directory.GetParent(dir).FullName;
+                if (dir.Contains("\\bin\\") || dir.Contains("/bin/"))
+                    dir = Directory.GetParent(dir).FullName;
+            }
 
             staticFileOptions.FileProvider = new PhysicalFileProvider(dir);
-            staticFileOptions.RequestPath = new PathString();
+            staticFileOptions.RequestPath = new PathString(options.StaticFilesRequestPath ?? "");
 
-            app = app.UseStaticFiles(staticFileOptions);
+            app.UseStaticFiles(staticFileOptions);
         }
 
-        if (options.UseGzipResponseCompression || options.UseBrotliResponseCompression)
-        {
-            try
-            {
-                app.UseResponseCompression();
-            }
-            catch (Exception ex)
-            {
-                Log.Info(ex.Message + " Continues without compression...");
-            }
-        }
+        if (options.UseRouting)
+            app.UseRouting();
 
-        if (options.UseDefaultRouting)
-        {
-            app = app.UseRouting();
-        }
-
-        if (options.UseHttpsAndSecureCookiePolicy)
+        if (options.UseCookiePolicy)
         {
             var cookieOptions = new CookiePolicyOptions() { };
             cookieOptions.Secure = CookieSecurePolicy.SameAsRequest;
-            cookieOptions.HttpOnly = Microsoft.AspNetCore.CookiePolicy.HttpOnlyPolicy.None;
-            cookieOptions.MinimumSameSitePolicy = SameSiteMode.None;
-            app = app.UseCookiePolicy(cookieOptions);
+            cookieOptions.HttpOnly = HttpOnlyPolicy.None;
+            cookieOptions.MinimumSameSitePolicy = SameSiteMode.Lax;
+            cookieOptions.CheckConsentNeeded = context => false;
+            app.UseCookiePolicy(cookieOptions);
         }
 
-        app = app.UseForwardedHeaders();
+        if (options.UseOutputCache)
+            app.UseOutputCache();
 
-        if (options.UseAuthenticationAndAuthorization)
+        if (options.UseAuthentication)
+            app.UseAuthentication();
+
+        if (options.UseOutputCache && options.UseOutputCacheAfterAuthentication)
+            app.UseOutputCache();
+
+        if (options.UseAuthorization)
+            app.UseAuthorization();
+
+        app.UseEndpoints(endpoints =>
         {
-            app = app.UseAuthentication();
-            app = app.UseAuthorization();
-        }
-
-        var httpContextAccessor = app.ApplicationServices.GetRequiredService<IHttpContextAccessor>();
-
-        HttpContextInstance.Initialize(httpContextAccessor);
-
-        var actionContextAccessor = app.ApplicationServices.GetRequiredService<IActionContextAccessor>();
-        ActionContextInstance.Initialize(actionContextAccessor);
-
-        if (options.MapRazorPagesEndpoints)
-        {
-            app = app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapRazorPages();
-            });
-        }
-
-        if (options.MapControllerEndpoints)
-        {
-            app = app.UseEndpoints(endpoints =>
-            {
+            if(options.UseControllers)
                 endpoints.MapDefaultControllerRoute();
+
+            if(options.UseApiControllers)
                 endpoints.MapControllerRoute("api/{controller}/{action}/{id?}", "api/{controller}/{action}/{id?}");
-            });
-        }
+
+            if (options.UseRazorPages)
+                endpoints.MapRazorPages();
+        });
+
+        HttpContextInstance.HttpContextAccessor = app.ApplicationServices.GetRequiredService<IHttpContextAccessor>();
+
+        ActionContextInstance.ActionContextAccessor = app.ApplicationServices.GetRequiredService<IActionContextAccessor>();
 
         Services.ServiceProviderInstance = app.ApplicationServices;
 

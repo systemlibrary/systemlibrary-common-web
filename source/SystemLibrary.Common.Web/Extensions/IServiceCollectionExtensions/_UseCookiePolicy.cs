@@ -11,11 +11,12 @@ static partial class IServiceCollectionExtensions
     {
         return services.Configure<CookiePolicyOptions>(options =>
         {
-            options.HttpOnly = HttpOnlyPolicy.Always;
+            options.HttpOnly = HttpOnlyPolicy.None;
 
             options.Secure = CookieSecurePolicy.SameAsRequest;
+            options.CheckConsentNeeded = context => false;
 
-            options.MinimumSameSitePolicy = SameSiteMode.None;
+            options.MinimumSameSitePolicy = SameSiteMode.Lax;
         });
     }
 }

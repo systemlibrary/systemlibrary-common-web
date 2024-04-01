@@ -4,18 +4,17 @@ using System.Text.Json;
 
 using SystemLibrary.Common.Net.Extensions;
 
-namespace SystemLibrary.Common.Web
+namespace SystemLibrary.Common.Web;
+
+partial class HttpBaseClient
 {
-    partial class HttpBaseClient
+    partial class Content
     {
-        partial class Content
+        static HttpContent GetBodyJson(object data, Encoding encoding = null, JsonSerializerOptions jsonSerializerOptions = null, MediaType mediaType = MediaType.json)
         {
-            static HttpContent GetBodyJson(object data, Encoding encoding = null, JsonSerializerOptions jsonSerializerOptions = null, MediaType mediaType = MediaType.json)
-            {
-                return data is string text
-                    ? new StringContent(text, encoding ?? Encoding.UTF8, mediaType.ToValue())
-                    : (HttpContent)new StringContent(data.Json(jsonSerializerOptions), encoding ?? Encoding.UTF8, mediaType.ToValue());
-            }
+            return data is string text
+                ? new StringContent(text, encoding ?? Encoding.UTF8, mediaType.ToValue())
+                : (HttpContent)new StringContent(data.Json(jsonSerializerOptions), encoding ?? Encoding.UTF8, mediaType.ToValue());
         }
     }
 }
