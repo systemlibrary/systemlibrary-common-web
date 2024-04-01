@@ -51,7 +51,7 @@ public static partial class IApplicationBuilderExtensions
     /// <code>
     /// public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     /// {
-    ///     var options = new CommonWebAppOptions();
+    ///     var options = new AppBuilderOptions();
     ///     
     ///     app.CommonWebApplicationBuilder(options);
     /// }

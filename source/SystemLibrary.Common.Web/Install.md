@@ -35,7 +35,7 @@ public class Startup
 
 	public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 	{
-		var options = new CommonWebAppOptions();
+		var options = new AppBuilderOptions();
 		app.UseCommonWebApp(options);
 	}
 	

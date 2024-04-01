@@ -12,7 +12,7 @@
 /// <code>
 /// public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 /// {
-///     var options = new CommonWebAppOptions();
+///     var options = new AppBuilderOptions();
 ///     
 ///     options.UseHttpRedrectionAndHsts = false;
 ///     

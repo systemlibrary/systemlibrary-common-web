@@ -9,7 +9,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.ActionContextInstance.html",
-          "hash": "NdTdDWXdqhT/AkFlTNGk0fPiBzC3nIj0PTUUDzsP8a0="
+          "hash": "+IMpBhFE4wtJ7ibKE8N9d3pqzwLrBEQw9ydVMuxcalg="
         }
       },
       "is_incremental": true,
@@ -21,7 +21,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html",
-          "hash": "OxlfQmPdQ6nNowvSlYlfZz4ihKs2pn6fAjPIEO2TNZw="
+          "hash": "izOwphzGoo0EmrdbkyM+De+2IwNVPm/u2pB9YUNB75M="
         }
       },
       "is_incremental": true,
@@ -33,7 +33,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.CalleeCancelledRequestException.html",
-          "hash": "FdUGqRy/9/p0nPUnWo2sKlwzheDjAn/Sbw50YS0I2uw="
+          "hash": "YragUyHwBDLdiOCiyGSe6hk9+9Atdu/iVD5o1wCV4RQ="
         }
       },
       "is_incremental": true,
@@ -45,7 +45,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.ClientResponse-1.html",
-          "hash": "25wgvQb1O/yqKGbRpq2VN1xx3LvwFtZ27htuseF2aJw="
+          "hash": "tPkv8Gd4RdtzZYW3PyHBY+d8YnLZwP2lVgCRMoJmfvw="
         }
       },
       "is_incremental": true,
@@ -53,26 +53,26 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.yml",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.AppBuilderOptions.yml",
       "output": {
         ".html": {
-          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.html",
-          "hash": "dvqxWj6DTJdUzdNOrSQHClAqNyT0ihJcPO1rer3YwJY="
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.AppBuilderOptions.html",
+          "hash": "v1o8v9OPreNyr65rAXXZUlFo9nsE6jInhtlx1y8WpiA="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.yml",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.BaseOptions.yml",
       "output": {
         ".html": {
-          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.html",
-          "hash": "+rC438KSlAub9iYaRMBgiGKB1vaZvABVKXTLvsTMDdY="
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.BaseOptions.html",
+          "hash": "t378HF1wp+HSk8KbfDv6qx9QiGOZ+02T8OPULbWjTgA="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -81,7 +81,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.html",
-          "hash": "fN91mz0111HmeR3xV31x3Fx4FXyidHAIPb/HgIDBbng="
+          "hash": "HFy2FgXf70MsMiy/4YRiEpKVs4hJslcqxYGXcEA33FA="
         }
       },
       "is_incremental": true,
@@ -93,10 +93,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.html",
-          "hash": "O7xUkgAfwylOfQA3g3aEMhpeI9R3S++cJz3vGWImiOo="
+          "hash": "ddGw6bbass3Wb8RcqDLCScSdAaUIUiY055o1TWkm7Tg="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -105,7 +105,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IPrincipalExtensions.html",
-          "hash": "bJOIxir2ddNMyh88wJwi2sdiAZMR6XRqnoe+eubPA3Q="
+          "hash": "89B5dKQBb2v7JFQWZxURStx4mCD/GVdqPjZQsIKgk/g="
         }
       },
       "is_incremental": true,
@@ -117,10 +117,22 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.html",
-          "hash": "Ge7vaJexd1Kra/H0jk8jPf4sFg0ffYfX5PBGMIxlpKM="
+          "hash": "YBHVBZT74tUmJJETtBwFH5b+rCoyAvPxKidaxsIwGIU="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.html",
+          "hash": "0QsJYoumpJbSIKFNZUbCk03iOdQQE4cHSi/9Lut42p4="
+        }
+      },
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -129,10 +141,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.html",
-          "hash": "SZEuheM+fz/aFBRAOzo+CsiDH5bIqXude4ucE2uRqPk="
+          "hash": "vWKYUfY7Nt1PQ49IZLqKupov/Ipu6wpjBSRR85+UbMI="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -141,7 +153,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.Log.html",
-          "hash": "Sd5nyQPNE1X/Qj0dI0bgpn8pLpy8gDRWXXzEUp0DT5g="
+          "hash": "HYBdcQUe3r+zwoGw3ZEl7o6LPzo1p7OiCf+Ocdqdroo="
         }
       },
       "is_incremental": true,
@@ -153,7 +165,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.LogLevel.html",
-          "hash": "ZitN47Jgra5Pw1yLP94c6Depgr72IJB+NJw2LALS9Bg="
+          "hash": "Tnl0OG8i7hQKMNpgofaqKJt3rUehciE0EI11gzabUBo="
         }
       },
       "is_incremental": true,
@@ -177,7 +189,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.HtmlHelperFactory.html",
-          "hash": "+Vcq95geCTJKp97kLd5BPuOYczrsr+Vu4XncMIxQvlk="
+          "hash": "39Zooy344uWTfC50LQxkcmiNHquIXfEeDoan6lC0HRI="
         }
       },
       "is_incremental": true,
@@ -189,7 +201,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.html",
-          "hash": "IUBnJ0/FjCMd5uE6ykRperSJNQv7r5z0rsrVfU2OIes="
+          "hash": "3gTq4EptUnOtaEcMa+0+GX0BweeyaP1VO42qCnkfUmw="
         }
       },
       "is_incremental": true,
@@ -201,7 +213,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpContextInstance.html",
-          "hash": "/yxuX7yehyaVI879Yvfgl1erW63k7hJiQiUGvT+ACqA="
+          "hash": "oenp+t77chenSOIJR8Rhvk5jWxA43Az6r3OGxEgF/wY="
         }
       },
       "is_incremental": true,
@@ -213,7 +225,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.ILogWriter.html",
-          "hash": "nrRkJFIfJ56r8imnIKuJE0OW1Q506HCzHLBgxTP7EFA="
+          "hash": "y+Cp9CMAoH61lGFMEdIGH0uq36OY7PNAYiXgQ3uvdqs="
         }
       },
       "is_incremental": true,
@@ -225,7 +237,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.MediaType.html",
-          "hash": "afGRN91GStQjfYPUsBHsxhn1lDHLmwYMD0455UGZHDo="
+          "hash": "qTWjMneYOZBv6HxXFXHBb5IegoPJy3wl6U8mhMfodvs="
         }
       },
       "is_incremental": true,
@@ -237,7 +249,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.RetryRequestException.html",
-          "hash": "4bFthV88iA8doHZ+FwOgZkZjRM7xNomBK6iqsti8qqM="
+          "hash": "XjOVlVcMKNmchX4jxkgv/QQ+Sb542clI9b2adBBfP2o="
         }
       },
       "is_incremental": true,
@@ -249,7 +261,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Services.html",
-          "hash": "5yMbckbojxbH4eWW1zK9yLpFj0e649/HQZsa0AbGA4o="
+          "hash": "mSd/u5U1g+O6tfV/JRDBpt0uMD75K3+uTEyn3dsg8qE="
         }
       },
       "is_incremental": true,
@@ -261,7 +273,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.html",
-          "hash": "/OEofado9VspYDLkB20Y9vWTpmcSLHBVw3bw2QhU9ck="
+          "hash": "iFEEwyaAqX7UC0kkNfUv8mC60EHEMKAG0go/AfYgf74="
         }
       },
       "is_incremental": true,
@@ -273,7 +285,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Web/toc.html",
-          "hash": "zOr0H1xsFGJMlp5vVwTVTQYTPVv8ELhbG5BgiLZTWKg="
+          "hash": "D0ZMarIloEISYigM46eQveR1aW4e56QCo4TcI9Aq18g="
         }
       },
       "is_incremental": false,
@@ -310,8 +322,8 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 22,
-          "skipped_file_count": 22
+          "total_file_count": 23,
+          "skipped_file_count": 19
         },
         "TocDocumentProcessor": {
           "can_incremental": false,

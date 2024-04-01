@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>CommonWebApplicationServicesOptions
+    <title>AppBuilderOptions
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="CommonWebApplicationServicesOptions
+    <meta name="title" content="AppBuilderOptions
    ">
     <meta name="generator" content="docfx 2.59.4.0">
     
@@ -189,7 +189,7 @@
         <div class="article row grid-right">
         <div class="article row grid">
           <div class="col-md-10">
-            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions">
+            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Web.Extensions.AppBuilderOptions">
   
   
   <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Web.Extensions.html">SystemLibrary.Common.Web.Extensions</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Web.dll</span></h6>
@@ -197,55 +197,70 @@
   <div class="markdown level0 conceptual h1-class-conceptual"></div>
   
   <div class="h1-class-summary-container">
-    <div class="markdown level0 summary h1-class-summary"><p>Web Application Services Options</p>
+    <div class="markdown level0 summary h1-class-summary"><p>Web Application Builder Options</p>
 <p>All options are 'true' (on) by default</p>
+<ul>
+<li>Used as argument in 'app.CommonWebApplicationBuilder' function</li>
+</ul>
 </div>
   </div>
   
-  <h1 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions" class="text-break h1-class-header">CommonWebApplicationServicesOptions
+  <h1 id="SystemLibrary_Common_Web_Extensions_AppBuilderOptions" data-uid="SystemLibrary.Common.Web.Extensions.AppBuilderOptions" class="text-break h1-class-header">AppBuilderOptions
   </h1>
-  <h1 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions" class="h1-custom-display className">public class CommonWebApplicationServicesOptions</h1>
+  <h1 id="SystemLibrary_Common_Web_Extensions_AppBuilderOptions" data-uid="SystemLibrary.Common.Web.Extensions.AppBuilderOptions" class="h1-custom-display className">public class AppBuilderOptions : BaseOptions</h1>
   
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">CommonWebApplicationServicesOptions</span></div>
+    <div class="level1"><a class="xref" href="SystemLibrary.Common.Web.Extensions.BaseOptions.html">BaseOptions</a></div>
+    <div class="level2"><span class="xref">AppBuilderOptions</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="SystemLibrary.Common.Web.Extensions.BaseOptions.html#SystemLibrary_Common_Web_Extensions_BaseOptions_UseRazorPages">BaseOptions.UseRazorPages</a>
+    </div>
+    <div>
+      <a class="xref" href="SystemLibrary.Common.Web.Extensions.BaseOptions.html#SystemLibrary_Common_Web_Extensions_BaseOptions_UseControllers">BaseOptions.UseControllers</a>
+    </div>
+    <div>
+      <a class="xref" href="SystemLibrary.Common.Web.Extensions.BaseOptions.html#SystemLibrary_Common_Web_Extensions_BaseOptions_UseApiControllers">BaseOptions.UseApiControllers</a>
+    </div>
+    <div>
+      <a class="xref" href="SystemLibrary.Common.Web.Extensions.BaseOptions.html#SystemLibrary_Common_Web_Extensions_BaseOptions_UseCookiePolicy">BaseOptions.UseCookiePolicy</a>
+    </div>
+    <div>
+      <a class="xref" href="SystemLibrary.Common.Web.Extensions.BaseOptions.html#SystemLibrary_Common_Web_Extensions_BaseOptions_UseForwardedHeaders">BaseOptions.UseForwardedHeaders</a>
+    </div>
+    <div>
+      <a class="xref" href="SystemLibrary.Common.Web.Extensions.BaseOptions.html#SystemLibrary_Common_Web_Extensions_BaseOptions_UseOutputCache">BaseOptions.UseOutputCache</a>
+    </div>
+    <div>
+      <a class="xref" href="SystemLibrary.Common.Web.Extensions.BaseOptions.html#SystemLibrary_Common_Web_Extensions_BaseOptions_UseOutputCacheAfterAuthentication">BaseOptions.UseOutputCacheAfterAuthentication</a>
+    </div>
+    <div>
+      <a class="xref" href="SystemLibrary.Common.Web.Extensions.BaseOptions.html#SystemLibrary_Common_Web_Extensions_BaseOptions_UseGzipResponseCompression">BaseOptions.UseGzipResponseCompression</a>
+    </div>
+    <div>
+      <a class="xref" href="SystemLibrary.Common.Web.Extensions.BaseOptions.html#SystemLibrary_Common_Web_Extensions_BaseOptions_UseBrotliResponseCompression">BaseOptions.UseBrotliResponseCompression</a>
+    </div>
   </div>
   
   
   <div class="custom-menu-data custom-menu-data-first">
-    <h5 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
+    <h5 id="SystemLibrary_Common_Web_Extensions_AppBuilderOptions_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
   
     <div class="custom-menu-data-container custom-menu-data-container--example">
       <div class="custom-menu-data-class-example" style="display: none;">
         <div class="syslib-tab-menu-data--close">X</div>
-        <div class="codewrapper"><p>Inside your startup.cs/program.cs...</p>
-<pre><code>public class CustomViewLocations : IViewLocationExpander
+        <div class="codewrapper"><p>Startup.cs/Program.cs:</p>
+<pre><code>public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 {
-    //...implement the interface
-    public IEnumerable&lt;string> ExpandViewLocations(ViewLocationExpanderContext context, IEnumerable&lt;string> viewLocations)
-    {
-        return new string[] {   
-            &quot;~/Folder2/{0}/Index.cshtml&quot;
-        }
-    }
-}
+    var options = new AppBuilderOptions();
 
-public void ConfigureServices(IServiceCollection services)
-{
-    var options = new CommonWebApplicationServicesOptions();
+    options.UseHttpRedrectionAndHsts = false;
 
-    options.AddControllers = false;
-    //Note: two ways to add view locations, either through an Expander class
-    options.ViewLocationExpander = new CustomViewLocations();
-
-    //Or directly adding a string array
-    options.ViewLocations = new string[] {
-        &quot;~/Folder/{0}/Index.cshtml&quot;,
-        &quot;~/Folder/{1}/{0}.cshtml&quot;
-    }
-
-    app.CommonWebApplicationServices(options);
+    app.CommonWebApplicationBuilder(options);
 }</code></pre>
 </div>
         <div class="comment-examples-container-bottom"></div>
@@ -255,7 +270,7 @@ public void ConfigureServices(IServiceCollection services)
   
   
   <div class="custom-menu-data">
-    <h5 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
+    <h5 id="SystemLibrary_Common_Web_Extensions_AppBuilderOptions_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
   
     <div class="custom-menu-data-container">
       <div class="custom-menu-data-class-arguments" style="display: none;">
@@ -267,25 +282,26 @@ public void ConfigureServices(IServiceCollection services)
   </div>
   
   <div class='custom-class-content-inline'>
-  <h3 id="properties">Properties
+  <h3 id="fields">Fields
   </h3>
   
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Add application assembly as a 'part' so controllers within your application assembly are tried matching against requests</p>
+  		<div class="markdown level1 summary member-summary"><p>Set the cache-control max age header to a duration for all static requests</p>
+<p>Note: requires UseStaticFiles set to True, and the header 'max-age' cannot be added already in the response</p>
+<p>Default: two weeks</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddApplicationAssembly">
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_AppBuilderOptions_StaticFilesMaxAgeSeconds">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L73">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/release/7.3.0.1/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/AppBuilderOptions.cs/#L65">View Source</a>
   		</span>
   	</div>
-  	<a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddApplicationAssembly_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddApplicationAssembly*"></a>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddApplicationAssembly" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddApplicationAssembly" class="h4-custom-functionName">public bool AddApplicationAssembly { get; set; }</h4>
+  		<h4 id="SystemLibrary_Common_Web_Extensions_AppBuilderOptions_StaticFilesMaxAgeSeconds" data-uid="SystemLibrary.Common.Web.Extensions.AppBuilderOptions.StaticFilesMaxAgeSeconds" class="h4-custom-functionName">public int StaticFilesMaxAgeSeconds</h4>
   		<div class="custom-menu-data-container">
   
   			<div class="custom-menu-data-arguments" style="display: none;">
@@ -298,8 +314,98 @@ public void ConfigureServices(IServiceCollection services)
   </div>
   
   
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed fieldValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Int32</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Set the relative path of where to only allow serving static content from</p>
+<p>Note: requires UseStatisFiles set to True</p>
+<p>For example: /static</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_AppBuilderOptions_StaticFilesRequestPath">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/release/7.3.0.1/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/AppBuilderOptions.cs/#L83">View Source</a>
+  		</span>
+  	</div>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Web_Extensions_AppBuilderOptions_StaticFilesRequestPath" data-uid="SystemLibrary.Common.Web.Extensions.AppBuilderOptions.StaticFilesRequestPath" class="h4-custom-functionName">public string StaticFilesRequestPath</h4>
+  		<div class="custom-menu-data-container">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  			</div>
+  
+  		</div>
+  	</div>
+  </div>
+  
+  
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed fieldValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.String</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Allow serving of unknown, unsupported, media/mime types.</p>
+<p>Note: requires UseStatisFiles set to True</p>
+<p>Defaults to true</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_AppBuilderOptions_StaticFilesServeUnknownFileTypes">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/release/7.3.0.1/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/AppBuilderOptions.cs/#L74">View Source</a>
+  		</span>
+  	</div>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Web_Extensions_AppBuilderOptions_StaticFilesServeUnknownFileTypes" data-uid="SystemLibrary.Common.Web.Extensions.AppBuilderOptions.StaticFilesServeUnknownFileTypes" class="h4-custom-functionName">public bool StaticFilesServeUnknownFileTypes</h4>
+  		<div class="custom-menu-data-container">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  			</div>
+  
+  		</div>
+  	</div>
+  </div>
+  
+  
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed fieldValue-table">
   	<thead>
   		<tr>
   			<th>Type</th>
@@ -316,20 +422,19 @@ public void ConfigureServices(IServiceCollection services)
   
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Sets HttpOnly to Always, Secure as 'SameAsRequest' and MinimumSitePolicy to 'Strict'</p>
+  		<div class="markdown level1 summary member-summary"><p>Adds middleware for Authorization and Authentication attributes</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddHttpsAndSecureCookiePolicy">
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_AppBuilderOptions_UseAuthentication">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L91">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/release/7.3.0.1/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/AppBuilderOptions.cs/#L43">View Source</a>
   		</span>
   	</div>
-  	<a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddHttpsAndSecureCookiePolicy_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddHttpsAndSecureCookiePolicy*"></a>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddHttpsAndSecureCookiePolicy" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddHttpsAndSecureCookiePolicy" class="h4-custom-functionName">public bool AddHttpsAndSecureCookiePolicy { get; set; }</h4>
+  		<h4 id="SystemLibrary_Common_Web_Extensions_AppBuilderOptions_UseAuthentication" data-uid="SystemLibrary.Common.Web.Extensions.AppBuilderOptions.UseAuthentication" class="h4-custom-functionName">public bool UseAuthentication</h4>
   		<div class="custom-menu-data-container">
   
   			<div class="custom-menu-data-arguments" style="display: none;">
@@ -342,8 +447,8 @@ public void ConfigureServices(IServiceCollection services)
   </div>
   
   
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed fieldValue-table">
   	<thead>
   		<tr>
   			<th>Type</th>
@@ -360,433 +465,239 @@ public void ConfigureServices(IServiceCollection services)
   
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Enabled re-compilation of .cshtml files upon saving .cshtml files</p>
+  		<div class="markdown level1 summary member-summary"><p>Adds middleware for Authorization attributes</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_AppBuilderOptions_UseAuthorization">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/release/7.3.0.1/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/AppBuilderOptions.cs/#L48">View Source</a>
+  		</span>
+  	</div>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Web_Extensions_AppBuilderOptions_UseAuthorization" data-uid="SystemLibrary.Common.Web.Extensions.AppBuilderOptions.UseAuthorization" class="h4-custom-functionName">public bool UseAuthorization</h4>
+  		<div class="custom-menu-data-container">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  			</div>
+  
+  		</div>
+  	</div>
+  </div>
+  
+  
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed fieldValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Boolean</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Adds middleware which responds with a exception page usually used in development environments and test environments</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_AppBuilderOptions_UseDeveloperPage">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/release/7.3.0.1/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/AppBuilderOptions.cs/#L88">View Source</a>
+  		</span>
+  	</div>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Web_Extensions_AppBuilderOptions_UseDeveloperPage" data-uid="SystemLibrary.Common.Web.Extensions.AppBuilderOptions.UseDeveloperPage" class="h4-custom-functionName">public bool UseDeveloperPage</h4>
+  		<div class="custom-menu-data-container">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  			</div>
+  
+  		</div>
+  	</div>
+  </div>
+  
+  
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed fieldValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Boolean</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Adds middleware for http to https redirect client side, aka hsts</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_AppBuilderOptions_UseHsts">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/release/7.3.0.1/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/AppBuilderOptions.cs/#L33">View Source</a>
+  		</span>
+  	</div>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Web_Extensions_AppBuilderOptions_UseHsts" data-uid="SystemLibrary.Common.Web.Extensions.AppBuilderOptions.UseHsts" class="h4-custom-functionName">public bool UseHsts</h4>
+  		<div class="custom-menu-data-container">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  			</div>
+  
+  		</div>
+  	</div>
+  </div>
+  
+  
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed fieldValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Boolean</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Adds middleware for http to https redirect</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_AppBuilderOptions_UseHttpsRedirection">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/release/7.3.0.1/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/AppBuilderOptions.cs/#L28">View Source</a>
+  		</span>
+  	</div>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Web_Extensions_AppBuilderOptions_UseHttpsRedirection" data-uid="SystemLibrary.Common.Web.Extensions.AppBuilderOptions.UseHttpsRedirection" class="h4-custom-functionName">public bool UseHttpsRedirection</h4>
+  		<div class="custom-menu-data-container">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  			</div>
+  
+  		</div>
+  	</div>
+  </div>
+  
+  
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed fieldValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Boolean</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Adds the routing middleware that comes with Aspnet</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_AppBuilderOptions_UseRouting">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/release/7.3.0.1/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/AppBuilderOptions.cs/#L38">View Source</a>
+  		</span>
+  	</div>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Web_Extensions_AppBuilderOptions_UseRouting" data-uid="SystemLibrary.Common.Web.Extensions.AppBuilderOptions.UseRouting" class="h4-custom-functionName">public bool UseRouting</h4>
+  		<div class="custom-menu-data-container">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  			</div>
+  
+  		</div>
+  	</div>
+  </div>
+  
+  
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed fieldValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Boolean</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Adds middleware for static files and sets a few default settings:</p>
 <ul>
-<li>Avoids the need of a re-compilation of whole application for one small view change</li>
-<li>Package 'System.Security.Cryptography.Pkcs' is not added as dependency, so if you turn this on it will throw exception for a missing package that you must manually add</li>
-</ul>
-<ul>
-<li>Don't want a dependency on that package, as that package is quite large, and this package is also meant for API development</li>
-</ul>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddRazorRecompilationOnViewChanged">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L100">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddRazorRecompilationOnViewChanged_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorRecompilationOnViewChanged*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AddRazorRecompilationOnViewChanged" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorRecompilationOnViewChanged" class="h4-custom-functionName">public bool AddRazorRecompilationOnViewChanged { get; set; }</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Boolean</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  <div class="custom-container">
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AreaViewLocations">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L140">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AreaViewLocations_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AreaViewLocations*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AreaViewLocations" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AreaViewLocations" class="h4-custom-functionName">public string[] AreaViewLocations { get; set; }</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.String</span>[]</td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Auto-generate a data protection file that will be used for encrypting and decryption data within your application</p>
-<ul>
-<li>string extension methods Encrypt and Decrypt will use the file internally as a key</li>
-<li>cookies read over http will be encrypted and decrypted with the key file, if you host your app over several instances, they must all share the same key of course</li>
-</ul>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AutoGenerateDataProtectionKeyFile">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L154">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AutoGenerateDataProtectionKeyFile_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AutoGenerateDataProtectionKeyFile*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_AutoGenerateDataProtectionKeyFile" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AutoGenerateDataProtectionKeyFile" class="h4-custom-functionName">public bool AutoGenerateDataProtectionKeyFile { get; set; }</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Boolean</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Configure services used when dealing with routing a request to a controller</p>
-<p>Note: This enables also razor pages and registers a default media type output formatter, so your application is allowed to serve default mime types, such as: html, css, js, jpg, png, tiff, woff, json, xml, and a few others</p>
-<p>Warning: If 'ConfigureMvc' or 'ConfigureRazorPages' is true, this is ignored</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ConfigureControllers">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L68">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ConfigureControllers_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureControllers*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ConfigureControllers" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureControllers" class="h4-custom-functionName">public bool ConfigureControllers { get; set; }</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Boolean</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Configure servcies for allowing forwarding of two headers: XForwardedProto and XForwardedFor</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ConfigureForwardHeaders">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L78">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ConfigureForwardHeaders_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureForwardHeaders*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ConfigureForwardHeaders" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureForwardHeaders" class="h4-custom-functionName">public bool ConfigureForwardHeaders { get; set; }</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Boolean</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Configure all services used for MVC</p>
-<p>Note: This enables also razor pages and registers a default media type output formatter, so your application is allowed to serve default mime types, such as: html, css, js, jpg, png, tiff, woff, json, xml, and a few others</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ConfigureMvc">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L50">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ConfigureMvc_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureMvc*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ConfigureMvc" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureMvc" class="h4-custom-functionName">public bool ConfigureMvc { get; set; }</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Boolean</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Configure all services for Razor Pages</p>
-<p>Note: This enables also razor pages and registers a default media type output formatter, so your application is allowed to serve default mime types, such as: html, css, js, jpg, png, tiff, woff, json, xml, and a few others</p>
-<p>Warning: If 'ConfigureMvc' is true, this is ignored</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ConfigureRazorPages">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L59">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ConfigureRazorPages_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureRazorPages*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ConfigureRazorPages" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureRazorPages" class="h4-custom-functionName">public bool ConfigureRazorPages { get; set; }</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Boolean</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Configure services used for brotli and gzip compression</p>
-<p>Note: Configure both compressions with optimal (maximum) compression, for mime types such as:
-html, css, csv, plaintext, javascript, ttf, woff, woff2, json, jpeg, png, webp, gif, pdf, zip, and a few more</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ConfigureResponseCompression">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L86">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ConfigureResponseCompression_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureResponseCompression*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ConfigureResponseCompression" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ConfigureResponseCompression" class="h4-custom-functionName">public bool ConfigureResponseCompression { get; set; }</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Boolean</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Create your own class that inherits 'StringOutputFormatter' which sets all 'SupportedMediaTypes' in its constructor</p>
-<p>A default 'string output formatter' will always be added to your application, so responses/files like CSS, JS, JPG, PNG, JSON, etc are allowed</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_SupportedMediaTypes">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L147">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_SupportedMediaTypes_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.SupportedMediaTypes*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_SupportedMediaTypes" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.SupportedMediaTypes" class="h4-custom-functionName">public StringOutputFormatter SupportedMediaTypes { get; set; }</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Pass in an object that implements the interface if you want to extend View Locations</p>
-<ul>
-<li>Another option is to simply set 'ViewLocations' variable or 'AreaViewLocations'</li>
+<li>allows serving of unknown files types</li>
+<li>compression is set to 'HttpsCompressionMode.Compress'</li>
+<li>does not append a trailing slash for static files</li>
 </ul>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ViewLocationExpander">
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_AppBuilderOptions_UseStaticFiles">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L106">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/release/7.3.0.1/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/AppBuilderOptions.cs/#L56">View Source</a>
   		</span>
   	</div>
-  	<a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ViewLocationExpander_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ViewLocationExpander*"></a>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ViewLocationExpander" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ViewLocationExpander" class="h4-custom-functionName">public IViewLocationExpander ViewLocationExpander { get; set; }</h4>
+  		<h4 id="SystemLibrary_Common_Web_Extensions_AppBuilderOptions_UseStaticFiles" data-uid="SystemLibrary.Common.Web.Extensions.AppBuilderOptions.UseStaticFiles" class="h4-custom-functionName">public bool UseStaticFiles</h4>
   		<div class="custom-menu-data-container">
   
   			<div class="custom-menu-data-arguments" style="display: none;">
@@ -799,8 +710,8 @@ html, css, csv, plaintext, javascript, ttf, woff, woff2, json, jpeg, png, webp, 
   </div>
   
   
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed fieldValue-table">
   	<thead>
   		<tr>
   			<th>Type</th>
@@ -809,46 +720,7 @@ html, css, csv, plaintext, javascript, ttf, woff, woff2, json, jpeg, png, webp, 
   	</thead>
   	<tbody>
   		<tr>
-  			<td><span class="xref">Microsoft.AspNetCore.Mvc.Razor.IViewLocationExpander</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  <div class="custom-container">
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ViewLocations">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L123">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ViewLocations_" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ViewLocations*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_Extensions_CommonWebApplicationServicesOptions_ViewLocations" data-uid="SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ViewLocations" class="h4-custom-functionName">public string[] ViewLocations { get; set; }</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.String</span>[]</td>
+  			<td><span class="xref">System.Boolean</span></td>
   			<td></td>
   		</tr>
   	</tbody>
@@ -1493,7 +1365,7 @@ html, css, csv, plaintext, javascript, ttf, woff, woff2, json, jpeg, png, webp, 
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/CommonWebApplicationServicesOptions.cs/#L43" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/release/7.3.0.1/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/AppBuilderOptions.cs/#L23" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

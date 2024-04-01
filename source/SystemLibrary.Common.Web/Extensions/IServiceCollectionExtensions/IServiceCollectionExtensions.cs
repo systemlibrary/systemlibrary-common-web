@@ -10,33 +10,35 @@ using Microsoft.Extensions.Logging;
 namespace SystemLibrary.Common.Web.Extensions;
 
 /// <summary>
-/// Extension methods for IServiceCollection object
+/// Extension methods for IServiceCollection
 /// </summary>
 public static partial class IServiceCollectionExtensions
 {
     /// <summary>
-    /// Configures ServiceCollection in one-line
-    /// 
-    /// Note: register all of your own services after this one is called
+    /// Configures ServiceCollection in one-line, so register all of your own or other service configurations after this one
     /// 
     /// Registers:
-    /// - Aspnet Mvc services
-    /// - Razor Pages services
-    /// - Routing (requests to controllers mapping)
-    /// - ForwardedProtocol and ForwardedIp (XForwardedFor) headers 
-    /// - Registering Controllers in your Startup Assembly - usually your Web Application Project's assembly
+    /// - MVC services
+    /// - Razor Page services
+    /// - Routing services
+    /// - ForwardedProtocol and ForwardedIp (XForwardedFor) headers
+    /// - Compression for Gzip and Brotli services
+    /// - Authentication and authorization services
+    /// - Output cache services
+    /// - Registers the main assembly and all its controllers (if any), as in: your Web Application Project's assembly
     /// 
-    /// Optionally, through the argument CommonWebServicesOptions: 
+    /// Optionally, through the argument ServicesCollectionOptions: 
     /// - Can register view locations
     /// - Can register area view locations
     /// - Can register one ViewLocationExpander
+    /// - and more...
     /// </summary>
     /// <example>
     /// Startup.cs/Program.cs:
     /// <code>
     /// public void ConfigureServices(IServiceCollection services)
     /// {
-    ///     var options = new CommonWebServicesOptions();
+    ///     var options = new ServicesCollectionOptions();
     ///     
     ///     options.ViewLocations = new string[] {
     ///         "~/Views/{0}/index.cshtml"

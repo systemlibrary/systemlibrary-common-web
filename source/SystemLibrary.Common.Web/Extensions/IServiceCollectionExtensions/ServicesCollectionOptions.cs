@@ -6,9 +6,12 @@ using Microsoft.AspNetCore.Mvc.Razor;
 namespace SystemLibrary.Common.Web.Extensions;
 
 /// <summary>
-///  Web Application Services Options
+/// Web App Services Collection Options
 /// 
-/// All options are 'true' (on) by default
+/// Most options are turned on by default.
+/// 
+/// ViewLocations and custom application parts are not configured by default.
+/// 
 /// </summary>
 /// <example>
 /// Inside your startup.cs/program.cs...
@@ -26,9 +29,9 @@ namespace SystemLibrary.Common.Web.Extensions;
 /// 
 /// public void ConfigureServices(IServiceCollection services)
 /// {
-///     var options = new CommonWebServicesOptions();
+///     var options = new ServicesCollectionOptions();
 ///     
-///     options.AddControllers = false;
+///     options.UseControllers = false;
 ///     //Note: two ways to add view locations, either through an Expander class
 ///     options.ViewLocationExpander = new CustomViewLocations();
 ///     
@@ -52,12 +55,12 @@ public class ServicesCollectionOptions : BaseOptions
     /// <summary>
     /// Add application assembly as a 'part' so controllers within your application assembly are tried matching against requests
     /// </summary>
-    public bool AddApplicationAsPart { get; set; } = true;
+    public bool AddApplicationAsPart = true;
 
     /// <summary>
     /// Add multiple assemblies as a 'part' so controllers within the assemblies are tried matched against requests
     /// </summary>
-    public Assembly[] ApplicationParts { get; set; } = null;
+    public Assembly[] ApplicationParts = null;
 
      /// <summary>
     /// Enabled re-compilation of .cshtml files upon saving .cshtml files
@@ -66,13 +69,13 @@ public class ServicesCollectionOptions : BaseOptions
     /// - Package 'System.Security.Cryptography.Pkcs' is not added as dependency, so if you turn this on it will throw exception for a missing package that you must manually add
     /// * Don't want a dependency on that package, as that package is quite large, and this package is also meant for API development
     /// </summary>
-    public bool AddRazorRuntimeCompilationOnChange { get; set; } = false;
+    public bool AddRazorRuntimeCompilationOnChange = true;
 
     /// <summary>
     /// Pass in an object that implements the interface if you want to extend View Locations
     /// - Another option is to simply set 'ViewLocations' variable or 'AreaViewLocations'
     /// </summary>
-    public IViewLocationExpander ViewLocationExpander { get; set; }
+    public IViewLocationExpander ViewLocationExpander = null;
 
     /// <summary>
     /// Pass in a string array of view location formats
@@ -85,11 +88,11 @@ public class ServicesCollectionOptions : BaseOptions
     /// <example>
     /// Simple example:
     /// <code>
-    /// var options = new CommonWebServicesOptions();
+    /// var options = new ServicesCollectionOptions();
     /// options.ViewLocations = new string[] { "~/Pages/{2}/{1}/{0}.cshtml" }
     /// </code>
     /// </example>
-    public string[] ViewLocations { get; set; }
+    public string[] ViewLocations = null;
 
     /// <summary>
     /// Pass in a string array of area view location formats
@@ -102,25 +105,25 @@ public class ServicesCollectionOptions : BaseOptions
     /// <example>
     /// Simple example:
     /// <code>
-    /// var options = new CommonWebServicesOptions();
+    /// var options = new ServicesCollectionOptions();
     /// options.ViewLocations = new string[] { "~/Pages/{2}/{1}/{0}.cshtml" }
     /// </code>
     /// </example>
-    public string[] AreaViewLocations { get; set; }
+    public string[] AreaViewLocations;
 
     /// <summary>
     /// Create your own class that inherits 'StringOutputFormatter' which sets all 'SupportedMediaTypes' in its constructor
     /// 
     /// A default 'string output formatter' will always be added to your application, so responses/files like CSS, JS, JPG, PNG, JSON, etc are allowed
     /// </summary>
-    public StringOutputFormatter AdditionalSupportedMediaTypes { get; set; }
+    public StringOutputFormatter AdditionalSupportedMediaTypes = null;
 
     /// <summary>
     /// Auto-generate a data protection file that will be used for encrypting and decryption data within your application
     /// - string extension methods Encrypt and Decrypt will use the file internally as a key
     /// - cookies read over http will be encrypted and decrypted with the key file, if you host your app over several instances, they must all share the same key of course
     /// </summary>
-    public bool UseAutomaticKeyGenerationFile { get; set; } = false;
+    public bool UseAutomaticKeyGenerationFile = false;
     
     /// <summary>
     /// Add an internal logger that forwards errors to the ILogWriter of your own choice
