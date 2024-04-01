@@ -71,8 +71,12 @@ public static class Cache
         MemoryCacheOptions options = new MemoryCacheOptions();
         options.ExpirationScanFrequency = TimeSpan.FromSeconds(120);
         options.SizeLimit = 150000;             // Storing 150.000 items in cache, not caring about memory per cached item
-        options.CompactionPercentage = 0.40;    // If size reached, 60% is removed from cache, ready to be GC'd
+        options.CompactionPercentage = 0.45;    // If size reached, 55% is removed from cache, ready to be GC'd
         cache = new MemoryCache(options);
+
+        //TODO: Create multiple MemoryCaches, each are 1/10th of size
+        //ExpirationScanFrequency is then "random" between 120-150 seconds so most likely the wont trigger at same time, rarely
+        //CacheMemory is based on start key, A-B-C in same cache, D-E-F in next, etc..-
     }
 
     /// <summary>

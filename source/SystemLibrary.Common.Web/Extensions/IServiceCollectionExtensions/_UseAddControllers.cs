@@ -4,8 +4,8 @@ namespace SystemLibrary.Common.Web.Extensions;
 
 partial class IServiceCollectionExtensions
 {
-    static IMvcBuilder UseAddControllers(this IServiceCollection services, CommonWebServicesOptions options)
+    static IMvcBuilder UseAddControllers(this IServiceCollection services, ServicesCollectionOptions options)
     {
-        return services.AddControllersWithViews(UseDefaultSupportedMediaTypes(options));
+        return services.AddControllersWithViews(ConfigureSupportedMediaTypes(options));
     }
 }

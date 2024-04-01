@@ -5,7 +5,7 @@ namespace SystemLibrary.Common.Web.Extensions;
 
 static partial class IServiceCollectionExtensions
 {
-    static IServiceCollection UseViews(this IServiceCollection services, CommonWebServicesOptions options = null)
+    static IServiceCollection UseViews(this IServiceCollection services, ServicesCollectionOptions options = null)
     {
         return options.ViewLocationExpander == null && options.ViewLocations == null && options.AreaViewLocations == null
             ? services

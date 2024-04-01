@@ -20,6 +20,7 @@ static partial class IServiceCollectionExtensions
         "text/plain; charset=utf-8",
         "text/javascript",
         "text/javascript; charset=utf-8",
+        "text/xml",
 
         "font/ttf",
         "font/otf",
@@ -33,6 +34,7 @@ static partial class IServiceCollectionExtensions
         "image/tiff",
         "image/webp",
         "image/x-icon",
+
         "application/x-font-ttf",
         "application/x-font-opentype",
 
@@ -40,11 +42,15 @@ static partial class IServiceCollectionExtensions
         "application/gzip",
         "application/pdf",
         "application/json",
+        "application/javascript",
         "application/rss+xml",
+        "application/pkcs8",
+        "application/xml",
 
         "video/mp4",
         "video/m4v",
-        "video/webm"
+        "video/webm",
+
     };
 
     static IServiceCollection UseResponseCompression(this IServiceCollection services)

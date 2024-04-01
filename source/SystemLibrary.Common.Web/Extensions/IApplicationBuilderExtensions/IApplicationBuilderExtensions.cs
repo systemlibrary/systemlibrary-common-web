@@ -16,6 +16,18 @@ namespace SystemLibrary.Common.Web.Extensions;
 /// </summary>
 public static partial class IApplicationBuilderExtensions
 {
+    public static IApplicationBuilder UseBranch(this IApplicationBuilder app, IWebHostEnvironment env, string branch, AppBuilderOptions options = null)
+    {
+        if (branch == null) throw new System.Exception("A branch cannot be null, either pass a branch like /api, or use the method UseCommonWebApp if you do not want a branch");
+
+        app.MapWhen(context => context?.Request != null && context.Request.Path.Value != null && context.Request.Path.StartsWithSegments(branch), branch =>
+        {
+            branch.UseCommonWebApp(env, options);
+        });
+
+        return app;
+    }
+
     /// <summary>
     /// Register common middlewares for a web application
     /// 
@@ -45,10 +57,10 @@ public static partial class IApplicationBuilderExtensions
     /// }
     /// </code>
     /// </example>
-    public static IApplicationBuilder UseCommonWebApp(this IApplicationBuilder app, IWebHostEnvironment env, CommonWebAppOptions options = null)
+    public static IApplicationBuilder UseCommonWebApp(this IApplicationBuilder app, IWebHostEnvironment env, AppBuilderOptions options = null)
     {
         if (options == null)
-            options = new CommonWebAppOptions();
+            options = new AppBuilderOptions();
 
         if (options.UseDeveloperPage)
             app.UseDeveloperExceptionPage();
@@ -56,10 +68,10 @@ public static partial class IApplicationBuilderExtensions
         if (options.UseForwardedHeaders)
             app.UseForwardedHeaders();
 
-        if (options.UseHttpToHttpsRedirectionAndHsts)
+        if (options.UseHttpsRedirection)
             app.UseHttpsRedirection();
 
-        if (options.UseHttpToHttpsRedirectionAndHsts)
+        if (options.UseHsts)
             app.UseHsts();
 
         if (options.UseBrotliResponseCompression || options.UseGzipResponseCompression)
@@ -69,13 +81,13 @@ public static partial class IApplicationBuilderExtensions
         {
             StaticFileOptions staticFileOptions = new StaticFileOptions
             {
-                ServeUnknownFileTypes = options.StaticFileServeUnknownFileTypes,
+                ServeUnknownFileTypes = options.StaticFilesServeUnknownFileTypes,
                 HttpsCompression = HttpsCompressionMode.Compress,
                 RedirectToAppendTrailingSlash = false,
                 OnPrepareResponse = ctx =>
                 {
                     if (ctx.Context.Response.Headers.ContainsKey("Cache-Control") != true)
-                        ctx.Context.Response.Headers.Append("Cache-Control", $"public, max-age=" + options.StaticFilesCacheMaxAgeSeconds);
+                        ctx.Context.Response.Headers.Append("Cache-Control", $"public, max-age=" + options.StaticFilesMaxAgeSeconds);
                 },
             };
 
@@ -92,7 +104,7 @@ public static partial class IApplicationBuilderExtensions
             }
 
             staticFileOptions.FileProvider = new PhysicalFileProvider(dir);
-            staticFileOptions.RequestPath = new PathString(options.StaticFileRequestPath);
+            staticFileOptions.RequestPath = new PathString(options.StaticFilesRequestPath ?? "");
 
             app.UseStaticFiles(staticFileOptions);
         }
@@ -110,35 +122,29 @@ public static partial class IApplicationBuilderExtensions
             app.UseCookiePolicy(cookieOptions);
         }
 
-        if (options.UseOutputCaching)
+        if (options.UseOutputCache)
             app.UseOutputCache();
 
         if (options.UseAuthentication)
             app.UseAuthentication();
 
-        if (options.UseOutputCaching && options.UseOutputCacheForAuthenticatedUsers)
+        if (options.UseOutputCache && options.UseOutputCacheAfterAuthentication)
             app.UseOutputCache();
 
         if (options.UseAuthorization)
             app.UseAuthorization();
 
-        if (options.UseRazorPages)
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapRazorPages();
-            });
-
-        if (options.UseControllers)
-            app.UseEndpoints(endpoints =>
-            {
+        app.UseEndpoints(endpoints =>
+        {
+            if(options.UseControllers)
                 endpoints.MapDefaultControllerRoute();
-            });
 
-        if (options.UseApiControllers)
-            app.UseEndpoints(endpoints =>
-            {
+            if(options.UseApiControllers)
                 endpoints.MapControllerRoute("api/{controller}/{action}/{id?}", "api/{controller}/{action}/{id?}");
-            });
+
+            if (options.UseRazorPages)
+                endpoints.MapRazorPages();
+        });
 
         HttpContextInstance.HttpContextAccessor = app.ApplicationServices.GetRequiredService<IHttpContextAccessor>();
 

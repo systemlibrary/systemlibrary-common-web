@@ -20,19 +20,17 @@
 /// }
 /// </code>
 /// </example>
-public class CommonWebAppOptions
+public class AppBuilderOptions : BaseOptions
 {
     /// <summary>
     /// Adds middleware for http to https redirect
     /// </summary>
-    public bool UseHttpToHttpsRedirectionAndHsts = true;
+    public bool UseHttpsRedirection = true;
 
     /// <summary>
-    /// Set to true to enable response caching
+    /// Adds middleware for http to https redirect client side, aka hsts
     /// </summary>
-    public bool UseOutputCaching = true;
-
-    public bool UseOutputCacheForAuthenticatedUsers = false;
+    public bool UseHsts = true;
 
     /// <summary>
     /// Adds the routing middleware that comes with Aspnet
@@ -40,49 +38,14 @@ public class CommonWebAppOptions
     public bool UseRouting = true;
 
     /// <summary>
-    /// Adds the cookie policy middleware that comes with Aspnet
-    /// </summary>
-    public bool UseCookiePolicy = true;
-
-    /// <summary>
-    /// Adds response compression with Gzip after static file middleware
-    /// </summary>
-    public bool UseGzipResponseCompression = true;
-
-    /// <summary>
-    /// Adds response compression with Brotli after static file middleware
-    /// </summary>
-    public bool UseBrotliResponseCompression = false;
-
-    /// <summary>
     /// Adds middleware for Authorization and Authentication attributes
     /// </summary>
-    public bool UseAuthentication= true;
+    public bool UseAuthentication = true;
 
     /// <summary>
     /// Adds middleware for Authorization attributes
     /// </summary>
     public bool UseAuthorization = true;
-    
-    /// <summary>
-    /// Adds middleware for ForwardHeaders
-    /// </summary>
-    public bool UseForwardedHeaders = true;
-
-    /// <summary>
-    /// Adds middleware to route urls to controllers
-    /// </summary>
-    public bool UseControllers = true;
-
-    /// <summary>
-    /// Adds middleware to route /api/-url's to controllers allowing your APP to have api folder at root
-    /// </summary>
-    public bool UseApiControllers = true;
-
-    /// <summary>
-    /// Adds middleware for razor pages as endpoints aka 'MapRazorPages'
-    /// </summary>
-    public bool UseRazorPages = true;
 
     /// <summary>
     /// Adds middleware for static files and sets a few default settings:
@@ -95,20 +58,20 @@ public class CommonWebAppOptions
     /// <summary>
     /// Set the cache-control max age header to a duration for all static requests
     /// 
-    /// Note: requires UseStatisFiles set to True
+    /// Note: requires UseStaticFiles set to True, and the header 'max-age' cannot be added already in the response
     /// 
     /// Default: two weeks
     /// </summary>
-    public int StaticFilesCacheMaxAgeSeconds = 1209600;
+    public int StaticFilesMaxAgeSeconds = 1209600;
 
     /// <summary>
     /// Allow serving of unknown, unsupported, media/mime types.
     /// 
     /// Note: requires UseStatisFiles set to True
     /// 
-    /// Defaults to false
+    /// Defaults to true
     /// </summary>
-    public bool StaticFileServeUnknownFileTypes = false;
+    public bool StaticFilesServeUnknownFileTypes = true;
 
     /// <summary>
     /// Set the relative path of where to only allow serving static content from
@@ -117,7 +80,7 @@ public class CommonWebAppOptions
     /// 
     /// For example: /static
     /// </summary>
-    public string StaticFileRequestPath = null;
+    public string StaticFilesRequestPath = null;
 
     /// <summary>
     /// Adds middleware which responds with a exception page usually used in development environments and test environments

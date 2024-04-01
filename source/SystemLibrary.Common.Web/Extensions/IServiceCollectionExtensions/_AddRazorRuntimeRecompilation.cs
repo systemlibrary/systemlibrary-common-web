@@ -4,7 +4,7 @@ namespace SystemLibrary.Common.Web.Extensions;
 
 partial class IServiceCollectionExtensions
 {
-    static void AddRazorRuntimeRecompilation(IMvcBuilder builder)
+    static void AddRazorRuntimeCompilationOnChange(IMvcBuilder builder)
     {
         if (builder != null)
             builder.AddRazorRuntimeCompilation();
