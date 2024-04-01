@@ -84,7 +84,7 @@ public class ServicesCollectionOptions : BaseOptions
     /// ViewLocations = new string[] { "~/Pages/{1}/{0}.cshtml" };
     /// 
     /// Note: This sets non-area view locations
-    /// </summary
+    /// </summary>
     /// <example>
     /// Simple example:
     /// <code>
@@ -131,5 +131,8 @@ public class ServicesCollectionOptions : BaseOptions
     /// </summary>
     public bool AddForwardStandardLogging = false;
 
+    /// <summary>
+    /// Set to true to add ResponseCaching services
+    /// </summary>
     public bool UseResponseCaching = true;
 }
