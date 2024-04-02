@@ -30,8 +30,8 @@ Library with classes and methods for every &gt;=  .NET 7 web application
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Version
-- 7.3.0.2
-- Overloaded method to add Transient ILogWriter added
+- 7.3.0.3
+- OutputCache can only exist once, thought it would check before and after Auth...
 
 #### Version history
 - View git history of this file if interested

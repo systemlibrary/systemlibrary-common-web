@@ -122,7 +122,7 @@ public static partial class IApplicationBuilderExtensions
             app.UseCookiePolicy(cookieOptions);
         }
 
-        if (options.UseOutputCache)
+        if (options.UseOutputCache && !options.UseOutputCacheAfterAuthentication)
             app.UseOutputCache();
 
         if (options.UseAuthentication)
