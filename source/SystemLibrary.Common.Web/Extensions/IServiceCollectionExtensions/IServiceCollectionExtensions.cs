@@ -14,6 +14,77 @@ namespace SystemLibrary.Common.Web.Extensions;
 /// </summary>
 public static partial class IServiceCollectionExtensions
 {
+    public static IServiceCollection AddCommonWebServices(this IServiceCollection services, ServicesCollectionOptions options = null)
+    {
+        if (options == null)
+            options = new ServicesCollectionOptions();
+
+        if (options.UseForwardedHeaders)
+            services = services.UseForwardedHeaders();
+
+        if (options.UseGzipResponseCompression || options.UseBrotliResponseCompression)
+            services = services.UseResponseCompression();
+
+        if (options.UseOutputCache)
+            services.AddOutputCache();
+
+        if (options.UseResponseCaching)
+            services.AddResponseCaching();
+
+        IMvcBuilder builder = null;
+
+        if (options.UseMvc)
+            builder = services.AddMvc();
+
+        if (options.UseRazorPages)
+            builder = services.UseAddRazorPages(options);
+
+        if (options.UseControllers)
+            builder = services.UseAddControllers(options);
+
+        if (options.UseAutomaticKeyGenerationFile)
+            services.UseAutomaticKeyGenerationFile(options);
+
+        if (options.AddApplicationAsPart)
+        {
+            var executingAssembliy = Assembly.GetCallingAssembly();
+            var entryAssembly = Assembly.GetEntryAssembly();
+            builder = AddApplicationPart(builder, options, executingAssembliy, entryAssembly);
+        }
+
+        if (options.ApplicationParts != null)
+        {
+            foreach (var part in options.ApplicationParts)
+                if (part != null)
+                    builder = AddApplicationPart(builder, options, part, null);
+        }
+
+        if (options.AddRazorRuntimeCompilationOnChange)
+            AddRazorRuntimeCompilationOnChange(builder);
+
+        services = services.UseViews(options);
+
+        if (options.UseCookiePolicy)
+            services = services.UseCookiePolicy();
+
+        if (options.AddForwardStandardLogging)
+            services.AddLogging(builder =>
+            {
+                builder.AddProvider(new InternalLogProvider());
+            });
+
+
+        services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+        services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
+
+        // NOTE: Can this be Scoped instead?
+        services.TryAddTransient<HtmlHelperFactory, HtmlHelperFactory>();
+        services = services.Configure<IISServerOptions>(options => { options.AllowSynchronousIO = true; });
+
+        Services.Collection = services;
+
+        return services;
+    }
     /// <summary>
     /// Configures ServiceCollection in one-line, so register all of your own or other service configurations after this one
     /// 
@@ -54,73 +125,11 @@ public static partial class IServiceCollectionExtensions
     /// }
     /// </code>
     /// </example>
-    public static IServiceCollection AddCommonWebServices(this IServiceCollection services, ServicesCollectionOptions options = null)
+    public static IServiceCollection AddCommonWebServices<TLogWriter>(this IServiceCollection services, ServicesCollectionOptions options = null) where TLogWriter : class, ILogWriter
     {
-        if (options == null)
-            options = new ServicesCollectionOptions();
+        services = AddCommonWebServices(services, options);
 
-        if (options.UseForwardedHeaders)
-            services = services.UseForwardedHeaders();
-
-        if (options.UseGzipResponseCompression || options.UseBrotliResponseCompression)
-            services = services.UseResponseCompression();
-
-        if (options.UseOutputCache)
-            services.AddOutputCache();
-
-        if(options.UseResponseCaching)
-            services.AddResponseCaching();
-
-        IMvcBuilder builder = null;
-
-        if(options.UseMvc)
-            builder = services.AddMvc();
-
-        if (options.UseRazorPages)
-            builder = services.UseAddRazorPages(options);
-
-        if (options.UseControllers)
-            builder = services.UseAddControllers(options);
-
-        if (options.UseAutomaticKeyGenerationFile)
-            services.UseAutomaticKeyGenerationFile(options);
-
-        if (options.AddApplicationAsPart)
-        {
-            var executingAssembliy = Assembly.GetCallingAssembly();
-            var entryAssembly = Assembly.GetEntryAssembly();
-            builder = AddApplicationPart(builder, options, executingAssembliy, entryAssembly);
-        }
-
-        if (options.ApplicationParts != null)
-        {
-            foreach (var part in options.ApplicationParts)
-                if (part != null)
-                    builder = AddApplicationPart(builder, options, part, null);
-        }
-
-        if (options.AddRazorRuntimeCompilationOnChange)
-            AddRazorRuntimeCompilationOnChange(builder);
-
-        services = services.UseViews(options);
-
-        if (options.UseCookiePolicy)
-            services = services.UseCookiePolicy();
-
-        if (options.AddForwardStandardLogging)
-            services.AddLogging(builder =>
-            {
-                builder.AddProvider(new InternalLogProvider());
-            });
-
-        services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-        services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
-
-        // NOTE: Can this be Scoped instead?
-        services.TryAddTransient<HtmlHelperFactory, HtmlHelperFactory>();
-        services = services.Configure<IISServerOptions>(options => { options.AllowSynchronousIO = true; });
-
-        Services.Collection = services;
+        services = services.AddTransient<ILogWriter, TLogWriter>();
 
         return services;
     }

@@ -30,16 +30,8 @@ Library with classes and methods for every &gt;=  .NET 7 web application
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Version
-- 7.3.0.1
-- Breaking change: the extenion method for registering common services and middleware are now named: UseCommonWebApp and AddCommonWebServices
-- Breaking change: the renamed extension methods, now takes a renamed option object: UseCommonWebApp(AppBuilderOptions) and AddCommonWebServices(ServicesCollectionOptions)
-- Breaking change: variables in the two Options arguments are now fields instead of properties. They are also renamed/modified. Fex:UseHttpToHttpsRedirectionAndHsts is split into two, UseHsts and UseHttpsRedirection
-- Breaking change: most middlewares and services are 'ON' by default
-- Breaking change: middleware order is redone
-- New: OutputCache opiton is added and services and middleware is registered if set to True (default: on)
-- New: IApplicationBuilder extension method: UseBranch
-- StaticFiles: added support for app/javascript, app/xml, text/xml
-- New: option to direct "standardlogging" to the "ILogWriter" that you implement, all logs goes to your file if you want. It is off by default.
+- 7.3.0.2
+- Overloaded method to add Transient ILogWriter added
 
 #### Version history
 - View git history of this file if interested
