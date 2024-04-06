@@ -8,7 +8,7 @@ namespace SystemLibrary.Common.Web.Extensions;
 
 static partial class IServiceCollectionExtensions
 {
-    static string[] CompressMimeTypes = new string[]
+    static string[] MimeTypesToCompress = new string[]
     {
         "text/html",
         "text/html; charset=utf-8",
@@ -28,52 +28,38 @@ static partial class IServiceCollectionExtensions
         "font/woff",
 
         "image/svg+xml",
-        "image/jpeg",
-        "image/gif",
-        "image/png",
-        "image/tiff",
         "image/webp",
-        "image/x-icon",
 
-        "application/x-font-ttf",
-        "application/x-font-opentype",
-
-        "application/zip",
-        "application/gzip",
-        "application/pdf",
         "application/json",
         "application/javascript",
         "application/rss+xml",
         "application/pkcs8",
         "application/xml",
-
-        "video/mp4",
-        "video/m4v",
-        "video/webm",
-
     };
 
-    static IServiceCollection UseResponseCompression(this IServiceCollection services)
+    static IServiceCollection UseBrotliCompression(this IServiceCollection services)
     {
-        services.Configure<GzipCompressionProviderOptions>(options => options.Level = CompressionLevel.Optimal);
         services.Configure<BrotliCompressionProviderOptions>(options => options.Level = CompressionLevel.Optimal);
 
         services.AddResponseCompression(compression =>
         {
             compression.EnableForHttps = true;
-            compression.MimeTypes = CompressMimeTypes;
+            compression.MimeTypes = MimeTypesToCompress;
             compression.Providers.Add<BrotliCompressionProvider>();
+        });
+
+        return services;
+    }
+
+    static IServiceCollection UseGzipCompression(this IServiceCollection services)
+    {
+        services.Configure<GzipCompressionProviderOptions>(options => options.Level = CompressionLevel.Optimal);
+
+        services.AddResponseCompression(compression =>
+        {
+            compression.EnableForHttps = true;
+            compression.MimeTypes = MimeTypesToCompress;
             compression.Providers.Add<GzipCompressionProvider>();
-        });
-
-        services.Configure<BrotliCompressionProviderOptions>(options =>
-        {
-            options.Level = CompressionLevel.Optimal;
-        });
-
-        services.Configure<GzipCompressionProviderOptions>(options =>
-        {
-            options.Level = CompressionLevel.Optimal;
         });
 
         return services;

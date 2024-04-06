@@ -22,8 +22,11 @@ public static partial class IServiceCollectionExtensions
         if (options.UseForwardedHeaders)
             services = services.UseForwardedHeaders();
 
-        if (options.UseGzipResponseCompression || options.UseBrotliResponseCompression)
-            services = services.UseResponseCompression();
+        if (options.UseGzipResponseCompression)
+            services = services.UseGzipCompression();
+
+        if (options.UseBrotliResponseCompression)
+            services = services.UseBrotliCompression();
 
         if (options.UseOutputCache)
             services.AddOutputCache();

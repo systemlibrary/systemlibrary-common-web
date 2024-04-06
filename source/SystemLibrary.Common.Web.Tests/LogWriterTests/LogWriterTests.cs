@@ -47,7 +47,6 @@ public class LogWriterTests
         Assert.IsTrue(!content.Contains("Debug"));
     }
 
-
     [TestMethod]
     public void Write_StringList_And_Class_Success()
     {

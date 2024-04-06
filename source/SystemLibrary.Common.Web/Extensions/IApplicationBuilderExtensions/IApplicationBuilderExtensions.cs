@@ -74,9 +74,6 @@ public static partial class IApplicationBuilderExtensions
         if (options.UseHsts)
             app.UseHsts();
 
-        if (options.UseBrotliResponseCompression || options.UseGzipResponseCompression)
-            app.UseResponseCompression();
-
         if (options.UseStaticFiles)
         {
             StaticFileOptions staticFileOptions = new StaticFileOptions
@@ -125,11 +122,33 @@ public static partial class IApplicationBuilderExtensions
         if (options.UseOutputCache && !options.UseOutputCacheAfterAuthentication)
             app.UseOutputCache();
 
+        if (!options.UseOutputCacheAfterAuthentication)
+        {
+            if (options.UseBrotliResponseCompression || options.UseGzipResponseCompression)
+            {
+                app.UseWhen((context) => Compress.IsEligibleForCompression(context, options), appCompression =>
+                {
+                    appCompression.UseResponseCompression();
+                });
+            }
+        }
+
         if (options.UseAuthentication)
             app.UseAuthentication();
 
         if (options.UseOutputCache && options.UseOutputCacheAfterAuthentication)
             app.UseOutputCache();
+
+        if (options.UseOutputCacheAfterAuthentication)
+        {
+            if (options.UseBrotliResponseCompression || options.UseGzipResponseCompression)
+            {
+                app.UseWhen((context) => Compress.IsEligibleForCompression(context, options), appCompression =>
+                {
+                    appCompression.UseResponseCompression();
+                });
+            }
+        }
 
         if (options.UseAuthorization)
             app.UseAuthorization();
