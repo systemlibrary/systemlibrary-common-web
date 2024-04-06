@@ -32,9 +32,8 @@ Library with classes and methods for every &gt;=  .NET 7 web application
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Version
-- 7.4.0.1
-- Compression option is split UseBrotliCompressn and UseGzipCompression. Gzip is used by default
-- Compression is branched out, only when non-websocket connection, request cannot be null, and Content-Encoding is not yet set
+- 7.4.0.2
+- Updated deps
 
 #### Version history
 - View git history of this file if interested
