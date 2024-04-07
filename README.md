@@ -32,8 +32,8 @@ Library with classes and methods for every &gt;=  .NET 7 web application
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Version
-- 7.4.0.2
-- Updated deps
+- 7.4.0.3
+- Http to Https redirection service is added, and defaults to 443  port
 
 #### Version history
 - View git history of this file if interested

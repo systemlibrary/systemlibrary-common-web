@@ -22,6 +22,9 @@ public static partial class IServiceCollectionExtensions
         if (options.UseForwardedHeaders)
             services = services.UseForwardedHeaders();
 
+        if (options.UseHttpsRedirection)
+            services.AddHttpsRedirection(opt => opt.HttpsPort = 443);
+
         if (options.UseGzipResponseCompression)
             services = services.UseGzipCompression();
 

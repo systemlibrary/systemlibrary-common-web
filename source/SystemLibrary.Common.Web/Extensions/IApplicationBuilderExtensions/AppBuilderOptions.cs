@@ -23,11 +23,6 @@
 public class AppBuilderOptions : BaseOptions
 {
     /// <summary>
-    /// Adds middleware for http to https redirect
-    /// </summary>
-    public bool UseHttpsRedirection = true;
-
-    /// <summary>
     /// Adds middleware for http to https redirect client side, aka hsts
     /// </summary>
     public bool UseHsts = true;

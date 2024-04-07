@@ -29,7 +29,16 @@ public abstract class BaseOptions
     /// </summary>
     public bool UseForwardedHeaders = true;
 
+    /// <summary>
+    /// Set to true to add services and middleware to use http to https redirection
+    /// </summary>
+    public bool UseHttpsRedirection = true;
+
+    /// <summary>
+    /// Set to true to register services and middleware for the OutputCache in ASPNET
+    /// </summary>
     public bool UseOutputCache = true;
+
     public bool UseOutputCacheAfterAuthentication = true;
 
     /// <summary>

@@ -4,8 +4,7 @@
 		<TargetFramework>net7.0</TargetFramework>
 		<Configurations>Release</Configurations>
 		<RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
-		<DefaultItemExcludes>$(DefaultItemExcludes);Release.cmd;**\*.nupkg;nuget-icon.png;</DefaultItemExcludes>
-		<Version>7.4.0.2</Version>
+		<Version>7.4.0.3</Version>
 		<PackageOutputPath>..\$(Product)</PackageOutputPath>
 	</PropertyGroup>
 

@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 
+using SystemLibrary.Common.Net;
+
 namespace SystemLibrary.Common.Web.Extensions;
 
 /// <summary>
@@ -155,10 +157,10 @@ public static partial class IApplicationBuilderExtensions
 
         app.UseEndpoints(endpoints =>
         {
-            if(options.UseControllers)
+            if (options.UseControllers)
                 endpoints.MapDefaultControllerRoute();
 
-            if(options.UseApiControllers)
+            if (options.UseApiControllers)
                 endpoints.MapControllerRoute("api/{controller}/{action}/{id?}", "api/{controller}/{action}/{id?}");
 
             if (options.UseRazorPages)
