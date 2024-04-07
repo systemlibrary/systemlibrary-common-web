@@ -9,8 +9,6 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 
-using SystemLibrary.Common.Net;
-
 namespace SystemLibrary.Common.Web.Extensions;
 
 /// <summary>
@@ -70,11 +68,11 @@ public static partial class IApplicationBuilderExtensions
         if (options.UseForwardedHeaders)
             app.UseForwardedHeaders();
 
-        if (options.UseHttpsRedirection)
-            app.UseHttpsRedirection();
-
         if (options.UseHsts)
             app.UseHsts();
+
+        if (options.UseHttpsRedirection)
+            app.UseHttpsRedirection();
 
         if (options.UseStaticFiles)
         {
