@@ -158,11 +158,11 @@ public static partial class IApplicationBuilderExtensions
             if (options.UseControllers)
                 endpoints.MapDefaultControllerRoute();
 
-            if (options.UseApiControllers)
-                endpoints.MapControllerRoute("api/{controller}/{action}/{id?}", "api/{controller}/{action}/{id?}");
-
             if (options.UseRazorPages)
                 endpoints.MapRazorPages();
+
+            if (options.UseApiControllers)
+                endpoints.MapControllerRoute("api/{controller}/{action}/{id?}", "api/{controller}/{action}/{id?}");
         });
 
         HttpContextInstance.HttpContextAccessor = app.ApplicationServices.GetRequiredService<IHttpContextAccessor>();
