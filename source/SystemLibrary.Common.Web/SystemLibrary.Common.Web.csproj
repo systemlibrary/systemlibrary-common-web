@@ -4,7 +4,7 @@
 		<TargetFramework>net7.0</TargetFramework>
 		<Configurations>Release</Configurations>
 		<RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
-		<Version>7.5.0.2</Version>
+		<Version>7.5.0.3</Version>
 		<PackageOutputPath>..\$(Product)</PackageOutputPath>
 	</PropertyGroup>
 

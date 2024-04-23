@@ -32,9 +32,8 @@ Library with classes and methods for every &gt;=  .NET 7 web application
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Version
-- 7.5.0.2
-- Updated deps
-- Endpoints mapped order is now DefaultController > Razor > Api, instead of DefaultController > Api > Razor
+- 7.5.0.3
+- Endpoints: UseControllers registers now both UseControllers and DefaultControllers afterwards
 
 #### Version history
 - View git history of this file if interested
