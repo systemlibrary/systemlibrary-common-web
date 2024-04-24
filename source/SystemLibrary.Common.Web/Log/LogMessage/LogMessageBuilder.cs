@@ -275,6 +275,9 @@ partial class Log
         }
 
         static MethodInfo DumpBuildMethod;
+
+        static Type _DumpType;
+        
         static void AppendClass(StringBuilder message, object obj)
         {
             if (DumpBuildMethod == null)

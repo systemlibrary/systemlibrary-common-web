@@ -32,8 +32,8 @@ Library with classes and methods for every &gt;=  .NET 7 web application
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Version
-- 7.5.0.3
-- Endpoints: UseControllers registers now both UseControllers and DefaultControllers afterwards
+- 7.5.0.4
+- Cache: optimized auto-generating keys, storing Fields on Type for reuse
 
 #### Version history
 - View git history of this file if interested

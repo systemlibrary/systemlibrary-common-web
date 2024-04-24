@@ -365,7 +365,13 @@ public static class Cache
         if (target != null)
         {
             var type = target.GetType();
-            var fields = type.GetFields(BindingFlags.FlattenHierarchy | BindingFlags.Instance | BindingFlags.Public);
+            var hashCode = type.GetHashCode();
+            if(!DictionaryCache.CacheTypeFieldsCache.TryGetValue(hashCode, out var fields))
+            {
+                fields = type.GetFields(BindingFlags.FlattenHierarchy | BindingFlags.Instance | BindingFlags.Public);
+                DictionaryCache.CacheTypeFieldsCache.TryAdd(hashCode, fields);
+            }
+
             if (fields.Length > 0)
             {
                 //TODO: Consider throwing exception if field is of "unsupported type" as CacheKey

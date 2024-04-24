@@ -4,7 +4,7 @@
 		<TargetFramework>net7.0</TargetFramework>
 		<Configurations>Release</Configurations>
 		<RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
-		<Version>7.5.0.3</Version>
+		<Version>7.5.0.4</Version>
 		<PackageOutputPath>..\$(Product)</PackageOutputPath>
 	</PropertyGroup>
 
@@ -42,7 +42,7 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="7.*" />
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="7.*" />
-		<PackageReference Include="SystemLibrary.Common.Net" Version="7.3.0.3" />
+		<PackageReference Include="SystemLibrary.Common.Net" Version="7.3.0.5" />
 	</ItemGroup>
 
 	<PropertyGroup>
