@@ -35,22 +35,51 @@ public class CacheTests
     }
 
     [TestMethod]
+    public void Add_To_Cache_Auto_CacheKey_Passing_Object_As_Field0_Adds_FieldAndPropValues_To_Key()
+    {
+        var input = new CacheKeyParams();
+
+        input.Name = "TestPerson";
+        input.Age = 87878;
+        input.Year = DateTime.Parse("2000-12-24");
+
+        CacheKeyParams.Phone = "9004400044";
+
+        var result = Cache.Get(() =>
+        {
+            return input.Name + input.Age + input.Year + input.Flag;
+        });
+
+        var cacheKey = "common.web.cache<Add_To_Cache_Auto_CacheKey_Passing_Object_As_Field0_Adds_FieldAndPropValues_To_Key>b__0SystemLibrary.Common.Web.Tests.CacheTests+<>c__DisplayClass3_0System.StringinputTestPersonTrue12/24/2000 12:00:00 AMStreet 1000878789004400044";
+
+        Assert.IsTrue(cacheKey.Contains("TestPerson"), "Name");
+        Assert.IsTrue(cacheKey.Contains("9004400044"), "Phone");
+        Assert.IsTrue(cacheKey.Contains("Street 1000"), "Address");
+        Assert.IsTrue(cacheKey.Contains("2000 12:00"), "Year");
+        Assert.IsTrue(cacheKey.Contains("87878"), "Age");
+
+        var cached = Cache.Get<string>(cacheKey);
+
+        Assert.IsTrue(cached.Is(), "Not in cache");
+        Assert.IsTrue(cached.Contains("TestPerson") && cached.Contains("87878"), "Invalid text");
+    }
+
+    [TestMethod]
     public void Add_To_Cache_Auto_CacheKey_Passing_Function_As_GetItem_Success()
     {
         var getItems = () => GetText("Hello", 101, true);
 
         var cached = Cache.Get(GetItemsFromFunction, debug: true);
-
         Assert.IsTrue(cached.Is());
 
         cached = Cache.Get(GetItemsFromFunction);
         Assert.IsTrue(cached.Is());
-        Assert.IsTrue(cached.Contains("55") && cached.Contains("World"));
+        Assert.IsTrue(cached.Contains("55") && cached.Contains("World"), "Err 1: " + cached);
 
         var cacheKey = "common.web.cacheGetItemsFromFunctionSystemLibrary.Common.Web.Tests.CacheTestsSystem.String";
         var cachedItem = Cache.Get<string>(cacheKey);
         Assert.IsTrue(cachedItem.Is());
-        Assert.IsTrue(cachedItem.Contains("55") && cached.Contains("World"));
+        Assert.IsTrue(cached.Contains("55") && cached.Contains("World"), "Err 2: " + cached);
     }
 
     static string GetItemsFromFunction()
@@ -74,7 +103,7 @@ public class CacheTests
         Assert.IsTrue(cached.Is());
         Assert.IsTrue(cached.Contains("123"));
 
-        var cacheKey = "common.web.cache<Auto_Create_CacheKey_By_Passing_Function_Without_Outside_Vars_Success>b__5_0SystemLibrary.Common.Web.Tests.CacheTests+<>cSystem.String";
+        var cacheKey = "common.web.cache<Auto_Create_CacheKey_By_Passing_Function_Without_Outside_Vars_Success>b__6_0SystemLibrary.Common.Web.Tests.CacheTests+<>cSystem.String";
         var cachedItem = Cache.Get<string>(cacheKey);
         Assert.IsTrue(cachedItem.Is());
         Assert.IsTrue(cachedItem.Contains("123"));
@@ -84,17 +113,17 @@ public class CacheTests
     public void Auto_Create_CacheKey_By_Passing_Lambda_Without_Outside_Vars_Success()
     {
         var cached = Cache.Get(() => GetText("Hello", 111, true));
-        Assert.IsTrue(cached.Is());
+        Assert.IsTrue(cached.Is(), "It is not  hello");
 
-        var cacheKey = "common.web.cache<Auto_Create_CacheKey_By_Passing_Lambda_Without_Outside_Vars_Success>b__6_0SystemLibrary.Common.Web.Tests.CacheTests+<>cSystem.String";
+        var cacheKey = "common.web.cache<Auto_Create_CacheKey_By_Passing_Lambda_Without_Outside_Vars_Success>b__7_0SystemLibrary.Common.Web.Tests.CacheTests+<>cSystem.String";
         var cachedItem = Cache.Get<string>(cacheKey);
-        Assert.IsTrue(cachedItem.Is());
+        Assert.IsTrue(cachedItem.Is(), "Does not exist 1");
         Assert.IsTrue(cachedItem.Contains("111"));
 
         var cached2 = Cache.Get(() => GetText("Hello", 222, true));
-        var cacheKey2 = "common.web.cache<Auto_Create_CacheKey_By_Passing_Lambda_Without_Outside_Vars_Success>b__6_1SystemLibrary.Common.Web.Tests.CacheTests+<>cSystem.String";
+        var cacheKey2 = "common.web.cache<Auto_Create_CacheKey_By_Passing_Lambda_Without_Outside_Vars_Success>b__7_1SystemLibrary.Common.Web.Tests.CacheTests+<>cSystem.String";
         var cachedItem2 = Cache.Get<string>(cacheKey2);
-        Assert.IsTrue(cachedItem2.Is());
+        Assert.IsTrue(cachedItem2.Is(), "Does not exist 2");
         Assert.IsTrue(cachedItem2.Contains("222"));
     }
 
@@ -110,7 +139,7 @@ public class CacheTests
         });
         Assert.IsTrue(cached.Is());
 
-        var cacheKey = "common.web.cache<Auto_Create_CacheKey_By_Inline_Lambda_With_Outside_Vars_Vars_Are_Part_Of_CacheKey_Success>b__0SystemLibrary.Common.Web.Tests.CacheTests+<>c__DisplayClass7_0System.StringHello333True";
+        var cacheKey = "common.web.cache<Auto_Create_CacheKey_By_Inline_Lambda_With_Outside_Vars_Vars_Are_Part_Of_CacheKey_Success>b__0SystemLibrary.Common.Web.Tests.CacheTests+<>c__DisplayClass8_0System.StringaHellob333cTrue";
         var cachedItem = Cache.Get<string>(cacheKey);
         Assert.IsTrue(cachedItem.Contains(b.ToString()));
         Assert.IsTrue(cachedItem.Contains(c.ToString()));
@@ -131,7 +160,7 @@ public class CacheTests
         cached = Cache.Get(getItems);
         Assert.IsTrue(cached.Contains("555"));
 
-        var cacheKey = "common.web.cache<" + nameof(Auto_Create_CacheKey_By_Passing_Function_With_Outside_Vars_Success) + ">b__0SystemLibrary.Common.Web.Tests." + nameof(CacheTests) + "+<>c__DisplayClass8_0System.String" + a + b + c;
+        var cacheKey = "common.web.cache<" + nameof(Auto_Create_CacheKey_By_Passing_Function_With_Outside_Vars_Success) + ">b__0SystemLibrary.Common.Web.Tests.CacheTests+<>c__DisplayClass9_0System.StringaHellob555cTrue";
         var cachedItem = Cache.Get<string>(cacheKey);
         Assert.IsTrue(cachedItem.Contains("555"));
     }
@@ -191,4 +220,30 @@ public class CacheTests
     {
         return a + b + c;
     }
+
+    public class CacheKeyParams
+    {
+        public CacheKeyParams()
+        {
+            Flag = true;
+            LastName = "Mr Smith";
+            MiddleName = "None";
+        }
+
+        static CacheKeyParams()
+        {
+            Address = "Street 1000";
+        }
+
+        public string Name { get; set; }
+        public bool Flag { get; }
+        public int Age;
+        public DateTime Year { get; set; }
+        string LastName;
+        string MiddleName { get; set; }
+
+        public static string Address { get; }
+        public static string Phone;
+    }
+
 }

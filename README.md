@@ -32,8 +32,9 @@ Library with classes and methods for every &gt;=  .NET 7 web application
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Version
-- 7.5.0.4
-- Cache: optimized auto-generating keys, storing Fields on Type for reuse
+- 7.6.0.1
+- Updated deps (breaking change: DictionaryCache removed, ConcurrentDictionary extensions added)
+- Cache: optimized auto-generate key, and initial support of classes and their public fields/props one level depth
 
 #### Version history
 - View git history of this file if interested

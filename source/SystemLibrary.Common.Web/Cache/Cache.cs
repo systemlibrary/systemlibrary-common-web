@@ -10,6 +10,7 @@ using System.Text;
 
 using Microsoft.Extensions.Caching.Memory;
 
+using SystemLibrary.Common.Net.Extensions;
 using SystemLibrary.Common.Web.Extensions;
 
 namespace SystemLibrary.Common.Web;
@@ -352,35 +353,86 @@ public static class Cache
 
     static string CreateCacheKey<T>(Func<T> getItem, Func<T, bool> condition)
     {
-        // NOTE: Optimization could be done of getItem + condition + T + currentUser.Roles as a cache key to cache the cache key creation itself, hashmap/whatever
-        var key = new StringBuilder("common.web.cache");
+        var key = new StringBuilder("common.web.cache", capacity: 255);
+
         var getItemMethod = getItem.Method;
 
         key.Append(getItemMethod.Name);
-        key.Append(getItemMethod.DeclaringType?.FullName);
-        key.Append(getItemMethod.ReturnType?.FullName);
+        key.Append(getItemMethod.DeclaringType?.FullName ?? "");
+        key.Append(getItemMethod.ReturnType?.FullName ?? "");
 
-        //getItem.GetInvocationList()[0].Target - about 3-4 times slower than getItem.Target
         var target = getItem.Target;
         if (target != null)
         {
             var type = target.GetType();
-            var hashCode = type.GetHashCode();
-            if(!DictionaryCache.CacheTypeFieldsCache.TryGetValue(hashCode, out var fields))
+
+            var fields = Dictionaries.GenerateCacheKeyFields.TryGet(type, () =>
             {
-                fields = type.GetFields(BindingFlags.FlattenHierarchy | BindingFlags.Instance | BindingFlags.Public);
-                DictionaryCache.CacheTypeFieldsCache.TryAdd(hashCode, fields);
-            }
+                return type.GetFields(BindingFlags.FlattenHierarchy | BindingFlags.Instance | BindingFlags.Public);
+            });
 
             if (fields.Length > 0)
             {
-                //TODO: Consider throwing exception if field is of "unsupported type" as CacheKey
-                //as this works fine on string, int, bool, DateTime, double, but a List or a POCO object would be ToString()'d which does not make much sense
                 foreach (var field in fields)
                 {
+                    key.Append(field.Name);
+
                     var value = field.GetValue(target);
+
                     if (value != null)
-                        key.Append(value.ToString());
+                    {
+                        if(value is string || value is StringBuilder || value is bool || value is int || value is DateTime || value is DateTimeOffset || value is float || value is double || value is Enum || value is short || value is long || value is decimal) 
+                            key.Append(value.ToString());
+                        else
+                        {
+                            var valueType = value.GetType();
+
+                            var valueProperties = Dictionaries.GenerateCacheKeyValueTypeProperties.TryGet(valueType, () =>
+                            {
+                               return valueType.GetProperties(BindingFlags.Public | BindingFlags.GetProperty | BindingFlags.Static | BindingFlags.Instance);
+                            });
+
+                            var valueFields = Dictionaries.GenerateCacheKeyValueTypeFields.TryGet(valueType, () =>
+                            {
+                                return valueType.GetFields(BindingFlags.Public | BindingFlags.GetField | BindingFlags.Static | BindingFlags.Instance);
+                            });
+
+                            if(valueProperties?.Length > 0)
+                            {
+                                foreach(var pi in valueProperties)
+                                {
+                                    MethodInfo getMethod = pi.GetGetMethod();
+
+                                    if (getMethod.IsStatic)
+                                    {
+                                        key.Append(pi.GetValue(null));
+                                    }
+                                    else
+                                    {
+                                        var memberValue = pi.GetValue(value);
+                                        key.Append(memberValue?.ToString());
+                                    }
+
+                                }
+                            }
+                            
+                            if (valueFields?.Length > 0)
+                            {
+                                foreach (var fi in valueFields)
+                                {
+                                    if (fi.IsStatic)
+                                    {
+                                        key.Append(fi.GetValue(null));
+                                    }
+                                    else
+                                    {
+                                        var memberValue = fi.GetValue(value);
+                                        key.Append(memberValue?.ToString());
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -400,8 +452,6 @@ public static class Cache
 
                 if (claimsPrincipal?.Claims != null)
                 {
-                    // NOTE: Performance optimization should and could be done here
-
                     var roles = claimsPrincipal.Claims
                         .Where(c => c.Type == claimsIdentity.RoleClaimType || c.Type == "role" || c.Type == "Role")
                         .Select(x => x.Value);
@@ -411,6 +461,7 @@ public static class Cache
                 }
             }
         }
+
         return key.ToString();
     }
 
