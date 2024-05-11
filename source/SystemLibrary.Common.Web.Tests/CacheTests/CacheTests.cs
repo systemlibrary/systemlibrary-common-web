@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -161,6 +162,25 @@ public class CacheTests
         var cacheKey = "common.web.cache<" + nameof(Auto_Create_CacheKey_By_Passing_Function_With_Outside_Vars_Success) + ">b__0SystemLibrary.Common.Web.Tests.CacheTests+<>c__DisplayClass9_0System.StringaHellob555cTrue";
         var cachedItem = Cache.Get<string>(cacheKey);
         Assert.IsTrue(cachedItem.Contains("555"));
+    }
+
+    [TestMethod]
+    public void Auto_Create_CacheKey_By_Passing_Dictionary_Success()
+    {
+        var a = new Dictionary<string, string>();
+
+        a.Add("Hello", "World");
+
+        var getItems = () => GetText(a["Hello"].ToString());
+
+        var cached = Cache.Get(getItems);
+
+        var cacheKey = "common.web.cache<Auto_Create_CacheKey_By_Passing_Dictionary_Success>b__0SystemLibrary.Common.Web.Tests.CacheTests+<>c__DisplayClass10_0System.Stringa1[Hello, World]";
+
+        var item = Cache.Get<string>(cacheKey);
+
+        Assert.IsTrue(item != null, "Wrong cachekey");
+        Assert.IsTrue(item.Contains("World99"));
     }
 
     [TestMethod]

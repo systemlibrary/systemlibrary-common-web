@@ -32,8 +32,8 @@ Library with classes and methods for every &gt;=  .NET 7 web application
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Version
-- 7.6.0.4
-- Cache.CreateCacheKey does not throw on reading "GetValue" on static fields/props, swallows and continues...
+- 7.6.0.5
+- Cache.CreateCacheKey loops over ICollection and adds the item "ToString()" to the auto generated key
 
 #### Version history
 - View git history of this file if interested

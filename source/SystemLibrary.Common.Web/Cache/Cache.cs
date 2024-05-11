@@ -277,7 +277,7 @@ public static class Cache
 
         if (cacheKey == null)
             cacheKey = CreateCacheKey(getItem, condition);
-        
+
         if (debug)
             Log.Debug("Cache.Get() debug parameter is true: cache key is " + cacheKey);
 
@@ -396,7 +396,19 @@ public static class Cache
 
                         if (value != null)
                         {
-                            if (value is string || value is StringBuilder || value is bool || value is int || value is DateTime || value is DateTimeOffset || value is float || value is double || value is Enum || value is short || value is long || value is decimal)
+                            if(value is ICollection icol)
+                            {
+                                key.Append(icol.Count);
+                                if (icol.Count > 0)
+                                {
+                                    foreach (var item in icol)
+                                    {
+                                        if (item != null)
+                                            key.Append(item.ToString());
+                                    }
+                                }
+                            }
+                            else if (value is string || value is StringBuilder || value is bool || value is int || value is DateTime || value is DateTimeOffset || value is float || value is double || value is Enum || value is short || value is long || value is decimal)
                                 key.Append(value.ToString());
                             else
                             {
