@@ -277,7 +277,7 @@ public static class Cache
 
         if (cacheKey == null)
             cacheKey = CreateCacheKey(getItem, condition);
-
+        
         if (debug)
             Log.Debug("Cache.Get() debug parameter is true: cache key is " + cacheKey);
 
@@ -377,61 +377,99 @@ public static class Cache
                 {
                     key.Append(field.Name);
 
-                    var value = field.GetValue(target);
-
-                    if (value != null)
+                    if (field.IsStatic)
                     {
-                        if(value is string || value is StringBuilder || value is bool || value is int || value is DateTime || value is DateTimeOffset || value is float || value is double || value is Enum || value is short || value is long || value is decimal) 
-                            key.Append(value.ToString());
-                        else
+                        try
                         {
-                            var valueType = value.GetType();
+                            var v = field.GetValue(null);
+                            key.Append(v + "");
+                        }
+                        catch
+                        {
+                        }
+                        continue;
+                    }
 
-                            var valueProperties = Dictionaries.GenerateCacheKeyValueTypeProperties.TryGet(valueType, () =>
-                            {
-                               return valueType.GetProperties(BindingFlags.Public | BindingFlags.GetProperty | BindingFlags.Static | BindingFlags.Instance);
-                            });
+                    try
+                    {
+                        var value = field.GetValue(target);
 
-                            var valueFields = Dictionaries.GenerateCacheKeyValueTypeFields.TryGet(valueType, () =>
+                        if (value != null)
+                        {
+                            if (value is string || value is StringBuilder || value is bool || value is int || value is DateTime || value is DateTimeOffset || value is float || value is double || value is Enum || value is short || value is long || value is decimal)
+                                key.Append(value.ToString());
+                            else
                             {
-                                return valueType.GetFields(BindingFlags.Public | BindingFlags.GetField | BindingFlags.Static | BindingFlags.Instance);
-                            });
+                                var valueType = value.GetType();
 
-                            if(valueProperties?.Length > 0)
-                            {
-                                foreach(var pi in valueProperties)
+                                if (!valueType.IsClass) continue;
+
+                                var valueProperties = Dictionaries.GenerateCacheKeyValueTypeProperties.TryGet(valueType, () =>
                                 {
-                                    MethodInfo getMethod = pi.GetGetMethod();
+                                    return valueType.GetProperties(BindingFlags.Public | BindingFlags.GetProperty | BindingFlags.Static | BindingFlags.Instance);
+                                });
 
-                                    if (getMethod.IsStatic)
-                                    {
-                                        key.Append(pi.GetValue(null));
-                                    }
-                                    else
-                                    {
-                                        var memberValue = pi.GetValue(value);
-                                        key.Append(memberValue?.ToString());
-                                    }
+                                var valueFields = Dictionaries.GenerateCacheKeyValueTypeFields.TryGet(valueType, () =>
+                                {
+                                    return valueType.GetFields(BindingFlags.Public | BindingFlags.GetField | BindingFlags.Static | BindingFlags.Instance);
+                                });
 
+                                if (valueProperties?.Length > 0)
+                                {
+                                    foreach (var pi in valueProperties)
+                                    {
+                                        key.Append(pi.Name);
+
+                                        try
+                                        {
+                                            MethodInfo getMethod = pi.GetGetMethod();
+
+                                            if (getMethod.IsStatic)
+                                            {
+                                                key.Append(pi.GetValue(null));
+                                            }
+                                            else
+                                            {
+                                                var memberValue = pi.GetValue(value);
+                                                key.Append(memberValue?.ToString());
+                                            }
+                                        }
+                                        catch
+                                        {
+                                            // Swallow
+                                        }
+                                    }
                                 }
-                            }
-                            
-                            if (valueFields?.Length > 0)
-                            {
-                                foreach (var fi in valueFields)
+
+                                if (valueFields?.Length > 0)
                                 {
-                                    if (fi.IsStatic)
+                                    foreach (var fi in valueFields)
                                     {
-                                        key.Append(fi.GetValue(null));
-                                    }
-                                    else
-                                    {
-                                        var memberValue = fi.GetValue(value);
-                                        key.Append(memberValue?.ToString());
+                                        key.Append(fi.Name);
+                                        try
+                                        {
+                                            if (fi.IsStatic)
+                                            {
+                                                key.Append(fi.GetValue(null));
+                                            }
+                                            else
+                                            {
+                                                var memberValue = fi.GetValue(value);
+                                                key.Append(memberValue?.ToString());
+                                            }
+                                        }
+                                        catch
+                                        {
+                                            // Swallow
+                                        }
                                     }
                                 }
                             }
                         }
+                    }
+                    catch
+                    {
+                        // Swallow, might be a static var, continue as is...
                     }
                 }
             }

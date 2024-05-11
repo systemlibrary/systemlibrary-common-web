@@ -49,9 +49,7 @@ public class CacheTests
         {
             return input.Name + input.Age + input.Year + input.Flag;
         });
-
-        var cacheKey = "common.web.cache<Add_To_Cache_Auto_CacheKey_Passing_Object_As_Field0_Adds_FieldAndPropValues_To_Key>b__0SystemLibrary.Common.Web.Tests.CacheTests+<>c__DisplayClass3_0System.StringinputTestPersonTrue12/24/2000 12:00:00 AMStreet 1000878789004400044";
-
+        var cacheKey = "common.web.cache<Add_To_Cache_Auto_CacheKey_Passing_Object_As_Field0_Adds_FieldAndPropValues_To_Key>b__0SystemLibrary.Common.Web.Tests.CacheTests+<>c__DisplayClass3_0System.StringinputNameTestPersonFlagTrueYear12/24/2000 12:00:00 AMAddressStreet 1000Age87878Phone9004400044";
         Assert.IsTrue(cacheKey.Contains("TestPerson"), "Name");
         Assert.IsTrue(cacheKey.Contains("9004400044"), "Phone");
         Assert.IsTrue(cacheKey.Contains("Street 1000"), "Address");
