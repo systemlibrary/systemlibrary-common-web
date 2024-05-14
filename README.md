@@ -32,8 +32,8 @@ Library with classes and methods for every &gt;=  .NET 7 web application
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Version
-- 7.6.0.5
-- Cache.CreateCacheKey loops over ICollection and adds the item "ToString()" to the auto generated key
+- 7.7.0.1
+- JsonSerializerOptions now uses the default serialize options (only if UseControllers is True in Services) from SystemLibrary.Common.Net - datetime converter, encoder, string to Enum, string to Int and more (breaking change)
 
 #### Version history
 - View git history of this file if interested
