@@ -322,12 +322,6 @@ references:
   commentId: F:SystemLibrary.Common.Web.Extensions.AppBuilderOptions.UseHsts
   fullName: SystemLibrary.Common.Web.Extensions.AppBuilderOptions.UseHsts
   nameWithType: AppBuilderOptions.UseHsts
-- uid: SystemLibrary.Common.Web.Extensions.AppBuilderOptions.UseHttpsRedirection
-  name: UseHttpsRedirection
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.AppBuilderOptions.html#SystemLibrary_Common_Web_Extensions_AppBuilderOptions_UseHttpsRedirection
-  commentId: F:SystemLibrary.Common.Web.Extensions.AppBuilderOptions.UseHttpsRedirection
-  fullName: SystemLibrary.Common.Web.Extensions.AppBuilderOptions.UseHttpsRedirection
-  nameWithType: AppBuilderOptions.UseHttpsRedirection
 - uid: SystemLibrary.Common.Web.Extensions.AppBuilderOptions.UseRouting
   name: UseRouting
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.AppBuilderOptions.html#SystemLibrary_Common_Web_Extensions_AppBuilderOptions_UseRouting
@@ -382,6 +376,12 @@ references:
   commentId: F:SystemLibrary.Common.Web.Extensions.BaseOptions.UseGzipResponseCompression
   fullName: SystemLibrary.Common.Web.Extensions.BaseOptions.UseGzipResponseCompression
   nameWithType: BaseOptions.UseGzipResponseCompression
+- uid: SystemLibrary.Common.Web.Extensions.BaseOptions.UseHttpsRedirection
+  name: UseHttpsRedirection
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.BaseOptions.html#SystemLibrary_Common_Web_Extensions_BaseOptions_UseHttpsRedirection
+  commentId: F:SystemLibrary.Common.Web.Extensions.BaseOptions.UseHttpsRedirection
+  fullName: SystemLibrary.Common.Web.Extensions.BaseOptions.UseHttpsRedirection
+  nameWithType: BaseOptions.UseHttpsRedirection
 - uid: SystemLibrary.Common.Web.Extensions.BaseOptions.UseOutputCache
   name: UseOutputCache
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.BaseOptions.html#SystemLibrary_Common_Web_Extensions_BaseOptions_UseOutputCache
@@ -518,6 +518,15 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.AddCommonWebServices
   nameWithType: IServiceCollectionExtensions.AddCommonWebServices
+- uid: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.AddCommonWebServices``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions)
+  name: AddCommonWebServices<TLogWriter>(IServiceCollection, ServicesCollectionOptions)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.html#SystemLibrary_Common_Web_Extensions_IServiceCollectionExtensions_AddCommonWebServices__1_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_
+  commentId: M:SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.AddCommonWebServices``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions)
+  name.vb: AddCommonWebServices(Of TLogWriter)(IServiceCollection, ServicesCollectionOptions)
+  fullName: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.AddCommonWebServices<TLogWriter>(Microsoft.Extensions.DependencyInjection.IServiceCollection, SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions)
+  fullName.vb: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.AddCommonWebServices(Of TLogWriter)(Microsoft.Extensions.DependencyInjection.IServiceCollection, SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions)
+  nameWithType: IServiceCollectionExtensions.AddCommonWebServices<TLogWriter>(IServiceCollection, ServicesCollectionOptions)
+  nameWithType.vb: IServiceCollectionExtensions.AddCommonWebServices(Of TLogWriter)(IServiceCollection, ServicesCollectionOptions)
 - uid: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.UseAutomaticKeyGenerationFile(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions)
   name: UseAutomaticKeyGenerationFile(IServiceCollection, ServicesCollectionOptions)
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.html#SystemLibrary_Common_Web_Extensions_IServiceCollectionExtensions_UseAutomaticKeyGenerationFile_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_

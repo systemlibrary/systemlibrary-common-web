@@ -218,7 +218,21 @@ partial class Log
 
             else if (obj is Exception ex)
             {
-                AppendMessageFormat("exception", ex.Message + "\n" + ex.StackTrace, message, level);
+                var exmsg = ex.Message;
+
+                var innerEx = ex.InnerException;
+                var c = 0; 
+                while(innerEx?.Message != null)
+                {
+                    exmsg += "\n" + innerEx.Message;
+
+                    innerEx = innerEx.InnerException;
+
+                    c++;
+                    if (c > 5) break;
+                }
+
+                AppendMessageFormat("exception", exmsg + "\n" + ex.StackTrace, message, level);
             }
 
             else if (obj is ITuple ituple)

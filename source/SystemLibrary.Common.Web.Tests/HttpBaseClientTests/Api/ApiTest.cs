@@ -20,8 +20,6 @@ public class ApiTest
     [TestMethod]
     public void Target_Local_Api_With_String_As_Json_Data_Success()
     {
-        if (LocalApiKey.IsNot()) return;
-
         var client = new HttpBaseClient(true, true, 20000, false);
 
         var headers = new Dictionary<string, string>()
@@ -34,12 +32,14 @@ public class ApiTest
 
         var data = "{\"query\":\"query Query { field0: countries{name countryCode} }\",\"variables\":{}}";
 
+        if (LocalApiKey.IsNot()) return;
+
         var result = client.Post<string>(LocalApiUrl, data, MediaType.json, 20000, headers);
 
         try
         {
             Assert.IsTrue(result.IsSuccess);
-            Assert.IsTrue(result.Data.Contains("Island"));
+            Assert.IsTrue(result.Data.Contains("Iceland"));
         }
         catch
         {
@@ -51,8 +51,6 @@ public class ApiTest
     [TestMethod]
     public void Target_Local_Api_With_Bytes_As_Json_Data_Success()
     {
-        if (LocalApiKey.IsNot()) return;
-
         var client = new HttpBaseClient(true, true, 20000, false);
 
         var headers = new Dictionary<string, string>()
@@ -65,12 +63,14 @@ public class ApiTest
 
         var data = "{\"query\":\"query Query { field0: countries{name countryCode} }\",\"variables\":{}}";
 
+        if (LocalApiKey.IsNot()) return;
+
         var result = client.Post<string>(LocalApiUrl, data.GetBytes(), MediaType.json, 20000, headers);
 
         try
         {
             Assert.IsTrue(result.IsSuccess);
-            Assert.IsTrue(result.Data.Contains("Island"));
+            Assert.IsTrue(result.Data.Contains("Iceland"));
         }
         catch
         {
