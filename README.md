@@ -16,7 +16,7 @@ Library with classes and methods for every &gt;=  .NET 7 web application
 #### Modules
 * HttpBaseClient
   * Reuses the underlying TCP connection for 2 minutes, saving 10's of milliseconds on subsequent requests
-  * Retries once if a request fails, by recreating the TCP connection, and trying again with a short (10s) timeout
+  * Retries once if a request fails, but this time on a new TCP connection with a limited 10s timeout
 * Cache
   * Auto-generating cache keys based on variables in "function scope"
   * A 3 minute default cache duration
@@ -31,10 +31,10 @@ Library with classes and methods for every &gt;=  .NET 7 web application
 - &gt;= .NET 7
 - Microsoft.AspNetCore.App Framework
 
-## Latest Version
-- 7.7.0.2
-- Updated deps
-- Log exception now logs messages for up to 5 inner exceptions too
+## Latest Release Notes
+- 7.8.0.1
+- Updated deps (breaking change: json datetime conversion default supports a lot more formats, hopefully not breaking though. Check DateTime conversions in API's and from HTML to C# controllers)
+- Cache.TryGet method added
 
 #### Version history
 - View git history of this file if interested
@@ -42,7 +42,6 @@ Library with classes and methods for every &gt;=  .NET 7 web application
 ## Installation
 - Simply install the nuget package
 - [Installation guide](https://systemlibrary.github.io/systemlibrary-common-web/Install.html)
-
 
 ## Documentation
 - [Documentation with code samples](https://systemlibrary.github.io/systemlibrary-common-web/)

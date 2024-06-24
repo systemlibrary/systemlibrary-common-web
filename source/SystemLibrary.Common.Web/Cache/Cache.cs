@@ -97,9 +97,36 @@ public static class Cache
     }
 
     /// <summary>
-    /// Get data from cache as T
+    /// Try get data from cache as T
     /// 
-    /// - returns default if cacheKey is null or empty
+    /// Returns default if cacheKey do not exist or exception is thrown else T
+    /// </summary>
+    /// <example>
+    /// Simple try get object from cache based on a cache key:
+    /// <code class="language-csharp hljs">
+    /// var cacheKey = "hello-world-key";
+    /// 
+    /// var data = Cache.TryGet&lt;string&gt;(cacheKey, () => throw new Exception("does not crash application"));
+    /// 
+    /// //data is now default string (null), the exception is logged through your ILogWriter if youve specified one, and application continues...
+    /// </code>
+    /// </example>
+    public static T TryGet<T>(string cacheKey, Func<T> getItem, TimeSpan duration = default, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null, bool debug = false)
+    {
+        try
+        {
+            return Get<T>(getItem, cacheKey, duration, condition, skipForAuthenticatedUsers, skipForAdmins, skipFor, debug);
+        }
+        catch(Exception ex)
+        {
+            Log.Error(ex);
+
+            return default;
+        }
+    }
+
+    /// <summary>
+    /// Get data from cache as T
     /// 
     /// Returns default T if cacheKey do not exist in cache, else T
     /// </summary>

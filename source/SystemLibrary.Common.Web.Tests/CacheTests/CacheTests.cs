@@ -264,4 +264,37 @@ public class CacheTests
         public static string Phone;
     }
 
+    [TestMethod]
+    public void TryGet_From_Cache_Throws_Returns_Default()
+    {
+        var item = Cache.TryGet<string>(CacheKey + "try-get-1", () => throw new Exception("OK"));
+
+        Assert.IsTrue(item == null, "Item is not null");
+    }
+
+    [TestMethod]
+    public void TryGet_From_Cache_DoesNotThrow_Returns_Default()
+    {
+        var item = Cache.TryGet<string>(CacheKey + "try-get-2", () => "Hello world");
+
+        Assert.IsTrue(item == "Hello world", "Item is not null");
+    }
+
+    [TestMethod]
+    public void TryGet_MultipleTimes_From_Cache_DoesNotThrow_Returns_Default()
+    {
+        string item;
+        for (int i = 0; i < 10; i++)
+        {
+            item = Cache.TryGet<string>(CacheKey + "try-get-3", () => "Hello world");
+
+            Assert.IsTrue(item == "Hello world", "Item is not null");
+        }
+
+        item = Cache.Get<string>(CacheKey + "try-get-3", () => "Hello world");
+        Assert.IsTrue(item == "Hello world");
+
+        item = Cache.Get<string>(CacheKey + "try-get-3");
+        Assert.IsTrue(item == "Hello world");
+    }
 }
