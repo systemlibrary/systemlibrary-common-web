@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -28,23 +29,55 @@ partial class HttpBaseClient
                 }
             }
 
+            static bool IsRequestEligibleForRetry(HttpResponseMessage response, HttpMethod method)
+            {
+                var statusCode = response?.StatusCode;
+
+                if (method == HttpMethod.Get || method == HttpMethod.Head || method == HttpMethod.Trace)
+                {
+                    return statusCode == null ||
+                            statusCode == System.Net.HttpStatusCode.BadGateway ||
+                            statusCode == System.Net.HttpStatusCode.GatewayTimeout ||
+                            statusCode == System.Net.HttpStatusCode.RequestTimeout;
+                }
+
+                if(method == HttpMethod.Post || method == HttpMethod.Put || method == HttpMethod.Delete)
+                {
+                    return statusCode == null ||
+                        statusCode == System.Net.HttpStatusCode.BadGateway ||
+                        statusCode == System.Net.HttpStatusCode.GatewayTimeout;
+                }
+
+                return false;
+            }
+
             protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
             {
+                HttpResponseMessage response = null;
                 try
                 {
-                    return await base
+                    response = await base
                         .SendAsync(request, cancellationToken)
                         .ConfigureAwait(false);
                 }
-                catch (TaskCanceledException)
+                catch (Exception ex)
                 {
-                    if (request.Method == HttpMethod.Get ||
-                        request.Method == HttpMethod.Head ||
-                        request.Method == HttpMethod.Trace)
-                        throw new RetryRequestException();
+                    if (ex is TaskCanceledException)
+                    {
+                        if(request.Method == HttpMethod.Get || request.Method == HttpMethod.Trace)
+                            throw new RetryHttpRequestException();
+                    }
+
+                    if (IsRequestEligibleForRetry(response, request.Method))
+                        throw new RetryHttpRequestException();
 
                     throw;
                 }
+
+                if (IsRequestEligibleForRetry(response, request.Method))
+                    throw new RetryHttpRequestException();
+
+                return response;
             }
         }
     }

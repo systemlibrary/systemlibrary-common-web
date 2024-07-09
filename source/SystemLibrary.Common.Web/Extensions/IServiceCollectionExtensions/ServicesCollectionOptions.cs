@@ -119,8 +119,9 @@ public class ServicesCollectionOptions : BaseOptions
     public StringOutputFormatter AdditionalSupportedMediaTypes = null;
 
     /// <summary>
-    /// Auto-generate a data protection file that will be used for encrypting and decryption data within your application
+    /// Auto-generate a data protection file that will be used for encrypting and decrypting data within your application
     /// - string extension methods Encrypt and Decrypt will use the file internally as a key
+    /// - string extension methods EncryptUsingKeyRing and DecryptUsingKeyRing will use the generated files internally
     /// - cookies read over http will be encrypted and decrypted with the key file, if you host your app over several instances, they must all share the same key of course
     /// </summary>
     public bool UseAutomaticKeyGenerationFile = false;

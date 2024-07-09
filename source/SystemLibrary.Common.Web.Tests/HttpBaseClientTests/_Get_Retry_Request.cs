@@ -17,7 +17,7 @@ namespace SystemLibrary.Common.Web.Tests
 
                 throw new Exception(nameof(service.Get_Retry_Request_Against_Firewall) + " should throw RetryRequestException");
             }
-            catch (RetryRequestException)
+            catch (RetryHttpRequestException)
             {
                 Assert.IsTrue(true);
             }

@@ -111,11 +111,11 @@ public static class Cache
     /// //data is now default string (null), the exception is logged through your ILogWriter if youve specified one, and application continues...
     /// </code>
     /// </example>
-    public static T TryGet<T>(string cacheKey, Func<T> getItem, TimeSpan duration = default, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null, bool debug = false)
+    public static T TryGet<T>(string cacheKey, Func<T> getItem, TimeSpan duration = default, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null)
     {
         try
         {
-            return Get<T>(getItem, cacheKey, duration, condition, skipForAuthenticatedUsers, skipForAdmins, skipFor, debug);
+            return Get<T>(getItem, cacheKey, duration, condition, skipForAuthenticatedUsers, skipForAdmins, skipFor);
         }
         catch(Exception ex)
         {
@@ -173,9 +173,9 @@ public static class Cache
     /// }
     /// </code>
     /// </example>
-    public static T Get<T>(string cacheKey, Func<T> getItem, TimeSpan duration = default, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null, bool debug = false)
+    public static T Get<T>(string cacheKey, Func<T> getItem, TimeSpan duration = default, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null)
     {
-        return Get<T>(getItem, cacheKey, duration, condition, skipForAuthenticatedUsers, skipForAdmins, skipFor, debug);
+        return Get<T>(getItem, cacheKey, duration, condition, skipForAuthenticatedUsers, skipForAdmins, skipFor);
     }
 
     /// <summary>
@@ -204,9 +204,9 @@ public static class Cache
     /// //If we should set skipForAdmins: false, then administrators will also get cached content
     /// </code>
     /// </example>
-    public static T Get<T>(Func<T> getItem, TimeSpan duration, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null, bool debug = false)
+    public static T Get<T>(Func<T> getItem, TimeSpan duration, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null)
     {
-        return Get<T>(getItem, null, duration, condition, skipForAuthenticatedUsers, skipForAdmins, skipFor, debug);
+        return Get<T>(getItem, null, duration, condition, skipForAuthenticatedUsers, skipForAdmins, skipFor);
     }
 
     /// <summary>
@@ -291,7 +291,7 @@ public static class Cache
     /// //Note: cache key for an authenticated user would minimum append 'true' to the above cacheKey, and if it is a ClaimsPrincipal user, it would append all roles that user belongs to
     /// </code>
     /// </example>
-    public static T Get<T>(Func<T> getItem, string cacheKey = null, TimeSpan duration = default, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null, bool debug = false)
+    public static T Get<T>(Func<T> getItem, string cacheKey = null, TimeSpan duration = default, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null)
     {
         if (cacheKey == "")
             return getItem();
@@ -305,14 +305,14 @@ public static class Cache
         if (cacheKey == null)
             cacheKey = CreateCacheKey(getItem, condition);
 
-        if (debug)
+        if (AppSettings.Debug)
             Log.Debug("Cache.Get() debug parameter is true: cache key is " + cacheKey);
 
         var cached = cache.Get(cacheKey);
 
         if (cached != null)
         {
-            if (debug)
+            if (AppSettings.Debug)
                 Log.Debug(obj: "Cache.Get() debug parameter is true: item cached");
             return (T)cached;
         }
@@ -321,7 +321,7 @@ public static class Cache
 
         if (cached != null && (condition == null || condition((T)cached)))
         {
-            if (debug)
+            if (AppSettings.Debug)
                 Log.Debug("Cache.Get() debug paramter is true: conditions are met, adding item to cache");
 
             Insert(cacheKey, cached, duration);
@@ -393,7 +393,7 @@ public static class Cache
         {
             var type = target.GetType();
 
-            var fields = Dictionaries.GenerateCacheKeyFields.TryGet(type, () =>
+            var fields = Dictionaries.GenerateCacheKeyFields.Cache(type, () =>
             {
                 return type.GetFields(BindingFlags.FlattenHierarchy | BindingFlags.Instance | BindingFlags.Public);
             });
@@ -443,12 +443,12 @@ public static class Cache
 
                                 if (!valueType.IsClass) continue;
 
-                                var valueProperties = Dictionaries.GenerateCacheKeyValueTypeProperties.TryGet(valueType, () =>
+                                var valueProperties = Dictionaries.GenerateCacheKeyValueTypeProperties.Cache(valueType, () =>
                                 {
                                     return valueType.GetProperties(BindingFlags.Public | BindingFlags.GetProperty | BindingFlags.Static | BindingFlags.Instance);
                                 });
 
-                                var valueFields = Dictionaries.GenerateCacheKeyValueTypeFields.TryGet(valueType, () =>
+                                var valueFields = Dictionaries.GenerateCacheKeyValueTypeFields.Cache(valueType, () =>
                                 {
                                     return valueType.GetFields(BindingFlags.Public | BindingFlags.GetField | BindingFlags.Static | BindingFlags.Instance);
                                 });

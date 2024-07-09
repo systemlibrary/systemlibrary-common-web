@@ -12,7 +12,7 @@
 		<DefaultItemExcludes>$(DefaultItemExcludes);Release.cmd;**\*.nupkg;nuget-icon.png;</DefaultItemExcludes>
 		<RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
 		<DebugType>pdbonly</DebugType>
-		<GenerateDocumentationFile>False</GenerateDocumentationFile>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<PackageOutputPath>..\$(MSBuildProjectName)</PackageOutputPath>
 		<Company>System Library</Company>
 		<Authors>System Library</Authors>
@@ -22,6 +22,7 @@
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<Optimize>true</Optimize>
 		<DefineConstants />
+		<DebugType>full</DebugType>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -42,7 +43,13 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="7.*" />
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="7.*" />
-		<PackageReference Include="SystemLibrary.Common.Net" Version="7.7.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="SystemLibrary.Common.Net">
+	    <HintPath>..\..\..\systemlibrary-common-net\source\SystemLibrary.Common.Net\bin\Release\net7.0\SystemLibrary.Common.Net.dll</HintPath>
+	    <Private>False</Private>
+	  </Reference>
 	</ItemGroup>
 
 	<PropertyGroup>
@@ -67,6 +74,7 @@
 		<PackageReleaseNotes>Latest version: https://github.com/systemlibrary/systemlibrary-common-web#latest-version</PackageReleaseNotes>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 		<FileVersion>$(Version)</FileVersion>
+		<ProduceReferenceAssembly>False</ProduceReferenceAssembly>
 	</PropertyGroup>
 
 </Project>

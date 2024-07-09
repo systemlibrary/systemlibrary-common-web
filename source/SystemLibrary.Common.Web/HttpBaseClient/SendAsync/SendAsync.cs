@@ -8,6 +8,27 @@ namespace SystemLibrary.Common.Web;
 
 partial class HttpBaseClient
 {
+    static int? _CustomTimeoutMilliseconds;
+    static int CustomTimeoutMilliseconds
+    {
+        get
+        {
+            if(_CustomTimeoutMilliseconds == null)
+            {
+                if (AppSettings.Current.SystemLibraryCommonWeb.HttpBaseClient.TimeoutMilliseconds != DefaultTimeoutMilliseconds && AppSettings.Current.SystemLibraryCommonWeb.HttpBaseClient.TimeoutMilliseconds > 0)
+                {
+                    _CustomTimeoutMilliseconds = AppSettings.Current.SystemLibraryCommonWeb.HttpBaseClient.TimeoutMilliseconds;
+                }
+                else
+                {
+                    _CustomTimeoutMilliseconds = 0;
+                }
+            }
+
+            return _CustomTimeoutMilliseconds.Value;
+        }
+    }
+
     async Task<ClientResponse<T>> SendAsync<T>(HttpMethod method, string url, object data, MediaType mediaType, int timeoutMilliseconds, IDictionary<string, string> headers, JsonSerializerOptions jsonSerializerOptions, CancellationToken cancellationToken)
     {
         //Timeout is currently set to the default one, lets see if it shouldve been overridden by other settings
@@ -18,9 +39,8 @@ partial class HttpBaseClient
                 timeoutMilliseconds = TimeoutMilliseconds;
 
             //Is it overridden by having a valid appSettings value?
-            else if (AppSettings.Current.SystemLibraryCommonWeb.HttpBaseClient.TimeoutMilliseconds != DefaultTimeoutMilliseconds && AppSettings.Current.SystemLibraryCommonWeb.HttpBaseClient.TimeoutMilliseconds > 0)
-                timeoutMilliseconds = AppSettings.Current.SystemLibraryCommonWeb.HttpBaseClient.TimeoutMilliseconds;
-            //TODO: This appSettings check should occur during construction of the client, so once per client, instead of over and over again...
+            else if (CustomTimeoutMilliseconds > 0)
+                timeoutMilliseconds = CustomTimeoutMilliseconds;
         }
 
         if (url.IsNot())
@@ -35,7 +55,7 @@ partial class HttpBaseClient
             Headers = headers,
             MediaType = mediaType,
             Content = content,
-            RetryOnceOnRequestCancelled = RetryOnceOnRequestCancelled,
+            RetryOnTransientErrors = UseRetryOnErrorPolicy,
             IgnoreSslErrors = IgnoreSslErrors,
             ForceNewClient = false,
             TimeoutMilliseconds = timeoutMilliseconds,

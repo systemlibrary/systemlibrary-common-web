@@ -130,6 +130,22 @@ references:
   fullName.vb: SystemLibrary.Common.Web.Cache.Set(Of T)(System.String, T, System.TimeSpan)
   nameWithType: Cache.Set<T>(String, T, TimeSpan)
   nameWithType.vb: Cache.Set(Of T)(String, T, TimeSpan)
+- uid: SystemLibrary.Common.Web.Cache.TryGet*
+  name: TryGet
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_TryGet_
+  commentId: Overload:SystemLibrary.Common.Web.Cache.TryGet
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Cache.TryGet
+  nameWithType: Cache.TryGet
+- uid: SystemLibrary.Common.Web.Cache.TryGet``1(System.String,System.Func{``0},System.TimeSpan,System.Func{``0,System.Boolean},System.Boolean,System.Boolean,System.Func{System.Boolean},System.Boolean)
+  name: TryGet<T>(String, Func<T>, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>, Boolean)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_TryGet__1_System_String_System_Func___0__System_TimeSpan_System_Func___0_System_Boolean__System_Boolean_System_Boolean_System_Func_System_Boolean__System_Boolean_
+  commentId: M:SystemLibrary.Common.Web.Cache.TryGet``1(System.String,System.Func{``0},System.TimeSpan,System.Func{``0,System.Boolean},System.Boolean,System.Boolean,System.Func{System.Boolean},System.Boolean)
+  name.vb: TryGet(Of T)(String, Func(Of T), TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean), Boolean)
+  fullName: SystemLibrary.Common.Web.Cache.TryGet<T>(System.String, System.Func<T>, System.TimeSpan, System.Func<T, System.Boolean>, System.Boolean, System.Boolean, System.Func<System.Boolean>, System.Boolean)
+  fullName.vb: SystemLibrary.Common.Web.Cache.TryGet(Of T)(System.String, System.Func(Of T), System.TimeSpan, System.Func(Of T, System.Boolean), System.Boolean, System.Boolean, System.Func(Of System.Boolean), System.Boolean)
+  nameWithType: Cache.TryGet<T>(String, Func<T>, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>, Boolean)
+  nameWithType.vb: Cache.TryGet(Of T)(String, Func(Of T), TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean), Boolean)
 - uid: SystemLibrary.Common.Web.CalleeCancelledRequestException
   name: CalleeCancelledRequestException
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.CalleeCancelledRequestException.html

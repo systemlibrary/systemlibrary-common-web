@@ -60,19 +60,20 @@ public class Startup
 ```json  
 {
 	"systemLibraryCommonWeb": {
+		"debug": false,	// Internal debug info in this package is logged if true
+
 		"httpBaseClient": {
-			"timeoutMilliseconds": 60000,
-			"retryRequestTimeoutSeconds": 10,	//Limited to 1-120
-			"cacheClientConnectionSeconds": 120
+		  "timeoutMilliseconds": 40000,
+		  "retryRequestTimeoutMs": 10000,
+		  "cacheClientConnectionSeconds": 120
 		},
 
 		"cache": {
-			"defaultDuration": 180
+		  "defaultDuration": 180
 		},
 
 		"log": {
-			"isEnabled": true,
-			"level": "Info" // Info, Debug, Warning, Error
+		  "level": "Info"
 		},
 
 		"logMessageBuilder": {
@@ -82,7 +83,7 @@ public class Startup
 			"appendBrowser": false,
 			"appendCorrelationId": true,
 			"appendCookieInfo": false,
-			"format": null // "json", null
+			"format": null // "json" or null, null is default
 		}
 	}
 }

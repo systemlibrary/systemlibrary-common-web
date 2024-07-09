@@ -10,7 +10,7 @@ namespace SystemLibrary.Common.Web.Tests
     partial class HttpBaseClientTests
     {
         [TestMethod]
-        public void Post_Multipart_Return_Partial_Json_Success()
+        public void Post_Multipart_Json_As_Bytes_Return_Partial_Json_Form()
         {
             var data = Assemblies.GetEmbeddedResource("HttpBaseClientTests/Files", "text.json");
 
@@ -25,6 +25,10 @@ namespace SystemLibrary.Common.Web.Tests
             Assert.IsTrue(form != null, "!form");
             Assert.IsTrue(form.file != null, "!file");
             Assert.IsTrue(form.file.Contains("filename"), "!filename");
+
+            var formstr = response.Data.PartialJson<string>("json/form/file");
+
+            Assert.IsTrue(formstr.Contains("filename"));
         }
 
         [TestMethod]

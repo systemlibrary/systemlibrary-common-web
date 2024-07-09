@@ -4,20 +4,24 @@ namespace SystemLibrary.Common.Web;
 
 internal class AppSettings : Config<AppSettings>
 {
+    internal static bool Debug = Current.SystemLibraryCommonWeb.Debug;
+
     public AppSettings()
     {
-        SystemLibraryCommonWeb = new Configuration();
+        SystemLibraryCommonWeb = new PackageConfig();
     }
 
-    public class Configuration
+    public class PackageConfig
     {
-        public Configuration()
+        public PackageConfig()
         {
             Cache = new CacheConfiguration();
             HttpBaseClient = new HttpBaseClientConfiguration();
             Log = new LogConfiguration();
             LogMessageBuilder = new LogMessageBuilderOptions();
         }
+        
+        public bool Debug { get; set; } = false;
 
         public CacheConfiguration Cache { get; set; }
         public HttpBaseClientConfiguration HttpBaseClient { get; set; }
@@ -26,16 +30,15 @@ internal class AppSettings : Config<AppSettings>
 
         public class LogConfiguration
         {
-            public bool IsEnabled { get; set; } = true;
             public LogLevel Level { get; set; } = LogLevel.Info;
         }
 
         public class HttpBaseClientConfiguration
         {
-            public int TimeoutMilliseconds { get; set; } = 60000;
+            public int TimeoutMilliseconds { get; set; } = 40000;
 
-            public int RetryRequestTimeoutSeconds { get; set; } = 10;
-            public int CacheClientConnectionSeconds { get; set; } = 120;
+            public int RetryRequestTimeoutMs { get; set; } = 10000;
+            public int CacheClientConnectionSeconds { get; set; } = 110;
         }
 
         public class CacheConfiguration
@@ -57,5 +60,5 @@ internal class AppSettings : Config<AppSettings>
         }
     }
 
-    public Configuration SystemLibraryCommonWeb { get; set; }
+    public PackageConfig SystemLibraryCommonWeb { get; set; }
 }

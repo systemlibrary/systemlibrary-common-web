@@ -11,7 +11,7 @@ namespace SystemLibrary.Common.Web.Tests
         {
             var webService = new HttpBinClient();
 
-            var response = webService.GetWithTimeout(12500);
+            var response = webService.GetWithTimeout(13000);
 
             Assert.IsTrue(response.StatusCode == System.Net.HttpStatusCode.OK);
             Assert.IsTrue(response.Data.Contains("httpbin.org"));
@@ -59,7 +59,7 @@ namespace SystemLibrary.Common.Web.Tests
                 //we will get a cached response as the only difference in the request is the timeout
                 Assert.IsTrue(true);
             }
-            catch (RetryRequestException retry)
+            catch (RetryHttpRequestException retry)
             {
                 Assert.IsTrue(true, "Retry thrown, short timeout, against a long delay request");
 
@@ -85,7 +85,7 @@ namespace SystemLibrary.Common.Web.Tests
                 //we will get a cached response as the only difference in the request is the timeout
                 Assert.IsTrue(false, "Should have thrown a timeout error, your timeout on retry is most likely large, so it returns 200 OK.");
             }
-            catch (RetryRequestException ex)
+            catch (RetryHttpRequestException ex)
             {
                 Assert.IsTrue(true, "Retry was not thrown");
             }

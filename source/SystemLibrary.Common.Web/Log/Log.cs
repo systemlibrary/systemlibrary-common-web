@@ -1,4 +1,5 @@
-﻿using SystemLibrary.Common.Web;
+﻿using SystemLibrary.Common.Net;
+using SystemLibrary.Common.Web;
 
 /// <summary>
 /// Log class, responsible for taking a message or exception, appending some more data based on the current request, and send that data as one message to your LogWriter
@@ -143,13 +144,25 @@ public static partial class Log
 
     static int minLevel = -1;
 
+    static bool? _LogIsOff;
+    static bool LogIsOff
+    {
+        get
+        {
+            if(_LogIsOff == null)
+            {
+                _LogIsOff = AppSettings.Current?.SystemLibraryCommonWeb?.Log?.Level == LogLevel.Off;
+            }
+            return _LogIsOff.Value;
+        }
+    }
+    
+
     static void Write(object obj, LogLevel level)
     {
         if ((int)level != 99999)
         {
-            var isEnabled = AppSettings.Current?.SystemLibraryCommonWeb?.Log?.IsEnabled == true;
-
-            if (!isEnabled) return;
+            if (LogIsOff) return;
 
             if (minLevel == -1)
                 minLevel = (int)(AppSettings.Current?.SystemLibraryCommonWeb?.Log?.Level ?? LogLevel.Info);
@@ -197,7 +210,8 @@ public enum LogLevel
     Info = 1,
     Debug,
     Warning,
-    Error
+    Error,
+    Off = 999
 }
 
 

@@ -14,9 +14,10 @@ partial class HttpBaseClient
         public int TimeoutMilliseconds;
         public IDictionary<string, string> Headers;
         public bool ForceNewClient;
-        public bool RetryOnceOnRequestCancelled;
+        public bool RetryOnTransientErrors;
         public bool IgnoreSslErrors;
         public CancellationToken CancellationToken;
         public MediaType MediaType;
     }
+
 }

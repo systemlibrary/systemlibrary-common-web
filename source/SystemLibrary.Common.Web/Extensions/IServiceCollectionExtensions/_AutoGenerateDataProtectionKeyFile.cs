@@ -6,6 +6,8 @@ using System.Reflection;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Extensions.DependencyInjection;
 
+using SystemLibrary.Common.Net;
+
 namespace SystemLibrary.Common.Web.Extensions;
 
 partial class IServiceCollectionExtensions
@@ -14,48 +16,49 @@ partial class IServiceCollectionExtensions
     {
         if (!options.UseAutomaticKeyGenerationFile) return services;
 
-        var type = Type.GetType("SystemLibrary.Common.Net.CryptationKeyFile, SystemLibrary.Common.Net");
+        var type = Type.GetType("SystemLibrary.Common.Net.CryptationKey, SystemLibrary.Common.Net");
 
         if (type == null)
-            throw new Exception("SystemLibrary.Common.Net.CryptationKeyFile is not loaded or type is renamed in version you are using");
+            throw new Exception("SystemLibrary.Common.Net.SystemLibrary is not loaded or type is renamed in version you are using");
 
-        var keyFileFullName = type.GetMethods(BindingFlags.Static | BindingFlags.NonPublic)
-            .Where(x => x.Name == "GetKeyFileFullName")
+        var method = type.GetMethods(BindingFlags.Static | BindingFlags.NonPublic)
+            .Where(x => x.Name == "GetKeyFromDataRingKeyFile")
             .FirstOrDefault();
 
-        if (keyFileFullName == null)
-            throw new Exception("Method 'GetKeyFileFullName' is renamed or do not exist");
+        if (method == null)
+            throw new Exception("Method 'GetKeyFromDataRingKeyFile' is renamed or do not exist");
 
-        var baseDirectory = AppContext.BaseDirectory;
+        var keyFileNameHashed = (string)method.Invoke(null, null);
 
-        var rootDirectoryInfo = new DirectoryInfo(baseDirectory);
+        var keyFileExists = keyFileNameHashed.Is();
 
-        int searchBinFolderDepth = 4;
-
-        var startSearch = new DirectoryInfo(baseDirectory);
-        while (searchBinFolderDepth > 0)
-        {
-            if (startSearch?.Name?.ToLower() == "bin")
-            {
-                rootDirectoryInfo = startSearch.Parent;
-                break;
-            }
-            startSearch = startSearch?.Parent;
-
-            searchBinFolderDepth--;
-        }
-
-        var keyFullFileName = keyFileFullName.Invoke(null, new object[] { rootDirectoryInfo.FullName }) + "";
-
-        var hasCryptationKeyFile = keyFullFileName.Is();
-
-        var appName = "AppName" + (Assembly.GetEntryAssembly()?.FullName + (hasCryptationKeyFile ? keyFullFileName : baseDirectory)).ReplaceAllWith("-", ",", ".", " ", "=", "/", "\\");
+        var appName = "AppName" +
+                Assembly.GetEntryAssembly()?
+                .GetName()?
+                .Name?
+                .ToLower()?
+                .ReplaceAllWith("-", ",", ".", " ", "=", "/", "\\")?
+                .MaxLength(32);
 
         var builder = services.AddDataProtection();
 
-        if (hasCryptationKeyFile)
+        var rootDirectoryInfo = new DirectoryInfo(EnvironmentConfig.Current.ContentRootPath);
+
+        if (keyFileExists)
         {
-            rootDirectoryInfo = new DirectoryInfo(keyFullFileName.Replace(Path.GetFileName(keyFullFileName), ""));
+            var dirProperty = type.GetProperties(BindingFlags.Static | BindingFlags.NonPublic)
+                .Where(x => x.Name == "Dir")
+                .FirstOrDefault();
+
+            if (dirProperty == null)
+                throw new Exception("Dir property has been renamed or deleted");
+
+            var dir = dirProperty.GetValue(null) + "";
+
+            if(dir.Is())
+            {
+                rootDirectoryInfo = new DirectoryInfo(dir);
+            }
 
             builder = builder.DisableAutomaticKeyGeneration();
         }

@@ -48,7 +48,7 @@ partial class HttpBaseClient
 
                     throw new TimeoutException("Request to " + request.RequestUri.AbsoluteUri + " timed out after the configured timeout of: " + RequestTimeoutSpan.ToString(@"ss\.fff") + " seconds, or was cancelled by server. " + operationCancelled.Message);
                 }
-                catch (RetryRequestException)
+                catch (RetryHttpRequestException)
                 {
                     if (ClientRequestedCancellation(cancellationToken))
                         throw new CalleeCancelledRequestException("Callee cancelled the request, not retrying against " + request.RequestUri.AbsoluteUri);

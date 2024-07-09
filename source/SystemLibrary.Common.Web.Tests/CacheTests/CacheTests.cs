@@ -25,8 +25,7 @@ public class CacheTests
         {
             return "Text";
         },
-        cacheKey: CacheKey + "2",
-        debug: true);
+        cacheKey: CacheKey + "2");
 
         Assert.IsTrue(cached == "Text", "Cache did not return the GetItem() value");
 
@@ -68,7 +67,7 @@ public class CacheTests
     {
         var getItems = () => GetText("Hello", 101, true);
 
-        var cached = Cache.Get(GetItemsFromFunction, debug: true);
+        var cached = Cache.Get(GetItemsFromFunction);
         Assert.IsTrue(cached.Is());
 
         cached = Cache.Get(GetItemsFromFunction);
@@ -95,10 +94,10 @@ public class CacheTests
     {
         var getItems = () => GetText("Hello", 123, true);
 
-        var cached = Cache.Get(getItems, debug: true);
+        var cached = Cache.Get(getItems);
         Assert.IsTrue(cached.Is());
 
-        cached = Cache.Get(getItems, debug: true);
+        cached = Cache.Get(getItems);
         Assert.IsTrue(cached.Is());
         Assert.IsTrue(cached.Contains("123"));
 

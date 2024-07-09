@@ -9,7 +9,7 @@ namespace SystemLibrary.Common.Web.Tests
         {
             var webService = new HttpBinClient();
 
-            var response = webService.Head(MediaType.json);
+            var response = webService.Head(MediaType.None);
 
             Assert.IsTrue(response.IsSuccess);
             Assert.IsTrue(response.StatusCode == System.Net.HttpStatusCode.OK);

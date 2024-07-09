@@ -12,7 +12,7 @@ using Microsoft.Net.Http.Headers;
 using SystemLibrary.Common.Net;
 using SystemLibrary.Common.Web;
 
-using static SystemLibrary.Common.Web.AppSettings.Configuration;
+using static SystemLibrary.Common.Web.AppSettings.PackageConfig;
 
 partial class Log
 {
@@ -290,8 +290,6 @@ partial class Log
 
         static MethodInfo DumpBuildMethod;
 
-        static Type _DumpType;
-        
         static void AppendClass(StringBuilder message, object obj)
         {
             if (DumpBuildMethod == null)

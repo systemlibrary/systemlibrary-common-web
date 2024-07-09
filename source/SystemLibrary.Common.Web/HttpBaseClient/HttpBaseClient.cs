@@ -8,7 +8,11 @@ namespace SystemLibrary.Common.Web;
 
 /// <summary>
 /// HttpBaseClient is a class for all http(s) requests in your project
-/// - Note: Polly (nuget package) does a similar thing about Retry, and it does a few other things, but last time I checked; it does not reuse the TCP connection, so it is actually unusable)
+/// 
+/// Uses HttpClient and Polly behind the scenes for features such as:
+/// - Reusable TCP connections
+/// - Retry up to two times with a new TCP connection on transient error policy
+/// - Short cuircuit breaking per url
 /// 
 /// Has:
 /// - a retry handler configured through constructor
@@ -88,27 +92,28 @@ public partial class HttpBaseClient
 {
     const int DefaultTimeoutMilliseconds = 60000;
 
-    bool RetryOnceOnRequestCancelled;
+    bool UseRetryOnErrorPolicy;
     bool IgnoreSslErrors;
     int TimeoutMilliseconds;
     bool ThrowOnUnsuccessfulStatusCode;
 
     /// <summary>
     /// </summary>
-    /// <param name="retryOnceOnRequestCancelled">Retry with a fixed 10 seconds timeout upon a request was cancelled</param>
+    /// <param name="useRetryOnErrorPolicy">Retry with a fixed 10 seconds timeout upon a request was cancelled</param>
     /// <param name="ignoreSslErrors">Set to true if you want to ignore errors such as Ssl Cert Expired</param>
     /// <param name="defaultTimeoutMilliseconds">Default is 60 seconds</param>
     /// <param name="throwOnUnsuccessfulStatusCode">Set to true if you want unsuccessful status codes to throw exceptions</param>
     public HttpBaseClient(
-        bool retryOnceOnRequestCancelled = false,
+        bool useRetryOnErrorPolicy = false,
         bool ignoreSslErrors = true,
         int defaultTimeoutMilliseconds = DefaultTimeoutMilliseconds,
         bool throwOnUnsuccessfulStatusCode = true)
     {
-        RetryOnceOnRequestCancelled = retryOnceOnRequestCancelled;
+        UseRetryOnErrorPolicy = useRetryOnErrorPolicy;
         IgnoreSslErrors = ignoreSslErrors;
         TimeoutMilliseconds = defaultTimeoutMilliseconds;
         ThrowOnUnsuccessfulStatusCode = throwOnUnsuccessfulStatusCode;
+
     }
 
     /// <summary>

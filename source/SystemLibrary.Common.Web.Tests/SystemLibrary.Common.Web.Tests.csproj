@@ -34,7 +34,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\SystemLibrary.Common.Web\SystemLibrary.Common.Web.csproj" />
+	  <ProjectReference Include="..\SystemLibrary.Common.Web\SystemLibrary.Common.Web.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="SystemLibrary.Common.Net">
+	    <HintPath>..\..\..\systemlibrary-common-net\source\SystemLibrary.Common.Net\bin\Release\net7.0\SystemLibrary.Common.Net.dll</HintPath>
+	  </Reference>
 	</ItemGroup>
 
 	<ItemGroup>

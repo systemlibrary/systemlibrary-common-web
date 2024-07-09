@@ -13,7 +13,7 @@ partial class HttpBaseClient
 
             var client = Client.GetClient(options.Url,
                 options.TimeoutMilliseconds,
-                options.RetryOnceOnRequestCancelled,
+                options.RetryOnTransientErrors,
                 options.ForceNewClient,
                 options.IgnoreSslErrors);
 

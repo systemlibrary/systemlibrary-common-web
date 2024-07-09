@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -8,6 +6,8 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
+
+using SystemLibrary.Common.Net;
 
 namespace SystemLibrary.Common.Web.Extensions;
 
@@ -18,6 +18,8 @@ public static partial class IServiceCollectionExtensions
 {
     public static IServiceCollection AddCommonWebServices(this IServiceCollection services, ServicesCollectionOptions options = null)
     {
+        Services.Configure(services);
+
         if (options == null)
             options = new ServicesCollectionOptions();
 
@@ -39,6 +41,8 @@ public static partial class IServiceCollectionExtensions
         if (options.UseResponseCaching)
             services.AddResponseCaching();
 
+        services.UseAutomaticKeyGenerationFile(options);
+
         IMvcBuilder builder = null;
 
         if (options.UseMvc)
@@ -49,9 +53,6 @@ public static partial class IServiceCollectionExtensions
 
         if (options.UseControllers)
             builder = services.UseAddControllers(options);
-
-        if (options.UseAutomaticKeyGenerationFile)
-            services.UseAutomaticKeyGenerationFile(options);
 
         if (options.AddApplicationAsPart)
         {
@@ -87,12 +88,11 @@ public static partial class IServiceCollectionExtensions
 
         // NOTE: Can this be Scoped instead?
         services.TryAddTransient<HtmlHelperFactory, HtmlHelperFactory>();
-        services = services.Configure<IISServerOptions>(options => { options.AllowSynchronousIO = true; });
-
-        Services.Collection = services;
+        services.Configure<IISServerOptions>(options => { options.AllowSynchronousIO = true; });
 
         return services;
     }
+
     /// <summary>
     /// Configures ServiceCollection in one-line, so register all of your own or other service configurations after this one
     /// 

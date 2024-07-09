@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+using SystemLibrary.Common.Net;
 using SystemLibrary.Common.Web.Tests._App;
 
 namespace SystemLibrary.Common.Web.Tests;
@@ -113,7 +114,7 @@ public class LogWriterTests
 
         var content = System.IO.File.ReadAllText(DumpFullPath);
 
-        Assert.IsTrue(content.Contains("Custom stack"));
+        Assert.IsTrue(content.Contains("Custom stack"), "Content: "  + content);
     }
 
     [TestMethod]

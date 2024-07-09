@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+using SystemLibrary.Common.Net;
 using SystemLibrary.Common.Web.Extensions;
 
 namespace SystemLibrary.Common.Web.Tests;
@@ -11,6 +12,32 @@ namespace SystemLibrary.Common.Web.Tests;
 [TestClass]
 public class IServiceCollectionExtensionsTests
 {
+    [TestMethod]
+    public void Test()
+    {
+        var options = new ServicesCollectionOptions();
+
+        // Create a key file if not existing, else do nada
+
+        // One file that lives forever at "some loc"
+        // Where is that Loc Though? AppRoot it says, fair, decent, but an XML there? Hm
+        // why not inside... bin? Appdata?
+        options.UseAutomaticKeyGenerationFile = true;
+        
+        var service = new ServiceCollectionTest();
+
+        service.UseAutomaticKeyGenerationFile(options);
+
+        Services.Configure(service);
+
+        var data = "hello world";
+        var enc = data.Encrypt();
+
+        var d = enc.Decrypt();
+        Assert.IsTrue(d == data, "Wrong: " + d);
+
+    }
+
     [TestMethod]
     public void Create_Data_Protection_File()
     {

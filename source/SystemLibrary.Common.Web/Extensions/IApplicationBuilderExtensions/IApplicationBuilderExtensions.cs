@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 
+using SystemLibrary.Common.Net;
+
 namespace SystemLibrary.Common.Web.Extensions;
 
 /// <summary>
@@ -59,6 +61,8 @@ public static partial class IApplicationBuilderExtensions
     /// </example>
     public static IApplicationBuilder UseCommonWebApp(this IApplicationBuilder app, IWebHostEnvironment env, AppBuilderOptions options = null)
     {
+        Services.Configure(app.ApplicationServices);
+
         if (options == null)
             options = new AppBuilderOptions();
 
@@ -172,7 +176,6 @@ public static partial class IApplicationBuilderExtensions
 
         ActionContextInstance.ActionContextAccessor = app.ApplicationServices.GetRequiredService<IActionContextAccessor>();
 
-        Services.ServiceProviderInstance = app.ApplicationServices;
 
         return app;
     }

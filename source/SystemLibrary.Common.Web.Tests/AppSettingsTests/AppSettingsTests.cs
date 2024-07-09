@@ -14,26 +14,26 @@ public partial class AppSettingsTests
     [TestMethod]
     public void Read_AppSettingsConfiguration()
     {
-        var httpBaseClientConfig = GetAppSettingsConfiguration("httpBaseClient");
+        var httpBaseClientConfiguration = GetAppSettingsConfiguration("httpBaseClient");
 
-        Assert.IsTrue(httpBaseClientConfig != null, "httpBaseClientConfig is null");
+        Assert.IsTrue(httpBaseClientConfiguration != null, "HttpBaseClientConfiguration is null");
 
-        var httpBaseClientProperties = httpBaseClientConfig.GetType().GetProperties();
+        var httpBaseClientProperties = httpBaseClientConfiguration.GetType().GetProperties();
 
         var count = 0;
         foreach (var property in httpBaseClientProperties)
         {
-            var value = property.GetValue(httpBaseClientConfig)?.ToString();
+            var value = property.GetValue(httpBaseClientConfiguration)?.ToString();
             if (property.Name.ToLower() == "timeoutmilliseconds")
             {
                 count++;
-                Assert.IsTrue(value == "20000", "timeoutmilliseconds is not 20.000: " + value);
+                Assert.IsTrue(value == "19500", "timeoutmilliseconds is not 19500: " + value);
             }
 
-            if (property.Name.ToLower() == "retryrequesttimeoutseconds")
+            if (property.Name.ToLower() == "retryrequesttimeoutms")
             {
                 count++;
-                Assert.IsTrue(value == "9", "retryrequesttimeoutseconds is not 9: " + value);
+                Assert.IsTrue(value == "177", "retryRequestTimeoutMs is not 177: " + value);
             }
 
             if (property.Name.ToLower() == "cacheclientconnectionseconds")
@@ -42,7 +42,7 @@ public partial class AppSettingsTests
                 Assert.IsTrue(value == "100", "cacheclientconnectionseconds is not 100: " + value);
             }
         }
-        Assert.IsTrue(count == 3, "One or more properties were not found in httpBaseClientConfig");
+        Assert.IsTrue(count == 3, "One or more properties were not found in httpBaseClientConfig " + count);
 
         var cacheConfig = GetAppSettingsConfiguration("cache");
 
@@ -71,11 +71,6 @@ public partial class AppSettingsTests
         foreach (var property in logProperties)
         {
             var value = property.GetValue(logConfig)?.ToString();
-            if (property.Name.ToLower() == "isenabled")
-            {
-                count++;
-                Assert.IsTrue(value == "True", "isEnabled " + value + ", should be True");
-            }
 
             if (property.Name.ToLower() == "level")
             {
@@ -83,7 +78,7 @@ public partial class AppSettingsTests
                 Assert.IsTrue(value == "Debug", "level is not 'Debug', it is " + value);
             }
         }
-        Assert.IsTrue(count == 2, "One or more properties were not found in logConfig, found count: " + count);
+        Assert.IsTrue(count == 1, "One or more properties were not found in logConfig, found count: " + count);
     }
 
     static object GetAppSettingsConfiguration(string systemLibraryWebName)

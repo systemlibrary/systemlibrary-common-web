@@ -8,13 +8,13 @@ namespace SystemLibrary.Common.Web.Tests
     {
         const string firewallClientUrl = "https://170.44.1.1/";
         const string clientUrl = "http://httpbin.org";
-        public HttpBinClient(bool retryOnRequestCancelled = false) : base(retryOnRequestCancelled)
+        public HttpBinClient(bool useRetryOnErrorPolicy = false) : base(useRetryOnErrorPolicy)
         {
         }
 
         public ClientResponse<string> Head(MediaType mediaType)
         {
-            return Head<string>("https://www.google.com", mediaType);
+            return Head<string>("http://httpbin.org", mediaType, timeoutMilliseconds: 3500);
         }
 
         public ClientResponse<string> Delete(object data, MediaType mediaType)
