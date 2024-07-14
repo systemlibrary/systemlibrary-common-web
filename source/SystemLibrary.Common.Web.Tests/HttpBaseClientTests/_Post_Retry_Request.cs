@@ -2,50 +2,49 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace SystemLibrary.Common.Web.Tests
+namespace SystemLibrary.Common.Web.Tests;
+
+partial class HttpBaseClientTests
 {
-    partial class HttpBaseClientTests
+    [TestMethod]
+    public void Post_Retry_Request_Fails()
     {
-        [TestMethod]
-        public void Post_Retry_Request_Fails()
+        try
         {
-            try
-            {
-                var service = new HttpBinClient(true);
+            var service = new HttpBinClient(true);
 
-                var response = service.Post_Retry_Request_Against_Firewall();
+            var response = service.Post_Retry_Request_Against_Firewall();
 
-                throw new Exception(nameof(service.Post_Retry_Request_Against_Firewall) + " should throw TimeoutException");
-            }
-            catch (RetryHttpRequestException ex)
-            {
-                Assert.IsTrue(true);
-            }
-            catch (Exception ex)
-            {
-                Assert.IsTrue(false, "Exception thrown should've been a TimeoutException. If it is a RetryException, a RetryException should only occur on GET/OPTION/HEAD HTTPMETHODS: " + ex.Message);
-            }
+            throw new Exception(nameof(service.Post_Retry_Request_Against_Firewall) + " should throw TimeoutException");
         }
-
-        [TestMethod]
-        public void Post_Retry_Request_Fails_Retrying_Skipped()
+        catch (RetryHttpRequestException)
         {
-            try
-            {
-                var service = new HttpBinClient(false);
+            Assert.IsTrue(true);
+        }
+        catch (Exception ex)
+        {
+            Assert.IsTrue(false, "Exception thrown should've been a TimeoutException. If it is a RetryException, a RetryException should only occur on GET/OPTION/HEAD HTTPMETHODS: " + ex.Message);
+        }
+    }
 
-                var response = service.Post_Retry_Request_Against_Firewall();
+    [TestMethod]
+    public void Post_Retry_Request_Fails_Retrying_Skipped()
+    {
+        try
+        {
+            var service = new HttpBinClient(false);
 
-                throw new Exception(nameof(service.Post_Retry_Request_Against_Firewall) + " should throw TimeoutException");
-            }
-            catch (RetryHttpRequestException ex)
-            {
-                Assert.IsTrue(false, "Exception thrown should've been a TimeoutException. If it is a RetryException, a RetryException should only occur on GET/OPTION/HEAD HTTPMETHODS: " + ex.Message);
-            }
-            catch (Exception ex)
-            {
-                Assert.IsTrue(ex.ToString().Contains("timed out"));
-            }
+            var response = service.Post_Retry_Request_Against_Firewall();
+
+            throw new Exception(nameof(service.Post_Retry_Request_Against_Firewall) + " should throw TimeoutException");
+        }
+        catch (RetryHttpRequestException ex)
+        {
+            Assert.IsTrue(false, "Exception thrown should've been a TimeoutException. If it is a RetryException, a RetryException should only occur on GET/OPTION/HEAD HTTPMETHODS: " + ex.Message);
+        }
+        catch (Exception ex)
+        {
+            Assert.IsTrue(ex.ToString().Contains("timed out"));
         }
     }
 }

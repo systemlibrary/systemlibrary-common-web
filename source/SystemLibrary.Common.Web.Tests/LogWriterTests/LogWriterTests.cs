@@ -114,7 +114,7 @@ public class LogWriterTests
 
         var content = System.IO.File.ReadAllText(DumpFullPath);
 
-        Assert.IsTrue(content.Contains("Custom stack"), "Content: "  + content);
+        Assert.IsTrue(content.Contains("Custom stack"), "Content: " + content);
     }
 
     [TestMethod]

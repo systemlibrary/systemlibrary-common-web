@@ -72,7 +72,7 @@ namespace SystemLibrary.Common.Web;
 public static class Cache
 {
     static IPrincipal _Principal;
-    static IPrincipal Principal => _Principal ?? (_Principal = HttpContextInstance.Current?.User);
+    static IPrincipal Principal => _Principal ??= HttpContextInstance.Current?.User;
 
     static IMemoryCache[] cache;
     static int MaxCacheContainers = 4;
@@ -610,11 +610,11 @@ public static class Cache
                         key.Append(sb.ToString());
                     }
                 }
-                else if(value is Guid g)
+                else if (value is Guid g)
                 {
                     key.Append(g.ToString("N"));
                 }
-                else if(value is DateTime dt)
+                else if (value is DateTime dt)
                 {
                     key.Append(dt.ToString("yyyyMMddHHmmss"));
                 }
@@ -624,7 +624,7 @@ public static class Cache
                 }
                 else
                 {
-                    if(AppSettings.Debug)
+                    if (AppSettings.Debug)
                         Log.Debug(valueType.Name + " not stringable type: " + value);
                 }
             }
@@ -739,7 +739,7 @@ public static class Cache
                 if (key.Length > 2048) return;
 
                 if (field == null) return;
-                
+
                 var type = field.FieldType;
 
                 if (!IsTypeAutoCacheKeyType(type))
@@ -849,7 +849,7 @@ public static class Cache
 
         if (type.Inherits(SystemType.ICollectionType)) return true;
 
-        if(type == SystemType.UriType) return true;
+        if (type == SystemType.UriType) return true;
 
         if (type.IsKeyValuePair()) return true;
 
@@ -862,7 +862,7 @@ public static class Cache
     {
         if (type.IsEnum) return true;
 
-        if(type.IsKeyValuePair()) return true;
+        if (type.IsKeyValuePair()) return true;
 
         return Array.IndexOf(AutoCacheKeyStringableTypes, type) >= 0;
     }

@@ -38,7 +38,7 @@ partial class IServiceCollectionExtensions
                 options.JsonSerializerOptions.NumberHandling = defaultJsonSerializerOptions.NumberHandling;
                 options.JsonSerializerOptions.UnknownTypeHandling = defaultJsonSerializerOptions.UnknownTypeHandling;
 
-                foreach(var converter in defaultJsonSerializerOptions.Converters)
+                foreach (var converter in defaultJsonSerializerOptions.Converters)
                 {
                     options.JsonSerializerOptions.Converters.Add(converter);
                 }

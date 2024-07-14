@@ -2,26 +2,25 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace SystemLibrary.Common.Web.Tests
+namespace SystemLibrary.Common.Web.Tests;
+
+partial class HttpBaseClientTests
 {
-    partial class HttpBaseClientTests
+    [TestMethod]
+    public void Get_Cancel_Request_By_Token_Success()
     {
-        [TestMethod]
-        public void Get_Cancel_Request_By_Token_Success()
+        var service = new HttpBinClient(false);
+
+        CancellationTokenSource tokenSource = new CancellationTokenSource();
+
+        tokenSource.CancelAfter(100);
+        try
         {
-            var service = new HttpBinClient(false);
-
-            CancellationTokenSource tokenSource = new CancellationTokenSource();
-
-            tokenSource.CancelAfter(100);
-            try
-            {
-                var response = service.GetWithCancellationToken(tokenSource.Token);
-            }
-            catch (CalleeCancelledRequestException)
-            {
-                Assert.IsTrue(true);
-            }
+            var response = service.GetWithCancellationToken(tokenSource.Token);
+        }
+        catch (CalleeCancelledRequestException)
+        {
+            Assert.IsTrue(true);
         }
     }
 }

@@ -98,8 +98,7 @@ public class HtmlHelperFactory
 
     static ViewContext GetViewContext(IHttpContextAccessor contextAccessor, ViewDataDictionary viewData)
     {
-        if (TempDataProvider == null)
-            TempDataProvider = contextAccessor.HttpContext.RequestServices.GetRequiredService<ITempDataProvider>();
+        TempDataProvider ??= contextAccessor.HttpContext.RequestServices.GetRequiredService<ITempDataProvider>();
 
         var tempData = new TempDataDictionary(contextAccessor.HttpContext, TempDataProvider);
 

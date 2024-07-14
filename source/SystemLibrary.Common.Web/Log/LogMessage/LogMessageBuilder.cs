@@ -221,8 +221,8 @@ partial class Log
                 var exmsg = ex.Message;
 
                 var innerEx = ex.InnerException;
-                var c = 0; 
-                while(innerEx?.Message != null)
+                var c = 0;
+                while (innerEx?.Message != null)
                 {
                     exmsg += "\n" + innerEx.Message;
 

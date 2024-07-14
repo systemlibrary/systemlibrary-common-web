@@ -1,21 +1,20 @@
 ﻿using System.Security.Claims;
 using System.Security.Principal;
 
-namespace SystemLibrary.Common.Web.Tests
-{
-    partial class Fakes
-    {
-        public static IPrincipal GetPrincipal()
-        {
-            var user = new ClaimsPrincipal(new ClaimsIdentity(new Claim[]
-            {
-                new Claim(ClaimTypes.Name, "unit test"),
-                new Claim(ClaimTypes.NameIdentifier, "1"),
-                new Claim(ClaimTypes.Role, "Administrator"),
-                new Claim("unit-test-claim", "unit test claim"),
-            }, "test"));
+namespace SystemLibrary.Common.Web.Tests;
 
-            return user;
-        }
+partial class Fakes
+{
+    public static IPrincipal GetPrincipal()
+    {
+        var user = new ClaimsPrincipal(new ClaimsIdentity(new Claim[]
+        {
+            new Claim(ClaimTypes.Name, "unit test"),
+            new Claim(ClaimTypes.NameIdentifier, "1"),
+            new Claim(ClaimTypes.Role, "Administrator"),
+            new Claim("unit-test-claim", "unit test claim"),
+        }, "test"));
+
+        return user;
     }
 }

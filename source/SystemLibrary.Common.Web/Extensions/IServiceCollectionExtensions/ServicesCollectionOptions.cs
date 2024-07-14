@@ -61,7 +61,7 @@ public class ServicesCollectionOptions : BaseOptions
     /// </summary>
     public Assembly[] ApplicationParts = null;
 
-     /// <summary>
+    /// <summary>
     /// Enabled re-compilation of .cshtml files upon saving .cshtml files
     /// 
     /// - Avoids the need of a re-compilation of whole application for one small view change
@@ -124,7 +124,7 @@ public class ServicesCollectionOptions : BaseOptions
     /// - cookies read over http will be encrypted and decrypted with the key file, if you host your app over several instances, they must all share the same key of course
     /// </summary>
     public bool UseAutomaticDataProtectionPolicy = false;
-    
+
     /// <summary>
     /// Add an internal logger that forwards errors to the ILogWriter of your own choice
     /// - standard output is then forwarded to your own ILogWriter

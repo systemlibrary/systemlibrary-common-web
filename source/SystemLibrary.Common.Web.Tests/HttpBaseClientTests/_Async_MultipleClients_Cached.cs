@@ -45,7 +45,7 @@ namespace SystemLibrary.Common.Web.Tests
             foreach (var result in responses)
             {
                 Assert.IsTrue(result.Contains("HttpStatusCode 200"), "One or more inital requests did not return status code 200");
-                
+
                 Assert.IsTrue(result.Contains(body), "Response did not include body message: " + body);
             }
 

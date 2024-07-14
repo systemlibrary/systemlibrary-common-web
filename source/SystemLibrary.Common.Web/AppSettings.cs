@@ -20,7 +20,7 @@ internal class AppSettings : Config<AppSettings>
             Log = new LogConfiguration();
             LogMessageBuilder = new LogMessageBuilderOptions();
         }
-        
+
         public bool Debug { get; set; } = false;
 
         public CacheConfiguration Cache { get; set; }

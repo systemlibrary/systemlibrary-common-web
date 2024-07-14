@@ -14,7 +14,7 @@ partial class HttpBaseClient
         {
             get
             {
-                if(_RetryTimeoutMs == null)
+                if (_RetryTimeoutMs == null)
                 {
                     var temp = AppSettings.Current.SystemLibraryCommonWeb.HttpBaseClient.RetryRequestTimeoutMs;
 
@@ -60,7 +60,7 @@ partial class HttpBaseClient
                     {
                         response = await SendAsync(options).ConfigureAwait(false);
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         throw new RetryHttpRequestException($"{response?.StatusCode}: {response?.ReasonPhrase} error retrying twice against ({options.Method}) {options.Url} with timeout: {timeoutms}ms", ex);
                     }
@@ -77,7 +77,7 @@ partial class HttpBaseClient
                 throw new Exception("Error (" + options.Method + ") " + options.Url + " with timeout " + options.TimeoutMilliseconds, ex);
 
             if (options.CancellationToken.IsCancellationRequested)
-                throw new Exception("Cancelled: " + options.Url + ", message: "+ retry?.InnerException?.Message + ". " + retry?.InnerException?.StackTrace);
+                throw new Exception("Cancelled: " + options.Url + ", message: " + retry?.InnerException?.Message + ". " + retry?.InnerException?.StackTrace);
         }
     }
 }

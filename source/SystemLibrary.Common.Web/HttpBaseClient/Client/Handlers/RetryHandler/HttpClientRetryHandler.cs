@@ -41,7 +41,7 @@ partial class HttpBaseClient
                             statusCode == System.Net.HttpStatusCode.RequestTimeout;
                 }
 
-                if(method == HttpMethod.Post || method == HttpMethod.Put || method == HttpMethod.Delete)
+                if (method == HttpMethod.Post || method == HttpMethod.Put || method == HttpMethod.Delete)
                 {
                     return statusCode == null ||
                         statusCode == System.Net.HttpStatusCode.BadGateway ||
@@ -64,7 +64,7 @@ partial class HttpBaseClient
                 {
                     if (ex is TaskCanceledException)
                     {
-                        if(request.Method == HttpMethod.Get || request.Method == HttpMethod.Trace)
+                        if (request.Method == HttpMethod.Get || request.Method == HttpMethod.Trace)
                             throw new RetryHttpRequestException();
                     }
 

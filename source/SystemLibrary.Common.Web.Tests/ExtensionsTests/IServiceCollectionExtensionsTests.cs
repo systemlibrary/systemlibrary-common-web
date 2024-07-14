@@ -15,13 +15,13 @@ public class IServiceCollectionExtensionsTests
         var options = new ServicesCollectionOptions();
 
         options.UseAutomaticDataProtectionPolicy = true;
-        
+
         var service = new ServiceCollection();
 
         Services.Configure(service.UseAutomaticDataProtectionPolicy(options));
 
         var data = "hello world";
-        
+
         var enc = data.Encrypt();
         var dec = enc.Decrypt();
         Assert.IsTrue(dec == data && dec != enc, "Wrong: " + dec);

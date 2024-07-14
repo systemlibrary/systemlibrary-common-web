@@ -13,7 +13,7 @@ partial class HttpBaseClient
     {
         get
         {
-            if(_CustomTimeoutMilliseconds == null)
+            if (_CustomTimeoutMilliseconds == null)
             {
                 if (AppSettings.Current.SystemLibraryCommonWeb.HttpBaseClient.TimeoutMilliseconds != DefaultTimeoutMilliseconds && AppSettings.Current.SystemLibraryCommonWeb.HttpBaseClient.TimeoutMilliseconds > 0)
                 {

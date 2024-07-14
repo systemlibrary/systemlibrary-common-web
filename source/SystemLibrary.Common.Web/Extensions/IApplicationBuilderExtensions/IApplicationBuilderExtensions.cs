@@ -62,8 +62,7 @@ public static partial class IApplicationBuilderExtensions
     {
         Services.Configure(app.ApplicationServices);
 
-        if (options == null)
-            options = new AppBuilderOptions();
+        options ??= new AppBuilderOptions();
 
         if (options.UseDeveloperPage)
             app.UseDeveloperExceptionPage();

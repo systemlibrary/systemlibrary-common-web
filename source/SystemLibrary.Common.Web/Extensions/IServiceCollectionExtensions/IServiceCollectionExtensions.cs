@@ -26,8 +26,7 @@ public static partial class IServiceCollectionExtensions
     {
         Services.Configure(services);
 
-        if (options == null)
-            options = new ServicesCollectionOptions();
+        options ??= new ServicesCollectionOptions();
 
         if (options.UseForwardedHeaders)
             services = services.UseForwardedHeaders();
@@ -95,7 +94,7 @@ public static partial class IServiceCollectionExtensions
         // NOTE: Can this be Scoped instead?
         services.TryAddTransient<HtmlHelperFactory, HtmlHelperFactory>();
 
-        if(options.IISAllowSynchronousIO)
+        if (options.IISAllowSynchronousIO)
             services.Configure<IISServerOptions>(options => { options.AllowSynchronousIO = true; });
 
         return services;

@@ -19,7 +19,7 @@ partial class IServiceCollectionExtensions
     public static IServiceCollection UseAutomaticDataProtectionPolicy(this IServiceCollection services, ServicesCollectionOptions options)
     {
         if (!options.UseAutomaticDataProtectionPolicy) return services;
-        
+
         bool AlreadyRegisteredDataProtectionServices()
         {
             var keyOptions = typeof(IConfigureOptions<KeyManagementOptions>);
@@ -29,7 +29,7 @@ partial class IServiceCollectionExtensions
             return found != null;
         }
 
-        if(AlreadyRegisteredDataProtectionServices())
+        if (AlreadyRegisteredDataProtectionServices())
         {
             Log.Warning("UseAutomaticDataProtectionPolicy is set to True, but it seems that data protection is already registered through UseDataProtection().");
             return services;
@@ -58,10 +58,10 @@ partial class IServiceCollectionExtensions
             throw new Exception("Method 'GetKeyFileFullName' is renamed or do not exist");
 
         var keyFileFullName = (string)method.Invoke(null, new object[] { directory.FullName });
-        
+
         var keyFileExists = keyFileFullName.Is();
 
-        if(keyFileExists)
+        if (keyFileExists)
         {
             DataProtectionKeyFileName = Path.GetFileName(keyFileFullName);
 

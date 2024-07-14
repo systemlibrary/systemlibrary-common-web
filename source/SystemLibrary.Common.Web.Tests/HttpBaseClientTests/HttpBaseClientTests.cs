@@ -1,9 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace SystemLibrary.Common.Web.Tests
+namespace SystemLibrary.Common.Web.Tests;
+
+[TestClass]
+public partial class HttpBaseClientTests
 {
-    [TestClass]
-    public partial class HttpBaseClientTests
-    {
-    }
 }

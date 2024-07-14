@@ -1,18 +1,17 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace SystemLibrary.Common.Web.Tests
+namespace SystemLibrary.Common.Web.Tests;
+
+partial class HttpBaseClientTests
 {
-    partial class HttpBaseClientTests
+    [TestMethod]
+    public void Head_Success()
     {
-        [TestMethod]
-        public void Head_Success()
-        {
-            var webService = new HttpBinClient();
+        var webService = new HttpBinClient();
 
-            var response = webService.Head(MediaType.None);
+        var response = webService.Head(MediaType.None);
 
-            Assert.IsTrue(response.IsSuccess);
-            Assert.IsTrue(response.StatusCode == System.Net.HttpStatusCode.OK);
-        }
+        Assert.IsTrue(response.IsSuccess);
+        Assert.IsTrue(response.StatusCode == System.Net.HttpStatusCode.OK);
     }
 }

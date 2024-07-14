@@ -18,18 +18,18 @@ internal class InternalLog : ILogger
 
     public void Log<TState>(Microsoft.Extensions.Logging.LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
     {
-        if(exception== null)
+        if (exception == null)
         {
             global::Log.Error(eventId + ": " + state);
             return;
         }
 
-        if(logLevel == Microsoft.Extensions.Logging.LogLevel.Error)
+        if (logLevel == Microsoft.Extensions.Logging.LogLevel.Error)
             global::Log.Error(exception);
-        
+
         if (logLevel == Microsoft.Extensions.Logging.LogLevel.Warning)
             global::Log.Warning(exception);
-        
+
         if (logLevel == Microsoft.Extensions.Logging.LogLevel.Information)
             global::Log.Info(exception);
 

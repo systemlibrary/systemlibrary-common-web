@@ -44,8 +44,7 @@ public static partial class Log
     {
         get
         {
-            if (_LogWriter == null)
-                _LogWriter = Services.Get<ILogWriter>();
+            _LogWriter ??= Services.Get<ILogWriter>();
 
             return _LogWriter;
         }
@@ -149,14 +148,11 @@ public static partial class Log
     {
         get
         {
-            if(_LogIsOff == null)
-            {
-                _LogIsOff = AppSettings.Current?.SystemLibraryCommonWeb?.Log?.Level == LogLevel.Off;
-            }
+            _LogIsOff ??= AppSettings.Current?.SystemLibraryCommonWeb?.Log?.Level == LogLevel.Off;
             return _LogIsOff.Value;
         }
     }
-    
+
 
     static void Write(object obj, LogLevel level)
     {

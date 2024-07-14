@@ -11,7 +11,7 @@ internal static class Compress
 
         if (context.WebSockets?.IsWebSocketRequest == true)
             return false;
-        
+
         if (context.Response?.Headers.ContainsKey("Content-Encoding") == true)
             return false;
 
