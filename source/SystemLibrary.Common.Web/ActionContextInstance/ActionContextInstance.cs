@@ -12,11 +12,13 @@ public static class ActionContextInstance
     /// <summary>
     /// Returns current Action Context
     /// </summary>
+    /// <remarks>
+    /// ActionContext can be null in a Console Application or a Unit Test application or if MVC is not registered
+    /// </remarks>
     /// <example>
     /// Usage:
     /// <code class="language-csharp hljs">
     /// var actionContext = ActionContextInstance.Current;
-    /// //Note: actionContext can be null, for instance in an Console Application or a Unit Test Application, or if Mvc is not registered as middleware
     /// </code>
     /// </example>
     public static Microsoft.AspNetCore.Mvc.ActionContext Current => ActionContextAccessor?.ActionContext;

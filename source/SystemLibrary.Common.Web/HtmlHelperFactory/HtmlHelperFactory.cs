@@ -41,6 +41,7 @@ public class HtmlHelperFactory
     /// var htmlHelper = HtmlHelperFactory.Build&lt;ViewModel&gt;();
     /// </code>
     /// </example>
+    /// <returns>IHtmlHelper of T instance, never null</returns>
     public static IHtmlHelper<T> Build<T>() where T : class
     {
         var contextAccessor = Services.Get<IHttpContextAccessor>();
@@ -63,6 +64,7 @@ public class HtmlHelperFactory
     /// var htmlHelper = HtmlHelperFactory.Build();
     /// </code>
     /// </example>
+    /// <returns>IHtmlHelper instance, never null</returns>
     public static IHtmlHelper Build()
     {
         var contextAccessor = Services.Get<IHttpContextAccessor>();

@@ -69,7 +69,8 @@ public class Startup
 		},
 
 		"cache": {
-		  "defaultDuration": 180
+		  "defaultDuration": 180,
+		  "containerSizeLimit": 60000
 		},
 
 		"log": {

@@ -11,7 +11,6 @@ namespace SystemLibrary.Common.Web.Extensions;
 /// Most options are turned on by default.
 /// 
 /// ViewLocations and custom application parts are not configured by default.
-/// 
 /// </summary>
 /// <example>
 /// Inside your startup.cs/program.cs...
@@ -119,12 +118,12 @@ public class ServicesCollectionOptions : BaseOptions
     public StringOutputFormatter AdditionalSupportedMediaTypes = null;
 
     /// <summary>
-    /// Auto-generate a data protection file that will be used for encrypting and decrypting data within your application
+    /// Auto-generate and enable data protection with a data protection file that will be used for encrypting and decrypting data within your application
     /// - string extension methods Encrypt and Decrypt will use the file internally as a key
     /// - string extension methods EncryptUsingKeyRing and DecryptUsingKeyRing will use the generated files internally
     /// - cookies read over http will be encrypted and decrypted with the key file, if you host your app over several instances, they must all share the same key of course
     /// </summary>
-    public bool UseAutomaticKeyGenerationFile = false;
+    public bool UseAutomaticDataProtectionPolicy = false;
     
     /// <summary>
     /// Add an internal logger that forwards errors to the ILogWriter of your own choice
@@ -136,4 +135,9 @@ public class ServicesCollectionOptions : BaseOptions
     /// Set to true to add ResponseCaching services
     /// </summary>
     public bool UseResponseCaching = true;
+
+    /// <summary>
+    /// Allow synchronous IO, an IIS setting
+    /// </summary>
+    public bool IISAllowSynchronousIO = true;
 }

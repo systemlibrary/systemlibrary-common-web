@@ -9,8 +9,6 @@ public static class IPrincipalExtensions
 {
     /// <summary>
     /// Check if principal is in any role, case sensitive
-    /// 
-    /// Returns true if so, else false
     /// </summary>
     /// <example>
     /// Usage:
@@ -19,6 +17,7 @@ public static class IPrincipalExtensions
     /// principal.IsInAnyRole(roles);
     /// </code>
     /// </example>
+    /// <returns>True of false</returns>
     public static bool IsInAnyRole(this IPrincipal principal, params object[] roles)
     {
         if (principal == null || roles == null) return false;

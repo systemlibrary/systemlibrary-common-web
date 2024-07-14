@@ -44,6 +44,7 @@ internal class AppSettings : Config<AppSettings>
         public class CacheConfiguration
         {
             public int DefaultDuration { get; set; } = 180;
+            public int ContainerSizeLimit { get; set; } = 60000;
         }
 
         public class LogMessageBuilderOptions

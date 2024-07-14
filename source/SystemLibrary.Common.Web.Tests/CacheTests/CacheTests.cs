@@ -41,7 +41,7 @@ public class CacheTests
 
         input.Name = "TestPerson";
         input.Age = 87878;
-        input.Year = DateTime.Parse("2000-12-24");
+        input.Year = "2000-12-24".ToDateTime();
 
         CacheKeyParams.Phone = "9004400044";
 
@@ -49,16 +49,22 @@ public class CacheTests
         {
             return input.Name + input.Age + input.Year + input.Flag;
         });
-        var cacheKey = "common.web.cache<Add_To_Cache_Auto_CacheKey_Passing_Object_As_Field0_Adds_FieldAndPropValues_To_Key>b__0SystemLibrary.Common.Web.Tests.CacheTests+<>c__DisplayClass3_0System.StringinputNameTestPersonFlagTrueYear12/24/2000 12:00:00 AMAddressStreet 1000Age87878Phone9004400044";
+        var cacheKey = "common.web.cache<Add_To_Cache_Auto_CacheKey_Passing_Object_As_Field0_Adds_FieldAndPropValues_To_Key>b__0SystemLibrary.Common.Web.Tests.CacheTests+<>c__DisplayClass3_0System.StringinputNameTestPersonFlagTrueYear20001224000000AddressStreet 1000TS00:00:07Age87878Guide0a9536ad3cf4a0d91af438ffb3b8f7aFlag2TruePhone9004400044";
         Assert.IsTrue(cacheKey.Contains("TestPerson"), "Name");
         Assert.IsTrue(cacheKey.Contains("9004400044"), "Phone");
         Assert.IsTrue(cacheKey.Contains("Street 1000"), "Address");
-        Assert.IsTrue(cacheKey.Contains("2000 12:00"), "Year");
+        Assert.IsTrue(cacheKey.Contains("Year20001224000000"), "Year");
         Assert.IsTrue(cacheKey.Contains("87878"), "Age");
+        Assert.IsTrue(cacheKey.Contains("0a9536ad3cf4a0d"), "Guid");
 
         var cached = Cache.Get<string>(cacheKey);
 
         Assert.IsTrue(cached.Is(), "Not in cache");
+        Assert.IsTrue(cached.Contains("TestPerson") && cached.Contains("87878"), "Invalid text");
+
+        cached = Cache.Get<string>(cacheKey);
+        cached = Cache.Get<string>(cacheKey);
+        cached = Cache.Get<string>(cacheKey);
         Assert.IsTrue(cached.Contains("TestPerson") && cached.Contains("87878"), "Invalid text");
     }
 
@@ -71,12 +77,12 @@ public class CacheTests
         Assert.IsTrue(cached.Is());
 
         cached = Cache.Get(GetItemsFromFunction);
-        Assert.IsTrue(cached.Is());
+        Assert.IsTrue(cached.Is(), "No cached item");
         Assert.IsTrue(cached.Contains("55") && cached.Contains("World"), "Err 1: " + cached);
 
         var cacheKey = "common.web.cacheGetItemsFromFunctionSystemLibrary.Common.Web.Tests.CacheTestsSystem.String";
         var cachedItem = Cache.Get<string>(cacheKey);
-        Assert.IsTrue(cachedItem.Is());
+        Assert.IsTrue(cachedItem.Is(), "Not found");
         Assert.IsTrue(cached.Contains("55") && cached.Contains("World"), "Err 2: " + cached);
     }
 
@@ -175,7 +181,7 @@ public class CacheTests
         var cached = Cache.Get(getItems);
 
         var cacheKey = "common.web.cache<Auto_Create_CacheKey_By_Passing_Dictionary_Success>b__0SystemLibrary.Common.Web.Tests.CacheTests+<>c__DisplayClass10_0System.Stringa1[Hello, World]";
-
+        //var cacheKey = "common.web.cache<Auto_Create_CacheKey_By_Passing_Dictionary_Success>b__0SystemLibrary.Common.Web.Tests.CacheTests+<>c__DisplayClass10_0System.Stringa1";
         var item = Cache.Get<string>(cacheKey);
 
         Assert.IsTrue(item != null, "Wrong cachekey");
@@ -215,7 +221,7 @@ public class CacheTests
             a++;
         }
 
-        // Duration is part of cache key hence A is 2
+        // Duration param is part of cache key hence A is 2
         Assert.IsTrue(a == 2 && b == 1, "A: " + a + ", B: " + b);
 
         System.Threading.Thread.Sleep(1100);
@@ -245,6 +251,7 @@ public class CacheTests
             Flag = true;
             LastName = "Mr Smith";
             MiddleName = "None";
+            TS = TimeSpan.FromSeconds(7);
         }
 
         static CacheKeyParams()
@@ -261,6 +268,9 @@ public class CacheTests
 
         public static string Address { get; }
         public static string Phone;
+        public Guid Guid = Guid.Parse("e0a9536ad3cf4a0d91af438ffb3b8f7a");
+        public TimeSpan TS { get; set; }
+        public bool Flag2 = true;
     }
 
     [TestMethod]

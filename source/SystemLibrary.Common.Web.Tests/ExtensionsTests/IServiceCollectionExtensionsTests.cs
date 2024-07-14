@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using SystemLibrary.Common.Net;
@@ -13,29 +10,29 @@ namespace SystemLibrary.Common.Web.Tests;
 public class IServiceCollectionExtensionsTests
 {
     [TestMethod]
-    public void Test()
+    public void UseAutomaticDataProtectionPolicy_Ecrypts_And_Decrypts()
     {
         var options = new ServicesCollectionOptions();
 
-        // Create a key file if not existing, else do nada
-
-        // One file that lives forever at "some loc"
-        // Where is that Loc Though? AppRoot it says, fair, decent, but an XML there? Hm
-        // why not inside... bin? Appdata?
-        options.UseAutomaticKeyGenerationFile = true;
+        options.UseAutomaticDataProtectionPolicy = true;
         
-        var service = new ServiceCollectionTest();
+        var service = new ServiceCollection();
 
-        service.UseAutomaticKeyGenerationFile(options);
-
-        Services.Configure(service);
+        Services.Configure(service.UseAutomaticDataProtectionPolicy(options));
 
         var data = "hello world";
+        
         var enc = data.Encrypt();
+        var dec = enc.Decrypt();
+        Assert.IsTrue(dec == data && dec != enc, "Wrong: " + dec);
 
-        var d = enc.Decrypt();
-        Assert.IsTrue(d == data, "Wrong: " + d);
+        var enc2 = data.Encrypt();
+        var dec2 = enc.Decrypt();
+        Assert.IsTrue(dec2 == data && enc2 != enc, "Wrong2: " + dec2);
 
+        var enc3 = data.Encrypt();
+        var dec3 = enc.Decrypt();
+        Assert.IsTrue(dec3 == data && enc3 != enc2 && enc3 != enc, "Wrong3: " + dec3);
     }
 
     [TestMethod]
@@ -43,11 +40,11 @@ public class IServiceCollectionExtensionsTests
     {
         var options = new ServicesCollectionOptions();
 
-        options.UseAutomaticKeyGenerationFile = true;
+        options.UseAutomaticDataProtectionPolicy = true;
 
-        var service = new ServiceCollectionTest();
+        var service = new ServiceCollection();
 
-        service.UseAutomaticKeyGenerationFile(options);
+        service.UseAutomaticDataProtectionPolicy(options);
     }
 
     [TestMethod]
@@ -55,64 +52,10 @@ public class IServiceCollectionExtensionsTests
     {
         var options = new ServicesCollectionOptions();
 
-        options.UseAutomaticKeyGenerationFile = false;
+        options.UseAutomaticDataProtectionPolicy = false;
 
-        var service = new ServiceCollectionTest();
+        var service = new ServiceCollection();
 
-        service.UseAutomaticKeyGenerationFile(options);
-    }
-}
-
-
-public class ServiceCollectionTest : IServiceCollection
-{
-    public ServiceDescriptor this[int index] { get { return null; } set { } }
-
-    public int Count { get; }
-    public bool IsReadOnly { get; }
-
-    public void Add(ServiceDescriptor item)
-    {
-    }
-
-    public void Clear()
-    {
-    }
-
-    public bool Contains(ServiceDescriptor item)
-    {
-        return false;
-    }
-
-    public void CopyTo(ServiceDescriptor[] array, int arrayIndex)
-    {
-    }
-
-    public IEnumerator<ServiceDescriptor> GetEnumerator()
-    {
-        return null;
-    }
-
-    public int IndexOf(ServiceDescriptor item)
-    {
-        return 0;
-    }
-
-    public void Insert(int index, ServiceDescriptor item)
-    {
-    }
-
-    public bool Remove(ServiceDescriptor item)
-    {
-        return true;
-    }
-
-    public void RemoveAt(int index)
-    {
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        throw new System.NotImplementedException();
+        service.UseAutomaticDataProtectionPolicy(options);
     }
 }

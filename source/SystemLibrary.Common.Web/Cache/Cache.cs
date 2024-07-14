@@ -10,6 +10,7 @@ using System.Text;
 
 using Microsoft.Extensions.Caching.Memory;
 
+using SystemLibrary.Common.Net;
 using SystemLibrary.Common.Net.Extensions;
 using SystemLibrary.Common.Web.Extensions;
 
@@ -19,28 +20,53 @@ namespace SystemLibrary.Common.Web;
 /// Caching for web applications
 ///
 /// Default duration is 180 seconds
-/// - configurable in appSettings.json or per Get() invocation
 /// 
-/// Auto-generates a cachekey for you if you don't specify one
-/// - the flag "IsAuthenticated" is added to the cache key so it varies based on either logged in or logged out
-/// - if IsAuthenticated is true and user's identity is of type "ClaimsPrincipal", it adds all roles to the cache key
+/// Try using auto-generating cache keys, which differentiate caching down to user roles.
+/// - Cache things per user, by userId/email? Create your own cacheKey
 ///
-/// Optionally, you can skip cache by setting parameters:
+/// 'Skip' means that the item will not be fetched from cache
+/// 
+/// Skip options:
 /// - skipForAuthenticatedUsers, false by default
 /// - skipForAdmins, true by default
-///     * true if current principal is in either of these case sensitive roles: "Admin", "Admins", "Administrator", "Administrators", "WebAdmins", "CmsAdmins"
-/// - skipFor, your own implementation which returns true to skip
+///     * User must be part of any following roles case sensitive: "Admin", "Admins", "Administrator", "Administrators", "WebAdmins", "CmsAdmins", "admin"
+/// - skipFor, your own condition, must return True to skip
 /// </summary>
+/// <remarks>
+/// Cache is limited to 240.000 items by default, divided by 4 containers, where any item added takes up 1 size
+/// 
+/// Each container contains up to 60.000 items, once reached 33% are removed ready to be GC'ed
+/// 
+/// Null is never added to cache
+/// 
+/// Overwrite default cache configurations in appSettings.json:
+/// - cacheDuration: 180, minimum 1
+/// - containerSizeLimit: 60000, minimum 100
+/// 
+/// Auto-generating cache key adds namespace, class, method, method-scoped variables of type bool, string, int, short, long, double, datetime, datetimeoffset and enum to the cache key, if used within the getItem method
+/// - If a reference to class is used within the method, its public fields and properties of same types are also added
+/// - IsAuthenticated is added to cache key, including ClaimsPrincipal roles if any
+/// - Always adds prefix to avoid collisions
+/// </remarks>
 /// <example>
 /// Configure the cache in appSettings.json 
 /// <code class="language-csharp hljs">
 /// {
 ///     "systemLibraryCommonWeb": {
 ///         "cache" { 
-///             "defaultDuration": 180,
+///             "defaultDuration": 210,
+///             "containerSizeLimit": 60000
 ///         }
 ///     }
 /// }
+/// </code>
+/// Use cache:
+/// <code class="language-csharp hljs">
+/// using SystemLibrary.Common.Web;
+/// 
+/// var cacheKey = "key";
+/// var item = Cache.Get(cacheKey);
+/// // null if not in cache
 /// </code>
 /// </example>
 public static class Cache
@@ -48,7 +74,8 @@ public static class Cache
     static IPrincipal _Principal;
     static IPrincipal Principal => _Principal ?? (_Principal = HttpContextInstance.Current?.User);
 
-    static IMemoryCache cache;
+    static IMemoryCache[] cache;
+    static int MaxCacheContainers = 4;
 
     static int _DefaultDuration = -1;
     static int DefaultDuration
@@ -60,7 +87,7 @@ public static class Cache
                 _DefaultDuration = AppSettings.Current.SystemLibraryCommonWeb.Cache.DefaultDuration;
                 if (_DefaultDuration <= 0)
                 {
-                    _DefaultDuration = 180;
+                    _DefaultDuration = 210;
                 }
             }
             return _DefaultDuration;
@@ -69,23 +96,29 @@ public static class Cache
 
     static Cache()
     {
-        MemoryCacheOptions options = new MemoryCacheOptions();
-        options.ExpirationScanFrequency = TimeSpan.FromSeconds(120);
-        options.SizeLimit = 150000;             // Storing 150.000 items in cache, not caring about memory per cached item
-        options.CompactionPercentage = 0.45;    // If size reached, 55% is removed from cache, ready to be GC'd
-        cache = new MemoryCache(options);
+        cache = new IMemoryCache[MaxCacheContainers];
 
-        //TODO: Create multiple MemoryCaches, each are 1/10th of size
-        //ExpirationScanFrequency is then "random" between 120-150 seconds so most likely the wont trigger at same time, rarely
-        //CacheMemory is based on start key, A-B-C in same cache, D-E-F in next, etc..-
+        var containerSizeLimit = AppSettings.Current.SystemLibraryCommonWeb.Cache.ContainerSizeLimit;
+        if (containerSizeLimit < 100)
+            containerSizeLimit = 100;
+
+        for (int i = 0; i < MaxCacheContainers; i++)
+        {
+            MemoryCacheOptions options = new MemoryCacheOptions();
+            options.ExpirationScanFrequency = TimeSpan.FromSeconds(90 + Randomness.Int(30));
+            options.SizeLimit = containerSizeLimit;
+            options.CompactionPercentage = 0.33;
+            cache[i] = new MemoryCache(options);
+        }
     }
 
     /// <summary>
-    /// Add item 'obj' to cache for a duration
+    /// Add item to cache for a duration
     /// 
-    /// Defaults to 180 seconds cache duration if not specified
+    /// Null is never added to cache
     /// </summary>
-    public static void Set<T>(string cacheKey, T obj, TimeSpan duration = default)
+    /// <param name="duration">Defaults to 180 seconds</param>
+    public static void Set<T>(string cacheKey, T item, TimeSpan duration = default)
     {
         if (cacheKey.IsNot())
             return;
@@ -93,31 +126,46 @@ public static class Cache
         if (duration == default)
             duration = TimeSpan.FromSeconds(DefaultDuration);
 
-        Insert(cacheKey, obj, duration);
+        var cacheIndex = Math.Abs(cacheKey.GetHashCode() % 4);
+
+        Insert(cacheIndex, cacheKey, item, duration);
     }
 
     /// <summary>
-    /// Try get data from cache as T
+    /// Try get item from Cache as T
     /// 
-    /// Returns default if cacheKey do not exist or exception is thrown else T
+    /// Null is never added to cache
+    /// 
+    /// Logs exception if getItem() throws
     /// </summary>
+    /// <remarks>
+    /// Default duration is 180 seconds
+    /// 
+    /// 'Skip' means that the item will not be fetched from cache
+    /// 
+    /// Skip options:
+    /// - skipForAuthenticatedUsers, false by default
+    /// - skipForAdmins, true by default
+    ///     * User must be part of any following roles case sensitive: "Admin", "Admins", "Administrator", "Administrators", "WebAdmins", "CmsAdmins", "admin"
+    /// - skipFor, your own condition, must return True to skip
+    /// </remarks>
     /// <example>
-    /// Simple try get object from cache based on a cache key:
     /// <code class="language-csharp hljs">
-    /// var cacheKey = "hello-world-key";
+    /// var cacheKey = "key";
     /// 
     /// var data = Cache.TryGet&lt;string&gt;(cacheKey, () => throw new Exception("does not crash application"));
     /// 
-    /// //data is now default string (null), the exception is logged through your ILogWriter if youve specified one, and application continues...
+    /// // Exception is logged through your ILogWriter implementation
     /// </code>
     /// </example>
+    /// <returns>Returns item from cache or getItem, on exception returns default</returns>
     public static T TryGet<T>(string cacheKey, Func<T> getItem, TimeSpan duration = default, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null)
     {
         try
         {
-            return Get<T>(getItem, cacheKey, duration, condition, skipForAuthenticatedUsers, skipForAdmins, skipFor);
+            return Get(getItem, cacheKey, duration, condition, skipForAuthenticatedUsers, skipForAdmins, skipFor);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Log.Error(ex);
 
@@ -126,102 +174,177 @@ public static class Cache
     }
 
     /// <summary>
-    /// Get data from cache as T
+    /// Try get item from Cache as T using auto-generated cache key
     /// 
-    /// Returns default T if cacheKey do not exist in cache, else T
+    /// Null is never added to cache
+    /// 
+    /// Logs exception if getItem() throws
     /// </summary>
+    /// <remarks>
+    /// Default duration is 180 seconds
+    /// 
+    /// 'Skip' means that the item will not be fetched from cache
+    /// 
+    /// Skip options:
+    /// - skipForAuthenticatedUsers, false by default
+    /// - skipForAdmins, true by default
+    ///     * User must be part of any following roles case sensitive: "Admin", "Admins", "Administrator", "Administrators", "WebAdmins", "CmsAdmins", "admin"
+    /// - skipFor, your own condition, must return True to skip
+    /// </remarks>
     /// <example>
-    /// Simple get object from cache based on a cache key:
     /// <code class="language-csharp hljs">
-    /// var cacheKey = "hello-world-key";
+    /// var data = Cache.TryGet&lt;string&gt;(() => throw new Exception("does not crash application"));
     /// 
-    /// var data = Cache.Get&lt;string&gt;(cacheKey);
-    /// 
-    /// //If 'hello-world-key' exists in cache, the variable 'data' now holds that value
+    /// // Exception is logged through your ILogWriter implementation
     /// </code>
     /// </example>
+    /// <returns>Returns item from cache or getItem, on exception returns default</returns>
+    public static T TryGet<T>(Func<T> getItem, TimeSpan duration = default, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null)
+    {
+        try
+        {
+            return Get(getItem, "", duration, condition, skipForAuthenticatedUsers, skipForAdmins, skipFor);
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex);
+
+            return default;
+        }
+    }
+
+    /// <summary>
+    /// Get item from Cache as T
+    /// </summary>
+    /// <remarks>
+    /// CacheKey null or blank returns default without checking cache
+    /// 
+    /// Default duration is 180 seconds
+    /// </remarks>
+    /// <example>
+    /// <code class="language-csharp hljs">
+    /// var cacheKey = "helloworld";
+    /// var data = Cache.Get&lt;string&gt;(cacheKey);
+    /// </code>
+    /// </example>
+    /// <returns>Returns item from cache or getItem, on exception returns default</returns>
     public static T Get<T>(string cacheKey)
     {
         if (cacheKey.IsNot()) return default;
 
-        var cached = cache.Get(cacheKey);
+        var cacheIndex = Math.Abs(cacheKey.GetHashCode() % 4);
+
+        var cached = cache[cacheIndex].Get(cacheKey);
 
         return cached == null ? default : (T)cached;
     }
 
     /// <summary>
-    /// Get data from cache, or add it to cache before it is returned
-    /// 
-    /// Note: null is never added to cache
+    /// Get item from Cache as T
     /// </summary>
-    /// <example>
-    /// Example with a cache key
-    /// <code class="language-csharp hljs">
-    /// namespace: Company.Services
+    /// <remarks>
+    /// Throws exception if getItem can throw
     /// 
+    /// Default duration is 180 seconds
+    /// 
+    /// 'Skip' means that the item will not be fetched from cache
+    /// 
+    /// Skip options:
+    /// - skipForAuthenticatedUsers, false by default
+    /// - skipForAdmins, true by default
+    ///     * User must be part of any following roles case sensitive: "Admin", "Admins", "Administrator", "Administrators", "WebAdmins", "CmsAdmins", "admin"
+    /// - skipFor, your own condition, must return True to skip
+    /// </remarks>
+    /// <code class="language-csharp hljs">
     /// class CarService
     /// {
     ///     public string GetCars() 
     ///     {
-    ///         var cacheKey = "car_service_get_cars";
+    ///         var cacheKey = "helloworld";
     ///         
-    ///         return Cache.Get&lt;string&gt;(cacheKey, getItem: () => {
+    ///         return Cache.Get&lt;string&gt;(cacheKey, () => {
     ///             return HttpBaseClient.Get&lt;string&gt;("https://systemlibrary.com/api/cars?top=1");
     ///         },
     ///         TimeSpan.FromSeconds(5));
     ///     }
     /// }
     /// </code>
-    /// </example>
+    /// <returns>Returns item from cache or getItem</returns>
     public static T Get<T>(string cacheKey, Func<T> getItem, TimeSpan duration = default, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null)
     {
-        return Get<T>(getItem, cacheKey, duration, condition, skipForAuthenticatedUsers, skipForAdmins, skipFor);
+        return Get(getItem, cacheKey, duration, condition, skipForAuthenticatedUsers, skipForAdmins, skipFor);
     }
 
     /// <summary>
-    /// Get data from cache, or add it to cache before it is returned
-    /// 
-    /// - Auto-generates a cacheKey based on input params
-    /// 
-    /// Note: null is never added to cache
+    /// Get item from Cache as T using auto-generated cache key
     /// </summary>
-    /// <example>
-    /// Example without a cache key
-    /// <code class="language-csharp hljs">
-    /// namespace: Company.Services
+    /// <remarks>
+    /// Throws exception if getItem can throw
     /// 
+    /// Default duration is 180 seconds
+    /// 
+    /// 'Skip' means that the item will not be fetched from cache
+    /// 
+    /// Skip options:
+    /// - skipForAuthenticatedUsers, false by default
+    /// - skipForAdmins, true by default
+    ///     * User must be part of any following roles case sensitive: "Admin", "Admins", "Administrator", "Administrators", "WebAdmins", "CmsAdmins", "admin"
+    /// - skipFor, your own condition, must return True to skip
+    /// </remarks>
+    /// <code class="language-csharp hljs">
     /// class CarService
     /// {
     ///     public string GetCars() 
     ///     {
-    ///         return Cache.Get&lt;string&gt;(getItem: () => {
+    ///         var cacheKey = "helloworld";
+    ///         
+    ///         return Cache.Get&lt;string&gt;(cacheKey, () => {
     ///             return HttpBaseClient.Get&lt;string&gt;("https://systemlibrary.com/api/cars?top=1");
     ///         },
     ///         TimeSpan.FromSeconds(5));
     ///     }
     /// }
-    /// //Note: This will cache the top 1 car for everyone except 'Administrators' for 5 seconds
-    /// //If we should set skipForAdmins: false, then administrators will also get cached content
     /// </code>
-    /// </example>
+    /// <returns>Returns item from cache or getItem</returns>
     public static T Get<T>(Func<T> getItem, TimeSpan duration, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null)
     {
-        return Get<T>(getItem, null, duration, condition, skipForAuthenticatedUsers, skipForAdmins, skipFor);
+        return Get(getItem, "", duration, condition, skipForAuthenticatedUsers, skipForAdmins, skipFor);
     }
 
     /// <summary>
-    /// Get data from cache, or add it to cache before it is returned
+    /// Get item from Cache as T using auto-generated cache key
     /// 
-    /// Note: null is never added to cache
+    /// Null is never added to cache
     /// </summary>
-    /// <param name="cacheKey">Set to null if you want a cache key auto-generated for you</param>
+    /// <remarks>
+    /// Throws exception if getItem can throw
+    /// 
+    /// Default duration is 180 seconds
+    /// 
+    /// 'Skip' means that the item will not be fetched from cache
+    /// 
+    /// Skip options:
+    /// - skipForAuthenticatedUsers, false by default
+    /// - skipForAdmins, true by default
+    ///     * User must be part of any following roles case sensitive: "Admin", "Admins", "Administrator", "Administrators", "WebAdmins", "CmsAdmins", "admin"
+    /// - skipFor, your own condition, must return True to skip
+    /// </remarks>
+    /// <param name="cacheKey">"" to use auto-generating of cacheKey, null to always skip cache</param>
     /// <param name="condition">Add to cache only if condition is met, for instance: data != null</param>
     /// <param name="skipForAuthenticatedUsers">Skip cache for any user that is authenticated, but is not part of any of the admin roles: Admins, Administrators, WebAdmins, CmsAdmins</param>
     /// <param name="skipForAdmins">Skip cache for current principal that is authenticated and is part of either of the roles: Admins, Administrators, WebAdmins, CmsAdmins</param>
     /// <param name="skipFor">Implement your own logic for when to skip cache, let it return true on your conditions to avoid caching</param>
-    /// <returns>Returns data either from cache or the getItem() method</returns>
     /// <example>
     /// Simplest example:
+    /// <code class="language-csharp hljs">
+    /// var data = Cache.Get(() => {
+    ///     return "hello world";
+    /// });
+    /// 
+    /// //'data' is now 'hello world', if called multiple times within the default cache duration of 180 seconds, "hello world" is returned from the cache for all non-admin users
+    /// </code>
+    /// 
+    /// Simplest example with cacheKey:
     /// <code class="language-csharp hljs">
     /// var cacheKey = "hello-world-key";
     /// var data = Cache.Get(() => {
@@ -244,56 +367,50 @@ public static class Cache
     ///     skipForAuthenticatedUsers: false);
     /// 
     /// //'data' is equal to 'hello world', cache duration is 1 second, but it only adds the result to cache, if it is not equal to "hello world"
-    /// //So in this scenario - "hello world" is never added to cache, and our function that returns "hello world" is always invoked
+    /// // so in this scenario - "hello world" is never added to cache, and our function that returns "hello world" is always invoked
     /// </code>
     /// 
     /// Example without a cache key
     /// <code class="language-csharp hljs">
-    /// namespace: Company.Services
-    /// 
     /// class CarService
     /// {
     ///     public string GetCars() 
     ///     {
-    ///         return Cache.Get&lt;string&gt;(getItem: () => {
+    ///         return Cache.Get&lt;string&gt;(() => {
     ///             return HttpBaseClient.Get&lt;string&gt;("https://systemlibrary.com/api/cars?top=1");
     ///         },
     ///         skipForAdmins: false);
     ///     }
     /// }
-    /// //Note: This will cache the top 1 car for everyone, even logged in administrators/admins because we set 'skipForAdmins' to false,
-    /// //If we should set skipForAdmins: true, then administrators would always invoke our method, the data would never come from cache for those users
+    /// // This caches top 1 cars for every user, even admins, as we set 'skipForAdmins' to False
     /// </code>
     /// 
     /// Example without a cache key and with 'external' variables
     /// <code class="language-csharp hljs">
-    /// namespace: Company.Services
-    /// 
     /// class CarService
     /// {
-    ///     public string GetCars() 
+    ///     public string GetCars(int top = 10) 
     ///     {
     ///         var url = "https://systemlibrary.com/api/cars";
     ///         var urlQueryValue = "?filter=none";
-    ///         var top = 10
-    ///         //urlQueryValue could be an input variable to GetCars() 
     ///         
-    ///         return Cache.Get&lt;string&gt;(getItem: () => {
+    ///         return Cache.Get&lt;string&gt;(() => {
     ///             return HttpBaseClient.Get&lt;string&gt;(url + urlQueryValue + " top=" + top);
     ///         });
     ///     }
     /// }
     /// 
-    /// //GetCars returns response either from the API, or if called upon multiple times within default cache duration of 180 seconds, it would return the data from cache
+    /// // Returns top 10 cars from the API, and adds result to cache (assumes not null) for a duration of 180 seconds by default
+    /// // For simplicity, pretend an auto cache key looks like this: sysLib.web.CarService.GetCars_top=10_systemlibrary.com/api/cars_?filter=none_IsAuthenticated=false
     /// 
-    /// //Note: cache key is created with the outside variables (converted using .ToString(), so a class, 'User' for instance, would just be .ToString'd  and not differentiated on properties like emails/firstname, etc...)
-    /// //Note: cache key would look like this: Company.Services.CarService.GetCars__uniqueLambdaBackingName_https//systemlibrary.com/api/cars?filter=none10
-    /// //Note: cache key for an authenticated user would minimum append 'true' to the above cacheKey, and if it is a ClaimsPrincipal user, it would append all roles that user belongs to
+    /// // Note: cache key is created with the outside variable "top", it is ".ToString'd", works on many types: bool, datetime, string, and simple POCO's with 1 depth level of properties/fields, not "class inside class" is not supported
+    /// // Note: cache key for wether or not user is logged in is always appended so it always varies on "IsAuthenticated"
     /// </code>
     /// </example>
-    public static T Get<T>(Func<T> getItem, string cacheKey = null, TimeSpan duration = default, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null)
+    /// <returns>Returns item from cache or getItem</returns>
+    public static T Get<T>(Func<T> getItem, string cacheKey = "", TimeSpan duration = default, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null)
     {
-        if (cacheKey == "")
+        if (cacheKey == null)
             return getItem();
 
         if (SkipCache(skipForAuthenticatedUsers, skipForAdmins, skipFor))
@@ -302,19 +419,27 @@ public static class Cache
         if (duration == default)
             duration = TimeSpan.FromSeconds(DefaultDuration);
 
-        if (cacheKey == null)
+        if (cacheKey == "")
             cacheKey = CreateCacheKey(getItem, condition);
 
         if (AppSettings.Debug)
-            Log.Debug("Cache.Get() debug parameter is true: cache key is " + cacheKey);
+            Log.Debug(cacheKey);
 
-        var cached = cache.Get(cacheKey);
+        var cacheIndex = Math.Abs(cacheKey.GetHashCode() % 4);
+
+        var cached = cache[cacheIndex].Get(cacheKey);
 
         if (cached != null)
         {
             if (AppSettings.Debug)
-                Log.Debug(obj: "Cache.Get() debug parameter is true: item cached");
+                Log.Debug("Item was cached with key " + cacheKey);
+
             return (T)cached;
+        }
+        else
+        {
+            if (AppSettings.Debug)
+                Log.Debug("Item was not cached with key " + cacheKey);
         }
 
         cached = getItem();
@@ -322,9 +447,9 @@ public static class Cache
         if (cached != null && (condition == null || condition((T)cached)))
         {
             if (AppSettings.Debug)
-                Log.Debug("Cache.Get() debug paramter is true: conditions are met, adding item to cache");
+                Log.Debug("Item met conditions, added to Cache, key: " + cacheKey);
 
-            Insert(cacheKey, cached, duration);
+            Insert(cacheIndex, cacheKey, cached, duration);
         }
 
         return (T)cached;
@@ -333,19 +458,17 @@ public static class Cache
     /// <summary>
     /// Create a 'lock' to part of a function, to run it only once within the duration
     /// 
-    /// Returns true if the key do not exist or has expired else returns false
+    /// Default lock duration is 60 seconds
     /// 
-    /// - Default lock duration is 60 seconds
-    /// 
-    /// Useful to execute code only once within the time frame per app instance
-    /// 
-    /// NOTE: Uses the stack frame to read current namespace and method as cache key, so max 1 invocation per function scope, else you must fill out the cacheLock parameter too
+    /// Useful to execute code only once within the time frame per app instance, not bombarding log for instance
     /// </summary>
+    /// <remarks>
+    /// Uses the stack frame to read current namespace and method as cache key, so max 1 invocation per function scope, else you must fill out the cacheLock parameter too
+    /// - in the future it might support multiple...
+    /// </remarks>
     /// <param name="lockKey">Append data to the lock key, if multiple locks resides inside the same method scope</param>
     /// <example>
-    /// Example
     /// <code class="language-csharp hljs">
-    /// 
     /// if(Cache.Lock("send-email", TimeSpan.FromSeconds(60)) 
     /// {
     ///     new Email(...).Send(); // Pseudo code
@@ -353,6 +476,7 @@ public static class Cache
     /// }
     /// </code>
     /// </example>
+    /// <returns>Returns true if the key do not exist or has expired else returns false</returns>
     public static bool Lock(TimeSpan duration = default, string lockKey = null)
     {
         if (duration == default)
@@ -364,11 +488,13 @@ public static class Cache
 
             var cacheKey = nameof(SystemLibrary) + nameof(Cache) + nameof(Lock) + callee.DeclaringType?.Namespace + callee.DeclaringType?.Name + callee.Name + callee.IsStatic + callee.IsPublic + duration + lockKey;
 
-            var exists = cache.Get<bool>(cacheKey);
+            var cacheIndex = Math.Abs(cacheKey.GetHashCode() % 4);
+
+            var exists = cache[cacheIndex].Get<bool>(cacheKey);
 
             if (exists) return false;
 
-            Insert(cacheKey, true, duration);
+            Insert(cacheIndex, cacheKey, true, duration);
 
             return true;
         }
@@ -378,9 +504,76 @@ public static class Cache
         }
     }
 
+    /// <summary>
+    /// Removes item from cache or does nothing if item do not exist in cache
+    /// </summary>
+    /// <example>
+    /// <code class="language-csharp hljs">
+    /// var cacheKey = "hello world";
+    /// Cache.Remove(cacheKey);
+    /// </code>
+    /// </example>
+    public static void Remove(string cacheKey)
+    {
+        if (cacheKey.IsNot()) return;
+
+        var cacheIndex = Math.Abs(cacheKey.GetHashCode() % 4);
+
+        cache[cacheIndex].Remove(cacheKey);
+    }
+
+    /// <summary>
+    /// Clear all entries found, which was set through this Cache class
+    /// </summary>
+    /// <example>
+    /// <code class="language-csharp hljs">
+    /// Cache.Clear();
+    /// </code>
+    /// </example>
+    public static void Clear()
+    {
+        var entries = typeof(MemoryCache).GetProperty("EntriesCollection", BindingFlags.NonPublic | BindingFlags.Instance);
+        if (entries == null) return;
+
+        for (int i = 0; i < MaxCacheContainers; i++)
+        {
+            var entriesCollection = entries.GetValue(cache[i]) as ICollection;
+            if (entriesCollection == null || entriesCollection.Count == 0) return;
+
+            var keys = new List<string>();
+            if (entriesCollection != null)
+            {
+                foreach (var item in entriesCollection)
+                {
+                    var key = item.GetType().GetProperty("Key")?.GetValue(item);
+                    if (key != null)
+                        keys.Add(key.ToString());
+                }
+            }
+
+            foreach (var key in keys)
+                cache[i].Remove(key);
+
+            keys.Clear();
+            keys = null;
+        }
+    }
+
+    static void Insert(int cacheIndex, string cacheKey, object item, TimeSpan duration)
+    {
+        if (item == null)
+            Remove(cacheKey);
+        else
+            cache[cacheIndex].Set(cacheKey, item, new MemoryCacheEntryOptions()
+            {
+                AbsoluteExpiration = DateTime.Now.Add(duration),
+                Size = 1,
+            });
+    }
+
     static string CreateCacheKey<T>(Func<T> getItem, Func<T, bool> condition)
     {
-        var key = new StringBuilder("common.web.cache", capacity: 255);
+        var key = new StringBuilder("common.web.cache", capacity: 383);
 
         var getItemMethod = getItem.Method;
 
@@ -391,6 +584,194 @@ public static class Cache
         var target = getItem.Target;
         if (target != null)
         {
+            void AppendString(object value, Type valueType)
+            {
+                if (value is string text)
+                {
+                    if (text.Length > 96)
+                    {
+                        key.Append(text.Length + text.MaxLength(96) + text[^5]);
+                    }
+                    else
+                    {
+                        key.Append(text);
+                    }
+                }
+                else if (value is StringBuilder sb)
+                {
+                    if (sb.Length > 96)
+                    {
+                        var temp = sb.ToString();
+                        key.Append(sb.Length + temp.MaxLength(96) + temp[^5]);
+                        temp = null;
+                    }
+                    else
+                    {
+                        key.Append(sb.ToString());
+                    }
+                }
+                else if(value is Guid g)
+                {
+                    key.Append(g.ToString("N"));
+                }
+                else if(value is DateTime dt)
+                {
+                    key.Append(dt.ToString("yyyyMMddHHmmss"));
+                }
+                else if (IsToStringable(valueType))
+                {
+                    key.Append(value.ToString());
+                }
+                else
+                {
+                    if(AppSettings.Debug)
+                        Log.Debug(valueType.Name + " not stringable type: " + value);
+                }
+            }
+
+            void AppendClass(object value, Type valueType)
+            {
+                var valueProperties = Dictionaries.GenerateCacheKeyValueTypeProperties.Cache(valueType, () =>
+                {
+                    return valueType.GetProperties(BindingFlags.Public | BindingFlags.GetProperty | BindingFlags.Static | BindingFlags.Instance);
+                });
+
+                var valueFields = Dictionaries.GenerateCacheKeyValueTypeFields.Cache(valueType, () =>
+                {
+                    return valueType.GetFields(BindingFlags.Public | BindingFlags.GetField | BindingFlags.Static | BindingFlags.Instance);
+                });
+
+                if (valueProperties?.Length > 0)
+                {
+                    foreach (var pi in valueProperties)
+                    {
+                        if (!IsToStringable(pi.PropertyType)) continue;
+
+                        key.Append(pi.Name);
+
+                        try
+                        {
+                            MethodInfo getMethod = pi.GetGetMethod();
+
+                            object piValue = null;
+                            if (getMethod.IsStatic)
+                            {
+                                piValue = pi.GetValue(null);
+                            }
+                            else
+                            {
+                                piValue = pi.GetValue(value);
+                            }
+
+                            if (piValue != null)
+                                AppendString(piValue, piValue.GetType());
+                        }
+                        catch
+                        {
+                            // Swallow
+                        }
+                    }
+                }
+
+                if (valueFields?.Length > 0)
+                {
+                    foreach (var fi in valueFields)
+                    {
+                        if (!IsToStringable(fi.FieldType)) continue;
+
+                        key.Append(fi.Name);
+
+                        try
+                        {
+                            object fiValue = null;
+                            if (fi.IsStatic)
+                            {
+                                fiValue = fi.GetValue(null);
+                            }
+                            else
+                            {
+                                fiValue = fi.GetValue(value);
+                            }
+                            if (fiValue != null)
+                                AppendString(fiValue, fiValue.GetType());
+                        }
+                        catch
+                        {
+                            // Swallow
+                        }
+                    }
+                }
+            }
+
+            void AppendCollection(ICollection collection)
+            {
+                key.Append(collection.Count);
+
+                foreach (var value in collection)
+                {
+                    AppendValue(value);
+                }
+            }
+
+            void AppendValue(object value)
+            {
+                if (key.Length > 2048) return;
+
+                if (value == null) return;
+
+                var valueType = value.GetType();
+
+                if (IsToStringable(valueType))
+                    AppendString(value, valueType);
+                else if (value is ICollection collection)
+                    AppendCollection(collection);
+                else if (valueType.IsClass)
+                    AppendClass(value, valueType);
+                else
+                {
+                    if (AppSettings.Debug)
+                        Log.Debug(valueType.Name + " not appendable");
+                }
+            }
+
+            void AppendFieldArgument(FieldInfo field)
+            {
+                if (key.Length > 2048) return;
+
+                if (field == null) return;
+                
+                var type = field.FieldType;
+
+                if (!IsTypeAutoCacheKeyType(type))
+                {
+                    if (AppSettings.Debug)
+                        Log.Debug("Field type not part of cache key " + type.Name);
+
+                    return;
+                }
+
+                key.Append(field.Name.MaxLength(20));
+
+                try
+                {
+                    object value;
+                    if (field.IsStatic)
+                    {
+                        value = field.GetValue(null);
+                    }
+                    else
+                    {
+                        value = field.GetValue(target);
+                    }
+
+                    AppendValue(value);
+                }
+                catch
+                {
+                    // Swallow
+                }
+            }
+
             var type = target.GetType();
 
             var fields = Dictionaries.GenerateCacheKeyFields.Cache(type, () =>
@@ -398,118 +779,11 @@ public static class Cache
                 return type.GetFields(BindingFlags.FlattenHierarchy | BindingFlags.Instance | BindingFlags.Public);
             });
 
-            if (fields.Length > 0)
+            if (fields?.Length > 0)
             {
                 foreach (var field in fields)
                 {
-                    key.Append(field.Name);
-
-                    if (field.IsStatic)
-                    {
-                        try
-                        {
-                            var v = field.GetValue(null);
-                            key.Append(v + "");
-                        }
-                        catch
-                        {
-                        }
-                        continue;
-                    }
-
-                    try
-                    {
-                        var value = field.GetValue(target);
-
-                        if (value != null)
-                        {
-                            if(value is ICollection icol)
-                            {
-                                key.Append(icol.Count);
-                                if (icol.Count > 0)
-                                {
-                                    foreach (var item in icol)
-                                    {
-                                        if (item != null)
-                                            key.Append(item.ToString());
-                                    }
-                                }
-                            }
-                            else if (value is string || value is StringBuilder || value is bool || value is int || value is DateTime || value is DateTimeOffset || value is float || value is double || value is Enum || value is short || value is long || value is decimal)
-                                key.Append(value.ToString());
-                            else
-                            {
-                                var valueType = value.GetType();
-
-                                if (!valueType.IsClass) continue;
-
-                                var valueProperties = Dictionaries.GenerateCacheKeyValueTypeProperties.Cache(valueType, () =>
-                                {
-                                    return valueType.GetProperties(BindingFlags.Public | BindingFlags.GetProperty | BindingFlags.Static | BindingFlags.Instance);
-                                });
-
-                                var valueFields = Dictionaries.GenerateCacheKeyValueTypeFields.Cache(valueType, () =>
-                                {
-                                    return valueType.GetFields(BindingFlags.Public | BindingFlags.GetField | BindingFlags.Static | BindingFlags.Instance);
-                                });
-
-                                if (valueProperties?.Length > 0)
-                                {
-                                    foreach (var pi in valueProperties)
-                                    {
-                                        key.Append(pi.Name);
-
-                                        try
-                                        {
-                                            MethodInfo getMethod = pi.GetGetMethod();
-
-                                            if (getMethod.IsStatic)
-                                            {
-                                                key.Append(pi.GetValue(null));
-                                            }
-                                            else
-                                            {
-                                                var memberValue = pi.GetValue(value);
-                                                key.Append(memberValue?.ToString());
-                                            }
-                                        }
-                                        catch
-                                        {
-                                            // Swallow
-                                        }
-                                    }
-                                }
-
-                                if (valueFields?.Length > 0)
-                                {
-                                    foreach (var fi in valueFields)
-                                    {
-                                        key.Append(fi.Name);
-                                        try
-                                        {
-                                            if (fi.IsStatic)
-                                            {
-                                                key.Append(fi.GetValue(null));
-                                            }
-                                            else
-                                            {
-                                                var memberValue = fi.GetValue(value);
-                                                key.Append(memberValue?.ToString());
-                                            }
-                                        }
-                                        catch
-                                        {
-                                            // Swallow
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    catch
-                    {
-                        // Swallow, might be a static var, continue as is...
-                    }
+                    AppendFieldArgument(field);
                 }
             }
         }
@@ -542,70 +816,6 @@ public static class Cache
         return key.ToString();
     }
 
-    static void Insert(string cacheKey, object value, TimeSpan duration)
-    {
-        if (value == null)
-            Remove(cacheKey);
-        else
-            cache.Set(cacheKey, value, new MemoryCacheEntryOptions()
-            {
-                AbsoluteExpiration = DateTime.Now.Add(duration),
-                Size = 1,
-            });
-    }
-
-    /// <summary>
-    /// Remove a single item from cache based on cacheKey
-    /// - If it does not exist, it does nothing
-    /// - If context is not web, it does nothing
-    /// </summary>
-    /// <example>
-    /// <code>
-    /// string removeCacheKey = "hello world";
-    /// Cache.Remove(removeCacheKey);
-    /// </code>
-    /// </example>
-    public static void Remove(string cacheKey)
-    {
-        if (cacheKey.IsNot()) return;
-
-        cache.Remove(cacheKey);
-    }
-
-    /// <summary>
-    /// Clear everything found in cache
-    /// </summary>
-    /// <example>
-    /// <code>
-    /// Cache.Clear();
-    /// </code>
-    /// </example>
-    public static void Clear()
-    {
-        var entries = typeof(MemoryCache).GetProperty("EntriesCollection", BindingFlags.NonPublic | BindingFlags.Instance);
-        if (entries == null) return;
-
-        var entriesCollection = entries.GetValue(cache) as ICollection;
-        if (entriesCollection == null || entriesCollection.Count == 0) return;
-
-        var keys = new List<string>();
-        if (entriesCollection != null)
-        {
-            foreach (var item in entriesCollection)
-            {
-                var key = item.GetType().GetProperty("Key")?.GetValue(item);
-                if (key != null)
-                    keys.Add(key.ToString());
-            }
-        }
-
-        //lock (cacheLock)
-        //{
-        foreach (var key in keys)
-            cache.Remove(key);
-        //}
-    }
-
     static bool SkipCache(bool skipForAuthenticatedUsers, bool skipForAdmins, Func<bool> skipFor)
     {
         if (skipForAuthenticatedUsers || skipForAdmins || skipFor != null)
@@ -630,6 +840,53 @@ public static class Cache
 
     static bool IsCurrentUserAdmin()
     {
-        return Principal?.Identity?.IsAuthenticated == true && Principal.IsInAnyRole("Admin", "Admins", "Administrator", "Administrators", "WebAdmins", "CmsAdmins");
+        return Principal?.Identity?.IsAuthenticated == true && Principal.IsInAnyRole("Admin", "Admins", "Administrator", "Administrators", "WebAdmins", "CmsAdmins", "admin", "administrators");
     }
+
+    static bool IsTypeAutoCacheKeyType(Type type)
+    {
+        if (type.IsEnum) return true;
+
+        if (type.Inherits(SystemType.ICollectionType)) return true;
+
+        if(type == SystemType.UriType) return true;
+
+        if (type.IsKeyValuePair()) return true;
+
+        if (type.IsClass && !type.IsGenericType) return true;
+
+        return Array.IndexOf(AutoCacheKeyStringableTypes, type) >= 0;
+    }
+
+    static bool IsToStringable(Type type)
+    {
+        if (type.IsEnum) return true;
+
+        if(type.IsKeyValuePair()) return true;
+
+        return Array.IndexOf(AutoCacheKeyStringableTypes, type) >= 0;
+    }
+
+    static Type AutoCacheKeyICollection = typeof(ICollection);
+
+    static Type[] AutoCacheKeyStringableTypes = {
+            typeof(string),
+            typeof(StringBuilder),
+            typeof(bool),
+            typeof(int),
+            typeof(DateTime),
+            typeof(DateTimeOffset),
+            typeof(float),
+            typeof(double),
+            typeof(Enum),
+            typeof(short),
+            typeof(long),
+            typeof(decimal),
+            typeof(uint),
+            typeof(Uri),
+            typeof(TimeSpan),
+            typeof(Guid),
+            typeof(KeyValuePair<,>)
+    };
+
 }

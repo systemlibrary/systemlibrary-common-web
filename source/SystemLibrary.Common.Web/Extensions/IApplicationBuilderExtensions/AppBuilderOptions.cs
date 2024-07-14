@@ -62,20 +62,20 @@ public class AppBuilderOptions : BaseOptions
     /// <summary>
     /// Allow serving of unknown, unsupported, media/mime types.
     /// 
-    /// Note: requires UseStatisFiles set to True
+    /// Note: requires UseStaticFiles set to True
     /// 
     /// Defaults to true
     /// </summary>
     public bool StaticFilesServeUnknownFileTypes = true;
 
     /// <summary>
-    /// Set the relative path of where to only allow serving static content from
+    /// Set the relative paths of where most static content is served from
     /// 
-    /// Note: requires UseStatisFiles set to True
+    /// Note: requires UseStaticFiles set to True
     /// 
     /// For example: /static
     /// </summary>
-    public string StaticFilesRequestPath = null;
+    public string[] StaticFilesRequestPaths = null;
 
     /// <summary>
     /// Adds middleware which responds with a exception page usually used in development environments and test environments

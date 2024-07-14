@@ -178,7 +178,7 @@ public static partial class Log
             if (!WarningDumped)
             {
                 WarningDumped = true;
-                Dump.Write("Dump.Write invoked: SystemLibrary.Common.Web.ILogWriter is not yet registered as a service.");
+                Dump.Write("Warning: SystemLibrary.Common.Web.ILogWriter is not yet registered as a service, will Dump.Write message");
             }
             Dump.Write(message);
             return;

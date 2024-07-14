@@ -34,8 +34,9 @@ public static class HttpRequestExtensions
     {
         return request == null
             ? throw new ArgumentNullException(nameof(request))
-            : request.Headers != null && request.Headers.ContainsKey("X-Requested-With")
-&& request.Headers["X-Requested-With"] == "XMLHttpRequest";
+            : request.Headers != null &&
+            request.Headers.ContainsKey("X-Requested-With") &&
+            request.Headers["X-Requested-With"] == "XMLHttpRequest";
     }
 
     /// <summary>

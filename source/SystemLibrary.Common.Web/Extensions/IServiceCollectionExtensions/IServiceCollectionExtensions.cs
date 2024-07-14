@@ -16,6 +16,12 @@ namespace SystemLibrary.Common.Web.Extensions;
 /// </summary>
 public static partial class IServiceCollectionExtensions
 {
+    /// <summary>
+    /// Add common web services such as response compression, output cache, MVC, 
+    /// </summary>
+    /// <param name="services"></param>
+    /// <param name="options"></param>
+    /// <returns></returns>
     public static IServiceCollection AddCommonWebServices(this IServiceCollection services, ServicesCollectionOptions options = null)
     {
         Services.Configure(services);
@@ -41,7 +47,7 @@ public static partial class IServiceCollectionExtensions
         if (options.UseResponseCaching)
             services.AddResponseCaching();
 
-        services.UseAutomaticKeyGenerationFile(options);
+        services.UseAutomaticDataProtectionPolicy(options);
 
         IMvcBuilder builder = null;
 
@@ -88,7 +94,9 @@ public static partial class IServiceCollectionExtensions
 
         // NOTE: Can this be Scoped instead?
         services.TryAddTransient<HtmlHelperFactory, HtmlHelperFactory>();
-        services.Configure<IISServerOptions>(options => { options.AllowSynchronousIO = true; });
+
+        if(options.IISAllowSynchronousIO)
+            services.Configure<IISServerOptions>(options => { options.AllowSynchronousIO = true; });
 
         return services;
     }

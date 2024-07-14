@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -10,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 
 using SystemLibrary.Common.Net;
+using SystemLibrary.Common.Net.Extensions;
 
 namespace SystemLibrary.Common.Web.Extensions;
 
@@ -80,34 +79,48 @@ public static partial class IApplicationBuilderExtensions
 
         if (options.UseStaticFiles)
         {
-            StaticFileOptions staticFileOptions = new StaticFileOptions
+            var contentRootPath = env?.WebRootPath ?? EnvironmentConfig.Current.ContentRootPath;
+
+            if (options.StaticFilesRequestPaths.Is())
             {
-                ServeUnknownFileTypes = options.StaticFilesServeUnknownFileTypes,
-                HttpsCompression = HttpsCompressionMode.Compress,
-                RedirectToAppendTrailingSlash = false,
-                OnPrepareResponse = ctx =>
+                foreach (var staticFilePath in options.StaticFilesRequestPaths)
                 {
-                    if (ctx.Context.Response.Headers.ContainsKey("Cache-Control") != true)
-                        ctx.Context.Response.Headers.Append("Cache-Control", $"public, max-age=" + options.StaticFilesMaxAgeSeconds);
-                },
-            };
+                    if (staticFilePath == null) continue;
 
-            var dir = env?.WebRootPath ?? Directory.GetCurrentDirectory();
+                    StaticFileOptions staticFileOptions = new StaticFileOptions
+                    {
+                        ServeUnknownFileTypes = options.StaticFilesServeUnknownFileTypes,
+                        HttpsCompression = HttpsCompressionMode.Compress,
+                        RedirectToAppendTrailingSlash = false,
+                        OnPrepareResponse = ctx =>
+                        {
+                            if (ctx.Context.Response.Headers.ContainsKey("Cache-Control") != true)
+                                ctx.Context.Response.Headers.Append("Cache-Control", $"public, max-age=" + options.StaticFilesMaxAgeSeconds);
+                        },
+                    };
 
-            if (env?.WebRootPath == null)
-            {
-                if (dir.Contains("\\bin\\") || dir.Contains("/bin/"))
-                    dir = Directory.GetParent(dir).FullName;
-                if (dir.Contains("\\bin\\") || dir.Contains("/bin/"))
-                    dir = Directory.GetParent(dir).FullName;
-                if (dir.Contains("\\bin\\") || dir.Contains("/bin/"))
-                    dir = Directory.GetParent(dir).FullName;
+                    staticFileOptions.FileProvider = new PhysicalFileProvider(contentRootPath);
+                    staticFileOptions.RequestPath = new PathString(staticFilePath);
+                    app.UseStaticFiles(staticFileOptions);
+                }
             }
-
-            staticFileOptions.FileProvider = new PhysicalFileProvider(dir);
-            staticFileOptions.RequestPath = new PathString(options.StaticFilesRequestPath ?? "");
-
-            app.UseStaticFiles(staticFileOptions);
+            else
+            {
+                StaticFileOptions staticFileOptions = new StaticFileOptions
+                {
+                    ServeUnknownFileTypes = options.StaticFilesServeUnknownFileTypes,
+                    HttpsCompression = HttpsCompressionMode.Compress,
+                    RedirectToAppendTrailingSlash = false,
+                    OnPrepareResponse = ctx =>
+                    {
+                        if (ctx.Context.Response.Headers.ContainsKey("Cache-Control") != true)
+                            ctx.Context.Response.Headers.Append("Cache-Control", $"public, max-age=" + options.StaticFilesMaxAgeSeconds);
+                    },
+                };
+                staticFileOptions.FileProvider = new PhysicalFileProvider(contentRootPath);
+                staticFileOptions.RequestPath = new PathString("");
+                app.UseStaticFiles(staticFileOptions);
+            }
         }
 
         if (options.UseRouting)
@@ -167,7 +180,7 @@ public static partial class IApplicationBuilderExtensions
                 endpoints.MapControllers();
                 endpoints.MapDefaultControllerRoute();
             }
-            
+
             if (options.UseApiControllers)
                 endpoints.MapControllerRoute("api/{controller}/{action}/{id?}", "api/{controller}/{action}/{id?}");
         });
