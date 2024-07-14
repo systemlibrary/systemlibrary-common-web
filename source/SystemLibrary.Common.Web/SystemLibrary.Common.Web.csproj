@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
-		<Configurations>Release</Configurations>
+		<Configurations>Release;Local</Configurations>
 		<RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
 		<Version>7.8.0.1</Version>
 		<PackageOutputPath>..\$(Product)</PackageOutputPath>
@@ -10,19 +10,22 @@
 
 	<PropertyGroup>
 		<DefaultItemExcludes>$(DefaultItemExcludes);Release.cmd;**\*.nupkg;nuget-icon.png;</DefaultItemExcludes>
-		<RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
 		<DebugType>pdbonly</DebugType>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<PackageOutputPath>..\$(MSBuildProjectName)</PackageOutputPath>
 		<Company>System Library</Company>
 		<Authors>System Library</Authors>
-		<Product>$(Version)</Product>
+		<Product>SystemLibrary.Common.Web $(Version)</Product>
+		<Optimize>true</Optimize>
+		<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<DefineConstants />
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<Optimize>true</Optimize>
-		<DefineConstants />
-		<DebugType>full</DebugType>
+	<PropertyGroup Condition="'$(Configuration)'=='Local'">
+		<DefineConstants>Local</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -46,10 +49,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Reference Include="SystemLibrary.Common.Net">
-	    <HintPath>..\..\..\systemlibrary-common-net\source\SystemLibrary.Common.Net\bin\Release\net7.0\SystemLibrary.Common.Net.dll</HintPath>
-	    <Private>False</Private>
-	  </Reference>
+		<Reference Include="SystemLibrary.Common.Net">
+			<HintPath>..\..\..\systemlibrary-common-net\source\SystemLibrary.Common.Net\bin\Release\net7.0\SystemLibrary.Common.Net.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
 	</ItemGroup>
 
 	<PropertyGroup>

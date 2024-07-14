@@ -14,6 +14,8 @@ public partial class AppSettingsTests
     [TestMethod]
     public void Read_AppSettingsConfiguration()
     {
+        var aa = "Hehe";
+
         var httpBaseClientConfiguration = GetAppSettingsConfiguration("httpBaseClient");
 
         Assert.IsTrue(httpBaseClientConfiguration != null, "HttpBaseClientConfiguration is null");

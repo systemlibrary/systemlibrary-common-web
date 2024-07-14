@@ -4,8 +4,6 @@ namespace SystemLibrary.Common.Web;
 
 internal class AppSettings : Config<AppSettings>
 {
-    internal static bool Debug = Current.SystemLibraryCommonWeb.Debug;
-
     public AppSettings()
     {
         SystemLibraryCommonWeb = new PackageConfig();

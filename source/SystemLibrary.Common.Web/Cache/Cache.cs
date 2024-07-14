@@ -113,15 +113,44 @@ public static class Cache
     }
 
     /// <summary>
+    /// Get item from Cache as T
+    /// </summary>
+    /// <remarks>
+    /// CacheKey null or blank returns default without checking cache
+    /// 
+    /// Default duration is 180 seconds
+    /// </remarks>
+    /// <example>
+    /// <code class="language-csharp hljs">
+    /// var cacheKey = "helloworld";
+    /// var data = Cache.Get&lt;string&gt;(cacheKey);
+    /// </code>
+    /// </example>
+    /// <returns>Returns item from cache or getItem, on exception returns default</returns>
+    public static T Get<T>(string cacheKey)
+    {
+        if (cacheKey.IsNot()) return default;
+
+        var cacheIndex = Math.Abs(cacheKey.GetHashCode() % 4);
+
+        var cached = cache[cacheIndex].Get(cacheKey);
+
+        return cached == null ? default : (T)cached;
+    }
+
+    /// <summary>
     /// Add item to cache for a duration
     /// 
-    /// Null is never added to cache
+    /// Null value is never added to cache
     /// </summary>
+    /// <param name="cacheKey">CacheKey to set item as, if null or empty this does nothing</param>
     /// <param name="duration">Defaults to 180 seconds</param>
     public static void Set<T>(string cacheKey, T item, TimeSpan duration = default)
     {
         if (cacheKey.IsNot())
             return;
+
+        var h = "hello";
 
         if (duration == default)
             duration = TimeSpan.FromSeconds(DefaultDuration);
@@ -134,7 +163,7 @@ public static class Cache
     /// <summary>
     /// Try get item from Cache as T
     /// 
-    /// Null is never added to cache
+    /// Null value is never added to cache
     /// 
     /// Logs exception if getItem() throws
     /// </summary>
@@ -176,7 +205,7 @@ public static class Cache
     /// <summary>
     /// Try get item from Cache as T using auto-generated cache key
     /// 
-    /// Null is never added to cache
+    /// Null value is never added to cache
     /// 
     /// Logs exception if getItem() throws
     /// </summary>
@@ -199,7 +228,7 @@ public static class Cache
     /// </code>
     /// </example>
     /// <returns>Returns item from cache or getItem, on exception returns default</returns>
-    public static T TryGet<T>(Func<T> getItem, TimeSpan duration = default, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null)
+    public static T TryGet<T>(Func<T> getItem, TimeSpan duration, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null)
     {
         try
         {
@@ -214,33 +243,49 @@ public static class Cache
     }
 
     /// <summary>
-    /// Get item from Cache as T
+    /// Try get item from Cache as T using auto-generated cache key
+    /// 
+    /// Null value is never added to cache
+    /// 
+    /// Logs exception if getItem() throws
     /// </summary>
     /// <remarks>
-    /// CacheKey null or blank returns default without checking cache
-    /// 
     /// Default duration is 180 seconds
+    /// 
+    /// 'Skip' means that the item will not be fetched from cache
+    /// 
+    /// Skip options:
+    /// - skipForAuthenticatedUsers, false by default
+    /// - skipForAdmins, true by default
+    ///     * User must be part of any following roles case sensitive: "Admin", "Admins", "Administrator", "Administrators", "WebAdmins", "CmsAdmins", "admin"
+    /// - skipFor, your own condition, must return True to skip
     /// </remarks>
     /// <example>
     /// <code class="language-csharp hljs">
-    /// var cacheKey = "helloworld";
-    /// var data = Cache.Get&lt;string&gt;(cacheKey);
+    /// var data = Cache.TryGet&lt;string&gt;(() => throw new Exception("does not crash application"));
+    /// 
+    /// // Exception is logged through your ILogWriter implementation
     /// </code>
     /// </example>
     /// <returns>Returns item from cache or getItem, on exception returns default</returns>
-    public static T Get<T>(string cacheKey)
+    public static T TryGet<T>(Func<T> getItem, string cacheKey = "", TimeSpan duration = default, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null)
     {
-        if (cacheKey.IsNot()) return default;
+        try
+        {
+            return Get(getItem, cacheKey, duration, condition, skipForAuthenticatedUsers, skipForAdmins, skipFor);
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex);
 
-        var cacheIndex = Math.Abs(cacheKey.GetHashCode() % 4);
-
-        var cached = cache[cacheIndex].Get(cacheKey);
-
-        return cached == null ? default : (T)cached;
+            return default;
+        }
     }
 
     /// <summary>
     /// Get item from Cache as T
+    /// 
+    /// Null value is never added to cache
     /// </summary>
     /// <remarks>
     /// Throws exception if getItem can throw
@@ -277,6 +322,8 @@ public static class Cache
 
     /// <summary>
     /// Get item from Cache as T using auto-generated cache key
+    /// 
+    /// Null value is never added to cache
     /// </summary>
     /// <remarks>
     /// Throws exception if getItem can throw
@@ -314,7 +361,7 @@ public static class Cache
     /// <summary>
     /// Get item from Cache as T using auto-generated cache key
     /// 
-    /// Null is never added to cache
+    /// Null value is never added to cache
     /// </summary>
     /// <remarks>
     /// Throws exception if getItem can throw
@@ -414,7 +461,11 @@ public static class Cache
             return getItem();
 
         if (SkipCache(skipForAuthenticatedUsers, skipForAdmins, skipFor))
+        {
+            Debug.Log("Skipping cache for cachey key: " + cacheKey);
+
             return getItem();
+        }
 
         if (duration == default)
             duration = TimeSpan.FromSeconds(DefaultDuration);
@@ -422,32 +473,26 @@ public static class Cache
         if (cacheKey == "")
             cacheKey = CreateCacheKey(getItem, condition);
 
-        if (AppSettings.Debug)
-            Log.Debug(cacheKey);
-
         var cacheIndex = Math.Abs(cacheKey.GetHashCode() % 4);
 
         var cached = cache[cacheIndex].Get(cacheKey);
 
         if (cached != null)
         {
-            if (AppSettings.Debug)
-                Log.Debug("Item was cached with key " + cacheKey);
+            Debug.Log("Item was cached with key " + cacheKey);
 
             return (T)cached;
         }
         else
         {
-            if (AppSettings.Debug)
-                Log.Debug("Item was not cached with key " + cacheKey);
+            Debug.Log("Item was not cached with key " + cacheKey);
         }
 
         cached = getItem();
 
         if (cached != null && (condition == null || condition((T)cached)))
         {
-            if (AppSettings.Debug)
-                Log.Debug("Item met conditions, added to Cache, key: " + cacheKey);
+            Debug.Log("Item met conditions, added to Cache, key: " + cacheKey);
 
             Insert(cacheIndex, cacheKey, cached, duration);
         }
@@ -624,8 +669,7 @@ public static class Cache
                 }
                 else
                 {
-                    if (AppSettings.Debug)
-                        Log.Debug(valueType.Name + " not stringable type: " + value);
+                    Debug.Log(valueType.Name + " not stringable type: " + value);
                 }
             }
 
@@ -729,8 +773,7 @@ public static class Cache
                     AppendClass(value, valueType);
                 else
                 {
-                    if (AppSettings.Debug)
-                        Log.Debug(valueType.Name + " not appendable");
+                    Debug.Log(valueType.Name + " not appendable");
                 }
             }
 
@@ -744,8 +787,7 @@ public static class Cache
 
                 if (!IsTypeAutoCacheKeyType(type))
                 {
-                    if (AppSettings.Debug)
-                        Log.Debug("Field type not part of cache key " + type.Name);
+                    Debug.Log("Field type not part of cache key " + type.Name);
 
                     return;
                 }

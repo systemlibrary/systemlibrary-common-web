@@ -9,7 +9,7 @@ namespace SystemLibrary.Common.Web.Tests
     partial class HttpBaseClientTests
     {
         [TestMethod]
-        [DataRow(5)]
+        [DataRow(6)]
         public void Test_Async_MultipleClients_Cached_Success(int repeat)
         {
             var service = new HttpBinClient();
@@ -41,7 +41,10 @@ namespace SystemLibrary.Common.Web.Tests
 
             Task.WaitAll(tasks.ToArray());
 
-            Assert.IsTrue(responses.Count == repeat, "One or more requests failed, should have " + repeat + " results, but got only " + responses.Count);
+            var err = string.Join(" ", responses.ToArray());
+
+            Assert.IsTrue(responses.Count == repeat, "One or more requests failed, should have " + repeat + " results, but got only " + responses.Count + " " + err);
+            
             foreach (var result in responses)
             {
                 Assert.IsTrue(result.Contains("HttpStatusCode 200"), "One or more inital requests did not return status code 200");
@@ -72,8 +75,11 @@ namespace SystemLibrary.Common.Web.Tests
                     Assert.IsTrue(false, "Error occured!");
                 }
             }
+
+            err = string.Join(" ", responses.ToArray());
+
             Task.WaitAll(tasks.ToArray());
-            Assert.IsTrue(responses.Count == repeat, "One or more requests failed after a sleep of almost 5 min, should have " + repeat + " results, but got only " + responses.Count);
+            Assert.IsTrue(responses.Count == repeat, "One or more requests failed after a sleep of over 3 min (less than 5), should have " + repeat + " results, but got only " + responses.Count + ": " + err);
         }
     }
 }
