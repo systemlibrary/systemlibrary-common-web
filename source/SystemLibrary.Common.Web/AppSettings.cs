@@ -17,11 +17,13 @@ internal class AppSettings : Config<AppSettings>
             HttpBaseClient = new HttpBaseClientConfiguration();
             Log = new LogConfiguration();
             LogMessageBuilder = new LogMessageBuilderOptions();
+            Client = new ClientConfiguration();
         }
 
         public bool Debug { get; set; } = false;
 
         public CacheConfiguration Cache { get; set; }
+        public ClientConfiguration Client { get; set; }
         public HttpBaseClientConfiguration HttpBaseClient { get; set; }
         public LogConfiguration Log { get; set; }
         public LogMessageBuilderOptions LogMessageBuilder { get; set; }
@@ -37,6 +39,15 @@ internal class AppSettings : Config<AppSettings>
 
             public int RetryRequestTimeoutMs { get; set; } = 10000;
             public int CacheClientConnectionSeconds { get; set; } = 110;
+        }
+
+        public class ClientConfiguration
+        {
+            public int Timeout { get; set; } = Web.Client.DefaultTimeout;
+            public int RetryTimeout { get; set; } = Web.Client.DefaultRetryTimeout;
+            public bool ThrowOnUnsuccessful { get; set; } = Web.Client.DefaultThrowOnUnsuccessful;
+            public bool IgnoreSslErrors { get; set; } = Web.Client.DefaultIgnoreSslErrors;
+            public bool UseRetryPolicy { get; set; } = Web.Client.DefaultUseRetryPolicy;
         }
 
         public class CacheConfiguration

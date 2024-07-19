@@ -4,11 +4,11 @@ using SystemLibrary.Common.Net.Extensions;
 
 namespace SystemLibrary.Common.Web;
 
-partial class HttpBaseClient
+partial class Client
 {
     partial class Request
     {
-        static HttpRequestMessage GetMessage(RequestOptions options)
+        static HttpRequestMessage CreateHttpRequestMessage(RequestOptions options)
         {
             var message = new HttpRequestMessage(options.Method, options.Url);
 
@@ -36,5 +36,6 @@ partial class HttpBaseClient
 
             return message;
         }
+
     }
 }

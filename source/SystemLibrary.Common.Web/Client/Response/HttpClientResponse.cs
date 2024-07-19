@@ -8,9 +8,9 @@ namespace SystemLibrary.Common.Web;
 /// The main response class that all http requests in the HttpBaseClient returns
 /// </summary>
 /// <typeparam name="T">T can be a string that you later can convert to json, or it can be a class, or a list of a class that will automatically be converted from json, assuming json response</typeparam>
-public partial class ClientResponse<T> : IDisposable
+public partial class HttpClientResponse<T> : IDisposable
 {
-    public ClientResponse(HttpResponseMessage response, T data)
+    internal HttpClientResponse(HttpResponseMessage response, T data)
     {
         Response = response;
         Data = data;

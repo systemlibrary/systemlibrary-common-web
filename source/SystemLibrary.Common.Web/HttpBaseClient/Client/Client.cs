@@ -23,11 +23,11 @@ namespace SystemLibrary.Common.Web
                 DisposeQueue = new ConcurrentDictionary<string, CacheModel>();
             }
 
-            internal static HttpClient GetClient(string url, int timeoutMilliseconds, bool retryOnRequestCancelled = false, bool forceNewClient = false, bool ignoreSslErrors = false)
+            internal static HttpClient GetClient(string url, int timeoutMilliseconds, bool retryOnTransientErrors = false, bool forceNewClient = false, bool ignoreSslErrors = false)
             {
                 var uri = new Uri(url);
 
-                var key = nameof(HttpBaseClient) + nameof(GetClient) + uri.Scheme + uri.Authority + uri.Port + "#" + timeoutMilliseconds + "#" + retryOnRequestCancelled;
+                var key = nameof(HttpBaseClient) + nameof(GetClient) + uri.Scheme + uri.Authority + uri.Port + "#" + timeoutMilliseconds + "#" + retryOnTransientErrors + "#" + ignoreSslErrors;
 
                 if (forceNewClient)
                 {
@@ -41,18 +41,20 @@ namespace SystemLibrary.Common.Web
                         return cached.HttpClientCached;
                 }
 
-                return New(key, timeoutMilliseconds, retryOnRequestCancelled, ignoreSslErrors);
+                return New(key, timeoutMilliseconds, retryOnTransientErrors, ignoreSslErrors);
             }
 
-            static HttpClient New(string key, int timeoutMilliseconds, bool retryOnRequestCancelled, bool ignoreSslErrors)
+            static HttpClient New(string key, int timeoutMilliseconds, bool retryOnTransientErrors, bool ignoreSslErrors)
             {
-                var retryRequestHandler = retryOnRequestCancelled ? new HttpClientRetryHandler(ignoreSslErrors) : null;
+                var sslHandler = new SslIgnoreHandler(ignoreSslErrors);
 
-                var timeoutRequestHandler = new HttpClientTimeoutHandler(timeoutMilliseconds, retryRequestHandler, ignoreSslErrors);
+                var retryHandler = new RetryHandler(retryOnTransientErrors, sslHandler);
+
+                var timeoutHandler = new TimeoutHandler(timeoutMilliseconds, retryHandler);
 
                 var httpClientCacheModel = new CacheModel()
                 {
-                    HttpClientCached = new HttpClient(timeoutRequestHandler, disposeHandler: true),
+                    HttpClientCached = new HttpClient(timeoutHandler, disposeHandler: true),
                     Expires = DateTime.Now.AddSeconds(ClientExpiresInSeconds)
                 };
 

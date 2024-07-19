@@ -18,35 +18,37 @@ namespace SystemLibrary.Common.Web;
 
 /// <summary>
 /// Caching for web applications
-///
-/// Default duration is 180 seconds
+/// <para>Default duration is 180 seconds</para>
 /// 
 /// Try using auto-generating cache keys, which differentiate caching down to user roles.
-/// - Cache things per user, by userId/email? Create your own cacheKey
+/// <para>- Cache things per user, by userId/email? Create your own cacheKey</para>
 ///
-/// 'Skip' means that the item will not be fetched from cache
-/// 
-/// Skip options:
-/// - skipForAuthenticatedUsers, false by default
-/// - skipForAdmins, true by default
-///     * User must be part of any following roles case sensitive: "Admin", "Admins", "Administrator", "Administrators", "WebAdmins", "CmsAdmins", "admin"
-/// - skipFor, your own condition, must return True to skip
+/// <para>'Skip' means that the item will not be fetched from cache</para>
+/// <list>
+/// <item>Skip options:</item>
+/// <item>- skipForAuthenticatedUsers, false by default</item>
+/// <item>- skipForAdmins, true by default</item>
+/// <item>    * User must be part of any following roles case sensitive: Admin, Admins, Administrator, Administrators, WebAdmins, CmsAdmins, admin, admins, administrator, administrators</item>
+/// <item>- skipFor, your own condition, must return True to skip</item>
+/// </list>
 /// </summary>
 /// <remarks>
 /// Cache is limited to 240.000 items by default, divided by 4 containers, where any item added takes up 1 size
 /// 
-/// Each container contains up to 60.000 items, once reached 33% are removed ready to be GC'ed
+/// <para>Each container contains up to 60.000 items, once reached 33% are removed ready to be GC'ed</para>
 /// 
 /// Null is never added to cache
 /// 
-/// Overwrite default cache configurations in appSettings.json:
-/// - cacheDuration: 180, minimum 1
-/// - containerSizeLimit: 60000, minimum 100
-/// 
-/// Auto-generating cache key adds namespace, class, method, method-scoped variables of type bool, string, int, short, long, double, datetime, datetimeoffset and enum to the cache key, if used within the getItem method
-/// - If a reference to class is used within the method, its public fields and properties of same types are also added
-/// - IsAuthenticated is added to cache key, including ClaimsPrincipal roles if any
-/// - Always adds prefix to avoid collisions
+/// <list>
+/// <item>Overwrite default cache configurations in appSettings.json:</item>
+/// <item>- cacheDuration: 180, minimum 1</item>
+/// <item>- containerSizeLimit: 60000, minimum 100</item>
+/// </list>
+/// Auto-generating cache key adds namespace, class, method, method-scoped variables of most used types such as bool, string, int, datetime, enum and few others, if used within the getItem method
+/// - If a method-scoped variable is a class, its public fields and properties of same types are also appended as cacheKey
+/// - IsAuthenticated is always appended to cacheKey
+/// - Claim 'role', 'Role' or RoleClaimType is also always appended to cacheKey
+/// - Always adds built-in prefix
 /// </remarks>
 /// <example>
 /// Configure the cache in appSettings.json 
@@ -118,7 +120,7 @@ public static class Cache
     /// <remarks>
     /// CacheKey null or blank returns default without checking cache
     /// 
-    /// Default duration is 180 seconds
+    /// <para>Default duration is 180 seconds</para>
     /// </remarks>
     /// <example>
     /// <code class="language-csharp hljs">
@@ -141,7 +143,7 @@ public static class Cache
     /// <summary>
     /// Add item to cache for a duration
     /// 
-    /// Null value is never added to cache
+    /// <para>Null value is never added to cache</para>
     /// </summary>
     /// <param name="cacheKey">CacheKey to set item as, if null or empty this does nothing</param>
     /// <param name="duration">Defaults to 180 seconds</param>
@@ -150,33 +152,31 @@ public static class Cache
         if (cacheKey.IsNot())
             return;
 
-        var h = "hello";
-
         if (duration == default)
             duration = TimeSpan.FromSeconds(DefaultDuration);
 
         var cacheIndex = Math.Abs(cacheKey.GetHashCode() % 4);
-
         Insert(cacheIndex, cacheKey, item, duration);
     }
 
     /// <summary>
     /// Try get item from Cache as T
     /// 
-    /// Null value is never added to cache
+    /// <para>Null value is never added to cache</para>
     /// 
     /// Logs exception if getItem() throws
     /// </summary>
     /// <remarks>
     /// Default duration is 180 seconds
     /// 
-    /// 'Skip' means that the item will not be fetched from cache
-    /// 
-    /// Skip options:
-    /// - skipForAuthenticatedUsers, false by default
-    /// - skipForAdmins, true by default
-    ///     * User must be part of any following roles case sensitive: "Admin", "Admins", "Administrator", "Administrators", "WebAdmins", "CmsAdmins", "admin"
-    /// - skipFor, your own condition, must return True to skip
+    /// <para>'Skip' means that the item will not be fetched from cache</para>
+    /// <list>
+    /// <item>Skip options:</item>
+    /// <item>- skipForAuthenticatedUsers, false by default</item>
+    /// <item>- skipForAdmins, true by default</item>
+    /// <item>    * User must be part of any following roles case sensitive: Admin, Admins, Administrator, Administrators, WebAdmins, CmsAdmins, admin, admins, administrator, administrators</item>
+    /// <item>- skipFor, your own condition, must return True to skip</item>
+    /// </list>
     /// </remarks>
     /// <example>
     /// <code class="language-csharp hljs">
@@ -212,13 +212,14 @@ public static class Cache
     /// <remarks>
     /// Default duration is 180 seconds
     /// 
-    /// 'Skip' means that the item will not be fetched from cache
-    /// 
-    /// Skip options:
-    /// - skipForAuthenticatedUsers, false by default
-    /// - skipForAdmins, true by default
-    ///     * User must be part of any following roles case sensitive: "Admin", "Admins", "Administrator", "Administrators", "WebAdmins", "CmsAdmins", "admin"
-    /// - skipFor, your own condition, must return True to skip
+    /// <para>'Skip' means that the item will not be fetched from cache</para>
+    /// <list>
+    /// <item>Skip options:</item>
+    /// <item>- skipForAuthenticatedUsers, false by default</item>
+    /// <item>- skipForAdmins, true by default</item>
+    /// <item>    * User must be part of any following roles case sensitive: Admin, Admins, Administrator, Administrators, WebAdmins, CmsAdmins, admin, admins, administrator, administrators</item>
+    /// <item>- skipFor, your own condition, must return True to skip</item>
+    /// </list>
     /// </remarks>
     /// <example>
     /// <code class="language-csharp hljs">
@@ -245,20 +246,21 @@ public static class Cache
     /// <summary>
     /// Try get item from Cache as T using auto-generated cache key
     /// 
-    /// Null value is never added to cache
+    /// <para>Null value is never added to cache</para>
     /// 
     /// Logs exception if getItem() throws
     /// </summary>
     /// <remarks>
     /// Default duration is 180 seconds
     /// 
-    /// 'Skip' means that the item will not be fetched from cache
-    /// 
-    /// Skip options:
-    /// - skipForAuthenticatedUsers, false by default
-    /// - skipForAdmins, true by default
-    ///     * User must be part of any following roles case sensitive: "Admin", "Admins", "Administrator", "Administrators", "WebAdmins", "CmsAdmins", "admin"
-    /// - skipFor, your own condition, must return True to skip
+    /// <para>'Skip' means that the item will not be fetched from cache</para>
+    /// <list>
+    /// <item>Skip options:</item>
+    /// <item>- skipForAuthenticatedUsers, false by default</item>
+    /// <item>- skipForAdmins, true by default</item>
+    /// <item>    * User must be part of any following roles case sensitive: Admin, Admins, Administrator, Administrators, WebAdmins, CmsAdmins, admin, admins, administrator, administrators</item>
+    /// <item>- skipFor, your own condition, must return True to skip</item>
+    /// </list>
     /// </remarks>
     /// <example>
     /// <code class="language-csharp hljs">
@@ -285,20 +287,21 @@ public static class Cache
     /// <summary>
     /// Get item from Cache as T
     /// 
-    /// Null value is never added to cache
+    /// <para>Null value is never added to cache</para>
     /// </summary>
     /// <remarks>
     /// Throws exception if getItem can throw
     /// 
     /// Default duration is 180 seconds
     /// 
-    /// 'Skip' means that the item will not be fetched from cache
-    /// 
-    /// Skip options:
-    /// - skipForAuthenticatedUsers, false by default
-    /// - skipForAdmins, true by default
-    ///     * User must be part of any following roles case sensitive: "Admin", "Admins", "Administrator", "Administrators", "WebAdmins", "CmsAdmins", "admin"
-    /// - skipFor, your own condition, must return True to skip
+    /// <para>'Skip' means that the item will not be fetched from cache</para>
+    /// <list>
+    /// <item>Skip options:</item>
+    /// <item>- skipForAuthenticatedUsers, false by default</item>
+    /// <item>- skipForAdmins, true by default</item>
+    /// <item>    * User must be part of any following roles case sensitive: Admin, Admins, Administrator, Administrators, WebAdmins, CmsAdmins, admin, admins, administrator, administrators</item>
+    /// <item>- skipFor, your own condition, must return True to skip</item>
+    /// </list>
     /// </remarks>
     /// <code class="language-csharp hljs">
     /// class CarService
@@ -323,20 +326,21 @@ public static class Cache
     /// <summary>
     /// Get item from Cache as T using auto-generated cache key
     /// 
-    /// Null value is never added to cache
+    /// <para>Null value is never added to cache</para>
     /// </summary>
     /// <remarks>
     /// Throws exception if getItem can throw
     /// 
     /// Default duration is 180 seconds
     /// 
-    /// 'Skip' means that the item will not be fetched from cache
-    /// 
-    /// Skip options:
-    /// - skipForAuthenticatedUsers, false by default
-    /// - skipForAdmins, true by default
-    ///     * User must be part of any following roles case sensitive: "Admin", "Admins", "Administrator", "Administrators", "WebAdmins", "CmsAdmins", "admin"
-    /// - skipFor, your own condition, must return True to skip
+    /// <para>'Skip' means that the item will not be fetched from cache</para>
+    /// <list>
+    /// <item>Skip options:</item>
+    /// <item>- skipForAuthenticatedUsers, false by default</item>
+    /// <item>- skipForAdmins, true by default</item>
+    /// <item>    * User must be part of any following roles case sensitive: Admin, Admins, Administrator, Administrators, WebAdmins, CmsAdmins, admin, admins, administrator, administrators</item>
+    /// <item>- skipFor, your own condition, must return True to skip</item>
+    /// </list>
     /// </remarks>
     /// <code class="language-csharp hljs">
     /// class CarService
@@ -361,20 +365,21 @@ public static class Cache
     /// <summary>
     /// Get item from Cache as T using auto-generated cache key
     /// 
-    /// Null value is never added to cache
+    /// <para>Null value is never added to cache</para>
     /// </summary>
     /// <remarks>
     /// Throws exception if getItem can throw
     /// 
     /// Default duration is 180 seconds
     /// 
-    /// 'Skip' means that the item will not be fetched from cache
-    /// 
-    /// Skip options:
-    /// - skipForAuthenticatedUsers, false by default
-    /// - skipForAdmins, true by default
-    ///     * User must be part of any following roles case sensitive: "Admin", "Admins", "Administrator", "Administrators", "WebAdmins", "CmsAdmins", "admin"
-    /// - skipFor, your own condition, must return True to skip
+    /// <para>'Skip' means that the item will not be fetched from cache</para>
+    /// <list>
+    /// <item>Skip options:</item>
+    /// <item>- skipForAuthenticatedUsers, false by default</item>
+    /// <item>- skipForAdmins, true by default</item>
+    /// <item>    * User must be part of any following roles case sensitive: Admin, Admins, Administrator, Administrators, WebAdmins, CmsAdmins, admin, admins, administrator, administrators</item>
+    /// <item>- skipFor, your own condition, must return True to skip</item>
+    /// </list>
     /// </remarks>
     /// <param name="cacheKey">"" to use auto-generating of cacheKey, null to always skip cache</param>
     /// <param name="condition">Add to cache only if condition is met, for instance: data != null</param>
@@ -503,13 +508,13 @@ public static class Cache
     /// <summary>
     /// Create a 'lock' to part of a function, to run it only once within the duration
     /// 
-    /// Default lock duration is 60 seconds
+    /// <para>Default lock duration is 60 seconds</para>
     /// 
     /// Useful to execute code only once within the time frame per app instance, not bombarding log for instance
     /// </summary>
     /// <remarks>
     /// Uses the stack frame to read current namespace and method as cache key, so max 1 invocation per function scope, else you must fill out the cacheLock parameter too
-    /// - in the future it might support multiple...
+    /// <para>- in the future it might support multiple...</para>
     /// </remarks>
     /// <param name="lockKey">Append data to the lock key, if multiple locks resides inside the same method scope</param>
     /// <example>
@@ -838,20 +843,20 @@ public static class Cache
         if (isAuthenticated)
         {
             key.Append(isAuthenticated);
+        }
 
-            if (Principal is ClaimsPrincipal claimsPrincipal)
+        if (Principal is ClaimsPrincipal claimsPrincipal)
+        {
+            var claimsIdentity = claimsPrincipal?.Identity as ClaimsIdentity;
+
+            if (claimsPrincipal?.Claims != null)
             {
-                var claimsIdentity = claimsPrincipal?.Identity as ClaimsIdentity;
+                var roles = claimsPrincipal.Claims
+                    .Where(c => c.Type == claimsIdentity.RoleClaimType || c.Type == "role" || c.Type == "Role")
+                    .Select(x => x.Value);
 
-                if (claimsPrincipal?.Claims != null)
-                {
-                    var roles = claimsPrincipal.Claims
-                        .Where(c => c.Type == claimsIdentity.RoleClaimType || c.Type == "role" || c.Type == "Role")
-                        .Select(x => x.Value);
-
-                    if (roles != null)
-                        key.Append(string.Join("", roles));
-                }
+                if (roles != null)
+                    key.Append(string.Join("", roles));
             }
         }
 
@@ -882,7 +887,7 @@ public static class Cache
 
     static bool IsCurrentUserAdmin()
     {
-        return Principal?.Identity?.IsAuthenticated == true && Principal.IsInAnyRole("Admin", "Admins", "Administrator", "Administrators", "WebAdmins", "CmsAdmins", "admin", "administrators");
+        return Principal?.Identity?.IsAuthenticated == true && Principal.IsInAnyRole("Admin", "Admins", "Administrator", "Administrators", "WebAdmins", "CmsAdmins", "admin", "administrators", "administrator");
     }
 
     static bool IsTypeAutoCacheKeyType(Type type)

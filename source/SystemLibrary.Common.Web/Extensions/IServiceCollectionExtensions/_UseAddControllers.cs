@@ -11,17 +11,17 @@ partial class IServiceCollectionExtensions
 {
     static IMvcBuilder UseAddControllers(this IServiceCollection services, ServicesCollectionOptions options)
     {
-        var type = Type.GetType("SystemLibrary.Common.Net.GetJsonSerializerOptions, SystemLibrary.Common.Net");
+        var type = Type.GetType("SystemLibrary.Common.Net._JsonSerializerOptions, SystemLibrary.Common.Net");
 
         if (type == null)
-            throw new Exception("SystemLibrary.Common.Net.GetJsonSerializerOptions is not loaded or type is renamed in version you are using, either upgrade SystemLibrary.Common.Web, or downgrade SystemLibrary.Common.Net most likely.");
+            throw new Exception("SystemLibrary.Common.Net._JsonSerializerOptions is not loaded or type is renamed in version you are using, either upgrade SystemLibrary.Common.Web, or downgrade SystemLibrary.Common.Net most likely.");
 
         var defaultJsonSerializerOptionMethod = type.GetMethods(BindingFlags.Static | BindingFlags.NonPublic)
             .Where(x => x.Name == "Default")
             .FirstOrDefault();
 
         if (defaultJsonSerializerOptionMethod == null)
-            throw new Exception("SystemLibrary.Common.Net.GetJsonSerializerOptions no longer contains method 'Default', not compatible versions, either upgrade SystemLibrary.Common.Web, or downgrade SystemLibrary.Common.Net most likely.");
+            throw new Exception("SystemLibrary.Common.Net._JsonSerializerOptions no longer contains method 'Default', not compatible versions, either upgrade SystemLibrary.Common.Web, or downgrade SystemLibrary.Common.Net most likely.");
 
         var defaultJsonSerializerOptions = (JsonSerializerOptions)defaultJsonSerializerOptionMethod.Invoke(null, new object[] { null, null });
 

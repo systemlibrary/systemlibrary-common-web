@@ -3,21 +3,11 @@
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
 		<Configurations>Release;Local</Configurations>
-		<RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
-		<Version>7.8.0.1</Version>
-		<PackageOutputPath>..\$(Product)</PackageOutputPath>
-	</PropertyGroup>
-
-	<PropertyGroup>
-		<DefaultItemExcludes>$(DefaultItemExcludes);Release.cmd;**\*.nupkg;nuget-icon.png;</DefaultItemExcludes>
-		<DebugType>pdbonly</DebugType>
-		<GenerateDocumentationFile>True</GenerateDocumentationFile>
-		<PackageOutputPath>..\$(MSBuildProjectName)</PackageOutputPath>
-		<Company>System Library</Company>
-		<Authors>System Library</Authors>
+		<OutputType>Library</OutputType>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<Product>SystemLibrary.Common.Web $(Version)</Product>
-		<Optimize>true</Optimize>
-		<WarningLevel>4</WarningLevel>
+		<Version>7.8.0.1</Version>
+		<DefaultItemExcludes>$(DefaultItemExcludes);Release.cmd;**\*.nupkg;nuget-icon.png;</DefaultItemExcludes>
 	</PropertyGroup>
 	
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
@@ -46,13 +36,7 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="7.*" />
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="7.*" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Reference Include="SystemLibrary.Common.Net">
-			<HintPath>..\..\..\systemlibrary-common-net\source\SystemLibrary.Common.Net\bin\Release\net7.0\SystemLibrary.Common.Net.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
+		<PackageReference Include="SystemLibrary.Common.Net" Version="7.12.*" />
 	</ItemGroup>
 
 	<PropertyGroup>

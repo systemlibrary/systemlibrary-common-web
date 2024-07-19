@@ -41,10 +41,13 @@ partial class HttpBaseClient
                 return (T)(object)Convert.ToInt32(body);
 
             else if (type == SystemType.BoolType)
-                return bool.TryParse(body.ToString(), out bool value) ? (T)(object)value : default;
+                return bool.TryParse(body, out bool value) ? (T)(object)value : default;
 
             else if (type == SystemType.DateTimeType)
-                return DateTime.TryParse(body.ToString(), out DateTime value) ? (T)(object)value : default;
+                return (T)(object)body.ToDateTime();
+
+            else if (type == SystemType.DateTimeOffsetType)
+                return (T)(object)body.ToDateTimeOffset();
 
             else
                 throw new Exception("Type: " + type.Name + " is not yet implemented for method ReadResponseAsync()");

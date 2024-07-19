@@ -6,11 +6,11 @@ using SystemLibrary.Common.Net.Extensions;
 
 namespace SystemLibrary.Common.Web;
 
-partial class HttpBaseClient
+partial class Client
 {
-    partial class Content
+    partial class ClientHttpContent
     {
-        internal static HttpContent GetContent(object data, MediaType mediaType, JsonSerializerOptions jsonSerializerOptions)
+        internal static HttpContent Get(object data, MediaType mediaType, JsonSerializerOptions jsonSerializerOptions)
         {
             HttpContent content = null;
 
@@ -19,6 +19,13 @@ partial class HttpBaseClient
             if (data is FormUrlEncodedContent formUrlEncodedContent)
             {
                 return formUrlEncodedContent;
+            }
+            else if (data is ByteArrayContent byteArrayContent)
+            {
+                if (mediaType != MediaType.None)
+                    byteArrayContent.Headers.TryAddWithoutValidation("Content-Type", mediaType.ToValue());
+
+                return byteArrayContent;
             }
             else if (data is HttpContent httpContent)
             {
@@ -32,6 +39,10 @@ partial class HttpBaseClient
                     byteContent.Headers.TryAddWithoutValidation("Content-Type", mediaType.ToValue());
 
                 return byteContent;
+            }
+            else if (data is HttpRequestMessage msg)
+            {
+                return msg.Content;
             }
 
             switch (mediaType)
@@ -56,6 +67,7 @@ partial class HttpBaseClient
                     break;
 
                 case MediaType.octetStream:
+                    throw new System.Exception("Not yet implemented: " + mediaType + ", pass octet stream as byte array or HttpContent");
                 case MediaType.html:
                 case MediaType.css:
                 case MediaType.javascript:
@@ -63,15 +75,10 @@ partial class HttpBaseClient
                 case MediaType.zip:
                     throw new System.Exception("Not yet implemented: " + mediaType);
 
-                //TODO: Implement binary json formatter and mediaType application/bson
+                //TODO: Consider binary json formatter, mediaType application/bson
                 //MediaTypeFormatter bsonFormatter = new BsonMediaTypeFormatter();
 
                 default:
-                    if (data is HttpRequestMessage msg)
-                    {
-                        return msg.Content;
-                    }
-
                     content = new StringContent(data is string ? data as string : data.ToString(), Encoding.UTF8, mediaType.ToValue());
                     break;
             }

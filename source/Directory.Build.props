@@ -1,0 +1,23 @@
+<Project>
+	<PropertyGroup>
+		<Deterministic>true</Deterministic>
+		<AccelerateBuildsInVisualStudio>true</AccelerateBuildsInVisualStudio>
+	</PropertyGroup>
+	
+	<PropertyGroup>
+		<RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<DebugType>pdbonly</DebugType>
+		<NoWarn>CS1591;CS1570;CS1573;1701;1702;IDE1006;CS8618;</NoWarn>
+		<PackageOutputPath>..\$(MSBuildProjectName)</PackageOutputPath>
+		<Company>System Library</Company>
+		<Authors>System Library</Authors>
+		<Optimize>true</Optimize>
+		<WarningLevel>4</WarningLevel>
+		<NoWin32Manifest>true</NoWin32Manifest>
+		<ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+		<IncludeSymbols>False</IncludeSymbols>
+		<EnableNETAnalyzers>False</EnableNETAnalyzers>
+		<AnalysisLevel>none</AnalysisLevel>
+	</PropertyGroup>
+</Project>

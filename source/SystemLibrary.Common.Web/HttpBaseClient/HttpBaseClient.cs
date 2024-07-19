@@ -90,7 +90,7 @@ namespace SystemLibrary.Common.Web;
 /// </example>
 public partial class HttpBaseClient
 {
-    const int DefaultTimeoutMilliseconds = 60000;
+    const int DefaultTimeoutMilliseconds = 45000;
 
     bool UseRetryOnErrorPolicy;
     bool IgnoreSslErrors;
@@ -99,10 +99,10 @@ public partial class HttpBaseClient
 
     /// <summary>
     /// </summary>
-    /// <param name="useRetryOnErrorPolicy">Retry with a fixed 10 seconds timeout upon a request was cancelled</param>
+    /// <param name="useRetryOnErrorPolicy">Retry up to two times with a tiny sleep in between each new retry request</param>
     /// <param name="ignoreSslErrors">Set to true if you want to ignore errors such as Ssl Cert Expired</param>
-    /// <param name="defaultTimeoutMilliseconds">Default is 60 seconds</param>
-    /// <param name="throwOnUnsuccessfulStatusCode">Set to true if you want unsuccessful status codes to throw exceptions</param>
+    /// <param name="defaultTimeoutMilliseconds">Default is 45000</param>
+    /// <param name="throwOnUnsuccessfulStatusCode">Defaults to true, unsuccessful status codes will throw exception</param>
     public HttpBaseClient(
         bool useRetryOnErrorPolicy = false,
         bool ignoreSslErrors = true,
@@ -113,7 +113,6 @@ public partial class HttpBaseClient
         IgnoreSslErrors = ignoreSslErrors;
         TimeoutMilliseconds = defaultTimeoutMilliseconds;
         ThrowOnUnsuccessfulStatusCode = throwOnUnsuccessfulStatusCode;
-
     }
 
     /// <summary>

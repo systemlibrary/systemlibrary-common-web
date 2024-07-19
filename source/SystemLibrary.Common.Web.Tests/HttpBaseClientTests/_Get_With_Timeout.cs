@@ -34,11 +34,12 @@ partial class HttpBaseClientTests
         }
         catch (TimeoutException ex)
         {
-            Dump.Write(ex);
+            Dump.Write("HWHHWHW" + ex.Message);
             Assert.IsTrue(ex.Message.Contains(timeout.ToString() + " seconds"));
         }
         catch (Exception ex)
         {
+            Dump.Write("WWWW"  + ex.Message);
             Assert.IsTrue(false, ex.Message + " " + ex.GetType().Name);
         }
     }
