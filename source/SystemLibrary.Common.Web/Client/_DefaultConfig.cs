@@ -7,6 +7,7 @@ partial class Client
     internal const bool DefaultThrowOnUnsuccessful = false;
     internal const bool DefaultIgnoreSslErrors = false;
     internal const bool DefaultUseRetryPolicy = true;
+    internal const int ClientCacheDuration = 720000;
 
     static int? _TimeoutConfig;
     static int TimeoutConfig

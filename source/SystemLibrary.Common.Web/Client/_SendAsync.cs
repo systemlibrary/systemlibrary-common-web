@@ -20,15 +20,28 @@ partial class Client
 
         var (response, ex) = await Request.RetrySendAsync(options).ConfigureAwait(false);
 
-        if (ex != null)
+        if(ThrowOnUnsuccessful)
         {
-            if (ThrowOnUnsuccessful)
+            if (ex != null)
                 throw ex;
 
-            var exception = new Exception("Url (" + options.Method + ") " + options.Url + " failed with retry policy: " + options.UseRetryPolicy, ex);
-            Log.Error(exception);
+            if (!response.IsSuccessStatusCode)
+            {
+                var exception = new HttpRequestException("Url (" + options.Method + ") " + options.Url + " failed with retry policy: " + options.UseRetryPolicy + ". Response status " + response.StatusCode + ", " + response.ReasonPhrase);
+                Log.Warning(exception);
+            }
         }
 
+        if (!response.IsSuccessStatusCode)
+        {
+            var exception = new HttpRequestException("Url (" + options.Method + ") " + options.Url + " failed with retry policy: " + options.UseRetryPolicy + ". Response status " + response.StatusCode + ", " + response.ReasonPhrase, ex);
+            Log.Warning(exception);
+        }
+        else if (ex != null)
+        {
+            Log.Warning(ex);
+        }
+        
         if(ThrowOnUnsuccessful)
         {
             if(!response.IsSuccessStatusCode)

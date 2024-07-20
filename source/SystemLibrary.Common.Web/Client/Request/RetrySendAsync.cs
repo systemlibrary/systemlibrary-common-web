@@ -34,7 +34,7 @@ partial class Client
 
                     if (options.CancellationToken.IsCancellationRequested)
                     {
-                        Debug.Log("Callee cancelled request to: " + options.Url);
+                        ex = new CalleeCancelledRequestException("Callee cancelled request to " + options.Url);
                         break;
                     }
 
@@ -48,7 +48,8 @@ partial class Client
                     ex = e;
                 }
 
-                await Task.Delay(TimeSpan.FromMilliseconds(750)).ConfigureAwait(false);
+                if(retries > 1)
+                    await Task.Delay(TimeSpan.FromMilliseconds(750)).ConfigureAwait(false);
 
                 if (options.CancellationToken.IsCancellationRequested)
                 {
@@ -87,6 +88,7 @@ partial class Client
 
             return statusCode == null ||
                 statusCode == System.Net.HttpStatusCode.BadGateway ||
+                statusCode == System.Net.HttpStatusCode.InternalServerError ||
                 statusCode == System.Net.HttpStatusCode.GatewayTimeout;
         }
     }

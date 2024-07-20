@@ -1,45 +1,56 @@
 ﻿using System;
 
+using SystemLibrary.Common.Net.Extensions;
+
 namespace SystemLibrary.Common.Web;
 
 partial class Client
 {
     partial class ClientCached
     {
-        const int MinimumLifetimeSeconds = 100;
-
-        static DateTime LastDisposed;
+        static object DisposeLock = new object();
+        static DateTime Next;
 
         static void Dispose()
         {
-            CleanDisposeQueue();
-            LastDisposed = DateTime.Now.ToUniversalTime();
+            DisposeQueueInterval();
         }
 
-        static void CleanDisposeQueue()
+        static void DisposeQueueInterval()
         {
-            if (LastDisposed < DateTime.Now.AddSeconds(-10))
-            {
-                LastDisposed = DateTime.Now.ToUniversalTime();
-                var disposedTime = DateTime.Now.AddSeconds(-ClientExpiresInSeconds - MinimumLifetimeSeconds);
-                var keys = DisposeQueue.Keys;
+            if (DateTime.Now < Next)
+                return;
 
-                foreach (var key in keys)
+            var keys = DisposeQueue.Keys;
+
+            if (keys.IsNot()) return;
+
+            lock (DisposeLock)
+            {
+                if (DateTime.Now < Next)
+                    return;
+
+                Next = DateTime.Now.AddSeconds(15);
+            }
+
+            // 5 minutes after the last timeout could occur, HttpClient is disposed
+            var dateTimeElapsed = DateTime.Now.AddMilliseconds(-TimeoutConfig - RetryTimeoutConfig - 300000);
+
+            foreach (var key in keys)
+            {
+                if (DisposeQueue.TryGetValue(key, out CacheModel cached))
                 {
                     try
                     {
-                        if (DisposeQueue.TryGetValue(key, out CacheModel clientQueuedCachedModel))
+                        if (cached.Expires < dateTimeElapsed)
                         {
-                            if (clientQueuedCachedModel.Expires < disposedTime)
-                            {
-                                DisposeQueue.TryRemove(key, out _);
-                                clientQueuedCachedModel?.Dispose();
-                            }
+                            DisposeQueue.TryRemove(key, out CacheModel removed);
+                            removed?.Dispose();
                         }
                     }
                     catch
                     {
-                        // Note: Swalling due to if items are disposed twice within "same" cpu tick, multithreaded not tested, and I do not want to lock this
+                        //Swallow
                     }
                 }
             }

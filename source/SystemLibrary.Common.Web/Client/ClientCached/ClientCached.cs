@@ -12,9 +12,22 @@ partial class Client
     //A way to get "current percentage of downloaded file/stream/uploading..."
     partial class ClientCached
     {
-        static int _ClientExpiresInSeconds = -1;
-        static int ClientExpiresInSeconds => _ClientExpiresInSeconds > -1 ? _ClientExpiresInSeconds :
-            (_ClientExpiresInSeconds = AppSettings.Current.SystemLibraryCommonWeb.HttpBaseClient.CacheClientConnectionSeconds);
+        static int _ClientCacheDuration = -1;
+        static int ClientCacheDuration
+        {
+            get
+            {
+                if (_ClientCacheDuration == -1)
+                {
+                    _ClientCacheDuration = AppSettings.Current.SystemLibraryCommonWeb.Client.ClientCacheDuration;
+
+                    // Set to 0 to avoid looking up the config again, a 0 re-created httpclient every time
+                    if (_ClientCacheDuration < 0)
+                        _ClientCacheDuration = 0;
+                }
+                return _ClientCacheDuration;
+            }
+        }
 
         static ConcurrentDictionary<string, CacheModel> Cache;
         static ConcurrentDictionary<string, CacheModel> DisposeQueue;
@@ -29,46 +42,68 @@ partial class Client
         {
             var uri = new Uri(url);
 
-            var key = nameof(Client) + nameof(GetClient) + uri.Scheme + uri.Authority + uri.Port + "#" + timeoutMilliseconds + "#" + retryOnTransientErrors + "#" + ignoreSslErrors;
+            var key = $"{nameof(Client)}{nameof(GetClient)}{uri.Scheme}{uri.Authority}{uri.Port}#{timeoutMilliseconds}#{retryOnTransientErrors}#{ignoreSslErrors}";
 
             if (forceNewClient)
             {
-                Debug.Log("Forcing a new client towards " + url);
-
                 RemoveFromCache(key);
             }
             else if (Cache.TryGetValue(key, out CacheModel cached))
             {
-                Debug.Log("Returning client from Cache, expired? " + HasExpired(cached));
-
                 if (HasExpired(cached))
                     RemoveFromCache(key);
                 else
                     return cached.CachedClient;
             }
 
-            Debug.Log("Creating a new client to " + key);
-
             return New(key, timeoutMilliseconds, retryOnTransientErrors, ignoreSslErrors);
         }
 
         static HttpClient New(string key, int timeoutMilliseconds, bool retryOnTransientErrors, bool ignoreSslErrors)
         {
-            var sslHandler = new SslIgnoreHandler(ignoreSslErrors);
-
-            var timeoutHandler = new TimeoutHandler(timeoutMilliseconds, sslHandler);
-
-            var httpClientCacheModel = new CacheModel()
+            var socketsHandler = new SocketsHttpHandler
             {
-                CachedClient = new HttpClient(timeoutHandler, disposeHandler: true),
-                Expires = DateTime.Now.AddSeconds(ClientExpiresInSeconds)
+                // Each http client's connection is reused for 290 seconds (slightly less than 5 min)
+                // once reached, the connection is reestablished no matter what
+                PooledConnectionLifetime = TimeSpan.FromSeconds(290),
+                // If a connection is idle for 55 seconds (slightly less than 1 min) it is removed
+                PooledConnectionIdleTimeout = TimeSpan.FromSeconds(55),
+                ConnectTimeout = TimeSpan.FromSeconds(30),
+                AllowAutoRedirect = true,
             };
 
-            if (ClientExpiresInSeconds > 0)
+            if (ignoreSslErrors)
             {
+                socketsHandler.SslOptions = new System.Net.Security.SslClientAuthenticationOptions()
+                {
+                    RemoteCertificateValidationCallback = (message, cert, chain, errors) =>
+                    {
+                        if (errors == System.Net.Security.SslPolicyErrors.RemoteCertificateChainErrors ||
+                            errors == System.Net.Security.SslPolicyErrors.RemoteCertificateNameMismatch ||
+                            errors == System.Net.Security.SslPolicyErrors.RemoteCertificateNotAvailable)
+                        {
+                            Log.Warning("Client: SslPolicy error occured, " + errors + ". Usually invalid or expired. IgnoreSslErrors is set to 'true' so continuing...");
+                        }
+                        return true;
+                    }
+                };
+            }
+
+            var timeoutHandler = new TimeoutHandler(timeoutMilliseconds, socketsHandler);
+
+            var client = new HttpClient(timeoutHandler, disposeHandler: true);
+
+            if (ClientCacheDuration > 0)
+            {
+                var httpClientCacheModel = new CacheModel()
+                {
+                    CachedClient = client,
+                    Expires = DateTime.Now.AddMilliseconds(ClientCacheDuration)
+                };
                 Cache.TryAdd(key, httpClientCacheModel);
             }
-            return httpClientCacheModel.CachedClient;
+
+            return client;
         }
 
         static bool HasExpired(CacheModel httpClientCached)
@@ -78,12 +113,15 @@ partial class Client
 
         static void RemoveFromCache(string key)
         {
-            Cache.TryRemove(key, out CacheModel httpClientCached);
+            if (Cache.TryRemove(key, out CacheModel httpClientCached))
+            {
+                Dispose();
 
-            Dispose();
-
-            if (httpClientCached != null)
-                DisposeQueue.TryAdd(key + DateTime.Now.ToString("HH:mm:ss.fffff") + "#" + Randomness.Int() + Randomness.String(6), httpClientCached);
+                if (httpClientCached != null)
+                {
+                    DisposeQueue.TryAdd(key + DateTime.Now.ToString("HH:mm:ss.fffff") + "#" + Randomness.Int() + Randomness.String(6), httpClientCached);
+                }
+            }
         }
     }
 }

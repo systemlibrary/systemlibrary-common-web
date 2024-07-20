@@ -674,7 +674,7 @@ public static class Cache
                 }
                 else
                 {
-                    Debug.Log(valueType.Name + " not stringable type: " + value);
+                    Debug.Log(valueType.Name + " not stringable type for cacheKey: " + value);
                 }
             }
 
@@ -778,7 +778,7 @@ public static class Cache
                     AppendClass(value, valueType);
                 else
                 {
-                    Debug.Log(valueType.Name + " not appendable");
+                    Debug.Log(valueType.Name + " not appendable to cacheKey");
                 }
             }
 
@@ -792,8 +792,6 @@ public static class Cache
 
                 if (!IsTypeAutoCacheKeyType(type))
                 {
-                    Debug.Log("Field type not part of cache key " + type.Name);
-
                     return;
                 }
 

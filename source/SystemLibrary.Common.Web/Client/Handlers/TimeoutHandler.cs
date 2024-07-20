@@ -11,7 +11,7 @@ partial class Client
     {
         TimeSpan RequestTimeoutSpan;
 
-        public TimeoutHandler(int timeoutMilliseconds, SslIgnoreHandler innerHandler) : base(innerHandler)
+        public TimeoutHandler(int timeoutMilliseconds, SocketsHttpHandler innerHandler) : base(innerHandler)
         {
             if (timeoutMilliseconds > 0)
                 RequestTimeoutSpan = TimeSpan.FromMilliseconds(timeoutMilliseconds);
