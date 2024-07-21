@@ -1,13 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading;
 
 namespace SystemLibrary.Common.Web;
 
 partial class Client
 {
-    RequestOptions CreateOptions(HttpMethod method, string url, HttpContent content, MediaType mediaType, int timeout, IDictionary<string, string> headers, CancellationToken cancellationToken)
+    RequestOptions GetRequestOptions(HttpMethod method, string url, object data, MediaType mediaType, int timeout, IDictionary<string, string> headers, JsonSerializerOptions jsonSerializerOptions, CancellationToken cancellationToken)
     {
+        var content = ClientHttpContent.Get(data, mediaType, jsonSerializerOptions);
+
         timeout = GetTimeout(timeout, TimeoutConfig, DefaultTimeout);
 
         return new RequestOptions()

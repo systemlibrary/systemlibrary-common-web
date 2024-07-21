@@ -7,6 +7,7 @@ partial class Client
     internal const bool DefaultThrowOnUnsuccessful = false;
     internal const bool DefaultIgnoreSslErrors = false;
     internal const bool DefaultUseRetryPolicy = true;
+    internal const bool DefaultUseCircuitBreakerPolicy = false;
     internal const int ClientCacheDuration = 720000;
 
     static int? _TimeoutConfig;
@@ -103,5 +104,25 @@ partial class Client
             return _ThrowOnUnsuccessfulConfig.Value;
         }
     }
+
+    static bool? _UseCircuitBreakerPolicyConfig;
+    static bool UseCircuitBreakerPolicyConfig
+    {
+        get
+        {
+            if (_UseCircuitBreakerPolicyConfig == null)
+            {
+                _UseCircuitBreakerPolicyConfig = AppSettings.Current.SystemLibraryCommonWeb.Client.UseCircuitBreakerPolicy;
+
+                if (_UseCircuitBreakerPolicyConfig == null)
+                {
+                    _UseCircuitBreakerPolicyConfig = DefaultUseCircuitBreakerPolicy;
+                }
+            }
+
+            return _UseCircuitBreakerPolicyConfig.Value;
+        }
+    }
+
 
 }

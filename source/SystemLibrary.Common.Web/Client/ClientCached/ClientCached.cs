@@ -68,7 +68,8 @@ partial class Client
                 PooledConnectionLifetime = TimeSpan.FromSeconds(290),
                 // If a connection is idle for 55 seconds (slightly less than 1 min) it is removed
                 PooledConnectionIdleTimeout = TimeSpan.FromSeconds(55),
-                ConnectTimeout = TimeSpan.FromSeconds(30),
+                // Establish TLS/a con within 15 seconds, else normally we retry twice which adds up to 45 seconds over 3 tries
+                ConnectTimeout = TimeSpan.FromSeconds(15),
                 AllowAutoRedirect = true,
             };
 

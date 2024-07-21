@@ -13,17 +13,20 @@ public partial class Client
     bool ThrowOnUnsuccessful;
     int Timeout;
     int RetryTimeout;
+    bool UseCircuitBreakerPolicy;
 
     public Client(
         bool? useRetryPolicy = null,
         bool? ignoreSslErrors = null,
         int? timeout = null,
         int? retryTimeout = null,
-        bool? throwOnUnsuccessful = null)
+        bool? throwOnUnsuccessful = null,
+        bool? useCircuitBreakerPolicy = null)
     {
         UseRetryPolicy = useRetryPolicy ?? UseRetryPolicyConfig;
         IgnoreSslErrors = ignoreSslErrors ?? IgnoreSslErrorsConfig;
         ThrowOnUnsuccessful = throwOnUnsuccessful ?? ThrowOnUnsuccessfulConfig;
+        UseCircuitBreakerPolicy = useCircuitBreakerPolicy ?? UseCircuitBreakerPolicyConfig;
 
         Timeout = timeout ?? TimeoutConfig;
         RetryTimeout = retryTimeout ?? RetryTimeoutConfig;
