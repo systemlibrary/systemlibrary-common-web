@@ -284,6 +284,8 @@ partial class Log
                 message.Append(name + ": null\n");
             else if (name == "stacktrace")
                 message.Append(name + ": " + obj + "\n");
+            else if (name == "exception")
+                message.Append(obj + "\n");
             else
                 message.Append(name + ": " + obj + "\n");
         }

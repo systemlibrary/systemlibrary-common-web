@@ -18,12 +18,10 @@ partial class Client
         var message = "";
         if (response != null)
         {
-            message = GetResponseBodyAsync(response)
-               .ConfigureAwait(false)
-               .GetAwaiter()
-               .GetResult() ?? "";
-
-            response.Dispose();
+            //message = GetResponseBodyAsync(response)
+            //   .ConfigureAwait(false)
+            //   .GetAwaiter()
+            //   .GetResult() ?? "";
 
             var messageIndex = message.IndexOf("\"message\"");
             if (messageIndex >= 0)
@@ -84,7 +82,7 @@ partial class Client
         else
             (response, ex) = await Request.RetrySendAsync(options).ConfigureAwait(false);
 
-        var isSuccess = !response?.IsSuccessStatusCode == true;
+        var isSuccess = response?.IsSuccessStatusCode == true;
 
         if (ThrowOnUnsuccessful)
         {
@@ -104,7 +102,7 @@ partial class Client
 
     static void Warning(RequestOptions options, HttpResponseMessage response, Exception ex = null)
     {
-        var message = $"Url ({options.Method}) {options.Url} failed with retry policy: {options.UseRetryPolicy}. Response status code {response.StatusCode}, {response.ReasonPhrase}";
+        var message = response != null ? $"{response?.StatusCode} " : "" + $"url ({options.Method}) {options.Url} failed with retry policy: {options.UseRetryPolicy}. Response: {response?.ReasonPhrase}";
         if (ex != null)
         {
             Log.Warning(new HttpRequestException(message, ex));
@@ -123,7 +121,7 @@ internal static class CircuitBreaker
     static IAsyncPolicy CreatePolicy()
     {
         return Policy.Handle<HttpRequestException>()
-            .CircuitBreakerAsync(15, TimeSpan.FromSeconds(7));
+            .CircuitBreakerAsync(1, TimeSpan.FromSeconds(7));
     }
 
     internal static IAsyncPolicy GetPolicy(Client.RequestOptions options)

@@ -24,7 +24,7 @@ public partial class ClientTests
                 catch
                 {
                 }
-
+               
                 //Assert.IsTrue(response.StatusCode == System.Net.HttpStatusCode.OK);
                 //Assert.IsTrue(response.Data.Contains("httpbin.org"));
             });
