@@ -61,7 +61,7 @@ public static partial class Log
     /// //This creates a log message with prefix 'Error', timestamp, stacktrace and your input text "hello world" and sends it to your LogWriter
     /// </code>
     /// </example>
-    public static void Error(object obj)
+    public static void Error(params object[] obj)
     {
         Write(obj, LogLevel.Error);
     }
@@ -77,7 +77,7 @@ public static partial class Log
     /// //This creates a log message with prefix 'Warning', timestamp and your input text "hello world" and sends it to your LogWriter
     /// </code>
     /// </example>
-    public static void Warning(object obj)
+    public static void Warning(params object[] obj)
     {
         Write(obj, LogLevel.Warning);
     }
@@ -93,7 +93,7 @@ public static partial class Log
     /// //This creates a log message with prefix 'Debug', timestamp and your input text "hello world" and sends it to your LogWriter
     /// </code>
     /// </example>
-    public static void Debug(object obj)
+    public static void Debug(params object[] obj)
     {
         Write(obj, LogLevel.Debug);
     }
@@ -109,7 +109,7 @@ public static partial class Log
     /// //This creates a log message with prefix 'Info', timestamp and your input text "hello world" and sends it to your LogWriter
     /// </code>
     /// </example>
-    public static void Info(object obj)
+    public static void Info(params object[] obj)
     {
         Write(obj, LogLevel.Info);
     }
@@ -134,7 +134,7 @@ public static partial class Log
     /// //Note: Log.Write() can never be disabled/turned off, remove the calls if you dont want them in production
     /// </code>
     /// </example>
-    public static void Write(object obj)
+    public static void Write(params object[] obj)
     {
         Write(obj, (LogLevel)99999);
     }
@@ -153,8 +153,7 @@ public static partial class Log
         }
     }
 
-
-    static void Write(object obj, LogLevel level)
+    static void Write(object[] obj, LogLevel level)
     {
         if ((int)level != 99999)
         {

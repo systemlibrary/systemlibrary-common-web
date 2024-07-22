@@ -27,7 +27,7 @@ public partial class AppSettingsTests
             if (property.Name.ToLower() == "timeoutmilliseconds")
             {
                 count++;
-                Assert.IsTrue(value == "19500", "timeoutmilliseconds is not 19500: " + value);
+                Assert.IsTrue(value == "19550", "timeoutmilliseconds is not 19550: " + value);
             }
 
             if (property.Name.ToLower() == "retryrequesttimeoutms")

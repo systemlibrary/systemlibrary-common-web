@@ -2,7 +2,7 @@
 using System.Collections.Concurrent;
 using System.Net.Http;
 
-using SystemLibrary.Common.Net.Extensions;
+using SystemLibrary.Common.Net;
 
 namespace SystemLibrary.Common.Web;
 

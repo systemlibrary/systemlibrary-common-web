@@ -15,6 +15,7 @@ public static class Clock
         sw.Start();
 
         method();
+
         sw.Stop();
         Log.Debug(message + " executed in total time: " + sw.ElapsedTicks + " ticks, " + sw.ElapsedMilliseconds + "ms");
         sw.Reset();

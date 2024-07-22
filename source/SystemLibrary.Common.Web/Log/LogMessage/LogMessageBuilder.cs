@@ -28,23 +28,33 @@ partial class Log
             MessageFormatJson = LogMessageBuilderOptions.Format?.Trim()?.ToLower() == "json";
         }
 
-        internal static string Get(object obj, LogLevel level)
+        internal static string Get(object[] objects, LogLevel level)
         {
             var message = new StringBuilder();
             if (MessageFormatJson)
                 message.Append("{\n");
 
+            object firstObj = null;
             try
             {
                 if ((int)level != 99999)
                     AppendMessageFormat("level", level, message);
 
-                if (obj is string json && json.IsJson())
-                    AppendMessageFormat("message", json, message);
-                else
-                    AppendMessage(obj, message, MessageFormatJson ? 1 : 0);
+                int index = 0;
+                foreach (var obj in objects)
+                {
+                    if(firstObj == null)
+                        firstObj = obj;
 
-                if ((int)level != 99999 && !IsLocal && level == LogLevel.Error && (obj as Exception) == null)
+                    if (obj is string json && json.IsJson())
+                        AppendMessageFormat("message" + (index > 0 ? index : ""), json, message);
+                    else
+                        AppendMessage(obj, message, MessageFormatJson ? 1 : 1, index);
+
+                    index++;
+                }
+
+                if ((int)level != 99999 && !IsLocal && level == LogLevel.Error && (firstObj as Exception) == null)
                     AppendStackTrace(message);
 
                 var context = HttpContextInstance.Current;
@@ -78,7 +88,7 @@ partial class Log
             }
             catch (Exception ex)
             {
-                AppendMessageFormat("logMessageError", ex.Message + " when logging: " + obj, message);
+                AppendMessageFormat("logMessageError", ex.Message + " when logging: " + firstObj, message);
             }
 
             if (MessageFormatJson)
@@ -91,7 +101,12 @@ partial class Log
         {
             try
             {
-                if (httpContext?.Items == null) return;
+                if(httpContext == null) return;
+
+                if (httpContext.Items == null)
+                {
+                    httpContext.Items = new Dictionary<object, object>();
+                }
 
                 var name = "CorrelationId";
                 var id = httpContext.Items[name];
@@ -209,7 +224,7 @@ partial class Log
             }
         }
 
-        static void AppendMessage(object obj, StringBuilder message, int level)
+        static void AppendMessage(object obj, StringBuilder message, int level, int index = -1)
         {
             if (level > 2) return;
 
@@ -239,14 +254,14 @@ partial class Log
                 AppendMessageFormat("tuple", ituple[0] + ", " + (ituple?.Length > 1 ? ituple[1] + "" : ""), message, level);
 
             else if (obj is string txt)
-                AppendMessageFormat("message", txt, message, level);
+                AppendMessageFormat("message" + (index > 0 ? index : ""), txt, message, level);
 
             else if (obj is IEnumerable enumerable)
                 AppendClass(message, enumerable);
             else if (IsLoggableClass(obj))
                 AppendClass(message, obj);
             else
-                AppendMessageFormat("message", obj.ToString(), message);
+                AppendMessageFormat("message" + (index > 0 ? index : ""), obj.ToString(), message);
         }
 
         static void AppendMessageFormat(string name, object obj, StringBuilder message, int level = -1)

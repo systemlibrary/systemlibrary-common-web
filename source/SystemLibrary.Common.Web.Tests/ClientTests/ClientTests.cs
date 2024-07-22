@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using SystemLibrary.Common.Net.Extensions;
+using SystemLibrary.Common.Net;
 using SystemLibrary.Common.Web.Extensions;
 
 namespace SystemLibrary.Common.Web.Tests;

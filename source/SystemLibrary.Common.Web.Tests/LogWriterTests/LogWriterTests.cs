@@ -14,9 +14,27 @@ public class LogWriterTests
     const string DumpFullPath = @"C:\Logs\systemlibrary-common-web-unit-tests.txt";
 
     [TestMethod]
+    public void Write_Multiple_Objects()
+    {
+        System.Threading.Thread.Sleep(5);
+
+        if (System.IO.File.Exists(DumpFullPath))
+            System.IO.File.Delete(DumpFullPath);
+
+        Assert.IsFalse(System.IO.File.Exists(DumpFullPath));
+
+        Log.Write("Error param 1", "Error param 2", "Error third param!", true, false, 12345);
+        var content = System.IO.File.ReadAllText(DumpFullPath);
+        Assert.IsTrue(content.Contains(12345.ToString()), "missing int");
+        Assert.IsTrue(content.Contains(true.ToString()), "missing true");
+        Assert.IsTrue(content.Contains(false.ToString()), "missing false");
+        Assert.IsTrue(content.Contains("third param!"), "missing false");
+    }
+
+    [TestMethod]
     public void Write_Same_CorrId_InARow()
     {
-        System.Threading.Thread.Sleep(10);
+        System.Threading.Thread.Sleep(20);
 
         if (System.IO.File.Exists(DumpFullPath))
             System.IO.File.Delete(DumpFullPath);

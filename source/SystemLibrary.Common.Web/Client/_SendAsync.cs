@@ -13,22 +13,14 @@ namespace SystemLibrary.Common.Web;
 
 partial class Client
 {
-    static HttpRequestException GetHttpRequestException(RequestOptions options, HttpResponseMessage response = null)
+    static HttpRequestException GetHttpRequestException(RequestOptions options, HttpResponseMessage response = null, Exception ex = null)
     {
-        var message = "";
+        string message = null;
+
         if (response != null)
-        {
-            //message = GetResponseBodyAsync(response)
-            //   .ConfigureAwait(false)
-            //   .GetAwaiter()
-            //   .GetResult() ?? "";
+            message = $" Response status: { response?.StatusCode}, { response?.ReasonPhrase}";
 
-            var messageIndex = message.IndexOf("\"message\"");
-            if (messageIndex >= 0)
-                message = message.Substring(messageIndex);
-        }
-
-        return new HttpRequestException($"Url ({options.Method}) {options.Url} failed with retry policy: {options.UseRetryPolicy}. Response status: {response?.StatusCode}, {response?.ReasonPhrase} " + message);
+        return new HttpRequestException($"{options.Method} {options.Url} failed with type {options.MediaType} and retry policy {options.UseRetryPolicy}." + message, ex);
     }
 
     async Task<(HttpResponseMessage, Exception)> RetrySendWithCircuitBreakerAsync(RequestOptions options)
@@ -67,6 +59,12 @@ partial class Client
 
     }
 
+    bool IsEligibleForCircuitBreakerPolicy(RequestOptions options)
+    {
+        if (!UseCircuitBreakerPolicy) return false;
+
+        return !options.Url.IsFile();
+    }
     async Task<ClientResponse<T>> SendAsync<T>(HttpMethod method, string url, object data, MediaType mediaType, int timeout, IDictionary<string, string> headers, JsonSerializerOptions jsonSerializerOptions, CancellationToken cancellationToken)
     {
         if (url.IsNot())
@@ -77,7 +75,10 @@ partial class Client
         HttpResponseMessage response = null;
         Exception ex = null;
 
-        if (UseCircuitBreakerPolicy)
+        // Activated per client,
+        var useCircuitBreakerPolicy = IsEligibleForCircuitBreakerPolicy(options);
+
+        if (useCircuitBreakerPolicy)
             (response, ex) = await RetrySendWithCircuitBreakerAsync(options).ConfigureAwait(false);
         else
             (response, ex) = await Request.RetrySendAsync(options).ConfigureAwait(false);
@@ -86,31 +87,15 @@ partial class Client
 
         if (ThrowOnUnsuccessful)
         {
-            if (ex != null)
-                throw ex;
-            
-            if(!isSuccess)
-                throw GetHttpRequestException(options, response);
+            if (ex != null || !isSuccess)
+                throw GetHttpRequestException(options, response, ex);
         }
-        else if (!isSuccess)
-            Warning(options, response, ex);
+        else if (ex != null || !isSuccess)
+            Log.Warning(GetHttpRequestException(options, response, ex));
 
         var responseData = await ReadResponseAsync<T>(url, response, cancellationToken, jsonSerializerOptions).ConfigureAwait(false);
 
         return new ClientResponse<T>(response, responseData);
-    }
-
-    static void Warning(RequestOptions options, HttpResponseMessage response, Exception ex = null)
-    {
-        var message = response != null ? $"{response?.StatusCode} " : "" + $"url ({options.Method}) {options.Url} failed with retry policy: {options.UseRetryPolicy}. Response: {response?.ReasonPhrase}";
-        if (ex != null)
-        {
-            Log.Warning(new HttpRequestException(message, ex));
-        }
-        else
-        {
-            Log.Warning(message);
-        }
     }
 }
 
@@ -128,8 +113,8 @@ internal static class CircuitBreaker
     {
         var uri = new Uri(options.Url);
 
-        // TODO: Consider vary by "content != null" and "media type"
-        var key = $"{uri.Scheme}{uri.Authority}{uri.Port}{uri.AbsolutePath}#{options.Method}";
+        // TODO: Consider vary by "content != null" & CurrentUser.IsAuth?
+        var key = $"{uri.Scheme}{uri.Authority}{uri.Port}{uri.AbsolutePath.MaxLength(64)}{options.Method}{options.MediaType}" + HttpContextInstance.Current?.User?.Identity?.IsAuthenticated;
 
         return Policies.GetOrAdd(key, CreatePolicy());
     }

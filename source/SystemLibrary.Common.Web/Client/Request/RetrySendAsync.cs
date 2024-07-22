@@ -26,6 +26,8 @@ partial class Client
                     }
                     else if(i == 2)
                     {
+                        if (options.Url.IsFile()) break;
+
                         options.Timeout = 5000;
                         options.ForceNewClient = true;
                     }

@@ -77,6 +77,7 @@ public static class Cache
     static IPrincipal Principal => _Principal ??= HttpContextInstance.Current?.User;
 
     static IMemoryCache[] cache;
+    static IMemoryCache[] cacheFallback;
     static int MaxCacheContainers = 4;
 
     static int _DefaultDuration = -1;
@@ -99,6 +100,7 @@ public static class Cache
     static Cache()
     {
         cache = new IMemoryCache[MaxCacheContainers];
+        cacheFallback = new IMemoryCache[MaxCacheContainers];
 
         var containerSizeLimit = AppSettings.Current.SystemLibraryCommonWeb.Cache.ContainerSizeLimit;
         if (containerSizeLimit < 100)
@@ -111,6 +113,8 @@ public static class Cache
             options.SizeLimit = containerSizeLimit;
             options.CompactionPercentage = 0.33;
             cache[i] = new MemoryCache(options);
+
+            cacheFallback[i] = new MemoryCache(options);
         }
     }
 
@@ -493,7 +497,24 @@ public static class Cache
             Debug.Log("Item was not cached with key " + cacheKey);
         }
 
-        cached = getItem();
+        try
+        {
+            cached = getItem();
+        }
+        catch (Exception ex)
+        {
+            cached = cacheFallback[cacheIndex].Get(cacheKey);
+
+            if (cached != null && (condition == null || condition((T)cached)))
+            {
+                Debug.Log("Item found in cache fallback, logged and returned " + cacheKey);
+
+                Log.Warning(ex);
+
+                return (T)cached;
+            }
+            throw ex;
+        }
 
         if (cached != null && (condition == null || condition((T)cached)))
         {
@@ -570,6 +591,7 @@ public static class Cache
         var cacheIndex = Math.Abs(cacheKey.GetHashCode() % 4);
 
         cache[cacheIndex].Remove(cacheKey);
+        cacheFallback[cacheIndex].Remove(cacheKey);
     }
 
     /// <summary>
@@ -602,7 +624,10 @@ public static class Cache
             }
 
             foreach (var key in keys)
+            {
                 cache[i].Remove(key);
+                cacheFallback[i].Remove(key);
+            }
 
             keys.Clear();
             keys = null;
@@ -612,15 +637,24 @@ public static class Cache
     static void Insert(int cacheIndex, string cacheKey, object item, TimeSpan duration)
     {
         if (item == null)
+        {
             Remove(cacheKey);
+        }
         else
+        {
             cache[cacheIndex].Set(cacheKey, item, new MemoryCacheEntryOptions()
             {
                 AbsoluteExpiration = DateTime.Now.Add(duration),
                 Size = 1,
             });
+            cacheFallback[cacheIndex].Set(cacheKey, item, new MemoryCacheEntryOptions()
+            {
+                AbsoluteExpiration = DateTime.Now.Add(duration).AddMinutes(30),
+                Size = 1,
+            });
+        }
     }
-
+    
     static string CreateCacheKey<T>(Func<T> getItem, Func<T, bool> condition)
     {
         var key = new StringBuilder("common.web.cache", capacity: 383);
