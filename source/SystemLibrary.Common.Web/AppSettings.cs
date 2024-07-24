@@ -47,7 +47,7 @@ internal class AppSettings : Config<AppSettings>
             public int RetryTimeout { get; set; } = Web.Client.DefaultRetryTimeout;
             public bool IgnoreSslErrors { get; set; } = Web.Client.DefaultIgnoreSslErrors;
             public bool UseRetryPolicy { get; set; } = Web.Client.DefaultUseRetryPolicy;
-            
+
             public int ClientCacheDuration = Web.Client.ClientCacheDuration;
             public bool ThrowOnUnsuccessful { get; set; } = Web.Client.DefaultThrowOnUnsuccessful;
             public bool UseCircuitBreakerPolicy { get; set; } = Web.Client.DefaultUseCircuitBreakerPolicy;
@@ -55,8 +55,9 @@ internal class AppSettings : Config<AppSettings>
 
         public class CacheConfiguration
         {
-            public int DefaultDuration { get; set; } = 180;
-            public int ContainerSizeLimit { get; set; } = 60000;
+            public int Duration { get; set; } = Web.Cache.DefaultDuration;
+            public int ContainerSizeLimit { get; set; } = Web.Cache.DefaultContainerSizeLimit;
+            public int FallbackDuration { get; set; } = Web.Cache.DefaultFallbackDuration;
         }
 
         public class LogMessageBuilderOptions

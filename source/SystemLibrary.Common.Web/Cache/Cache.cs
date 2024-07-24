@@ -41,7 +41,8 @@ namespace SystemLibrary.Common.Web;
 /// 
 /// <list>
 /// <item>Overwrite default cache configurations in appSettings.json:</item>
-/// <item>- cacheDuration: 180, minimum 1</item>
+/// <item>- duration: 180, minimum 1</item>
+/// <item>- fallbackDuration: 600, set to 0 to disable fallback cache globally</item>
 /// <item>- containerSizeLimit: 60000, minimum 100</item>
 /// </list>
 /// Auto-generating cache key adds namespace, class, method, method-scoped variables of most used types such as bool, string, int, datetime, enum and few others, if used within the getItem method
@@ -56,7 +57,8 @@ namespace SystemLibrary.Common.Web;
 /// {
 ///     "systemLibraryCommonWeb": {
 ///         "cache" { 
-///             "defaultDuration": 210,
+///             "duration": 180,
+///             "fallbackDuration": 600,
 ///             "containerSizeLimit": 60000
 ///         }
 ///     }
@@ -71,7 +73,7 @@ namespace SystemLibrary.Common.Web;
 /// // null if not in cache
 /// </code>
 /// </example>
-public static class Cache
+public static partial class Cache
 {
     static IPrincipal _Principal;
     static IPrincipal Principal => _Principal ??= HttpContextInstance.Current?.User;
@@ -80,41 +82,25 @@ public static class Cache
     static IMemoryCache[] cacheFallback;
     static int MaxCacheContainers = 4;
 
-    static int _DefaultDuration = -1;
-    static int DefaultDuration
-    {
-        get
-        {
-            if (_DefaultDuration == -1)
-            {
-                _DefaultDuration = AppSettings.Current.SystemLibraryCommonWeb.Cache.DefaultDuration;
-                if (_DefaultDuration <= 0)
-                {
-                    _DefaultDuration = 210;
-                }
-            }
-            return _DefaultDuration;
-        }
-    }
-
     static Cache()
     {
         cache = new IMemoryCache[MaxCacheContainers];
-        cacheFallback = new IMemoryCache[MaxCacheContainers];
 
-        var containerSizeLimit = AppSettings.Current.SystemLibraryCommonWeb.Cache.ContainerSizeLimit;
-        if (containerSizeLimit < 100)
-            containerSizeLimit = 100;
+        if (FallbackDurationConfig > 0)
+            cacheFallback = new IMemoryCache[MaxCacheContainers];
+
+        Debug.Log("Cache, with fallback duration: " + FallbackDurationConfig);
 
         for (int i = 0; i < MaxCacheContainers; i++)
         {
             MemoryCacheOptions options = new MemoryCacheOptions();
             options.ExpirationScanFrequency = TimeSpan.FromSeconds(90 + Randomness.Int(30));
-            options.SizeLimit = containerSizeLimit;
+            options.SizeLimit = ContainerSizeLimitConfig;
             options.CompactionPercentage = 0.33;
             cache[i] = new MemoryCache(options);
 
-            cacheFallback[i] = new MemoryCache(options);
+            if (FallbackDurationConfig > 0)
+                cacheFallback[i] = new MemoryCache(options);
         }
     }
 
@@ -123,8 +109,8 @@ public static class Cache
     /// </summary>
     /// <remarks>
     /// CacheKey null or blank returns default without checking cache
-    /// 
     /// <para>Default duration is 180 seconds</para>
+    /// <para>This never checks fallback cache</para>
     /// </remarks>
     /// <example>
     /// <code class="language-csharp hljs">
@@ -140,6 +126,12 @@ public static class Cache
         var cacheIndex = Math.Abs(cacheKey.GetHashCode() % 4);
 
         var cached = cache[cacheIndex].Get(cacheKey);
+
+        //if (cached == null && FallbackDurationConfig > 0)
+        //{
+        //    Debug.Log("Cache miss, check fallback");
+        //    cached = cacheFallback[cacheIndex].Get(cacheKey);
+        //}
 
         return cached == null ? default : (T)cached;
     }
@@ -157,9 +149,12 @@ public static class Cache
             return;
 
         if (duration == default)
-            duration = TimeSpan.FromSeconds(DefaultDuration);
+            duration = TimeSpan.FromSeconds(DurationConfig);
 
         var cacheIndex = Math.Abs(cacheKey.GetHashCode() % 4);
+
+        Debug.Log("Set Cache index " + cacheIndex);
+
         Insert(cacheIndex, cacheKey, item, duration);
     }
 
@@ -477,7 +472,7 @@ public static class Cache
         }
 
         if (duration == default)
-            duration = TimeSpan.FromSeconds(DefaultDuration);
+            duration = TimeSpan.FromSeconds(DurationConfig);
 
         if (cacheKey == "")
             cacheKey = CreateCacheKey(getItem, condition);
@@ -497,24 +492,45 @@ public static class Cache
             Debug.Log("Item was not cached with key " + cacheKey);
         }
 
+        bool CacheFallbackLookup(Exception ex = null)
+        {
+            if (FallbackDurationConfig > 0)
+            {
+                cached = cacheFallback[cacheIndex].Get(cacheKey);
+
+                if (cached != null && (condition == null || condition((T)cached)))
+                {
+                    Debug.Log("Item found in cache fallback, logged and returned " + cacheKey);
+
+                    Log.Warning(new Exception("Item found in cache fallback, but fetching latest item version failed:", ex));
+
+                    return true;
+                }
+            }
+            return false;
+        }
+
         try
         {
             cached = getItem();
+
+            if (cached == null)
+            {
+                if(CacheFallbackLookup())
+                    return (T)cached;
+            }
         }
         catch (Exception ex)
         {
-            cached = cacheFallback[cacheIndex].Get(cacheKey);
-
-            if (cached != null && (condition == null || condition((T)cached)))
-            {
-                Debug.Log("Item found in cache fallback, logged and returned " + cacheKey);
-
-                Log.Warning(ex);
-
+            if (CacheFallbackLookup(ex))
                 return (T)cached;
-            }
+
+            Debug.Log("Item do not exist in cache, throw");
+
             throw ex;
         }
+
+
 
         if (cached != null && (condition == null || condition((T)cached)))
         {
@@ -591,7 +607,9 @@ public static class Cache
         var cacheIndex = Math.Abs(cacheKey.GetHashCode() % 4);
 
         cache[cacheIndex].Remove(cacheKey);
-        cacheFallback[cacheIndex].Remove(cacheKey);
+
+        if (FallbackDurationConfig > 0)
+            cacheFallback[cacheIndex].Remove(cacheKey);
     }
 
     /// <summary>
@@ -626,7 +644,9 @@ public static class Cache
             foreach (var key in keys)
             {
                 cache[i].Remove(key);
-                cacheFallback[i].Remove(key);
+
+                if (FallbackDurationConfig > 0)
+                    cacheFallback[i].Remove(key);
             }
 
             keys.Clear();
@@ -647,14 +667,20 @@ public static class Cache
                 AbsoluteExpiration = DateTime.Now.Add(duration),
                 Size = 1,
             });
-            cacheFallback[cacheIndex].Set(cacheKey, item, new MemoryCacheEntryOptions()
+
+            if (FallbackDurationConfig > 0)
             {
-                AbsoluteExpiration = DateTime.Now.Add(duration).AddMinutes(30),
-                Size = 1,
-            });
+                Debug.Log("Inserting to fallback, additional dur: " + FallbackDurationConfig+ ", key: " + cacheKey+ ", exp: " + DateTime.Now.Add(duration).AddSeconds(FallbackDurationConfig).ToString());
+
+                cacheFallback[cacheIndex].Set(cacheKey, item, new MemoryCacheEntryOptions()
+                {
+                    AbsoluteExpiration = DateTime.Now.Add(duration).AddSeconds(FallbackDurationConfig),
+                    Size = 1,
+                });
+            }
         }
     }
-    
+
     static string CreateCacheKey<T>(Func<T> getItem, Func<T, bool> condition)
     {
         var key = new StringBuilder("common.web.cache", capacity: 383);

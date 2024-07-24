@@ -63,12 +63,11 @@ partial class HttpBaseClient
 
                         throw new CalleeCancelledRequestException("Callee cancelled the request threw an operation cancel trigger through a cancellation token (likely): " + request.RequestUri.AbsoluteUri + ".");
                     }
+
                     // An external cancellation token was passed and "CancelAfter()" triggered
                     catch(OperationCanceledException calleeOperationCancelledException)
                     {
                         throw new TimeoutException("Request to " + request.RequestUri.AbsoluteUri + " timed out after the configured timeout of: " + RequestTimeoutSpan.ToString(@"ss\.fff") + " seconds, or was cancelled by server. ");
-
-                        // throw new CalleeCancelledRequestException("Callee cancelled the request threw an operation cancel trigger through a cancellation token (likely): " + request.RequestUri.AbsoluteUri + ".", calleeOperationCancelledException);
                     }
                 }
             }

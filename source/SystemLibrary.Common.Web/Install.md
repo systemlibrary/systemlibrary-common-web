@@ -69,7 +69,8 @@ public class Startup
 		},
 
 		"cache": {
-		  "defaultDuration": 180,
+		  "duration": 180,
+		  "fallbackDuration": 600,
 		  "containerSizeLimit": 60000
 		},
 

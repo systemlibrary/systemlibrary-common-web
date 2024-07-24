@@ -44,7 +44,7 @@ public static class HttpRequestExtensions
     /// </summary>
     /// <example>
     /// <code>
-    /// var referer = request.IsAjaxRequest();
+    /// var referer = request.Referer();
     /// // referer is now the referer from the Header request, or null if not existing
     /// </code>
     /// </example>
