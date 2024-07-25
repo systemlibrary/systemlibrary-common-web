@@ -11,12 +11,9 @@ partial class Client
     {
         TimeSpan RequestTimeoutSpan;
 
-        public TimeoutHandler(int timeoutMilliseconds, SocketsHttpHandler innerHandler) : base(innerHandler)
+        public TimeoutHandler(int timeout, SocketsHttpHandler innerHandler) : base(innerHandler)
         {
-            if (timeoutMilliseconds > 0)
-                RequestTimeoutSpan = TimeSpan.FromMilliseconds(timeoutMilliseconds);
-            else
-                RequestTimeoutSpan = TimeSpan.MaxValue;
+            RequestTimeoutSpan = TimeSpan.FromMilliseconds(timeout);
         }
 
         protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)

@@ -19,5 +19,19 @@ partial class Client
         public bool IgnoreSslErrors;
         public CancellationToken CancellationToken;
         public MediaType MediaType;
+        public int RetryIndex;
+
+        internal void Update(int retry)
+        {
+            if (retry == 1)
+            {
+                ForceNewClient = true;
+            }
+            else if (retry == 2)
+            {
+                ForceNewClient = false;
+            }
+            RetryIndex = retry;
+        }
     }
 }

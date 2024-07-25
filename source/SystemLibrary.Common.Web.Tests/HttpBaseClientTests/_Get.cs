@@ -7,7 +7,7 @@ namespace SystemLibrary.Common.Web.Tests
         [TestMethod]
         public void Get_Success()
         {
-            var WebService = new HttpBinClient();
+            var WebService = new HttpBin();
             var response = WebService.Get();
 
             Assert.IsTrue(response.StatusCode == System.Net.HttpStatusCode.OK);

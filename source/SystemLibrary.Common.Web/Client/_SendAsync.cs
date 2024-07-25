@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
@@ -7,64 +6,10 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
-using Polly;
-
 namespace SystemLibrary.Common.Web;
 
 partial class Client
 {
-    static HttpRequestException GetHttpRequestException(RequestOptions options, HttpResponseMessage response = null, Exception ex = null)
-    {
-        string message = null;
-
-        if (response != null)
-            message = $" Response status: { response?.StatusCode}, { response?.ReasonPhrase}";
-
-        return new HttpRequestException($"{options.Method} {options.Url} failed with type {options.MediaType} and retry policy {options.UseRetryPolicy}." + message, ex);
-    }
-
-    async Task<(HttpResponseMessage, Exception)> RetrySendWithCircuitBreakerAsync(RequestOptions options)
-    {
-        var policy = CircuitBreaker.GetPolicy(options);
-
-        HttpResponseMessage response = null;
-        Exception ex = null;
-
-        try
-        {
-            await policy.ExecuteAsync(async () =>
-            {
-                (response, ex) = await Request.RetrySendAsync(options).ConfigureAwait(false);
-
-                if (ex != null) throw ex;
-
-                if (response?.StatusCode == HttpStatusCode.TooManyRequests ||
-                    response?.StatusCode == HttpStatusCode.BadGateway ||
-                    response?.StatusCode == HttpStatusCode.ServiceUnavailable ||
-                    response?.StatusCode == HttpStatusCode.NotFound)
-                {
-                    throw GetHttpRequestException(options, response);
-                }
-                return response;
-            }).ConfigureAwait(false);
-        }
-        catch (Exception e)
-        {
-            if (ThrowOnUnsuccessful) throw;
-
-            ex = e;
-        }
-
-        return (response, ex);
-
-    }
-
-    bool IsEligibleForCircuitBreakerPolicy(RequestOptions options)
-    {
-        if (!UseCircuitBreakerPolicy) return false;
-
-        return !options.Url.IsFile();
-    }
     async Task<ClientResponse<T>> SendAsync<T>(HttpMethod method, string url, object data, MediaType mediaType, int timeout, IDictionary<string, string> headers, JsonSerializerOptions jsonSerializerOptions, CancellationToken cancellationToken)
     {
         if (url.IsNot())
@@ -75,7 +20,6 @@ partial class Client
         HttpResponseMessage response = null;
         Exception ex = null;
 
-        // Activated per client,
         var useCircuitBreakerPolicy = IsEligibleForCircuitBreakerPolicy(options);
 
         if (useCircuitBreakerPolicy)
@@ -85,37 +29,57 @@ partial class Client
 
         var isSuccess = response?.IsSuccessStatusCode == true;
 
-        if (ThrowOnUnsuccessful)
+        if (ex != null || !isSuccess)
         {
-            if (ex != null || !isSuccess)
+            if (ThrowOnUnsuccessful)
                 throw GetHttpRequestException(options, response, ex);
+            else
+                Log.Warning(GetHttpRequestException(options, response, ex));
         }
-        else if (ex != null || !isSuccess)
-            Log.Warning(GetHttpRequestException(options, response, ex));
 
         var responseData = await ReadResponseAsync<T>(url, response, cancellationToken, jsonSerializerOptions).ConfigureAwait(false);
 
         return new ClientResponse<T>(response, responseData);
     }
-}
 
-internal static class CircuitBreaker
-{
-    static ConcurrentDictionary<string, IAsyncPolicy> Policies = new ConcurrentDictionary<string, IAsyncPolicy>();
-
-    static IAsyncPolicy CreatePolicy()
+    async Task<(HttpResponseMessage, Exception)> RetrySendWithCircuitBreakerAsync(RequestOptions options)
     {
-        return Policy.Handle<HttpRequestException>()
-            .CircuitBreakerAsync(1, TimeSpan.FromSeconds(7));
-    }
+        var policyKey = PolicyKeyConverter.Convert(options);
 
-    internal static IAsyncPolicy GetPolicy(Client.RequestOptions options)
-    {
-        var uri = new Uri(options.Url);
+        // TODO: Enable a rate limiter towards all backend api's... set a limit of 2000 req/min? or so...
+        // var rateLimiter = RateLimiter.GetPolicy(policyKey);
 
-        // TODO: Consider vary by "content != null" & CurrentUser.IsAuth?
-        var key = $"{uri.Scheme}{uri.Authority}{uri.Port}{uri.AbsolutePath.MaxLength(64)}{options.Method}{options.MediaType}" + HttpContextInstance.Current?.User?.Identity?.IsAuthenticated;
+        var circuitBreaker = CircuitBreaker.GetPolicy(policyKey);
 
-        return Policies.GetOrAdd(key, CreatePolicy());
+        HttpResponseMessage response = null;
+        Exception ex = null;
+
+        try
+        {
+            return await circuitBreaker.ExecuteAsync(async () =>
+            {
+                (response, ex) = await Request.RetrySendAsync(options).ConfigureAwait(false);
+
+                // Check, create and throw an exception to trigger circuit breaker
+                if (ex == null && (response == null ||
+                    response?.StatusCode == HttpStatusCode.TooManyRequests ||
+                    response?.StatusCode == HttpStatusCode.InternalServerError ||
+                    response?.StatusCode == HttpStatusCode.BadGateway ||
+                    response?.StatusCode == HttpStatusCode.GatewayTimeout ||
+                    response?.StatusCode == HttpStatusCode.ServiceUnavailable))
+                {
+                    ex = GetHttpRequestException(options, response);
+                    throw ex;
+                }
+
+                return (response, ex);
+            }).ConfigureAwait(false);
+        }
+        catch (Exception e)
+        {
+            Log.Warning("Circuit breaker threw exception", ex);
+
+            return (response, ex ?? e);
+        }
     }
 }

@@ -24,7 +24,6 @@ partial class Client
             return (T)(object)response;
         }
 
-        //TODO: Strings should be read as a stream to then be simply returned, avoiding boxing and its prolly faster (measure it?)
         if (type.IsValueType || type == SystemType.StringType)
         {
             var body = await ReadResponseBodyAsStringAsync(response).ConfigureAwait(false);

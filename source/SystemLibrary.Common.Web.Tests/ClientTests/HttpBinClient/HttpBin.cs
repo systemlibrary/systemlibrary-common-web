@@ -4,11 +4,12 @@ using System.Threading.Tasks;
 
 namespace SystemLibrary.Common.Web.Tests;
 
-class HttpBinClient : HttpBaseClient
+class HttpBin : Client
 {
     const string firewallClientUrl = "https://170.44.1.1/";
     const string clientUrl = "http://httpbin.org";
-    public HttpBinClient(bool useRetryOnErrorPolicy = false) : base(useRetryOnErrorPolicy)
+
+    public HttpBin(bool useRetryPolicy = false) : base(useRetryPolicy)
     {
     }
 

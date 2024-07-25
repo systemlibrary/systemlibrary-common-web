@@ -11,11 +11,7 @@ partial class Client
         {
             var message = CreateHttpRequestMessage(options);
 
-            var client = ClientCached.GetClient(options.Url,
-                options.Timeout,
-                options.UseRetryPolicy,
-                options.ForceNewClient,
-                options.IgnoreSslErrors);
+            var client = ClientCached.GetClient(options);
 
             using (message)
                 return await client.SendAsync(message, options.CancellationToken).ConfigureAwait(false);

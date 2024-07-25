@@ -11,7 +11,7 @@ partial class HttpBaseClientTests
     {
         try
         {
-            var service = new HttpBinClient(true);
+            var service = new HttpBin(true);
 
             var response = service.Post_Retry_Request_Against_Firewall();
 
@@ -32,7 +32,7 @@ partial class HttpBaseClientTests
     {
         try
         {
-            var service = new HttpBinClient(false);
+            var service = new HttpBin(false);
 
             var response = service.Post_Retry_Request_Against_Firewall();
 

@@ -16,7 +16,7 @@ partial class HttpBaseClientTests
 
         var bytes = data.GetBytes();
 
-        var webService = new HttpBinClient();
+        var webService = new HttpBin();
 
         var response = webService.Post(bytes, MediaType.json);
 
@@ -38,7 +38,7 @@ partial class HttpBaseClientTests
 
         var bytes = data.GetBytes();
 
-        var webService = new HttpBinClient();
+        var webService = new HttpBin();
 
         var response = webService.Post(bytes, MediaType.multipartFormData);
 
@@ -55,7 +55,7 @@ partial class HttpBaseClientTests
     {
         var bytes = Assemblies.GetEmbeddedResourceAsBytes("HttpBaseClientTests/Files", "text.json");
 
-        var webService = new HttpBinClient();
+        var webService = new HttpBin();
 
         var response = webService.Post(bytes, MediaType.multipartFormData);
 
@@ -70,7 +70,7 @@ partial class HttpBaseClientTests
     {
         var bytes = Assemblies.GetEmbeddedResourceAsBytes("HttpBaseClientTests/Files", "text.json");
 
-        var webService = new HttpBinClient();
+        var webService = new HttpBin();
 
         var headers = new Dictionary<string, string>
         {
@@ -91,7 +91,7 @@ partial class HttpBaseClientTests
     {
         var bytes = Assemblies.GetEmbeddedResourceAsBytes("HttpBaseClientTests/Files", "text.json");
 
-        var webService = new HttpBinClient();
+        var webService = new HttpBin();
 
         var response = webService.Post(bytes, MediaType.multipartFormData);
 

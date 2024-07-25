@@ -10,69 +10,7 @@ namespace SystemLibrary.Common.Web.Tests;
 public class CacheTests
 {
     const string CacheKey = "helloworld";
-
-    [TestMethod]
-    public void Get_From_Fallback_Success()
-    {
-        var k = CacheKey + "Fallback1";
-
-        var item = Cache.Get<string>(k);
-        Assert.IsTrue(item == null);
-        
-        Cache.Set(k, "Cache", TimeSpan.FromMilliseconds(333));
-        
-        Thread.Sleep(150);
-        item = Cache.Get<string>(k);
-        Assert.IsTrue(item == "Cache", item);
-        
-        Thread.Sleep(200);
-        item = Cache.Get<string>(k);
-        Assert.IsTrue(item == null, "Not expired " + item);
-
-        item = Cache.Get<string>(k, () => "Cache2", duration: TimeSpan.FromMilliseconds(333));
-        Assert.IsTrue(item == "Cache2", "Cache2? " + item);
-
-        Thread.Sleep(200);
-        item = Cache.Get<string>(k, () => "Do not return me", duration: TimeSpan.FromSeconds(1));
-        Assert.IsTrue(item == "Cache2", "Cache2, second:" + item);
-
-        Thread.Sleep(50);
-        item = Cache.Get<string>(k, () => "Do not return me", duration: TimeSpan.FromSeconds(1));
-        Assert.IsTrue(item == "Cache2", "Cache2, second:" + item);
-
-        Thread.Sleep(100);
-        item = Cache.Get<string>(k, () => "Cache3", duration: TimeSpan.FromMilliseconds(500));
-        Assert.IsTrue(item == "Cache3", "Cache3: " + item);
-
-        Thread.Sleep(200);
-        item = Cache.Get<string>(k, () => "Do not return me");
-        Assert.IsTrue(item == "Cache3", "Cache3 wrong: " + item);
-
-        Thread.Sleep(200);
-        item = Cache.Get<string>(k, () => "Do not return me");
-        Assert.IsTrue(item == "Cache3", "Cache3 wrong: " + item);
-
-        Thread.Sleep(120);
-        item = Cache.Get<string>(k, () => throw new Exception("Throw first, should hit fallback"));
-        Assert.IsTrue(item == "Cache3", "Fallback not hit: " + item);
-
-        Thread.Sleep(2000);
-        item = Cache.Get<string>(k, () => throw new Exception("Throw to hit fallback cache"));
-        Assert.IsTrue(item == "Cache3", "Fallback not hit: " + item);
-
-        try
-        {
-            Thread.Sleep(1050);
-            item = Cache.Get<string>(k, () => throw new Exception("Throw as fallback has expired too"));
-
-            Assert.IsTrue(false, "Should throw exception as both caches have expired");
-        }
-        catch(Exception ex)
-        {
-            Assert.IsTrue(ex.Message.Contains("Throw as fallback has expired too"), ex.Message);
-        }
-    }
-
+   
     [TestMethod]
     public void Get_From_Cache_NotExisting_Success()
     {
@@ -122,7 +60,7 @@ public class CacheTests
 
         var cached = Cache.Get<string>(cacheKey);
 
-        Assert.IsTrue(cached.Is(), "Not in cache");
+        Assert.IsTrue(cached.Is(), "Not in cache " + cacheKey.MaxLength(32));
         Assert.IsTrue(cached.Contains("TestPerson") && cached.Contains("87878"), "Invalid text");
 
         cached = Cache.Get<string>(cacheKey);
@@ -368,5 +306,84 @@ public class CacheTests
 
         item = Cache.Get<string>(CacheKey + "try-get-3");
         Assert.IsTrue(item == "Hello world");
+    }
+
+    [TestMethod]
+    public void Get_From_Fallback_Success()
+    {
+        var k = CacheKey + "Fallback1";
+
+        var item = Cache.Get<string>(k);
+        Assert.IsTrue(item == null);
+
+        Cache.Set(k, "Cache", TimeSpan.FromMilliseconds(200));
+
+        Thread.Sleep(100);
+        item = Cache.Get<string>(k);
+        Assert.IsTrue(item == "Cache", item);
+
+        Thread.Sleep(150);
+        item = Cache.Get<string>(k);
+        Assert.IsTrue(item == null, "Not expired " + item);
+
+        item = Cache.Get<string>(k, () => "Cache2", duration: TimeSpan.FromMilliseconds(150));
+        Assert.IsTrue(item == "Cache2", "Cache2? " + item);
+
+        Thread.Sleep(75);
+        item = Cache.Get<string>(k, () => "Do not return me", duration: TimeSpan.FromSeconds(1));
+        Assert.IsTrue(item == "Cache2", "Cache2, second:" + item);
+
+        Thread.Sleep(33);
+        item = Cache.Get<string>(k, () => "Do not return me", duration: TimeSpan.FromSeconds(1));
+        Assert.IsTrue(item == "Cache2", "Cache2, second:" + item);
+
+        Thread.Sleep(75);
+        item = Cache.Get<string>(k, () => "Cache3", duration: TimeSpan.FromMilliseconds(275));
+        Assert.IsTrue(item == "Cache3", "Cache3: " + item);
+
+        Thread.Sleep(75);
+        item = Cache.Get<string>(k, () => "Do not return me");
+        Assert.IsTrue(item == "Cache3", "Cache3 wrong: " + item);
+
+        Thread.Sleep(125);
+        item = Cache.Get<string>(k, () => "Do not return me");
+        Assert.IsTrue(item == "Cache3", "Cache3 wrong: " + item);
+
+        Thread.Sleep(125);
+        item = Cache.Get<string>(k, () => throw new Exception("Throw first, should hit fallback"));
+        Assert.IsTrue(item == "Cache3", "Fallback not hit: " + item);
+
+        Thread.Sleep(2000);
+        item = Cache.Get<string>(k, () => throw new Exception("Throw to hit fallback cache"));
+        Assert.IsTrue(item == "Cache3", "Fallback not hit: " + item);
+
+        try
+        {
+            Thread.Sleep(1050);
+            item = Cache.Get<string>(k, () => throw new Exception("Throw as fallback has expired too"));
+
+            Assert.IsTrue(false, "Should throw exception as both caches have expired");
+        }
+        catch (Exception ex)
+        {
+            Assert.IsTrue(ex.Message.Contains("Throw as fallback has expired too"), ex.Message);
+        }
+
+        item = Cache.Get<string>(k, () => "Cache4", TimeSpan.FromMilliseconds(250));
+        Assert.IsTrue(item == "Cache4", "Cache4 wrong: " + item);
+        Thread.Sleep(100);
+        item = Cache.Get<string>(k, () => "Do not return me", TimeSpan.FromMilliseconds(250));
+        Assert.IsTrue(item == "Cache4", "Cache4 wrong: " + item);
+        Thread.Sleep(100);
+        item = Cache.Get<string>(k, () => "Do not return me", TimeSpan.FromMilliseconds(250));
+        Assert.IsTrue(item == "Cache4", "Cache4 wrong: " + item);
+
+        Thread.Sleep(200);
+        item = Cache.Get<string>(k, () => null, TimeSpan.FromMilliseconds(250));
+        Assert.IsTrue(item == "Cache4", "Cache4 did not hit fallback on null data: " + item);
+
+        Thread.Sleep(2900);
+        item = Cache.Get<string>(k, () => null, TimeSpan.FromMilliseconds(250));
+        Assert.IsTrue(item == null, "Cache4 did not return null, data was in cache? " + item);
     }
 }

@@ -12,37 +12,69 @@ namespace SystemLibrary.Common.Web.Tests;
 public partial class AppSettingsTests
 {
     [TestMethod]
-    public void Read_AppSettingsConfiguration()
+    public void Read_Client_Configurations()
     {
-        var httpBaseClientConfiguration = GetAppSettingsConfiguration("httpBaseClient");
+        var clientConfigurations = GetAppSettingsConfiguration("Client");
 
-        Assert.IsTrue(httpBaseClientConfiguration != null, "HttpBaseClientConfiguration is null");
+        Assert.IsTrue(clientConfigurations != null, "Client is null");
 
-        var httpBaseClientProperties = httpBaseClientConfiguration.GetType().GetProperties();
+        var clientProperties = clientConfigurations.GetType().GetProperties();
 
+        Assert.IsTrue(clientProperties.Count() >= 6, "Too few props in clientProps");
+        //"timeout": 40000,
+        //"retryTimeout": 10000,
+        //"ignoreSslErrors": true,
+        //"useRetryPolicy": true,
+        //"throwOnUnsuccessful": true,
+        //"useCircuitBreakerPolicy": true,
+        //"clientCacheDuration": 60000
         var count = 0;
-        foreach (var property in httpBaseClientProperties)
+        foreach (var property in clientProperties)
         {
-            var value = property.GetValue(httpBaseClientConfiguration)?.ToString();
-            if (property.Name.ToLower() == "timeoutmilliseconds")
+            var value = property.GetValue(clientConfigurations)?.ToString();
+            if (property.Name.ToLower() == "timeout")
             {
                 count++;
-                Assert.IsTrue(value == "19550", "timeoutmilliseconds is not 19550: " + value);
+                Assert.IsTrue(value == "11000", "timeout is not 11000: " + value);
             }
 
-            if (property.Name.ToLower() == "retryrequesttimeoutms")
+            if (property.Name.ToLower() == "clientcacheduration")
             {
                 count++;
-                Assert.IsTrue(value == "177", "retryRequestTimeoutMs is not 177: " + value);
+                Assert.IsTrue(value == "60000", "clientcacheduration is not 60000: " + value);
             }
 
-            if (property.Name.ToLower() == "cacheclientconnectionseconds")
+            if (property.Name.ToLower() == "retrytimeout")
             {
                 count++;
-                Assert.IsTrue(value == "100", "cacheclientconnectionseconds is not 100: " + value);
+                Assert.IsTrue(value == "6200", "retrytimeout is not 6200: " + value);
+            }
+
+            if (property.Name.ToLower() == "ignoresslerrors")
+            {
+                count++;
+                Assert.IsTrue(value == "True", "ignoreSslErrors is: " + value);
+            }
+
+            if (property.Name.ToLower() == "usecircuitbreakerpolicy")
+            {
+                count++;
+                Assert.IsTrue(value == "True", "usecircuitbreakerpolicy is: " + value);
+            }
+
+            if (property.Name.ToLower() == "throwonunsuccessful")
+            {
+                count++;
+                Assert.IsTrue(value == "True", "throwonunsuccessful is: " + value);
+            }
+
+            if (property.Name.ToLower() == "useretrypolicy")
+            {
+                count++;
+                Assert.IsTrue(value == "True", "useretrypolicy is: " + value);
             }
         }
-        Assert.IsTrue(count == 3, "One or more properties were not found in httpBaseClientConfig " + count);
+        Assert.IsTrue(count == 7, "Too few properties found for clientConfig: " + count);
 
         var cacheConfig = GetAppSettingsConfiguration("cache");
 
@@ -53,13 +85,18 @@ public partial class AppSettingsTests
         foreach (var property in cacheProperties)
         {
             var value = property.GetValue(cacheConfig)?.ToString();
-            if (property.Name.ToLower() == "defaultduration")
+            if (property.Name.ToLower() == "duration")
             {
                 count++;
-                Assert.IsTrue(value == "70", "Duration is not 70: " + value);
+                Assert.IsTrue(value == "5", "Duration is not 5: " + value);
+            }
+            if (property.Name.ToLower() == "fallbackduration")
+            {
+                count++;
+                Assert.IsTrue(value == "3", "fallbackduration is not 3: " + value);
             }
         }
-        Assert.IsTrue(count == 1, "One or more properties were not found in cacheConfig, found count: " + count);
+        Assert.IsTrue(count == 2, "Too few properties found for cacheConfig: " + count);
 
 
         var logConfig = GetAppSettingsConfiguration("log");
@@ -78,7 +115,7 @@ public partial class AppSettingsTests
                 Assert.IsTrue(value == "Debug", "level is not 'Debug', it is " + value);
             }
         }
-        Assert.IsTrue(count == 1, "One or more properties were not found in logConfig, found count: " + count);
+        Assert.IsTrue(count == 1, "Too few properties found for logConfig: " + count);
     }
 
     static object GetAppSettingsConfiguration(string systemLibraryWebName)

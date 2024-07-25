@@ -47,8 +47,7 @@ internal class AppSettings : Config<AppSettings>
             public int RetryTimeout { get; set; } = Web.Client.DefaultRetryTimeout;
             public bool IgnoreSslErrors { get; set; } = Web.Client.DefaultIgnoreSslErrors;
             public bool UseRetryPolicy { get; set; } = Web.Client.DefaultUseRetryPolicy;
-
-            public int ClientCacheDuration = Web.Client.ClientCacheDuration;
+            public int ClientCacheDuration { get; set; } = Web.Client.DefaultClientCacheDuration;
             public bool ThrowOnUnsuccessful { get; set; } = Web.Client.DefaultThrowOnUnsuccessful;
             public bool UseCircuitBreakerPolicy { get; set; } = Web.Client.DefaultUseCircuitBreakerPolicy;
         }

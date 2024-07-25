@@ -7,7 +7,7 @@ partial class HttpBaseClientTests
     [TestMethod]
     public void Post_PlainText_Success()
     {
-        var webService = new HttpBinClient();
+        var webService = new HttpBin();
 
         var response = webService.Post("hello world", MediaType.plain);
 
@@ -17,7 +17,7 @@ partial class HttpBaseClientTests
     [TestMethod]
     public void Post_UrlEncoded_Success()
     {
-        var webService = new HttpBinClient();
+        var webService = new HttpBin();
 
         var response = webService.PostUrlEncoded("hello=world&hello2=world2");
 
@@ -31,7 +31,7 @@ partial class HttpBaseClientTests
     [TestMethod]
     public void Post_Json_Success()
     {
-        var webService = new HttpBinClient();
+        var webService = new HttpBin();
 
         var response = webService.Post("{ hello:\"world\" }", MediaType.json);
 
@@ -41,7 +41,7 @@ partial class HttpBaseClientTests
     [TestMethod]
     public void Post_Poco_As_Json_Success()
     {
-        var webService = new HttpBinClient();
+        var webService = new HttpBin();
 
         var car = new Car();
         car.Name = "world";

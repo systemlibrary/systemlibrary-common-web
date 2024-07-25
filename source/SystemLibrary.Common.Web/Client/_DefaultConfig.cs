@@ -2,13 +2,13 @@
 
 partial class Client
 {
-    internal const int DefaultTimeout = 40000;
+    internal const int DefaultTimeout = 40001;
     internal const int DefaultRetryTimeout = 10000;
     internal const bool DefaultThrowOnUnsuccessful = false;
     internal const bool DefaultIgnoreSslErrors = false;
     internal const bool DefaultUseRetryPolicy = true;
     internal const bool DefaultUseCircuitBreakerPolicy = false;
-    internal const int ClientCacheDuration = 720000;
+    internal const int DefaultClientCacheDuration = 720000; // 12 minutes
 
     static int? _TimeoutConfig;
     static int TimeoutConfig
@@ -105,6 +105,9 @@ partial class Client
         }
     }
 
+    /// <summary>
+    /// Circuit breaker triggers on 500, 502 and 504 errors
+    /// </summary>
     static bool? _UseCircuitBreakerPolicyConfig;
     static bool UseCircuitBreakerPolicyConfig
     {
@@ -124,5 +127,27 @@ partial class Client
         }
     }
 
+    /// <summary>
+    /// The amount of time the HttpClient is cached inside of CacheModel
+    /// - HttpClient natively supports "infinite", but we recreate it every now and then
+    /// - We expire the whole CacheModel which wraps our HttpClient after this duration and mark it for disposal
+    /// </summary>
+    static int? _ClientCacheDurationConfig;
+    static int ClientCacheDurationConfig
+    {
+        get
+        {
+            if (_ClientCacheDurationConfig == null)
+            {
+                _ClientCacheDurationConfig = AppSettings.Current.SystemLibraryCommonWeb.Client.ClientCacheDuration;
 
+                if (_ClientCacheDurationConfig == null || _ClientCacheDurationConfig < 0)
+                {
+                    _ClientCacheDurationConfig = DefaultClientCacheDuration;
+                }
+            }
+
+            return _ClientCacheDurationConfig.Value;
+        }
+    }
 }

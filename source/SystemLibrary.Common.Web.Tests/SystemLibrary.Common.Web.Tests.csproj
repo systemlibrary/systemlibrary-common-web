@@ -21,20 +21,20 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Remove="HttpBaseClientTests\Files\icon.png" />
-		<None Remove="HttpBaseClientTests\Files\text.json" />
+		<None Remove="ClientTests\Files\icon.png" />
+		<None Remove="ClientTests\Files\text.json" />
 		<None Remove="testhost.deps.json" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="HttpBaseClientTests\Files\icon.png" />
-		<EmbeddedResource Include="HttpBaseClientTests\Files\text.json" />
+		<EmbeddedResource Include="ClientTests\Files\icon.png" />
+		<EmbeddedResource Include="ClientTests\Files\text.json" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
-		<PackageReference Include="MSTest.TestAdapter" Version="3.4.3" />
-		<PackageReference Include="MSTest.TestFramework" Version="3.4.3" />
+		<PackageReference Include="MSTest.TestAdapter" Version="3.5.0" />
+		<PackageReference Include="MSTest.TestFramework" Version="3.5.0" />
 	</ItemGroup>
 
 	<ItemGroup>

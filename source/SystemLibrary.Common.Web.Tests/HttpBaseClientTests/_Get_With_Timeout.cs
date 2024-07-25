@@ -9,7 +9,7 @@ partial class HttpBaseClientTests
     [TestMethod]
     public void Get_With_Large_Timeout_Success()
     {
-        var webService = new HttpBinClient();
+        var webService = new HttpBin();
 
         var response = webService.GetWithTimeout(13000);
 
@@ -20,7 +20,7 @@ partial class HttpBaseClientTests
     [TestMethod]
     public void Get_With_Short_Timeout_Fails()
     {
-        var webService = new HttpBinClient();
+        var webService = new HttpBin();
         int timeout = 123;
 
         try
@@ -48,7 +48,7 @@ partial class HttpBaseClientTests
     [TestMethod]
     public void Get_With_Short_Timeout_Fails_And_Retry_Is_Success()
     {
-        var webService = new HttpBinClient(true);
+        var webService = new HttpBin(true);
         int timeout = 123;
 
         try
@@ -74,7 +74,7 @@ partial class HttpBaseClientTests
     [TestMethod]
     public void Get_With_Short_Timeout_Fails_And_Retry_Times_Out()
     {
-        var webService = new HttpBinClient(true);
+        var webService = new HttpBin(true);
         int timeout = 123;
 
         try

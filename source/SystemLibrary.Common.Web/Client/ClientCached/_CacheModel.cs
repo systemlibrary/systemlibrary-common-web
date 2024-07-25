@@ -9,6 +9,7 @@ partial class Client
     {
         public HttpClient CachedClient;
         public DateTime Expires;
+        public DateTime ThresholdRegenerateClient;
 
         public void Dispose()
         {

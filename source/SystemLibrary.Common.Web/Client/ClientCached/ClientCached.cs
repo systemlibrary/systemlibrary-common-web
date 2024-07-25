@@ -12,23 +12,7 @@ partial class Client
     //A way to get "current percentage of downloaded file/stream/uploading..."
     partial class ClientCached
     {
-        static int _ClientCacheDuration = -1;
-        static int ClientCacheDuration
-        {
-            get
-            {
-                if (_ClientCacheDuration == -1)
-                {
-                    _ClientCacheDuration = AppSettings.Current.SystemLibraryCommonWeb.Client.ClientCacheDuration;
-
-                    // Set to 0 to avoid looking up the config again, a 0 re-created httpclient every time
-                    if (_ClientCacheDuration < 0)
-                        _ClientCacheDuration = 0;
-                }
-                return _ClientCacheDuration;
-            }
-        }
-
+        const int ThresholdRegenerateClientSeconds = 60;
         static ConcurrentDictionary<string, CacheModel> Cache;
         static ConcurrentDictionary<string, CacheModel> DisposeQueue;
 
@@ -38,42 +22,50 @@ partial class Client
             DisposeQueue = new ConcurrentDictionary<string, CacheModel>();
         }
 
-        internal static HttpClient GetClient(string url, int timeoutMilliseconds, bool retryOnTransientErrors = false, bool forceNewClient = false, bool ignoreSslErrors = false)
+        internal static HttpClient GetClient(RequestOptions options)
         {
-            var uri = new Uri(url);
+            var uri = new Uri(options.Url);
 
-            var key = $"{nameof(Client)}{nameof(GetClient)}{uri.Scheme}{uri.Authority}{uri.Port}#{timeoutMilliseconds}#{retryOnTransientErrors}#{ignoreSslErrors}";
+            var key = $"CommonWeb{nameof(Client)}{nameof(GetClient)}{uri.Scheme.ToLower()}{uri.Host.ToLower()}{uri.Port}{options.Timeout}{options.UseRetryPolicy}{options.IgnoreSslErrors}";
 
-            if (forceNewClient)
+            if (options.ForceNewClient)
             {
-                RemoveFromCache(key);
+                var newlyCreatedClient = HasNewlyBeenCreated(key);
+                if (newlyCreatedClient != null)
+                {
+                    return newlyCreatedClient;
+                }
+
+                RemoveFromCache(key, options.Timeout);
             }
-            else if (Cache.TryGetValue(key, out CacheModel cached))
+            else if (Cache.TryGetValue(key, out CacheModel cachedModel))
             {
-                if (HasExpired(cached))
-                    RemoveFromCache(key);
+                if (HasExpired(cachedModel))
+                    RemoveFromCache(key, options.Timeout);
                 else
-                    return cached.CachedClient;
+                {
+                    return cachedModel.CachedClient;
+                }
             }
 
-            return New(key, timeoutMilliseconds, retryOnTransientErrors, ignoreSslErrors);
+            return New(key, options);
         }
 
-        static HttpClient New(string key, int timeoutMilliseconds, bool retryOnTransientErrors, bool ignoreSslErrors)
+        static HttpClient New(string key, RequestOptions options)
         {
             var socketsHandler = new SocketsHttpHandler
             {
-                // Each http client's connection is reused for 290 seconds (slightly less than 5 min)
-                // once reached, the connection is reestablished no matter what
-                PooledConnectionLifetime = TimeSpan.FromSeconds(290),
+                // Each http client's connection is reused for 280 seconds (slightly less than 5 min)
+                // once reached, the connection is reestablished on next request no matter what
+                PooledConnectionLifetime = TimeSpan.FromSeconds(280),
                 // If a connection is idle for 55 seconds (slightly less than 1 min) it is removed
                 PooledConnectionIdleTimeout = TimeSpan.FromSeconds(55),
-                // Establish TLS/a con within 15 seconds, else normally we retry twice which adds up to 45 seconds over 3 tries
-                ConnectTimeout = TimeSpan.FromSeconds(15),
+                // Establish TLS/a con within 16 seconds, else normally we retry twice which adds up to 48 seconds over 3 tries
+                ConnectTimeout = TimeSpan.FromSeconds(16),
                 AllowAutoRedirect = true,
             };
 
-            if (ignoreSslErrors)
+            if (options.IgnoreSslErrors)
             {
                 socketsHandler.SslOptions = new System.Net.Security.SslClientAuthenticationOptions()
                 {
@@ -83,25 +75,52 @@ partial class Client
                             errors == System.Net.Security.SslPolicyErrors.RemoteCertificateNameMismatch ||
                             errors == System.Net.Security.SslPolicyErrors.RemoteCertificateNotAvailable)
                         {
-                            Log.Warning("Client: SslPolicy error occured, " + errors + ". Usually invalid or expired. IgnoreSslErrors is set to 'true' so continuing...");
+                            Log.Warning("Client: SslPolicy error occured, " + errors + ". Usually invalid or expired cert. IgnoreSslErrors is set to 'true' so continuing...");
                         }
                         return true;
                     }
                 };
             }
 
-            var timeoutHandler = new TimeoutHandler(timeoutMilliseconds, socketsHandler);
+            var timeoutHandler = new TimeoutHandler(options.Timeout, socketsHandler);
 
             var client = new HttpClient(timeoutHandler, disposeHandler: true);
 
-            if (ClientCacheDuration > 0)
+            // Adding 1s so it never triggers, our own TimeoutHandler triggers before
+            client.Timeout = TimeSpan.FromMilliseconds(options.Timeout + 1000);
+
+            if (ClientCacheDurationConfig > 0)
             {
-                var httpClientCacheModel = new CacheModel()
+                var now = DateTime.Now;
+                var cachedModel = new CacheModel()
                 {
                     CachedClient = client,
-                    Expires = DateTime.Now.AddMilliseconds(ClientCacheDuration)
+                    ThresholdRegenerateClient = now.AddSeconds(ThresholdRegenerateClientSeconds),
+                    Expires = now.AddMilliseconds(ClientCacheDurationConfig)
                 };
-                Cache.TryAdd(key, httpClientCacheModel);
+
+                if (!Cache.TryAdd(key, cachedModel))
+                {
+                    if (Cache.TryGetValue(key, out CacheModel existingInCacheModel))
+                    {
+                        if (!HasExpired(existingInCacheModel))
+                        {
+                            cachedModel.CachedClient = null;
+                            try
+                            {
+                                client.Dispose();
+                            }
+                            catch
+                            {
+                                // Swallow
+                            }
+                            client = null;
+                            cachedModel = null;
+
+                            return existingInCacheModel.CachedClient;
+                        }
+                    }
+                }
             }
 
             return client;
@@ -112,17 +131,33 @@ partial class Client
             return httpClientCached?.CachedClient == null || httpClientCached.Expires < DateTime.Now;
         }
 
-        static void RemoveFromCache(string key)
+        static void RemoveFromCache(string key, int timeoutMilliseconds)
         {
-            if (Cache.TryRemove(key, out CacheModel httpClientCached))
+            if (Cache.TryRemove(key, out CacheModel cachedModel))
             {
                 Dispose();
-
-                if (httpClientCached != null)
+                
+                if (cachedModel != null)
                 {
-                    DisposeQueue.TryAdd(key + DateTime.Now.ToString("HH:mm:ss.fffff") + "#" + Randomness.Int() + Randomness.String(6), httpClientCached);
+                    cachedModel.Expires = DateTime.Now.AddMilliseconds(ClientCacheDurationConfig + timeoutMilliseconds + 90000);
+                    DisposeQueue.TryAdd(key + DateTime.Now.ToString("HH:mm:ss.fffff") + "#" + Randomness.Int() + Randomness.String(6), cachedModel);
                 }
             }
+        }
+
+        static HttpClient HasNewlyBeenCreated(string key)
+        {
+            if (ClientCacheDurationConfig <= 0) return null;
+
+            if (Cache.TryGetValue(key, out CacheModel cached))
+            {
+                if (!HasExpired(cached) && cached.ThresholdRegenerateClient > DateTime.Now)
+                {
+                    return cached.CachedClient;
+                }
+            }
+
+            return null;
         }
     }
 }

@@ -11,7 +11,7 @@ partial class HttpBaseClientTests
     {
         try
         {
-            var service = new HttpBinClient(true);
+            var service = new HttpBin(true);
 
             var response = service.Get_Retry_Request_Against_Firewall();
 

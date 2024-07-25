@@ -16,7 +16,7 @@ partial class HttpBaseClientTests
         sw.Start();
         try
         {
-            var service = new HttpBinClient(false);
+            var service = new HttpBin(false);
 
             CancellationTokenSource tokenSource = new CancellationTokenSource();
 
@@ -45,7 +45,7 @@ partial class HttpBaseClientTests
     {
         try
         {
-            var service = new HttpBinClient(true);
+            var service = new HttpBin(true);
 
             CancellationTokenSource tokenSource = new CancellationTokenSource();
 

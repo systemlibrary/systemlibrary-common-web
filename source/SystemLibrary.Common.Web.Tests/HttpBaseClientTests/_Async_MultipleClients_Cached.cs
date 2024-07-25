@@ -12,7 +12,7 @@ namespace SystemLibrary.Common.Web.Tests
         [DataRow(6)]
         public void Test_Async_MultipleClients_Cached_Success(int repeat)
         {
-            var service = new HttpBinClient();
+            var service = new HttpBin();
 
             var body = "Hello world";
 

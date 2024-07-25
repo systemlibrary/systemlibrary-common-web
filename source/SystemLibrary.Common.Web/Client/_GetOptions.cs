@@ -11,8 +11,6 @@ partial class Client
     {
         var content = ClientHttpContent.Get(data, mediaType, jsonSerializerOptions);
 
-        timeout = GetTimeout(timeout, TimeoutConfig, DefaultTimeout);
-
         return new RequestOptions()
         {
             Method = method,
@@ -28,22 +26,21 @@ partial class Client
             UseRetryPolicy = UseRetryPolicy,
             IgnoreSslErrors = IgnoreSslErrors,
 
-            Timeout = timeout,
+            Timeout = GetTimeout(timeout),
             RetryTimeout = RetryTimeout,
         };
     }
 
-    static int GetTimeout(int timeout, int timeoutConfig, int defaultTimeout)
+    int GetTimeout(int timeout)
     {
-        // Timeout is default, no custom passed in
-        if (timeout == defaultTimeout)
+        // Not passed in a custom one 
+        // Edge case: it might be passed in exactly the same so that would change the timeout
+        if (timeout == DefaultTimeout)
         {
-            // Use the global config timeout from appSettings
-            return timeoutConfig;
+            return Timeout;
         }
 
-        // Validate custom input timeout, else use config timeout
-        if (timeout <= 0) return timeoutConfig;
+        if (timeout <= 0) return Timeout;
 
         return timeout;
     }

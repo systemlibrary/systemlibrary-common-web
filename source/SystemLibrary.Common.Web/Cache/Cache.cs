@@ -89,8 +89,6 @@ public static partial class Cache
         if (FallbackDurationConfig > 0)
             cacheFallback = new IMemoryCache[MaxCacheContainers];
 
-        Debug.Log("Cache, with fallback duration: " + FallbackDurationConfig);
-
         for (int i = 0; i < MaxCacheContainers; i++)
         {
             MemoryCacheOptions options = new MemoryCacheOptions();
@@ -127,12 +125,6 @@ public static partial class Cache
 
         var cached = cache[cacheIndex].Get(cacheKey);
 
-        //if (cached == null && FallbackDurationConfig > 0)
-        //{
-        //    Debug.Log("Cache miss, check fallback");
-        //    cached = cacheFallback[cacheIndex].Get(cacheKey);
-        //}
-
         return cached == null ? default : (T)cached;
     }
 
@@ -152,8 +144,6 @@ public static partial class Cache
             duration = TimeSpan.FromSeconds(DurationConfig);
 
         var cacheIndex = Math.Abs(cacheKey.GetHashCode() % 4);
-
-        Debug.Log("Set Cache index " + cacheIndex);
 
         Insert(cacheIndex, cacheKey, item, duration);
     }
@@ -466,7 +456,7 @@ public static partial class Cache
 
         if (SkipCache(skipForAuthenticatedUsers, skipForAdmins, skipFor))
         {
-            Debug.Log("Skipping cache for cachey key: " + cacheKey);
+            // Debug.Log("Skipped cache for: " + cacheKey);
 
             return getItem();
         }
@@ -482,15 +472,7 @@ public static partial class Cache
         var cached = cache[cacheIndex].Get(cacheKey);
 
         if (cached != null)
-        {
-            Debug.Log("Item was cached with key " + cacheKey);
-
             return (T)cached;
-        }
-        else
-        {
-            Debug.Log("Item was not cached with key " + cacheKey);
-        }
 
         bool CacheFallbackLookup(Exception ex = null)
         {
@@ -498,11 +480,9 @@ public static partial class Cache
             {
                 cached = cacheFallback[cacheIndex].Get(cacheKey);
 
-                if (cached != null && (condition == null || condition((T)cached)))
+                if (cached != null)
                 {
-                    Debug.Log("Item found in cache fallback, logged and returned " + cacheKey);
-
-                    Log.Warning(new Exception("Item found in cache fallback, but fetching latest item version failed:", ex));
+                    Log.Warning(new Exception("Fallback cache lookup match, logged: " + cacheKey.MaxLength(15) + "...", ex));
 
                     return true;
                 }
@@ -516,7 +496,7 @@ public static partial class Cache
 
             if (cached == null)
             {
-                if(CacheFallbackLookup())
+                if (CacheFallbackLookup())
                     return (T)cached;
             }
         }
@@ -525,19 +505,11 @@ public static partial class Cache
             if (CacheFallbackLookup(ex))
                 return (T)cached;
 
-            Debug.Log("Item do not exist in cache, throw");
-
             throw ex;
         }
 
-
-
         if (cached != null && (condition == null || condition((T)cached)))
-        {
-            Debug.Log("Item met conditions, added to Cache, key: " + cacheKey);
-
             Insert(cacheIndex, cacheKey, cached, duration);
-        }
 
         return (T)cached;
     }
@@ -670,8 +642,6 @@ public static partial class Cache
 
             if (FallbackDurationConfig > 0)
             {
-                Debug.Log("Inserting to fallback, additional dur: " + FallbackDurationConfig+ ", key: " + cacheKey+ ", exp: " + DateTime.Now.Add(duration).AddSeconds(FallbackDurationConfig).ToString());
-
                 cacheFallback[cacheIndex].Set(cacheKey, item, new MemoryCacheEntryOptions()
                 {
                     AbsoluteExpiration = DateTime.Now.Add(duration).AddSeconds(FallbackDurationConfig),
@@ -698,9 +668,9 @@ public static partial class Cache
             {
                 if (value is string text)
                 {
-                    if (text.Length > 96)
+                    if (text.Length > 48)
                     {
-                        key.Append(text.Length + text.MaxLength(96) + text[^5]);
+                        key.Append(text.Length + text[^4] + text.MaxLength(48) + text[^5]);
                     }
                     else
                     {
@@ -709,11 +679,9 @@ public static partial class Cache
                 }
                 else if (value is StringBuilder sb)
                 {
-                    if (sb.Length > 96)
+                    if (sb.Length > 48)
                     {
-                        var temp = sb.ToString();
-                        key.Append(sb.Length + temp.MaxLength(96) + temp[^5]);
-                        temp = null;
+                        key.Append(sb[^4] + "" + sb[^5] + "" + sb.Length + sb.MaxLength(48).ToString());
                     }
                     else
                     {

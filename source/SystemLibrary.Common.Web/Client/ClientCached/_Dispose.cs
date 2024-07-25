@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 using SystemLibrary.Common.Net.Extensions;
 
@@ -13,7 +14,7 @@ partial class Client
 
         static void Dispose()
         {
-            DisposeQueueInterval();
+            Task.Run(() => DisposeQueueInterval());
         }
 
         static void DisposeQueueInterval()
@@ -30,11 +31,13 @@ partial class Client
                 if (DateTime.Now < Next)
                     return;
 
-                Next = DateTime.Now.AddSeconds(15);
+                Next = DateTime.Now.AddSeconds(30);
             }
 
-            // 5 minutes after the last timeout could occur, HttpClient is disposed
-            var dateTimeElapsed = DateTime.Now.AddMilliseconds(-TimeoutConfig - RetryTimeoutConfig - 300000);
+            bool HasExpired(CacheModel cachedModel)
+            {
+                return cachedModel?.CachedClient == null || cachedModel.Expires < DateTime.Now;
+            }
 
             foreach (var key in keys)
             {
@@ -42,7 +45,7 @@ partial class Client
                 {
                     try
                     {
-                        if (cached.Expires < dateTimeElapsed)
+                        if (HasExpired(cached))
                         {
                             DisposeQueue.TryRemove(key, out CacheModel removed);
                             removed?.Dispose();

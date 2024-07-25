@@ -11,7 +11,7 @@ partial class HttpBaseClientTests
     [TestMethod]
     public void Get_With_CacheDuration_Success()
     {
-        var WebService = new HttpBinClient();
+        var WebService = new HttpBin();
 
         var dict = new ConcurrentDictionary<string, string>();
 
