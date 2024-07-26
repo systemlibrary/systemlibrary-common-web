@@ -47,7 +47,9 @@ partial class Client
                     return cachedModel.CachedClient;
                 }
             }
+
             return New(key, options);
+            
         }
 
         static HttpClient New(string key, RequestOptions options)
@@ -127,6 +129,7 @@ partial class Client
                 }
             }
 
+            Debug.Log("New client " + key);
             return client;
         }
 
@@ -145,6 +148,7 @@ partial class Client
                 {
                     cachedModel.Expires = DateTime.Now.AddMilliseconds(ClientCacheDurationConfig + timeoutMilliseconds + 90000);
                     DisposeQueue.TryAdd(key + DateTime.Now.ToString("HH:mm:ss.fffff") + "#" + Randomness.Int() + Randomness.String(6), cachedModel);
+                    Debug.Log("Moved client to dispose queue: " + key);
                 }
             }
         }

@@ -702,7 +702,7 @@ public static partial class Cache
                 }
                 else
                 {
-                    Debug.Log(valueType.Name + " not stringable type for cacheKey: " + value);
+                    Debug.Log(valueType.Name + " cannot be ToString()'d for cacheKey: " + value);
                 }
             }
 
@@ -806,7 +806,7 @@ public static partial class Cache
                     AppendClass(value, valueType);
                 else
                 {
-                    Debug.Log(valueType.Name + " not appendable to cacheKey");
+                    Debug.Log(valueType.Name + " is a type that is not appendable to cacheKey (not implemented)");
                 }
             }
 

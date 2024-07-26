@@ -13,7 +13,7 @@ internal static class PolicyKeyConverter
 
         sb.Append($"{uri.Scheme.ToLower()}{uri.Authority.ToLower()}{uri.Port}{options.Method}");
 
-        sb.Append(HttpContextInstance.Current?.User?.Identity?.IsAuthenticated.ToString() ?? "False");
+        sb.Append(HttpContextInstance.Current?.User?.Identity?.IsAuthenticated + "" ?? "False");
 
         AppendAbsolutePathAsKey(sb, uri.AbsolutePath);
 

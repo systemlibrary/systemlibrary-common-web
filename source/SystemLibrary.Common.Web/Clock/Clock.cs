@@ -5,7 +5,7 @@ namespace SystemLibrary.Common.Web.Extensions;
 
 public static class Clock
 {
-    public static void Measure(Action method, string message = null)
+    public static long Measure(Action method, string message = null)
     {
         var sw = new Stopwatch();
 
@@ -17,7 +17,14 @@ public static class Clock
         method();
 
         sw.Stop();
-        Log.Debug(message + " executed in total time: " + sw.ElapsedTicks + " ticks, " + sw.ElapsedMilliseconds + "ms");
+
+        if(message != null)
+            Log.Debug(message + " executed in total time: " + sw.ElapsedTicks + " ticks, " + sw.ElapsedMilliseconds + "ms");
+        
+        var ms = sw.ElapsedMilliseconds;
+        
         sw.Reset();
+        
+        return ms;
     }
 }

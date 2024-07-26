@@ -14,9 +14,9 @@ partial class Client
         var message = new StringBuilder("", 255);
 
         if(response != null)
-            message.Append($"{(int)response?.StatusCode} ");
+            message.Append($"{(int)response.StatusCode} ");
 
-        message.Append($"{options.Method} {options.Url} as {options.MediaType.ToValue()} with timeout {options.Timeout}ms ");
+        message.Append($"{options.Method} {options.Url} as {options.MediaType.ToValue()} with timeout {options.Timeout}ms using retryPolicy {options.UseRetryPolicy} ");
 
         if(ex != null)
         {
@@ -35,8 +35,8 @@ partial class Client
         }
       
         if (response != null)
-            message.Append($" Reason: {response?.ReasonPhrase}");
-       
+            message.Append($" Reason: {response.ReasonPhrase}");
+
         return new HttpRequestException(message.ToString(), ex);
     }
 }

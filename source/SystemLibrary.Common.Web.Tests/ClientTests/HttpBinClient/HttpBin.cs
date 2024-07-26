@@ -7,9 +7,9 @@ namespace SystemLibrary.Common.Web.Tests;
 class HttpBin : Client
 {
     const string firewallClientUrl = "https://170.44.1.1/";
-    const string clientUrl = "http://httpbin.org";
+    const string clientUrl = "https://httpbin.org";
 
-    public HttpBin(bool useRetryPolicy = false) : base(useRetryPolicy)
+    public HttpBin(bool useRetryPolicy = false, int? timeout = null) : base(useRetryPolicy, null, timeout)
     {
     }
 
@@ -68,4 +68,3 @@ class HttpBin : Client
         return Get<string>(clientUrl + "/delay/" + sleep, MediaType.json, timeoutMilliseconds);
     }
 }
-

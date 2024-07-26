@@ -31,6 +31,8 @@ partial class Client
 
         if (ex != null || !isSuccess)
         {
+            Debug.Log("Throwing " + ThrowOnUnsuccessful + " exception " + isSuccess + " message: " + ex?.Message);
+
             if (ThrowOnUnsuccessful)
             {
                 if (ex is CalleeCancelledRequestException)
@@ -55,7 +57,6 @@ partial class Client
         // var rateLimiter = RateLimiter.GetPolicy(policyKey);
 
         var circuitBreaker = CircuitBreaker.GetPolicy(policyKey);
-
         HttpResponseMessage response = null;
         Exception ex = null;
 
@@ -67,11 +68,11 @@ partial class Client
 
                 // Check, create and throw an exception to trigger circuit breaker
                 if (ex == null && (response == null ||
-                    response?.StatusCode == HttpStatusCode.TooManyRequests ||
-                    response?.StatusCode == HttpStatusCode.InternalServerError ||
-                    response?.StatusCode == HttpStatusCode.BadGateway ||
-                    response?.StatusCode == HttpStatusCode.GatewayTimeout ||
-                    response?.StatusCode == HttpStatusCode.ServiceUnavailable))
+                    response.StatusCode == HttpStatusCode.TooManyRequests ||
+                    response.StatusCode == HttpStatusCode.InternalServerError ||
+                    response.StatusCode == HttpStatusCode.BadGateway ||
+                    response.StatusCode == HttpStatusCode.GatewayTimeout ||
+                    response.StatusCode == HttpStatusCode.ServiceUnavailable))
                 {
                     ex = GetHttpRequestException(options, response);
                     throw ex;
@@ -82,9 +83,9 @@ partial class Client
         }
         catch (Exception e)
         {
-            Log.Warning("Circuit breaker threw exception", ex);
+            Log.Warning("Circuit breaker threw exception", ex.InnerException ?? ex);
 
-            return (response, ex ?? e);
+            return (response, ex ?? e.InnerException ?? e);
         }
     }
 }

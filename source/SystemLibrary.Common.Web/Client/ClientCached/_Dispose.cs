@@ -34,6 +34,8 @@ partial class Client
                 Next = DateTime.Now.AddSeconds(30);
             }
 
+            Debug.Log("Check dispose queue for abandoned clients");
+
             bool HasExpired(CacheModel cachedModel)
             {
                 return cachedModel?.CachedClient == null || cachedModel.Expires < DateTime.Now;
@@ -49,6 +51,7 @@ partial class Client
                         {
                             DisposeQueue.TryRemove(key, out CacheModel removed);
                             removed?.Dispose();
+                            Debug.Log("Disposed client " + key);
                         }
                     }
                     catch

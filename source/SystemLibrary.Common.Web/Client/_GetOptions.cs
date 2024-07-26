@@ -9,15 +9,14 @@ partial class Client
 {
     RequestOptions GetRequestOptions(HttpMethod method, string url, object data, MediaType mediaType, int timeout, IDictionary<string, string> headers, JsonSerializerOptions jsonSerializerOptions, CancellationToken cancellationToken)
     {
-        var content = ClientHttpContent.Get(data, mediaType, jsonSerializerOptions);
-
         return new RequestOptions()
         {
             Method = method,
             Url = url,
             Headers = headers,
             MediaType = mediaType,
-            Content = content,
+            Data = data,
+            JsonSerializerOptions = jsonSerializerOptions,
 
             ForceNewClient = false,
 

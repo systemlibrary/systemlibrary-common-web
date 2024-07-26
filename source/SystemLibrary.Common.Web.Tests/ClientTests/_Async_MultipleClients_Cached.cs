@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -9,179 +10,98 @@ namespace SystemLibrary.Common.Web.Tests;
 partial class ClientTests
 {
     [TestMethod]
-    [DataRow(6)]
-    public void Test_Async_Multiple_Clients_Cached_Success(int repeat)
+    [DataRow(8)]
+    public void Short_Running_Multiple_Same_Clients_Cached_Async_Success(int repeat)
     {
-        var bin = new HttpBin();
-
-        var body = "Hello world";
-
-        var tasks = new List<Task>();
-
-        var responses = new List<string>();
-        for (int i = 0; i < repeat; i++)
-        {
-            var sleep = i * 22;
-            try
-            {
-                tasks.Add(Task.Run(() =>
-                {
-                    Thread.Sleep(sleep);
-
-                    var data = bin.PostAsync(body).Result;
-
-                    responses.Add("HttpStatusCode " + (int)data.StatusCode + ", " + data.Data);
-                }));
-            }
-            catch
-            {
-                Assert.IsTrue(false, "Error occured!");
-            }
-        }
-
-        Task.WaitAll(tasks.ToArray());
-
-        var err = string.Join(" ", responses.ToArray());
-
-        Assert.IsTrue(responses.Count == repeat, "One or more requests failed, should have " + repeat + " results, but got only " + responses.Count + " " + err);
-        
-        foreach (var result in responses)
-        {
-            Assert.IsTrue(result.Contains("HttpStatusCode 200"), "One or more inital requests did not return status code 200");
-
-            Assert.IsTrue(result.Contains(body), "Response did not include body message: " + body);
-        }
-
-        // NOTE: Was almost 2 minutes, cannot remember why, something with TCP con reused?
-        Thread.Sleep(15000 + (repeat * 22));
-
-        responses = new List<string>();
-        for (int i = 0; i < repeat; i++)
-        {
-            var sleep = i * 22;
-            try
-            {
-                tasks.Add(Task.Run(() =>
-                {
-                    Thread.Sleep(sleep);
-
-                    var data = bin.PostAsync(body).Result;
-
-                    responses.Add("HttpStatusCode " + (int)data.StatusCode + ", " + data.Data);
-                }));
-            }
-            catch
-            {
-                Assert.IsTrue(false, "Error occured!");
-            }
-        }
-
-        err = string.Join(" ", responses.ToArray());
-
-        Task.WaitAll(tasks.ToArray());
-        Assert.IsTrue(responses.Count == repeat, "One or more requests failed after a sleep of over 3 min (less than 5), should have " + repeat + " results, but got only " + responses.Count + ": " + err);
+        Run_Multi_Requests_Async(repeat, new HttpBin(), 0, 0);
     }
 
     [TestMethod]
-    [DataRow(25)]
-    public void Long_Running_Multiple_Clients_Cached_Async_Success(int repeat)
+    [DataRow(33)]
+    public void Short_Running_Multiple_Diff_Clients_Cached_Async_Success(int repeat)
     {
-        var bin = new HttpBin();
+        // This creates multiple HttpClients (against same domain, but they are new, as timeout and ssl differs)
+        Run_Multi_Requests_Async(repeat, new HttpBin(true), 0, 0);
+
+        Run_Multi_Requests_Async(repeat, new HttpBin(false), 0, 0);
+
+        Run_Multi_Requests_Async(repeat, new HttpBin(true, 6565), 0, 0);
+
+        Run_Multi_Requests_Async(repeat, new HttpBin(true), 6565, 2);
+
+        Run_Multi_Requests_Async(repeat, new HttpBin(false), 10000, 2);
+    }
+
+    [TestMethod]
+    [DataRow(33)]
+    public void Long_Running_Multiple_No_Clients_Cached_Async_Success(int repeat)
+    {
+        Run_Multi_Requests_Async(repeat, new HttpBin(true), 0, 0);
+
+        Run_Multi_Requests_Async(repeat, new HttpBin(true), 450, 3);
+
+        Run_Multi_Requests_Async(repeat, new HttpBin(true), 1250, 3);
+
+        Run_Multi_Requests_Async(repeat, new HttpBin(true), 11900, 3);
+
+        Run_Multi_Requests_Async(repeat, new HttpBin(true), 33000, 3);
+    }
+
+    //[TestMethod]
+    //[DataRow(33)]
+    //public void Long_Running_Multiple_Retry_Clients_Cached_Async_Success(int repeat)
+    //{
+    //    Run_Multi_Requests_Async(repeat, new HttpBin(true), 0, 0);
+
+    //    Run_Multi_Requests_Async(repeat, new HttpBin(true), 4500, 3);
+
+    //    Run_Multi_Requests_Async(repeat, new HttpBin(true), 12500, 3);
+
+    //    Run_Multi_Requests_Async(repeat, new HttpBin(true), 119000, 3);
+
+    //    Run_Multi_Requests_Async(repeat, new HttpBin(true), 330000, 3);
+    //}
+
+    static object locking = new object();
+    static void Run_Multi_Requests_Async(int repeat, HttpBin bin, int longSleep, int sleepIncremental)
+    {
+        var tasks = new List<Task>();
+        var responses = new List<string>();
 
         var body = "Hello world";
 
-        var tasks = new List<Task>();
+        if (longSleep > 0)
+            Thread.Sleep(longSleep);
 
-        var responses = new List<string>();
         for (int i = 0; i < repeat; i++)
         {
-            var sleep = i * 1;
-            try
+            var sleep = i * sleepIncremental;
+            tasks.Add(Task.Run(() =>
             {
-                tasks.Add(Task.Run(() =>
-                {
+                if (sleep > 0)
                     Thread.Sleep(sleep);
 
-                    var data = bin.PostAsync(body).Result;
+                var data = bin.PostAsync(body).Result;
 
-                    responses.Add("HttpStatusCode " + (int)data.StatusCode + ", " + data.Data);
-                }));
-            }
-            catch
-            {
-                Assert.IsTrue(false, "Error occured!");
-            }
+                lock (locking)
+                {
+                    responses.Add("HttpStatusCode " + (int)data?.StatusCode + ", " + data?.Data);
+                }
+
+            }));
         }
 
         Task.WaitAll(tasks.ToArray());
 
-        var err = string.Join(" ", responses.ToArray());
+        var temp = responses.ToArray().Where(x => !x.Contains("200")).ToArray();
+        var err = string.Join(" ", temp);
 
-        Assert.IsTrue(responses.Count == repeat, "One or more requests failed, should have " + repeat + " results, but got only " + responses.Count + " " + err);
+        Assert.IsTrue(responses.Count == repeat, "After " + longSleep + " with incremenatal sleep of " + sleepIncremental + " one or more requests were not complete/added, expected " + repeat + " results, but got only " + responses.Count + ": " + err);
 
         foreach (var result in responses)
         {
             Assert.IsTrue(result.Contains("HttpStatusCode 200"), "One or more inital requests did not return status code 200");
-
             Assert.IsTrue(result.Contains(body), "Response did not include body message: " + body);
         }
-
-        // Test sleeping for a long time, almost 2 minutes
-        Thread.Sleep(100000 + (repeat * 22));
-
-        responses = new List<string>();
-        for (int i = 0; i < repeat; i++)
-        {
-            var sleep = i * 22;
-            try
-            {
-                tasks.Add(Task.Run(() =>
-                {
-                    Thread.Sleep(sleep);
-
-                    var data = bin.PostAsync(body).Result;
-
-                    responses.Add("HttpStatusCode " + (int)data.StatusCode + ", " + data.Data);
-                }));
-            }
-            catch
-            {
-                Assert.IsTrue(false, "Error occured!");
-            }
-        }
-
-        err = string.Join(" ", responses.ToArray());
-
-        Task.WaitAll(tasks.ToArray());
-        Assert.IsTrue(responses.Count == repeat, "One or more requests failed after a sleep of over 3 min (less than 5), should have " + repeat + " results, but got only " + responses.Count + ": " + err);
-
-        // Test sleeping for a long time, over 5 minutes
-        Thread.Sleep(320000 + (repeat * 22));
-
-        responses = new List<string>();
-        for (int i = 0; i < repeat; i++)
-        {
-            var sleep = i * 22;
-            try
-            {
-                tasks.Add(Task.Run(() =>
-                {
-                    Thread.Sleep(sleep);
-
-                    var data = bin.PostAsync(body).Result;
-
-                    responses.Add("HttpStatusCode " + (int)data.StatusCode + ", " + data.Data);
-                }));
-            }
-            catch
-            {
-                Assert.IsTrue(false, "Error occured!");
-            }
-        }
-
-        err = string.Join(" ", responses.ToArray());
-
-        Task.WaitAll(tasks.ToArray());
-        Assert.IsTrue(responses.Count == repeat, "One or more requests failed after a sleep of over 3 min (less than 5), should have " + repeat + " results, but got only " + responses.Count + ": " + err);
     }
 }

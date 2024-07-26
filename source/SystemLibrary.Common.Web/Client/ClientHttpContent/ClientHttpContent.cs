@@ -10,11 +10,14 @@ partial class Client
 {
     partial class ClientHttpContent
     {
-        internal static HttpContent Get(object data, MediaType mediaType, JsonSerializerOptions jsonSerializerOptions)
+        internal static HttpContent Get(RequestOptions options)
         {
             HttpContent content = null;
 
-            if (data == null) return content;
+            if (options.Data == null) return content;
+
+            var data = options.Data;
+            var mediaType = options.MediaType;
 
             if (data is FormUrlEncodedContent formUrlEncodedContent)
             {
@@ -52,11 +55,12 @@ partial class Client
                     break;
 
                 case MediaType.json:
-                    if (jsonSerializerOptions != null)
-                        jsonSerializerOptions.ReadCommentHandling = JsonCommentHandling.Skip;
+                    if (options.JsonSerializerOptions != null)
+                        options.JsonSerializerOptions.ReadCommentHandling = JsonCommentHandling.Skip;
 
-                    content = GetBodyJson(data, null, jsonSerializerOptions, mediaType);
+                    content = GetBodyJson(data, null, options.JsonSerializerOptions, mediaType);
                     break;
+                // What about XML?
 
                 case MediaType.xwwwformUrlEncoded:
                     content = GetBodyXwwwFormUrlEncoded(data);

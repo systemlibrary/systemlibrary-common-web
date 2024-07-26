@@ -21,13 +21,6 @@ public partial class AppSettingsTests
         var clientProperties = clientConfigurations.GetType().GetProperties();
 
         Assert.IsTrue(clientProperties.Count() >= 6, "Too few props in clientProps");
-        //"timeout": 40000,
-        //"retryTimeout": 10000,
-        //"ignoreSslErrors": true,
-        //"useRetryPolicy": true,
-        //"throwOnUnsuccessful": true,
-        //"useCircuitBreakerPolicy": true,
-        //"clientCacheDuration": 60000
         var count = 0;
         foreach (var property in clientProperties)
         {
@@ -35,7 +28,7 @@ public partial class AppSettingsTests
             if (property.Name.ToLower() == "timeout")
             {
                 count++;
-                Assert.IsTrue(value == "11000", "timeout is not 11000: " + value);
+                Assert.IsTrue(value == "8686", "timeout is not 8686: " + value);
             }
 
             if (property.Name.ToLower() == "clientcacheduration")
@@ -47,7 +40,7 @@ public partial class AppSettingsTests
             if (property.Name.ToLower() == "retrytimeout")
             {
                 count++;
-                Assert.IsTrue(value == "6200", "retrytimeout is not 6200: " + value);
+                Assert.IsTrue(value == "5500", "retrytimeout is not 5500: " + value);
             }
 
             if (property.Name.ToLower() == "ignoresslerrors")

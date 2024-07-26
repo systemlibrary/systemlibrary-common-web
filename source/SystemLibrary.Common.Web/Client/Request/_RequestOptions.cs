@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading;
 
 namespace SystemLibrary.Common.Web;
@@ -10,7 +11,8 @@ partial class Client
     {
         public HttpMethod Method;
         public string Url;
-        public HttpContent Content;
+        public JsonSerializerOptions JsonSerializerOptions;
+        public object Data;
         public int Timeout;
         public int RetryTimeout;
         public IDictionary<string, string> Headers;
@@ -29,7 +31,7 @@ partial class Client
             }
             else if (retry == 2)
             {
-                ForceNewClient = false;
+                ForceNewClient = true;
             }
             RetryIndex = retry;
         }
@@ -40,7 +42,7 @@ partial class Client
                 return RetryTimeout;
 
             if (RetryIndex == 2)
-                return 4000;
+                return int.Max(RetryTimeout/2, 5000);
 
             return Timeout;
         }

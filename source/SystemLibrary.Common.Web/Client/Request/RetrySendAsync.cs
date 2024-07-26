@@ -10,38 +10,34 @@ partial class Client
     {
         internal static async Task<(HttpResponseMessage, Exception)> RetrySendAsync(RequestOptions options)
         {
-            var maxRetries = options.UseRetryPolicy ? 3 : 1;
+            var maxRetries = options.UseRetryPolicy ? 3 : 2;
 
             HttpResponseMessage response = null;
             Exception ex = null;
 
             for (int retry = 0; retry < maxRetries; retry++)
             {
-                ex = null;
-                response = null;
-
                 options.Update(retry);
-
                 try
                 {
                     response = await SendAsync(options);
                 }
-                catch(ArgumentException arg)
+                catch (ArgumentException arg)
                 {
                     ex = arg;
                     break;
                 }
-                catch(InvalidOperationException invalid)
+                catch (InvalidOperationException invalid)
                 {
                     ex = invalid;
                     break;
                 }
-                catch(IndexOutOfRangeException index)
+                catch (IndexOutOfRangeException index)
                 {
                     ex = index;
                     break;
                 }
-                catch(NullReferenceException noref)
+                catch (NullReferenceException noref)
                 {
                     ex = noref;
                     break;
@@ -50,20 +46,24 @@ partial class Client
                 {
                     ex = e;
                 }
-
                 if (options.CancellationToken.IsCancellationRequested)
                 {
                     ex = new CalleeCancelledRequestException("Callee cancelled request to " + options.Url);
                     break;
                 }
 
-                if (!IsEligibleForRetry(options, response, retry))
+                if (retry != maxRetries - 1)
                 {
-                    break;
-                }
+                    if (!IsEligibleForRetry(options, response, retry))
+                    {
+                        break;
+                    }
 
-                if (maxRetries > 1 && retry != maxRetries - 1)
-                    await Task.Delay(TimeSpan.FromMilliseconds(500)).ConfigureAwait(false);
+                    Debug.Log("Retrying..." + retry + " " + options.Url + ": " + response?.StatusCode);
+                    ex = null;
+                    response = null;
+                    await Task.Delay(TimeSpan.FromMilliseconds(666)).ConfigureAwait(false);
+                }
             }
 
             return (response, ex);

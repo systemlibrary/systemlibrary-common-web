@@ -12,7 +12,7 @@ partial class Client
         {
             var message = new HttpRequestMessage(options.Method, options.Url);
 
-            message.Content = options.Content;
+            message.Content = ClientHttpContent.Get(options);
 
             if (options.Headers != null)
             {

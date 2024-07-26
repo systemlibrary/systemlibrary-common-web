@@ -20,7 +20,7 @@ public class ApiTest
     [TestMethod]
     public void Target_Local_Api_With_String_As_Json_Data_Success()
     {
-        var client = new HttpBaseClient(true, true, 20000, false);
+        var client = new Client(true, true, 20000);
 
         var headers = new Dictionary<string, string>()
         {
@@ -51,7 +51,7 @@ public class ApiTest
     [TestMethod]
     public void Target_Local_Api_With_Bytes_As_Json_Data_Success()
     {
-        var client = new HttpBaseClient(true, true, 20000, false);
+        var client = new Client(true, true, 20000);
 
         var headers = new Dictionary<string, string>()
         {

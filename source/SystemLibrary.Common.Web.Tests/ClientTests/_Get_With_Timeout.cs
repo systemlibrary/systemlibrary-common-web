@@ -32,7 +32,7 @@ partial class ClientTests
         }
         catch (HttpRequestException ex)
         {
-            Assert.IsTrue(ex.Message.Contains(timeout.ToString() + "ms"), ex.Message);
+            Assert.IsTrue(ex?.Message?.Contains(timeout.ToString() + "ms") == true, ex.Message);
         }
         catch (Exception ex)
         {

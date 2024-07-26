@@ -18,6 +18,6 @@ internal static class CircuitBreaker
     static IAsyncPolicy CreatePolicy()
     {
         return Policy.Handle<HttpRequestException>()
-            .CircuitBreakerAsync(25, TimeSpan.FromSeconds(7));
+            .CircuitBreakerAsync(20, TimeSpan.FromSeconds(7));
     }
 }
