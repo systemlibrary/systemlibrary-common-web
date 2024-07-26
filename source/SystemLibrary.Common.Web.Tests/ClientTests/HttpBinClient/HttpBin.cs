@@ -63,9 +63,9 @@ class HttpBin : Client
         return Get<string>(clientUrl + "/delay/2", MediaType.json, 4000, null, null, token);
     }
 
-    public ClientResponse<string> GetWithTimeout(int timeoutMilliseconds)
+    public ClientResponse<string> GetWithTimeout(int timeoutMilliseconds, int sleep = 3)
     {
-        return Get<string>(clientUrl + "/delay/11", MediaType.json, timeoutMilliseconds);
+        return Get<string>(clientUrl + "/delay/" + sleep, MediaType.json, timeoutMilliseconds);
     }
 }
 

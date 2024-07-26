@@ -26,7 +26,7 @@ partial class Client
         {
             var uri = new Uri(options.Url);
 
-            var key = $"CommonWeb{nameof(Client)}{nameof(GetClient)}{uri.Scheme.ToLower()}{uri.Host.ToLower()}{uri.Port}{options.Timeout}{options.UseRetryPolicy}{options.IgnoreSslErrors}";
+            var key = $"CommonWeb{nameof(Client)}{nameof(GetClient)}{uri.Scheme.ToLower()}{uri.Host.ToLower()}{uri.Port}{options.GetTimeout()}{options.IgnoreSslErrors}";
 
             if (options.ForceNewClient)
             {
@@ -47,7 +47,6 @@ partial class Client
                     return cachedModel.CachedClient;
                 }
             }
-
             return New(key, options);
         }
 
@@ -82,12 +81,12 @@ partial class Client
                 };
             }
 
-            var timeoutHandler = new TimeoutHandler(options.Timeout, socketsHandler);
+            var timeoutHandler = new TimeoutHandler(options.GetTimeout(), socketsHandler);
 
             var client = new HttpClient(timeoutHandler, disposeHandler: true);
 
             // Adding 1s so it never triggers, our own TimeoutHandler triggers before
-            client.Timeout = TimeSpan.FromMilliseconds(options.Timeout + 1000);
+            client.Timeout = TimeSpan.FromMilliseconds(int.Max(options.Timeout, options.RetryTimeout) + 1000);
 
             if (ClientCacheDurationConfig > 0)
             {
@@ -118,6 +117,11 @@ partial class Client
                             cachedModel = null;
 
                             return existingInCacheModel.CachedClient;
+                        }
+                        else
+                        {
+                            // Edge case, if client was not added, but also was expired
+                            // at least we return a new client ready to be used, but it will leak this one
                         }
                     }
                 }

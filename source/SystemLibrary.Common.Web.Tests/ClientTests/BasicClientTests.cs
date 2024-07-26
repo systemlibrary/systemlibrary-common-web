@@ -10,7 +10,7 @@ namespace SystemLibrary.Common.Web.Tests;
 public partial class ClientTests
 {
     [TestMethod]
-    public void Get_404_Throws_404()
+    public void Measure_Multiple_Get_404_Throws_404()
     {
         var client = new Client();
 
@@ -32,7 +32,7 @@ public partial class ClientTests
     }
 
     [TestMethod]
-    public void Get_Success()
+    public void Measure_Multiple_Get_Success()
     {
         var client = new Client();
 

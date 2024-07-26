@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 
 using SystemLibrary.Common.Net.Extensions;
 
@@ -9,15 +11,32 @@ partial class Client
 {
     static HttpRequestException GetHttpRequestException(RequestOptions options, HttpResponseMessage response = null, Exception ex = null)
     {
-        string suffix = null;
+        var message = new StringBuilder("", 255);
 
-        string prefix = null;
-        if (response != null)
+        if(response != null)
+            message.Append($"{(int)response?.StatusCode} ");
+
+        message.Append($"{options.Method} {options.Url} as {options.MediaType.ToValue()} with timeout {options.Timeout}ms ");
+
+        if(ex != null)
         {
-            suffix = $" Reason: {response?.ReasonPhrase}";
-            prefix = $"{(int)response?.StatusCode} ";
+            if(ex is TaskCanceledException tce)
+            {
+                if(tce.Message.Contains("task was"))
+                    message.Append("has timed out or was canceled: " );
+                else if(tce.Message.Contains("operation was"))
+                    message.Append("operation was stopped, firewall or timeout: ");
+            }
+            else
+            {
+                message.Append("has invalid response: ");
+            }
+            message.Append(ex.Message);
         }
-
-        return new HttpRequestException(prefix + $"{options.Method} {options.Url} getting valid response as media-type {options.MediaType.ToValue()} and retry policy {options.UseRetryPolicy}." + suffix, ex);
+      
+        if (response != null)
+            message.Append($" Reason: {response?.ReasonPhrase}");
+       
+        return new HttpRequestException(message.ToString(), ex);
     }
 }

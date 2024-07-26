@@ -7,18 +7,18 @@ using SystemLibrary.Common.Net.Extensions;
 
 namespace SystemLibrary.Common.Web.Tests;
 
-partial class HttpBaseClientTests
+partial class ClientTests
 {
     [TestMethod]
     public void Post_Multipart_Json_As_Bytes_Return_Partial_Json_Form()
     {
-        var data = Assemblies.GetEmbeddedResource("HttpBaseClientTests/Files", "text.json");
+        var data = Assemblies.GetEmbeddedResource("ClientTests/Files", "text.json");
 
         var bytes = data.GetBytes();
 
-        var webService = new HttpBin();
+        var bin = new HttpBin();
 
-        var response = webService.Post(bytes, MediaType.json);
+        var response = bin.Post(bytes, MediaType.json);
 
         var form = response.Data.PartialJson<Form>("json/form");
 
@@ -34,13 +34,13 @@ partial class HttpBaseClientTests
     [TestMethod]
     public void Post_Multipart_Return_Partial_Json_Failure()
     {
-        var data = Assemblies.GetEmbeddedResource("HttpBaseClientTests/Files", "text.json");
+        var data = Assemblies.GetEmbeddedResource("ClientTests/Files", "text.json");
 
         var bytes = data.GetBytes();
 
-        var webService = new HttpBin();
+        var bin = new HttpBin();
 
-        var response = webService.Post(bytes, MediaType.multipartFormData);
+        var response = bin.Post(bytes, MediaType.multipartFormData);
 
         var form = response.Data.PartialJson<Form>("json/form");
 
@@ -53,11 +53,11 @@ partial class HttpBaseClientTests
     [TestMethod]
     public void Post_Multipart_WithoutHeaders_Returns_MediaType_MultiPart_InResponse_Success()
     {
-        var bytes = Assemblies.GetEmbeddedResourceAsBytes("HttpBaseClientTests/Files", "text.json");
+        var bytes = Assemblies.GetEmbeddedResourceAsBytes("ClientTests/Files", "text.json");
 
-        var webService = new HttpBin();
+        var bin = new HttpBin();
 
-        var response = webService.Post(bytes, MediaType.multipartFormData);
+        var response = bin.Post(bytes, MediaType.multipartFormData);
 
         var headersResponse = response.Data.PartialJson<Headers>();
 
@@ -68,16 +68,16 @@ partial class HttpBaseClientTests
     [TestMethod]
     public void Post_Multipart_Return_Content_Length_Of_Posted_Bytes_Success()
     {
-        var bytes = Assemblies.GetEmbeddedResourceAsBytes("HttpBaseClientTests/Files", "text.json");
+        var bytes = Assemblies.GetEmbeddedResourceAsBytes("ClientTests/Files", "text.json");
 
-        var webService = new HttpBin();
+        var bin = new HttpBin();
 
         var headers = new Dictionary<string, string>
         {
             { "Content-Type", MediaType.multipartFormData.ToValue() }
         };
 
-        var response = webService.Post(bytes, MediaType.multipartFormData, headers);
+        var response = bin.Post(bytes, MediaType.multipartFormData, headers);
 
         var headersResponse = response.Data.PartialJson<Headers>();
 
@@ -89,14 +89,13 @@ partial class HttpBaseClientTests
     [TestMethod]
     public void Post_Multipart_Return_Partial_Json_With_Param_CaseInSensitive_Success()
     {
-        var bytes = Assemblies.GetEmbeddedResourceAsBytes("HttpBaseClientTests/Files", "text.json");
+        var bytes = Assemblies.GetEmbeddedResourceAsBytes("ClientTests/Files", "text.json");
 
-        var webService = new HttpBin();
+        var bin = new HttpBin();
 
-        var response = webService.Post(bytes, MediaType.multipartFormData);
+        var response = bin.Post(bytes, MediaType.multipartFormData);
 
         var headerResponse = response.Data.PartialJson<Headers>("hEaDerS");
-
 
         Assert.IsTrue(headerResponse != null);
         Assert.IsTrue(headerResponse.ContentLength > 1);

@@ -17,6 +17,9 @@ partial class Client
 
             for (int retry = 0; retry < maxRetries; retry++)
             {
+                ex = null;
+                response = null;
+
                 options.Update(retry);
 
                 try
@@ -54,7 +57,7 @@ partial class Client
                     break;
                 }
 
-                if (maxRetries == 1 || !IsEligibleForRetry(options, response, retry))
+                if (!IsEligibleForRetry(options, response, retry))
                 {
                     break;
                 }

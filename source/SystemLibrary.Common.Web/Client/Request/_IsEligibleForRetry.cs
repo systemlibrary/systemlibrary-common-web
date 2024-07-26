@@ -10,7 +10,8 @@ partial class Client
         static bool IsEligibleForRetry(RequestOptions options, HttpResponseMessage response, int retry)
         {
             HttpMethod method = options.Method;
-            return 
+            
+            return
                 IsResponseEligibleForRetry(response, method) &&
                 IsRequestEligibleForRetry(options, method, response?.StatusCode, retry);
         }
@@ -22,7 +23,7 @@ partial class Client
 
             if (method == HttpMethod.Delete || method == HttpMethod.Put)
             {
-                // DELETE: 0 retries
+                // DELETE, PUT: 0 retries
                 return false;
             }
             else if (method == HttpMethod.Get)
@@ -42,12 +43,10 @@ partial class Client
         {
             var statusCode = response?.StatusCode;
 
-            if (statusCode == null) return true;
-
-            //if (method == HttpMethod.Get)
-            //{
-            //    if (statusCode == HttpStatusCode.NotFound) return true;
-            //}
+            if (statusCode == null)
+            {
+                return true;
+            }
 
             return
                 statusCode == HttpStatusCode.InternalServerError ||

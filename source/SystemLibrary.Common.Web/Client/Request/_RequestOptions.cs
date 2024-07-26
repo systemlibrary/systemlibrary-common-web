@@ -33,5 +33,16 @@ partial class Client
             }
             RetryIndex = retry;
         }
+
+        public int GetTimeout()
+        {
+            if (RetryIndex == 1)
+                return RetryTimeout;
+
+            if (RetryIndex == 2)
+                return 4000;
+
+            return Timeout;
+        }
     }
 }

@@ -2,24 +2,24 @@
 
 namespace SystemLibrary.Common.Web.Tests;
 
-partial class HttpBaseClientTests
+partial class ClientTests
 {
     [TestMethod]
-    public void Post_PlainText_Success()
+    public void Post_Plain_Text_Success()
     {
-        var webService = new HttpBin();
+        var bin = new HttpBin();
 
-        var response = webService.Post("hello world", MediaType.plain);
+        var response = bin.Post("hello world", MediaType.plain);
 
         Assert.IsTrue(response.Data.Contains("hello world"));
     }
 
     [TestMethod]
-    public void Post_UrlEncoded_Success()
+    public void Post_Url_Encoded_Success()
     {
-        var webService = new HttpBin();
+        var bin = new HttpBin();
 
-        var response = webService.PostUrlEncoded("hello=world&hello2=world2");
+        var response = bin.PostUrlEncoded("hello=world&hello2=world2");
 
         var form = response.Data.PartialJson<Form>();
 
@@ -31,9 +31,9 @@ partial class HttpBaseClientTests
     [TestMethod]
     public void Post_Json_Success()
     {
-        var webService = new HttpBin();
+        var bin = new HttpBin();
 
-        var response = webService.Post("{ hello:\"world\" }", MediaType.json);
+        var response = bin.Post("{ hello:\"world\" }", MediaType.json);
 
         Assert.IsTrue(response.Data.Contains("world"));
     }
@@ -41,12 +41,12 @@ partial class HttpBaseClientTests
     [TestMethod]
     public void Post_Poco_As_Json_Success()
     {
-        var webService = new HttpBin();
+        var bin = new HttpBin();
 
         var car = new Car();
         car.Name = "world";
 
-        var response = webService.Post(car, MediaType.json);
+        var response = bin.Post(car, MediaType.json);
 
         Assert.IsTrue(response.Data.Contains("world"));
     }
@@ -54,19 +54,16 @@ partial class HttpBaseClientTests
     [TestMethod]
     public void Post_HttpRequestMessage_Success()
     {
-
     }
 
     [TestMethod]
     public void Post_ByteArrayContent_Success()
     {
-
     }
 
 
     [TestMethod]
     public void Post_StringContent_Success()
     {
-
     }
 }
