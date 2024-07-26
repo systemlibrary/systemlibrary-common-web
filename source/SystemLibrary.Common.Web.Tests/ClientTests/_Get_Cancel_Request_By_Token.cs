@@ -4,19 +4,19 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace SystemLibrary.Common.Web.Tests;
 
-partial class HttpBaseClientTests
+partial class ClientTests
 {
     [TestMethod]
     public void Get_Cancel_Request_By_Token_Success()
     {
-        var service = new HttpBin(false);
+        var bin = new HttpBin(false);
 
         CancellationTokenSource tokenSource = new CancellationTokenSource();
 
         tokenSource.CancelAfter(100);
         try
         {
-            var response = service.GetWithCancellationToken(tokenSource.Token);
+            var response = bin.GetWithCancellationToken(tokenSource.Token);
         }
         catch (CalleeCancelledRequestException)
         {

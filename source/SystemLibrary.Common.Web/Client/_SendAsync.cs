@@ -32,7 +32,12 @@ partial class Client
         if (ex != null || !isSuccess)
         {
             if (ThrowOnUnsuccessful)
+            {
+                if (ex is CalleeCancelledRequestException)
+                    throw ex;
+
                 throw GetHttpRequestException(options, response, ex);
+            }
             else
                 Log.Warning(GetHttpRequestException(options, response, ex));
         }
