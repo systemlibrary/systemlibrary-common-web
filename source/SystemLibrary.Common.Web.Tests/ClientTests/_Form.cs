@@ -5,15 +5,21 @@ namespace SystemLibrary.Common.Web.Tests;
 partial class ClientTests
 {
     [TestMethod]
-    public void Form_Posted_Success()
+    public void Post_Class_As_wwwUrlEncoded_Success()
     {
         var client = new Client();
 
         var data = new HttpBinFormData();
+        
         var url = "https://httpbin.org/post";
-        var response = client.Post<string>(url, data, MediaType.xwwwformUrlEncoded);
+
+        var response = client.Post(url, data, MediaType.xwwwformUrlEncoded, deserialize: (responseText) => responseText.PartialJson<HttpBinFormData>("form"));
 
         Assert.IsTrue(response.IsSuccess, "Not success " + response.Message);
+
+        Assert.IsTrue(response.Data.comments == data.comments, "comments invalid");
+        Assert.IsTrue(response.Data.custemail == data.custemail, "custemail invalid");
+        Assert.IsTrue(response.Data.delivery == data.delivery, "delivery invalid");
     }
 
     class HttpBinFormData

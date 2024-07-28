@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 
 using Polly.CircuitBreaker;
 
+using SystemLibrary.Common.Net;
+
 namespace SystemLibrary.Common.Web;
 
 partial class Client
 {
-    async Task<ClientResponse<T>> SendAsync<T>(HttpMethod method, string url, object data, MediaType mediaType, int timeout, IDictionary<string, string> headers, JsonSerializerOptions jsonSerializerOptions, CancellationToken cancellationToken)
+    async Task<ClientResponse<T>> SendAsync<T>(HttpMethod method, string url, object data, MediaType mediaType, int timeout, IDictionary<string, string> headers, JsonSerializerOptions jsonSerializerOptions, CancellationToken cancellationToken, Func<string, T> deserialize)
     {
         if (url.IsNot())
             throw new Exception("Url is missing when trying to make a " + method + " request");
@@ -62,10 +64,20 @@ partial class Client
                     Log.Warning(GetHttpRequestException(options, response, ex));
             }
         }
+        var type = typeof(T);
 
-        var responseData = await ReadResponseAsync<T>(url, response, cancellationToken, jsonSerializerOptions).ConfigureAwait(false);
+        if (deserialize == null)
+        {
+            var responseData = await ReadResponseAsync<T>(type, url, response, cancellationToken, jsonSerializerOptions).ConfigureAwait(false);
 
-        return new ClientResponse<T>(response, responseData);
+            return new ClientResponse<T>(response, responseData);
+        }
+        else
+        {
+            var responseString = await ReadResponseAsync<string>(SystemType.StringType, url, response, cancellationToken, jsonSerializerOptions).ConfigureAwait(false);
+
+            return new ClientResponse<T>(response, deserialize(responseString));
+        }
     }
 
     async Task<(HttpResponseMessage, Exception)> RetrySendWithRequestBreakerAsync(RequestOptions options)
