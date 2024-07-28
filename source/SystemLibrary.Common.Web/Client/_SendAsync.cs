@@ -6,6 +6,8 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
+using Polly.CircuitBreaker;
+
 namespace SystemLibrary.Common.Web;
 
 partial class Client
@@ -20,10 +22,10 @@ partial class Client
         HttpResponseMessage response = null;
         Exception ex = null;
 
-        var useCircuitBreakerPolicy = IsEligibleForCircuitBreakerPolicy(options);
+        var useRequestBreakerPolicy = IsEligibleForRequestBreakerPolicy(options);
 
-        if (useCircuitBreakerPolicy)
-            (response, ex) = await RetrySendWithCircuitBreakerAsync(options).ConfigureAwait(false);
+        if (useRequestBreakerPolicy)
+            (response, ex) = await RetrySendWithRequestBreakerAsync(options).ConfigureAwait(false);
         else
             (response, ex) = await Request.RetrySendAsync(options).ConfigureAwait(false);
 
@@ -31,17 +33,34 @@ partial class Client
 
         if (ex != null || !isSuccess)
         {
-            Debug.Log("Throwing " + ThrowOnUnsuccessful + " exception " + isSuccess + " message: " + ex?.Message);
+            if (ex is BrokenCircuitException bce)
+            {
+                var policyKey = PolicyKeyConverter.Convert(options);
+                var message = GetRequestErrorMessage(options).TrimEnd() +
+                    ", " + RequestBreaker.BreakOnExceptionsInRow + " exceptions in a row, request for client + path (" + policyKey + ") is stopped for " +
+                    RequestBreaker.BrokenDuration + " seconds. " +
+                    bce.Message +
+                    " Reason: " + bce.InnerException?.Message;
 
+                ex = new BrokenCircuitException(message);
+            }
             if (ThrowOnUnsuccessful)
             {
                 if (ex is CalleeCancelledRequestException)
                     throw ex;
 
+                if (ex is BrokenCircuitException)
+                    throw ex;
+
                 throw GetHttpRequestException(options, response, ex);
             }
             else
-                Log.Warning(GetHttpRequestException(options, response, ex));
+            {
+                if (ex is BrokenCircuitException)
+                    Log.Warning(ex);
+                else
+                    Log.Warning(GetHttpRequestException(options, response, ex));
+            }
         }
 
         var responseData = await ReadResponseAsync<T>(url, response, cancellationToken, jsonSerializerOptions).ConfigureAwait(false);
@@ -49,20 +68,17 @@ partial class Client
         return new ClientResponse<T>(response, responseData);
     }
 
-    async Task<(HttpResponseMessage, Exception)> RetrySendWithCircuitBreakerAsync(RequestOptions options)
+    async Task<(HttpResponseMessage, Exception)> RetrySendWithRequestBreakerAsync(RequestOptions options)
     {
         var policyKey = PolicyKeyConverter.Convert(options);
 
-        // TODO: Enable a rate limiter towards all backend api's... set a limit of 2000 req/min? or so...
-        // var rateLimiter = RateLimiter.GetPolicy(policyKey);
-
-        var circuitBreaker = CircuitBreaker.GetPolicy(policyKey);
+        var requestBreaker = RequestBreaker.GetPolicy(policyKey);
         HttpResponseMessage response = null;
         Exception ex = null;
 
         try
         {
-            return await circuitBreaker.ExecuteAsync(async () =>
+            return await requestBreaker.ExecuteAsync(async () =>
             {
                 (response, ex) = await Request.RetrySendAsync(options).ConfigureAwait(false);
 
@@ -81,11 +97,13 @@ partial class Client
                 return (response, ex);
             }).ConfigureAwait(false);
         }
+        catch (BrokenCircuitException bce)
+        {
+            return (response, bce);
+        }
         catch (Exception e)
         {
-            Log.Warning("Circuit breaker threw exception", ex.InnerException ?? ex);
-
-            return (response, ex ?? e.InnerException ?? e);
+            return (response, ex ?? e?.InnerException ?? e);
         }
     }
 }

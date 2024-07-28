@@ -14,7 +14,6 @@ internal class AppSettings : Config<AppSettings>
         public PackageConfig()
         {
             Cache = new CacheConfiguration();
-            HttpBaseClient = new HttpBaseClientConfiguration();
             Log = new LogConfiguration();
             LogMessageBuilder = new LogMessageBuilderOptions();
             Client = new ClientConfiguration();
@@ -24,21 +23,12 @@ internal class AppSettings : Config<AppSettings>
 
         public CacheConfiguration Cache { get; set; }
         public ClientConfiguration Client { get; set; }
-        public HttpBaseClientConfiguration HttpBaseClient { get; set; }
         public LogConfiguration Log { get; set; }
         public LogMessageBuilderOptions LogMessageBuilder { get; set; }
 
         public class LogConfiguration
         {
             public LogLevel Level { get; set; } = LogLevel.Info;
-        }
-
-        public class HttpBaseClientConfiguration
-        {
-            public int TimeoutMilliseconds { get; set; } = 40000;
-
-            public int RetryRequestTimeoutMs { get; set; } = 10000;
-            public int CacheClientConnectionSeconds { get; set; } = 110;
         }
 
         public class ClientConfiguration
@@ -49,8 +39,9 @@ internal class AppSettings : Config<AppSettings>
             public bool UseRetryPolicy { get; set; } = Web.Client.DefaultUseRetryPolicy;
             public int ClientCacheDuration { get; set; } = Web.Client.DefaultClientCacheDuration;
             public bool ThrowOnUnsuccessful { get; set; } = Web.Client.DefaultThrowOnUnsuccessful;
-            public bool UseCircuitBreakerPolicy { get; set; } = Web.Client.DefaultUseCircuitBreakerPolicy;
+            public bool UseRequestBreakerPolicy { get; set; } = Web.Client.DefaultUseRequestBreakerPolicy;
         }
+        
 
         public class CacheConfiguration
         {

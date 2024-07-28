@@ -2,9 +2,9 @@
 
 partial class Client
 {
-    bool IsEligibleForCircuitBreakerPolicy(RequestOptions options)
+    bool IsEligibleForRequestBreakerPolicy(RequestOptions options)
     {
-        if (!UseCircuitBreakerPolicy) return false;
+        if (!UseRequestBreakerPolicy) return false;
 
         if (options.MediaType == MediaType.html ||
             options.MediaType == MediaType.javascript ||

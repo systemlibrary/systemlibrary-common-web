@@ -233,13 +233,21 @@ partial class Log
 
             else if (obj is Exception ex)
             {
-                var exmsg = ex.Message;
+                var exmsg = new StringBuilder("", 512);
+                if(ex is AggregateException agg)
+                {
+                    exmsg.Append(agg.Flatten().ToString());
+                }
+                else
+                {
+                    exmsg.Append(ex.Message);
+                }
 
                 var innerEx = ex.InnerException;
                 var c = 0;
                 while (innerEx?.Message != null)
                 {
-                    exmsg += "\n" + innerEx.Message;
+                    exmsg.Append("\n" + innerEx.Message);
 
                     innerEx = innerEx.InnerException;
 

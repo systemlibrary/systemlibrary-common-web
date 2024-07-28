@@ -7,8 +7,8 @@ partial class Client
     internal const bool DefaultThrowOnUnsuccessful = false;
     internal const bool DefaultIgnoreSslErrors = false;
     internal const bool DefaultUseRetryPolicy = true;
-    internal const bool DefaultUseCircuitBreakerPolicy = false;
-    internal const int DefaultClientCacheDuration = 720000; // 12 minutes
+    internal const bool DefaultUseRequestBreakerPolicy = false;
+    internal const int DefaultClientCacheDuration = 1200; // 20 minutes
 
     static int? _TimeoutConfig;
     static int TimeoutConfig
@@ -106,24 +106,24 @@ partial class Client
     }
 
     /// <summary>
-    /// Circuit breaker triggers on 500, 502 and 504 errors
+    /// Request breaker triggers on 500, 502 and 504 errors
     /// </summary>
-    static bool? _UseCircuitBreakerPolicyConfig;
-    static bool UseCircuitBreakerPolicyConfig
+    static bool? _UseRequestBreakerPolicyConfig;
+    static bool UseRequestBreakerPolicyConfig
     {
         get
         {
-            if (_UseCircuitBreakerPolicyConfig == null)
+            if (_UseRequestBreakerPolicyConfig == null)
             {
-                _UseCircuitBreakerPolicyConfig = AppSettings.Current.SystemLibraryCommonWeb.Client.UseCircuitBreakerPolicy;
+                _UseRequestBreakerPolicyConfig = AppSettings.Current.SystemLibraryCommonWeb.Client.UseRequestBreakerPolicy;
 
-                if (_UseCircuitBreakerPolicyConfig == null)
+                if (_UseRequestBreakerPolicyConfig == null)
                 {
-                    _UseCircuitBreakerPolicyConfig = DefaultUseCircuitBreakerPolicy;
+                    _UseRequestBreakerPolicyConfig = DefaultUseRequestBreakerPolicy;
                 }
             }
 
-            return _UseCircuitBreakerPolicyConfig.Value;
+            return _UseRequestBreakerPolicyConfig.Value;
         }
     }
 

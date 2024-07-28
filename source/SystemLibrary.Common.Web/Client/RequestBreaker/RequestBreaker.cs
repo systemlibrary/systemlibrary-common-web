@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Net.Http;
 
 using Polly;
 
 namespace SystemLibrary.Common.Web;
 
-internal static class RateLimiter
+internal static class RequestBreaker
 {
+    internal const int BreakOnExceptionsInRow = 20;
+    internal const int BrokenDuration = 7;
     static ConcurrentDictionary<string, IAsyncPolicy> Policies = new ConcurrentDictionary<string, IAsyncPolicy>();
-
+  
     internal static IAsyncPolicy GetPolicy(string policyKey)
     {
         return Policies.GetOrAdd(policyKey, CreatePolicy());
@@ -16,8 +19,7 @@ internal static class RateLimiter
 
     static IAsyncPolicy CreatePolicy()
     {
-        return Policy.RateLimitAsync(
-            1000,
-            TimeSpan.FromMinutes(1));
+        return Policy.Handle<HttpRequestException>()
+            .CircuitBreakerAsync(BreakOnExceptionsInRow, TimeSpan.FromSeconds(BrokenDuration));
     }
 }

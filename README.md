@@ -14,7 +14,7 @@ Library with classes and methods for every &gt;=  .NET 7 web application
     * Enables Authorization and Authentication attributes
 
 #### Modules
-* HttpBaseClient
+* Client
   * Reuses the underlying TCP connection for 2 minutes, saving 10's of milliseconds on subsequent requests
   * Retries once if a request fails, but this time on a new TCP connection with a limited 10s timeout
 * Cache
@@ -35,14 +35,17 @@ Library with classes and methods for every &gt;=  .NET 7 web application
 - 7.8.0.1
 - Updated deps (top breaking changes: json datetime conversion changed and Config files are read from 'content root', never inside 'bin', etc. Check your app's config/deploy routines and API's dealing with DateTime and JSON
 - Cache.TryGet method added
+- Cache.Try now uses "" as default, to auto create cache key, previously was null as param (breaking change)
 - Log.IsEnabled package options removed and replaced with new log level "Off" (breaking change)
-- HttpBaseClient (breaking change)
-    - retries on 404, 500, 502, 504 if HttpMethod is GET, POST, HEAD, or OPTION, previously only on GET timeout (breaking change)
-    - RetryRequestTimeoutSeconds renamed to RetryRequestTimeoutMs and changed from 10s to 10000ms default (breaking change)
-    - TimeoutMilliseconds defaults to 40000 down from 60000 (breaking change)
-    - Retries twice, up from one: 40s, 1s sleep, 10s retry, 1s sleep, 5s retry, ~ total 57s, so it is less than most "proxy/gateway timeouts" of 60 (breaking change)
-    - CacheClientConnectionSeconds reduced to 110s from 120s as 'other sides' usually ends at 120s
-    - retryOnceOnRequestCancelled renamed to useRetryOnErrorPolicy (breaking change)
+- HttpBaseClient renamed to Client (breaking change)
+    - retries on 502, 504 if HttpMethod is GET, POST or FileRequest (breaking change)
+    - UseRetryPolicy: enable to add one additional retry on 502 and 504, and enable one retry on 404 and 500
+    - RetryRequestTimeoutSeconds renamed to RetryRequestTimeout and changed from 10s to 10000ms default (breaking change)
+    - TimeoutMilliseconds renamed to Timeout, defaults to 40000 down from 60000 (breaking change)
+    - Between each retry theres a sleep of 500ms: 40s, 0.5s sleep, 10s retry, 0.5s sleep, 5s retry, ~ total 56s, so it is less than most "proxy/gateway timeouts" of 60 (breaking change)
+    - ClientCacheDuration increases to 1200 from 110s
+    - retryOnceOnRequestCancelled renamed to useRetryPolicy (breaking change)
+    - added option to request break on 20 exceptions in a row for 7 seconds
 
 #### Version history
 - View git history of this file if interested

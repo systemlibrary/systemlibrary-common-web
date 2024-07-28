@@ -3,7 +3,7 @@
 namespace SystemLibrary.Common.Web;
 
 /// <summary>
-/// An implementation of the 'old' thread safe singleton ActionContext we all know and love from .NET Framework
+/// A class that has a reference to the ActionContext instance
 /// </summary>
 public static class ActionContextInstance
 {

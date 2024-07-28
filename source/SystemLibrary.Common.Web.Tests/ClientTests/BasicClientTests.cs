@@ -25,7 +25,7 @@ public partial class ClientTests
                 }
                 catch(HttpRequestException ex)
                 {
-                    Assert.IsTrue(ex.Message.Contains("404 GET"));
+                    Assert.IsTrue(ex.Message.Contains("404 GET"), ex.Message);
                 }
             });
         }

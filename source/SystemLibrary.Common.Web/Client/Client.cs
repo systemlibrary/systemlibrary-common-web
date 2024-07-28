@@ -38,9 +38,9 @@ namespace SystemLibrary.Common.Web;
 /// 
 /// Configurations:
 /// "systemLibraryCommonWeb": {
-/// 	"httpBaseClient": {
-/// 		"timeoutMilliseconds": 60000,
-/// 		"retryRequestTimeoutSeconds": 10,
+/// 	"client": {
+/// 		"timeout": 60000,
+/// 		"retryRequestTimeout": 10,
 /// 		"cacheClientConnectionSeconds": 120
 /// 	}
 /// }
@@ -106,7 +106,7 @@ public partial class Client
     bool ThrowOnUnsuccessful;
     int Timeout;
     int RetryTimeout;
-    bool UseCircuitBreakerPolicy;
+    bool UseRequestBreakerPolicy;
 
     public Client(
         bool? useRetryPolicy = null,
@@ -114,12 +114,12 @@ public partial class Client
         int? timeout = null,
         int? retryTimeout = null,
         bool? throwOnUnsuccessful = null,
-        bool? useCircuitBreakerPolicy = null)
+        bool? useRequestBreakerPolicy = null)
     {
         UseRetryPolicy = useRetryPolicy ?? UseRetryPolicyConfig;
         IgnoreSslErrors = ignoreSslErrors ?? IgnoreSslErrorsConfig;
         ThrowOnUnsuccessful = throwOnUnsuccessful ?? ThrowOnUnsuccessfulConfig;
-        UseCircuitBreakerPolicy = useCircuitBreakerPolicy ?? UseCircuitBreakerPolicyConfig;
+        UseRequestBreakerPolicy = useRequestBreakerPolicy ?? UseRequestBreakerPolicyConfig;
 
         if (timeout != null)
             Timeout = timeout.Value;

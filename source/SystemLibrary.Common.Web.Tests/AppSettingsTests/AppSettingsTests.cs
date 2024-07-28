@@ -34,7 +34,7 @@ public partial class AppSettingsTests
             if (property.Name.ToLower() == "clientcacheduration")
             {
                 count++;
-                Assert.IsTrue(value == "60000", "clientcacheduration is not 60000: " + value);
+                Assert.IsTrue(value == "1200", "clientcacheduration is not 1200: " + value);
             }
 
             if (property.Name.ToLower() == "retrytimeout")
@@ -49,10 +49,10 @@ public partial class AppSettingsTests
                 Assert.IsTrue(value == "True", "ignoreSslErrors is: " + value);
             }
 
-            if (property.Name.ToLower() == "usecircuitbreakerpolicy")
+            if (property.Name.ToLower() == "userequestbreakerpolicy")
             {
                 count++;
-                Assert.IsTrue(value == "True", "usecircuitbreakerpolicy is: " + value);
+                Assert.IsTrue(value == "True", "userequestbreakerpolicy is: " + value);
             }
 
             if (property.Name.ToLower() == "throwonunsuccessful")

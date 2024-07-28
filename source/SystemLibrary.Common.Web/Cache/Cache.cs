@@ -35,7 +35,7 @@ namespace SystemLibrary.Common.Web;
 /// <remarks>
 /// Cache is limited to 240.000 items by default, divided by 4 containers, where any item added takes up 1 size
 /// 
-/// <para>Each container contains up to 60.000 items, once reached 33% are removed ready to be GC'ed</para>
+/// <para>Each container is limited to 60.000 items, once reached 33% of the oldest are removed, ready to be GC'ed</para>
 /// 
 /// Null is never added to cache
 /// 
@@ -45,8 +45,8 @@ namespace SystemLibrary.Common.Web;
 /// <item>- fallbackDuration: 600, set to 0 to disable fallback cache globally</item>
 /// <item>- containerSizeLimit: 60000, minimum 100</item>
 /// </list>
-/// Auto-generating cache key adds namespace, class, method, method-scoped variables of most used types such as bool, string, int, datetime, enum and few others, if used within the getItem method
-/// - If a method-scoped variable is a class, its public fields and properties of same types are also appended as cacheKey
+/// Auto-generating cache key adds namespace, class, method, method-scoped variables of types such as bool, string, int, datetime, enum and few others
+/// - If a method-scoped variable is a class, its public members of same types are also appended as cacheKey
 /// - IsAuthenticated is always appended to cacheKey
 /// - Claim 'role', 'Role' or RoleClaimType is also always appended to cacheKey
 /// - Always adds built-in prefix

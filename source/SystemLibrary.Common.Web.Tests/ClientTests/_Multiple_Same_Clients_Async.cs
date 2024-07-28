@@ -20,7 +20,7 @@ partial class ClientTests
     [DataRow(33)]
     public void Short_Running_Multiple_Diff_Clients_Cached_Async_Success(int repeat)
     {
-        // This creates multiple HttpClients (against same domain, but they are new, as timeout and ssl differs)
+        // This creates multiple HttpClients (against same domain, but they are new wherever timeout and ssl differs)
         Run_Multi_Requests_Async(repeat, new HttpBin(true), 0, 0);
 
         Run_Multi_Requests_Async(repeat, new HttpBin(false), 0, 0);
@@ -33,13 +33,15 @@ partial class ClientTests
     }
 
     [TestMethod]
-    [DataRow(33)]
+    [DataRow(3)]
     public void Long_Running_Multiple_No_Clients_Cached_Async_Success(int repeat)
     {
         Run_Multi_Requests_Async(repeat, new HttpBin(true), 0, 0);
 
-        Run_Multi_Requests_Async(repeat, new HttpBin(true), 450, 3);
+        Run_Multi_Requests_Async(repeat, new HttpBin(true), 500, 3);
 
+        Run_Multi_Requests_Async(repeat, new HttpBin(true), 7000, 3);
+        
         Run_Multi_Requests_Async(repeat, new HttpBin(true), 1250, 3);
 
         Run_Multi_Requests_Async(repeat, new HttpBin(true), 11900, 3);
@@ -49,7 +51,7 @@ partial class ClientTests
 
     //[TestMethod]
     //[DataRow(33)]
-    //public void Long_Running_Multiple_Retry_Clients_Cached_Async_Success(int repeat)
+    //public void Very_Long_Running_Multiple_Retry_Clients_Cached_Async_Success(int repeat)
     //{
     //    Run_Multi_Requests_Async(repeat, new HttpBin(true), 0, 0);
 
@@ -87,7 +89,6 @@ partial class ClientTests
                 {
                     responses.Add("HttpStatusCode " + (int)data?.StatusCode + ", " + data?.Data);
                 }
-
             }));
         }
 

@@ -47,9 +47,8 @@ partial class Client
                     return cachedModel.CachedClient;
                 }
             }
-
-            return New(key, options);
             
+            return New(key, options);
         }
 
         static HttpClient New(string key, RequestOptions options)
@@ -61,8 +60,8 @@ partial class Client
                 PooledConnectionLifetime = TimeSpan.FromSeconds(280),
                 // If a connection is idle for 55 seconds (slightly less than 1 min) it is removed
                 PooledConnectionIdleTimeout = TimeSpan.FromSeconds(55),
-                // Establish TLS/a con within 16 seconds, else normally we retry twice which adds up to 48 seconds over 3 tries
-                ConnectTimeout = TimeSpan.FromSeconds(16),
+                // Establish TLS/a con within 16 seconds, else we retry at least once which adds up to 36 seconds
+                ConnectTimeout = TimeSpan.FromSeconds(18),
                 AllowAutoRedirect = true,
             };
 
@@ -97,7 +96,7 @@ partial class Client
                 {
                     CachedClient = client,
                     ThresholdRegenerateClient = now.AddSeconds(ThresholdRegenerateClientSeconds),
-                    Expires = now.AddMilliseconds(ClientCacheDurationConfig)
+                    Expires = now.AddSeconds(ClientCacheDurationConfig)
                 };
 
                 if (!Cache.TryAdd(key, cachedModel))
@@ -146,7 +145,7 @@ partial class Client
                 
                 if (cachedModel != null)
                 {
-                    cachedModel.Expires = DateTime.Now.AddMilliseconds(ClientCacheDurationConfig + timeoutMilliseconds + 90000);
+                    cachedModel.Expires = DateTime.Now.AddMilliseconds(timeoutMilliseconds + 600000);
                     DisposeQueue.TryAdd(key + DateTime.Now.ToString("HH:mm:ss.fffff") + "#" + Randomness.Int() + Randomness.String(6), cachedModel);
                     Debug.Log("Moved client to dispose queue: " + key);
                 }
