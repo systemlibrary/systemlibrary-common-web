@@ -17,11 +17,14 @@ namespace SystemLibrary.Common.Web.Extensions;
 /// </summary>
 public static partial class IApplicationBuilderExtensions
 {
-    public static IApplicationBuilder UseBranch(this IApplicationBuilder app, IWebHostEnvironment env, string branch, AppBuilderOptions options = null)
+    /// <summary>
+    /// Specify a path as a branch to register different middlewares to trigger on certain paths
+    /// </summary>
+    public static IApplicationBuilder UseBranch(this IApplicationBuilder app, IWebHostEnvironment env, string branchPath, AppBuilderOptions options = null)
     {
-        if (branch == null) throw new System.Exception("A branch cannot be null, either pass a branch like /api, or use the method UseCommonWebApp if you do not want a branch");
+        if (branchPath == null) throw new System.Exception("A branch cannot be null, either pass a branch path like '/api', or use the method UseCommonWebApp if you do not want a branch");
 
-        app.MapWhen(context => context?.Request != null && context.Request.Path.Value != null && context.Request.Path.StartsWithSegments(branch), branch =>
+        app.MapWhen(context => context?.Request != null && context.Request.Path.Value != null && context.Request.Path.StartsWithSegments(branchPath), branch =>
         {
             branch.UseCommonWebApp(env, options);
         });
@@ -31,9 +34,7 @@ public static partial class IApplicationBuilderExtensions
 
     /// <summary>
     /// Register common middlewares for a web application
-    /// 
-    /// Note: This is usually the first registration of middlewares you have, unless your own logging middleware/tracing goes before
-    /// 
+    ///
     /// This will register:
     /// - Http to Https redirection middleware, client and server side
     /// - Routing urls to controllers middleware
@@ -47,6 +48,9 @@ public static partial class IApplicationBuilderExtensions
     /// - Recompiling razor pages (saving a cshtml file) middleware
     /// - Exception page middleware
     /// </summary>
+    /// <remarks>
+    /// This should be your first registration of middlewares you have, exception might be your own middleware for logging/tracing requests
+    /// </remarks>
     /// <example>
     /// Startup.cs/Program.cs:
     /// <code>

@@ -2,9 +2,7 @@
 
 /// <summary>
 /// Web Application Builder Options
-/// 
-/// All options are 'true' (on) by default
-/// 
+/// <para>All options are 'true' (on) by default</para>
 /// - Used as argument in 'app.CommonWebApplicationBuilder' function
 /// </summary>
 /// <example>

@@ -61,17 +61,21 @@ public class Startup
 {
 	"systemLibraryCommonWeb": {
 		"debug": false,	// Internal debug info in this package is logged if true
-
-		"httpBaseClient": {
-		  "timeoutMilliseconds": 40000,
-		  "retryRequestTimeoutMs": 10000,
-		  "cacheClientConnectionSeconds": 120
-		},
-
+		
 		"cache": {
 		  "duration": 180,
 		  "fallbackDuration": 600,
 		  "containerSizeLimit": 60000
+		},
+
+		"client": {
+		  "timeout": 40001,
+		  "retryTimeout": 10000,
+		  "ignoreSslErrors": true,
+		  "useRetryPolicy": true,
+		  "throwOnUnsuccessful": false,
+		  "useRequestBreakerPolicy": false,
+		  "clientCacheDuration": 1200
 		},
 
 		"log": {

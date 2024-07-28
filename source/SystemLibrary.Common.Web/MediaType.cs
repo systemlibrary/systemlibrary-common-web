@@ -3,7 +3,7 @@
 namespace SystemLibrary.Common.Web;
 
 /// <summary>
-/// An enum of various media types that can be sent to the HttpBaseClient request methods
+/// An enum of various media types that can be sent to the Client request methods
 /// 
 /// The 'MediaType' is sent as an 'Accept' HEADER in the request
 /// 

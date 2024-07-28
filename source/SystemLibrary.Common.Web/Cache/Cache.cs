@@ -300,7 +300,7 @@ public static partial class Cache
     ///         var cacheKey = "helloworld";
     ///         
     ///         return Cache.Get&lt;string&gt;(cacheKey, () => {
-    ///             return HttpBaseClient.Get&lt;string&gt;("https://systemlibrary.com/api/cars?top=1");
+    ///             return Client.Get&lt;string&gt;("https://systemlibrary.com/api/cars?top=1");
     ///         },
     ///         TimeSpan.FromSeconds(5));
     ///     }
@@ -339,7 +339,7 @@ public static partial class Cache
     ///         var cacheKey = "helloworld";
     ///         
     ///         return Cache.Get&lt;string&gt;(cacheKey, () => {
-    ///             return HttpBaseClient.Get&lt;string&gt;("https://systemlibrary.com/api/cars?top=1");
+    ///             return Client.Get&lt;string&gt;("https://systemlibrary.com/api/cars?top=1");
     ///         },
     ///         TimeSpan.FromSeconds(5));
     ///     }
@@ -418,7 +418,7 @@ public static partial class Cache
     ///     public string GetCars() 
     ///     {
     ///         return Cache.Get&lt;string&gt;(() => {
-    ///             return HttpBaseClient.Get&lt;string&gt;("https://systemlibrary.com/api/cars?top=1");
+    ///             return Client.Get&lt;string&gt;("https://systemlibrary.com/api/cars?top=1");
     ///         },
     ///         skipForAdmins: false);
     ///     }
@@ -436,7 +436,7 @@ public static partial class Cache
     ///         var urlQueryValue = "?filter=none";
     ///         
     ///         return Cache.Get&lt;string&gt;(() => {
-    ///             return HttpBaseClient.Get&lt;string&gt;(url + urlQueryValue + " top=" + top);
+    ///             return Client.Get&lt;string&gt;(url + urlQueryValue + " top=" + top);
     ///         });
     ///     }
     /// }

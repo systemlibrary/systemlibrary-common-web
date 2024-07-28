@@ -35,9 +35,10 @@ partial class Log
                 message.Append("{\n");
 
             object firstObj = null;
+            bool isLevelNot99999 = (int)level != 99999;
             try
             {
-                if ((int)level != 99999)
+                if (isLevelNot99999)
                     AppendMessageFormat("level", level, message);
 
                 int index = 0;
@@ -54,12 +55,12 @@ partial class Log
                     index++;
                 }
 
-                if ((int)level != 99999 && !IsLocal && level == LogLevel.Error && (firstObj as Exception) == null)
+                if (isLevelNot99999 && !IsLocal && level == LogLevel.Error && (firstObj as Exception) == null)
                     AppendStackTrace(message);
 
                 var context = HttpContextInstance.Current;
 
-                if ((int)level != 99999 && !IsLocal && context != null)
+                if (isLevelNot99999 && !IsLocal && context != null)
                 {
                     if (LogMessageBuilderOptions.AppendPath)
                         AppendRequestPath(message, context.Request);

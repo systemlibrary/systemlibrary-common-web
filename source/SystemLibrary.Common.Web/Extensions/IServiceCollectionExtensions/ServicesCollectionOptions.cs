@@ -7,11 +7,9 @@ namespace SystemLibrary.Common.Web.Extensions;
 
 /// <summary>
 /// Web App Services Collection Options
-/// 
-/// Most options are turned on by default.
-/// 
-/// ViewLocations and custom application parts are not configured by default.
 /// </summary>
+/// <remarks>
+/// </remarks>
 /// <example>
 /// Inside your startup.cs/program.cs...
 /// <code>

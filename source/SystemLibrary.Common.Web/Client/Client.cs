@@ -9,67 +9,59 @@ namespace SystemLibrary.Common.Web;
 
 /// <summary>
 /// Client is a class for all http(s) requests in your project
-/// 
-/// Uses HttpClient and Polly behind the scenes for features such as:
-/// - Reusable TCP connections
-/// - Retries up to two times with a new TCP connection on transient errors
-/// - Short cuircuit breaking per url
-/// 
+/// <para>Uses HttpClient and Polly behind the scenes for features such as reusing tcp connections, retry on 502 and 504 status codes, and short request breaking on 20 exceptions in a row for 7 seconds</para>
+/// Request is always eligible for retry if request is a file request or GET or POST and status code is 502 or 504
+/// <para>Options:</para>
 /// useRetryPolicy:
-/// False: Request is eligible for retry if request is GET, POST or a file request and status code is 502 or 504
-///  False: retries up to 1 time on GET and POST
-/// True: same as 'false' but adds:
-/// - retries up to 2 times if response is null
-/// - retries once on 404 GET
-/// - retries once on 500 GET, POST
-/// - retries once on file requests
-/// - retries once on OPTION, PATCH, HEAD, CONNECT, TRACE
-/// - retries up to 2 times on 502, 504 on non file requests
-/// - A retry policy built-in, and option to enable more retries policies through appsettings
-/// - If a request file request or GET or POST fails with 502 or 504, it will be retried
-/// - If useRetryPolicy is true, it will also retry 500 errors once, and 404 once
-///     - if request fails and retry is True, the retry request uses a new tcp connection with 10 seconds timeout
-///     - a retry request occurs only for GET, HEAD or OPTION request methods, never for PUT/POST/DELETE
-/// 
-/// - a timeout handler configurable through constructor, but also per method
-/// 
-/// - each underlying tcp connection is cached for up to 2 minutes
-/// 
-/// Use HttpBaseClient directly or inherit from it, see the examples
-/// 
-/// Configurations:
-/// "systemLibraryCommonWeb": {
-/// 	"client": {
-/// 		"timeout": 60000,
-/// 		"retryRequestTimeout": 10,
-/// 		"cacheClientConnectionSeconds": 120
-/// 	}
-/// }
+/// <list>
+/// <item>True, adds:</item>
+/// <item>- retries once on 404 GET</item>
+/// <item>- retries once on 500 GET, POST</item>
+/// <item>- retries once on OPTION, PATCH, HEAD, CONNECT, TRACE</item>
+/// <item>- retries two times on GET 502, 504 errors</item>
+/// <item>- retries once if response is null (no response yet/timeout...)</item>
+/// </list>
 /// </summary>
+/// <remarks>
+/// Each client can have its own timeout, which will generate a different HttpClient pool
+/// Each method also take an additional timeout parameter, a different timeout will create a new HttpClient
+/// Each underlying HttpClient is used for default 20 minutes, each TCP connection is reused for 4 minutes and 55 seconds
+/// Every 502 and 504 response on GET, POST or file request will always be retries once, cannot be turned off
+/// </remarks>
 /// <example>
-/// A simple class to hold our Response
+/// appSettings.json default configurations:
+/// "client": {
+///   "timeout": 40001,
+///   "retryTimeout": 10000, // The second retry will use half this duration, which is only used if useRetryPolicy is true
+///   "ignoreSslErrors": true,
+///   "useRetryPolicy": true, // one retry on 502 and 504 is GET/POST, cannot be turned off
+///   "throwOnUnsuccessful": false,
+///   "useRequestBreakerPolicy": false,
+///   "clientCacheDuration": 1200
+/// }
+/// You can simply "var client = new Client()" if you want and use the methods, or you can inherit it on your integrations for reusing headers, api url, timeout configuration, etc...
+/// 
+/// A simple class and HttpBinClient:
 /// <code>
-///class HttpBinResponse
-///{
-///    public string url { get; set; }
-///}
+/// class HttpBinResponse
+/// {
+///     public string Url { get; set; }
+/// }
 ///</code>
-///
-/// Our Client - you can new up HttpBaseClient directly if you like, but here we can reuse "apiUrl" (and other stuff, headers/what not) for all methods against the same client
 ///<code>
-///class HttpBinClient : HttpBaseClient
-///{
-///    const string apiUrl = "http://httpbin.org";
-///    
-///    public HttpBinClient() : base(retryOnceOnRequestCancelled: true, defaultTimeoutMilliseconds: 5000, ignoreSslErrors: false)
-///    {
-///    }
-///    
-///    public HttpBinResponse Get()
-///    {
-///        return base.Get&lt;HttpBinResponse&gt;(apiUrl + "/get").Data;
-///    }
-///}
+/// class HttpBinClient : Client
+/// {
+///     const string apiUrl = "http://httpbin.org";
+///     
+///     public HttpBinClient() : base(useRetryPolicy: true)
+///     {
+///     }
+///     
+///     public HttpBinResponse Get()
+///     {
+///         return base.Get&lt;HttpBinResponse&gt;(apiUrl + "/get").Data;
+///     }
+/// }
 ///</code>
 ///
 /// Running the above Client and Response in a UnitTest project as such:
@@ -81,22 +73,31 @@ namespace SystemLibrary.Common.Web;
 /// 
 ///     var response = client.Get();
 /// 
-///     Assert.IsTrue(response.url.Contains("http"));
+///     Assert.IsTrue(response.Url.Contains("http"));
 ///     //Visit: http://httpbin.org/get to see the actual value of 'url', then you know this Assert statement is true
 /// }
 /// </code>
 /// 
-/// 
-/// Another example of using the HttpBaseClient directly:
+/// Another example of using the Client directly:
 /// <code>
 /// public void Test()
 /// {
-///     var client = new HttpBaseClient();
+///     var client = new Client();
 /// 
 ///     var response = client.Get&lt;string&gt;("http://httpbin.org/get");
 /// 
 ///     Assert.IsTrue(response.Contains("http"));
-///     //Response is now the whole json text that the url: http://httpbin.org/get is returning
+///     //Response is now the whole json (or any data actually as a string) text that the url: http://httpbin.org/get is returning
+/// }
+/// </code>
+/// Another example returning HttpResponseMessage as is, for you to read the stream/content of the response yourself:
+/// <code>
+/// public void Test() 
+/// {
+///     var client = new Client();
+///     var response = = client.Get&lt;HttpResponseMessage&gt;("http://httpbin.org/get");
+///     var httpResponseMessage = response.Data;
+///     // httpResponseMessage now is ready to be read if you need to read it manually, as in: it's not a json/xml/serialization type of response, but maybe an Stream/Image you need to read...
 /// }
 /// </code>
 /// </example>
@@ -318,5 +319,4 @@ public partial class Client
         return await SendAsync<T>(HttpMethod.Options, url, null, MediaType.None, timeoutMilliseconds, headers, default, cancellationToken, deserialize)
             .ConfigureAwait(false);
     }
-
 }

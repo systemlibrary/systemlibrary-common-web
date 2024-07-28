@@ -4,8 +4,8 @@ partial class Client
 {
     internal const int DefaultTimeout = 40001;
     internal const int DefaultRetryTimeout = 10000;
-    internal const bool DefaultThrowOnUnsuccessful = false;
-    internal const bool DefaultIgnoreSslErrors = false;
+    internal const bool DefaultThrowOnUnsuccessful = true;
+    internal const bool DefaultIgnoreSslErrors = true;
     internal const bool DefaultUseRetryPolicy = true;
     internal const bool DefaultUseRequestBreakerPolicy = false;
     internal const int DefaultClientCacheDuration = 1200; // 20 minutes

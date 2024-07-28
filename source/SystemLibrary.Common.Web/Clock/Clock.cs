@@ -3,8 +3,20 @@ using System.Diagnostics;
 
 namespace SystemLibrary.Common.Web.Extensions;
 
+/// <summary>
+/// A Clock to measure an actions execution time based on Stopwatch
+/// </summary>
 public static class Clock
 {
+    /// <summary>
+    /// Measure an actions execution time
+    /// <para>Specify a message to also Log.Debug() the output</para>
+    /// </summary>
+    /// <example>
+    /// <code>
+    /// Clock.Measure(() => "hello", "Print hello");
+    /// </code>
+    /// </example>
     public static long Measure(Action method, string message = null)
     {
         var sw = new Stopwatch();
