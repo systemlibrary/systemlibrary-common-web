@@ -187,7 +187,7 @@ public class LogWriterTests
         Log.Error("456");
         Log.Error("789");
 
-        Log.Information("abcdef");
+        Log.Trace("abcdef");
 
         content = System.IO.File.ReadAllText(DumpFullPath);
 
@@ -195,7 +195,7 @@ public class LogWriterTests
         Assert.IsTrue(content.Contains("456"));
         Assert.IsTrue(content.Contains("789"));
 
-        Assert.IsTrue(content.Contains("abcdef") == false, "abcdef is logged to file, Info level is enabled? Or bug?");
+        Assert.IsTrue(content.Contains("abcdef") == false, "abcdef is logged to file, Trace level is enabled? Or bug?");
 
         //NOTE: appSettings.json has "Debug" assigned as log level, manually change it to Info to test this
         //Assert.IsTrue(content.Contains("Info: "), "Info: prefix text was not added to message");

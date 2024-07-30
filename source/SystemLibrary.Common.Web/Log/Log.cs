@@ -116,6 +116,22 @@ public static partial class Log
     }
 
     /// <summary>
+    /// Write a trace message
+    /// </summary>
+    /// <param name="obj">Object can be of any type, a string, list, dictionary, etc...</param>
+    /// <example>
+    /// Usage:
+    /// <code class="language-csharp hljs">
+    /// Log.Trace("hello world");
+    /// //This creates a log message with prefix 'Trace', timestamp and your input text "hello world" and sends it to your LogWriter
+    /// </code>
+    /// </example>
+    public static void Trace(params object[] obj)
+    {
+        Write(obj, LogLevel.Trace);
+    }
+
+    /// <summary>
     /// Writing the object to your logwriter
     /// 
     /// - This ignores logging 'isEnabled' option in appSettings
@@ -150,14 +166,17 @@ public static partial class Log
             if (_LogIsOff == null)
             {
                 // Turned off for this package config
-                var temp = AppSettings.Current?.SystemLibraryCommonWeb?.Log?.Level == LogLevel.None;
+                var temp = AppSettings.Current?.SystemLibraryCommonWeb?.Log?.Level;
 
-                if (!temp)
+                if (temp == null)
                 {
                     // Turned off on a global level, so one can turn off globally, but explicit enable for this package's Log
-                    temp = AppSettings.Current?.Logging?.LogLevel?.Default?.ToLower() == "none";
+                    if (AppSettings.Current?.Logging?.LogLevel?.Default?.ToLower() == "none")
+                        temp = LogLevel.None;
                 }
-                _LogIsOff = temp;
+
+                _LogIsOff = temp == LogLevel.None;
+
             }
             return _LogIsOff.Value;
         }
@@ -229,6 +248,9 @@ public static partial class Log
                 break;
             case LogLevel.Information:
                 LogWriter.Information(message);
+                break;
+            case LogLevel.Trace:
+                LogWriter.Trace(message);
                 break;
             default:
                 LogWriter.Write(message);

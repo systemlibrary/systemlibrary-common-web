@@ -26,19 +26,19 @@ public static partial class IServiceCollectionExtensions
     /// <returns></returns>
     public static IServiceCollection AddCommonWebServices(this IServiceCollection services, ServicesCollectionOptions options = null)
     {
+        Services.Configure(services);
+
+        options ??= new ServicesCollectionOptions();
+
         if (options.UseCustomTypeConverters)
         {
             var enumType = typeof(Enum);
             var converters = TypeDescriptor.GetConverter(enumType);
-            if (!(converters is GlobalEnumConverter))
+            if (converters == null || !(converters is GlobalEnumConverter))
             {
                 TypeDescriptor.AddAttributes(enumType, new TypeConverterAttribute(typeof(GlobalEnumConverter)));
             }
         }
-
-        Services.Configure(services);
-
-        options ??= new ServicesCollectionOptions();
 
         if (options.UseForwardedHeaders)
             services = services.UseForwardedHeaders();
