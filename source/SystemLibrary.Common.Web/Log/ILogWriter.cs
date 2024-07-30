@@ -57,24 +57,17 @@ public interface ILogWriter
     /// <summary>
     /// Implement the writing of information messages
     /// </summary>
-    void Information(string message)
-    {
-    }
+    void Information(string message);
 
     /// <summary>
     /// Implement the writing of trace messages
     /// </summary>
-    void Trace(string message) 
-    { 
-    }
+    void Trace(string message);
 
     /// <summary>
     /// Implement the writing of warning messages
     /// 
     /// Note: Write() will always be invoked, even if you disable logging in appSettings
     /// </summary>
-    void Write(string message)
-    {
-        Dump.Write(message);
-    }
+    void Write(string message);
 }
