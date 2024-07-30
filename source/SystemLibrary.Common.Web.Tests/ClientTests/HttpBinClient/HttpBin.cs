@@ -9,7 +9,7 @@ class HttpBin : Client
     const string firewallClientUrl = "https://170.44.1.1/";
     const string clientUrl = "https://httpbin.org";
 
-    public HttpBin(bool useRetryPolicy = false, int? timeout = null) : base(useRetryPolicy, null, timeout)
+    public HttpBin(bool useRetryPolicy = false, int? timeout = null) : base(timeout, useRetryPolicy, null)
     {
     }
 

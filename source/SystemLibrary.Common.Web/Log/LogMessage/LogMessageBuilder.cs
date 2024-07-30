@@ -19,13 +19,13 @@ partial class Log
     static class LogMessageBuilder
     {
         static bool IsLocal;
-        static LogMessageBuilderOptions LogMessageBuilderOptions;
+        static LogConfiguration LogOptions;
         static bool MessageFormatJson;
         static LogMessageBuilder()
         {
             IsLocal = EnvironmentConfig.IsLocal == true;
-            LogMessageBuilderOptions = AppSettings.Current?.SystemLibraryCommonWeb?.LogMessageBuilder;
-            MessageFormatJson = LogMessageBuilderOptions.Format?.Trim()?.ToLower() == "json";
+            LogOptions = AppSettings.Current?.SystemLibraryCommonWeb?.Log;
+            MessageFormatJson = LogOptions.Format?.Trim()?.ToLower() == "json";
         }
 
         internal static string Get(object[] objects, LogLevel level)
@@ -44,7 +44,7 @@ partial class Log
                 int index = 0;
                 foreach (var obj in objects)
                 {
-                    if(firstObj == null)
+                    if (firstObj == null)
                         firstObj = obj;
 
                     if (obj is string json && json.IsJson())
@@ -62,28 +62,28 @@ partial class Log
 
                 if (isLevelNot99999 && !IsLocal && context != null)
                 {
-                    if (LogMessageBuilderOptions.AppendPath)
+                    if (LogOptions.AppendPath)
                         AppendRequestPath(message, context.Request);
 
-                    if (LogMessageBuilderOptions != null)
+                    if (LogOptions != null)
                     {
-                        if (LogMessageBuilderOptions.AppendLoggedInState)
+                        if (LogOptions.AppendLoggedInState)
                             AppendLoggedInState(message, context);
 
                         if (level == LogLevel.Error)
                         {
-                            if (LogMessageBuilderOptions.AppendBrowser)
+                            if (LogOptions.AppendBrowser)
                                 AppendBrowser(message, context.Request);
 
-                            if (LogMessageBuilderOptions.AppendIp)
+                            if (LogOptions.AppendIp)
                                 AppendUserIp(message, context);
 
-                            if (LogMessageBuilderOptions.AppendCookieInfo)
+                            if (LogOptions.AppendCookieInfo)
                                 AppendCookieInfo(message, context.Request);
                         }
                     }
 
-                    if (LogMessageBuilderOptions.AppendCorrelationId)
+                    if (LogOptions.AppendCorrelationId)
                         AppendCorrelationId(message, context);
                 }
             }
@@ -98,54 +98,41 @@ partial class Log
             return message.ToString();
         }
 
+        static string[] CorrelationIdKeys = new[] { "CorrelationId", "correlationId", "correlationid", "CorrelationID", "corrId" };
+
         static void AppendCorrelationId(StringBuilder message, HttpContext httpContext)
         {
             try
             {
-                if(httpContext == null) return;
+
+                if (httpContext == null) return;
+
+                var name = "CorrelationId";
+                object id = null;
 
                 if (httpContext.Items == null)
                 {
                     httpContext.Items = new Dictionary<object, object>();
                 }
-
-                var name = "CorrelationId";
-                var id = httpContext.Items[name];
+                else
+                {
+                    foreach (var key in CorrelationIdKeys)
+                    {
+                        if (httpContext.Items.TryGetValue(key, out id))
+                        {
+                            name = key;
+                            break;
+                        }
+                    }
+                }
 
                 if (id == null)
                 {
-                    name = "correlationId";
-                    id = httpContext.Items[name];
-
-                    if (id == null)
-                    {
-                        name = "correlationid";
-                        id = httpContext.Items[name];
-                    }
-
-                    if (id == null)
-                    {
-                        name = "CorrelationID";
-                        id = httpContext.Items[name];
-                    }
-
-                    if (id == null)
-                    {
-                        name = "corrId";
-                        id = httpContext.Items[name];
-                    }
+                    id = Guid.NewGuid().ToString();
+                    httpContext.Items.TryAdd(name, id);
                 }
 
-                if (id != null)
-                    AppendMessageFormat(name, id, message);
-                else
-                {
-                    var correlation = Guid.NewGuid().ToString();
-
-                    httpContext.Items.TryAdd(name, correlation);
-
-                    AppendMessageFormat(name, correlation, message);
-                }
+                AppendMessageFormat(name, id, message);
             }
             catch
             {
@@ -170,12 +157,10 @@ partial class Log
                 if (userIp.IsNot() || userIp == "::1" || userIp.StartsWith("10.") || userIp.StartsWith("127.0"))
                 {
                     userIp = httpContext.Request?.Headers["X-Forwarded-For"].FirstOrDefault();
-                    wasLocal = true;
-                }
-
-                if (userIp.IsNot() || userIp == "::1" || userIp.StartsWith("10.") || userIp.StartsWith("127.0"))
-                {
-                    userIp = httpContext.Request?.Headers["REMOTE_ADDR"].FirstOrDefault();
+                    if (userIp.IsNot() || userIp == "::1" || userIp.StartsWith("10.") || userIp.StartsWith("127.0"))
+                    {
+                        userIp = httpContext.Request?.Headers["REMOTE_ADDR"].FirstOrDefault();
+                    }
                     wasLocal = true;
                 }
 
@@ -217,11 +202,16 @@ partial class Log
             {
                 if (request?.Cookies?.Keys != null)
                 {
-                    AppendMessageFormat("cookies", string.Join(", ", request.Cookies.Keys), message);
+                    AppendMessageFormat("cookies", string.Join(", ", request.Cookies.Keys).TrimEnd(", "), message);
+                }
+                else
+                {
+                    AppendMessageFormat("cookies", "null", message);
                 }
             }
             catch
             {
+                AppendMessageFormat("cookies", "none", message);
             }
         }
 
@@ -235,7 +225,7 @@ partial class Log
             else if (obj is Exception ex)
             {
                 var exmsg = new StringBuilder("", 512);
-                if(ex is AggregateException agg)
+                if (ex is AggregateException agg)
                 {
                     exmsg.Append(agg.Flatten().ToString());
                 }
@@ -381,8 +371,8 @@ partial class Log
                 if (stackTrace != null)
                 {
                     var traces = stackTrace.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
-
-                    for (int i = 0; i < Math.Min(traces.Length, 9); i++)
+                    var end = Math.Min(traces.Length, 9);
+                    for (int i = 0; i < end; i++)
                     {
                         if (traces[i].StartsWithAny(
                             "   at System.RuntimeMethodHandle",

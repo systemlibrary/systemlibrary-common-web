@@ -27,6 +27,9 @@ namespace SystemLibrary.Common.Web;
 /// Each method also take an additional timeout parameter, a different timeout will create a new HttpClient
 /// Each underlying HttpClient is used for default 20 minutes, each TCP connection is reused for 4 minutes and 55 seconds
 /// Every 502 and 504 response on GET, POST or file request will always be retries once, cannot be turned off
+/// A new client wont neccesary create a new HttpClient, it might use from cache, it all depends on the url and params you pass in
+/// - In theory you could create just one client reusing towards any url you want
+/// - But its now up to you, you want new instance? Injection? Create your own static wrapper? Sure!
 /// </remarks>
 /// <example>
 /// appSettings.json default configurations:
@@ -110,13 +113,23 @@ public partial class Client
     int RetryTimeout;
     bool UseRequestBreakerPolicy;
 
+    /// <summary>
+    /// Create a new client
+    /// </summary>
+    /// <param name="useRetryPolicy">Will retry 404 once, and adds one more retry with half retry-timeout for 502 and 504</param>
+    /// <param name="ignoreSslErrors">Ignore some common SSL errors that occurs, an expired or in-error SSL cert is still used to encrypt data</param>
+    /// <param name="timeout">Override default timeout for this Client</param>
+    /// <param name="retryTimeout">Override default retry timeout for this Client</param>
+    /// <param name="throwOnUnsuccessful">Override default from appSettings</param>
+    /// <param name="useRequestBreakerPolicy">Override default from appSettings</param>
     public Client(
+        int? timeout = null,
         bool? useRetryPolicy = null,
         bool? ignoreSslErrors = null,
-        int? timeout = null,
         int? retryTimeout = null,
-        bool? throwOnUnsuccessful = null,
-        bool? useRequestBreakerPolicy = null)
+        bool? useRequestBreakerPolicy = null,
+        bool? throwOnUnsuccessful = null
+        )
     {
         UseRetryPolicy = useRetryPolicy ?? UseRetryPolicyConfig;
         IgnoreSslErrors = ignoreSslErrors ?? IgnoreSslErrorsConfig;

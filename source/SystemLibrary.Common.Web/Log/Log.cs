@@ -148,7 +148,7 @@ public static partial class Log
     {
         get
         {
-            _LogIsOff ??= AppSettings.Current?.SystemLibraryCommonWeb?.Log?.Level == LogLevel.Off;
+            _LogIsOff ??= AppSettings.Current?.Logging.LogLevel.Default.ToEnum<LogLevel>() == LogLevel.Off;
             return _LogIsOff.Value;
         }
     }
@@ -160,7 +160,7 @@ public static partial class Log
             if (LogIsOff) return;
 
             if (minLevel == -1)
-                minLevel = (int)(AppSettings.Current?.SystemLibraryCommonWeb?.Log?.Level ?? LogLevel.Info);
+                minLevel = (int)(AppSettings.Current?.Logging.LogLevel.Default.ToEnum<LogLevel>() ?? LogLevel.Info);
 
             if ((int)level < minLevel)
                 return;

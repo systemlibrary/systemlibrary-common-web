@@ -7,6 +7,7 @@ internal class AppSettings : Config<AppSettings>
     public AppSettings()
     {
         SystemLibraryCommonWeb = new PackageConfig();
+        Logging = new Logging();
     }
 
     public class PackageConfig
@@ -15,7 +16,6 @@ internal class AppSettings : Config<AppSettings>
         {
             Cache = new CacheConfiguration();
             Log = new LogConfiguration();
-            LogMessageBuilder = new LogMessageBuilderOptions();
             Client = new ClientConfiguration();
         }
 
@@ -24,11 +24,18 @@ internal class AppSettings : Config<AppSettings>
         public CacheConfiguration Cache { get; set; }
         public ClientConfiguration Client { get; set; }
         public LogConfiguration Log { get; set; }
-        public LogMessageBuilderOptions LogMessageBuilder { get; set; }
 
         public class LogConfiguration
         {
-            public LogLevel Level { get; set; } = LogLevel.Info;
+            public bool AppendLoggedInState { get; set; } = true;
+            public bool AppendIp { get; set; } = false;
+
+            public bool AppendPath { get; set; } = true;
+
+            public bool AppendBrowser { get; set; } = false;
+            public bool AppendCorrelationId { get; set; } = true;
+            public bool AppendCookieInfo { get; set; } = false;
+            public string Format { get; set; }  // json | null
         }
 
         public class ClientConfiguration
@@ -41,7 +48,7 @@ internal class AppSettings : Config<AppSettings>
             public bool ThrowOnUnsuccessful { get; set; } = Web.Client.DefaultThrowOnUnsuccessful;
             public bool UseRequestBreakerPolicy { get; set; } = Web.Client.DefaultUseRequestBreakerPolicy;
         }
-        
+
 
         public class CacheConfiguration
         {
@@ -50,19 +57,31 @@ internal class AppSettings : Config<AppSettings>
             public int FallbackDuration { get; set; } = Web.Cache.DefaultFallbackDuration;
         }
 
-        public class LogMessageBuilderOptions
-        {
-            public bool AppendLoggedInState { get; set; } = true;
-            public bool AppendIp { get; set; } = false;
-
-            public bool AppendPath { get; set; } = true;
-
-            public bool AppendBrowser { get; set; } = false;
-            public bool AppendCorrelationId { get; set; } = true;
-            public bool AppendCookieInfo { get; set; } = false;
-            public string Format { get; set; }  // json | null
-        }
     }
 
     public PackageConfig SystemLibraryCommonWeb { get; set; }
+    internal Logging Logging { get; set; }
 }
+
+/*  "Logging": {
+    "LogLevel": {
+      "Default": "Warning",
+      "System": "Warning",
+      "Microsoft": "Warning"
+    }
+  },*/
+
+internal class LoggingLogLevel
+{
+    public string Default { get; set; } = "Warning";
+}
+
+internal class Logging
+{
+    public LoggingLogLevel LogLevel { get; set; }
+    public Logging()
+    {
+        LogLevel = new LoggingLogLevel();
+    }
+}
+

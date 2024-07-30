@@ -79,15 +79,11 @@ public class Startup
 		},
 
 		"log": {
-		  "level": "Info"
-		},
-
-		"logMessageBuilder": {
-			"appendLoggedInState": true,
-			"appendIp": false,
 			"appendPath": true,
-			"appendBrowser": false,
+			"appendLoggedInState": true,
 			"appendCorrelationId": true,
+			"appendIp": false,
+			"appendBrowser": false,
 			"appendCookieInfo": false,
 			"format": null // "json" or null, null is default
 		}
