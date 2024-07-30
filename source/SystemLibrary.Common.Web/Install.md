@@ -79,6 +79,7 @@ public class Startup
 		},
 
 		"log": {
+			"level": "Information" // Trace, Information, Debug, Warning, Error, None
 			"appendPath": true,
 			"appendLoggedInState": true,
 			"appendCorrelationId": true,

@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Http.Headers;
 
 namespace SystemLibrary.Common.Web.Extensions;
 
+/// <summary>
+/// HttpRequest extensions
+/// </summary>
 public static class HttpRequestExtensions
 {
     /// <summary>

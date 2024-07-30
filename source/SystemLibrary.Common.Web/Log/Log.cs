@@ -1,4 +1,5 @@
 ﻿using SystemLibrary.Common.Net;
+using SystemLibrary.Common.Net.Attributes;
 using SystemLibrary.Common.Web;
 
 /// <summary>
@@ -105,13 +106,13 @@ public static partial class Log
     /// <example>
     /// Usage:
     /// <code class="language-csharp hljs">
-    /// Log.Info("hello world");
+    /// Log.Information("hello world");
     /// //This creates a log message with prefix 'Info', timestamp and your input text "hello world" and sends it to your LogWriter
     /// </code>
     /// </example>
-    public static void Info(params object[] obj)
+    public static void Information(params object[] obj)
     {
-        Write(obj, LogLevel.Info);
+        Write(obj, LogLevel.Information);
     }
 
     /// <summary>
@@ -141,15 +142,54 @@ public static partial class Log
 
     static bool WarningDumped = false;
 
-    static int minLevel = -1;
-
     static bool? _LogIsOff;
     static bool LogIsOff
     {
         get
         {
-            _LogIsOff ??= AppSettings.Current?.Logging.LogLevel.Default.ToEnum<LogLevel>() == LogLevel.Off;
+            if (_LogIsOff == null)
+            {
+                // Turned off for this package config
+                var temp = AppSettings.Current?.SystemLibraryCommonWeb?.Log?.Level == LogLevel.None;
+
+                if (!temp)
+                {
+                    // Turned off on a global level, so one can turn off globally, but explicit enable for this package's Log
+                    temp = AppSettings.Current?.Logging?.LogLevel?.Default?.ToLower() == "none";
+                }
+                _LogIsOff = temp;
+            }
             return _LogIsOff.Value;
+        }
+    }
+
+    static int? _MinLogLevel;
+    static int MinLogLevel
+    {
+        get
+        {
+            if (_MinLogLevel == null)
+            {
+                // Read log level specific to this package
+                var temp = AppSettings.Current?.SystemLibraryCommonWeb?.Log?.Level;
+
+                if (temp == null)
+                {
+                    // Package log was not specified, check the global default "Logging" if exists
+                    var def = AppSettings.Current?.Logging?.LogLevel?.Default;
+                    if (def.Is())
+                    {
+                        temp = def.ToEnum<LogLevel>();
+                    }
+                    else
+                    {
+                        // Setting default
+                        temp = LogLevel.Information;
+                    }
+                }
+                _MinLogLevel = (int)temp;
+            }
+            return _MinLogLevel.Value;
         }
     }
 
@@ -159,10 +199,7 @@ public static partial class Log
         {
             if (LogIsOff) return;
 
-            if (minLevel == -1)
-                minLevel = (int)(AppSettings.Current?.Logging.LogLevel.Default.ToEnum<LogLevel>() ?? LogLevel.Info);
-
-            if ((int)level < minLevel)
+            if ((int)level < MinLogLevel)
                 return;
         }
 
@@ -190,8 +227,8 @@ public static partial class Log
             case LogLevel.Debug:
                 LogWriter.Debug(message);
                 break;
-            case LogLevel.Info:
-                LogWriter.Info(message);
+            case LogLevel.Information:
+                LogWriter.Information(message);
                 break;
             default:
                 LogWriter.Write(message);
@@ -202,11 +239,19 @@ public static partial class Log
 
 public enum LogLevel
 {
-    Info = 1,
+    Trace = 0,
+
+    Information = 1,
+    
     Debug,
+    
     Warning,
+
+    [EnumValue("Critical")]
     Error,
-    Off = 999
+
+
+    None = 999
 }
 
 

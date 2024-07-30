@@ -36,17 +36,26 @@ Library with classes and methods for every &gt;=  .NET 7 web application
 - Updated deps (top breaking changes: json datetime conversion changed and Config files are read from 'content root', never inside 'bin', etc. Check your app's config/deploy routines and API's dealing with DateTime and JSON
 - Cache.TryGet method added
 - Cache.Try now uses "" as default, to auto create cache key, previously was null as param (breaking change)
-- Log.IsEnabled package options removed and replaced with new log level "Off" (breaking change)
-- HttpBaseClient renamed to Client (breaking change)
+- Log/ILogWriter IsEnabled option removed, Level "None" added, Info renamed to "Information" (breaking change)
+- Log.Level is read from Microsofts 'Logging' in appSettings if not set, or set to "Warning" which is default
+- HttpBaseClient rewritten to Client (breaking change)
     - retries on 502, 504 if HttpMethod is GET, POST or FileRequest (breaking change)
     - UseRetryPolicy: enable to add one additional retry on 502 and 504, and enable one retry on 404 and 500
-    - RetryRequestTimeoutSeconds renamed to RetryRequestTimeout and changed from 10s to 10000ms default (breaking change)
-    - TimeoutMilliseconds renamed to Timeout, defaults to 40000 down from 60000 (breaking change)
-    - Between each retry theres a sleep of 500ms: 40s, 0.5s sleep, 10s retry, 0.5s sleep, 5s retry, ~ total 56s, so it is less than most "proxy/gateway timeouts" of 60 (breaking change)
-    - ClientCacheDuration increases to 1200 from 110s
+    - RetryRequestTimeoutSeconds renamed to RetryTimeout and changed from 10s to 10000ms default (breaking change)
+    - TimeoutMilliseconds renamed to Timeout, defaults to 40001 down from 60000 (breaking change)
+    - Total timeout was 60 seconds, now it is ~56s by default, as most proxies/gateways has that as a default (breaking change)
+    - ClientCacheDuration (HttpClient cache) increased to 1200 from 110s
     - retryOnceOnRequestCancelled renamed to useRetryPolicy (breaking change)
     - added option to request break on 20 exceptions in a row for 7 seconds
 
+#### Major Breaking Versions
+- 7.8.0.1
+- HttpBaseClient rewritten to Client
+- Cache auto generate key is triggered on cacheKey "", not null as previously
+- Cache always have a fallback, configure its fallback duration, set to 0 for disabling it
+- Log.Level is read from Microsofts 'Logging' in appSettings if not existing
+- Requires minimum SystemLibrary.Common.Net 7.13.0.6
+ 
 #### Version history
 - View git history of this file if interested
 

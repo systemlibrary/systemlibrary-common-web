@@ -187,7 +187,7 @@ public class LogWriterTests
         Log.Error("456");
         Log.Error("789");
 
-        Log.Info("abcdef");
+        Log.Information("abcdef");
 
         content = System.IO.File.ReadAllText(DumpFullPath);
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 
@@ -12,100 +13,170 @@ namespace SystemLibrary.Common.Web.Tests;
 public partial class AppSettingsTests
 {
     [TestMethod]
+    public void Read_LogLevel_Success_With_Invalid_Does_Not_Throw()
+    {
+        // NOTE: Set Level to "Critical" which is not yet part of the Enum LogLevel, which throws without this custom converter
+        var enumType = typeof(Enum);
+        var converters = TypeDescriptor.GetConverter(enumType);
+        if (!(converters is GlobalEnumConverter))
+        {
+            TypeDescriptor.AddAttributes(enumType, new TypeConverterAttribute(typeof(GlobalEnumConverter)));
+        }
+
+        Read_LogLevel_Success();
+    }
+
+    [TestMethod]
+    public void Read_LogLevel_Success()
+    {
+        var enumType = typeof(Enum);
+        var converters = TypeDescriptor.GetConverter(enumType);
+        if (!(converters is GlobalEnumConverter))
+        {
+            TypeDescriptor.AddAttributes(enumType, new TypeConverterAttribute(typeof(GlobalEnumConverter)));
+        }
+
+        var log = GetAppSettingsConfiguration("Log");
+
+        var logProps = log.GetType().GetProperties();
+        string logValue = null;
+        foreach (var prop in logProps)
+        {
+            if (prop.Name == "Level")
+                logValue = prop.GetValue(log)?.ToString();
+        }
+
+        var logging = GetAppSettingsConfiguration("LogLevel", "Logging");
+
+        var loggingProps = logging.GetType().GetProperties();
+        var loggingValue = "";
+        foreach (var prop in loggingProps)
+        {
+            if (prop.Name == "Default")
+                loggingValue = prop.GetValue(logging)?.ToString();
+        }
+
+        Assert.IsTrue(logValue == null || logValue == "Information" || logValue == "Error", "Level is not Information nor Error " + logValue);
+        Assert.IsTrue(loggingValue == "Debug" || loggingValue == "None", "logging value is not Debug or None " + loggingValue);
+
+        if (logValue == null)
+        {
+            var def = loggingValue;
+            if (def.Is())
+            {
+                logValue = def;
+            }
+            else
+            {
+                logValue = "Information";
+            }
+        }
+        var minValue = logValue.ToEnum<LogLevel>();
+
+        if(logValue == "Error")
+        {
+            Assert.IsTrue(minValue == LogLevel.Error, "Expected error: Value is " + logValue);
+        }
+        else
+        {
+            Assert.IsTrue(minValue == LogLevel.Information, "Expected inf: Value is " + logValue);
+        }
+    }
+
+    [TestMethod]
     public void Read_Client_Configurations()
     {
-        //var clientConfigurations = GetAppSettingsConfiguration("Client");
+        var clientConfigurations = GetAppSettingsConfiguration("Client");
 
-        //Assert.IsTrue(clientConfigurations != null, "Client is null");
+        Assert.IsTrue(clientConfigurations != null, "Client is null");
 
-        //var clientProperties = clientConfigurations.GetType().GetProperties();
+        var clientProperties = clientConfigurations.GetType().GetProperties();
 
-        //Assert.IsTrue(clientProperties.Count() >= 6, "Too few props in clientProps");
-        //var count = 0;
-        //foreach (var property in clientProperties)
-        //{
-        //    var value = property.GetValue(clientConfigurations)?.ToString();
-        //    if (property.Name.ToLower() == "timeout")
-        //    {
-        //        count++;
-        //        Assert.IsTrue(value == "8686", "timeout is not 8686: " + value);
-        //    }
-
-        //    if (property.Name.ToLower() == "clientcacheduration")
-        //    {
-        //        count++;
-        //        Assert.IsTrue(value == "1200", "clientcacheduration is not 1200: " + value);
-        //    }
-
-        //    if (property.Name.ToLower() == "retrytimeout")
-        //    {
-        //        count++;
-        //        Assert.IsTrue(value == "5500", "retrytimeout is not 5500: " + value);
-        //    }
-
-        //    if (property.Name.ToLower() == "ignoresslerrors")
-        //    {
-        //        count++;
-        //        Assert.IsTrue(value == "True", "ignoreSslErrors is: " + value);
-        //    }
-
-        //    if (property.Name.ToLower() == "userequestbreakerpolicy")
-        //    {
-        //        count++;
-        //        Assert.IsTrue(value == "True", "userequestbreakerpolicy is: " + value);
-        //    }
-
-        //    if (property.Name.ToLower() == "throwonunsuccessful")
-        //    {
-        //        count++;
-        //        Assert.IsTrue(value == "True", "throwonunsuccessful is: " + value);
-        //    }
-
-        //    if (property.Name.ToLower() == "useretrypolicy")
-        //    {
-        //        count++;
-        //        Assert.IsTrue(value == "True", "useretrypolicy is: " + value);
-        //    }
-        //}
-        //Assert.IsTrue(count == 7, "Too few properties found for clientConfig: " + count);
-
-        //var cacheConfig = GetAppSettingsConfiguration("cache");
-
-        //Assert.IsTrue(cacheConfig != null, "cacheConfig is null");
-
-        //var cacheProperties = cacheConfig.GetType().GetProperties();
-        //count = 0;
-        //foreach (var property in cacheProperties)
-        //{
-        //    var value = property.GetValue(cacheConfig)?.ToString();
-        //    if (property.Name.ToLower() == "duration")
-        //    {
-        //        count++;
-        //        Assert.IsTrue(value == "5", "Duration is not 5: " + value);
-        //    }
-        //    if (property.Name.ToLower() == "fallbackduration")
-        //    {
-        //        count++;
-        //        Assert.IsTrue(value == "3", "fallbackduration is not 3: " + value);
-        //    }
-        //}
-        //Assert.IsTrue(count == 2, "Too few properties found for cacheConfig: " + count);
-
-
-        var logLevelCong = GetAppSettingsConfiguration("LogLevel", "Logging");
-
-        Assert.IsTrue(logLevelCong != null, "LogLevel is null");
-
-        var logProperties = logLevelCong.GetType().GetProperties();
+        Assert.IsTrue(clientProperties.Count() >= 6, "Too few props in clientProps");
         var count = 0;
+        foreach (var property in clientProperties)
+        {
+            var value = property.GetValue(clientConfigurations)?.ToString();
+            if (property.Name.ToLower() == "timeout")
+            {
+                count++;
+                Assert.IsTrue(value == "8686", "timeout is not 8686: " + value);
+            }
+
+            if (property.Name.ToLower() == "clientcacheduration")
+            {
+                count++;
+                Assert.IsTrue(value == "1200", "clientcacheduration is not 1200: " + value);
+            }
+
+            if (property.Name.ToLower() == "retrytimeout")
+            {
+                count++;
+                Assert.IsTrue(value == "5500", "retrytimeout is not 5500: " + value);
+            }
+
+            if (property.Name.ToLower() == "ignoresslerrors")
+            {
+                count++;
+                Assert.IsTrue(value == "True", "ignoreSslErrors is: " + value);
+            }
+
+            if (property.Name.ToLower() == "userequestbreakerpolicy")
+            {
+                count++;
+                Assert.IsTrue(value == "True", "userequestbreakerpolicy is: " + value);
+            }
+
+            if (property.Name.ToLower() == "throwonunsuccessful")
+            {
+                count++;
+                Assert.IsTrue(value == "True", "throwonunsuccessful is: " + value);
+            }
+
+            if (property.Name.ToLower() == "useretrypolicy")
+            {
+                count++;
+                Assert.IsTrue(value == "True", "useretrypolicy is: " + value);
+            }
+        }
+        Assert.IsTrue(count == 7, "Too few properties found for clientConfig: " + count);
+
+        var cacheConfig = GetAppSettingsConfiguration("cache");
+
+        Assert.IsTrue(cacheConfig != null, "cacheConfig is null");
+
+        var cacheProperties = cacheConfig.GetType().GetProperties();
+        count = 0;
+        foreach (var property in cacheProperties)
+        {
+            var value = property.GetValue(cacheConfig)?.ToString();
+            if (property.Name.ToLower() == "duration")
+            {
+                count++;
+                Assert.IsTrue(value == "5", "Duration is not 5: " + value);
+            }
+            if (property.Name.ToLower() == "fallbackduration")
+            {
+                count++;
+                Assert.IsTrue(value == "3", "fallbackduration is not 3: " + value);
+            }
+        }
+        Assert.IsTrue(count == 2, "Too few properties found for cacheConfig: " + count);
+
+        var logging = GetAppSettingsConfiguration("LogLevel", "Logging");
+
+        Assert.IsTrue(logging != null, "LogLevel is null");
+
+        var logProperties = logging.GetType().GetProperties();
+        count = 0;
         foreach (var property in logProperties)
         {
-            var value = property.GetValue(logLevelCong)?.ToString();
+            var value = property.GetValue(logging)?.ToString();
 
             if (property.Name.ToLower() == "default")
             {
                 count++;
-                Assert.IsTrue(value == "Default", "Default is not 'Debug', it is " + value);
+                Assert.IsTrue(value == "Debug" || value == "None", "Default is not 'Debug', it is " + value);
             }
         }
         Assert.IsTrue(count == 1, "Too few properties found for logConfig: " + count);
@@ -128,12 +199,13 @@ public partial class AppSettingsTests
     static PropertyInfo GetAppSettingsConfigPropertyInfo(string prop)
     {
         object config = GetAppSettingsConfig();
+
         if (prop != null)
             return config.GetType()
            .GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.GetProperty)
            .Where(x => x.Name == prop)
-
            .FirstOrDefault();
+
         return config.GetType()
            .GetProperties()
            .Where(x => x.Name == "SystemLibraryCommonWeb")

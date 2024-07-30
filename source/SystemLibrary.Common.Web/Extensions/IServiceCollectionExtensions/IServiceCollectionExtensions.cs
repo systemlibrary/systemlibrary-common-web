@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿using System;
+using System.ComponentModel;
+using System.Reflection;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -24,6 +26,16 @@ public static partial class IServiceCollectionExtensions
     /// <returns></returns>
     public static IServiceCollection AddCommonWebServices(this IServiceCollection services, ServicesCollectionOptions options = null)
     {
+        if (options.UseCustomTypeConverters)
+        {
+            var enumType = typeof(Enum);
+            var converters = TypeDescriptor.GetConverter(enumType);
+            if (!(converters is GlobalEnumConverter))
+            {
+                TypeDescriptor.AddAttributes(enumType, new TypeConverterAttribute(typeof(GlobalEnumConverter)));
+            }
+        }
+
         Services.Configure(services);
 
         options ??= new ServicesCollectionOptions();
@@ -144,7 +156,7 @@ public static partial class IServiceCollectionExtensions
     {
         services = AddCommonWebServices(services, options);
 
-        services = services.AddTransient<ILogWriter, TLogWriter>();
+        services = services.AddScoped<ILogWriter, TLogWriter>();
 
         return services;
     }

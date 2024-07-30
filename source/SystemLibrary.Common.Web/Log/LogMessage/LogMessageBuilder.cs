@@ -12,7 +12,7 @@ using Microsoft.Net.Http.Headers;
 using SystemLibrary.Common.Net;
 using SystemLibrary.Common.Web;
 
-using static SystemLibrary.Common.Web.AppSettings.PackageConfig;
+using static SystemLibrary.Common.Web.PackageConfig;
 
 partial class Log
 {

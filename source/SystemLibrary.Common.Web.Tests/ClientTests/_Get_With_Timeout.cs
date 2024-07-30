@@ -12,7 +12,7 @@ partial class ClientTests
     {
         var bin = new HttpBin();
 
-        var response = bin.GetWithTimeout(5000);
+        var response = bin.GetWithTimeout(7000);
 
         Assert.IsTrue(response.StatusCode == System.Net.HttpStatusCode.OK);
         Assert.IsTrue(response.Data.Contains("httpbin.org"));

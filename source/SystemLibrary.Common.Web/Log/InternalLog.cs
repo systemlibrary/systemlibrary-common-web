@@ -31,7 +31,7 @@ internal class InternalLog : ILogger
             global::Log.Warning(exception);
 
         if (logLevel == Microsoft.Extensions.Logging.LogLevel.Information)
-            global::Log.Info(exception);
+            global::Log.Information(exception);
 
         if (logLevel == Microsoft.Extensions.Logging.LogLevel.Debug)
             global::Log.Debug(exception);

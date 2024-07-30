@@ -17,9 +17,14 @@ public class LogWriter : ILogWriter
         Dump.Write("Debug in LogWriter: " + message);
     }
 
-    public void Info(string message)
+    public void Information(string message)
     {
         Dump.Write("Info in LogWriter: " + message);
+    }
+
+    public void Trace(string message)
+    {
+        Dump.Write("Trace in LogWriter: " + message);
     }
 
     public void Write(string message)

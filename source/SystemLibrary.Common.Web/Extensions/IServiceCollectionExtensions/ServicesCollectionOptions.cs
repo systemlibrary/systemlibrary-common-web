@@ -138,4 +138,10 @@ public class ServicesCollectionOptions : BaseOptions
     /// Allow synchronous IO, an IIS setting
     /// </summary>
     public bool IISAllowSynchronousIO = true;
+
+    /// <summary>
+    /// Registers special Type Converters to the System.ComponentModel.TypeDescriptor
+    /// For instance: it registers the .ToEnum() method as the primary method to convert a String to an Enum, so EnumValue and EnumText works
+    /// </summary>
+    public bool UseCustomTypeConverters = true;
 }
