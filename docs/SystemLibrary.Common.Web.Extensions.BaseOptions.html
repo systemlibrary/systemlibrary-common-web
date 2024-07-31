@@ -244,6 +244,7 @@
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
+  
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_BaseOptions_UseApiControllers">
   		<span class="small pull-right mobile-hide">
   			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/_Abstract/BaseOptions.cs/#L20">View Source</a>
@@ -280,6 +281,7 @@
   	</tbody>
   </table>
   
+  
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Set to true to add services and middleware Gzip compression</p>
@@ -287,9 +289,10 @@
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
+  
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_BaseOptions_UseBrotliResponseCompression">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/_Abstract/BaseOptions.cs/#L52">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/_Abstract/BaseOptions.cs/#L56">View Source</a>
   		</span>
   	</div>
   
@@ -323,12 +326,14 @@
   	</tbody>
   </table>
   
+  
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Set to true to add services and middleware for controllers</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
+  
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_BaseOptions_UseControllers">
   		<span class="small pull-right mobile-hide">
@@ -366,12 +371,14 @@
   	</tbody>
   </table>
   
+  
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Set to true to add services and middleware for cookie policies</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
+  
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_BaseOptions_UseCookiePolicy">
   		<span class="small pull-right mobile-hide">
@@ -409,12 +416,14 @@
   	</tbody>
   </table>
   
+  
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Set to true to add services and middleware for forwarded headers</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
+  
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_BaseOptions_UseForwardedHeaders">
   		<span class="small pull-right mobile-hide">
@@ -452,6 +461,7 @@
   	</tbody>
   </table>
   
+  
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Set to true to add services and middleware Gzip compression</p>
@@ -459,9 +469,10 @@
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
+  
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_BaseOptions_UseGzipResponseCompression">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/_Abstract/BaseOptions.cs/#L47">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/_Abstract/BaseOptions.cs/#L51">View Source</a>
   		</span>
   	</div>
   
@@ -495,12 +506,14 @@
   	</tbody>
   </table>
   
+  
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Set to true to add services and middleware to use http to https redirection</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
+  
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_BaseOptions_UseHttpsRedirection">
   		<span class="small pull-right mobile-hide">
@@ -538,12 +551,14 @@
   	</tbody>
   </table>
   
+  
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Set to true to register services and middleware for the OutputCache in ASPNET</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
+  
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_BaseOptions_UseOutputCache">
   		<span class="small pull-right mobile-hide">
@@ -581,11 +596,19 @@
   	</tbody>
   </table>
   
+  
   <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Set to true to register services and middleware for the OutputCache in ASPNET after the Authentication, so Authentication always triggers before checking output cache</p>
+<p>This is the output cache middleware from microsoft, completely different cache than the class Cache in this library</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
+  
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_BaseOptions_UseOutputCacheAfterAuthentication">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/_Abstract/BaseOptions.cs/#L42">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/_Abstract/BaseOptions.cs/#L46">View Source</a>
   		</span>
   	</div>
   
@@ -619,6 +642,7 @@
   	</tbody>
   </table>
   
+  
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Set to true to add services and middleware for razor pages</p>
@@ -626,6 +650,7 @@
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
+  
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_BaseOptions_UseRazorPages">
   		<span class="small pull-right mobile-hide">
@@ -662,6 +687,7 @@
   		</tr>
   	</tbody>
   </table>
+  
   
   
   <script>
@@ -1070,6 +1096,38 @@
   		);
   	}
   
+  	function addRemarksOnClickEvent(className) {
+  		var remarks = document.getElementsByClassName(className);
+  		if (remarks) {
+  			for (var i = 0; i < remarks.length; i++) {
+  				var remark = remarks[i];
+  				if (remark && remark.classList) {
+  					var closeBtns = remark.parentNode.getElementsByClassName('custom-remarks-menu-data--close');
+  					if (closeBtns) {
+  						var closeBtn = closeBtns[0];
+  						if (closeBtn) {
+  							closeBtn.addEventListener("click", function (e) {
+  								e.target.parentNode.classList.toggle('visible');
+  							});
+  						}
+  					}
+  					remark.addEventListener("click", function (e) {
+  						var remarkTexts = e.target.parentNode.getElementsByClassName(className + ' text');
+  						if (!remarkTexts || !remarkTexts.length) {
+  							remarkTexts = e.target.parentNode.parentNode.getElementsByClassName(className + ' text');
+  						}
+  						if (remarkTexts && remarkTexts.length) {
+  							var remarkText = remarkTexts[0];
+  							if (remarkText) {
+  								remarkText.classList.toggle('visible');
+  							}
+  						}
+  					});
+  				}
+  			}
+  		}
+  	}
+  
   	function addEventDisplayMenuDataOnClickPart(partName) {
   		var i;
   
@@ -1286,6 +1344,9 @@
   	setTimeout(() => hideSourceLinksForDocfxHideAttribute(), 35);
   
   	setTimeout(addEventsToTabCloseButtons, 40);
+  
+  	setTimeout(() => addRemarksOnClickEvent('custom-remarks1'), 50);
+  	setTimeout(() => addRemarksOnClickEvent('custom-remarks2'), 55);
   
   	//setTimeout(removeEmptyPopups, 50);
   </script>

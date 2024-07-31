@@ -52,24 +52,24 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Web.Cache.Get
   nameWithType: Cache.Get
-- uid: SystemLibrary.Common.Web.Cache.Get``1(System.Func{``0},System.String,System.TimeSpan,System.Func{``0,System.Boolean},System.Boolean,System.Boolean,System.Func{System.Boolean},System.Boolean)
-  name: Get<T>(Func<T>, String, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>, Boolean)
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_Get__1_System_Func___0__System_String_System_TimeSpan_System_Func___0_System_Boolean__System_Boolean_System_Boolean_System_Func_System_Boolean__System_Boolean_
-  commentId: M:SystemLibrary.Common.Web.Cache.Get``1(System.Func{``0},System.String,System.TimeSpan,System.Func{``0,System.Boolean},System.Boolean,System.Boolean,System.Func{System.Boolean},System.Boolean)
-  name.vb: Get(Of T)(Func(Of T), String, TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean), Boolean)
-  fullName: SystemLibrary.Common.Web.Cache.Get<T>(System.Func<T>, System.String, System.TimeSpan, System.Func<T, System.Boolean>, System.Boolean, System.Boolean, System.Func<System.Boolean>, System.Boolean)
-  fullName.vb: SystemLibrary.Common.Web.Cache.Get(Of T)(System.Func(Of T), System.String, System.TimeSpan, System.Func(Of T, System.Boolean), System.Boolean, System.Boolean, System.Func(Of System.Boolean), System.Boolean)
-  nameWithType: Cache.Get<T>(Func<T>, String, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>, Boolean)
-  nameWithType.vb: Cache.Get(Of T)(Func(Of T), String, TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean), Boolean)
-- uid: SystemLibrary.Common.Web.Cache.Get``1(System.Func{``0},System.TimeSpan,System.Func{``0,System.Boolean},System.Boolean,System.Boolean,System.Func{System.Boolean},System.Boolean)
-  name: Get<T>(Func<T>, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>, Boolean)
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_Get__1_System_Func___0__System_TimeSpan_System_Func___0_System_Boolean__System_Boolean_System_Boolean_System_Func_System_Boolean__System_Boolean_
-  commentId: M:SystemLibrary.Common.Web.Cache.Get``1(System.Func{``0},System.TimeSpan,System.Func{``0,System.Boolean},System.Boolean,System.Boolean,System.Func{System.Boolean},System.Boolean)
-  name.vb: Get(Of T)(Func(Of T), TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean), Boolean)
-  fullName: SystemLibrary.Common.Web.Cache.Get<T>(System.Func<T>, System.TimeSpan, System.Func<T, System.Boolean>, System.Boolean, System.Boolean, System.Func<System.Boolean>, System.Boolean)
-  fullName.vb: SystemLibrary.Common.Web.Cache.Get(Of T)(System.Func(Of T), System.TimeSpan, System.Func(Of T, System.Boolean), System.Boolean, System.Boolean, System.Func(Of System.Boolean), System.Boolean)
-  nameWithType: Cache.Get<T>(Func<T>, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>, Boolean)
-  nameWithType.vb: Cache.Get(Of T)(Func(Of T), TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean), Boolean)
+- uid: SystemLibrary.Common.Web.Cache.Get``1(System.Func{``0},System.String,System.TimeSpan,System.Func{``0,System.Boolean},System.Boolean,System.Boolean,System.Func{System.Boolean})
+  name: Get<T>(Func<T>, String, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_Get__1_System_Func___0__System_String_System_TimeSpan_System_Func___0_System_Boolean__System_Boolean_System_Boolean_System_Func_System_Boolean__
+  commentId: M:SystemLibrary.Common.Web.Cache.Get``1(System.Func{``0},System.String,System.TimeSpan,System.Func{``0,System.Boolean},System.Boolean,System.Boolean,System.Func{System.Boolean})
+  name.vb: Get(Of T)(Func(Of T), String, TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean))
+  fullName: SystemLibrary.Common.Web.Cache.Get<T>(System.Func<T>, System.String, System.TimeSpan, System.Func<T, System.Boolean>, System.Boolean, System.Boolean, System.Func<System.Boolean>)
+  fullName.vb: SystemLibrary.Common.Web.Cache.Get(Of T)(System.Func(Of T), System.String, System.TimeSpan, System.Func(Of T, System.Boolean), System.Boolean, System.Boolean, System.Func(Of System.Boolean))
+  nameWithType: Cache.Get<T>(Func<T>, String, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>)
+  nameWithType.vb: Cache.Get(Of T)(Func(Of T), String, TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean))
+- uid: SystemLibrary.Common.Web.Cache.Get``1(System.Func{``0},System.TimeSpan,System.Func{``0,System.Boolean},System.Boolean,System.Boolean,System.Func{System.Boolean})
+  name: Get<T>(Func<T>, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_Get__1_System_Func___0__System_TimeSpan_System_Func___0_System_Boolean__System_Boolean_System_Boolean_System_Func_System_Boolean__
+  commentId: M:SystemLibrary.Common.Web.Cache.Get``1(System.Func{``0},System.TimeSpan,System.Func{``0,System.Boolean},System.Boolean,System.Boolean,System.Func{System.Boolean})
+  name.vb: Get(Of T)(Func(Of T), TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean))
+  fullName: SystemLibrary.Common.Web.Cache.Get<T>(System.Func<T>, System.TimeSpan, System.Func<T, System.Boolean>, System.Boolean, System.Boolean, System.Func<System.Boolean>)
+  fullName.vb: SystemLibrary.Common.Web.Cache.Get(Of T)(System.Func(Of T), System.TimeSpan, System.Func(Of T, System.Boolean), System.Boolean, System.Boolean, System.Func(Of System.Boolean))
+  nameWithType: Cache.Get<T>(Func<T>, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>)
+  nameWithType.vb: Cache.Get(Of T)(Func(Of T), TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean))
 - uid: SystemLibrary.Common.Web.Cache.Get``1(System.String)
   name: Get<T>(String)
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_Get__1_System_String_
@@ -79,15 +79,15 @@ references:
   fullName.vb: SystemLibrary.Common.Web.Cache.Get(Of T)(System.String)
   nameWithType: Cache.Get<T>(String)
   nameWithType.vb: Cache.Get(Of T)(String)
-- uid: SystemLibrary.Common.Web.Cache.Get``1(System.String,System.Func{``0},System.TimeSpan,System.Func{``0,System.Boolean},System.Boolean,System.Boolean,System.Func{System.Boolean},System.Boolean)
-  name: Get<T>(String, Func<T>, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>, Boolean)
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_Get__1_System_String_System_Func___0__System_TimeSpan_System_Func___0_System_Boolean__System_Boolean_System_Boolean_System_Func_System_Boolean__System_Boolean_
-  commentId: M:SystemLibrary.Common.Web.Cache.Get``1(System.String,System.Func{``0},System.TimeSpan,System.Func{``0,System.Boolean},System.Boolean,System.Boolean,System.Func{System.Boolean},System.Boolean)
-  name.vb: Get(Of T)(String, Func(Of T), TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean), Boolean)
-  fullName: SystemLibrary.Common.Web.Cache.Get<T>(System.String, System.Func<T>, System.TimeSpan, System.Func<T, System.Boolean>, System.Boolean, System.Boolean, System.Func<System.Boolean>, System.Boolean)
-  fullName.vb: SystemLibrary.Common.Web.Cache.Get(Of T)(System.String, System.Func(Of T), System.TimeSpan, System.Func(Of T, System.Boolean), System.Boolean, System.Boolean, System.Func(Of System.Boolean), System.Boolean)
-  nameWithType: Cache.Get<T>(String, Func<T>, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>, Boolean)
-  nameWithType.vb: Cache.Get(Of T)(String, Func(Of T), TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean), Boolean)
+- uid: SystemLibrary.Common.Web.Cache.Get``1(System.String,System.Func{``0},System.TimeSpan,System.Func{``0,System.Boolean},System.Boolean,System.Boolean,System.Func{System.Boolean})
+  name: Get<T>(String, Func<T>, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_Get__1_System_String_System_Func___0__System_TimeSpan_System_Func___0_System_Boolean__System_Boolean_System_Boolean_System_Func_System_Boolean__
+  commentId: M:SystemLibrary.Common.Web.Cache.Get``1(System.String,System.Func{``0},System.TimeSpan,System.Func{``0,System.Boolean},System.Boolean,System.Boolean,System.Func{System.Boolean})
+  name.vb: Get(Of T)(String, Func(Of T), TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean))
+  fullName: SystemLibrary.Common.Web.Cache.Get<T>(System.String, System.Func<T>, System.TimeSpan, System.Func<T, System.Boolean>, System.Boolean, System.Boolean, System.Func<System.Boolean>)
+  fullName.vb: SystemLibrary.Common.Web.Cache.Get(Of T)(System.String, System.Func(Of T), System.TimeSpan, System.Func(Of T, System.Boolean), System.Boolean, System.Boolean, System.Func(Of System.Boolean))
+  nameWithType: Cache.Get<T>(String, Func<T>, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>)
+  nameWithType.vb: Cache.Get(Of T)(String, Func(Of T), TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean))
 - uid: SystemLibrary.Common.Web.Cache.Lock(System.TimeSpan,System.String)
   name: Lock(TimeSpan, String)
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_Lock_System_TimeSpan_System_String_
@@ -137,15 +137,33 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Web.Cache.TryGet
   nameWithType: Cache.TryGet
-- uid: SystemLibrary.Common.Web.Cache.TryGet``1(System.String,System.Func{``0},System.TimeSpan,System.Func{``0,System.Boolean},System.Boolean,System.Boolean,System.Func{System.Boolean},System.Boolean)
-  name: TryGet<T>(String, Func<T>, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>, Boolean)
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_TryGet__1_System_String_System_Func___0__System_TimeSpan_System_Func___0_System_Boolean__System_Boolean_System_Boolean_System_Func_System_Boolean__System_Boolean_
-  commentId: M:SystemLibrary.Common.Web.Cache.TryGet``1(System.String,System.Func{``0},System.TimeSpan,System.Func{``0,System.Boolean},System.Boolean,System.Boolean,System.Func{System.Boolean},System.Boolean)
-  name.vb: TryGet(Of T)(String, Func(Of T), TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean), Boolean)
-  fullName: SystemLibrary.Common.Web.Cache.TryGet<T>(System.String, System.Func<T>, System.TimeSpan, System.Func<T, System.Boolean>, System.Boolean, System.Boolean, System.Func<System.Boolean>, System.Boolean)
-  fullName.vb: SystemLibrary.Common.Web.Cache.TryGet(Of T)(System.String, System.Func(Of T), System.TimeSpan, System.Func(Of T, System.Boolean), System.Boolean, System.Boolean, System.Func(Of System.Boolean), System.Boolean)
-  nameWithType: Cache.TryGet<T>(String, Func<T>, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>, Boolean)
-  nameWithType.vb: Cache.TryGet(Of T)(String, Func(Of T), TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean), Boolean)
+- uid: SystemLibrary.Common.Web.Cache.TryGet``1(System.Func{``0},System.String,System.TimeSpan,System.Func{``0,System.Boolean},System.Boolean,System.Boolean,System.Func{System.Boolean})
+  name: TryGet<T>(Func<T>, String, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_TryGet__1_System_Func___0__System_String_System_TimeSpan_System_Func___0_System_Boolean__System_Boolean_System_Boolean_System_Func_System_Boolean__
+  commentId: M:SystemLibrary.Common.Web.Cache.TryGet``1(System.Func{``0},System.String,System.TimeSpan,System.Func{``0,System.Boolean},System.Boolean,System.Boolean,System.Func{System.Boolean})
+  name.vb: TryGet(Of T)(Func(Of T), String, TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean))
+  fullName: SystemLibrary.Common.Web.Cache.TryGet<T>(System.Func<T>, System.String, System.TimeSpan, System.Func<T, System.Boolean>, System.Boolean, System.Boolean, System.Func<System.Boolean>)
+  fullName.vb: SystemLibrary.Common.Web.Cache.TryGet(Of T)(System.Func(Of T), System.String, System.TimeSpan, System.Func(Of T, System.Boolean), System.Boolean, System.Boolean, System.Func(Of System.Boolean))
+  nameWithType: Cache.TryGet<T>(Func<T>, String, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>)
+  nameWithType.vb: Cache.TryGet(Of T)(Func(Of T), String, TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean))
+- uid: SystemLibrary.Common.Web.Cache.TryGet``1(System.Func{``0},System.TimeSpan,System.Func{``0,System.Boolean},System.Boolean,System.Boolean,System.Func{System.Boolean})
+  name: TryGet<T>(Func<T>, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_TryGet__1_System_Func___0__System_TimeSpan_System_Func___0_System_Boolean__System_Boolean_System_Boolean_System_Func_System_Boolean__
+  commentId: M:SystemLibrary.Common.Web.Cache.TryGet``1(System.Func{``0},System.TimeSpan,System.Func{``0,System.Boolean},System.Boolean,System.Boolean,System.Func{System.Boolean})
+  name.vb: TryGet(Of T)(Func(Of T), TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean))
+  fullName: SystemLibrary.Common.Web.Cache.TryGet<T>(System.Func<T>, System.TimeSpan, System.Func<T, System.Boolean>, System.Boolean, System.Boolean, System.Func<System.Boolean>)
+  fullName.vb: SystemLibrary.Common.Web.Cache.TryGet(Of T)(System.Func(Of T), System.TimeSpan, System.Func(Of T, System.Boolean), System.Boolean, System.Boolean, System.Func(Of System.Boolean))
+  nameWithType: Cache.TryGet<T>(Func<T>, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>)
+  nameWithType.vb: Cache.TryGet(Of T)(Func(Of T), TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean))
+- uid: SystemLibrary.Common.Web.Cache.TryGet``1(System.String,System.Func{``0},System.TimeSpan,System.Func{``0,System.Boolean},System.Boolean,System.Boolean,System.Func{System.Boolean})
+  name: TryGet<T>(String, Func<T>, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html#SystemLibrary_Common_Web_Cache_TryGet__1_System_String_System_Func___0__System_TimeSpan_System_Func___0_System_Boolean__System_Boolean_System_Boolean_System_Func_System_Boolean__
+  commentId: M:SystemLibrary.Common.Web.Cache.TryGet``1(System.String,System.Func{``0},System.TimeSpan,System.Func{``0,System.Boolean},System.Boolean,System.Boolean,System.Func{System.Boolean})
+  name.vb: TryGet(Of T)(String, Func(Of T), TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean))
+  fullName: SystemLibrary.Common.Web.Cache.TryGet<T>(System.String, System.Func<T>, System.TimeSpan, System.Func<T, System.Boolean>, System.Boolean, System.Boolean, System.Func<System.Boolean>)
+  fullName.vb: SystemLibrary.Common.Web.Cache.TryGet(Of T)(System.String, System.Func(Of T), System.TimeSpan, System.Func(Of T, System.Boolean), System.Boolean, System.Boolean, System.Func(Of System.Boolean))
+  nameWithType: Cache.TryGet<T>(String, Func<T>, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>)
+  nameWithType.vb: Cache.TryGet(Of T)(String, Func(Of T), TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean))
 - uid: SystemLibrary.Common.Web.CalleeCancelledRequestException
   name: CalleeCancelledRequestException
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.CalleeCancelledRequestException.html
@@ -165,6 +183,220 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Web.CalleeCancelledRequestException.CalleeCancelledRequestException
   nameWithType: CalleeCancelledRequestException.CalleeCancelledRequestException
+- uid: SystemLibrary.Common.Web.Client
+  name: Client
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Client.html
+  commentId: T:SystemLibrary.Common.Web.Client
+  fullName: SystemLibrary.Common.Web.Client
+  nameWithType: Client
+- uid: SystemLibrary.Common.Web.Client.#ctor(System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Boolean})
+  name: Client(Nullable<Int32>, Nullable<Boolean>, Nullable<Boolean>, Nullable<Int32>, Nullable<Boolean>, Nullable<Boolean>)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Client.html#SystemLibrary_Common_Web_Client__ctor_System_Nullable_System_Int32__System_Nullable_System_Boolean__System_Nullable_System_Boolean__System_Nullable_System_Int32__System_Nullable_System_Boolean__System_Nullable_System_Boolean__
+  commentId: M:SystemLibrary.Common.Web.Client.#ctor(System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Boolean})
+  name.vb: Client(Nullable(Of Int32), Nullable(Of Boolean), Nullable(Of Boolean), Nullable(Of Int32), Nullable(Of Boolean), Nullable(Of Boolean))
+  fullName: SystemLibrary.Common.Web.Client.Client(System.Nullable<System.Int32>, System.Nullable<System.Boolean>, System.Nullable<System.Boolean>, System.Nullable<System.Int32>, System.Nullable<System.Boolean>, System.Nullable<System.Boolean>)
+  fullName.vb: SystemLibrary.Common.Web.Client.Client(System.Nullable(Of System.Int32), System.Nullable(Of System.Boolean), System.Nullable(Of System.Boolean), System.Nullable(Of System.Int32), System.Nullable(Of System.Boolean), System.Nullable(Of System.Boolean))
+  nameWithType: Client.Client(Nullable<Int32>, Nullable<Boolean>, Nullable<Boolean>, Nullable<Int32>, Nullable<Boolean>, Nullable<Boolean>)
+  nameWithType.vb: Client.Client(Nullable(Of Int32), Nullable(Of Boolean), Nullable(Of Boolean), Nullable(Of Int32), Nullable(Of Boolean), Nullable(Of Boolean))
+- uid: SystemLibrary.Common.Web.Client.#ctor*
+  name: Client
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Client.html#SystemLibrary_Common_Web_Client__ctor_
+  commentId: Overload:SystemLibrary.Common.Web.Client.#ctor
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Client.Client
+  nameWithType: Client.Client
+- uid: SystemLibrary.Common.Web.Client.Delete*
+  name: Delete
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Client.html#SystemLibrary_Common_Web_Client_Delete_
+  commentId: Overload:SystemLibrary.Common.Web.Client.Delete
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Client.Delete
+  nameWithType: Client.Delete
+- uid: SystemLibrary.Common.Web.Client.Delete``1(System.String,System.Object,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken,System.Func{System.String,``0})
+  name: Delete<T>(String, Object, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken, Func<String, T>)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Client.html#SystemLibrary_Common_Web_Client_Delete__1_System_String_System_Object_SystemLibrary_Common_Web_MediaType_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_System_Func_System_String___0__
+  commentId: M:SystemLibrary.Common.Web.Client.Delete``1(System.String,System.Object,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken,System.Func{System.String,``0})
+  name.vb: Delete(Of T)(String, Object, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken, Func(Of String, T))
+  fullName: SystemLibrary.Common.Web.Client.Delete<T>(System.String, System.Object, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary<System.String, System.String>, System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken, System.Func<System.String, T>)
+  fullName.vb: SystemLibrary.Common.Web.Client.Delete(Of T)(System.String, System.Object, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary(Of System.String, System.String), System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken, System.Func(Of System.String, T))
+  nameWithType: Client.Delete<T>(String, Object, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken, Func<String, T>)
+  nameWithType.vb: Client.Delete(Of T)(String, Object, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken, Func(Of String, T))
+- uid: SystemLibrary.Common.Web.Client.DeleteAsync*
+  name: DeleteAsync
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Client.html#SystemLibrary_Common_Web_Client_DeleteAsync_
+  commentId: Overload:SystemLibrary.Common.Web.Client.DeleteAsync
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Client.DeleteAsync
+  nameWithType: Client.DeleteAsync
+- uid: SystemLibrary.Common.Web.Client.DeleteAsync``1(System.String,System.Object,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken,System.Func{System.String,``0})
+  name: DeleteAsync<T>(String, Object, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken, Func<String, T>)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Client.html#SystemLibrary_Common_Web_Client_DeleteAsync__1_System_String_System_Object_SystemLibrary_Common_Web_MediaType_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_System_Func_System_String___0__
+  commentId: M:SystemLibrary.Common.Web.Client.DeleteAsync``1(System.String,System.Object,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken,System.Func{System.String,``0})
+  name.vb: DeleteAsync(Of T)(String, Object, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken, Func(Of String, T))
+  fullName: SystemLibrary.Common.Web.Client.DeleteAsync<T>(System.String, System.Object, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary<System.String, System.String>, System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken, System.Func<System.String, T>)
+  fullName.vb: SystemLibrary.Common.Web.Client.DeleteAsync(Of T)(System.String, System.Object, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary(Of System.String, System.String), System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken, System.Func(Of System.String, T))
+  nameWithType: Client.DeleteAsync<T>(String, Object, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken, Func<String, T>)
+  nameWithType.vb: Client.DeleteAsync(Of T)(String, Object, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken, Func(Of String, T))
+- uid: SystemLibrary.Common.Web.Client.Get*
+  name: Get
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Client.html#SystemLibrary_Common_Web_Client_Get_
+  commentId: Overload:SystemLibrary.Common.Web.Client.Get
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Client.Get
+  nameWithType: Client.Get
+- uid: SystemLibrary.Common.Web.Client.Get``1(System.String,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken,System.Func{System.String,``0})
+  name: Get<T>(String, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken, Func<String, T>)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Client.html#SystemLibrary_Common_Web_Client_Get__1_System_String_SystemLibrary_Common_Web_MediaType_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_System_Func_System_String___0__
+  commentId: M:SystemLibrary.Common.Web.Client.Get``1(System.String,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken,System.Func{System.String,``0})
+  name.vb: Get(Of T)(String, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken, Func(Of String, T))
+  fullName: SystemLibrary.Common.Web.Client.Get<T>(System.String, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary<System.String, System.String>, System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken, System.Func<System.String, T>)
+  fullName.vb: SystemLibrary.Common.Web.Client.Get(Of T)(System.String, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary(Of System.String, System.String), System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken, System.Func(Of System.String, T))
+  nameWithType: Client.Get<T>(String, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken, Func<String, T>)
+  nameWithType.vb: Client.Get(Of T)(String, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken, Func(Of String, T))
+- uid: SystemLibrary.Common.Web.Client.GetAsync*
+  name: GetAsync
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Client.html#SystemLibrary_Common_Web_Client_GetAsync_
+  commentId: Overload:SystemLibrary.Common.Web.Client.GetAsync
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Client.GetAsync
+  nameWithType: Client.GetAsync
+- uid: SystemLibrary.Common.Web.Client.GetAsync``1(System.String,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken,System.Func{System.String,``0})
+  name: GetAsync<T>(String, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken, Func<String, T>)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Client.html#SystemLibrary_Common_Web_Client_GetAsync__1_System_String_SystemLibrary_Common_Web_MediaType_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_System_Func_System_String___0__
+  commentId: M:SystemLibrary.Common.Web.Client.GetAsync``1(System.String,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken,System.Func{System.String,``0})
+  name.vb: GetAsync(Of T)(String, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken, Func(Of String, T))
+  fullName: SystemLibrary.Common.Web.Client.GetAsync<T>(System.String, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary<System.String, System.String>, System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken, System.Func<System.String, T>)
+  fullName.vb: SystemLibrary.Common.Web.Client.GetAsync(Of T)(System.String, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary(Of System.String, System.String), System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken, System.Func(Of System.String, T))
+  nameWithType: Client.GetAsync<T>(String, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken, Func<String, T>)
+  nameWithType.vb: Client.GetAsync(Of T)(String, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken, Func(Of String, T))
+- uid: SystemLibrary.Common.Web.Client.Head*
+  name: Head
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Client.html#SystemLibrary_Common_Web_Client_Head_
+  commentId: Overload:SystemLibrary.Common.Web.Client.Head
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Client.Head
+  nameWithType: Client.Head
+- uid: SystemLibrary.Common.Web.Client.Head``1(System.String,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken,System.Func{System.String,``0})
+  name: Head<T>(String, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken, Func<String, T>)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Client.html#SystemLibrary_Common_Web_Client_Head__1_System_String_SystemLibrary_Common_Web_MediaType_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_System_Func_System_String___0__
+  commentId: M:SystemLibrary.Common.Web.Client.Head``1(System.String,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken,System.Func{System.String,``0})
+  name.vb: Head(Of T)(String, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken, Func(Of String, T))
+  fullName: SystemLibrary.Common.Web.Client.Head<T>(System.String, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary<System.String, System.String>, System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken, System.Func<System.String, T>)
+  fullName.vb: SystemLibrary.Common.Web.Client.Head(Of T)(System.String, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary(Of System.String, System.String), System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken, System.Func(Of System.String, T))
+  nameWithType: Client.Head<T>(String, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken, Func<String, T>)
+  nameWithType.vb: Client.Head(Of T)(String, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken, Func(Of String, T))
+- uid: SystemLibrary.Common.Web.Client.HeadAsync*
+  name: HeadAsync
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Client.html#SystemLibrary_Common_Web_Client_HeadAsync_
+  commentId: Overload:SystemLibrary.Common.Web.Client.HeadAsync
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Client.HeadAsync
+  nameWithType: Client.HeadAsync
+- uid: SystemLibrary.Common.Web.Client.HeadAsync``1(System.String,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken,System.Func{System.String,``0})
+  name: HeadAsync<T>(String, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken, Func<String, T>)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Client.html#SystemLibrary_Common_Web_Client_HeadAsync__1_System_String_SystemLibrary_Common_Web_MediaType_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_System_Func_System_String___0__
+  commentId: M:SystemLibrary.Common.Web.Client.HeadAsync``1(System.String,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken,System.Func{System.String,``0})
+  name.vb: HeadAsync(Of T)(String, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken, Func(Of String, T))
+  fullName: SystemLibrary.Common.Web.Client.HeadAsync<T>(System.String, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary<System.String, System.String>, System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken, System.Func<System.String, T>)
+  fullName.vb: SystemLibrary.Common.Web.Client.HeadAsync(Of T)(System.String, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary(Of System.String, System.String), System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken, System.Func(Of System.String, T))
+  nameWithType: Client.HeadAsync<T>(String, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken, Func<String, T>)
+  nameWithType.vb: Client.HeadAsync(Of T)(String, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken, Func(Of String, T))
+- uid: SystemLibrary.Common.Web.Client.Options*
+  name: Options
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Client.html#SystemLibrary_Common_Web_Client_Options_
+  commentId: Overload:SystemLibrary.Common.Web.Client.Options
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Client.Options
+  nameWithType: Client.Options
+- uid: SystemLibrary.Common.Web.Client.Options``1(System.String,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Threading.CancellationToken,System.Func{System.String,``0})
+  name: Options<T>(String, Int32, IDictionary<String, String>, CancellationToken, Func<String, T>)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Client.html#SystemLibrary_Common_Web_Client_Options__1_System_String_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Threading_CancellationToken_System_Func_System_String___0__
+  commentId: M:SystemLibrary.Common.Web.Client.Options``1(System.String,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Threading.CancellationToken,System.Func{System.String,``0})
+  name.vb: Options(Of T)(String, Int32, IDictionary(Of String, String), CancellationToken, Func(Of String, T))
+  fullName: SystemLibrary.Common.Web.Client.Options<T>(System.String, System.Int32, System.Collections.Generic.IDictionary<System.String, System.String>, System.Threading.CancellationToken, System.Func<System.String, T>)
+  fullName.vb: SystemLibrary.Common.Web.Client.Options(Of T)(System.String, System.Int32, System.Collections.Generic.IDictionary(Of System.String, System.String), System.Threading.CancellationToken, System.Func(Of System.String, T))
+  nameWithType: Client.Options<T>(String, Int32, IDictionary<String, String>, CancellationToken, Func<String, T>)
+  nameWithType.vb: Client.Options(Of T)(String, Int32, IDictionary(Of String, String), CancellationToken, Func(Of String, T))
+- uid: SystemLibrary.Common.Web.Client.OptionsAsync*
+  name: OptionsAsync
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Client.html#SystemLibrary_Common_Web_Client_OptionsAsync_
+  commentId: Overload:SystemLibrary.Common.Web.Client.OptionsAsync
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Client.OptionsAsync
+  nameWithType: Client.OptionsAsync
+- uid: SystemLibrary.Common.Web.Client.OptionsAsync``1(System.String,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Threading.CancellationToken,System.Func{System.String,``0})
+  name: OptionsAsync<T>(String, Int32, IDictionary<String, String>, CancellationToken, Func<String, T>)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Client.html#SystemLibrary_Common_Web_Client_OptionsAsync__1_System_String_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Threading_CancellationToken_System_Func_System_String___0__
+  commentId: M:SystemLibrary.Common.Web.Client.OptionsAsync``1(System.String,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Threading.CancellationToken,System.Func{System.String,``0})
+  name.vb: OptionsAsync(Of T)(String, Int32, IDictionary(Of String, String), CancellationToken, Func(Of String, T))
+  fullName: SystemLibrary.Common.Web.Client.OptionsAsync<T>(System.String, System.Int32, System.Collections.Generic.IDictionary<System.String, System.String>, System.Threading.CancellationToken, System.Func<System.String, T>)
+  fullName.vb: SystemLibrary.Common.Web.Client.OptionsAsync(Of T)(System.String, System.Int32, System.Collections.Generic.IDictionary(Of System.String, System.String), System.Threading.CancellationToken, System.Func(Of System.String, T))
+  nameWithType: Client.OptionsAsync<T>(String, Int32, IDictionary<String, String>, CancellationToken, Func<String, T>)
+  nameWithType.vb: Client.OptionsAsync(Of T)(String, Int32, IDictionary(Of String, String), CancellationToken, Func(Of String, T))
+- uid: SystemLibrary.Common.Web.Client.Post*
+  name: Post
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Client.html#SystemLibrary_Common_Web_Client_Post_
+  commentId: Overload:SystemLibrary.Common.Web.Client.Post
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Client.Post
+  nameWithType: Client.Post
+- uid: SystemLibrary.Common.Web.Client.Post``1(System.String,System.Object,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken,System.Func{System.String,``0})
+  name: Post<T>(String, Object, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken, Func<String, T>)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Client.html#SystemLibrary_Common_Web_Client_Post__1_System_String_System_Object_SystemLibrary_Common_Web_MediaType_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_System_Func_System_String___0__
+  commentId: M:SystemLibrary.Common.Web.Client.Post``1(System.String,System.Object,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken,System.Func{System.String,``0})
+  name.vb: Post(Of T)(String, Object, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken, Func(Of String, T))
+  fullName: SystemLibrary.Common.Web.Client.Post<T>(System.String, System.Object, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary<System.String, System.String>, System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken, System.Func<System.String, T>)
+  fullName.vb: SystemLibrary.Common.Web.Client.Post(Of T)(System.String, System.Object, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary(Of System.String, System.String), System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken, System.Func(Of System.String, T))
+  nameWithType: Client.Post<T>(String, Object, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken, Func<String, T>)
+  nameWithType.vb: Client.Post(Of T)(String, Object, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken, Func(Of String, T))
+- uid: SystemLibrary.Common.Web.Client.PostAsync*
+  name: PostAsync
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Client.html#SystemLibrary_Common_Web_Client_PostAsync_
+  commentId: Overload:SystemLibrary.Common.Web.Client.PostAsync
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Client.PostAsync
+  nameWithType: Client.PostAsync
+- uid: SystemLibrary.Common.Web.Client.PostAsync``1(System.String,System.Object,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken,System.Func{System.String,``0})
+  name: PostAsync<T>(String, Object, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken, Func<String, T>)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Client.html#SystemLibrary_Common_Web_Client_PostAsync__1_System_String_System_Object_SystemLibrary_Common_Web_MediaType_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_System_Func_System_String___0__
+  commentId: M:SystemLibrary.Common.Web.Client.PostAsync``1(System.String,System.Object,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken,System.Func{System.String,``0})
+  name.vb: PostAsync(Of T)(String, Object, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken, Func(Of String, T))
+  fullName: SystemLibrary.Common.Web.Client.PostAsync<T>(System.String, System.Object, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary<System.String, System.String>, System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken, System.Func<System.String, T>)
+  fullName.vb: SystemLibrary.Common.Web.Client.PostAsync(Of T)(System.String, System.Object, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary(Of System.String, System.String), System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken, System.Func(Of System.String, T))
+  nameWithType: Client.PostAsync<T>(String, Object, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken, Func<String, T>)
+  nameWithType.vb: Client.PostAsync(Of T)(String, Object, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken, Func(Of String, T))
+- uid: SystemLibrary.Common.Web.Client.Put*
+  name: Put
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Client.html#SystemLibrary_Common_Web_Client_Put_
+  commentId: Overload:SystemLibrary.Common.Web.Client.Put
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Client.Put
+  nameWithType: Client.Put
+- uid: SystemLibrary.Common.Web.Client.Put``1(System.String,System.Object,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken,System.Func{System.String,``0})
+  name: Put<T>(String, Object, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken, Func<String, T>)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Client.html#SystemLibrary_Common_Web_Client_Put__1_System_String_System_Object_SystemLibrary_Common_Web_MediaType_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_System_Func_System_String___0__
+  commentId: M:SystemLibrary.Common.Web.Client.Put``1(System.String,System.Object,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken,System.Func{System.String,``0})
+  name.vb: Put(Of T)(String, Object, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken, Func(Of String, T))
+  fullName: SystemLibrary.Common.Web.Client.Put<T>(System.String, System.Object, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary<System.String, System.String>, System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken, System.Func<System.String, T>)
+  fullName.vb: SystemLibrary.Common.Web.Client.Put(Of T)(System.String, System.Object, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary(Of System.String, System.String), System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken, System.Func(Of System.String, T))
+  nameWithType: Client.Put<T>(String, Object, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken, Func<String, T>)
+  nameWithType.vb: Client.Put(Of T)(String, Object, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken, Func(Of String, T))
+- uid: SystemLibrary.Common.Web.Client.PutAsync*
+  name: PutAsync
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Client.html#SystemLibrary_Common_Web_Client_PutAsync_
+  commentId: Overload:SystemLibrary.Common.Web.Client.PutAsync
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Client.PutAsync
+  nameWithType: Client.PutAsync
+- uid: SystemLibrary.Common.Web.Client.PutAsync``1(System.String,System.Object,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken,System.Func{System.String,``0})
+  name: PutAsync<T>(String, Object, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken, Func<String, T>)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Client.html#SystemLibrary_Common_Web_Client_PutAsync__1_System_String_System_Object_SystemLibrary_Common_Web_MediaType_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_System_Func_System_String___0__
+  commentId: M:SystemLibrary.Common.Web.Client.PutAsync``1(System.String,System.Object,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken,System.Func{System.String,``0})
+  name.vb: PutAsync(Of T)(String, Object, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken, Func(Of String, T))
+  fullName: SystemLibrary.Common.Web.Client.PutAsync<T>(System.String, System.Object, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary<System.String, System.String>, System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken, System.Func<System.String, T>)
+  fullName.vb: SystemLibrary.Common.Web.Client.PutAsync(Of T)(System.String, System.Object, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary(Of System.String, System.String), System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken, System.Func(Of System.String, T))
+  nameWithType: Client.PutAsync<T>(String, Object, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken, Func<String, T>)
+  nameWithType.vb: Client.PutAsync(Of T)(String, Object, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken, Func(Of String, T))
 - uid: SystemLibrary.Common.Web.ClientResponse`1
   name: ClientResponse<T>
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.ClientResponse-1.html
@@ -174,31 +406,6 @@ references:
   fullName.vb: SystemLibrary.Common.Web.ClientResponse(Of T)
   nameWithType: ClientResponse<T>
   nameWithType.vb: ClientResponse(Of T)
-- uid: SystemLibrary.Common.Web.ClientResponse`1.#ctor(System.Net.Http.HttpResponseMessage)
-  name: ClientResponse(HttpResponseMessage)
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.ClientResponse-1.html#SystemLibrary_Common_Web_ClientResponse_1__ctor_System_Net_Http_HttpResponseMessage_
-  commentId: M:SystemLibrary.Common.Web.ClientResponse`1.#ctor(System.Net.Http.HttpResponseMessage)
-  fullName: SystemLibrary.Common.Web.ClientResponse<T>.ClientResponse(System.Net.Http.HttpResponseMessage)
-  fullName.vb: SystemLibrary.Common.Web.ClientResponse(Of T).ClientResponse(System.Net.Http.HttpResponseMessage)
-  nameWithType: ClientResponse<T>.ClientResponse(HttpResponseMessage)
-  nameWithType.vb: ClientResponse(Of T).ClientResponse(HttpResponseMessage)
-- uid: SystemLibrary.Common.Web.ClientResponse`1.#ctor(System.Net.Http.HttpResponseMessage,`0)
-  name: ClientResponse(HttpResponseMessage, T)
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.ClientResponse-1.html#SystemLibrary_Common_Web_ClientResponse_1__ctor_System_Net_Http_HttpResponseMessage__0_
-  commentId: M:SystemLibrary.Common.Web.ClientResponse`1.#ctor(System.Net.Http.HttpResponseMessage,`0)
-  fullName: SystemLibrary.Common.Web.ClientResponse<T>.ClientResponse(System.Net.Http.HttpResponseMessage, T)
-  fullName.vb: SystemLibrary.Common.Web.ClientResponse(Of T).ClientResponse(System.Net.Http.HttpResponseMessage, T)
-  nameWithType: ClientResponse<T>.ClientResponse(HttpResponseMessage, T)
-  nameWithType.vb: ClientResponse(Of T).ClientResponse(HttpResponseMessage, T)
-- uid: SystemLibrary.Common.Web.ClientResponse`1.#ctor*
-  name: ClientResponse
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.ClientResponse-1.html#SystemLibrary_Common_Web_ClientResponse_1__ctor_
-  commentId: Overload:SystemLibrary.Common.Web.ClientResponse`1.#ctor
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Web.ClientResponse<T>.ClientResponse
-  fullName.vb: SystemLibrary.Common.Web.ClientResponse(Of T).ClientResponse
-  nameWithType: ClientResponse<T>.ClientResponse
-  nameWithType.vb: ClientResponse(Of T).ClientResponse
 - uid: SystemLibrary.Common.Web.ClientResponse`1.Data
   name: Data
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.ClientResponse-1.html#SystemLibrary_Common_Web_ClientResponse_1_Data
@@ -216,6 +423,23 @@ references:
   fullName.vb: SystemLibrary.Common.Web.ClientResponse(Of T).Data
   nameWithType: ClientResponse<T>.Data
   nameWithType.vb: ClientResponse(Of T).Data
+- uid: SystemLibrary.Common.Web.ClientResponse`1.Dispose
+  name: Dispose()
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.ClientResponse-1.html#SystemLibrary_Common_Web_ClientResponse_1_Dispose
+  commentId: M:SystemLibrary.Common.Web.ClientResponse`1.Dispose
+  fullName: SystemLibrary.Common.Web.ClientResponse<T>.Dispose()
+  fullName.vb: SystemLibrary.Common.Web.ClientResponse(Of T).Dispose()
+  nameWithType: ClientResponse<T>.Dispose()
+  nameWithType.vb: ClientResponse(Of T).Dispose()
+- uid: SystemLibrary.Common.Web.ClientResponse`1.Dispose*
+  name: Dispose
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.ClientResponse-1.html#SystemLibrary_Common_Web_ClientResponse_1_Dispose_
+  commentId: Overload:SystemLibrary.Common.Web.ClientResponse`1.Dispose
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.ClientResponse<T>.Dispose
+  fullName.vb: SystemLibrary.Common.Web.ClientResponse(Of T).Dispose
+  nameWithType: ClientResponse<T>.Dispose
+  nameWithType.vb: ClientResponse(Of T).Dispose
 - uid: SystemLibrary.Common.Web.ClientResponse`1.IsSuccess
   name: IsSuccess
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.ClientResponse-1.html#SystemLibrary_Common_Web_ClientResponse_1_IsSuccess
@@ -302,12 +526,12 @@ references:
   commentId: F:SystemLibrary.Common.Web.Extensions.AppBuilderOptions.StaticFilesMaxAgeSeconds
   fullName: SystemLibrary.Common.Web.Extensions.AppBuilderOptions.StaticFilesMaxAgeSeconds
   nameWithType: AppBuilderOptions.StaticFilesMaxAgeSeconds
-- uid: SystemLibrary.Common.Web.Extensions.AppBuilderOptions.StaticFilesRequestPath
-  name: StaticFilesRequestPath
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.AppBuilderOptions.html#SystemLibrary_Common_Web_Extensions_AppBuilderOptions_StaticFilesRequestPath
-  commentId: F:SystemLibrary.Common.Web.Extensions.AppBuilderOptions.StaticFilesRequestPath
-  fullName: SystemLibrary.Common.Web.Extensions.AppBuilderOptions.StaticFilesRequestPath
-  nameWithType: AppBuilderOptions.StaticFilesRequestPath
+- uid: SystemLibrary.Common.Web.Extensions.AppBuilderOptions.StaticFilesRequestPaths
+  name: StaticFilesRequestPaths
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.AppBuilderOptions.html#SystemLibrary_Common_Web_Extensions_AppBuilderOptions_StaticFilesRequestPaths
+  commentId: F:SystemLibrary.Common.Web.Extensions.AppBuilderOptions.StaticFilesRequestPaths
+  fullName: SystemLibrary.Common.Web.Extensions.AppBuilderOptions.StaticFilesRequestPaths
+  nameWithType: AppBuilderOptions.StaticFilesRequestPaths
 - uid: SystemLibrary.Common.Web.Extensions.AppBuilderOptions.StaticFilesServeUnknownFileTypes
   name: StaticFilesServeUnknownFileTypes
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.AppBuilderOptions.html#SystemLibrary_Common_Web_Extensions_AppBuilderOptions_StaticFilesServeUnknownFileTypes
@@ -416,6 +640,25 @@ references:
   commentId: F:SystemLibrary.Common.Web.Extensions.BaseOptions.UseRazorPages
   fullName: SystemLibrary.Common.Web.Extensions.BaseOptions.UseRazorPages
   nameWithType: BaseOptions.UseRazorPages
+- uid: SystemLibrary.Common.Web.Extensions.Clock
+  name: Clock
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.Clock.html
+  commentId: T:SystemLibrary.Common.Web.Extensions.Clock
+  fullName: SystemLibrary.Common.Web.Extensions.Clock
+  nameWithType: Clock
+- uid: SystemLibrary.Common.Web.Extensions.Clock.Measure(System.Action,System.String)
+  name: Measure(Action, String)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.Clock.html#SystemLibrary_Common_Web_Extensions_Clock_Measure_System_Action_System_String_
+  commentId: M:SystemLibrary.Common.Web.Extensions.Clock.Measure(System.Action,System.String)
+  fullName: SystemLibrary.Common.Web.Extensions.Clock.Measure(System.Action, System.String)
+  nameWithType: Clock.Measure(Action, String)
+- uid: SystemLibrary.Common.Web.Extensions.Clock.Measure*
+  name: Measure
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.Clock.html#SystemLibrary_Common_Web_Extensions_Clock_Measure_
+  commentId: Overload:SystemLibrary.Common.Web.Extensions.Clock.Measure
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Extensions.Clock.Measure
+  nameWithType: Clock.Measure
 - uid: SystemLibrary.Common.Web.Extensions.HttpRequestExtensions
   name: HttpRequestExtensions
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.html
@@ -543,19 +786,19 @@ references:
   fullName.vb: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.AddCommonWebServices(Of TLogWriter)(Microsoft.Extensions.DependencyInjection.IServiceCollection, SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions)
   nameWithType: IServiceCollectionExtensions.AddCommonWebServices<TLogWriter>(IServiceCollection, ServicesCollectionOptions)
   nameWithType.vb: IServiceCollectionExtensions.AddCommonWebServices(Of TLogWriter)(IServiceCollection, ServicesCollectionOptions)
-- uid: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.UseAutomaticKeyGenerationFile(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions)
-  name: UseAutomaticKeyGenerationFile(IServiceCollection, ServicesCollectionOptions)
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.html#SystemLibrary_Common_Web_Extensions_IServiceCollectionExtensions_UseAutomaticKeyGenerationFile_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_
-  commentId: M:SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.UseAutomaticKeyGenerationFile(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions)
-  fullName: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.UseAutomaticKeyGenerationFile(Microsoft.Extensions.DependencyInjection.IServiceCollection, SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions)
-  nameWithType: IServiceCollectionExtensions.UseAutomaticKeyGenerationFile(IServiceCollection, ServicesCollectionOptions)
-- uid: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.UseAutomaticKeyGenerationFile*
-  name: UseAutomaticKeyGenerationFile
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.html#SystemLibrary_Common_Web_Extensions_IServiceCollectionExtensions_UseAutomaticKeyGenerationFile_
-  commentId: Overload:SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.UseAutomaticKeyGenerationFile
+- uid: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.UseAutomaticDataProtectionPolicy(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions)
+  name: UseAutomaticDataProtectionPolicy(IServiceCollection, ServicesCollectionOptions)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.html#SystemLibrary_Common_Web_Extensions_IServiceCollectionExtensions_UseAutomaticDataProtectionPolicy_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_
+  commentId: M:SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.UseAutomaticDataProtectionPolicy(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions)
+  fullName: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.UseAutomaticDataProtectionPolicy(Microsoft.Extensions.DependencyInjection.IServiceCollection, SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions)
+  nameWithType: IServiceCollectionExtensions.UseAutomaticDataProtectionPolicy(IServiceCollection, ServicesCollectionOptions)
+- uid: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.UseAutomaticDataProtectionPolicy*
+  name: UseAutomaticDataProtectionPolicy
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.html#SystemLibrary_Common_Web_Extensions_IServiceCollectionExtensions_UseAutomaticDataProtectionPolicy_
+  commentId: Overload:SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.UseAutomaticDataProtectionPolicy
   isSpec: "True"
-  fullName: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.UseAutomaticKeyGenerationFile
-  nameWithType: IServiceCollectionExtensions.UseAutomaticKeyGenerationFile
+  fullName: SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.UseAutomaticDataProtectionPolicy
+  nameWithType: IServiceCollectionExtensions.UseAutomaticDataProtectionPolicy
 - uid: SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions
   name: ServicesCollectionOptions
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.html
@@ -598,12 +841,24 @@ references:
   commentId: F:SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.AreaViewLocations
   fullName: SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.AreaViewLocations
   nameWithType: ServicesCollectionOptions.AreaViewLocations
-- uid: SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.UseAutomaticKeyGenerationFile
-  name: UseAutomaticKeyGenerationFile
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.html#SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_UseAutomaticKeyGenerationFile
-  commentId: F:SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.UseAutomaticKeyGenerationFile
-  fullName: SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.UseAutomaticKeyGenerationFile
-  nameWithType: ServicesCollectionOptions.UseAutomaticKeyGenerationFile
+- uid: SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.IISAllowSynchronousIO
+  name: IISAllowSynchronousIO
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.html#SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_IISAllowSynchronousIO
+  commentId: F:SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.IISAllowSynchronousIO
+  fullName: SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.IISAllowSynchronousIO
+  nameWithType: ServicesCollectionOptions.IISAllowSynchronousIO
+- uid: SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.UseAutomaticDataProtectionPolicy
+  name: UseAutomaticDataProtectionPolicy
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.html#SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_UseAutomaticDataProtectionPolicy
+  commentId: F:SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.UseAutomaticDataProtectionPolicy
+  fullName: SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.UseAutomaticDataProtectionPolicy
+  nameWithType: ServicesCollectionOptions.UseAutomaticDataProtectionPolicy
+- uid: SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.UseCustomTypeConverters
+  name: UseCustomTypeConverters
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.html#SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_UseCustomTypeConverters
+  commentId: F:SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.UseCustomTypeConverters
+  fullName: SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.UseCustomTypeConverters
+  nameWithType: ServicesCollectionOptions.UseCustomTypeConverters
 - uid: SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.UseMvc
   name: UseMvc
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.html#SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_UseMvc
@@ -640,12 +895,15 @@ references:
   commentId: T:SystemLibrary.Common.Web.Global.Log
   fullName: SystemLibrary.Common.Web.Global.Log
   nameWithType: Log
-- uid: SystemLibrary.Common.Web.Global.Log.Debug(System.Object)
-  name: Debug(Object)
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.Log.html#SystemLibrary_Common_Web_Global_Log_Debug_System_Object_
-  commentId: M:SystemLibrary.Common.Web.Global.Log.Debug(System.Object)
-  fullName: SystemLibrary.Common.Web.Global.Log.Debug(System.Object)
-  nameWithType: Log.Debug(Object)
+- uid: SystemLibrary.Common.Web.Global.Log.Debug(System.Object[])
+  name: Debug(Object[])
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.Log.html#SystemLibrary_Common_Web_Global_Log_Debug_System_Object___
+  commentId: M:SystemLibrary.Common.Web.Global.Log.Debug(System.Object[])
+  name.vb: Debug(Object())
+  fullName: SystemLibrary.Common.Web.Global.Log.Debug(System.Object[])
+  fullName.vb: SystemLibrary.Common.Web.Global.Log.Debug(System.Object())
+  nameWithType: Log.Debug(Object[])
+  nameWithType.vb: Log.Debug(Object())
 - uid: SystemLibrary.Common.Web.Global.Log.Debug*
   name: Debug
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.Log.html#SystemLibrary_Common_Web_Global_Log_Debug_
@@ -653,12 +911,15 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Web.Global.Log.Debug
   nameWithType: Log.Debug
-- uid: SystemLibrary.Common.Web.Global.Log.Error(System.Object)
-  name: Error(Object)
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.Log.html#SystemLibrary_Common_Web_Global_Log_Error_System_Object_
-  commentId: M:SystemLibrary.Common.Web.Global.Log.Error(System.Object)
-  fullName: SystemLibrary.Common.Web.Global.Log.Error(System.Object)
-  nameWithType: Log.Error(Object)
+- uid: SystemLibrary.Common.Web.Global.Log.Error(System.Object[])
+  name: Error(Object[])
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.Log.html#SystemLibrary_Common_Web_Global_Log_Error_System_Object___
+  commentId: M:SystemLibrary.Common.Web.Global.Log.Error(System.Object[])
+  name.vb: Error(Object())
+  fullName: SystemLibrary.Common.Web.Global.Log.Error(System.Object[])
+  fullName.vb: SystemLibrary.Common.Web.Global.Log.Error(System.Object())
+  nameWithType: Log.Error(Object[])
+  nameWithType.vb: Log.Error(Object())
 - uid: SystemLibrary.Common.Web.Global.Log.Error*
   name: Error
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.Log.html#SystemLibrary_Common_Web_Global_Log_Error_
@@ -666,25 +927,47 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Web.Global.Log.Error
   nameWithType: Log.Error
-- uid: SystemLibrary.Common.Web.Global.Log.Info(System.Object)
-  name: Info(Object)
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.Log.html#SystemLibrary_Common_Web_Global_Log_Info_System_Object_
-  commentId: M:SystemLibrary.Common.Web.Global.Log.Info(System.Object)
-  fullName: SystemLibrary.Common.Web.Global.Log.Info(System.Object)
-  nameWithType: Log.Info(Object)
-- uid: SystemLibrary.Common.Web.Global.Log.Info*
-  name: Info
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.Log.html#SystemLibrary_Common_Web_Global_Log_Info_
-  commentId: Overload:SystemLibrary.Common.Web.Global.Log.Info
+- uid: SystemLibrary.Common.Web.Global.Log.Information(System.Object[])
+  name: Information(Object[])
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.Log.html#SystemLibrary_Common_Web_Global_Log_Information_System_Object___
+  commentId: M:SystemLibrary.Common.Web.Global.Log.Information(System.Object[])
+  name.vb: Information(Object())
+  fullName: SystemLibrary.Common.Web.Global.Log.Information(System.Object[])
+  fullName.vb: SystemLibrary.Common.Web.Global.Log.Information(System.Object())
+  nameWithType: Log.Information(Object[])
+  nameWithType.vb: Log.Information(Object())
+- uid: SystemLibrary.Common.Web.Global.Log.Information*
+  name: Information
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.Log.html#SystemLibrary_Common_Web_Global_Log_Information_
+  commentId: Overload:SystemLibrary.Common.Web.Global.Log.Information
   isSpec: "True"
-  fullName: SystemLibrary.Common.Web.Global.Log.Info
-  nameWithType: Log.Info
-- uid: SystemLibrary.Common.Web.Global.Log.Warning(System.Object)
-  name: Warning(Object)
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.Log.html#SystemLibrary_Common_Web_Global_Log_Warning_System_Object_
-  commentId: M:SystemLibrary.Common.Web.Global.Log.Warning(System.Object)
-  fullName: SystemLibrary.Common.Web.Global.Log.Warning(System.Object)
-  nameWithType: Log.Warning(Object)
+  fullName: SystemLibrary.Common.Web.Global.Log.Information
+  nameWithType: Log.Information
+- uid: SystemLibrary.Common.Web.Global.Log.Trace(System.Object[])
+  name: Trace(Object[])
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.Log.html#SystemLibrary_Common_Web_Global_Log_Trace_System_Object___
+  commentId: M:SystemLibrary.Common.Web.Global.Log.Trace(System.Object[])
+  name.vb: Trace(Object())
+  fullName: SystemLibrary.Common.Web.Global.Log.Trace(System.Object[])
+  fullName.vb: SystemLibrary.Common.Web.Global.Log.Trace(System.Object())
+  nameWithType: Log.Trace(Object[])
+  nameWithType.vb: Log.Trace(Object())
+- uid: SystemLibrary.Common.Web.Global.Log.Trace*
+  name: Trace
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.Log.html#SystemLibrary_Common_Web_Global_Log_Trace_
+  commentId: Overload:SystemLibrary.Common.Web.Global.Log.Trace
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.Global.Log.Trace
+  nameWithType: Log.Trace
+- uid: SystemLibrary.Common.Web.Global.Log.Warning(System.Object[])
+  name: Warning(Object[])
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.Log.html#SystemLibrary_Common_Web_Global_Log_Warning_System_Object___
+  commentId: M:SystemLibrary.Common.Web.Global.Log.Warning(System.Object[])
+  name.vb: Warning(Object())
+  fullName: SystemLibrary.Common.Web.Global.Log.Warning(System.Object[])
+  fullName.vb: SystemLibrary.Common.Web.Global.Log.Warning(System.Object())
+  nameWithType: Log.Warning(Object[])
+  nameWithType.vb: Log.Warning(Object())
 - uid: SystemLibrary.Common.Web.Global.Log.Warning*
   name: Warning
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.Log.html#SystemLibrary_Common_Web_Global_Log_Warning_
@@ -692,12 +975,15 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Web.Global.Log.Warning
   nameWithType: Log.Warning
-- uid: SystemLibrary.Common.Web.Global.Log.Write(System.Object)
-  name: Write(Object)
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.Log.html#SystemLibrary_Common_Web_Global_Log_Write_System_Object_
-  commentId: M:SystemLibrary.Common.Web.Global.Log.Write(System.Object)
-  fullName: SystemLibrary.Common.Web.Global.Log.Write(System.Object)
-  nameWithType: Log.Write(Object)
+- uid: SystemLibrary.Common.Web.Global.Log.Write(System.Object[])
+  name: Write(Object[])
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.Log.html#SystemLibrary_Common_Web_Global_Log_Write_System_Object___
+  commentId: M:SystemLibrary.Common.Web.Global.Log.Write(System.Object[])
+  name.vb: Write(Object())
+  fullName: SystemLibrary.Common.Web.Global.Log.Write(System.Object[])
+  fullName.vb: SystemLibrary.Common.Web.Global.Log.Write(System.Object())
+  nameWithType: Log.Write(Object[])
+  nameWithType.vb: Log.Write(Object())
 - uid: SystemLibrary.Common.Web.Global.Log.Write*
   name: Write
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.Log.html#SystemLibrary_Common_Web_Global_Log_Write_
@@ -705,36 +991,38 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Web.Global.Log.Write
   nameWithType: Log.Write
-- uid: SystemLibrary.Common.Web.Global.LogLevel
-  name: LogLevel
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.LogLevel.html
-  commentId: T:SystemLibrary.Common.Web.Global.LogLevel
-  fullName: SystemLibrary.Common.Web.Global.LogLevel
-  nameWithType: LogLevel
-- uid: SystemLibrary.Common.Web.Global.LogLevel.Debug
-  name: Debug
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.LogLevel.html#SystemLibrary_Common_Web_Global_LogLevel_Debug
-  commentId: F:SystemLibrary.Common.Web.Global.LogLevel.Debug
-  fullName: SystemLibrary.Common.Web.Global.LogLevel.Debug
-  nameWithType: LogLevel.Debug
-- uid: SystemLibrary.Common.Web.Global.LogLevel.Error
-  name: Error
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.LogLevel.html#SystemLibrary_Common_Web_Global_LogLevel_Error
-  commentId: F:SystemLibrary.Common.Web.Global.LogLevel.Error
-  fullName: SystemLibrary.Common.Web.Global.LogLevel.Error
-  nameWithType: LogLevel.Error
-- uid: SystemLibrary.Common.Web.Global.LogLevel.Info
-  name: Info
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.LogLevel.html#SystemLibrary_Common_Web_Global_LogLevel_Info
-  commentId: F:SystemLibrary.Common.Web.Global.LogLevel.Info
-  fullName: SystemLibrary.Common.Web.Global.LogLevel.Info
-  nameWithType: LogLevel.Info
-- uid: SystemLibrary.Common.Web.Global.LogLevel.Warning
-  name: Warning
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.LogLevel.html#SystemLibrary_Common_Web_Global_LogLevel_Warning
-  commentId: F:SystemLibrary.Common.Web.Global.LogLevel.Warning
-  fullName: SystemLibrary.Common.Web.Global.LogLevel.Warning
-  nameWithType: LogLevel.Warning
+- uid: SystemLibrary.Common.Web.GlobalEnumConverter
+  name: GlobalEnumConverter
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.GlobalEnumConverter.html
+  commentId: T:SystemLibrary.Common.Web.GlobalEnumConverter
+  fullName: SystemLibrary.Common.Web.GlobalEnumConverter
+  nameWithType: GlobalEnumConverter
+- uid: SystemLibrary.Common.Web.GlobalEnumConverter.#ctor(System.Type)
+  name: GlobalEnumConverter(Type)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.GlobalEnumConverter.html#SystemLibrary_Common_Web_GlobalEnumConverter__ctor_System_Type_
+  commentId: M:SystemLibrary.Common.Web.GlobalEnumConverter.#ctor(System.Type)
+  fullName: SystemLibrary.Common.Web.GlobalEnumConverter.GlobalEnumConverter(System.Type)
+  nameWithType: GlobalEnumConverter.GlobalEnumConverter(Type)
+- uid: SystemLibrary.Common.Web.GlobalEnumConverter.#ctor*
+  name: GlobalEnumConverter
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.GlobalEnumConverter.html#SystemLibrary_Common_Web_GlobalEnumConverter__ctor_
+  commentId: Overload:SystemLibrary.Common.Web.GlobalEnumConverter.#ctor
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.GlobalEnumConverter.GlobalEnumConverter
+  nameWithType: GlobalEnumConverter.GlobalEnumConverter
+- uid: SystemLibrary.Common.Web.GlobalEnumConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)
+  name: ConvertFrom(ITypeDescriptorContext, CultureInfo, Object)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.GlobalEnumConverter.html#SystemLibrary_Common_Web_GlobalEnumConverter_ConvertFrom_System_ComponentModel_ITypeDescriptorContext_System_Globalization_CultureInfo_System_Object_
+  commentId: M:SystemLibrary.Common.Web.GlobalEnumConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)
+  fullName: SystemLibrary.Common.Web.GlobalEnumConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext, System.Globalization.CultureInfo, System.Object)
+  nameWithType: GlobalEnumConverter.ConvertFrom(ITypeDescriptorContext, CultureInfo, Object)
+- uid: SystemLibrary.Common.Web.GlobalEnumConverter.ConvertFrom*
+  name: ConvertFrom
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.GlobalEnumConverter.html#SystemLibrary_Common_Web_GlobalEnumConverter_ConvertFrom_
+  commentId: Overload:SystemLibrary.Common.Web.GlobalEnumConverter.ConvertFrom
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.GlobalEnumConverter.ConvertFrom
+  nameWithType: GlobalEnumConverter.ConvertFrom
 - uid: SystemLibrary.Common.Web.HtmlHelperFactory
   name: HtmlHelperFactory
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HtmlHelperFactory.html
@@ -763,185 +1051,6 @@ references:
   fullName.vb: SystemLibrary.Common.Web.HtmlHelperFactory.Build(Of T)()
   nameWithType: HtmlHelperFactory.Build<T>()
   nameWithType.vb: HtmlHelperFactory.Build(Of T)()
-- uid: SystemLibrary.Common.Web.HttpBaseClient
-  name: HttpBaseClient
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.html
-  commentId: T:SystemLibrary.Common.Web.HttpBaseClient
-  fullName: SystemLibrary.Common.Web.HttpBaseClient
-  nameWithType: HttpBaseClient
-- uid: SystemLibrary.Common.Web.HttpBaseClient.#ctor(System.Boolean,System.Boolean,System.Int32,System.Boolean)
-  name: HttpBaseClient(Boolean, Boolean, Int32, Boolean)
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.html#SystemLibrary_Common_Web_HttpBaseClient__ctor_System_Boolean_System_Boolean_System_Int32_System_Boolean_
-  commentId: M:SystemLibrary.Common.Web.HttpBaseClient.#ctor(System.Boolean,System.Boolean,System.Int32,System.Boolean)
-  fullName: SystemLibrary.Common.Web.HttpBaseClient.HttpBaseClient(System.Boolean, System.Boolean, System.Int32, System.Boolean)
-  nameWithType: HttpBaseClient.HttpBaseClient(Boolean, Boolean, Int32, Boolean)
-- uid: SystemLibrary.Common.Web.HttpBaseClient.#ctor*
-  name: HttpBaseClient
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.html#SystemLibrary_Common_Web_HttpBaseClient__ctor_
-  commentId: Overload:SystemLibrary.Common.Web.HttpBaseClient.#ctor
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Web.HttpBaseClient.HttpBaseClient
-  nameWithType: HttpBaseClient.HttpBaseClient
-- uid: SystemLibrary.Common.Web.HttpBaseClient.Delete*
-  name: Delete
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.html#SystemLibrary_Common_Web_HttpBaseClient_Delete_
-  commentId: Overload:SystemLibrary.Common.Web.HttpBaseClient.Delete
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Web.HttpBaseClient.Delete
-  nameWithType: HttpBaseClient.Delete
-- uid: SystemLibrary.Common.Web.HttpBaseClient.Delete``1(System.String,System.Object,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)
-  name: Delete<T>(String, Object, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken)
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.html#SystemLibrary_Common_Web_HttpBaseClient_Delete__1_System_String_System_Object_SystemLibrary_Common_Web_MediaType_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_
-  commentId: M:SystemLibrary.Common.Web.HttpBaseClient.Delete``1(System.String,System.Object,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)
-  name.vb: Delete(Of T)(String, Object, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken)
-  fullName: SystemLibrary.Common.Web.HttpBaseClient.Delete<T>(System.String, System.Object, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary<System.String, System.String>, System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken)
-  fullName.vb: SystemLibrary.Common.Web.HttpBaseClient.Delete(Of T)(System.String, System.Object, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary(Of System.String, System.String), System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken)
-  nameWithType: HttpBaseClient.Delete<T>(String, Object, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken)
-  nameWithType.vb: HttpBaseClient.Delete(Of T)(String, Object, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken)
-- uid: SystemLibrary.Common.Web.HttpBaseClient.DeleteAsync*
-  name: DeleteAsync
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.html#SystemLibrary_Common_Web_HttpBaseClient_DeleteAsync_
-  commentId: Overload:SystemLibrary.Common.Web.HttpBaseClient.DeleteAsync
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Web.HttpBaseClient.DeleteAsync
-  nameWithType: HttpBaseClient.DeleteAsync
-- uid: SystemLibrary.Common.Web.HttpBaseClient.DeleteAsync``1(System.String,System.Object,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)
-  name: DeleteAsync<T>(String, Object, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken)
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.html#SystemLibrary_Common_Web_HttpBaseClient_DeleteAsync__1_System_String_System_Object_SystemLibrary_Common_Web_MediaType_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_
-  commentId: M:SystemLibrary.Common.Web.HttpBaseClient.DeleteAsync``1(System.String,System.Object,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)
-  name.vb: DeleteAsync(Of T)(String, Object, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken)
-  fullName: SystemLibrary.Common.Web.HttpBaseClient.DeleteAsync<T>(System.String, System.Object, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary<System.String, System.String>, System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken)
-  fullName.vb: SystemLibrary.Common.Web.HttpBaseClient.DeleteAsync(Of T)(System.String, System.Object, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary(Of System.String, System.String), System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken)
-  nameWithType: HttpBaseClient.DeleteAsync<T>(String, Object, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken)
-  nameWithType.vb: HttpBaseClient.DeleteAsync(Of T)(String, Object, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken)
-- uid: SystemLibrary.Common.Web.HttpBaseClient.Get*
-  name: Get
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.html#SystemLibrary_Common_Web_HttpBaseClient_Get_
-  commentId: Overload:SystemLibrary.Common.Web.HttpBaseClient.Get
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Web.HttpBaseClient.Get
-  nameWithType: HttpBaseClient.Get
-- uid: SystemLibrary.Common.Web.HttpBaseClient.Get``1(System.String,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)
-  name: Get<T>(String, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken)
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.html#SystemLibrary_Common_Web_HttpBaseClient_Get__1_System_String_SystemLibrary_Common_Web_MediaType_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_
-  commentId: M:SystemLibrary.Common.Web.HttpBaseClient.Get``1(System.String,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)
-  name.vb: Get(Of T)(String, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken)
-  fullName: SystemLibrary.Common.Web.HttpBaseClient.Get<T>(System.String, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary<System.String, System.String>, System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken)
-  fullName.vb: SystemLibrary.Common.Web.HttpBaseClient.Get(Of T)(System.String, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary(Of System.String, System.String), System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken)
-  nameWithType: HttpBaseClient.Get<T>(String, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken)
-  nameWithType.vb: HttpBaseClient.Get(Of T)(String, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken)
-- uid: SystemLibrary.Common.Web.HttpBaseClient.GetAsync*
-  name: GetAsync
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.html#SystemLibrary_Common_Web_HttpBaseClient_GetAsync_
-  commentId: Overload:SystemLibrary.Common.Web.HttpBaseClient.GetAsync
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Web.HttpBaseClient.GetAsync
-  nameWithType: HttpBaseClient.GetAsync
-- uid: SystemLibrary.Common.Web.HttpBaseClient.GetAsync``1(System.String,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)
-  name: GetAsync<T>(String, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken)
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.html#SystemLibrary_Common_Web_HttpBaseClient_GetAsync__1_System_String_SystemLibrary_Common_Web_MediaType_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_
-  commentId: M:SystemLibrary.Common.Web.HttpBaseClient.GetAsync``1(System.String,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)
-  name.vb: GetAsync(Of T)(String, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken)
-  fullName: SystemLibrary.Common.Web.HttpBaseClient.GetAsync<T>(System.String, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary<System.String, System.String>, System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken)
-  fullName.vb: SystemLibrary.Common.Web.HttpBaseClient.GetAsync(Of T)(System.String, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary(Of System.String, System.String), System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken)
-  nameWithType: HttpBaseClient.GetAsync<T>(String, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken)
-  nameWithType.vb: HttpBaseClient.GetAsync(Of T)(String, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken)
-- uid: SystemLibrary.Common.Web.HttpBaseClient.Head*
-  name: Head
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.html#SystemLibrary_Common_Web_HttpBaseClient_Head_
-  commentId: Overload:SystemLibrary.Common.Web.HttpBaseClient.Head
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Web.HttpBaseClient.Head
-  nameWithType: HttpBaseClient.Head
-- uid: SystemLibrary.Common.Web.HttpBaseClient.Head``1(System.String,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)
-  name: Head<T>(String, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken)
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.html#SystemLibrary_Common_Web_HttpBaseClient_Head__1_System_String_SystemLibrary_Common_Web_MediaType_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_
-  commentId: M:SystemLibrary.Common.Web.HttpBaseClient.Head``1(System.String,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)
-  name.vb: Head(Of T)(String, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken)
-  fullName: SystemLibrary.Common.Web.HttpBaseClient.Head<T>(System.String, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary<System.String, System.String>, System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken)
-  fullName.vb: SystemLibrary.Common.Web.HttpBaseClient.Head(Of T)(System.String, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary(Of System.String, System.String), System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken)
-  nameWithType: HttpBaseClient.Head<T>(String, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken)
-  nameWithType.vb: HttpBaseClient.Head(Of T)(String, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken)
-- uid: SystemLibrary.Common.Web.HttpBaseClient.HeadAsync*
-  name: HeadAsync
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.html#SystemLibrary_Common_Web_HttpBaseClient_HeadAsync_
-  commentId: Overload:SystemLibrary.Common.Web.HttpBaseClient.HeadAsync
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Web.HttpBaseClient.HeadAsync
-  nameWithType: HttpBaseClient.HeadAsync
-- uid: SystemLibrary.Common.Web.HttpBaseClient.HeadAsync``1(System.String,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)
-  name: HeadAsync<T>(String, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken)
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.html#SystemLibrary_Common_Web_HttpBaseClient_HeadAsync__1_System_String_SystemLibrary_Common_Web_MediaType_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_
-  commentId: M:SystemLibrary.Common.Web.HttpBaseClient.HeadAsync``1(System.String,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)
-  name.vb: HeadAsync(Of T)(String, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken)
-  fullName: SystemLibrary.Common.Web.HttpBaseClient.HeadAsync<T>(System.String, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary<System.String, System.String>, System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken)
-  fullName.vb: SystemLibrary.Common.Web.HttpBaseClient.HeadAsync(Of T)(System.String, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary(Of System.String, System.String), System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken)
-  nameWithType: HttpBaseClient.HeadAsync<T>(String, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken)
-  nameWithType.vb: HttpBaseClient.HeadAsync(Of T)(String, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken)
-- uid: SystemLibrary.Common.Web.HttpBaseClient.Post*
-  name: Post
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.html#SystemLibrary_Common_Web_HttpBaseClient_Post_
-  commentId: Overload:SystemLibrary.Common.Web.HttpBaseClient.Post
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Web.HttpBaseClient.Post
-  nameWithType: HttpBaseClient.Post
-- uid: SystemLibrary.Common.Web.HttpBaseClient.Post``1(System.String,System.Object,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)
-  name: Post<T>(String, Object, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken)
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.html#SystemLibrary_Common_Web_HttpBaseClient_Post__1_System_String_System_Object_SystemLibrary_Common_Web_MediaType_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_
-  commentId: M:SystemLibrary.Common.Web.HttpBaseClient.Post``1(System.String,System.Object,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)
-  name.vb: Post(Of T)(String, Object, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken)
-  fullName: SystemLibrary.Common.Web.HttpBaseClient.Post<T>(System.String, System.Object, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary<System.String, System.String>, System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken)
-  fullName.vb: SystemLibrary.Common.Web.HttpBaseClient.Post(Of T)(System.String, System.Object, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary(Of System.String, System.String), System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken)
-  nameWithType: HttpBaseClient.Post<T>(String, Object, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken)
-  nameWithType.vb: HttpBaseClient.Post(Of T)(String, Object, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken)
-- uid: SystemLibrary.Common.Web.HttpBaseClient.PostAsync*
-  name: PostAsync
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.html#SystemLibrary_Common_Web_HttpBaseClient_PostAsync_
-  commentId: Overload:SystemLibrary.Common.Web.HttpBaseClient.PostAsync
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Web.HttpBaseClient.PostAsync
-  nameWithType: HttpBaseClient.PostAsync
-- uid: SystemLibrary.Common.Web.HttpBaseClient.PostAsync``1(System.String,System.Object,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)
-  name: PostAsync<T>(String, Object, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken)
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.html#SystemLibrary_Common_Web_HttpBaseClient_PostAsync__1_System_String_System_Object_SystemLibrary_Common_Web_MediaType_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_
-  commentId: M:SystemLibrary.Common.Web.HttpBaseClient.PostAsync``1(System.String,System.Object,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)
-  name.vb: PostAsync(Of T)(String, Object, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken)
-  fullName: SystemLibrary.Common.Web.HttpBaseClient.PostAsync<T>(System.String, System.Object, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary<System.String, System.String>, System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken)
-  fullName.vb: SystemLibrary.Common.Web.HttpBaseClient.PostAsync(Of T)(System.String, System.Object, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary(Of System.String, System.String), System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken)
-  nameWithType: HttpBaseClient.PostAsync<T>(String, Object, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken)
-  nameWithType.vb: HttpBaseClient.PostAsync(Of T)(String, Object, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken)
-- uid: SystemLibrary.Common.Web.HttpBaseClient.Put*
-  name: Put
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.html#SystemLibrary_Common_Web_HttpBaseClient_Put_
-  commentId: Overload:SystemLibrary.Common.Web.HttpBaseClient.Put
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Web.HttpBaseClient.Put
-  nameWithType: HttpBaseClient.Put
-- uid: SystemLibrary.Common.Web.HttpBaseClient.Put``1(System.String,System.Object,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)
-  name: Put<T>(String, Object, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken)
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.html#SystemLibrary_Common_Web_HttpBaseClient_Put__1_System_String_System_Object_SystemLibrary_Common_Web_MediaType_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_
-  commentId: M:SystemLibrary.Common.Web.HttpBaseClient.Put``1(System.String,System.Object,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)
-  name.vb: Put(Of T)(String, Object, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken)
-  fullName: SystemLibrary.Common.Web.HttpBaseClient.Put<T>(System.String, System.Object, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary<System.String, System.String>, System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken)
-  fullName.vb: SystemLibrary.Common.Web.HttpBaseClient.Put(Of T)(System.String, System.Object, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary(Of System.String, System.String), System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken)
-  nameWithType: HttpBaseClient.Put<T>(String, Object, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken)
-  nameWithType.vb: HttpBaseClient.Put(Of T)(String, Object, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken)
-- uid: SystemLibrary.Common.Web.HttpBaseClient.PutAsync*
-  name: PutAsync
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.html#SystemLibrary_Common_Web_HttpBaseClient_PutAsync_
-  commentId: Overload:SystemLibrary.Common.Web.HttpBaseClient.PutAsync
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Web.HttpBaseClient.PutAsync
-  nameWithType: HttpBaseClient.PutAsync
-- uid: SystemLibrary.Common.Web.HttpBaseClient.PutAsync``1(System.String,System.Object,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)
-  name: PutAsync<T>(String, Object, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken)
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpBaseClient.html#SystemLibrary_Common_Web_HttpBaseClient_PutAsync__1_System_String_System_Object_SystemLibrary_Common_Web_MediaType_System_Int32_System_Collections_Generic_IDictionary_System_String_System_String__System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_
-  commentId: M:SystemLibrary.Common.Web.HttpBaseClient.PutAsync``1(System.String,System.Object,SystemLibrary.Common.Web.MediaType,System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)
-  name.vb: PutAsync(Of T)(String, Object, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken)
-  fullName: SystemLibrary.Common.Web.HttpBaseClient.PutAsync<T>(System.String, System.Object, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary<System.String, System.String>, System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken)
-  fullName.vb: SystemLibrary.Common.Web.HttpBaseClient.PutAsync(Of T)(System.String, System.Object, SystemLibrary.Common.Web.MediaType, System.Int32, System.Collections.Generic.IDictionary(Of System.String, System.String), System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken)
-  nameWithType: HttpBaseClient.PutAsync<T>(String, Object, MediaType, Int32, IDictionary<String, String>, JsonSerializerOptions, CancellationToken)
-  nameWithType.vb: HttpBaseClient.PutAsync(Of T)(String, Object, MediaType, Int32, IDictionary(Of String, String), JsonSerializerOptions, CancellationToken)
 - uid: SystemLibrary.Common.Web.HttpContextInstance
   name: HttpContextInstance
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpContextInstance.html
@@ -993,19 +1102,32 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Web.ILogWriter.Error
   nameWithType: ILogWriter.Error
-- uid: SystemLibrary.Common.Web.ILogWriter.Info(System.String)
-  name: Info(String)
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.ILogWriter.html#SystemLibrary_Common_Web_ILogWriter_Info_System_String_
-  commentId: M:SystemLibrary.Common.Web.ILogWriter.Info(System.String)
-  fullName: SystemLibrary.Common.Web.ILogWriter.Info(System.String)
-  nameWithType: ILogWriter.Info(String)
-- uid: SystemLibrary.Common.Web.ILogWriter.Info*
-  name: Info
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.ILogWriter.html#SystemLibrary_Common_Web_ILogWriter_Info_
-  commentId: Overload:SystemLibrary.Common.Web.ILogWriter.Info
+- uid: SystemLibrary.Common.Web.ILogWriter.Information(System.String)
+  name: Information(String)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.ILogWriter.html#SystemLibrary_Common_Web_ILogWriter_Information_System_String_
+  commentId: M:SystemLibrary.Common.Web.ILogWriter.Information(System.String)
+  fullName: SystemLibrary.Common.Web.ILogWriter.Information(System.String)
+  nameWithType: ILogWriter.Information(String)
+- uid: SystemLibrary.Common.Web.ILogWriter.Information*
+  name: Information
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.ILogWriter.html#SystemLibrary_Common_Web_ILogWriter_Information_
+  commentId: Overload:SystemLibrary.Common.Web.ILogWriter.Information
   isSpec: "True"
-  fullName: SystemLibrary.Common.Web.ILogWriter.Info
-  nameWithType: ILogWriter.Info
+  fullName: SystemLibrary.Common.Web.ILogWriter.Information
+  nameWithType: ILogWriter.Information
+- uid: SystemLibrary.Common.Web.ILogWriter.Trace(System.String)
+  name: Trace(String)
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.ILogWriter.html#SystemLibrary_Common_Web_ILogWriter_Trace_System_String_
+  commentId: M:SystemLibrary.Common.Web.ILogWriter.Trace(System.String)
+  fullName: SystemLibrary.Common.Web.ILogWriter.Trace(System.String)
+  nameWithType: ILogWriter.Trace(String)
+- uid: SystemLibrary.Common.Web.ILogWriter.Trace*
+  name: Trace
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.ILogWriter.html#SystemLibrary_Common_Web_ILogWriter_Trace_
+  commentId: Overload:SystemLibrary.Common.Web.ILogWriter.Trace
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.ILogWriter.Trace
+  nameWithType: ILogWriter.Trace
 - uid: SystemLibrary.Common.Web.ILogWriter.Warning(System.String)
   name: Warning(String)
   href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.ILogWriter.html#SystemLibrary_Common_Web_ILogWriter_Warning_System_String_
@@ -1110,92 +1232,326 @@ references:
   commentId: F:SystemLibrary.Common.Web.MediaType.zip
   fullName: SystemLibrary.Common.Web.MediaType.zip
   nameWithType: MediaType.zip
-- uid: SystemLibrary.Common.Web.RetryRequestException
-  name: RetryRequestException
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.RetryRequestException.html
-  commentId: T:SystemLibrary.Common.Web.RetryRequestException
-  fullName: SystemLibrary.Common.Web.RetryRequestException
-  nameWithType: RetryRequestException
-- uid: SystemLibrary.Common.Web.RetryRequestException.#ctor(System.String,System.Exception)
-  name: RetryRequestException(String, Exception)
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.RetryRequestException.html#SystemLibrary_Common_Web_RetryRequestException__ctor_System_String_System_Exception_
-  commentId: M:SystemLibrary.Common.Web.RetryRequestException.#ctor(System.String,System.Exception)
-  fullName: SystemLibrary.Common.Web.RetryRequestException.RetryRequestException(System.String, System.Exception)
-  nameWithType: RetryRequestException.RetryRequestException(String, Exception)
-- uid: SystemLibrary.Common.Web.RetryRequestException.#ctor*
-  name: RetryRequestException
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.RetryRequestException.html#SystemLibrary_Common_Web_RetryRequestException__ctor_
-  commentId: Overload:SystemLibrary.Common.Web.RetryRequestException.#ctor
+- uid: SystemLibrary.Common.Web.PackageConfig
+  name: PackageConfig
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.html
+  commentId: T:SystemLibrary.Common.Web.PackageConfig
+  fullName: SystemLibrary.Common.Web.PackageConfig
+  nameWithType: PackageConfig
+- uid: SystemLibrary.Common.Web.PackageConfig.#ctor
+  name: PackageConfig()
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.html#SystemLibrary_Common_Web_PackageConfig__ctor
+  commentId: M:SystemLibrary.Common.Web.PackageConfig.#ctor
+  fullName: SystemLibrary.Common.Web.PackageConfig.PackageConfig()
+  nameWithType: PackageConfig.PackageConfig()
+- uid: SystemLibrary.Common.Web.PackageConfig.#ctor*
+  name: PackageConfig
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.html#SystemLibrary_Common_Web_PackageConfig__ctor_
+  commentId: Overload:SystemLibrary.Common.Web.PackageConfig.#ctor
   isSpec: "True"
-  fullName: SystemLibrary.Common.Web.RetryRequestException.RetryRequestException
-  nameWithType: RetryRequestException.RetryRequestException
-- uid: SystemLibrary.Common.Web.Services
-  name: Services
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Services.html
-  commentId: T:SystemLibrary.Common.Web.Services
-  fullName: SystemLibrary.Common.Web.Services
-  nameWithType: Services
-- uid: SystemLibrary.Common.Web.Services.AddScoped*
-  name: AddScoped
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Services.html#SystemLibrary_Common_Web_Services_AddScoped_
-  commentId: Overload:SystemLibrary.Common.Web.Services.AddScoped
+  fullName: SystemLibrary.Common.Web.PackageConfig.PackageConfig
+  nameWithType: PackageConfig.PackageConfig
+- uid: SystemLibrary.Common.Web.PackageConfig.Cache
+  name: Cache
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.html#SystemLibrary_Common_Web_PackageConfig_Cache
+  commentId: P:SystemLibrary.Common.Web.PackageConfig.Cache
+  fullName: SystemLibrary.Common.Web.PackageConfig.Cache
+  nameWithType: PackageConfig.Cache
+- uid: SystemLibrary.Common.Web.PackageConfig.Cache*
+  name: Cache
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.html#SystemLibrary_Common_Web_PackageConfig_Cache_
+  commentId: Overload:SystemLibrary.Common.Web.PackageConfig.Cache
   isSpec: "True"
-  fullName: SystemLibrary.Common.Web.Services.AddScoped
-  nameWithType: Services.AddScoped
-- uid: SystemLibrary.Common.Web.Services.AddScoped``2
-  name: AddScoped<T, TImpementation>()
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Services.html#SystemLibrary_Common_Web_Services_AddScoped__2
-  commentId: M:SystemLibrary.Common.Web.Services.AddScoped``2
-  name.vb: AddScoped(Of T, TImpementation)()
-  fullName: SystemLibrary.Common.Web.Services.AddScoped<T, TImpementation>()
-  fullName.vb: SystemLibrary.Common.Web.Services.AddScoped(Of T, TImpementation)()
-  nameWithType: Services.AddScoped<T, TImpementation>()
-  nameWithType.vb: Services.AddScoped(Of T, TImpementation)()
-- uid: SystemLibrary.Common.Web.Services.AddSingleton*
-  name: AddSingleton
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Services.html#SystemLibrary_Common_Web_Services_AddSingleton_
-  commentId: Overload:SystemLibrary.Common.Web.Services.AddSingleton
+  fullName: SystemLibrary.Common.Web.PackageConfig.Cache
+  nameWithType: PackageConfig.Cache
+- uid: SystemLibrary.Common.Web.PackageConfig.CacheConfiguration
+  name: PackageConfig.CacheConfiguration
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.html
+  commentId: T:SystemLibrary.Common.Web.PackageConfig.CacheConfiguration
+  fullName: SystemLibrary.Common.Web.PackageConfig.CacheConfiguration
+  nameWithType: PackageConfig.CacheConfiguration
+- uid: SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.ContainerSizeLimit
+  name: ContainerSizeLimit
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.html#SystemLibrary_Common_Web_PackageConfig_CacheConfiguration_ContainerSizeLimit
+  commentId: P:SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.ContainerSizeLimit
+  fullName: SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.ContainerSizeLimit
+  nameWithType: PackageConfig.CacheConfiguration.ContainerSizeLimit
+- uid: SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.ContainerSizeLimit*
+  name: ContainerSizeLimit
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.html#SystemLibrary_Common_Web_PackageConfig_CacheConfiguration_ContainerSizeLimit_
+  commentId: Overload:SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.ContainerSizeLimit
   isSpec: "True"
-  fullName: SystemLibrary.Common.Web.Services.AddSingleton
-  nameWithType: Services.AddSingleton
-- uid: SystemLibrary.Common.Web.Services.AddSingleton``2
-  name: AddSingleton<T, TImpementation>()
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Services.html#SystemLibrary_Common_Web_Services_AddSingleton__2
-  commentId: M:SystemLibrary.Common.Web.Services.AddSingleton``2
-  name.vb: AddSingleton(Of T, TImpementation)()
-  fullName: SystemLibrary.Common.Web.Services.AddSingleton<T, TImpementation>()
-  fullName.vb: SystemLibrary.Common.Web.Services.AddSingleton(Of T, TImpementation)()
-  nameWithType: Services.AddSingleton<T, TImpementation>()
-  nameWithType.vb: Services.AddSingleton(Of T, TImpementation)()
-- uid: SystemLibrary.Common.Web.Services.Get*
-  name: Get
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Services.html#SystemLibrary_Common_Web_Services_Get_
-  commentId: Overload:SystemLibrary.Common.Web.Services.Get
+  fullName: SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.ContainerSizeLimit
+  nameWithType: PackageConfig.CacheConfiguration.ContainerSizeLimit
+- uid: SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.Duration
+  name: Duration
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.html#SystemLibrary_Common_Web_PackageConfig_CacheConfiguration_Duration
+  commentId: P:SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.Duration
+  fullName: SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.Duration
+  nameWithType: PackageConfig.CacheConfiguration.Duration
+- uid: SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.Duration*
+  name: Duration
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.html#SystemLibrary_Common_Web_PackageConfig_CacheConfiguration_Duration_
+  commentId: Overload:SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.Duration
   isSpec: "True"
-  fullName: SystemLibrary.Common.Web.Services.Get
-  nameWithType: Services.Get
-- uid: SystemLibrary.Common.Web.Services.Get``1
-  name: Get<T>()
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Services.html#SystemLibrary_Common_Web_Services_Get__1
-  commentId: M:SystemLibrary.Common.Web.Services.Get``1
-  name.vb: Get(Of T)()
-  fullName: SystemLibrary.Common.Web.Services.Get<T>()
-  fullName.vb: SystemLibrary.Common.Web.Services.Get(Of T)()
-  nameWithType: Services.Get<T>()
-  nameWithType.vb: Services.Get(Of T)()
-- uid: SystemLibrary.Common.Web.Services.Remove*
-  name: Remove
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Services.html#SystemLibrary_Common_Web_Services_Remove_
-  commentId: Overload:SystemLibrary.Common.Web.Services.Remove
+  fullName: SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.Duration
+  nameWithType: PackageConfig.CacheConfiguration.Duration
+- uid: SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.FallbackDuration
+  name: FallbackDuration
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.html#SystemLibrary_Common_Web_PackageConfig_CacheConfiguration_FallbackDuration
+  commentId: P:SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.FallbackDuration
+  fullName: SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.FallbackDuration
+  nameWithType: PackageConfig.CacheConfiguration.FallbackDuration
+- uid: SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.FallbackDuration*
+  name: FallbackDuration
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.html#SystemLibrary_Common_Web_PackageConfig_CacheConfiguration_FallbackDuration_
+  commentId: Overload:SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.FallbackDuration
   isSpec: "True"
-  fullName: SystemLibrary.Common.Web.Services.Remove
-  nameWithType: Services.Remove
-- uid: SystemLibrary.Common.Web.Services.Remove``1
-  name: Remove<T>()
-  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.Services.html#SystemLibrary_Common_Web_Services_Remove__1
-  commentId: M:SystemLibrary.Common.Web.Services.Remove``1
-  name.vb: Remove(Of T)()
-  fullName: SystemLibrary.Common.Web.Services.Remove<T>()
-  fullName.vb: SystemLibrary.Common.Web.Services.Remove(Of T)()
-  nameWithType: Services.Remove<T>()
-  nameWithType.vb: Services.Remove(Of T)()
+  fullName: SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.FallbackDuration
+  nameWithType: PackageConfig.CacheConfiguration.FallbackDuration
+- uid: SystemLibrary.Common.Web.PackageConfig.Client
+  name: Client
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.html#SystemLibrary_Common_Web_PackageConfig_Client
+  commentId: P:SystemLibrary.Common.Web.PackageConfig.Client
+  fullName: SystemLibrary.Common.Web.PackageConfig.Client
+  nameWithType: PackageConfig.Client
+- uid: SystemLibrary.Common.Web.PackageConfig.Client*
+  name: Client
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.html#SystemLibrary_Common_Web_PackageConfig_Client_
+  commentId: Overload:SystemLibrary.Common.Web.PackageConfig.Client
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.PackageConfig.Client
+  nameWithType: PackageConfig.Client
+- uid: SystemLibrary.Common.Web.PackageConfig.ClientConfiguration
+  name: PackageConfig.ClientConfiguration
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.html
+  commentId: T:SystemLibrary.Common.Web.PackageConfig.ClientConfiguration
+  fullName: SystemLibrary.Common.Web.PackageConfig.ClientConfiguration
+  nameWithType: PackageConfig.ClientConfiguration
+- uid: SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.ClientCacheDuration
+  name: ClientCacheDuration
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.html#SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_ClientCacheDuration
+  commentId: P:SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.ClientCacheDuration
+  fullName: SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.ClientCacheDuration
+  nameWithType: PackageConfig.ClientConfiguration.ClientCacheDuration
+- uid: SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.ClientCacheDuration*
+  name: ClientCacheDuration
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.html#SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_ClientCacheDuration_
+  commentId: Overload:SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.ClientCacheDuration
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.ClientCacheDuration
+  nameWithType: PackageConfig.ClientConfiguration.ClientCacheDuration
+- uid: SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.IgnoreSslErrors
+  name: IgnoreSslErrors
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.html#SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_IgnoreSslErrors
+  commentId: P:SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.IgnoreSslErrors
+  fullName: SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.IgnoreSslErrors
+  nameWithType: PackageConfig.ClientConfiguration.IgnoreSslErrors
+- uid: SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.IgnoreSslErrors*
+  name: IgnoreSslErrors
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.html#SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_IgnoreSslErrors_
+  commentId: Overload:SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.IgnoreSslErrors
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.IgnoreSslErrors
+  nameWithType: PackageConfig.ClientConfiguration.IgnoreSslErrors
+- uid: SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.RetryTimeout
+  name: RetryTimeout
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.html#SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_RetryTimeout
+  commentId: P:SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.RetryTimeout
+  fullName: SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.RetryTimeout
+  nameWithType: PackageConfig.ClientConfiguration.RetryTimeout
+- uid: SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.RetryTimeout*
+  name: RetryTimeout
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.html#SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_RetryTimeout_
+  commentId: Overload:SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.RetryTimeout
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.RetryTimeout
+  nameWithType: PackageConfig.ClientConfiguration.RetryTimeout
+- uid: SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.ThrowOnUnsuccessful
+  name: ThrowOnUnsuccessful
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.html#SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_ThrowOnUnsuccessful
+  commentId: P:SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.ThrowOnUnsuccessful
+  fullName: SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.ThrowOnUnsuccessful
+  nameWithType: PackageConfig.ClientConfiguration.ThrowOnUnsuccessful
+- uid: SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.ThrowOnUnsuccessful*
+  name: ThrowOnUnsuccessful
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.html#SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_ThrowOnUnsuccessful_
+  commentId: Overload:SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.ThrowOnUnsuccessful
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.ThrowOnUnsuccessful
+  nameWithType: PackageConfig.ClientConfiguration.ThrowOnUnsuccessful
+- uid: SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.Timeout
+  name: Timeout
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.html#SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_Timeout
+  commentId: P:SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.Timeout
+  fullName: SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.Timeout
+  nameWithType: PackageConfig.ClientConfiguration.Timeout
+- uid: SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.Timeout*
+  name: Timeout
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.html#SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_Timeout_
+  commentId: Overload:SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.Timeout
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.Timeout
+  nameWithType: PackageConfig.ClientConfiguration.Timeout
+- uid: SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.UseRequestBreakerPolicy
+  name: UseRequestBreakerPolicy
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.html#SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_UseRequestBreakerPolicy
+  commentId: P:SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.UseRequestBreakerPolicy
+  fullName: SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.UseRequestBreakerPolicy
+  nameWithType: PackageConfig.ClientConfiguration.UseRequestBreakerPolicy
+- uid: SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.UseRequestBreakerPolicy*
+  name: UseRequestBreakerPolicy
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.html#SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_UseRequestBreakerPolicy_
+  commentId: Overload:SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.UseRequestBreakerPolicy
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.UseRequestBreakerPolicy
+  nameWithType: PackageConfig.ClientConfiguration.UseRequestBreakerPolicy
+- uid: SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.UseRetryPolicy
+  name: UseRetryPolicy
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.html#SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_UseRetryPolicy
+  commentId: P:SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.UseRetryPolicy
+  fullName: SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.UseRetryPolicy
+  nameWithType: PackageConfig.ClientConfiguration.UseRetryPolicy
+- uid: SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.UseRetryPolicy*
+  name: UseRetryPolicy
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.html#SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_UseRetryPolicy_
+  commentId: Overload:SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.UseRetryPolicy
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.UseRetryPolicy
+  nameWithType: PackageConfig.ClientConfiguration.UseRetryPolicy
+- uid: SystemLibrary.Common.Web.PackageConfig.Debug
+  name: Debug
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.html#SystemLibrary_Common_Web_PackageConfig_Debug
+  commentId: P:SystemLibrary.Common.Web.PackageConfig.Debug
+  fullName: SystemLibrary.Common.Web.PackageConfig.Debug
+  nameWithType: PackageConfig.Debug
+- uid: SystemLibrary.Common.Web.PackageConfig.Debug*
+  name: Debug
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.html#SystemLibrary_Common_Web_PackageConfig_Debug_
+  commentId: Overload:SystemLibrary.Common.Web.PackageConfig.Debug
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.PackageConfig.Debug
+  nameWithType: PackageConfig.Debug
+- uid: SystemLibrary.Common.Web.PackageConfig.Log
+  name: Log
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.html#SystemLibrary_Common_Web_PackageConfig_Log
+  commentId: P:SystemLibrary.Common.Web.PackageConfig.Log
+  fullName: SystemLibrary.Common.Web.PackageConfig.Log
+  nameWithType: PackageConfig.Log
+- uid: SystemLibrary.Common.Web.PackageConfig.Log*
+  name: Log
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.html#SystemLibrary_Common_Web_PackageConfig_Log_
+  commentId: Overload:SystemLibrary.Common.Web.PackageConfig.Log
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.PackageConfig.Log
+  nameWithType: PackageConfig.Log
+- uid: SystemLibrary.Common.Web.PackageConfig.LogConfiguration
+  name: PackageConfig.LogConfiguration
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.LogConfiguration.html
+  commentId: T:SystemLibrary.Common.Web.PackageConfig.LogConfiguration
+  fullName: SystemLibrary.Common.Web.PackageConfig.LogConfiguration
+  nameWithType: PackageConfig.LogConfiguration
+- uid: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendBrowser
+  name: AppendBrowser
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.LogConfiguration.html#SystemLibrary_Common_Web_PackageConfig_LogConfiguration_AppendBrowser
+  commentId: P:SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendBrowser
+  fullName: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendBrowser
+  nameWithType: PackageConfig.LogConfiguration.AppendBrowser
+- uid: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendBrowser*
+  name: AppendBrowser
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.LogConfiguration.html#SystemLibrary_Common_Web_PackageConfig_LogConfiguration_AppendBrowser_
+  commentId: Overload:SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendBrowser
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendBrowser
+  nameWithType: PackageConfig.LogConfiguration.AppendBrowser
+- uid: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendCookieInfo
+  name: AppendCookieInfo
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.LogConfiguration.html#SystemLibrary_Common_Web_PackageConfig_LogConfiguration_AppendCookieInfo
+  commentId: P:SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendCookieInfo
+  fullName: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendCookieInfo
+  nameWithType: PackageConfig.LogConfiguration.AppendCookieInfo
+- uid: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendCookieInfo*
+  name: AppendCookieInfo
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.LogConfiguration.html#SystemLibrary_Common_Web_PackageConfig_LogConfiguration_AppendCookieInfo_
+  commentId: Overload:SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendCookieInfo
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendCookieInfo
+  nameWithType: PackageConfig.LogConfiguration.AppendCookieInfo
+- uid: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendCorrelationId
+  name: AppendCorrelationId
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.LogConfiguration.html#SystemLibrary_Common_Web_PackageConfig_LogConfiguration_AppendCorrelationId
+  commentId: P:SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendCorrelationId
+  fullName: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendCorrelationId
+  nameWithType: PackageConfig.LogConfiguration.AppendCorrelationId
+- uid: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendCorrelationId*
+  name: AppendCorrelationId
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.LogConfiguration.html#SystemLibrary_Common_Web_PackageConfig_LogConfiguration_AppendCorrelationId_
+  commentId: Overload:SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendCorrelationId
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendCorrelationId
+  nameWithType: PackageConfig.LogConfiguration.AppendCorrelationId
+- uid: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendIp
+  name: AppendIp
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.LogConfiguration.html#SystemLibrary_Common_Web_PackageConfig_LogConfiguration_AppendIp
+  commentId: P:SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendIp
+  fullName: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendIp
+  nameWithType: PackageConfig.LogConfiguration.AppendIp
+- uid: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendIp*
+  name: AppendIp
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.LogConfiguration.html#SystemLibrary_Common_Web_PackageConfig_LogConfiguration_AppendIp_
+  commentId: Overload:SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendIp
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendIp
+  nameWithType: PackageConfig.LogConfiguration.AppendIp
+- uid: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendLoggedInState
+  name: AppendLoggedInState
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.LogConfiguration.html#SystemLibrary_Common_Web_PackageConfig_LogConfiguration_AppendLoggedInState
+  commentId: P:SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendLoggedInState
+  fullName: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendLoggedInState
+  nameWithType: PackageConfig.LogConfiguration.AppendLoggedInState
+- uid: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendLoggedInState*
+  name: AppendLoggedInState
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.LogConfiguration.html#SystemLibrary_Common_Web_PackageConfig_LogConfiguration_AppendLoggedInState_
+  commentId: Overload:SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendLoggedInState
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendLoggedInState
+  nameWithType: PackageConfig.LogConfiguration.AppendLoggedInState
+- uid: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendPath
+  name: AppendPath
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.LogConfiguration.html#SystemLibrary_Common_Web_PackageConfig_LogConfiguration_AppendPath
+  commentId: P:SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendPath
+  fullName: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendPath
+  nameWithType: PackageConfig.LogConfiguration.AppendPath
+- uid: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendPath*
+  name: AppendPath
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.LogConfiguration.html#SystemLibrary_Common_Web_PackageConfig_LogConfiguration_AppendPath_
+  commentId: Overload:SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendPath
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendPath
+  nameWithType: PackageConfig.LogConfiguration.AppendPath
+- uid: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.Format
+  name: Format
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.LogConfiguration.html#SystemLibrary_Common_Web_PackageConfig_LogConfiguration_Format
+  commentId: P:SystemLibrary.Common.Web.PackageConfig.LogConfiguration.Format
+  fullName: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.Format
+  nameWithType: PackageConfig.LogConfiguration.Format
+- uid: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.Format*
+  name: Format
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.LogConfiguration.html#SystemLibrary_Common_Web_PackageConfig_LogConfiguration_Format_
+  commentId: Overload:SystemLibrary.Common.Web.PackageConfig.LogConfiguration.Format
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.Format
+  nameWithType: PackageConfig.LogConfiguration.Format
+- uid: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.Level
+  name: Level
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.LogConfiguration.html#SystemLibrary_Common_Web_PackageConfig_LogConfiguration_Level
+  commentId: P:SystemLibrary.Common.Web.PackageConfig.LogConfiguration.Level
+  fullName: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.Level
+  nameWithType: PackageConfig.LogConfiguration.Level
+- uid: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.Level*
+  name: Level
+  href: SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.LogConfiguration.html#SystemLibrary_Common_Web_PackageConfig_LogConfiguration_Level_
+  commentId: Overload:SystemLibrary.Common.Web.PackageConfig.LogConfiguration.Level
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Web.PackageConfig.LogConfiguration.Level
+  nameWithType: PackageConfig.LogConfiguration.Level

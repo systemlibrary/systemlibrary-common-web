@@ -3,7 +3,7 @@
 /// <summary>
 /// Web Application Builder Options
 /// <para>All options are 'true' (on) by default</para>
-/// - Used as argument in 'app.CommonWebApplicationBuilder' function
+/// Used as argument in 'app.CommonWebApplicationBuilder' function
 /// </summary>
 /// <example>
 /// Startup.cs/Program.cs:

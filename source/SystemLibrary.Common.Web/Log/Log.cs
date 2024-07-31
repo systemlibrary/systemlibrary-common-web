@@ -127,16 +127,11 @@ public static partial class Log
     }
 
     /// <summary>
-    /// Writing the object to your logwriter
-    /// 
-    /// - This ignores logging 'isEnabled' option in appSettings
-    /// - This ignores 'log level' option in appSettings
-    /// 
-    /// This builds a log message no matter what
+    /// Always writing the message to your LogWriter
+    /// <para>This ignores the log level set in appSettings, so it always writes</para>
     /// </summary>
     /// <param name="obj">Object can be of any type, a string, list, dictionary, etc...</param>
     /// <example>
-    /// Usage:
     /// <code>
     /// var list = new List&lt;User&gt;
     /// list.Add(new User { firstName = "hello", LastName = "World" });

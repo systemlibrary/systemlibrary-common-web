@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="overflow: hidden;font-size: 1px;max-width: 1px; visibility: hidden; position: absolute; margin-left: -4000px;">
-        MediaType,BaseOptions,LogLevel,ClientResponse__-1_T__-2_,CalleeCancelledRequestException,RetryRequestException</div>
+        MediaType,BaseOptions,LogLevel,ClientResponse__-1_T__-2_,CacheConfiguration,ClientConfiguration,CalleeCancelledRequestException,RetryRequestException,GlobalEnumConverter,LogConfiguration,PackageConfig</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -268,6 +268,7 @@ Log.Write(&quot;hello world&quot;);</code></pre>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
+  
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_ILogWriter_Debug_System_String_">
   		<span class="small pull-right mobile-hide">
   			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/ILogWriter.cs/#L55">View Source</a>
@@ -307,12 +308,14 @@ Log.Write(&quot;hello world&quot;);</code></pre>
   
   
   
+  
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Implement the writing of error messages</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
+  
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_ILogWriter_Error_System_String_">
   		<span class="small pull-right mobile-hide">
@@ -353,22 +356,24 @@ Log.Write(&quot;hello world&quot;);</code></pre>
   
   
   
+  
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Implement the writing of info messages</p>
+  		<div class="markdown level1 summary member-summary"><p>Implement the writing of information messages</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_ILogWriter_Info_System_String_">
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_ILogWriter_Information_System_String_">
   		<span class="small pull-right mobile-hide">
   			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/ILogWriter.cs/#L60">View Source</a>
   		</span>
   	</div>
-  	<a id="SystemLibrary_Common_Web_ILogWriter_Info_" data-uid="SystemLibrary.Common.Web.ILogWriter.Info*"></a>
+  	<a id="SystemLibrary_Common_Web_ILogWriter_Information_" data-uid="SystemLibrary.Common.Web.ILogWriter.Information*"></a>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_ILogWriter_Info_System_String_" data-uid="SystemLibrary.Common.Web.ILogWriter.Info(System.String)" class="h4-custom-functionName">void Info(string message)</h4>
+  		<h4 id="SystemLibrary_Common_Web_ILogWriter_Information_System_String_" data-uid="SystemLibrary.Common.Web.ILogWriter.Information(System.String)" class="h4-custom-functionName">void Information(string message)</h4>
   		<div class="custom-menu-data-container">
   
   			<div class="custom-menu-data-arguments" style="display: none;">
@@ -399,12 +404,62 @@ Log.Write(&quot;hello world&quot;);</code></pre>
   
   
   
+  
+  <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Implement the writing of trace messages</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
+  
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_ILogWriter_Trace_System_String_">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/ILogWriter.cs/#L65">View Source</a>
+  		</span>
+  	</div>
+  	<a id="SystemLibrary_Common_Web_ILogWriter_Trace_" data-uid="SystemLibrary.Common.Web.ILogWriter.Trace*"></a>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Web_ILogWriter_Trace_System_String_" data-uid="SystemLibrary.Common.Web.ILogWriter.Trace(System.String)" class="h4-custom-functionName">void Trace(string message)</h4>
+  		<div class="custom-menu-data-container">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  				<table class="table table-bordered table-striped table-condensed">
+  					<thead>
+  						<tr>
+  							<th>Type</th>
+  							<th>Name</th>
+  							<th>Description</th>
+  						</tr>
+  					</thead>
+  					<tbody>
+  						<tr>
+  							<td><span class="xref">System.String</span></td>
+  							<td><span class="parametername">message</span></td>
+  							<td></td>
+  						</tr>
+  					</tbody>
+  				</table>
+  			</div>
+  
+  		</div>
+  	</div>
+  </div>
+  
+  
+  
+  
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Implement the writing of warning messages</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
+  
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_ILogWriter_Warning_System_String_">
   		<span class="small pull-right mobile-hide">
@@ -445,6 +500,7 @@ Log.Write(&quot;hello world&quot;);</code></pre>
   
   
   
+  
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Implement the writing of warning messages</p>
@@ -453,9 +509,10 @@ Log.Write(&quot;hello world&quot;);</code></pre>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
+  
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_ILogWriter_Write_System_String_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/ILogWriter.cs/#L67">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Log/ILogWriter.cs/#L72">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_ILogWriter_Write_" data-uid="SystemLibrary.Common.Web.ILogWriter.Write*"></a>
@@ -489,6 +546,7 @@ Log.Write(&quot;hello world&quot;);</code></pre>
   		</div>
   	</div>
   </div>
+  
   
   
   
@@ -899,6 +957,38 @@ Log.Write(&quot;hello world&quot;);</code></pre>
   		);
   	}
   
+  	function addRemarksOnClickEvent(className) {
+  		var remarks = document.getElementsByClassName(className);
+  		if (remarks) {
+  			for (var i = 0; i < remarks.length; i++) {
+  				var remark = remarks[i];
+  				if (remark && remark.classList) {
+  					var closeBtns = remark.parentNode.getElementsByClassName('custom-remarks-menu-data--close');
+  					if (closeBtns) {
+  						var closeBtn = closeBtns[0];
+  						if (closeBtn) {
+  							closeBtn.addEventListener("click", function (e) {
+  								e.target.parentNode.classList.toggle('visible');
+  							});
+  						}
+  					}
+  					remark.addEventListener("click", function (e) {
+  						var remarkTexts = e.target.parentNode.getElementsByClassName(className + ' text');
+  						if (!remarkTexts || !remarkTexts.length) {
+  							remarkTexts = e.target.parentNode.parentNode.getElementsByClassName(className + ' text');
+  						}
+  						if (remarkTexts && remarkTexts.length) {
+  							var remarkText = remarkTexts[0];
+  							if (remarkText) {
+  								remarkText.classList.toggle('visible');
+  							}
+  						}
+  					});
+  				}
+  			}
+  		}
+  	}
+  
   	function addEventDisplayMenuDataOnClickPart(partName) {
   		var i;
   
@@ -1115,6 +1205,9 @@ Log.Write(&quot;hello world&quot;);</code></pre>
   	setTimeout(() => hideSourceLinksForDocfxHideAttribute(), 35);
   
   	setTimeout(addEventsToTabCloseButtons, 40);
+  
+  	setTimeout(() => addRemarksOnClickEvent('custom-remarks1'), 50);
+  	setTimeout(() => addRemarksOnClickEvent('custom-remarks2'), 55);
   
   	//setTimeout(removeEmptyPopups, 50);
   </script>

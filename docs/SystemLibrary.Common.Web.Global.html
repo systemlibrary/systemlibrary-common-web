@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="overflow: hidden;font-size: 1px;max-width: 1px; visibility: hidden; position: absolute; margin-left: -4000px;">
-        MediaType,BaseOptions,LogLevel,ClientResponse__-1_T__-2_,CalleeCancelledRequestException,RetryRequestException</div>
+        MediaType,BaseOptions,LogLevel,ClientResponse__-1_T__-2_,CacheConfiguration,ClientConfiguration,CalleeCancelledRequestException,RetryRequestException,GlobalEnumConverter,LogConfiguration,PackageConfig</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -199,23 +199,7 @@
     <h3 id="classes">Classes
   </h3>
       <h4><a class="xref" href="SystemLibrary.Common.Web.Global.Log.html">Log</a></h4>
-      <section id="SystemLibrary.Common.Web.Global.Log--description"><p>One log class for your whole application</p>
-<p>This lives in the Global Namespace - so it is available inside your views, controllers, services, anywhere, as long as the nuget package is added</p>
-<ul>
-<li><p>You implement the actual LogWriter : ILogWriter of where the message should be stored</p>
-</li>
-<li><p>Remember to register your LogWriter as a service in your application</p>
-</li>
-<li><p>After implementing ILogWriter, simply call Log.Error, Log.Warning or Log.Write to create a log message and it will passed to your implementation of ILogWriter</p>
-</li>
-<li><p>If you have not registered an ILogWriter interface this simply calls on Dump.Write() with the message</p>
-</li>
-</ul>
-</section>
-    <h3 id="enums">Enums
-  </h3>
-      <h4><a class="xref" href="SystemLibrary.Common.Web.Global.LogLevel.html"></a></h4>
-      <section id="SystemLibrary.Common.Web.Global.LogLevel--description"><p>The log levels you can chose between</p>
+      <section id="SystemLibrary.Common.Web.Global.Log--description"><p>Log class, responsible for taking any object and create a decent message, based on current request data, and send the whole message as a string to your LogWriter</p>
 </section>
 </article>
           </div>

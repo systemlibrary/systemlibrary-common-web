@@ -19,11 +19,47 @@ namespace SystemLibrary.Common.Web.Extensions;
 public static partial class IServiceCollectionExtensions
 {
     /// <summary>
-    /// Add common web services such as response compression, output cache, MVC, 
+    /// Configures ServiceCollection in one-line, so register all of your own or other service configurations after this one
+    /// <list>
+    /// <item>Registers:</item>
+    /// <item>- MVC services</item>
+    /// <item>- Razor Page services</item>
+    /// <item>- Routing services</item>
+    /// <item>- ForwardedProtocol and ForwardedIp (XForwardedFor) headers</item>
+    /// <item>- Compression for Gzip and Brotli services</item>
+    /// <item>- Authentication and authorization services</item>
+    /// <item>- Output cache services</item>
+    /// <item>- Registers the main assembly and all its controllers (if any), as in: your Web Application Project's assembly</item>
+    /// </list>
+    /// Optionally, through the argument ServicesCollectionOptions: 
+    /// <list>
+    /// <item>- Can register view locations</item>
+    /// <item>- Can register area view locations</item>
+    /// <item>- Can register one ViewLocationExpander</item>
+    /// <item>- and more...</item>
+    /// </list>
     /// </summary>
-    /// <param name="services"></param>
-    /// <param name="options"></param>
-    /// <returns></returns>
+    /// <example>
+    /// Startup.cs/Program.cs:
+    /// <code>
+    /// public void ConfigureServices(IServiceCollection services)
+    /// {
+    ///     var options = new ServicesCollectionOptions();
+    ///     
+    ///     options.ViewLocations = new string[] {
+    ///         "~/Views/{0}/index.cshtml"
+    ///     }
+    ///     
+    ///     options.AreaViewLocations = new string[] {
+    ///         "~/Area/{2}/{1}/{0}.cshtml"
+    ///     }
+    ///     
+    ///     options.ViewLocationExpander = null; //or create one based on the Interface 'IViewLocationExpander'
+    /// 
+    ///     services.AddCommonWebServices(options);
+    /// }
+    /// </code>
+    /// </example>
     public static IServiceCollection AddCommonWebServices(this IServiceCollection services, ServicesCollectionOptions options = null)
     {
         Services.Configure(services);
@@ -114,26 +150,32 @@ public static partial class IServiceCollectionExtensions
 
     /// <summary>
     /// Configures ServiceCollection in one-line, so register all of your own or other service configurations after this one
-    /// 
-    /// Registers:
-    /// - MVC services
-    /// - Razor Page services
-    /// - Routing services
-    /// - ForwardedProtocol and ForwardedIp (XForwardedFor) headers
-    /// - Compression for Gzip and Brotli services
-    /// - Authentication and authorization services
-    /// - Output cache services
-    /// - Registers the main assembly and all its controllers (if any), as in: your Web Application Project's assembly
-    /// 
+    /// <list>
+    /// <item>Registers:</item>
+    /// <item>- MVC services</item>
+    /// <item>- Razor Page services</item>
+    /// <item>- Routing services</item>
+    /// <item>- ForwardedProtocol and ForwardedIp (XForwardedFor) headers</item>
+    /// <item>- Compression for Gzip and Brotli services</item>
+    /// <item>- Authentication and authorization services</item>
+    /// <item>- Output cache services</item>
+    /// <item>- Registers the main assembly and all its controllers (if any), as in: your Web Application Project's assembly</item>
+    /// </list>
     /// Optionally, through the argument ServicesCollectionOptions: 
-    /// - Can register view locations
-    /// - Can register area view locations
-    /// - Can register one ViewLocationExpander
-    /// - and more...
+    /// <list>
+    /// <item>- Can register view locations</item>
+    /// <item>- Can register area view locations</item>
+    /// <item>- Can register one ViewLocationExpander</item>
+    /// <item>- and more...</item>
+    /// </list>
     /// </summary>
     /// <example>
     /// Startup.cs/Program.cs:
     /// <code>
+    /// pulic class LogWriter : ILogWriter 
+    /// {
+    ///     // Implement interface methods
+    /// }
     /// public void ConfigureServices(IServiceCollection services)
     /// {
     ///     var options = new ServicesCollectionOptions();
@@ -148,7 +190,7 @@ public static partial class IServiceCollectionExtensions
     ///     
     ///     options.ViewLocationExpander = null; //or create one based on the Interface 'IViewLocationExpander'
     /// 
-    ///     services.AddCommonWebServices(options);
+    ///     services.AddCommonWebServices&lt;LogWriter&gt;(options);
     /// }
     /// </code>
     /// </example>
@@ -156,6 +198,7 @@ public static partial class IServiceCollectionExtensions
     {
         services = AddCommonWebServices(services, options);
 
+        // NOTE: Was transient, now scoped, but probably can be a singleton as it gets all input
         services = services.AddScoped<ILogWriter, TLogWriter>();
 
         return services;

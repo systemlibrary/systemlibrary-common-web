@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="overflow: hidden;font-size: 1px;max-width: 1px; visibility: hidden; position: absolute; margin-left: -4000px;">
-        MediaType,BaseOptions,LogLevel,ClientResponse__-1_T__-2_,CalleeCancelledRequestException,RetryRequestException</div>
+        MediaType,BaseOptions,LogLevel,ClientResponse__-1_T__-2_,CacheConfiguration,ClientConfiguration,CalleeCancelledRequestException,RetryRequestException,GlobalEnumConverter,LogConfiguration,PackageConfig</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -237,16 +237,22 @@
   </h3>
   
   <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Specify a path as a branch to register different middlewares to trigger on certain paths</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
+  
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_IApplicationBuilderExtensions_UseBranch_Microsoft_AspNetCore_Builder_IApplicationBuilder_Microsoft_AspNetCore_Hosting_IWebHostEnvironment_System_String_SystemLibrary_Common_Web_Extensions_AppBuilderOptions_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/IApplicationBuilderExtensions.cs/#L19">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/IApplicationBuilderExtensions.cs/#L23">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_Extensions_IApplicationBuilderExtensions_UseBranch_" data-uid="SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.UseBranch*"></a>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_Extensions_IApplicationBuilderExtensions_UseBranch_Microsoft_AspNetCore_Builder_IApplicationBuilder_Microsoft_AspNetCore_Hosting_IWebHostEnvironment_System_String_SystemLibrary_Common_Web_Extensions_AppBuilderOptions_" data-uid="SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.UseBranch(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,System.String,SystemLibrary.Common.Web.Extensions.AppBuilderOptions)" class="h4-custom-functionName">public static IApplicationBuilder UseBranch(this IApplicationBuilder app, IWebHostEnvironment env, string branch, AppBuilderOptions options = null)</h4>
+  		<h4 id="SystemLibrary_Common_Web_Extensions_IApplicationBuilderExtensions_UseBranch_Microsoft_AspNetCore_Builder_IApplicationBuilder_Microsoft_AspNetCore_Hosting_IWebHostEnvironment_System_String_SystemLibrary_Common_Web_Extensions_AppBuilderOptions_" data-uid="SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.UseBranch(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,System.String,SystemLibrary.Common.Web.Extensions.AppBuilderOptions)" class="h4-custom-functionName">public static IApplicationBuilder UseBranch(this IApplicationBuilder app, IWebHostEnvironment env, string branchPath, AppBuilderOptions options = null)</h4>
   		<div class="custom-menu-data-container">
   
   			<div class="custom-menu-data-arguments" style="display: none;">
@@ -274,7 +280,7 @@
   						</tr>
   						<tr>
   							<td><span class="xref">System.String</span></td>
-  							<td><span class="parametername">branch</span></td>
+  							<td><span class="parametername">branchPath</span></td>
   							<td></td>
   						</tr>
   						<tr>
@@ -310,10 +316,10 @@
   
   
   
+  
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Register common middlewares for a web application</p>
-<p>Note: This is usually the first registration of middlewares you have, unless your own logging middleware/tracing goes before</p>
 <p>This will register:</p>
 <ul>
 <li>Http to Https redirection middleware, client and server side</li>
@@ -332,9 +338,21 @@
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
+  	<div class="custom-remarks-container">
+  		<div class="custom-remarks custom-remarks2">
+  			<h5 id="SystemLibrary_Common_Web_Extensions_IApplicationBuilderExtensions_UseCommonWebApp_Microsoft_AspNetCore_Builder_IApplicationBuilder_Microsoft_AspNetCore_Hosting_IWebHostEnvironment_SystemLibrary_Common_Web_Extensions_AppBuilderOptions__remarks">Remarks</h5>
+  		</div>
+  
+  		<div class="custom-remarks custom-remarks2 text">
+  			<div class="custom-remarks-menu-data--close">X</div>
+  			<div class="markdown level1 remarks"><p>This should be your first registration of middlewares you have, exception might be your own middleware for logging/tracing requests</p>
+</div>
+  		</div>
+  	</div>
+  
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_IApplicationBuilderExtensions_UseCommonWebApp_Microsoft_AspNetCore_Builder_IApplicationBuilder_Microsoft_AspNetCore_Hosting_IWebHostEnvironment_SystemLibrary_Common_Web_Extensions_AppBuilderOptions_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/IApplicationBuilderExtensions.cs/#L60">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/IApplicationBuilderExtensions.cs/#L65">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_Extensions_IApplicationBuilderExtensions_UseCommonWebApp_" data-uid="SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.UseCommonWebApp*"></a>
@@ -408,6 +426,7 @@
   		</div>
   	</div>
   </div>
+  
   
   
   
@@ -818,6 +837,38 @@
   		);
   	}
   
+  	function addRemarksOnClickEvent(className) {
+  		var remarks = document.getElementsByClassName(className);
+  		if (remarks) {
+  			for (var i = 0; i < remarks.length; i++) {
+  				var remark = remarks[i];
+  				if (remark && remark.classList) {
+  					var closeBtns = remark.parentNode.getElementsByClassName('custom-remarks-menu-data--close');
+  					if (closeBtns) {
+  						var closeBtn = closeBtns[0];
+  						if (closeBtn) {
+  							closeBtn.addEventListener("click", function (e) {
+  								e.target.parentNode.classList.toggle('visible');
+  							});
+  						}
+  					}
+  					remark.addEventListener("click", function (e) {
+  						var remarkTexts = e.target.parentNode.getElementsByClassName(className + ' text');
+  						if (!remarkTexts || !remarkTexts.length) {
+  							remarkTexts = e.target.parentNode.parentNode.getElementsByClassName(className + ' text');
+  						}
+  						if (remarkTexts && remarkTexts.length) {
+  							var remarkText = remarkTexts[0];
+  							if (remarkText) {
+  								remarkText.classList.toggle('visible');
+  							}
+  						}
+  					});
+  				}
+  			}
+  		}
+  	}
+  
   	function addEventDisplayMenuDataOnClickPart(partName) {
   		var i;
   
@@ -1035,6 +1086,9 @@
   
   	setTimeout(addEventsToTabCloseButtons, 40);
   
+  	setTimeout(() => addRemarksOnClickEvent('custom-remarks1'), 50);
+  	setTimeout(() => addRemarksOnClickEvent('custom-remarks2'), 55);
+  
   	//setTimeout(removeEmptyPopups, 50);
   </script>
   
@@ -1050,7 +1104,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/IApplicationBuilderExtensions.cs/#L17" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IApplicationBuilderExtensions/IApplicationBuilderExtensions.cs/#L18" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

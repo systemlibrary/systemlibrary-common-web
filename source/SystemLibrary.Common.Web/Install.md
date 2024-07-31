@@ -60,26 +60,26 @@ public class Startup
 ```json  
 {
 	"systemLibraryCommonWeb": {
-		"debug": false,	// Internal debug info in this package is logged if true
+		"debug": false, // Internal debug info in this package is logged if true
 		
 		"cache": {
-		  "duration": 180,
-		  "fallbackDuration": 600,
-		  "containerSizeLimit": 60000
+			"duration": 180,
+			"fallbackDuration": 600,
+			"containerSizeLimit": 60000
 		},
-
+		
 		"client": {
-		  "timeout": 40001,
-		  "retryTimeout": 10000,
-		  "ignoreSslErrors": true,
-		  "useRetryPolicy": true,
-		  "throwOnUnsuccessful": false,
-		  "useRequestBreakerPolicy": false,
-		  "clientCacheDuration": 1200
+			"timeout": 40001,
+			"retryTimeout": 10000,
+			"ignoreSslErrors": true,
+			"useRetryPolicy": true,
+			"throwOnUnsuccessful": true,
+			"useRequestBreakerPolicy": false,
+			"clientCacheDuration": 1200
 		},
-
+		
 		"log": {
-			"level": "Information" // Trace, Information, Debug, Warning, Error, None
+			"level": "Information", // Trace, Information, Debug, Warning, Error, None
 			"appendPath": true,
 			"appendLoggedInState": true,
 			"appendCorrelationId": true,

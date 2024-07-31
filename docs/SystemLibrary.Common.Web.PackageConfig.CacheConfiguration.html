@@ -1,22 +1,22 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Services
+    <title>PackageConfig.CacheConfiguration
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Services
+    <meta name="title" content="PackageConfig.CacheConfiguration
    ">
     <meta name="generator" content="docfx 2.59.4.0">
     
-    <link rel="shortcut icon" href="/systemlibrary-common-web/favicon.ico">
-    <link rel="stylesheet" href="/systemlibrary-common-web/styles/docfx.vendor.css">
-    <link rel="stylesheet" href="/systemlibrary-common-web/styles/docfx.css">
-    <link rel="stylesheet" href="/systemlibrary-common-web/styles/main.css">
-    <link rel="stylesheet" href="/systemlibrary-common-web/styles/custom.css">
+    <link rel="shortcut icon" href="[%relativeHostingPath%]favicon.ico">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/docfx.vendor.css">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/docfx.css">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/main.css">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/custom.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
@@ -50,9 +50,9 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="..//systemlibrary-common-web/index.html">
-                <img id="logo" class="svg" src="..//systemlibrary-common-web/logo.png" alt="">
-                <span class="navbar-title">System Library Common Web</span>
+              <a class="navbar-brand" href="../[%relativeHostingPath%]index.html">
+                <img id="logo" class="svg" src="../[%relativeHostingPath%]logo.png" alt="">
+                <span class="navbar-title">[%siteTitle%]</span>
               </a>
               
             </div>
@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="overflow: hidden;font-size: 1px;max-width: 1px; visibility: hidden; position: absolute; margin-left: -4000px;">
-        MediaType,BaseOptions,LogLevel,ClientResponse__-1_T__-2_,CalleeCancelledRequestException,RetryRequestException</div>
+        [%custom-skipDocumentationFor%]</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -189,7 +189,7 @@
         <div class="article row grid-right">
         <div class="article row grid">
           <div class="col-md-10">
-            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Web.Services">
+            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Web.PackageConfig.CacheConfiguration">
   
   
   <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Web.html">SystemLibrary.Common.Web</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Web.dll</span></h6>
@@ -197,63 +197,30 @@
   <div class="markdown level0 conceptual h1-class-conceptual"></div>
   
   <div class="h1-class-summary-container">
-    <div class="markdown level0 summary h1-class-summary"><p>Dependency injection registry</p>
-<ul>
-<li><p>look at it as 'Service Locator'</p>
-</li>
-<li><p>works in unit tests, console app's and web applications</p>
-</li>
-</ul>
-<p>Usage:</p>
-<ul>
-<li>requires a call in startup/program to 'services.AddCommonWebServices()' before usage</li>
-</ul>
-</div>
+    <div class="markdown level0 summary h1-class-summary"></div>
   </div>
   
-  <h1 id="SystemLibrary_Common_Web_Services" data-uid="SystemLibrary.Common.Web.Services" class="text-break h1-class-header">Services
+  <h1 id="SystemLibrary_Common_Web_PackageConfig_CacheConfiguration" data-uid="SystemLibrary.Common.Web.PackageConfig.CacheConfiguration" class="text-break h1-class-header">PackageConfig.CacheConfiguration
   </h1>
-  <h1 id="SystemLibrary_Common_Web_Services" data-uid="SystemLibrary.Common.Web.Services" class="h1-custom-display className">public static class Services</h1>
+  <h1 id="SystemLibrary_Common_Web_PackageConfig_CacheConfiguration" data-uid="SystemLibrary.Common.Web.PackageConfig.CacheConfiguration" class="h1-custom-display className">public class CacheConfiguration</h1>
   
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">Services</span></div>
+    <div class="level1"><span class="xref">PackageConfig.CacheConfiguration</span></div>
   </div>
   
   
   <div class="custom-menu-data custom-menu-data-first">
-    <h5 id="SystemLibrary_Common_Web_Services_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
+    <h5 id="SystemLibrary_Common_Web_PackageConfig_CacheConfiguration_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
   
     <div class="custom-menu-data-container custom-menu-data-container--example">
-      <div class="custom-menu-data-class-example" style="display: none;">
-        <div class="syslib-tab-menu-data--close">X</div>
-        <div class="codewrapper"><pre><code>public class Car : IVehicle 
-{ 
-    public string Name = &quot;Some car name&quot;;
-}</code></pre>
-<p>Startup.cs/Program.cs:</p>
-<pre><code>public void ConfigureServices(IServiceCollection services)
-{
-   var options = new CommonWebServicesOptions();
-
-   services.AddCommonWebServices(options);
-
-   services.AddTransient&lt;IVehicle, Car>();
-}</code></pre>
-<p>In a controller or anywhere after the initialization of services has ran:</p>
-<pre><code>var car = Services.Get>IVehicle&lt;
-car.Name //&apos;car&apos; is constructed so it&apos;s not null
-Dump.Write(car.GetType()); //dumps &apos;Car&apos;, not &apos;IVehicle&apos;</code></pre>
-</div>
-        <div class="comment-examples-container-bottom"></div>
-      </div>
     </div>
   </div>
   
   
   <div class="custom-menu-data">
-    <h5 id="SystemLibrary_Common_Web_Services_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
+    <h5 id="SystemLibrary_Common_Web_PackageConfig_CacheConfiguration_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
   
     <div class="custom-menu-data-container">
       <div class="custom-menu-data-class-arguments" style="display: none;">
@@ -265,44 +232,25 @@ Dump.Write(car.GetType()); //dumps &apos;Car&apos;, not &apos;IVehicle&apos;</co
   </div>
   
   <div class='custom-class-content-inline'>
-  <h3 id="methods">Methods
+  <h3 id="properties">Properties
   </h3>
   
   <div class="custom-container">
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Services_AddScoped__2">
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_PackageConfig_CacheConfiguration_ContainerSizeLimit">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Services/Services.cs/#L78">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/PackageConfig.cs/#L45">View Source</a>
   		</span>
   	</div>
-  	<a id="SystemLibrary_Common_Web_Services_AddScoped_" data-uid="SystemLibrary.Common.Web.Services.AddScoped*"></a>
+  	<a id="SystemLibrary_Common_Web_PackageConfig_CacheConfiguration_ContainerSizeLimit_" data-uid="SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.ContainerSizeLimit*"></a>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_Services_AddScoped__2" data-uid="SystemLibrary.Common.Web.Services.AddScoped``2" class="h4-custom-functionName">public static void AddScoped&lt;T, TImpementation&gt;()
-    where T : class where TImpementation : class, T</h4>
+  		<h4 id="SystemLibrary_Common_Web_PackageConfig_CacheConfiguration_ContainerSizeLimit" data-uid="SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.ContainerSizeLimit" class="h4-custom-functionName">public int ContainerSizeLimit { get; set; }</h4>
   		<div class="custom-menu-data-container">
   
   			<div class="custom-menu-data-arguments" style="display: none;">
   				<div class="syslib-tab-menu-data--close">X</div>
-  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Generic types</h5>
-  				<table class="table table-bordered table-striped table-condensed class-tmpl-partial-typeParameters-table">
-  					<thead>
-  						<tr>
-  							<th>Name</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="parametername">T</span></td>
-  							<td></td>
-  						</tr>
-  						<tr>
-  							<td><span class="parametername">TImpementation</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
   
   			</div>
   
@@ -310,43 +258,40 @@ Dump.Write(car.GetType()); //dumps &apos;Car&apos;, not &apos;IVehicle&apos;</co
   	</div>
   </div>
   
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Int32</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
   
   
   <div class="custom-container">
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Services_AddSingleton__2">
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_PackageConfig_CacheConfiguration_Duration">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Services/Services.cs/#L88">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/PackageConfig.cs/#L44">View Source</a>
   		</span>
   	</div>
-  	<a id="SystemLibrary_Common_Web_Services_AddSingleton_" data-uid="SystemLibrary.Common.Web.Services.AddSingleton*"></a>
+  	<a id="SystemLibrary_Common_Web_PackageConfig_CacheConfiguration_Duration_" data-uid="SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.Duration*"></a>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_Services_AddSingleton__2" data-uid="SystemLibrary.Common.Web.Services.AddSingleton``2" class="h4-custom-functionName">public static void AddSingleton&lt;T, TImpementation&gt;()
-    where T : class where TImpementation : class, T</h4>
+  		<h4 id="SystemLibrary_Common_Web_PackageConfig_CacheConfiguration_Duration" data-uid="SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.Duration" class="h4-custom-functionName">public int Duration { get; set; }</h4>
   		<div class="custom-menu-data-container">
   
   			<div class="custom-menu-data-arguments" style="display: none;">
   				<div class="syslib-tab-menu-data--close">X</div>
-  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Generic types</h5>
-  				<table class="table table-bordered table-striped table-condensed class-tmpl-partial-typeParameters-table">
-  					<thead>
-  						<tr>
-  							<th>Name</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="parametername">T</span></td>
-  							<td></td>
-  						</tr>
-  						<tr>
-  							<td><span class="parametername">TImpementation</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
   
   			</div>
   
@@ -354,126 +299,40 @@ Dump.Write(car.GetType()); //dumps &apos;Car&apos;, not &apos;IVehicle&apos;</co
   	</div>
   </div>
   
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Int32</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
   
   
   <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Returns the service registered for the type T or null if not found</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Services_Get__1">
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_PackageConfig_CacheConfiguration_FallbackDuration">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Services/Services.cs/#L73">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/PackageConfig.cs/#L46">View Source</a>
   		</span>
   	</div>
-  	<a id="SystemLibrary_Common_Web_Services_Get_" data-uid="SystemLibrary.Common.Web.Services.Get*"></a>
+  	<a id="SystemLibrary_Common_Web_PackageConfig_CacheConfiguration_FallbackDuration_" data-uid="SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.FallbackDuration*"></a>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_Services_Get__1" data-uid="SystemLibrary.Common.Web.Services.Get``1" class="h4-custom-functionName">public static T Get&lt;T&gt;()
-    where T : class</h4>
+  		<h4 id="SystemLibrary_Common_Web_PackageConfig_CacheConfiguration_FallbackDuration" data-uid="SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.FallbackDuration" class="h4-custom-functionName">public int FallbackDuration { get; set; }</h4>
   		<div class="custom-menu-data-container">
-  			<div class="custom-menu-data-name" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  				<div class="codewrapper"><p>Usage:</p>
-<pre><code>var obj = Services.Get&lt;IVehicle>();
-//obj is now null if IVehicle is not a registered service, otherwise it is new&apos;d up and ready to be used</code></pre>
-</div>
-  				<div class="comment-examples-container-bottom"></div>
-  			</div>
   
   			<div class="custom-menu-data-arguments" style="display: none;">
   				<div class="syslib-tab-menu-data--close">X</div>
-  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Generic types</h5>
-  				<table class="table table-bordered table-striped table-condensed class-tmpl-partial-typeParameters-table">
-  					<thead>
-  						<tr>
-  							<th>Name</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="parametername">T</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
-  
-  			</div>
-  
-  			<div class="custom-menu-data-returntype" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  				<table class="table table-bordered table-striped table-condensed table-return">
-  					<thead>
-  						<tr>
-  							<th>Type</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="xref">T</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
-  			</div>
-  		</div>
-  	</div>
-  </div>
-  
-  
-  
-  <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Tries to remove the service registered, or does nothing if already removed</p>
-<p>Note: can throw exception if it is invoked on too early in the 'middleware pipeline'</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Services_Remove__1">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Services/Services.cs/#L113">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Web_Services_Remove_" data-uid="SystemLibrary.Common.Web.Services.Remove*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_Services_Remove__1" data-uid="SystemLibrary.Common.Web.Services.Remove``1" class="h4-custom-functionName">public static void Remove&lt;T&gt;()</h4>
-  		<div class="custom-menu-data-container">
-  			<div class="custom-menu-data-name" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  				<div class="codewrapper"><p>Usage:</p>
-<pre><code>Services.Remove&lt;IVehicle>();
-// Removes IVehicle if it exists
-// If it does not exist, it calls Log.Error() with message, it does not throw exception
-
-// Note: It can throw exception if called before services.AddCommonWebServices()</code></pre>
-</div>
-  				<div class="comment-examples-container-bottom"></div>
-  			</div>
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Generic types</h5>
-  				<table class="table table-bordered table-striped table-condensed class-tmpl-partial-typeParameters-table">
-  					<thead>
-  						<tr>
-  							<th>Name</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="parametername">T</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
   
   			</div>
   
@@ -481,6 +340,22 @@ Dump.Write(car.GetType()); //dumps &apos;Car&apos;, not &apos;IVehicle&apos;</co
   	</div>
   </div>
   
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Int32</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
   
   
   
@@ -890,6 +765,38 @@ Dump.Write(car.GetType()); //dumps &apos;Car&apos;, not &apos;IVehicle&apos;</co
   		);
   	}
   
+  	function addRemarksOnClickEvent(className) {
+  		var remarks = document.getElementsByClassName(className);
+  		if (remarks) {
+  			for (var i = 0; i < remarks.length; i++) {
+  				var remark = remarks[i];
+  				if (remark && remark.classList) {
+  					var closeBtns = remark.parentNode.getElementsByClassName('custom-remarks-menu-data--close');
+  					if (closeBtns) {
+  						var closeBtn = closeBtns[0];
+  						if (closeBtn) {
+  							closeBtn.addEventListener("click", function (e) {
+  								e.target.parentNode.classList.toggle('visible');
+  							});
+  						}
+  					}
+  					remark.addEventListener("click", function (e) {
+  						var remarkTexts = e.target.parentNode.getElementsByClassName(className + ' text');
+  						if (!remarkTexts || !remarkTexts.length) {
+  							remarkTexts = e.target.parentNode.parentNode.getElementsByClassName(className + ' text');
+  						}
+  						if (remarkTexts && remarkTexts.length) {
+  							var remarkText = remarkTexts[0];
+  							if (remarkText) {
+  								remarkText.classList.toggle('visible');
+  							}
+  						}
+  					});
+  				}
+  			}
+  		}
+  	}
+  
   	function addEventDisplayMenuDataOnClickPart(partName) {
   		var i;
   
@@ -1107,6 +1014,9 @@ Dump.Write(car.GetType()); //dumps &apos;Car&apos;, not &apos;IVehicle&apos;</co
   
   	setTimeout(addEventsToTabCloseButtons, 40);
   
+  	setTimeout(() => addRemarksOnClickEvent('custom-remarks1'), 50);
+  	setTimeout(() => addRemarksOnClickEvent('custom-remarks2'), 55);
+  
   	//setTimeout(removeEmptyPopups, 50);
   </script>
   
@@ -1122,7 +1032,7 @@ Dump.Write(car.GetType()); //dumps &apos;Car&apos;, not &apos;IVehicle&apos;</co
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Services/Services.cs/#L45" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/PackageConfig.cs/#L42" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -1140,16 +1050,16 @@ Dump.Write(car.GetType()); //dumps &apos;Car&apos;, not &apos;IVehicle&apos;</co
         <div class="grad-bottom"></div>
         <div class="footer">
           <div class="container">
-            <span>Package: <a href="https://www.nuget.org/packages/SystemLibrary.Common.Web/">nuget</a></span><br>
-            <span>Source: <a href="https://github.com/systemlibrary/systemlibrary-common-web/">github</a></span><br>
-            <span>Website: <a href="https://www.systemlibrary.com/">System Library Common Web</a></span>
+            <span>Package: <a href="[%footerNugetUrl%]">nuget</a></span><br>
+            <span>Source: <a href="[%footerGithubUrl%]">github</a></span><br>
+            <span>Website: <a href="[%footerWebsiteUrl%]">[%footerSiteTitle%]</a></span>
           </div>
         </div>
       </footer>
     </div>
     
-    <script type="text/javascript" src="..//systemlibrary-common-web/styles/docfx.vendor.js"></script>
-    <script type="text/javascript" src="..//systemlibrary-common-web/styles/docfx.js"></script>
-    <script type="text/javascript" src="..//systemlibrary-common-web/styles/main.js"></script>
+    <script type="text/javascript" src="../[%relativeHostingPath%]styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../[%relativeHostingPath%]styles/docfx.js"></script>
+    <script type="text/javascript" src="../[%relativeHostingPath%]styles/main.js"></script>
   </body>
 </html>

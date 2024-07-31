@@ -33,12 +33,9 @@ namespace SystemLibrary.Common.Web;
 /// </list>
 /// </summary>
 /// <remarks>
-/// Cache is limited to 240.000 items by default, divided by 4 containers, where any item added takes up 1 size
-/// 
-/// <para>Each container is limited to 60.000 items, once reached 33% of the oldest are removed, ready to be GC'ed</para>
-/// 
-/// Null is never added to cache
-/// 
+/// Cache is configured to a max capacity of 240.000 items, divided by 4 containers, where any item added takes up 1 size
+/// <para>Each container is configured to a max capacity of 60.000 items, once reached 33% of the oldest are removed, ready to be GC'ed</para>
+/// A null value is never added to cache
 /// <list>
 /// <item>Overwrite default cache configurations in appSettings.json:</item>
 /// <item>- duration: 180, minimum 1</item>
@@ -48,11 +45,11 @@ namespace SystemLibrary.Common.Web;
 /// Auto-generating cache key adds namespace, class, method, method-scoped variables of types such as bool, string, int, datetime, enum and few others
 /// - If a method-scoped variable is a class, its public members of same types are also appended as cacheKey
 /// - IsAuthenticated is always appended to cacheKey
-/// - Claim 'role', 'Role' or RoleClaimType is also always appended to cacheKey
+/// - Claim 'role', 'Role' and RoleClaimType if found, is always appended to cacheKey
 /// - Always adds built-in prefix
 /// </remarks>
 /// <example>
-/// Configure the cache in appSettings.json 
+/// Configure the cache in appSettings.json, heres the default:
 /// <code>
 /// {
 ///     "systemLibraryCommonWeb": {
@@ -524,6 +521,7 @@ public static partial class Cache
     /// <remarks>
     /// Uses the stack frame to read current namespace and method as cache key, so max 1 invocation per function scope, else you must fill out the breakKey parameter too
     /// <para>- in the future it might support multiple...</para>
+    /// <para>Multiple threads running at same time, will trigger this multiple times as we do not really 'lock'</para>
     /// </remarks>
     /// <param name="duration">The time span for which subsequent executions are prevented.</param>
     /// <example>

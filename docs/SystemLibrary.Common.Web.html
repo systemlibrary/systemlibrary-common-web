@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="overflow: hidden;font-size: 1px;max-width: 1px; visibility: hidden; position: absolute; margin-left: -4000px;">
-        MediaType,BaseOptions,LogLevel,ClientResponse__-1_T__-2_,CalleeCancelledRequestException,RetryRequestException</div>
+        MediaType,BaseOptions,LogLevel,ClientResponse__-1_T__-2_,CacheConfiguration,ClientConfiguration,CalleeCancelledRequestException,RetryRequestException,GlobalEnumConverter,LogConfiguration,PackageConfig</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -199,30 +199,14 @@
     <h3 id="classes">Classes
   </h3>
       <h4><a class="xref" href="SystemLibrary.Common.Web.ActionContextInstance.html">ActionContextInstance</a></h4>
-      <section id="SystemLibrary.Common.Web.ActionContextInstance--description"><p>An implementation of the 'old' thread safe singleton ActionContext we all know and love from .NET Framework</p>
+      <section id="SystemLibrary.Common.Web.ActionContextInstance--description"><p>A class that has a reference to the ActionContext instance</p>
 </section>
       <h4><a class="xref" href="SystemLibrary.Common.Web.Cache.html">Cache</a></h4>
       <section id="SystemLibrary.Common.Web.Cache--description"><p>Caching for web applications</p>
 <p>Default duration is 180 seconds</p>
-<ul>
-<li>configurable in appSettings.json or per Get() invocation</li>
-</ul>
-<p>Auto-generates a cachekey for you if you don't specify one</p>
-<ul>
-<li>the flag &quot;IsAuthenticated&quot; is added to the cache key so it varies based on either logged in or logged out</li>
-<li>if IsAuthenticated is true and user's identity is of type &quot;ClaimsPrincipal&quot;, it adds all roles to the cache key</li>
-</ul>
-<p>Optionally, you can skip cache by setting parameters:</p>
-<ul>
-<li>skipForAuthenticatedUsers, false by default</li>
-<li>skipForAdmins, true by default</li>
-</ul>
-<ul>
-<li>true if current principal is in either of these case sensitive roles: &quot;Admin&quot;, &quot;Admins&quot;, &quot;Administrator&quot;, &quot;Administrators&quot;, &quot;WebAdmins&quot;, &quot;CmsAdmins&quot;</li>
-</ul>
-<ul>
-<li>skipFor, your own implementation which returns true to skip</li>
-</ul>
+<p>Try using auto-generating cache keys, which differentiate caching down to user roles.</p>
+<p>- Cache things per user, by userId/email? Create your own cacheKey</p>
+<p>&apos;Skip&apos; means that the item will not be fetched from cache</p>
 </section>
       <h4><a class="xref" href="SystemLibrary.Common.Web.CalleeCancelledRequestException.html"></a></h4>
       <section id="SystemLibrary.Common.Web.CalleeCancelledRequestException--description"><p>The Callee Cancelled Request Exception is thrown when the callee (you) cancel's the request.</p>
@@ -230,65 +214,32 @@
 <li>To cancel a request you must pass a 'Cancellation Token', and then cancel the request through the Cancellation Token</li>
 </ul>
 </section>
-      <h4><a class="xref" href="SystemLibrary.Common.Web.ClientResponse-1.html">ClientResponse&lt;T&gt;</a></h4>
-      <section id="SystemLibrary.Common.Web.ClientResponse`1--description"><p>The main response class that all http requests in the HttpBaseClient returns</p>
+      <h4><a class="xref" href="SystemLibrary.Common.Web.Client.html">Client</a></h4>
+      <section id="SystemLibrary.Common.Web.Client--description"><p>Client is a class for all http(s) requests in your project</p>
+<p>Uses HttpClient and Polly behind the scenes for features such as reusing tcp connections, retry on 502 and 504 status codes, and optionally short request breaking on 20 exceptions in a row for 7 seconds</p>
+Request is always eligible for retry if request is a file request or GET or POST and status code is 502 or 504
+<p>Options:</p>
+useRetryPolicy:
 </section>
+      <h4><a class="xref" href="SystemLibrary.Common.Web.ClientResponse-1.html">ClientResponse&lt;T&gt;</a></h4>
+      <section id="SystemLibrary.Common.Web.ClientResponse`1--description"><p>The response that all Client methods returns</p>
+</section>
+      <h4><a class="xref" href="SystemLibrary.Common.Web.GlobalEnumConverter.html"></a></h4>
+      <section id="SystemLibrary.Common.Web.GlobalEnumConverter--description"></section>
       <h4><a class="xref" href="SystemLibrary.Common.Web.HtmlHelperFactory.html">HtmlHelperFactory</a></h4>
       <section id="SystemLibrary.Common.Web.HtmlHelperFactory--description"><p>HtmlHelperFactory builds a new instance of a HtmlBuilder outside of your View Context</p>
 </section>
-      <h4><a class="xref" href="SystemLibrary.Common.Web.HttpBaseClient.html">HttpBaseClient</a></h4>
-      <section id="SystemLibrary.Common.Web.HttpBaseClient--description"><p>HttpBaseClient is a class for all http(s) requests in your project</p>
-<ul>
-<li>Note: Polly (nuget package) does a similar thing about Retry, and it does a few other things, but last time I checked; it does not reuse the TCP connection, so it is actually unusable)</li>
-</ul>
-<p>Has:</p>
-<ul>
-<li><p>a retry handler configured through constructor</p>
-</li>
-<li><p>if request fails and retry is True, the retry request uses a new tcp connection with 10 seconds timeout</p>
-</li>
-<li><p>a retry request occurs only for GET, HEAD or OPTION request methods, never for PUT/POST/DELETE</p>
-</li>
-<li><p>a timeout handler configurable through constructor, but also per method</p>
-</li>
-<li><p>each underlying tcp connection is cached for up to 2 minutes</p>
-</li>
-</ul>
-<p>Use HttpBaseClient directly or inherit from it, see the examples</p>
-<p>Configurations:
-&quot;systemLibraryCommonWeb&quot;: {
-&quot;httpBaseClient&quot;: {
-&quot;timeoutMilliseconds&quot;: 60000,
-&quot;retryRequestTimeoutSeconds&quot;: 10,
-&quot;cacheClientConnectionSeconds&quot;: 120
-}
-}</p>
-</section>
       <h4><a class="xref" href="SystemLibrary.Common.Web.HttpContextInstance.html">HttpContextInstance</a></h4>
-      <section id="SystemLibrary.Common.Web.HttpContextInstance--description"><p>An implementation of the 'old' thread safe singleton HttpContext we all know and love from .NET Framework</p>
+      <section id="SystemLibrary.Common.Web.HttpContextInstance--description"><p>A class that has a reference to the HttpContext instance</p>
 </section>
-      <h4><a class="xref" href="SystemLibrary.Common.Web.RetryRequestException.html"></a></h4>
-      <section id="SystemLibrary.Common.Web.RetryRequestException--description"><p>A retry request exception is thrown if:</p>
-<ul>
-<li>&quot;retryOnceOnRequestCancelled&quot; is set to True, and if both the normal request and the retry request errors, this exception is thrown to the callee (you)</li>
-<li>a retry request exception can only occur on GET, HEAD or OPTION requests</li>
-</ul>
-<p>If retryOnceOnRequestCancelled is False or if request method is POST, PUT or DELETE, this exception will never occur for the callee (you)</p>
-<p>Note: A retry request gets a fixed timeout of 10 seconds to finish the request</p>
-</section>
-      <h4><a class="xref" href="SystemLibrary.Common.Web.Services.html">Services</a></h4>
-      <section id="SystemLibrary.Common.Web.Services--description"><p>Dependency injection registry</p>
-<ul>
-<li><p>look at it as 'Service Locator'</p>
-</li>
-<li><p>works in unit tests, console app's and web applications</p>
-</li>
-</ul>
-<p>Usage:</p>
-<ul>
-<li>requires a call in startup/program to 'services.AddCommonWebServices()' before usage</li>
-</ul>
-</section>
+      <h4><a class="xref" href="SystemLibrary.Common.Web.PackageConfig.html"></a></h4>
+      <section id="SystemLibrary.Common.Web.PackageConfig--description"></section>
+      <h4><a class="xref" href="SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.html">PackageConfig.CacheConfiguration</a></h4>
+      <section id="SystemLibrary.Common.Web.PackageConfig.CacheConfiguration--description"></section>
+      <h4><a class="xref" href="SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.html">PackageConfig.ClientConfiguration</a></h4>
+      <section id="SystemLibrary.Common.Web.PackageConfig.ClientConfiguration--description"></section>
+      <h4><a class="xref" href="SystemLibrary.Common.Web.PackageConfig.LogConfiguration.html">PackageConfig.LogConfiguration</a></h4>
+      <section id="SystemLibrary.Common.Web.PackageConfig.LogConfiguration--description"></section>
     <h3 id="interfaces">Interfaces
   </h3>
       <h4><a class="xref" href="SystemLibrary.Common.Web.ILogWriter.html">ILogWriter</a></h4>
@@ -301,7 +252,7 @@
     <h3 id="enums">Enums
   </h3>
       <h4><a class="xref" href="SystemLibrary.Common.Web.MediaType.html"></a></h4>
-      <section id="SystemLibrary.Common.Web.MediaType--description"><p>An enum of various media types that can be sent to the HttpBaseClient request methods</p>
+      <section id="SystemLibrary.Common.Web.MediaType--description"><p>An enum of various media types that can be sent to the Client request methods</p>
 <p>The 'MediaType' is sent as an 'Accept' HEADER in the request</p>
 <p>NOTE: Not all of them have been implemented yet though, but all will be sent as 'ACCEPT' header if specified, if you specify MediaType.none, no accept header is sent</p>
 </section>

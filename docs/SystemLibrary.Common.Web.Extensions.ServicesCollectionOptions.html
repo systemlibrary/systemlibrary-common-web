@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="overflow: hidden;font-size: 1px;max-width: 1px; visibility: hidden; position: absolute; margin-left: -4000px;">
-        MediaType,BaseOptions,LogLevel,ClientResponse__-1_T__-2_,CalleeCancelledRequestException,RetryRequestException</div>
+        MediaType,BaseOptions,LogLevel,ClientResponse__-1_T__-2_,CacheConfiguration,ClientConfiguration,CalleeCancelledRequestException,RetryRequestException,GlobalEnumConverter,LogConfiguration,PackageConfig</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -198,8 +198,6 @@
   
   <div class="h1-class-summary-container">
     <div class="markdown level0 summary h1-class-summary"><p>Web App Services Collection Options</p>
-<p>Most options are turned on by default.</p>
-<p>ViewLocations and custom application parts are not configured by default.</p>
 </div>
   </div>
   
@@ -312,9 +310,10 @@ public void ConfigureServices(IServiceCollection services)
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
+  
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_AddApplicationAsPart">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServicesCollectionOptions.cs/#L58">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServicesCollectionOptions.cs/#L55">View Source</a>
   		</span>
   	</div>
   
@@ -348,19 +347,19 @@ public void ConfigureServices(IServiceCollection services)
   	</tbody>
   </table>
   
+  
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Add an internal logger that forwards errors to the ILogWriter of your own choice</p>
-<ul>
-<li>standard output is then forwarded to your own ILogWriter</li>
-</ul>
+<p>Standard output is forwarded to your own ILogWriter</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
+  
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_AddForwardStandardLogging">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServicesCollectionOptions.cs/#L132">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServicesCollectionOptions.cs/#L131">View Source</a>
   		</span>
   	</div>
   
@@ -394,17 +393,19 @@ public void ConfigureServices(IServiceCollection services)
   	</tbody>
   </table>
   
+  
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Create your own class that inherits 'StringOutputFormatter' which sets all 'SupportedMediaTypes' in its constructor</p>
-<p>A default 'string output formatter' will always be added to your application, so responses/files like CSS, JS, JPG, PNG, JSON, etc are allowed</p>
+<p>A default &apos;string output formatter&apos; will always be added to your application, so responses/files like CSS, JS, JPG, PNG, JSON, etc are allowed</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
+  
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_AdditionalSupportedMediaTypes">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServicesCollectionOptions.cs/#L119">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServicesCollectionOptions.cs/#L115">View Source</a>
   		</span>
   	</div>
   
@@ -438,23 +439,18 @@ public void ConfigureServices(IServiceCollection services)
   	</tbody>
   </table>
   
+  
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Enabled re-compilation of .cshtml files upon saving .cshtml files</p>
-<ul>
-<li>Avoids the need of a re-compilation of whole application for one small view change</li>
-<li>Package 'System.Security.Cryptography.Pkcs' is not added as dependency, so if you turn this on it will throw exception for a missing package that you must manually add</li>
-</ul>
-<ul>
-<li>Don't want a dependency on that package, as that package is quite large, and this package is also meant for API development</li>
-</ul>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
+  
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_AddRazorRuntimeCompilationOnChange">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServicesCollectionOptions.cs/#L72">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServicesCollectionOptions.cs/#L69">View Source</a>
   		</span>
   	</div>
   
@@ -488,6 +484,7 @@ public void ConfigureServices(IServiceCollection services)
   	</tbody>
   </table>
   
+  
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Add multiple assemblies as a 'part' so controllers within the assemblies are tried matched against requests</p>
@@ -495,9 +492,10 @@ public void ConfigureServices(IServiceCollection services)
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
+  
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_ApplicationParts">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServicesCollectionOptions.cs/#L63">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServicesCollectionOptions.cs/#L60">View Source</a>
   		</span>
   	</div>
   
@@ -531,17 +529,45 @@ public void ConfigureServices(IServiceCollection services)
   	</tbody>
   </table>
   
+  
   <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Pass in a string array of area view location formats</p>
+<p>Example:</p>
+AreaViewLocations = new string[] { &quot;~/Area/{2}/{1}/{0}.cshtml&quot; };
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
+  
+  	<div class="custom-remarks-container">
+  		<div class="custom-remarks custom-remarks2">
+  			<h5 id="SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_AreaViewLocations_remarks">Remarks</h5>
+  		</div>
+  
+  		<div class="custom-remarks custom-remarks2 text">
+  			<div class="custom-remarks-menu-data--close">X</div>
+  			<div class="markdown level1 remarks"><p>This sets area view locations</p>
+</div>
+  		</div>
+  	</div>
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_AreaViewLocations">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServicesCollectionOptions.cs/#L112">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServicesCollectionOptions.cs/#L109">View Source</a>
   		</span>
   	</div>
   
   	<div class="custom-menu-data">
   		<h4 id="SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_AreaViewLocations" data-uid="SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.AreaViewLocations" class="h4-custom-functionName">public string[] AreaViewLocations</h4>
   		<div class="custom-menu-data-container">
+  			<div class="custom-menu-data-name" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  				<div class="codewrapper"><p>Simple example:</p>
+<pre><code>var options = new ServicesCollectionOptions();
+options.ViewLocations = new string[] { &quot;~/Pages/{2}/{1}/{0}.cshtml&quot; }</code></pre>
+</div>
+  				<div class="comment-examples-container-bottom"></div>
+  			</div>
   
   			<div class="custom-menu-data-arguments" style="display: none;">
   				<div class="syslib-tab-menu-data--close">X</div>
@@ -569,25 +595,23 @@ public void ConfigureServices(IServiceCollection services)
   	</tbody>
   </table>
   
+  
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Auto-generate a data protection file that will be used for encrypting and decryption data within your application</p>
-<ul>
-<li>string extension methods Encrypt and Decrypt will use the file internally as a key</li>
-<li>cookies read over http will be encrypted and decrypted with the key file, if you host your app over several instances, they must all share the same key of course</li>
-</ul>
+  		<div class="markdown level1 summary member-summary"><p>Allow synchronous IO, an IIS setting</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_UseAutomaticKeyGenerationFile">
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_IISAllowSynchronousIO">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServicesCollectionOptions.cs/#L126">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServicesCollectionOptions.cs/#L141">View Source</a>
   		</span>
   	</div>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_UseAutomaticKeyGenerationFile" data-uid="SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.UseAutomaticKeyGenerationFile" class="h4-custom-functionName">public bool UseAutomaticKeyGenerationFile</h4>
+  		<h4 id="SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_IISAllowSynchronousIO" data-uid="SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.IISAllowSynchronousIO" class="h4-custom-functionName">public bool IISAllowSynchronousIO</h4>
   		<div class="custom-menu-data-container">
   
   			<div class="custom-menu-data-arguments" style="display: none;">
@@ -616,6 +640,98 @@ public void ConfigureServices(IServiceCollection services)
   	</tbody>
   </table>
   
+  
+  <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Auto-generate and enable data protection with a data protection file that will be used for encrypting and decrypting data within your application</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
+  
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_UseAutomaticDataProtectionPolicy">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServicesCollectionOptions.cs/#L125">View Source</a>
+  		</span>
+  	</div>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_UseAutomaticDataProtectionPolicy" data-uid="SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.UseAutomaticDataProtectionPolicy" class="h4-custom-functionName">public bool UseAutomaticDataProtectionPolicy</h4>
+  		<div class="custom-menu-data-container">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  			</div>
+  
+  		</div>
+  	</div>
+  </div>
+  
+  
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed fieldValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Boolean</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  
+  <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Registers special Type Converters to the System.ComponentModel.TypeDescriptor</p>
+<p>For instance: it registers the .ToEnum() method as the primary method to convert a String to an Enum, so EnumValue and EnumText works</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
+  
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_UseCustomTypeConverters">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServicesCollectionOptions.cs/#L147">View Source</a>
+  		</span>
+  	</div>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_UseCustomTypeConverters" data-uid="SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.UseCustomTypeConverters" class="h4-custom-functionName">public bool UseCustomTypeConverters</h4>
+  		<div class="custom-menu-data-container">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  			</div>
+  
+  		</div>
+  	</div>
+  </div>
+  
+  
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed fieldValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Boolean</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Set to true to add MVC services</p>
@@ -623,9 +739,10 @@ public void ConfigureServices(IServiceCollection services)
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
+  
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_UseMvc">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServicesCollectionOptions.cs/#L53">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServicesCollectionOptions.cs/#L50">View Source</a>
   		</span>
   	</div>
   
@@ -659,6 +776,7 @@ public void ConfigureServices(IServiceCollection services)
   	</tbody>
   </table>
   
+  
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Set to true to add ResponseCaching services</p>
@@ -666,9 +784,10 @@ public void ConfigureServices(IServiceCollection services)
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
+  
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_UseResponseCaching">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServicesCollectionOptions.cs/#L137">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServicesCollectionOptions.cs/#L136">View Source</a>
   		</span>
   	</div>
   
@@ -702,19 +821,19 @@ public void ConfigureServices(IServiceCollection services)
   	</tbody>
   </table>
   
+  
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Pass in an object that implements the interface if you want to extend View Locations</p>
-<ul>
-<li>Another option is to simply set 'ViewLocations' variable or 'AreaViewLocations'</li>
-</ul>
+<p>Another option is to simply set &apos;ViewLocations&apos; variable or &apos;AreaViewLocations&apos;</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
+  
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_ViewLocationExpander">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServicesCollectionOptions.cs/#L78">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServicesCollectionOptions.cs/#L75">View Source</a>
   		</span>
   	</div>
   
@@ -748,19 +867,31 @@ public void ConfigureServices(IServiceCollection services)
   	</tbody>
   </table>
   
+  
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Pass in a string array of view location formats</p>
-<p>Example:
-ViewLocations = new string[] { &quot;~/Pages/{1}/{0}.cshtml&quot; };</p>
-<p>Note: This sets non-area view locations</p>
+<p>Example:</p>
+ViewLocations = new string[] { &quot;~/Pages/{1}/{0}.cshtml&quot; };
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
+  	<div class="custom-remarks-container">
+  		<div class="custom-remarks custom-remarks2">
+  			<h5 id="SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_ViewLocations_remarks">Remarks</h5>
+  		</div>
+  
+  		<div class="custom-remarks custom-remarks2 text">
+  			<div class="custom-remarks-menu-data--close">X</div>
+  			<div class="markdown level1 remarks"><p>This sets non-area view locations</p>
+</div>
+  		</div>
+  	</div>
+  
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_ViewLocations">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServicesCollectionOptions.cs/#L95">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServicesCollectionOptions.cs/#L92">View Source</a>
   		</span>
   	</div>
   
@@ -801,6 +932,7 @@ options.ViewLocations = new string[] { &quot;~/Pages/{2}/{1}/{0}.cshtml&quot; }<
   		</tr>
   	</tbody>
   </table>
+  
   
   
   <script>
@@ -1209,6 +1341,38 @@ options.ViewLocations = new string[] { &quot;~/Pages/{2}/{1}/{0}.cshtml&quot; }<
   		);
   	}
   
+  	function addRemarksOnClickEvent(className) {
+  		var remarks = document.getElementsByClassName(className);
+  		if (remarks) {
+  			for (var i = 0; i < remarks.length; i++) {
+  				var remark = remarks[i];
+  				if (remark && remark.classList) {
+  					var closeBtns = remark.parentNode.getElementsByClassName('custom-remarks-menu-data--close');
+  					if (closeBtns) {
+  						var closeBtn = closeBtns[0];
+  						if (closeBtn) {
+  							closeBtn.addEventListener("click", function (e) {
+  								e.target.parentNode.classList.toggle('visible');
+  							});
+  						}
+  					}
+  					remark.addEventListener("click", function (e) {
+  						var remarkTexts = e.target.parentNode.getElementsByClassName(className + ' text');
+  						if (!remarkTexts || !remarkTexts.length) {
+  							remarkTexts = e.target.parentNode.parentNode.getElementsByClassName(className + ' text');
+  						}
+  						if (remarkTexts && remarkTexts.length) {
+  							var remarkText = remarkTexts[0];
+  							if (remarkText) {
+  								remarkText.classList.toggle('visible');
+  							}
+  						}
+  					});
+  				}
+  			}
+  		}
+  	}
+  
   	function addEventDisplayMenuDataOnClickPart(partName) {
   		var i;
   
@@ -1426,6 +1590,9 @@ options.ViewLocations = new string[] { &quot;~/Pages/{2}/{1}/{0}.cshtml&quot; }<
   
   	setTimeout(addEventsToTabCloseButtons, 40);
   
+  	setTimeout(() => addRemarksOnClickEvent('custom-remarks1'), 50);
+  	setTimeout(() => addRemarksOnClickEvent('custom-remarks2'), 55);
+  
   	//setTimeout(removeEmptyPopups, 50);
   </script>
   
@@ -1441,7 +1608,7 @@ options.ViewLocations = new string[] { &quot;~/Pages/{2}/{1}/{0}.cshtml&quot; }<
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServicesCollectionOptions.cs/#L48" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/ServicesCollectionOptions.cs/#L45" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

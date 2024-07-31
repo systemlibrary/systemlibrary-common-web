@@ -32,13 +32,13 @@ namespace SystemLibrary.Common.Web;
 /// - But its now up to you, you want new instance? Injection? Create your own static wrapper? Sure!
 /// </remarks>
 /// <example>
-/// appSettings.json default configurations:
+/// Configure the client in appSettings.json, heres the default:
 /// "client": {
 ///   "timeout": 40001,
 ///   "retryTimeout": 10000, // The second retry will use half this duration, which is only used if useRetryPolicy is true
 ///   "ignoreSslErrors": true,
 ///   "useRetryPolicy": true, // one retry on 502 and 504 is GET/POST, cannot be turned off
-///   "throwOnUnsuccessful": false,
+///   "throwOnUnsuccessful": true,
 ///   "useRequestBreakerPolicy": false,
 ///   "clientCacheDuration": 1200
 /// }

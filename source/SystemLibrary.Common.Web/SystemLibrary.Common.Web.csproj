@@ -62,10 +62,9 @@
 		<PackageIcon>nuget-icon.png</PackageIcon>
 		<PackageReadmeFile>readme.md</PackageReadmeFile>
 		<PackageTags>C# .NET web extensions setup initialization</PackageTags>
-		<PackageReleaseNotes>Latest version: https://github.com/systemlibrary/systemlibrary-common-web#latest-version</PackageReleaseNotes>
+		<PackageReleaseNotes>Latest version: https://github.com/systemlibrary/systemlibrary-common-web#latest-release-notes</PackageReleaseNotes>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 		<FileVersion>$(Version)</FileVersion>
 		<ProduceReferenceAssembly>False</ProduceReferenceAssembly>
 	</PropertyGroup>
-
 </Project>

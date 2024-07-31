@@ -1,22 +1,22 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>IServiceCollectionExtensions
+    <title>GlobalEnumConverter
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="IServiceCollectionExtensions
+    <meta name="title" content="GlobalEnumConverter
    ">
     <meta name="generator" content="docfx 2.59.4.0">
     
-    <link rel="shortcut icon" href="/systemlibrary-common-web/favicon.ico">
-    <link rel="stylesheet" href="/systemlibrary-common-web/styles/docfx.vendor.css">
-    <link rel="stylesheet" href="/systemlibrary-common-web/styles/docfx.css">
-    <link rel="stylesheet" href="/systemlibrary-common-web/styles/main.css">
-    <link rel="stylesheet" href="/systemlibrary-common-web/styles/custom.css">
+    <link rel="shortcut icon" href="[%relativeHostingPath%]favicon.ico">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/docfx.vendor.css">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/docfx.css">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/main.css">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/custom.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
@@ -50,9 +50,9 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="..//systemlibrary-common-web/index.html">
-                <img id="logo" class="svg" src="..//systemlibrary-common-web/logo.png" alt="">
-                <span class="navbar-title">System Library Common Web</span>
+              <a class="navbar-brand" href="../[%relativeHostingPath%]index.html">
+                <img id="logo" class="svg" src="../[%relativeHostingPath%]logo.png" alt="">
+                <span class="navbar-title">[%siteTitle%]</span>
               </a>
               
             </div>
@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="overflow: hidden;font-size: 1px;max-width: 1px; visibility: hidden; position: absolute; margin-left: -4000px;">
-        MediaType,BaseOptions,LogLevel,ClientResponse__-1_T__-2_,CacheConfiguration,ClientConfiguration,CalleeCancelledRequestException,RetryRequestException,GlobalEnumConverter,LogConfiguration,PackageConfig</div>
+        [%custom-skipDocumentationFor%]</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -189,31 +189,155 @@
         <div class="article row grid-right">
         <div class="article row grid">
           <div class="col-md-10">
-            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions">
+            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Web.GlobalEnumConverter">
   
   
-  <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Web.Extensions.html">SystemLibrary.Common.Web.Extensions</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Web.dll</span></h6>
+  <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Web.html">SystemLibrary.Common.Web</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Web.dll</span></h6>
   
   <div class="markdown level0 conceptual h1-class-conceptual"></div>
   
   <div class="h1-class-summary-container">
-    <div class="markdown level0 summary h1-class-summary"><p>Extension methods for IServiceCollection</p>
-</div>
+    <div class="markdown level0 summary h1-class-summary"></div>
   </div>
   
-  <h1 id="SystemLibrary_Common_Web_Extensions_IServiceCollectionExtensions" data-uid="SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions" class="text-break h1-class-header">IServiceCollectionExtensions
+  <h1 id="SystemLibrary_Common_Web_GlobalEnumConverter" data-uid="SystemLibrary.Common.Web.GlobalEnumConverter" class="text-break h1-class-header">GlobalEnumConverter
   </h1>
-  <h1 id="SystemLibrary_Common_Web_Extensions_IServiceCollectionExtensions" data-uid="SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions" class="h1-custom-display className">public static class IServiceCollectionExtensions</h1>
+  <h1 id="SystemLibrary_Common_Web_GlobalEnumConverter" data-uid="SystemLibrary.Common.Web.GlobalEnumConverter" class="h1-custom-display className">public class GlobalEnumConverter : EnumConverter</h1>
   
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">IServiceCollectionExtensions</span></div>
+    <div class="level1"><span class="xref">System.ComponentModel.TypeConverter</span></div>
+    <div class="level2"><span class="xref">System.ComponentModel.EnumConverter</span></div>
+    <div class="level3"><span class="xref">GlobalEnumConverter</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.ComponentModel.EnumConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext, System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.EnumConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext, System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.EnumConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext, System.Globalization.CultureInfo, System.Object, System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.EnumConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.EnumConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.EnumConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.EnumConverter.IsValid(System.ComponentModel.ITypeDescriptorContext, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.EnumConverter.Comparer</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.EnumConverter.EnumType</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.EnumConverter.Values</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.TypeConverter.CanConvertTo(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.TypeConverter.ConvertFrom(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.ComponentModel.ITypeDescriptorContext, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext, System.Globalization.CultureInfo, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.TypeConverter.ConvertFromString(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.TypeConverter.ConvertTo(System.Object, System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.TypeConverter.ConvertToInvariantString(System.ComponentModel.ITypeDescriptorContext, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.TypeConverter.ConvertToInvariantString(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext, System.Globalization.CultureInfo, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.TypeConverter.ConvertToString(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.TypeConverter.CreateInstance(System.Collections.IDictionary)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.TypeConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext, System.Collections.IDictionary)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.TypeConverter.GetConvertFromException(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.TypeConverter.GetConvertToException(System.Object, System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.TypeConverter.GetCreateInstanceSupported()</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.TypeConverter.GetCreateInstanceSupported(System.ComponentModel.ITypeDescriptorContext)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext, System.Object, System.Attribute[])</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.TypeConverter.GetProperties(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.TypeConverter.GetPropertiesSupported()</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.TypeConverter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.TypeConverter.GetStandardValues()</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.TypeConverter.GetStandardValuesExclusive()</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.TypeConverter.GetStandardValuesSupported()</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.TypeConverter.IsValid(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.TypeConverter.SortProperties(System.ComponentModel.PropertyDescriptorCollection, System.String[])</span>
+    </div>
   </div>
   
   
   <div class="custom-menu-data custom-menu-data-first">
-    <h5 id="SystemLibrary_Common_Web_Extensions_IServiceCollectionExtensions_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
+    <h5 id="SystemLibrary_Common_Web_GlobalEnumConverter_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
   
     <div class="custom-menu-data-container custom-menu-data-container--example">
     </div>
@@ -221,7 +345,7 @@
   
   
   <div class="custom-menu-data">
-    <h5 id="SystemLibrary_Common_Web_Extensions_IServiceCollectionExtensions_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
+    <h5 id="SystemLibrary_Common_Web_GlobalEnumConverter_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
   
     <div class="custom-menu-data-container">
       <div class="custom-menu-data-class-arguments" style="display: none;">
@@ -233,50 +357,67 @@
   </div>
   
   <div class='custom-class-content-inline'>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  <div class="custom-container">
+  
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_GlobalEnumConverter__ctor_System_Type_">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/EnumConverter/GlobalEnumConverter.cs/#L9">View Source</a>
+  		</span>
+  	</div>
+  	<a id="SystemLibrary_Common_Web_GlobalEnumConverter__ctor_" data-uid="SystemLibrary.Common.Web.GlobalEnumConverter.#ctor*"></a>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Web_GlobalEnumConverter__ctor_System_Type_" data-uid="SystemLibrary.Common.Web.GlobalEnumConverter.#ctor(System.Type)" class="h4-custom-functionName">public GlobalEnumConverter(Type type)</h4>
+  		<div class="custom-menu-data-container">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  				<table class="table table-bordered table-striped table-condensed">
+  					<thead>
+  						<tr>
+  							<th>Type</th>
+  							<th>Name</th>
+  							<th>Description</th>
+  						</tr>
+  					</thead>
+  					<tbody>
+  						<tr>
+  							<td><span class="xref">System.Type</span></td>
+  							<td><span class="parametername">type</span></td>
+  							<td></td>
+  						</tr>
+  					</tbody>
+  				</table>
+  			</div>
+  
+  		</div>
+  	</div>
+  </div>
+  
+  
+  
   <h3 id="methods">Methods
   </h3>
   
   <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Configures ServiceCollection in one-line, so register all of your own or other service configurations after this one</p>
-<p>Optionally, through the argument ServicesCollectionOptions:</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
   
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_IServiceCollectionExtensions_AddCommonWebServices_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_">
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_GlobalEnumConverter_ConvertFrom_System_ComponentModel_ITypeDescriptorContext_System_Globalization_CultureInfo_System_Object_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/IServiceCollectionExtensions.cs/#L63">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/EnumConverter/GlobalEnumConverter.cs/#L11">View Source</a>
   		</span>
   	</div>
-  	<a id="SystemLibrary_Common_Web_Extensions_IServiceCollectionExtensions_AddCommonWebServices_" data-uid="SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.AddCommonWebServices*"></a>
+  	<a id="SystemLibrary_Common_Web_GlobalEnumConverter_ConvertFrom_" data-uid="SystemLibrary.Common.Web.GlobalEnumConverter.ConvertFrom*"></a>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_Extensions_IServiceCollectionExtensions_AddCommonWebServices_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_" data-uid="SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.AddCommonWebServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions)" class="h4-custom-functionName">public static IServiceCollection AddCommonWebServices(this IServiceCollection services, ServicesCollectionOptions options = null)</h4>
+  		<h4 id="SystemLibrary_Common_Web_GlobalEnumConverter_ConvertFrom_System_ComponentModel_ITypeDescriptorContext_System_Globalization_CultureInfo_System_Object_" data-uid="SystemLibrary.Common.Web.GlobalEnumConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" class="h4-custom-functionName">public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)</h4>
   		<div class="custom-menu-data-container">
-  			<div class="custom-menu-data-name" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  				<div class="codewrapper"><p>Startup.cs/Program.cs:</p>
-<pre><code>public void ConfigureServices(IServiceCollection services)
-{
-    var options = new ServicesCollectionOptions();
-
-    options.ViewLocations = new string[] {
-        &quot;~/Views/{0}/index.cshtml&quot;
-    }
-
-    options.AreaViewLocations = new string[] {
-        &quot;~/Area/{2}/{1}/{0}.cshtml&quot;
-    }
-
-    options.ViewLocationExpander = null; //or create one based on the Interface &apos;IViewLocationExpander&apos;
-
-    services.AddCommonWebServices(options);
-}</code></pre>
-</div>
-  				<div class="comment-examples-container-bottom"></div>
-  			</div>
   
   			<div class="custom-menu-data-arguments" style="display: none;">
   				<div class="syslib-tab-menu-data--close">X</div>
@@ -292,13 +433,18 @@
   					</thead>
   					<tbody>
   						<tr>
-  							<td><span class="xref">Microsoft.Extensions.DependencyInjection.IServiceCollection</span></td>
-  							<td><span class="parametername">services</span></td>
+  							<td><span class="xref">System.ComponentModel.ITypeDescriptorContext</span></td>
+  							<td><span class="parametername">context</span></td>
   							<td></td>
   						</tr>
   						<tr>
-  							<td><a class="xref" href="SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.html">ServicesCollectionOptions</a></td>
-  							<td><span class="parametername">options</span></td>
+  							<td><span class="xref">System.Globalization.CultureInfo</span></td>
+  							<td><span class="parametername">culture</span></td>
+  							<td></td>
+  						</tr>
+  						<tr>
+  							<td><span class="xref">System.Object</span></td>
+  							<td><span class="parametername">value</span></td>
   							<td></td>
   						</tr>
   					</tbody>
@@ -317,7 +463,7 @@
   					</thead>
   					<tbody>
   						<tr>
-  							<td><span class="xref">Microsoft.Extensions.DependencyInjection.IServiceCollection</span></td>
+  							<td><span class="xref">System.Object</span></td>
   							<td></td>
   						</tr>
   					</tbody>
@@ -328,187 +474,10 @@
   </div>
   
   
-  
-  
-  <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Configures ServiceCollection in one-line, so register all of your own or other service configurations after this one</p>
-<p>Optionally, through the argument ServicesCollectionOptions:</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
-  
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_IServiceCollectionExtensions_AddCommonWebServices__1_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/IServiceCollectionExtensions.cs/#L197">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Web_Extensions_IServiceCollectionExtensions_AddCommonWebServices_" data-uid="SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.AddCommonWebServices*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_Extensions_IServiceCollectionExtensions_AddCommonWebServices__1_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_" data-uid="SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.AddCommonWebServices``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions)" class="h4-custom-functionName">public static IServiceCollection AddCommonWebServices&lt;TLogWriter&gt;(this IServiceCollection services, ServicesCollectionOptions options = null)
-
-    where TLogWriter : class, ILogWriter</h4>
-  		<div class="custom-menu-data-container">
-  			<div class="custom-menu-data-name" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  				<div class="codewrapper"><p>Startup.cs/Program.cs:</p>
-<pre><code>pulic class LogWriter : ILogWriter 
-{
-    // Implement interface methods
-}
-public void ConfigureServices(IServiceCollection services)
-{
-    var options = new ServicesCollectionOptions();
-
-    options.ViewLocations = new string[] {
-        &quot;~/Views/{0}/index.cshtml&quot;
-    }
-
-    options.AreaViewLocations = new string[] {
-        &quot;~/Area/{2}/{1}/{0}.cshtml&quot;
-    }
-
-    options.ViewLocationExpander = null; //or create one based on the Interface &apos;IViewLocationExpander&apos;
-
-    services.AddCommonWebServices&lt;LogWriter>(options);
-}</code></pre>
-</div>
-  				<div class="comment-examples-container-bottom"></div>
-  			</div>
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Generic types</h5>
-  				<table class="table table-bordered table-striped table-condensed class-tmpl-partial-typeParameters-table">
-  					<thead>
-  						<tr>
-  							<th>Name</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="parametername">TLogWriter</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
-  
-  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
-  				<table class="table table-bordered table-striped table-condensed">
-  					<thead>
-  						<tr>
-  							<th>Type</th>
-  							<th>Name</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="xref">Microsoft.Extensions.DependencyInjection.IServiceCollection</span></td>
-  							<td><span class="parametername">services</span></td>
-  							<td></td>
-  						</tr>
-  						<tr>
-  							<td><a class="xref" href="SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.html">ServicesCollectionOptions</a></td>
-  							<td><span class="parametername">options</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
-  			</div>
-  
-  			<div class="custom-menu-data-returntype" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  				<table class="table table-bordered table-striped table-condensed table-return">
-  					<thead>
-  						<tr>
-  							<th>Type</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="xref">Microsoft.Extensions.DependencyInjection.IServiceCollection</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
-  			</div>
-  		</div>
-  	</div>
+  <h5 class="overrides">Overrides</h5>
+  <div class="overrides-content">
+  	<span class="xref">System.ComponentModel.EnumConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext, System.Globalization.CultureInfo, System.Object)</span>
   </div>
-  
-  
-  
-  
-  <div class="custom-container">
-  
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_IServiceCollectionExtensions_UseAutomaticDataProtectionPolicy_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/_AutoGenerateDataProtectionKeyFile.cs/#L19">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Web_Extensions_IServiceCollectionExtensions_UseAutomaticDataProtectionPolicy_" data-uid="SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.UseAutomaticDataProtectionPolicy*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_Extensions_IServiceCollectionExtensions_UseAutomaticDataProtectionPolicy_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Web_Extensions_ServicesCollectionOptions_" data-uid="SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.UseAutomaticDataProtectionPolicy(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions)" class="h4-custom-functionName">public static IServiceCollection UseAutomaticDataProtectionPolicy(this IServiceCollection services, ServicesCollectionOptions options)</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
-  				<table class="table table-bordered table-striped table-condensed">
-  					<thead>
-  						<tr>
-  							<th>Type</th>
-  							<th>Name</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="xref">Microsoft.Extensions.DependencyInjection.IServiceCollection</span></td>
-  							<td><span class="parametername">services</span></td>
-  							<td></td>
-  						</tr>
-  						<tr>
-  							<td><a class="xref" href="SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.html">ServicesCollectionOptions</a></td>
-  							<td><span class="parametername">options</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
-  			</div>
-  
-  			<div class="custom-menu-data-returntype" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  				<table class="table table-bordered table-striped table-condensed table-return">
-  					<thead>
-  						<tr>
-  							<th>Type</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="xref">Microsoft.Extensions.DependencyInjection.IServiceCollection</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
-  			</div>
-  		</div>
-  	</div>
-  </div>
-  
-  
   
   
   
@@ -1185,7 +1154,7 @@ public void ConfigureServices(IServiceCollection services)
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/IServiceCollectionExtensions/_UseViews.cs/#L6" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/EnumConverter/GlobalEnumConverter.cs/#L7" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -1203,16 +1172,16 @@ public void ConfigureServices(IServiceCollection services)
         <div class="grad-bottom"></div>
         <div class="footer">
           <div class="container">
-            <span>Package: <a href="https://www.nuget.org/packages/SystemLibrary.Common.Web/">nuget</a></span><br>
-            <span>Source: <a href="https://github.com/systemlibrary/systemlibrary-common-web/">github</a></span><br>
-            <span>Website: <a href="https://www.systemlibrary.com/">System Library Common Web</a></span>
+            <span>Package: <a href="[%footerNugetUrl%]">nuget</a></span><br>
+            <span>Source: <a href="[%footerGithubUrl%]">github</a></span><br>
+            <span>Website: <a href="[%footerWebsiteUrl%]">[%footerSiteTitle%]</a></span>
           </div>
         </div>
       </footer>
     </div>
     
-    <script type="text/javascript" src="..//systemlibrary-common-web/styles/docfx.vendor.js"></script>
-    <script type="text/javascript" src="..//systemlibrary-common-web/styles/docfx.js"></script>
-    <script type="text/javascript" src="..//systemlibrary-common-web/styles/main.js"></script>
+    <script type="text/javascript" src="../[%relativeHostingPath%]styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../[%relativeHostingPath%]styles/docfx.js"></script>
+    <script type="text/javascript" src="../[%relativeHostingPath%]styles/main.js"></script>
   </body>
 </html>

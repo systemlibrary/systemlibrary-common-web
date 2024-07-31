@@ -467,7 +467,7 @@ div.article.row.grid-right {
 
 div.custom-menu-summary-data > .markdown.level1.summary.member-summary > p {
   margin-top: 6px;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .markdown.level0.summary,
@@ -581,6 +581,14 @@ div.summary.h1-class-summary * {
 
 .markdown.level0.summary.h1-class-summary > ul > li > p {
   padding-left: 0px !important;
+}
+
+.markdown.level0.summary.h1-class-summary {
+  margin-bottom: 6px;
+  color: var(--green) !important;
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 400;
 }
 
 /* Not using these 'comments' in front of a 'summary comment' */
@@ -702,6 +710,7 @@ div.custom-menu-data {
   position: relative;
   margin: 0;
   margin-bottom: 28px;
+  margin-top: -2px;
 }
 
 .custom-menu-data > h4.h4-custom-functionName.non-function-element {
@@ -718,6 +727,8 @@ div.custom-menu-data {
 
 div.custom-menu-summary-data {
   margin: 0;
+  position: relative;
+  z-index: 99;
 }
 
 div.custom-menu-summary-data * {
@@ -888,7 +899,9 @@ div.custom-menu-data > h4:hover {
   align-items: center;
   height: 38px;
   width: 38px;
-  font-size: 20px;
+  font-size: 18px;
+  font-family: cursive;
+  font-style: normal;
 }
 
 /* CUSTOMIZE CODE HIGHLIGHT */
@@ -1185,4 +1198,108 @@ div.codewrapper > ul > li > p.modest-p {
 article.content.wrap > h1.text-break {
   font-size: 42px;
 }
+.custom-remarks {
+  position: absolute;
+  z-index: 990;
+  margin-top: 1.25em;
+  float: right;
+  right: 0;
+  margin-right: 8px;
+  @media screen and (max-width: 767px) {
+    margin-right: 8px !important;
+  }
+}
 
+.custom-remarks.text,
+.custom-remarks.text p,
+.custom-remarks.text h5,
+.custom-remarks.text ul li,
+.custom-remarks.text ol li,
+.custom-remarks.text li p,
+.custom-remarks.text li span {
+  font-weight: 500;
+  color: #313131 !important;
+  font-weight: 500 !important;
+  line-height: 1.6 !important;
+  font-size: 13px !important;
+  font-style: italic !important;
+}
+
+.custom-remarks h5 {
+  cursor: pointer;
+  text-decoration: underline;
+  user-select: none;
+  float: right;
+  font-size: 13px;
+  color: #313131 !important;
+}
+
+.custom-remarks3,
+.custom-remarks4,
+.custom-remarks5 {
+  display: none !important;
+  position: absolute !important;
+  top: 0 !important;
+  margin-left: -4000px !important;
+}
+
+.custom-remarks.text {
+  visibility: hidden;
+  display: none;
+}
+
+.content.wrap div .custom-remarks.text.visible {
+  visibility: visible !important;
+  box-shadow: 0px 3px 12px 3px #b7b7b7;
+  display: block;
+  max-width: 91%;
+  padding: 1em;
+  background: #f8f8f8;
+  z-index: 999;
+  position: absolute;
+  min-width: 375px;
+  border-radius: 4px;
+  left: 0;
+  margin-left: 80px;
+  margin-top: 3em;
+}
+
+.custom-remarks-containter {
+  position: relative;
+  width: 100%;
+}
+
+.custom-remarks-menu-data--close {
+  cursor: pointer;
+  position: absolute;
+  z-index: 101;
+  width: 24px;
+  height: 24px;
+  font-size: 18px;
+  width: 24px;
+  height: 24px;
+  z-index: 9999;
+  text-align: center;
+  right: 0;
+  z-index: 9999;
+  user-select: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  font-family: cursive;
+  font-style: normal;
+}
+.markdown.remarks {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.custom-remarks .markdown.level1.remarks li {
+  list-style: none;
+  padding-left: 0;
+}
+.custom-remarks .markdown.level1.remarks ul {
+  list-style: none;
+  padding-left: 0;
+}
