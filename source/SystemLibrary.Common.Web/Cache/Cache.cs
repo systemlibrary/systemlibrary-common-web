@@ -80,7 +80,7 @@ public static partial class Cache
 
     static IMemoryCache[] cache;
     static IMemoryCache[] cacheFallback;
-    static int MaxCacheContainers = 4;
+    static int MaxCacheContainers = 4; // Must be power of 2 as we use bit operator to calc index
 
     static Cache()
     {
@@ -121,7 +121,7 @@ public static partial class Cache
     {
         if (cacheKey.IsNot()) return default;
 
-        var cacheIndex = Math.Abs(cacheKey.GetHashCode() % 4);
+        var cacheIndex = cacheKey.GetHashCode() & 3;
 
         var cached = cache[cacheIndex].Get(cacheKey);
 
@@ -143,7 +143,7 @@ public static partial class Cache
         if (duration == default)
             duration = TimeSpan.FromSeconds(DurationConfig);
 
-        var cacheIndex = Math.Abs(cacheKey.GetHashCode() % 4);
+        var cacheIndex = cacheKey.GetHashCode() & 3;
 
         Insert(cacheIndex, cacheKey, item, duration);
     }
@@ -354,7 +354,8 @@ public static partial class Cache
     /// <summary>
     /// Get item from Cache as T using auto-generated cache key
     /// 
-    /// <para>Null value is never added to cache</para>
+    /// <para>Null value is never added to cache</para>'
+    /// Throws if your getItem method throws
     /// </summary>
     /// <remarks>
     /// Throws exception if getItem can throw
@@ -467,7 +468,7 @@ public static partial class Cache
         if (cacheKey == "")
             cacheKey = CreateCacheKey(getItem, condition);
 
-        var cacheIndex = Math.Abs(cacheKey.GetHashCode() % 4);
+        var cacheIndex = cacheKey.GetHashCode() & 3;
 
         var cached = cache[cacheIndex].Get(cacheKey);
 
@@ -482,7 +483,7 @@ public static partial class Cache
 
                 if (cached != null)
                 {
-                    Log.Warning(new Exception("Fallback cache lookup match, logged: " + cacheKey.MaxLength(15) + "...", ex));
+                    Log.Warning(new Exception("Fallback cache match, logged: " + cacheKey.MaxLength(16) + "...", ex));
 
                     return true;
                 }
@@ -515,7 +516,7 @@ public static partial class Cache
     }
 
     /// <summary>
-    /// Create a 'lock' to part of a function, to run it only once within the duration
+    /// Create a 'lock' to a part of a function, to run it only once for the duration
     /// 
     /// <para>Default lock duration is 60 seconds</para>
     /// 
@@ -547,7 +548,7 @@ public static partial class Cache
 
             var cacheKey = nameof(SystemLibrary) + nameof(Cache) + nameof(Lock) + callee.DeclaringType?.Namespace + callee.DeclaringType?.Name + callee.Name + callee.IsStatic + callee.IsPublic + duration + lockKey;
 
-            var cacheIndex = Math.Abs(cacheKey.GetHashCode() % 4);
+            var cacheIndex = cacheKey.GetHashCode() & 3;
 
             var exists = cache[cacheIndex].Get<bool>(cacheKey);
 
@@ -576,7 +577,7 @@ public static partial class Cache
     {
         if (cacheKey.IsNot()) return;
 
-        var cacheIndex = Math.Abs(cacheKey.GetHashCode() % 4);
+        var cacheIndex = cacheKey.GetHashCode() & 3;
 
         cache[cacheIndex].Remove(cacheKey);
 

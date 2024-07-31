@@ -1,5 +1,6 @@
-﻿using SystemLibrary.Common.Net;
-using SystemLibrary.Common.Web;
+﻿namespace SystemLibrary.Common.Web.Global;
+
+using SystemLibrary.Common.Net;
 
 /// <summary>
 /// Log class, responsible for taking any object and create a decent message, based on current request data, and send the whole message as a string to your LogWriter
@@ -33,7 +34,7 @@ using SystemLibrary.Common.Web;
 /// }
 /// </code>
 /// </example>
-public static partial class Log
+public static class Log
 {
     static ILogWriter _LogWriter;
     static ILogWriter LogWriter
@@ -217,7 +218,7 @@ public static partial class Log
                 return;
         }
 
-        var message = LogMessageBuilder.Get(obj, level);
+        var message = "";
 
         if (LogWriter == null)
         {
@@ -253,5 +254,3 @@ public static partial class Log
         }
     }
 }
-
-

@@ -350,11 +350,11 @@ public class CacheTests
         Assert.IsTrue(item == "Cache3", "Cache3 wrong: " + item);
 
         Thread.Sleep(125);
-        item = Cache.Get<string>(k, () => throw new Exception("Throw first, should hit fallback"));
+        item = Cache.Get<string>(k, () => throw new Exception("Throw first, will hit fallback cache"));
         Assert.IsTrue(item == "Cache3", "Fallback not hit: " + item);
 
         Thread.Sleep(2000);
-        item = Cache.Get<string>(k, () => throw new Exception("Throw to hit fallback cache"));
+        item = Cache.Get<string>(k, () => throw new Exception("Throw again after expiration, will still hit fallback cache"));
         Assert.IsTrue(item == "Cache3", "Fallback not hit: " + item);
 
         try

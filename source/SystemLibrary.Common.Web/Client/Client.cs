@@ -9,7 +9,7 @@ namespace SystemLibrary.Common.Web;
 
 /// <summary>
 /// Client is a class for all http(s) requests in your project
-/// <para>Uses HttpClient and Polly behind the scenes for features such as reusing tcp connections, retry on 502 and 504 status codes, and short request breaking on 20 exceptions in a row for 7 seconds</para>
+/// <para>Uses HttpClient and Polly behind the scenes for features such as reusing tcp connections, retry on 502 and 504 status codes, and optionally short request breaking on 20 exceptions in a row for 7 seconds</para>
 /// Request is always eligible for retry if request is a file request or GET or POST and status code is 502 or 504
 /// <para>Options:</para>
 /// useRetryPolicy:
