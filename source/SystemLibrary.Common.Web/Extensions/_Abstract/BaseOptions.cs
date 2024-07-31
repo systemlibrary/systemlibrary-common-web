@@ -39,6 +39,10 @@ public abstract class BaseOptions
     /// </summary>
     public bool UseOutputCache = true;
 
+    /// <summary>
+    /// Set to true to register services and middleware for the OutputCache in ASPNET after the Authentication, so Authentication always triggers before checking output cache
+    /// <para>This is the output cache middleware from microsoft, completely different cache than the class Cache in this library</para>
+    /// </summary>
     public bool UseOutputCacheAfterAuthentication = true;
 
     /// <summary>

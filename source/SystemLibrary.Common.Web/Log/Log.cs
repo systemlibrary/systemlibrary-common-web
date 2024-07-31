@@ -16,7 +16,7 @@ using SystemLibrary.Common.Web;
 /// </remarks>
 /// <example>
 /// Configure log options in appSettings.json
-/// <code class="language-csharp hljs">
+/// <code>
 /// {
 ///     "systemLibraryCommonWeb": {
 ///         "log": {
@@ -52,7 +52,7 @@ public static partial class Log
     /// <param name="obj">Object can be of any type, a string, list, dictionary, etc...</param>
     /// <example>
     /// Usage:
-    /// <code class="language-csharp hljs">
+    /// <code>
     /// Log.Error("hello world");
     /// //This creates a log message with prefix 'Error', timestamp, stacktrace and your input text "hello world" and sends it to your LogWriter
     /// </code>
@@ -68,7 +68,7 @@ public static partial class Log
     /// <param name="obj">Object can be of any type, a string, list, dictionary, etc...</param>
     /// <example>
     /// Usage:
-    /// <code class="language-csharp hljs">
+    /// <code>
     /// Log.Warning("hello world");
     /// //This creates a log message with prefix 'Warning', timestamp and your input text "hello world" and sends it to your LogWriter
     /// </code>
@@ -84,7 +84,7 @@ public static partial class Log
     /// <param name="obj">Object can be of any type, a string, list, dictionary, etc...</param>
     /// <example>
     /// Usage:
-    /// <code class="language-csharp hljs">
+    /// <code>
     /// Log.Debug("hello world");
     /// //This creates a log message with prefix 'Debug', timestamp and your input text "hello world" and sends it to your LogWriter
     /// </code>
@@ -100,7 +100,7 @@ public static partial class Log
     /// <param name="obj">Object can be of any type, a string, list, dictionary, etc...</param>
     /// <example>
     /// Usage:
-    /// <code class="language-csharp hljs">
+    /// <code>
     /// Log.Information("hello world");
     /// //This creates a log message with prefix 'Info', timestamp and your input text "hello world" and sends it to your LogWriter
     /// </code>
@@ -116,7 +116,7 @@ public static partial class Log
     /// <param name="obj">Object can be of any type, a string, list, dictionary, etc...</param>
     /// <example>
     /// Usage:
-    /// <code class="language-csharp hljs">
+    /// <code>
     /// Log.Trace("hello world");
     /// //This creates a log message with prefix 'Trace', timestamp and your input text "hello world" and sends it to your LogWriter
     /// </code>
@@ -137,7 +137,7 @@ public static partial class Log
     /// <param name="obj">Object can be of any type, a string, list, dictionary, etc...</param>
     /// <example>
     /// Usage:
-    /// <code class="language-csharp hljs">
+    /// <code>
     /// var list = new List&lt;User&gt;
     /// list.Add(new User { firstName = "hello", LastName = "World" });
     /// 

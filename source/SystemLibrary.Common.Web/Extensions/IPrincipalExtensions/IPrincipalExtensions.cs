@@ -10,11 +10,25 @@ public static class IPrincipalExtensions
     /// <summary>
     /// Check if principal is in any role, case sensitive
     /// </summary>
+    /// <remarks>
+    /// Passing Enum for roles to match, will simply call .ToString() on the EnumKey
+    /// - It ignores EnumValue attribute
+    /// - For that, you would simply use ToValue() on your Enum as argument to the method
+    /// </remarks>
     /// <example>
-    /// Usage:
+    /// Object array as argument:
     /// <code>
-    /// var roles = new object[] { "Admin", "Guest" };
-    /// principal.IsInAnyRole(roles);
+    /// enum AdminRoles { Admin, MasterAdmin };
+    /// var roles = new object[] { AdminRoles.Admin, AdminRoles.MasterAdmin };
+    /// var isInAnyRole = principal.IsInAnyRole(roles);
+    /// </code>
+    /// Strings as argument
+    /// <code>
+    /// var isInAnyRole = principal.IsInAnyRole("Admin", "Guest");
+    /// </code>
+    /// Enum directly as arg
+    /// /// <code>
+    /// var isInAnyRole = principal.IsInAnyRole(AdminRoles.Admin, AdminRoles.MasterAdmin);
     /// </code>
     /// </example>
     /// <returns>True of false</returns>

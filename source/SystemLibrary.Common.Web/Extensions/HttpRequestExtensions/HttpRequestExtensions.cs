@@ -11,7 +11,7 @@ namespace SystemLibrary.Common.Web.Extensions;
 public static class HttpRequestExtensions
 {
     /// <summary>
-    /// Returns full url of the request, includes protocol, path and query:
+    /// Get the full url of the request, includes protocol, schema, path and query string
     /// </summary>
     /// <example>
     /// <code>
@@ -19,6 +19,7 @@ public static class HttpRequestExtensions
     /// // for example, url is now: https://www.systemlibrary.com/hello?world=1
     /// </code>
     /// </example>
+    /// <returns>Full url of the request, or null if request is null</returns>
     public static string Url(this HttpRequest request)
     {
         return request == null ? null : request.Scheme + "://" + request.Host + request.Path + request.QueryString.Value;

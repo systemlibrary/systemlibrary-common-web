@@ -8,7 +8,7 @@
 /// </summary>
 /// <example>
 /// Program.cs/Startup.cs:
-/// <code class="language-csharp hljs">
+/// <code>
 /// public void ConfigureServices(IServiceCollection services)
 /// {
 ///     services.AddSingleton(typeof(YourLogWriter), typeof(ILogWriter));

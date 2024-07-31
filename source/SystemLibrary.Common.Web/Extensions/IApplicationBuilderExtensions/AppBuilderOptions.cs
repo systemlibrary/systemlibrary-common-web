@@ -42,37 +42,39 @@ public class AppBuilderOptions : BaseOptions
 
     /// <summary>
     /// Adds middleware for static files and sets a few default settings:
-    /// - allows serving of unknown files types
-    /// - compression is set to 'HttpsCompressionMode.Compress' 
-    /// - does not append a trailing slash for static files
+    /// <list>
+    /// <item>- allows serving of unknown files types</item>
+    /// <item>- compression is set to 'HttpsCompressionMode.Compress'</item>
+    /// <item>- does not append a trailing slash for static files</item>
+    /// </list>
     /// </summary>
     public bool UseStaticFiles = true;
 
     /// <summary>
     /// Set the cache-control max age header to a duration for all static requests
-    /// 
-    /// Note: requires UseStaticFiles set to True, and the header 'max-age' cannot be added already in the response
-    /// 
-    /// Default: two weeks
+    /// <para>Default: two weeks</para>
     /// </summary>
+    /// <remarks>
+    /// Requires UseStaticFiles set to True, and the header 'max-age' cannot be added already in the response
+    /// </remarks>
     public int StaticFilesMaxAgeSeconds = 1209600;
 
     /// <summary>
     /// Allow serving of unknown, unsupported, media/mime types.
-    /// 
-    /// Note: requires UseStaticFiles set to True
-    /// 
-    /// Defaults to true
+    /// <para>Defaults to true</para>
     /// </summary>
+    /// <remarks>
+    /// Requires UseStaticFiles set to True
+    /// </remarks>
     public bool StaticFilesServeUnknownFileTypes = true;
 
     /// <summary>
     /// Set the relative paths of where most static content is served from
-    /// 
-    /// Note: requires UseStaticFiles set to True
-    /// 
-    /// For example: /static
+    /// <para>For example: new string[] { "/static", "/public" }</para>
     /// </summary>
+    /// <remarks>
+    /// Requires UseStaticFiles set to True
+    /// </remarks>
     public string[] StaticFilesRequestPaths = null;
 
     /// <summary>

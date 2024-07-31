@@ -61,27 +61,27 @@ public class ServicesCollectionOptions : BaseOptions
 
     /// <summary>
     /// Enabled re-compilation of .cshtml files upon saving .cshtml files
-    /// 
-    /// - Avoids the need of a re-compilation of whole application for one small view change
-    /// - Package 'System.Security.Cryptography.Pkcs' is not added as dependency, so if you turn this on it will throw exception for a missing package that you must manually add
-    /// * Don't want a dependency on that package, as that package is quite large, and this package is also meant for API development
+    /// <list>
+    /// <item>- Avoids the need of a re-compilation of whole application for one small view change</item>
+    /// <item>- Package 'System.Security.Cryptography.Pkcs' is required, not a direct dependency, but through SystemLibrary.Common.Net. If you turn this on and it throws? Add the right version of System.Security.Cryptography.Pkcs</item>
+    /// </list>
     /// </summary>
     public bool AddRazorRuntimeCompilationOnChange = true;
 
     /// <summary>
     /// Pass in an object that implements the interface if you want to extend View Locations
-    /// - Another option is to simply set 'ViewLocations' variable or 'AreaViewLocations'
+    /// <para>Another option is to simply set 'ViewLocations' variable or 'AreaViewLocations'</para>
     /// </summary>
     public IViewLocationExpander ViewLocationExpander = null;
 
     /// <summary>
     /// Pass in a string array of view location formats
-    /// 
-    /// Example:
+    /// <para>Example:</para>
     /// ViewLocations = new string[] { "~/Pages/{1}/{0}.cshtml" };
-    /// 
-    /// Note: This sets non-area view locations
     /// </summary>
+    /// <remarks>
+    /// This sets non-area view locations
+    /// </remarks>
     /// <example>
     /// Simple example:
     /// <code>
@@ -93,12 +93,12 @@ public class ServicesCollectionOptions : BaseOptions
 
     /// <summary>
     /// Pass in a string array of area view location formats
-    /// 
-    /// Example:
+    /// <para>Example:</para>
     /// AreaViewLocations = new string[] { "~/Area/{2}/{1}/{0}.cshtml" };
-    /// 
-    /// Note: This sets area view locations
-    /// </summary
+    /// </summary>
+    /// <remarks>
+    /// This sets area view locations
+    /// </remarks>
     /// <example>
     /// Simple example:
     /// <code>
@@ -110,22 +110,23 @@ public class ServicesCollectionOptions : BaseOptions
 
     /// <summary>
     /// Create your own class that inherits 'StringOutputFormatter' which sets all 'SupportedMediaTypes' in its constructor
-    /// 
-    /// A default 'string output formatter' will always be added to your application, so responses/files like CSS, JS, JPG, PNG, JSON, etc are allowed
+    /// <para>A default 'string output formatter' will always be added to your application, so responses/files like CSS, JS, JPG, PNG, JSON, etc are allowed</para>
     /// </summary>
     public StringOutputFormatter AdditionalSupportedMediaTypes = null;
 
     /// <summary>
     /// Auto-generate and enable data protection with a data protection file that will be used for encrypting and decrypting data within your application
-    /// - string extension methods Encrypt and Decrypt will use the file internally as a key
-    /// - string extension methods EncryptUsingKeyRing and DecryptUsingKeyRing will use the generated files internally
-    /// - cookies read over http will be encrypted and decrypted with the key file, if you host your app over several instances, they must all share the same key of course
+    /// <list>
+    /// <item>- string extension methods Encrypt and Decrypt will use the file internally as a key</item>
+    /// <item>- string extension methods EncryptUsingKeyRing and DecryptUsingKeyRing will use the generated files internally</item>
+    /// <item>- cookies read over http will be encrypted and decrypted with the key file, if you host your app over several instances, they must all share the same key of course</item>
+    /// </list>
     /// </summary>
     public bool UseAutomaticDataProtectionPolicy = false;
 
     /// <summary>
     /// Add an internal logger that forwards errors to the ILogWriter of your own choice
-    /// - standard output is then forwarded to your own ILogWriter
+    /// <para>Standard output is forwarded to your own ILogWriter</para>
     /// </summary>
     public bool AddForwardStandardLogging = false;
 
@@ -141,7 +142,7 @@ public class ServicesCollectionOptions : BaseOptions
 
     /// <summary>
     /// Registers special Type Converters to the System.ComponentModel.TypeDescriptor
-    /// For instance: it registers the .ToEnum() method as the primary method to convert a String to an Enum, so EnumValue and EnumText works
+    /// <para>For instance: it registers the .ToEnum() method as the primary method to convert a String to an Enum, so EnumValue and EnumText works</para>
     /// </summary>
     public bool UseCustomTypeConverters = true;
 }

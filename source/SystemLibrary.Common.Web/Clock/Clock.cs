@@ -9,7 +9,7 @@ namespace SystemLibrary.Common.Web.Extensions;
 public static class Clock
 {
     /// <summary>
-    /// Measure an actions execution time
+    /// Measure an actions execution time in milliseconds used
     /// <para>Specify a message to also Log.Debug() the output</para>
     /// </summary>
     /// <example>
@@ -17,6 +17,7 @@ public static class Clock
     /// Clock.Measure(() => "hello", "Print hello");
     /// </code>
     /// </example>
+    /// <returns>Milliseconds used</returns>
     public static long Measure(Action method, string message = null)
     {
         var sw = new Stopwatch();

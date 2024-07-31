@@ -53,7 +53,7 @@ namespace SystemLibrary.Common.Web;
 /// </remarks>
 /// <example>
 /// Configure the cache in appSettings.json 
-/// <code class="language-csharp hljs">
+/// <code>
 /// {
 ///     "systemLibraryCommonWeb": {
 ///         "cache" { 
@@ -65,7 +65,7 @@ namespace SystemLibrary.Common.Web;
 /// }
 /// </code>
 /// Use cache:
-/// <code class="language-csharp hljs">
+/// <code>
 /// using SystemLibrary.Common.Web;
 /// 
 /// var cacheKey = "key";
@@ -77,7 +77,6 @@ public static partial class Cache
 {
     static IPrincipal _Principal;
     static IPrincipal Principal => _Principal ??= HttpContextInstance.Current?.User;
-
     static IMemoryCache[] cache;
     static IMemoryCache[] cacheFallback;
     static int MaxCacheContainers = 4; // Must be power of 2 as we use bit operator to calc index
@@ -107,16 +106,15 @@ public static partial class Cache
     /// </summary>
     /// <remarks>
     /// CacheKey null or blank returns default without checking cache
-    /// <para>Default duration is 180 seconds</para>
     /// <para>This never checks fallback cache</para>
     /// </remarks>
     /// <example>
-    /// <code class="language-csharp hljs">
+    /// <code>
     /// var cacheKey = "helloworld";
     /// var data = Cache.Get&lt;string&gt;(cacheKey);
     /// </code>
     /// </example>
-    /// <returns>Returns item from cache or getItem, on exception returns default</returns>
+    /// <returns>Return item from cache if exists or default</returns>
     public static T Get<T>(string cacheKey)
     {
         if (cacheKey.IsNot()) return default;
@@ -129,10 +127,11 @@ public static partial class Cache
     }
 
     /// <summary>
-    /// Add item to cache for a duration
-    /// 
-    /// <para>Null value is never added to cache</para>
+    /// Add item to cache
     /// </summary>
+    /// <remarks>
+    /// A null value is never added to cache
+    /// </remarks>
     /// <param name="cacheKey">CacheKey to set item as, if null or empty this does nothing</param>
     /// <param name="duration">Defaults to 180 seconds</param>
     public static void Set<T>(string cacheKey, T item, TimeSpan duration = default)
@@ -150,14 +149,11 @@ public static partial class Cache
 
     /// <summary>
     /// Try get item from Cache as T
-    /// 
-    /// <para>Null value is never added to cache</para>
-    /// 
-    /// Logs exception if getItem() throws
+    /// <para>If getItem throws, the exception is logged as 'Error'</para>
     /// </summary>
     /// <remarks>
+    /// <para>A null value is never added to cache</para>
     /// Default duration is 180 seconds
-    /// 
     /// <para>'Skip' means that the item will not be fetched from cache</para>
     /// <list>
     /// <item>Skip options:</item>
@@ -167,8 +163,13 @@ public static partial class Cache
     /// <item>- skipFor, your own condition, must return True to skip</item>
     /// </list>
     /// </remarks>
+    /// <param name="cacheKey">"" to use auto-generating of cacheKey, null to always skip cache</param>
+    /// <param name="condition">Add to cache only if condition is true, for instance: data?.Count > 0</param>
+    /// <param name="skipForAuthenticatedUsers">Skip cache for any user that is authenticated through the current HttpContext.User instance</param>
+    /// <param name="skipForAdmins">Skip cache for any user that is authenticated through the current HttpContext.User and is in any role: Admin, Admins, Administrator, Administrators, WebAdmins, CmsAdmins, admin, admins, administrator, administrators</param>
+    /// <param name="skipFor">Implement your own logic for when to skip cache, let it return true on your conditions to avoid caching</param>
     /// <example>
-    /// <code class="language-csharp hljs">
+    /// <code>
     /// var cacheKey = "key";
     /// 
     /// var data = Cache.TryGet&lt;string&gt;(cacheKey, () => throw new Exception("does not crash application"));
@@ -176,7 +177,7 @@ public static partial class Cache
     /// // Exception is logged through your ILogWriter implementation
     /// </code>
     /// </example>
-    /// <returns>Returns item from cache or getItem, on exception returns default</returns>
+    /// <returns>Returns T from cache or from getItem. If getItem throws, the exception is logged as error and default is returned</returns>
     public static T TryGet<T>(string cacheKey, Func<T> getItem, TimeSpan duration = default, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null)
     {
         try
@@ -193,14 +194,11 @@ public static partial class Cache
 
     /// <summary>
     /// Try get item from Cache as T using auto-generated cache key
-    /// 
-    /// Null value is never added to cache
-    /// 
-    /// Logs exception if getItem() throws
+    /// <para>Logs exception if getItem() throws</para>
     /// </summary>
     /// <remarks>
+    /// <para>A null value is never added to cache</para>
     /// Default duration is 180 seconds
-    /// 
     /// <para>'Skip' means that the item will not be fetched from cache</para>
     /// <list>
     /// <item>Skip options:</item>
@@ -210,14 +208,17 @@ public static partial class Cache
     /// <item>- skipFor, your own condition, must return True to skip</item>
     /// </list>
     /// </remarks>
+    /// <param name="condition">Add to cache only if condition is true, for instance: data?.Count > 0</param>
+    /// <param name="skipForAuthenticatedUsers">Skip cache for any user that is authenticated through the current HttpContext.User instance</param>
+    /// <param name="skipForAdmins">Skip cache for any user that is authenticated through the current HttpContext.User and is in any role: Admin, Admins, Administrator, Administrators, WebAdmins, CmsAdmins, admin, admins, administrator, administrators</param>
+    /// <param name="skipFor">Implement your own logic for when to skip cache, let it return true on your conditions to avoid caching</param>
     /// <example>
-    /// <code class="language-csharp hljs">
+    /// <code>
     /// var data = Cache.TryGet&lt;string&gt;(() => throw new Exception("does not crash application"));
-    /// 
     /// // Exception is logged through your ILogWriter implementation
     /// </code>
     /// </example>
-    /// <returns>Returns item from cache or getItem, on exception returns default</returns>
+    /// <returns>Returns T from cache or from getItem. If getItem throws, the exception is logged as error and default is returned</returns>
     public static T TryGet<T>(Func<T> getItem, TimeSpan duration, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null)
     {
         try
@@ -234,14 +235,11 @@ public static partial class Cache
 
     /// <summary>
     /// Try get item from Cache as T using auto-generated cache key
-    /// 
-    /// <para>Null value is never added to cache</para>
-    /// 
-    /// Logs exception if getItem() throws
+    /// <para>Logs exception if getItem() throws</para>
     /// </summary>
     /// <remarks>
+    /// <para>A null value is never added to cache</para>
     /// Default duration is 180 seconds
-    /// 
     /// <para>'Skip' means that the item will not be fetched from cache</para>
     /// <list>
     /// <item>Skip options:</item>
@@ -251,14 +249,19 @@ public static partial class Cache
     /// <item>- skipFor, your own condition, must return True to skip</item>
     /// </list>
     /// </remarks>
+    /// <param name="cacheKey">"" to use auto-generating of cacheKey, null to always skip cache</param>
+    /// <param name="condition">Add to cache only if condition is true, for instance: data?.Count > 0</param>
+    /// <param name="skipForAuthenticatedUsers">Skip cache for any user that is authenticated through the current HttpContext.User instance</param>
+    /// <param name="skipForAdmins">Skip cache for any user that is authenticated through the current HttpContext.User and is in any role: Admin, Admins, Administrator, Administrators, WebAdmins, CmsAdmins, admin, admins, administrator, administrators</param>
+    /// <param name="skipFor">Implement your own logic for when to skip cache, let it return true on your conditions to avoid caching</param>
     /// <example>
-    /// <code class="language-csharp hljs">
+    /// <code>
     /// var data = Cache.TryGet&lt;string&gt;(() => throw new Exception("does not crash application"));
     /// 
     /// // Exception is logged through your ILogWriter implementation
     /// </code>
     /// </example>
-    /// <returns>Returns item from cache or getItem, on exception returns default</returns>
+    /// <returns>Returns T from cache or from getItem. If getItem throws, the exception is logged as error and default is returned</returns>
     public static T TryGet<T>(Func<T> getItem, string cacheKey = "", TimeSpan duration = default, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null)
     {
         try
@@ -275,93 +278,11 @@ public static partial class Cache
 
     /// <summary>
     /// Get item from Cache as T
-    /// 
-    /// <para>Null value is never added to cache</para>
     /// </summary>
     /// <remarks>
+    /// <para>A null value is never added to cache</para>
     /// Throws exception if getItem can throw
-    /// 
-    /// Default duration is 180 seconds
-    /// 
-    /// <para>'Skip' means that the item will not be fetched from cache</para>
-    /// <list>
-    /// <item>Skip options:</item>
-    /// <item>- skipForAuthenticatedUsers, false by default</item>
-    /// <item>- skipForAdmins, true by default</item>
-    /// <item>    * User must be part of any following roles case sensitive: Admin, Admins, Administrator, Administrators, WebAdmins, CmsAdmins, admin, admins, administrator, administrators</item>
-    /// <item>- skipFor, your own condition, must return True to skip</item>
-    /// </list>
-    /// </remarks>
-    /// <code class="language-csharp hljs">
-    /// class CarService
-    /// {
-    ///     public string GetCars() 
-    ///     {
-    ///         var cacheKey = "helloworld";
-    ///         
-    ///         return Cache.Get&lt;string&gt;(cacheKey, () => {
-    ///             return Client.Get&lt;string&gt;("https://systemlibrary.com/api/cars?top=1");
-    ///         },
-    ///         TimeSpan.FromSeconds(5));
-    ///     }
-    /// }
-    /// </code>
-    /// <returns>Returns item from cache or getItem</returns>
-    public static T Get<T>(string cacheKey, Func<T> getItem, TimeSpan duration = default, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null)
-    {
-        return Get(getItem, cacheKey, duration, condition, skipForAuthenticatedUsers, skipForAdmins, skipFor);
-    }
-
-    /// <summary>
-    /// Get item from Cache as T using auto-generated cache key
-    /// 
-    /// <para>Null value is never added to cache</para>
-    /// </summary>
-    /// <remarks>
-    /// Throws exception if getItem can throw
-    /// 
-    /// Default duration is 180 seconds
-    /// 
-    /// <para>'Skip' means that the item will not be fetched from cache</para>
-    /// <list>
-    /// <item>Skip options:</item>
-    /// <item>- skipForAuthenticatedUsers, false by default</item>
-    /// <item>- skipForAdmins, true by default</item>
-    /// <item>    * User must be part of any following roles case sensitive: Admin, Admins, Administrator, Administrators, WebAdmins, CmsAdmins, admin, admins, administrator, administrators</item>
-    /// <item>- skipFor, your own condition, must return True to skip</item>
-    /// </list>
-    /// </remarks>
-    /// <code class="language-csharp hljs">
-    /// class CarService
-    /// {
-    ///     public string GetCars() 
-    ///     {
-    ///         var cacheKey = "helloworld";
-    ///         
-    ///         return Cache.Get&lt;string&gt;(cacheKey, () => {
-    ///             return Client.Get&lt;string&gt;("https://systemlibrary.com/api/cars?top=1");
-    ///         },
-    ///         TimeSpan.FromSeconds(5));
-    ///     }
-    /// }
-    /// </code>
-    /// <returns>Returns item from cache or getItem</returns>
-    public static T Get<T>(Func<T> getItem, TimeSpan duration, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null)
-    {
-        return Get(getItem, "", duration, condition, skipForAuthenticatedUsers, skipForAdmins, skipFor);
-    }
-
-    /// <summary>
-    /// Get item from Cache as T using auto-generated cache key
-    /// 
-    /// <para>Null value is never added to cache</para>'
-    /// Throws if your getItem method throws
-    /// </summary>
-    /// <remarks>
-    /// Throws exception if getItem can throw
-    /// 
-    /// Default duration is 180 seconds
-    /// 
+    /// <para>Default duration is 180 seconds</para>
     /// <para>'Skip' means that the item will not be fetched from cache</para>
     /// <list>
     /// <item>Skip options:</item>
@@ -372,13 +293,94 @@ public static partial class Cache
     /// </list>
     /// </remarks>
     /// <param name="cacheKey">"" to use auto-generating of cacheKey, null to always skip cache</param>
-    /// <param name="condition">Add to cache only if condition is met, for instance: data != null</param>
-    /// <param name="skipForAuthenticatedUsers">Skip cache for any user that is authenticated, but is not part of any of the admin roles: Admins, Administrators, WebAdmins, CmsAdmins</param>
-    /// <param name="skipForAdmins">Skip cache for current principal that is authenticated and is part of either of the roles: Admins, Administrators, WebAdmins, CmsAdmins</param>
+    /// <param name="condition">Add to cache only if condition is true, for instance: data?.Count > 0</param>
+    /// <param name="skipForAuthenticatedUsers">Skip cache for any user that is authenticated through the current HttpContext.User instance</param>
+    /// <param name="skipForAdmins">Skip cache for any user that is authenticated through the current HttpContext.User and is in any role: Admin, Admins, Administrator, Administrators, WebAdmins, CmsAdmins, admin, admins, administrator, administrators</param>
+    /// <param name="skipFor">Implement your own logic for when to skip cache, let it return true on your conditions to avoid caching</param>
+    /// <code>
+    /// class CarService
+    /// {
+    ///     public string GetCars() 
+    ///     {
+    ///         var cacheKey = "helloworld";
+    ///         
+    ///         return Cache.Get&lt;string&gt;(cacheKey, () => {
+    ///             return Client.Get&lt;string&gt;("https://systemlibrary.com/api/cars?top=1");
+    ///         },
+    ///         TimeSpan.FromSeconds(5));
+    ///     }
+    /// }
+    /// </code>
+    /// <returns>Returns T from cache or from getItem, or throws if getItem throws</returns>
+    public static T Get<T>(string cacheKey, Func<T> getItem, TimeSpan duration = default, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null)
+    {
+        return Get(getItem, cacheKey, duration, condition, skipForAuthenticatedUsers, skipForAdmins, skipFor);
+    }
+
+    /// <summary>
+    /// Get item from Cache as T using auto-generated cache key
+    /// </summary>
+    /// <remarks>
+    /// <para>A null value is never added to cache</para>
+    /// Throws exception if getItem can throw
+    /// <para>Default duration is 180 seconds</para>
+    /// <para>'Skip' means that the item will not be fetched from cache</para>
+    /// <list>
+    /// <item>Skip options:</item>
+    /// <item>- skipForAuthenticatedUsers, false by default</item>
+    /// <item>- skipForAdmins, true by default</item>
+    /// <item>    * User must be part of any following roles case sensitive: Admin, Admins, Administrator, Administrators, WebAdmins, CmsAdmins, admin, admins, administrator, administrators</item>
+    /// <item>- skipFor, your own condition, must return True to skip</item>
+    /// </list>
+    /// </remarks>
+    /// <param name="condition">Add to cache only if condition is true, for instance: data?.Count > 0</param>
+    /// <param name="skipForAuthenticatedUsers">Skip cache for any user that is authenticated through the current HttpContext.User instance</param>
+    /// <param name="skipForAdmins">Skip cache for any user that is authenticated through the current HttpContext.User and is in any role: Admin, Admins, Administrator, Administrators, WebAdmins, CmsAdmins, admin, admins, administrator, administrators</param>
+    /// <param name="skipFor">Implement your own logic for when to skip cache, let it return true on your conditions to avoid caching</param>
+    /// <code>
+    /// class CarService
+    /// {
+    ///     public string GetCars() 
+    ///     {
+    ///         var cacheKey = "helloworld";
+    ///         
+    ///         return Cache.Get&lt;string&gt;(cacheKey, () => {
+    ///             return Client.Get&lt;string&gt;("https://systemlibrary.com/api/cars?top=1");
+    ///         },
+    ///         TimeSpan.FromSeconds(5));
+    ///     }
+    /// }
+    /// </code>
+    /// <returns>Returns T from cache or from getItem, or throws if getItem throws</returns>
+    public static T Get<T>(Func<T> getItem, TimeSpan duration, Func<T, bool> condition = null, bool skipForAuthenticatedUsers = false, bool skipForAdmins = true, Func<bool> skipFor = null)
+    {
+        return Get(getItem, "", duration, condition, skipForAuthenticatedUsers, skipForAdmins, skipFor);
+    }
+
+    /// <summary>
+    /// Get item from Cache as T using auto-generated cache key
+    /// </summary>
+    /// <remarks>
+    /// <para>A null value is never added to cache</para>
+    /// Throws exception if getItem can throw
+    /// <para>Default duration is 180 seconds</para>
+    /// <para>'Skip' means that the item will not be fetched from cache</para>
+    /// <list>
+    /// <item>Skip options:</item>
+    /// <item>- skipForAuthenticatedUsers, false by default</item>
+    /// <item>- skipForAdmins, true by default</item>
+    /// <item>    * User must be part of any following roles case sensitive: Admin, Admins, Administrator, Administrators, WebAdmins, CmsAdmins, admin, admins, administrator, administrators</item>
+    /// <item>- skipFor, your own condition, must return True to skip</item>
+    /// </list>
+    /// </remarks>
+    /// <param name="cacheKey">"" to use auto-generating of cacheKey, null to always skip cache</param>
+    /// <param name="condition">Add to cache only if condition is true, for instance: data?.Count > 0</param>
+    /// <param name="skipForAuthenticatedUsers">Skip cache for any user that is authenticated through the current HttpContext.User instance</param>
+    /// <param name="skipForAdmins">Skip cache for any user that is authenticated through the current HttpContext.User and is in any role: Admin, Admins, Administrator, Administrators, WebAdmins, CmsAdmins, admin, admins, administrator, administrators</param>
     /// <param name="skipFor">Implement your own logic for when to skip cache, let it return true on your conditions to avoid caching</param>
     /// <example>
     /// Simplest example:
-    /// <code class="language-csharp hljs">
+    /// <code>
     /// var data = Cache.Get(() => {
     ///     return "hello world";
     /// });
@@ -387,7 +389,7 @@ public static partial class Cache
     /// </code>
     /// 
     /// Simplest example with cacheKey:
-    /// <code class="language-csharp hljs">
+    /// <code>
     /// var cacheKey = "hello-world-key";
     /// var data = Cache.Get(() => {
     ///     return "hello world";
@@ -398,7 +400,7 @@ public static partial class Cache
     /// </code>
     /// 
     /// Example with multiple options passed, and a condition that always fails:
-    /// <code class="language-csharp hljs">
+    /// <code>
     /// var cacheKey = "hello-world-key";
     /// var data = Cache.Get(() => {
     ///         return "hello world";
@@ -413,7 +415,7 @@ public static partial class Cache
     /// </code>
     /// 
     /// Example without a cache key
-    /// <code class="language-csharp hljs">
+    /// <code>
     /// class CarService
     /// {
     ///     public string GetCars() 
@@ -428,7 +430,7 @@ public static partial class Cache
     /// </code>
     /// 
     /// Example without a cache key and with 'external' variables
-    /// <code class="language-csharp hljs">
+    /// <code>
     /// class CarService
     /// {
     ///     public string GetCars(int top = 10) 
@@ -516,27 +518,24 @@ public static partial class Cache
     }
 
     /// <summary>
-    /// Create a 'lock' to a part of a function, to run it only once for the duration
-    /// 
-    /// <para>Default lock duration is 60 seconds</para>
-    /// 
-    /// Useful to execute code only once within the time frame per app instance, not bombarding log for instance
+    /// Ensures that the enclosed code block executes only once within the specified duration
+    /// <para>Default break duration is 60 seconds</para>
     /// </summary>
     /// <remarks>
-    /// Uses the stack frame to read current namespace and method as cache key, so max 1 invocation per function scope, else you must fill out the cacheLock parameter too
+    /// Uses the stack frame to read current namespace and method as cache key, so max 1 invocation per function scope, else you must fill out the breakKey parameter too
     /// <para>- in the future it might support multiple...</para>
     /// </remarks>
-    /// <param name="lockKey">Append data to the lock key, if multiple locks resides inside the same method scope</param>
+    /// <param name="duration">The time span for which subsequent executions are prevented.</param>
     /// <example>
-    /// <code class="language-csharp hljs">
-    /// if(Cache.Lock("send-email", TimeSpan.FromSeconds(60)) 
+    /// <code>
+    /// if(Cache.Break("send-email", TimeSpan.FromSeconds(60)) 
     /// {
     ///     new Email(...).Send(); // Pseudo code
     ///     // Example: invoking this code 66 times, one time per second, where first invocation is one second from "now", will send two emails: one at second 1, and another at second 61
     /// }
     /// </code>
     /// </example>
-    /// <returns>Returns true if the key do not exist or has expired else returns false</returns>
+    /// <returns>True if the block is allowed to execute; otherwise, false.</returns>
     public static bool Lock(TimeSpan duration = default, string lockKey = null)
     {
         if (duration == default)
@@ -565,10 +564,13 @@ public static partial class Cache
     }
 
     /// <summary>
-    /// Removes item from cache or does nothing if item do not exist in cache
+    /// Remove item from Cache
     /// </summary>
+    /// <remarks>
+    /// Does nothing if item do not exist in cache or if cacheKey is null/blank
+    /// </remarks>
     /// <example>
-    /// <code class="language-csharp hljs">
+    /// <code>
     /// var cacheKey = "hello world";
     /// Cache.Remove(cacheKey);
     /// </code>
@@ -588,8 +590,12 @@ public static partial class Cache
     /// <summary>
     /// Clear all entries found, which was set through this Cache class
     /// </summary>
+    /// <remarks>
+    /// Only entries set through either TryGet, Get or Set will be cleared
+    /// - other cache mechanisms you might use are not touched
+    /// </remarks>
     /// <example>
-    /// <code class="language-csharp hljs">
+    /// <code>
     /// Cache.Clear();
     /// </code>
     /// </example>

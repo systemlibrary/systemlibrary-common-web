@@ -33,7 +33,7 @@ public class HtmlHelperFactory
     /// </summary>
     /// <example>
     /// Usage:
-    /// <code class="language-csharp hljs">
+    /// <code>
     /// class ViewModel 
     /// {
     ///     public string Title { get; set; }
@@ -60,7 +60,7 @@ public class HtmlHelperFactory
     /// </summary>
     /// <example>
     /// Usage:
-    /// <code class="language-csharp hljs">
+    /// <code>
     /// var htmlHelper = HtmlHelperFactory.Build();
     /// </code>
     /// </example>

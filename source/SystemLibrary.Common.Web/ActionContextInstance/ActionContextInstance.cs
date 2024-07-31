@@ -10,16 +10,16 @@ public static class ActionContextInstance
     internal static IActionContextAccessor ActionContextAccessor;
 
     /// <summary>
-    /// Returns current Action Context
+    /// Get the current Action Context instance
     /// </summary>
     /// <remarks>
-    /// ActionContext can be null in a Console Application or a Unit Test application or if MVC is not registered
+    /// Do note that Action Context can be null in a console application or in a 'Unit' Test Application or if MVC is not yet registered as a service/invoked
     /// </remarks>
     /// <example>
-    /// Usage:
-    /// <code class="language-csharp hljs">
+    /// <code>
     /// var actionContext = ActionContextInstance.Current;
     /// </code>
     /// </example>
+    /// <return>Returns current Action Context or null if there is none</return>
     public static Microsoft.AspNetCore.Mvc.ActionContext Current => ActionContextAccessor?.ActionContext;
 }
