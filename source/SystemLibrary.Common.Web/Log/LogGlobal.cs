@@ -13,7 +13,7 @@
 ///// Log.Error() creates a log message which again calls your LogWriter with the message
 ///// <para>- You can then add additional data to the message before storing, up to you</para>
 ///// Log exists in the global namespace
-///// <para>Not registeringer a ILogWriter will force this to use Dump.Write</para>
+///// <para>If ILogWriter is not registered, this will use Dump.Write. Dump.Write shall never be used in production</para>
 ///// </remarks>
 ///// <example>
 ///// Configure log options in appSettings.json

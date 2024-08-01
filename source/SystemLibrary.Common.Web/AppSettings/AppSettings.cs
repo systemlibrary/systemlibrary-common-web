@@ -15,7 +15,7 @@ internal class AppSettings : Config<AppSettings>
 
 internal class LoggingLogLevel
 {
-    public string Default { get; set; } = "Warning";
+    public string Default { get; set; } = "Information";
 }
 
 internal class Logging

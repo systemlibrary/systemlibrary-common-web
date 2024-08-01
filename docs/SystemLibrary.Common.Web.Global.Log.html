@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="overflow: hidden;font-size: 1px;max-width: 1px; visibility: hidden; position: absolute; margin-left: -4000px;">
-        MediaType,BaseOptions,LogLevel,ClientResponse__-1_T__-2_,CacheConfiguration,ClientConfiguration,CalleeCancelledRequestException,RetryRequestException,GlobalEnumConverter,LogConfiguration,PackageConfig</div>
+        MediaType,BaseOptions,LogLevel,PackageConfig.CacheConfiguration,PackageConfig.ClientConfiguration,PackageConfig.LogConfiguration,ClientResponse__-1_T__-2_,CacheConfiguration,ClientConfiguration,CalleeCancelledRequestException,RetryRequestException,GlobalEnumConverter,LogConfiguration,PackageConfig</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -208,7 +208,7 @@
         <div class="markdown level0 remarks"><p>Log.Error() creates a log message which again calls your LogWriter with the message</p>
 <p>- You can then add additional data to the message before storing, up to you</p>
 Log exists in the global namespace
-<p>Not registeringer a ILogWriter will force this to use Dump.Write</p>
+<p>If ILogWriter is not registered, this will use Dump.Write. Dump.Write shall never be used in production</p>
 </div>
       </div>
     </div>

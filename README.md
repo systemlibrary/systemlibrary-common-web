@@ -15,23 +15,27 @@ Library with classes and methods for every &gt;=  .NET 7 web application
 
 #### Modules
 * Client
-  * Reuses the underlying TCP connection for 2 minutes, saving 10's of milliseconds on subsequent requests
-  * Retries once if a request fails, but this time on a new TCP connection with a limited 10s timeout
+  * Reuses the underlying TCP connection for more than 250 seconds, saving 10's of milliseconds on subsequent requests
+  * Recreates the underlying HttpClient every 20 minutes to minimize to transient network failures
+  * Retries 502 and 504 status codes once on a new TCP connection
 * Cache
   * Auto-generating cache keys based on variables in "function scope"
   * A 3 minute default cache duration
+  * A 10 minute fallback cache in case of Get() throws exception
 * HttpContextInstance
   * Current 
 * ActionContextInstance
   * Current
-* Services.Get
-  * the "service locator"
 
 ## Requirements
 - &gt;= .NET 7
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Release Notes
+- 7.8.0.2
+- Updated deps
+- Updated comments and package description
+- Default Log level is Information (bug, was a mix)
 - 7.8.0.1
 - Cache.TryGet method added (new)
 - TypeDescriptor for string to Enum added, uses ToEnum from SystemLibrary.Common.Net (new)
