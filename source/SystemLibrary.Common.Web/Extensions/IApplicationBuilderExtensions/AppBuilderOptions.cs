@@ -71,6 +71,7 @@ public class AppBuilderOptions : BaseOptions
     /// <summary>
     /// Set the relative paths of where most static content is served from
     /// <para>For example: new string[] { "/static", "/public" }</para>
+    /// <para>This requires either you set env.WebRootPath before invoking the Options or that the built-in root path EnvironmentConfig.Current.ContentRootPath is what you want</para>
     /// </summary>
     /// <remarks>
     /// Requires UseStaticFiles set to True

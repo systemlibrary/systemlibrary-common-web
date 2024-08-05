@@ -14,6 +14,7 @@ internal static class Debug
         }
     }
 
+    // Requires debug=true and log level=debug or lower to be able to print debug information
     internal static void Log(string message)
     {
         if (Debugging)
