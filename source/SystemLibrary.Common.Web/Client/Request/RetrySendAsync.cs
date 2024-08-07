@@ -54,12 +54,12 @@ partial class Client
 
                 if (retry != maxRetries - 1)
                 {
-                    if (!IsEligibleForRetry(options, response, retry))
+                    if (!IsEligibleForRetry(options, response, retry, ex))
                     {
                         break;
                     }
 
-                    Debug.Log("Retrying..." + retry + " " + options.Url + ": " + response?.StatusCode);
+                    Debug.Log("Retry count: " + (retry + 1) + " " + options.Url + ": " + response?.StatusCode);
                     ex = null;
                     response = null;
                     await Task.Delay(TimeSpan.FromMilliseconds(666)).ConfigureAwait(false);

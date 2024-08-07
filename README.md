@@ -32,15 +32,15 @@ Library with classes and methods for every &gt;=  .NET 7 web application
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Release Notes
-- 7.8.0.3
-- SystemLibrary.Common.Net contained internal bug, updated version (fix)
+- 7.8.0.4
+- Client retries on exception message containing 'connection forcibly closed by the remote host' at least once with a 'new HttpClient'
 
 #### Major Breaking Versions
 - 7.8.0.1
 - HttpBaseClient rewritten to Client
 - Cache.Get auto generate key is triggered on cacheKey "", not null as previously
 - Cache.Get always have a fallback, configure it's fallback duration, set to 0 for disabling it
-- Log.Level is read from Microsofts 'Logging' in appSettings if not existing
+- Log.Level is read from Microsofts 'Logging' in appSettings if not existing in the 'packageConfig'
 - Requires minimum SystemLibrary.Common.Net 7.13.0.7
  
 #### Version history

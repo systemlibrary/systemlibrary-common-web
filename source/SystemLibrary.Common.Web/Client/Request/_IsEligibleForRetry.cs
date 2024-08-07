@@ -1,5 +1,7 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
+using System.Net.Sockets;
 
 namespace SystemLibrary.Common.Web;
 
@@ -19,20 +21,33 @@ partial class Client
         /// - retries once on OPTION, PATCH, HEAD, CONNECT, TRACE
         /// - retries up to 2 times on 502, 504 on non file requests
         /// </summary>
-        static bool IsEligibleForRetry(RequestOptions options, HttpResponseMessage response, int retry)
+        static bool IsEligibleForRetry(RequestOptions options, HttpResponseMessage response, int retry, Exception ex)
         {
-            if(!options.UseRetryPolicy)
+            if (ex != null)
             {
-                if(response != null)
+                // A connection is forcibly closed by the remote host, for some reason, lets retry
+                // It might be a valid forcibly closage, as in too many requests so remote host denies us, but we only retry 1-2 times
+                if (ex is HttpRequestException || ex is SocketException)
+                {
+                    var m = ex.Message + ex.InnerException?.Message + ex.InnerException?.InnerException?.Message;
+
+                    if (m.Contains("forcibly closed by"))
+                        return true;
+                }
+            }
+
+            if (!options.UseRetryPolicy)
+            {
+                if (response != null)
                 {
                     if (options.Method != HttpMethod.Get && options.Method != HttpMethod.Post && !options.Url.IsFile())
                         return false;
 
-                    return 
+                    return
                         response.StatusCode == HttpStatusCode.BadGateway ||
                         response.StatusCode == HttpStatusCode.GatewayTimeout;
                 }
-                
+
                 return false;
             }
 
