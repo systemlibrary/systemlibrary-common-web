@@ -12,10 +12,10 @@ partial class HttpBaseClient
 {
     static async Task<T> ReadResponseAsync<T>(string url, HttpResponseMessage response, CancellationToken cancellationToken, JsonSerializerOptions jsonSerializerOptions, bool throwOnUnsuccessfulStatusCode)
     {
-        if (throwOnUnsuccessfulStatusCode && !response.IsSuccessStatusCode)
+        if (throwOnUnsuccessfulStatusCode && response?.IsSuccessStatusCode != true)
             ThrowRequestException(url, response);
 
-        if (response.Content == null) return default;
+        if (response?.Content == null) return default;
 
         var type = typeof(T);
 

@@ -32,10 +32,8 @@ Library with classes and methods for every &gt;=  .NET 7 web application
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Version
-- 7.6.0.6
-- HttpRequestException and SocketException if any contains "forcibly closed by" as message, usually forced by closed by the remote host, then we hard-coded a retry of 10s
-- 502 and 504 on GET/HEAD gets a forced 6s retry
-- HttpClientCacheDuration from 120s to 200s
+- 7.6.0.7
+- ReadResponseAsync null ex on response (fix)
 
 #### Version history
 - View git history of this file if interested

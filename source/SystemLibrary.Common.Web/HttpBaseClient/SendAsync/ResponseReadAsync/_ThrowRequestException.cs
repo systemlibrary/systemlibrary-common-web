@@ -7,22 +7,25 @@ partial class HttpBaseClient
 {
     static void ThrowRequestException(string url, HttpResponseMessage response)
     {
-        var message = GetResponseBodyAsync(response)
-            .ConfigureAwait(false)
-            .GetAwaiter()
-            .GetResult() ?? "";
-
-        response.Dispose();
-
-        var messageIndex = message.IndexOf("\"message\"");
-        if (messageIndex >= 0)
-            message = message.Substring(messageIndex);
-
-        if ((int)response.StatusCode == 422)
+        if (response != null)
         {
-            throw new HttpRequestException(HttpStatusCode.BadRequest + " (actual: " + (int)response.StatusCode + "): " + response.ReasonPhrase + " " + message + " Url: " + url);
-        }
+            var message = GetResponseBodyAsync(response)
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult() ?? "";
 
-        throw new HttpRequestException(response.StatusCode + ": " + response.ReasonPhrase + ". " + message + " Url: " + url);
+            response.Dispose();
+
+            var messageIndex = message.IndexOf("\"message\"");
+            if (messageIndex >= 0)
+                message = message.Substring(messageIndex);
+
+            if ((int)response.StatusCode == 422)
+            {
+                throw new HttpRequestException(HttpStatusCode.BadRequest + " (actual: " + (int)response.StatusCode + "): " + response.ReasonPhrase + " " + message + " Url: " + url);
+            }
+            throw new HttpRequestException(response?.StatusCode + ": " + response?.ReasonPhrase + ". " + message + " Url: " + url);
+        }
+        throw new HttpRequestException("Response is null on url " + url);
     }
 }
