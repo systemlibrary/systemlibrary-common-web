@@ -35,7 +35,7 @@ internal class AppSettings : Config<AppSettings>
             public int TimeoutMilliseconds { get; set; } = 60000;
 
             public int RetryRequestTimeoutSeconds { get; set; } = 10;
-            public int CacheClientConnectionSeconds { get; set; } = 120;
+            public int CacheClientConnectionSeconds { get; set; } = 200;
         }
 
         public class CacheConfiguration

@@ -6,7 +6,7 @@ partial class HttpBaseClient
 {
     partial class Client
     {
-        const int MinimumLifetimeSeconds = 120;
+        const int MinimumLifetimeSeconds = 180;
 
         static void Dispose()
         {

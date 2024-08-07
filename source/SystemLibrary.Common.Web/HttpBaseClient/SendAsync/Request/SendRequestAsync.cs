@@ -15,6 +15,64 @@ partial class HttpBaseClient
             try
             {
                 response = await SendAsync(options).ConfigureAwait(false);
+
+                if(response?.StatusCode == System.Net.HttpStatusCode.BadGateway ||
+                    response?.StatusCode == System.Net.HttpStatusCode.GatewayTimeout)
+                {
+                    if (options.Method == HttpMethod.Get || options.Method == HttpMethod.Head)
+                    {
+                        options.ForceNewClient = true;
+
+                        options.TimeoutMilliseconds = 6000;
+
+                        response = await SendAsync(options).ConfigureAwait(false);
+                    }
+                }
+            }
+            catch (System.Net.Sockets.SocketException se)
+            {
+                if (options.CancellationToken != null && options.CancellationToken.IsCancellationRequested)
+                    throw new Exception("Cancelled: " + se?.InnerException?.Message + ". " + se?.InnerException?.StackTrace);
+
+                if (se.Message.Contains("forcibly closed by") || se?.InnerException?.Message.Contains("forcibly closed by") == true)
+                {
+                    if (options.CancellationToken != null && options.CancellationToken.IsCancellationRequested)
+                        throw new Exception("Cancelled: " + se?.InnerException?.Message + ". " + se?.InnerException?.StackTrace);
+
+                    try
+                    {
+                        options.ForceNewClient = true;
+
+                        options.TimeoutMilliseconds = 10000;
+
+                        response = await SendAsync(options).ConfigureAwait(false);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(response?.StatusCode + ": " + response?.ReasonPhrase + " error on retrying " + options.Url + " timeout: " + options.TimeoutMilliseconds + " ms", se);
+                    }
+                }
+            }
+            catch (HttpRequestException hre)
+            {
+                if (options.CancellationToken != null && options.CancellationToken.IsCancellationRequested)
+                    throw new Exception("Cancelled: " + hre?.InnerException?.Message + ". " + hre?.InnerException?.StackTrace);
+
+                if (hre.Message.Contains("forcibly closed by") || hre?.InnerException?.Message.Contains("forcibly closed by") == true)
+                {
+                    try
+                    {
+                        options.ForceNewClient = true;
+
+                        options.TimeoutMilliseconds = 10000;
+
+                        response = await SendAsync(options).ConfigureAwait(false);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(response?.StatusCode + ": " + response?.ReasonPhrase + " error on retrying " + options.Url + " timeout: " + options.TimeoutMilliseconds + " ms", hre);
+                    }
+                }
             }
             catch (RetryRequestException retry)
             {

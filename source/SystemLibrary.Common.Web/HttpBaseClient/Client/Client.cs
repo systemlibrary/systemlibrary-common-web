@@ -38,7 +38,9 @@ namespace SystemLibrary.Common.Web
                     if (HasExpired(cached))
                         RemoveFromCache(key);
                     else
+                    {
                         return cached.HttpClientCached;
+                    }
                 }
 
                 return New(key, timeoutMilliseconds, retryOnRequestCancelled, ignoreSslErrors);
