@@ -1,0 +1,18 @@
+# User files
+*.suo
+*.user
+
+# Visual studio folders
+.vs/
+
+# MsBuild folders
+[Oo]bj/
+[Bb]in/
+[Tt]est[Rr]esult/
+
+# Nuget files and folders
+*.nupkg
+
+# docfx
+*_site/
+docfx_custom_template/

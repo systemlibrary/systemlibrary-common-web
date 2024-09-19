@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>SystemLibrary Common Web </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="SystemLibrary Common Web ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="/systemlibrary-common-web/favicon.ico">
+    <link rel="stylesheet" href="/systemlibrary-common-web/styles/docfx.vendor.css">
+    <link rel="stylesheet" href="/systemlibrary-common-web/styles/docfx.css">
+    <link rel="stylesheet" href="/systemlibrary-common-web/styles/main.css">
+    <link rel="stylesheet" href="/systemlibrary-common-web/styles/custom.css">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <script>
+      function display() {
+        var articles = document.querySelectorAll('article.hideonload');
+        if(articles && articles.length) {
+          for(var i = 0; i < articles.length; i++) {
+            if(articles[i].classList.contains('hideonload')) {
+              articles[i].classList.remove('hideonload');
+            }
+          }
+        }
+      }
+      setTimeout(display, 80);
+    </script>
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="/systemlibrary-common-web/index.html">
+                <img id="logo" class="svg" src="/systemlibrary-common-web/logo.png" alt="">
+                <span class="navbar-title">System Library Common Web</span>
+              </a>
+              
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+      
+      <div id="custom-skipDocumentationFor" style="overflow: hidden;font-size: 1px;max-width: 1px; visibility: hidden; position: absolute; margin-left: -4000px;">
+        [%custom-skipDocumentationFor%]</div>
+      <div class="sidenav hide-when-search sidenav--index">
+        <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+        <div class="sidetoggle collapse" id="sidetoggle">
+          <div id="sidetoc" class="hideonload"></div>
+        </div>
+      </div>
+      
+      <script>
+        function sideTocShowOnLoad() {
+          var sidetoc = document.getElementById('sidetoc');
+          sidetoc.classList.remove('hideonload');
+        }
+      
+        function hideLinksQueryBasedInToc() {
+          var skipDocumentationForContainer = document.getElementById('custom-skipDocumentationFor');
+          if (skipDocumentationForContainer) {
+      
+            var innerHtml = skipDocumentationForContainer.innerHTML;
+            if (innerHtml && innerHtml.length > 1) {
+      
+              var toc = document.getElementById('toc');
+              if (toc && toc.querySelector) {
+      
+                var queries = innerHtml.split(',');
+                if (queries && queries.length > 0) {
+      
+                  for (var i = 0; i < queries.length; i++) {
+                    var query = queries[i].replace(/(\r\n|\n|\r)/gm, "");
+      
+                    if (query && query.length > 1) {
+                      query = query.replace(/ /g, '');
+      
+                      query = query.replace('__-1_', '<');
+                      query = query.replace('__-2_', '>');
+      
+                      if (query.includes('.')) {
+                        var links = toc.getElementsByTagName('a');
+      
+                        if (links) {
+                          var queryLowered = query.toLowerCase();
+                          for (var j = 0; j < links.length; j++) {
+                            try {
+                              var link = links[j];
+      
+                              if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
+                                var parent = link.parentNode;
+                                if (parent && parent.remove) {
+                                  var namespaceParent = parent.parentNode;
+      
+                                  parent.remove();
+      
+                                  if (namespaceParent && namespaceParent.parentNode) {
+                                    if (namespaceParent.classList.contains('level2')) {
+                                      var namespaceRemainingListItems = namespaceParent.children;
+                                      if (namespaceRemainingListItems && namespaceRemainingListItems.length
+                                        && namespaceRemainingListItems.length > 1) {
+                                      } else {
+                                        var namespaceLink = namespaceParent.parentNode;
+                                        if (namespaceLink && namespaceLink.remove) {
+                                          namespaceLink.remove();
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                            catch (e) {
+                              console.warn("Error cleaning a link in sidetoc, continuing...");
+                            }
+                          }
+                        }
+                      }
+                      else {
+                        var q = '[title="' + query + '"]';
+                        var href = toc.querySelector(q);
+                        if (typeof (href) !== 'undefined' && href && href.classList) {
+                          var parent = href.parentNode;
+                          if (parent && parent.remove) {
+                            parent.remove();
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+      
+                sideTocShowOnLoad();
+              }
+            }
+          }
+        }
+      
+        setTimeout(() => sideTocShowOnLoad(), 500);
+      
+      </script>
+      <div class="article-row-container article-row-container--index">
+        <div class="article row grid-right">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap hideonload" id="_content" data-uid="">
+<h1 id="projectdisplayname">SystemLibrary Common Web</h1>
+
+<p><ol class='navigation-list-item'><li class='install' title='Install'><a class='index-navigation-item' href='/systemlibrary-common-web/Install.html'>Install Documentation</a></li><li class='index-navigation-item--namespace' title='namespace'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.html'>SystemLibrary.Common.Web</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.ActionContextInstance.html'>SystemLibrary.Common.Web.ActionContextInstance</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.Cache.html'>SystemLibrary.Common.Web.Cache</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.Client.html'>SystemLibrary.Common.Web.Client</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.HtmlHelperFactory.html'>SystemLibrary.Common.Web.HtmlHelperFactory</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.HttpContextInstance.html'>SystemLibrary.Common.Web.HttpContextInstance</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.ILogWriter.html'>SystemLibrary.Common.Web.ILogWriter</a></li> <li class='index-navigation-item--namespace' title='namespace'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.Extensions.html'>SystemLibrary.Common.Web.Extensions</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.Extensions.AppBuilderOptions.html'>SystemLibrary.Common.Web.Extensions.AppBuilderOptions</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.Extensions.Clock.html'>SystemLibrary.Common.Web.Extensions.Clock</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.html'>SystemLibrary.Common.Web.Extensions.HttpRequestExtensions</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.html'>SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.Extensions.IPrincipalExtensions.html'>SystemLibrary.Common.Web.Extensions.IPrincipalExtensions</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.html'>SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.html'>SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions</a></li> <li class='index-navigation-item--namespace' title='namespace'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.Global.html'>SystemLibrary.Common.Web.Global</a></li> <li class='' title='class'><a class='index-navigation-item' href='/systemlibrary-common-web/SystemLibrary.Common.Web.Global.Log.html'>SystemLibrary.Common.Web.Global.Log</a></li></ol></p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      
+      <footer id="page-footer">
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span>Package: <a href="https://www.nuget.org/packages/SystemLibrary.Common.Web/">nuget</a></span><br>
+            <span>Source: <a href="https://github.com/systemlibrary/systemlibrary-common-web/">github</a></span><br>
+            <span>Website: <a href="https://www.systemlibrary.com/">System Library Common Web</a></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="/systemlibrary-common-web/styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="/systemlibrary-common-web/styles/docfx.js"></script>
+    <script type="text/javascript" src="/systemlibrary-common-web/styles/main.js"></script>
+  </div></body>
+</html>

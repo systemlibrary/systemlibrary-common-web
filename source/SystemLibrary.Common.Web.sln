@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemLibrary.Common.Web", "SystemLibrary.Common.Web\SystemLibrary.Common.Web.csproj", "{6ECC4326-ACBF-47EC-A25B-E02A6DD6C96B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemLibrary.Common.Web.Tests", "SystemLibrary.Common.Web.Tests\SystemLibrary.Common.Web.Tests.csproj", "{7BBEF8FF-D488-4794-A8BD-396F390134F8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Local|Any CPU = Local|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6ECC4326-ACBF-47EC-A25B-E02A6DD6C96B}.Local|Any CPU.ActiveCfg = Local|Any CPU
+		{6ECC4326-ACBF-47EC-A25B-E02A6DD6C96B}.Local|Any CPU.Build.0 = Local|Any CPU
+		{6ECC4326-ACBF-47EC-A25B-E02A6DD6C96B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ECC4326-ACBF-47EC-A25B-E02A6DD6C96B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BBEF8FF-D488-4794-A8BD-396F390134F8}.Local|Any CPU.ActiveCfg = Local|Any CPU
+		{7BBEF8FF-D488-4794-A8BD-396F390134F8}.Local|Any CPU.Build.0 = Local|Any CPU
+		{7BBEF8FF-D488-4794-A8BD-396F390134F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BBEF8FF-D488-4794-A8BD-396F390134F8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B8390EF5-99C5-4938-94B2-E1202956C91C}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,390 @@
+{
+  "homepages": [],
+  "source_base_path": "C:/syslib/systemlibrary-common-web/source/SystemLibrary.Common.Web",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.ActionContextInstance.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.ActionContextInstance.html",
+          "hash": "942xCx0Jx2BUoKutVKeQdMxJIYBFqqn2lui/G9vDbvs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Cache.html",
+          "hash": "u9iCOYGTMFk1Pd5BG9FtHND4mJS0fmvgU3kXoXoZsLU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.CalleeCancelledRequestException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.CalleeCancelledRequestException.html",
+          "hash": "4iOnFmvTR98hT3O8lEEZ9pURgY42OxcHe25kvE2p378="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Client.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Client.html",
+          "hash": "YqjwyqaUFUc+lwWzvOaI0SwMRFQPGq7/T79Bc1JwcOU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.ClientResponse-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.ClientResponse-1.html",
+          "hash": "zByjWCD9u7Rv87fk2IB+v35iH2mA9ywIUOG9PK417ZU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.AppBuilderOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.AppBuilderOptions.html",
+          "hash": "fI9p2Q8aDauzKvwymjroXDkGTPfUNdBS0yOs98LhrgE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.BaseOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.BaseOptions.html",
+          "hash": "nZQeBBaWbAuAefh2NinhsVolfNxoZURFF0Ny24ETFOY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.Clock.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.Clock.html",
+          "hash": "gXnzQyMidhuJqQrSzTNqJvyXIcQHasOUFlhhLF1e6hE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.HttpRequestExtensions.html",
+          "hash": "e1CC4imJ5Dg1HGfq7hDDJB7grPYgFWi9Z/w+YpvEtwE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IApplicationBuilderExtensions.html",
+          "hash": "o8ru7PB5Kd83GebcA2pafmGRRk8vvqRoUOA93fyhY9A="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IPrincipalExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IPrincipalExtensions.html",
+          "hash": "MaIlEeEN7QCwdLZ5ki2sPnfe6vET1Hqesx03cr3Er0o="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.IServiceCollectionExtensions.html",
+          "hash": "2tA5mLHWoNF4adIwdM5FR0ID1o/wXoVU6Ccq1i6mwBs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.ServicesCollectionOptions.html",
+          "hash": "sFMU2d0DjjovgQeLG9RYBUFqrjE0oPLSsmysBmBqE7Y="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Extensions.html",
+          "hash": "rAdaEWIZ9ijQWGNW3FDukCbZThLfeAE7R0inMGynj9c="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.Log.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.Log.html",
+          "hash": "ZoMZg+hRnVfTj+moLk0tfam/21K2aYXI9fyQFO9tAcY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.Global.html",
+          "hash": "gxLjcN5vQ2UGQNcHksvegsNph0X5WQCqc82dU6IZuyg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.GlobalEnumConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.GlobalEnumConverter.html",
+          "hash": "gSmLtTHOUk0V1ELtQTUxsQmAkXke0WLhffaGHn0NUec="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.HtmlHelperFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.HtmlHelperFactory.html",
+          "hash": "VmjYs7h4pNmN2hQfots4nwMS7FUph57XWkE/1jTG13Y="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpContextInstance.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.HttpContextInstance.html",
+          "hash": "4Sq0ZuNfHGDcpP/3nzM4oKR3uDxMrgQ+kzfQiAvLQo4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.ILogWriter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.ILogWriter.html",
+          "hash": "QZfBqHIRRIbudk01NC2KXfcZKzKI9rvgGiOLgZzgQSU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.MediaType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.MediaType.html",
+          "hash": "XWcueRteqMwSkXq54ASATuqlmGaObCAqf/Eppb0/QL0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.html",
+          "hash": "oZeKjk4YaXp5DU/Pog2r6KOhemG0+JfWqy+PEmg6X6k="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.html",
+          "hash": "8Oodl5bZf8qBuGMP1aY5s2jZ4Qx+aoKutjdFfQD5XfM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.LogConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.LogConfiguration.html",
+          "hash": "KA6lCIItF/TobMcx8GqWYXnYfnSP/mVjNCoZIrEz4D0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.PackageConfig.html",
+          "hash": "hO/6WvFMnVI5IK8s7Y+MUGBYJ1pxZm4mRVJcu24sLPQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/SystemLibrary.Common.Web.html",
+          "hash": "T8Jj/RTuaqvxat6PPwEtvdXSAT16NMIGdXbE09l6Dto="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "SystemLibrary.Common.Web/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web/toc.html",
+          "hash": "67ffXnWbNIHfndtPPHuq1kigvvw874tHHFi+NjPf+z8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "SystemLibrary.Common.Web_index.md",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Web_index.html",
+          "hash": "KKyS4pP/VyehC+Scc+nENt88J/JmG/ZKZqHa05znbSA="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": true,
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 1,
+          "skipped_file_count": 1
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 26,
+          "skipped_file_count": 24
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": true,
+        "details": "Can support incremental post processing.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
