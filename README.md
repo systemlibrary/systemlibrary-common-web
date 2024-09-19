@@ -30,9 +30,9 @@ Library with classes and methods for every &gt;=  .NET 7 web application
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Release Notes
-- 7.8.1.3
-- Updated deps
-- Updated docs for UseCommonWebApp()
+- 7.8.1.4
+- Fallback duration reduced to 300s from 600s (feature)
+- UseResponseCaching limited to 1GB maximum and 6MB per response cached (feature)
 
 #### Major Breaking Versions
 - 7.8.0.1

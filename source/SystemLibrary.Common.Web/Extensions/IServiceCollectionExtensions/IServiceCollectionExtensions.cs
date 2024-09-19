@@ -91,7 +91,14 @@ public static partial class IServiceCollectionExtensions
             services.AddOutputCache();
 
         if (options.UseResponseCaching)
-            services.AddResponseCaching();
+        {
+            services.AddResponseCaching(options =>
+            {
+                options.SizeLimit = 1000 * 1024 * 1048;     //1GB
+                options.MaximumBodySize = 6 * 1024 * 1024;  //6MB
+                options.UseCaseSensitivePaths = false;
+            });
+        }
 
         services.UseAutomaticDataProtectionPolicy(options);
 

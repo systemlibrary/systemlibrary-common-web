@@ -34,7 +34,7 @@ namespace SystemLibrary.Common.Web;
 /// A null value is never added to cache
 /// <para>Overwrite default cache configurations in appSettings.json:</para>
 /// - duration: 180, minimum 1
-/// <para>- fallbackDuration: 600, set to 0 to disable fallback cache globally</para>
+/// <para>- fallbackDuration: 300, set to 0 to disable fallback cache globally</para>
 /// - containerSizeLimit: 40000, minimum 10
 /// <para>Auto-generating cache key adds namespace, class, method, method-scoped variables of types such as bool, string, int, datetime, enum and few others</para>
 /// <para>- If a method-scoped variable is a class, its public members of same types are also appended as cacheKey</para>
@@ -49,7 +49,7 @@ namespace SystemLibrary.Common.Web;
 ///     "systemLibraryCommonWeb": {
 ///         "cache" { 
 ///             "duration": 180,
-///             "fallbackDuration": 600,
+///             "fallbackDuration": 300,
 ///             "containerSizeLimit": 40000
 ///         }
 ///     }
@@ -460,6 +460,7 @@ public static partial class Cache
 
         var cacheIndex = cacheKey.GetHashCode() & 7;
 
+        // NOTE: cache[cacheIndex] is never null
         if (cache[cacheIndex] == null)
             return getItem();
 
@@ -478,7 +479,7 @@ public static partial class Cache
 
                 if (cached != null)
                 {
-                    Log.Warning(new Exception("Fallback cache match, logged: " + cacheKey.MaxLength(16) + "...", ex));
+                    Log.Warning(new Exception("Fallback cache match, key: " + cacheKey.MaxLength(22) + "...", ex));
 
                     return true;
                 }

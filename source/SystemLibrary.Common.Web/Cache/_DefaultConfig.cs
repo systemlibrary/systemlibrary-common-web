@@ -3,7 +3,7 @@
 partial class Cache
 {
     internal const int DefaultDuration = 180;
-    internal const int DefaultFallbackDuration = 600;
+    internal const int DefaultFallbackDuration = 300;
     internal const int DefaultContainerSizeLimit = 40000;
 
     static int? _DurationConfig;
