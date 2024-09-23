@@ -88,14 +88,19 @@ public static partial class IServiceCollectionExtensions
             services = services.UseBrotliCompression();
 
         if (options.UseOutputCache)
-            services.AddOutputCache();
+            services.AddOutputCache(opt =>
+            {
+                opt.SizeLimit = 2000L * 1024 * 1048;    //2GB
+                opt.MaximumBodySize = 8 * 1024 * 1024; //8MB
+                opt.UseCaseSensitivePaths = false;
+            });
 
         if (options.UseResponseCaching)
         {
             services.AddResponseCaching(options =>
             {
-                options.SizeLimit = 1000 * 1024 * 1048;     //1GB
-                options.MaximumBodySize = 6 * 1024 * 1024;  //6MB
+                options.SizeLimit = 2000L * 1024 * 1048;     //2GB
+                options.MaximumBodySize = 8 * 1024 * 1024;  //8MB
                 options.UseCaseSensitivePaths = false;
             });
         }

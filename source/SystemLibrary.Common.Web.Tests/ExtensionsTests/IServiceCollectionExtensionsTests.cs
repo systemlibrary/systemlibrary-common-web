@@ -58,8 +58,11 @@ public class IServiceCollectionExtensionsTests
         Services.Configure(service.BuildServiceProvider());
 
         var data = "Hello world";
+
         var enc = data.Encrypt();
+
         var dec = enc.Decrypt();
+
         Assert.IsTrue(dec == data, "Wrong decryption");
     }
 
@@ -82,7 +85,7 @@ public class IServiceCollectionExtensionsTests
         var data = "Hello world";
         var enc = data.Encrypt();
         var dec = enc.Decrypt();
+
         Assert.IsTrue(dec == data, "Wrong decryption");
     }
-
 }

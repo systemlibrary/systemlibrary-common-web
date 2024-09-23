@@ -45,6 +45,5 @@ internal class PackageConfig
         public int ContainerSizeLimit { get; set; } = Web.Cache.DefaultContainerSizeLimit;
         public int FallbackDuration { get; set; } = Web.Cache.DefaultFallbackDuration;
     }
-
 }
 
