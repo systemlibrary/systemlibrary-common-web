@@ -30,9 +30,9 @@ Library with classes and methods for every &gt;=  .NET 7 web application
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Release Notes
-- 7.8.1.5
+- 7.8.1.6
+- Variable clash (fix)
 - Updated deps
-- OutputCache & ResponseCaching change defaults: sizelimit 2GB and item limit for both is 8MB
 
 #### Major Breaking Versions
 - 7.8.0.1
