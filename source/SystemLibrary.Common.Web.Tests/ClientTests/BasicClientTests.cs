@@ -23,7 +23,7 @@ public partial class ClientTests
                     var response = client.Get<string>("https://httpbin.org/get/?hello=world");
                     Assert.IsTrue(false, "Should throw, appSettings client changed?");
                 }
-                catch(HttpRequestException ex)
+                catch (HttpRequestException ex)
                 {
                     Assert.IsTrue(ex.Message.Contains("404 GET"), ex.Message);
                 }
@@ -41,9 +41,9 @@ public partial class ClientTests
             Clock.Measure(() =>
             {
                 var response = client.Get<string>("https://httpbin.org/get?hello=world");
-                
+
                 Assert.IsTrue(response.StatusCode == System.Net.HttpStatusCode.OK);
-                
+
                 Assert.IsTrue(response.Data.Contains("hello"));
             });
         }

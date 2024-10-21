@@ -39,7 +39,7 @@ partial class ClientTests
             .GetResult();
 
         Assert.IsTrue(dict.Count == 8, "Dictionary does not contain 8 responses: " + dict.Count);
-        
+
         System.Threading.Thread.Sleep(250);
 
         tasks2.Add(Task.Run(() => Add(bin.Get(), 9)));

@@ -50,7 +50,7 @@ public class ApiTest
     [TestMethod]
     public void Target_Local_Api_With_Bytes_As_Json_Data_Success()
     {
-        var client = new Client(20000,true, true);
+        var client = new Client(20000, true, true);
 
         var headers = new Dictionary<string, string>()
         {

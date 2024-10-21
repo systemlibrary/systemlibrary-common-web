@@ -45,8 +45,7 @@ partial class Log
                 int index = 0;
                 foreach (var obj in objects)
                 {
-                    if (firstObj == null)
-                        firstObj = obj;
+                    firstObj ??= obj;
 
                     if (obj is string json && json.IsJson())
                         AppendMessageFormat("message" + (index > 0 ? index : ""), json, message);

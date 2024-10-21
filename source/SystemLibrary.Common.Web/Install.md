@@ -1,7 +1,7 @@
 ﻿# Installation
 
 ## Requirements
-* &gt;= .NET 7
+* &gt;= .NET 8
 
 ## Install nuget package
 
@@ -11,7 +11,7 @@
 * Install SystemLibrary.Common.Web
 
 ## First time usage
-1. Create a new Asp.Net Core Empty .NET 7 project
+1. Create a new Asp.Net Core Empty .NET 8 project
 2. Add SystemLibrary.Common.Web nuget package
 3. Add Startup.cs at root of the web project
 4. Add appSettings.json at root of the web project

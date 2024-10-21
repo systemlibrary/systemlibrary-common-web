@@ -10,7 +10,7 @@ namespace SystemLibrary.Common.Web.Tests;
 public class CacheTests
 {
     const string CacheKey = "helloworld";
-   
+
     [TestMethod]
     public void Get_From_Cache_NotExisting_Success()
     {

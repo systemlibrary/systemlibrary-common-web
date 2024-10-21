@@ -42,7 +42,7 @@ partial class Client
                 return RetryTimeout;
 
             if (RetryIndex == 2)
-                return int.Max(RetryTimeout/2, 3000);
+                return int.Max(RetryTimeout / 2, 3000);
 
             return Timeout;
         }

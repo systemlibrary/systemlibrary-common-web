@@ -64,7 +64,7 @@ partial class Client
                     if (ex is BrokenCircuitException)
                         Log.Warning(ex);
 
-                    else if(response == null)
+                    else if (response == null)
                     {
                         Log.Warning(GetRequestErrorMessage(options) + " " + ex.Message);
                     }

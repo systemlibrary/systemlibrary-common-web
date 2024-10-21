@@ -65,7 +65,7 @@ partial class IServiceCollectionExtensions
 
         var keyFileFullNameField = fields.Where(x => x.Name == "_KeyFileFullName").FirstOrDefault();
 
-        if(keyFileFullNameField == null)
+        if (keyFileFullNameField == null)
             throw new Exception("Private static string '_KeyFileFullName' is renamed or do not exist from type SystemLibrary.Common.Net.CryptationKey");
 
         if (keyFileName.Is())

@@ -20,7 +20,7 @@
 //            return HttpContextProvider.Current;
 //        }
 //    }
-    
+
 //    internal static class HttpContextProvider
 //    {
 //        static AsyncLocal<HttpContext> _httpContext = new AsyncLocal<HttpContext>();

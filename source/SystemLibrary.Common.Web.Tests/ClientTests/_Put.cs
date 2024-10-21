@@ -72,9 +72,9 @@ partial class ClientTests
 
             Assert.IsTrue(false, "Should throw, it should return status 410 GONE: " + res.StatusCode);
         }
-        catch(HttpRequestException ex)
+        catch (HttpRequestException ex)
         {
-            Assert.IsTrue(ex.StatusCode > 0, "Ex do not contain status code "  + ex.StatusCode + " "  +ex.ToString());
+            Assert.IsTrue(ex.StatusCode > 0, "Ex do not contain status code " + ex.StatusCode + " " + ex.ToString());
         }
     }
 }

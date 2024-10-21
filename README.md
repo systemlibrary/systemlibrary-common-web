@@ -1,7 +1,7 @@
 # SystemLibrary Common Web
 
 ## Description
-Library with classes and methods for every &gt;=  .NET 7 web application
+Library with classes and methods for every &gt;= .NET 8 web application
 
 #### Features
 * Setup IApplicationBuilder and IServiceCollection in one line
@@ -26,14 +26,12 @@ Library with classes and methods for every &gt;=  .NET 7 web application
 * ActionContextInstance.Current thread safe from within a Action Context
 
 ## Requirements
-- &gt;= .NET 7
+- &gt;= .NET 8
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Release Notes
-- 7.8.1.7
-- Updated deps
-- Cache auto generating key limit increased from 2048 to 3000 chars
-- Cache auto generating key now do a url check on strings, as urls (and relative urls)  are added as a whole (fix)
+- 8.0.0.1
+- Updated to .NET8
 
 #### Major Breaking Versions
 - 7.8.0.1

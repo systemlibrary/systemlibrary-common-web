@@ -10,7 +10,7 @@ partial class ClientTests
         var client = new Client();
 
         var data = new HttpBinFormData();
-        
+
         var url = "https://httpbin.org/post";
 
         var response = client.Post(url, data, MediaType.xwwwformUrlEncoded, deserialize: (responseText) => responseText.JsonPartial<HttpBinFormData>("form"));

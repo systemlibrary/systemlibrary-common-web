@@ -75,7 +75,7 @@ public class HttpContextInstanceConcurrencyTests
 
                     return await response.Content.ReadAsStringAsync();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     return default;
                 }

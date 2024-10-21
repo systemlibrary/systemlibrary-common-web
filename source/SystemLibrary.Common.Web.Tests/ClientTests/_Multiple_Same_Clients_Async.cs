@@ -42,7 +42,7 @@ partial class ClientTests
         Run_Multi_Requests_Async(repeat, new HttpBin(true), 500, 3);
 
         Run_Multi_Requests_Async(repeat, new HttpBin(true), 7000, 3);
-        
+
         Run_Multi_Requests_Async(repeat, new HttpBin(true), 1250, 3);
 
         Run_Multi_Requests_Async(repeat, new HttpBin(true), 11900, 3);
@@ -56,7 +56,8 @@ partial class ClientTests
     {
         var url = "https://httpbin.org/anything/payload";
 
-        var payload = new {
+        var payload = new
+        {
             firstName = "Hello 1",
             lastName = "World 2"
         };
@@ -99,7 +100,7 @@ partial class ClientTests
 
             Assert.IsTrue(false, "Post towards url should throw");
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Assert.IsTrue(ex.Message.Contains("No such host"), "Wrong exception message: " + ex.Message);
         }

@@ -121,7 +121,7 @@ partial class ClientTests
 
             Dump.Write(res);
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             Dump.Write(e);
         }

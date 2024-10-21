@@ -60,25 +60,25 @@ partial class Client
             }
             else if (data.GetType().IsClass)
             {
-                var properties = data.GetType().GetProperties( System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.GetProperty);
+                var properties = data.GetType().GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.GetProperty);
 
                 var formProperties = new Dictionary<string, string>();
 
-                if(properties?.Length > 0)
+                if (properties?.Length > 0)
                 {
-                    foreach ( var property in properties)
+                    foreach (var property in properties)
                     {
                         if (property.PropertyType.IsListOrArray() || property.PropertyType.IsGenericType)
                             throw new Exception("Class has a property " + property.Name + " which is generic, or a list or an array. Not yet implemented in combination with wwwformUrlEncoded. Convert the class and its properties yourself to a Dictionary<string, string>() and send that as the data");
 
                         var value = property.GetValue(data);
 
-                        if(value != null)
+                        if (value != null)
                             formProperties.Add(property.Name, value.ToString());
                     }
                 }
 
-                if(formProperties.Count == 0)
+                if (formProperties.Count == 0)
                     throw new Exception("Class without properties to wwwformurlencoded string is not currently fully implemented in GetBodyXwwwFormUrlEncoded(). Either your class is invalid or contains 0 properties, and properties must be 'public get'.");
 
                 return new FormUrlEncodedContent(formProperties);

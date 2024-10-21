@@ -73,7 +73,7 @@ public partial class AppSettingsTests
         }
         var minValue = logValue.ToEnum<LogLevel>();
 
-        if(logValue == "Error")
+        if (logValue == "Error")
         {
             Assert.IsTrue(minValue == LogLevel.Error, "Expected error: Value is " + logValue);
         }

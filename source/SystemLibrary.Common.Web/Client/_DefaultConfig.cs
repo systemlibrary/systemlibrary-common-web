@@ -57,10 +57,7 @@ partial class Client
             {
                 _IgnoreSslErrorsConfig = AppSettings.Current.SystemLibraryCommonWeb.Client.IgnoreSslErrors;
 
-                if (_IgnoreSslErrorsConfig == null)
-                {
-                    _IgnoreSslErrorsConfig = DefaultIgnoreSslErrors;
-                }
+                _IgnoreSslErrorsConfig ??= DefaultIgnoreSslErrors;
             }
 
             return _IgnoreSslErrorsConfig.Value;
@@ -76,10 +73,7 @@ partial class Client
             {
                 _UseRetryPolicyConfig = AppSettings.Current.SystemLibraryCommonWeb.Client.UseRetryPolicy;
 
-                if (_UseRetryPolicyConfig == null)
-                {
-                    _UseRetryPolicyConfig = DefaultUseRetryPolicy;
-                }
+                _UseRetryPolicyConfig ??= DefaultUseRetryPolicy;
             }
 
             return _UseRetryPolicyConfig.Value;
@@ -95,10 +89,7 @@ partial class Client
             {
                 _ThrowOnUnsuccessfulConfig = AppSettings.Current.SystemLibraryCommonWeb.Client.ThrowOnUnsuccessful;
 
-                if (_ThrowOnUnsuccessfulConfig == null)
-                {
-                    _ThrowOnUnsuccessfulConfig = DefaultThrowOnUnsuccessful;
-                }
+                _ThrowOnUnsuccessfulConfig ??= DefaultThrowOnUnsuccessful;
             }
 
             return _ThrowOnUnsuccessfulConfig.Value;
@@ -117,10 +108,7 @@ partial class Client
             {
                 _UseRequestBreakerPolicyConfig = AppSettings.Current.SystemLibraryCommonWeb.Client.UseRequestBreakerPolicy;
 
-                if (_UseRequestBreakerPolicyConfig == null)
-                {
-                    _UseRequestBreakerPolicyConfig = DefaultUseRequestBreakerPolicy;
-                }
+                _UseRequestBreakerPolicyConfig ??= DefaultUseRequestBreakerPolicy;
             }
 
             return _UseRequestBreakerPolicyConfig.Value;

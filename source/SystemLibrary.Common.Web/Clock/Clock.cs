@@ -31,13 +31,13 @@ public static class Clock
 
         sw.Stop();
 
-        if(message != null)
+        if (message != null)
             Log.Debug(message + " executed in total time: " + sw.ElapsedTicks + " ticks, " + sw.ElapsedMilliseconds + "ms");
-        
+
         var ms = sw.ElapsedMilliseconds;
-        
+
         sw.Reset();
-        
+
         return ms;
     }
 }

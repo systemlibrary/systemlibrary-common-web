@@ -64,7 +64,7 @@ partial class Client
         else
         {
             var isXml = contentType.Contains("xml", StringComparison.OrdinalIgnoreCase);
-            if(isXml)
+            if (isXml)
             {
                 var xml = await ReadResponseBodyAsStringAsync(response).ConfigureAwait(false);
 

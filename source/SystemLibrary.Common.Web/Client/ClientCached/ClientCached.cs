@@ -47,7 +47,7 @@ partial class Client
                     return cachedModel.CachedClient;
                 }
             }
-            
+
             return New(key, options);
         }
 
@@ -141,7 +141,7 @@ partial class Client
             if (Cache.TryRemove(key, out CacheModel cachedModel))
             {
                 Dispose();
-                
+
                 if (cachedModel != null)
                 {
                     cachedModel.Expires = DateTime.Now.AddMilliseconds(timeoutMilliseconds + 600000);
