@@ -673,7 +673,11 @@ public static partial class Cache
                 {
                     if (text.Length > 48)
                     {
-                        key.Append(text.Length + text[^4] + text.MaxLength(48) + text[^5]);
+                        if (text.StartsWith("http") || text.StartsWith("/") || (text.Contains("?") && text.Contains("&")))
+                            key.Append(text);
+
+                        else
+                            key.Append(text.Length + text[^4] + text.MaxLength(48) + text[^5]);
                     }
                     else
                     {
@@ -795,7 +799,7 @@ public static partial class Cache
 
             void AppendValue(object value)
             {
-                if (key.Length > 2048) return;
+                if (key.Length > 3000) return;
 
                 if (value == null) return;
 
@@ -815,7 +819,7 @@ public static partial class Cache
 
             void AppendFieldArgument(FieldInfo field)
             {
-                if (key.Length > 2048) return;
+                if (key.Length > 3000) return;
 
                 if (field == null) return;
 

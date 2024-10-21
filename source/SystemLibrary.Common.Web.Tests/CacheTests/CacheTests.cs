@@ -145,8 +145,8 @@ public class CacheTests
 
         var cacheKey = "common.web.cache<Auto_Create_CacheKey_By_Inline_Lambda_With_Outside_Vars_Vars_Are_Part_Of_CacheKey_Success>b__0SystemLibrary.Common.Web.Tests.CacheTests+<>c__DisplayClass8_0System.StringaHellob333cTrue";
         var cachedItem = Cache.Get<string>(cacheKey);
-        Assert.IsTrue(cachedItem.Contains(b.ToString()));
-        Assert.IsTrue(cachedItem.Contains(c.ToString()));
+        Assert.IsTrue(cachedItem?.Contains(b.ToString()) == true, "B not in value " + cachedItem);
+        Assert.IsTrue(cachedItem?.Contains(c.ToString()) == true, "C not in value " + cachedItem);
     }
 
     [TestMethod]
@@ -241,7 +241,7 @@ public class CacheTests
 
     static string GetText(string a, int b = 99, bool c = false)
     {
-        return a + b + c;
+        return a + b + c + "";
     }
 
     public class CacheKeyParams
@@ -323,7 +323,7 @@ public class CacheTests
 
             var cached = Cache.Get<string>(item);
 
-            Assert.IsTrue(item == cached);
+            Assert.IsTrue(item == cached, "Wrong " + item + " VS " + cached);
         }
 
         Thread.Sleep(2600);
@@ -334,7 +334,7 @@ public class CacheTests
 
             var cached = Cache.Get<string>(item);
 
-            Assert.IsTrue(item == cached);
+            Assert.IsTrue(item == cached, "Wrong after sleep: " + item + " VS " + cached);
         }
 
         Cache.Clear();
@@ -426,5 +426,44 @@ public class CacheTests
         Thread.Sleep(2900);
         item = Cache.Get<string>(k, () => null, TimeSpan.FromMilliseconds(250));
         Assert.IsTrue(item == null, "Cache4 did not return null, data was in cache? " + item);
+    }
+
+    [TestMethod]
+    public void XAdd_To_Cache_Auto_CacheKey_Long_Urls_Success()
+    {
+        var url = "https://www.systemlibrary.com/folder1/folder2/folder3/folder4/folder5/folder6/folder7/folder8/folder9/folder10/folder11/folder12/?name=firstName&surname=lastName&phone=1234567890";
+
+        var getItems = () => GetText("Hello" + url, 101, true);
+
+        var cached = Cache.Get(getItems);
+        Assert.IsTrue(cached.Is());
+
+        url += "&email=abc@abc.com";
+
+        var cached2 = Cache.Get(getItems);
+        Assert.IsTrue(cached2.Is());
+
+        Assert.IsTrue(cached != cached2, "Error: auto gen key failed, the same value was returned when URLs should be added as a whole");
+    }
+
+
+    [TestMethod]
+    public void ZTry_Set_Same_Cache_Key_Index_Is_Equal()
+    {
+        for (int i = 0; i < 500; i++)
+        {
+            var item = "hello1";
+
+            Cache.Set(item, item);
+        }
+
+        for (int i = 0; i < 500; i++)
+        {
+            var item = "hello1";
+
+            var cached = Cache.Get<string>(item);
+
+            Assert.IsTrue(cached != null, "Wrong " + i);
+        }
     }
 }

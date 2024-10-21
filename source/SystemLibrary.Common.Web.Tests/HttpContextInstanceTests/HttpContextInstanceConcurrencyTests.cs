@@ -39,15 +39,17 @@ public class HttpContextInstanceConcurrencyTests
                 {
                     var r = new Random();
 
-                    System.Threading.Thread.Sleep(r.Next(7, maxValue: 33));
+                    System.Threading.Thread.Sleep(r.Next(0, maxValue: 25));
                     var username = context.Request.Query["username"];
 
-                    System.Threading.Thread.Sleep(r.Next(7, maxValue: 41));
+                    System.Threading.Thread.Sleep(r.Next(0, maxValue: 25));
 
                     var currentContext = HttpContextInstance.Current;
-                    System.Threading.Thread.Sleep(r.Next(7, maxValue: 41));
+                    System.Threading.Thread.Sleep(r.Next(0, maxValue: 25));
 
-                    await context.Response.WriteAsync($"{username}|{currentContext?.Request.Query["username"]}");
+                    var hash = r.Next(1, 5).ToString().ToMD5Hash();
+
+                    await context.Response.WriteAsync($"{username}|{currentContext?.Request.Query["username"]}" + hash);
                 });
             }));
 
@@ -57,7 +59,7 @@ public class HttpContextInstanceConcurrencyTests
     [TestMethod]
     public async Task HttpContextInstance_Current_IsThreadSafe_PerRequest()
     {
-        var tasks = new Task<string>[5000];
+        var tasks = new Task<string>[10000];
 
         var r = new Random();
         for (int i = 0; i < tasks.Length; i++)
@@ -68,7 +70,7 @@ public class HttpContextInstanceConcurrencyTests
             {
                 try
                 {
-                    System.Threading.Thread.Sleep(r.Next(1, 20));
+                    System.Threading.Thread.Sleep(r.Next(1, 10));
                     var response = await _client.GetAsync($"?username={userName}");
 
                     return await response.Content.ReadAsStringAsync();
@@ -84,7 +86,7 @@ public class HttpContextInstanceConcurrencyTests
 
         for (int i = 0; i < results.Length; i++)
         {
-            Assert.IsTrue(results[i] == "User" + i + "|" + "User" + i, "Error at " + i + " result is " + results[i]);
+            Assert.IsTrue(results[i].Contains("User" + i + "|" + "User" + i), "Error at " + i + " result is " + results[i]);
         }
     }
 
