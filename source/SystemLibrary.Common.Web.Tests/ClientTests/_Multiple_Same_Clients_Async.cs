@@ -81,10 +81,10 @@ partial class ClientTests
 
         var response = client.Post<string>(url, new { world = "hello" }, MediaType.json);
 
-        Assert.IsTrue(response != null);
-        Assert.IsTrue(response.Data == null);
-        Assert.IsTrue((int)response.StatusCode > 499);
-        Assert.IsTrue(response.Message.Is());
+        Assert.IsTrue(response != null, "response is null");
+        Assert.IsTrue(response.Data == null, "Data is not null: " + response.Data);
+        Assert.IsTrue((int)response.StatusCode > 499, "Status: " + response.StatusCode);
+        Assert.IsTrue(response.Message.Is(), "message: " + response.Message);
     }
 
 
@@ -135,7 +135,7 @@ partial class ClientTests
         var client = new Client(throwOnUnsuccessful: false);
         var response = client.Post<string>(url, new { world = "hello" }, MediaType.json);
 
-        Assert.IsTrue(response.Data == null, "Post should return null data");
+        Assert.IsTrue(response.Data == null, "Post should return null data: " + response.Data);
         Assert.IsTrue(response.Response == null, "Post should return null response");
         Assert.IsTrue(response.StatusCode == System.Net.HttpStatusCode.BadGateway, "Post should return BadGateway");
     }

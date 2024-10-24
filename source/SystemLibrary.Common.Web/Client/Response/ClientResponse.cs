@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
+using System.Text.Json.Serialization;
 
 namespace SystemLibrary.Common.Web;
 
@@ -9,7 +10,7 @@ namespace SystemLibrary.Common.Web;
 /// <para>Note that a response statuscode might be 200 OK, but the IsSuccess might be false in scenarios where no response were returned</para>
 /// </summary>
 /// <typeparam name="T">T can be a string that you later can convert to json, or it can be a class, or a list of a class that will automatically be converted from json, assuming json response</typeparam>
-public partial class ClientResponse<T> : IDisposable
+public partial class ClientResponse<T> : ClientResponse, IDisposable
 {
     internal ClientResponse(HttpResponseMessage response, T data, string reason = null)
     {
@@ -48,18 +49,21 @@ public partial class ClientResponse<T> : IDisposable
         Response = new HttpResponseMessage(statusCode);
         Response.ReasonPhrase = statusCode.ToString();
     }
-
-    public HttpResponseMessage Response { get; }
-    public T Data { get; }
+    
+    [JsonIgnore]
     string Reason;
+
+    [JsonIgnore]
     HttpStatusCode Code = HttpStatusCode.OK;
+    
+    public T Data { get; }
+    
     public HttpStatusCode StatusCode => Response?.StatusCode ?? Code;
-    public bool IsSuccess => Response?.IsSuccessStatusCode == true;
     public string Message => Response?.ReasonPhrase ?? Reason;
 
     public void Dispose()
     {
-        if(Response != null)
+        if (Response != null)
         {
             try
             {
@@ -70,4 +74,17 @@ public partial class ClientResponse<T> : IDisposable
             }
         }
     }
+}
+
+/// <summary>
+/// Base class of a ClientResponse 
+/// <para>- Contains the HttpResponseMessage itself </para>
+/// Used when you do not want to return 'object' nor generic type, but you want to be somewhat clear in what object is returned
+/// </summary>
+public class ClientResponse
+{
+    [JsonIgnore]
+    public HttpResponseMessage Response { get; internal set; }
+    public bool IsSuccess => Response?.IsSuccessStatusCode == true;
+
 }
