@@ -30,10 +30,8 @@ Library with classes and methods for every &gt;=  .NET 7 web application
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Release Notes
-- 7.8.1.7
-- Updated deps
-- Cache auto generating key limit increased from 2048 to 3000 chars
-- Cache auto generating key now do a url check on strings, as urls (and relative urls)  are added as a whole (fix)
+- 7.8.2.1
+- ClientResponse&lt;T&gt; now inherits ClientResponse with the HttpResponseMessage, to explicit and make it clear which return type a function returns instead of using 'object' or the full generic type (feature)
 
 #### Major Breaking Versions
 - 7.8.0.1

@@ -6,7 +6,7 @@
 		<OutputType>Library</OutputType>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<Product>SystemLibrary.Common.Web $(Version)</Product>
-		<Version>7.8.1.7</Version>
+		<Version>7.8.2.1</Version>
 	</PropertyGroup>
 	
 	<PropertyGroup>
