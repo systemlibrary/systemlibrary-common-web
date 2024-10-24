@@ -6,7 +6,7 @@
 		<OutputType>Library</OutputType>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<Product>SystemLibrary.Common.Web $(Version)</Product>
-		<Version>8.0.1.1</Version>
+		<Version>8.0.1.2</Version>
 	</PropertyGroup>
 	
 	<PropertyGroup>
@@ -40,7 +40,7 @@
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.10" />
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Http.Polly" Version="8.0.10" />
-		<PackageReference Include="SystemLibrary.Common.Net" Version="8.0.0.4" />
+		<PackageReference Include="SystemLibrary.Common.Net" Version="8.0.0.5" />
 	</ItemGroup>
 
 	<PropertyGroup>

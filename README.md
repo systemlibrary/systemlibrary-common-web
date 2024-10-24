@@ -30,8 +30,10 @@ Library with classes and methods for every &gt;= .NET 8 web application
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Release Notes
-- 8.0.1.1
-- ClientResponse&lt;T&gt; now inherits ClientResponse with the HttpResponseMessage, to explicit and make it clear which return type a function returns instead of using 'object' or the full generic type (feature)
+- 8.0.1.2
+- Updated deps
+- ClientResponse now returns Data from ClientResponse&lt;T&gt; if it is set, so serializing a ClientResponse.Data is now doable without cast (fix)
+
 
 #### Major Breaking Versions
 - 7.8.0.1
