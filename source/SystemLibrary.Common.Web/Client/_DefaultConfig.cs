@@ -10,6 +10,7 @@ partial class Client
     internal const bool DefaultUseRequestBreakerPolicy = false;
     internal const int DefaultClientCacheDuration = 1200; // 20 minutes
 
+
     static int? _TimeoutConfig;
     static int TimeoutConfig
     {
@@ -136,6 +137,25 @@ partial class Client
             }
 
             return _ClientCacheDurationConfig.Value;
+        }
+    }
+
+    static bool? _EnablePrometheusConfig;
+    static bool EnablePrometheusConfig
+    {
+        get
+        {
+            if (_EnablePrometheusConfig == null)
+            {
+                _EnablePrometheusConfig = AppSettings.Current.SystemLibraryCommonWeb.Metrics.EnablePrometheus;
+
+                if (_EnablePrometheusConfig == null)
+                {
+                    _EnablePrometheusConfig = true;
+                }
+            }
+
+            return _EnablePrometheusConfig.Value;
         }
     }
 }

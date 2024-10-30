@@ -4,7 +4,8 @@ partial class Cache
 {
     internal const int DefaultDuration = 180;
     internal const int DefaultFallbackDuration = 300;
-    internal const int DefaultContainerSizeLimit = 40000;
+    internal const int DefaultContainerSizeLimit = 60000;
+    internal const bool DefaultEnablePrometheus = true;
 
     static int? _DurationConfig;
     static int DurationConfig
@@ -60,6 +61,25 @@ partial class Cache
             }
 
             return _ContainerSizeLimitConfig.Value;
+        }
+    }
+
+    static bool? _EnablePrometheusConfig;
+    static bool EnablePrometheusConfig
+    {
+        get
+        {
+            if (_EnablePrometheusConfig == null)
+            {
+                _EnablePrometheusConfig = AppSettings.Current.SystemLibraryCommonWeb.Metrics.EnablePrometheus;
+
+                if (_EnablePrometheusConfig == null)
+                {
+                    _EnablePrometheusConfig = DefaultEnablePrometheus;
+                }
+            }
+
+            return _EnablePrometheusConfig.Value;
         }
     }
 }

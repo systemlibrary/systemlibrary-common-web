@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 
+using Prometheus;
+
 using SystemLibrary.Common.Net;
 using SystemLibrary.Common.Net.Configurations;
 using SystemLibrary.Common.Net.Extensions;
@@ -187,6 +189,38 @@ public static partial class IApplicationBuilderExtensions
             if (options.UseApiControllers)
                 endpoints.MapControllerRoute("api/{controller}/{action}/{id?}", "api/{controller}/{action}/{id?}");
         });
+
+        var enablePrometheusMetrics = AppSettings.Current.SystemLibraryCommonWeb.Metrics.EnablePrometheus;
+        if (enablePrometheusMetrics)
+        {
+            app.Use(async (context, next) =>
+            {
+                if (context.Request.Path.Equals("/metrics", System.StringComparison.OrdinalIgnoreCase) ||
+                    context.Request.Path.Equals("/metrics/", System.StringComparison.OrdinalIgnoreCase))
+                {
+                    var authorizationValue = AppSettings.Current?.SystemLibraryCommonWeb?.Metrics?.AuthorizationValue;
+                    var authorization = context.Request.Headers["Authorization"].ToString();
+
+                    if (authorizationValue == null || "Basic " + authorizationValue == authorization)
+                    {
+                        await next();
+                        return;
+                    }
+
+                    context.Response.Headers["WWW-Authenticate"] = "Basic";
+                    context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                }
+                else
+                {
+                    await next();
+                }
+            });
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapMetrics();
+            });
+        }
 
         HttpContextInstance.HttpContextAccessor = app.ApplicationServices.GetRequiredService<IHttpContextAccessor>();
 

@@ -45,14 +45,14 @@ partial class ClientTests
     {
         var bin = new HttpBin(true);
         int timeout = 123;
-
+        
         try
         {
             var response = bin.GetWithTimeout(timeout);
         }
         catch (Exception ex)
         {
-            Assert.IsTrue(false, "Times out first, a retry requests should get 200 OK without throwing, retrytimeout must be larger than 3s. Should not have thrown ex: " + ex.ToString());
+            Assert.IsTrue(false, "Times out first, a retry requests should get 200 OK without throwing, retry timeout must be larger than 3s + some. Should not have thrown ex: " + ex.ToString());
         }
     }
 

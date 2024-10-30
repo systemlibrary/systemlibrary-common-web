@@ -9,10 +9,14 @@ partial class Client
 {
     RequestOptions GetRequestOptions(HttpMethod method, string url, object data, MediaType mediaType, int timeout, IDictionary<string, string> headers, JsonSerializerOptions jsonSerializerOptions, CancellationToken cancellationToken)
     {
+        var u = new System.Uri(url);
+
         return new RequestOptions()
         {
             Method = method,
             Url = url,
+            Uri = u,
+            UriLabel = GetUriLabel(this.GetType().Name, u),
             Headers = headers,
             MediaType = mediaType,
             Data = data,

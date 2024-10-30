@@ -34,8 +34,8 @@ namespace SystemLibrary.Common.Web;
 /// A null value is never added to cache
 /// <para>Overwrite default cache configurations in appSettings.json:</para>
 /// - duration: 180, minimum 1
-/// <para>- fallbackDuration: 300, set to 0 to disable fallback cache globally</para>
-/// - containerSizeLimit: 40000, minimum 10
+/// <para>- fallbackDuration: 300, set to 0 or negative to disable fallback cache globally</para>
+/// - containerSizeLimit: 60000, minimum 10
 /// <para>Auto-generating cache key adds namespace, class, method, method-scoped variables of types such as bool, string, int, datetime, enum and few others</para>
 /// <para>- If a method-scoped variable is a class, its public members of same types are also appended as cacheKey</para>
 /// - IsAuthenticated is always appended to cacheKey
@@ -50,7 +50,7 @@ namespace SystemLibrary.Common.Web;
 ///         "cache" { 
 ///             "duration": 180,
 ///             "fallbackDuration": 300,
-///             "containerSizeLimit": 40000
+///             "containerSizeLimit": 60000
 ///         }
 ///     }
 /// }
@@ -469,38 +469,54 @@ public static partial class Cache
         if (cached != null)
             return (T)cached;
 
-        bool CacheFallbackLookup(Exception ex = null)
+        object CacheFallbackLookup(Exception ex = null)
         {
             if (FallbackDurationConfig > 0)
             {
-                if (cacheFallback[cacheIndex] == null) return false;
+                if (cacheFallback[cacheIndex] == null) return null;
 
-                cached = cacheFallback[cacheIndex].Get(cacheKey);
+                var cachedFallback = cacheFallback[cacheIndex].Get(cacheKey);
 
-                if (cached != null)
+                if (cachedFallback != null)
                 {
                     Log.Warning(new Exception("Fallback cache match, key: " + cacheKey.MaxLength(22) + "...", ex));
 
-                    return true;
+                    return cachedFallback;
                 }
             }
-            return false;
+            return null;
         }
 
         try
         {
             cached = getItem();
 
+            // If result from getItem still returns "null", let's lookup the cache fallback for next N min
             if (cached == null)
             {
-                if (CacheFallbackLookup())
+                cached = CacheFallbackLookup();
+                if (cached != null)
+                {
+                    if(EnablePrometheusConfig)
+                        CacheMetrics.RecordCacheMissWithFallback();
+
                     return (T)cached;
+                }
             }
         }
         catch (Exception ex)
         {
-            if (CacheFallbackLookup(ex))
+            cached = CacheFallbackLookup(ex);
+            if (cached != null)
+            {
+                if (EnablePrometheusConfig)
+                    CacheMetrics.RecordCacheExceptionWithFallback();
+
                 return (T)cached;
+            }
+
+            if (EnablePrometheusConfig)
+                CacheMetrics.RecordCacheExceptionNoFallback();
 
             throw ex;
         }
@@ -674,7 +690,7 @@ public static partial class Cache
                     if (text.Length > 48)
                     {
                         if (text.StartsWith("http") || text.StartsWith("/") || (text.Contains("?") && text.Contains("&")))
-                            key.Append(text);
+                            key.Append(text.MaxLength(2048));
 
                         else
                             key.Append(text.Length + text[^4] + text.MaxLength(48) + text[^5]);

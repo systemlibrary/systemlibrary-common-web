@@ -56,14 +56,45 @@ partial class Client
                 {
                     if (!IsEligibleForRetry(options, response, retry, ex))
                     {
+                        if (EnablePrometheusConfig)
+                        {
+                            if (response?.IsSuccessStatusCode == true)
+                            {
+                                if (retry == 0)
+                                    ClientSuccessCounter.WithLabels(options.UriLabel).Inc();
+                                else
+                                    ClientRetrySuccessCounter.WithLabels(options.UriLabel).Inc();
+                            }
+                            else
+                            {
+                                ClientFailureCounter.WithLabels(options.UriLabel).Inc();
+                            }
+                        }
+
+                        // Response is success or no more retries so we break
                         break;
                     }
 
-                    Debug.Log("Retry count: " + (retry + 1) + " " + options.Url + ": " + response?.StatusCode);
+                    // Debug.Log("Retry count: " + (retry + 1) + " " + options.Url + ": " + response?.StatusCode);
 
                     ex = null;
                     response = null;
                     await Task.Delay(TimeSpan.FromMilliseconds(666)).ConfigureAwait(false);
+                }
+                else
+                {
+                    if (EnablePrometheusConfig)
+                    {
+                        // Successful on last retry or still in error
+                        if (response?.IsSuccessStatusCode == true)
+                        {
+                            ClientRetrySuccessCounter.WithLabels(options.UriLabel).Inc();
+                        }
+                        else
+                        {
+                            ClientFailureCounter.WithLabels(options.UriLabel).Inc();
+                        }
+                    }
                 }
             }
 

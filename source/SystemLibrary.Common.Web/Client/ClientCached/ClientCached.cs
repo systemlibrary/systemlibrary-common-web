@@ -24,9 +24,9 @@ partial class Client
 
         internal static HttpClient GetClient(RequestOptions options)
         {
-            var uri = new Uri(options.Url);
+            var uri = options.Uri;
 
-            var key = $"CommonWeb{nameof(Client)}{nameof(GetClient)}{uri.Scheme.ToLower()}{uri.Host.ToLower()}{uri.Port}{options.GetTimeout()}{options.IgnoreSslErrors}";
+            var key = $"CommonWeb{nameof(Client)}{nameof(GetClient)}{uri.Scheme.ToLowerInvariant()}{uri.Host.ToLowerInvariant()}{uri.Port}{options.GetTimeout()}{options.IgnoreSslErrors}";
 
             if (options.ForceNewClient)
             {

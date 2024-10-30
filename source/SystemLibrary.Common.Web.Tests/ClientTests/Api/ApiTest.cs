@@ -34,7 +34,7 @@ public class ApiTest
 
         if (LocalApiKey.IsNot()) return;
 
-        var result = client.Post<string>(LocalApiUrl, data, MediaType.json, 20000, headers);
+        var result = client.Post<string>(LocalApiUrl, data, MediaType.json, headers, 20000);
 
         try
         {
@@ -64,7 +64,7 @@ public class ApiTest
 
         if (LocalApiKey.IsNot()) return;
 
-        var result = client.Post<string>(LocalApiUrl, data.GetBytes(), MediaType.json, 20000, headers);
+        var result = client.Post<string>(LocalApiUrl, data.GetBytes(), MediaType.json, headers, 20000);
 
         try
         {

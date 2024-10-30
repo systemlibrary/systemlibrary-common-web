@@ -7,7 +7,7 @@ internal static class PolicyKeyConverter
 {
     internal static string Convert(Client.RequestOptions options)
     {
-        var uri = new Uri(options.Url);
+        var uri = options.Uri;
 
         var sb = new StringBuilder(128);
 
@@ -26,13 +26,13 @@ internal static class PolicyKeyConverter
 
         if (path.Length < 6)
         {
-            sb.Append(path.ToLower());
+            sb.Append(path.ToLowerInvariant());
             return;
         }
 
         var parts = path.Split('/', StringSplitOptions.RemoveEmptyEntries);
 
         foreach (var part in parts)
-            sb.Append(part.MaxLength(12).ToLower());
+            sb.Append(part.MaxLength(12).ToLowerInvariant());
     }
 }

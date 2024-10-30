@@ -68,7 +68,7 @@ partial class ClientTests
         var client = new Client();
         try
         {
-            var res = client.Put<string>("https://httpbin.org/status/410", "", MediaType.plain, 5000);
+            var res = client.Put<string>("https://httpbin.org/status/410", "", MediaType.plain, null, 5000);
 
             Assert.IsTrue(false, "Should throw, it should return status 410 GONE: " + res.StatusCode);
         }

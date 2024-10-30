@@ -6,12 +6,14 @@ internal class PackageConfig
     public CacheConfiguration Cache { get; set; }
     public ClientConfiguration Client { get; set; }
     public LogConfiguration Log { get; set; }
+    public MetricsConfiguration Metrics { get; set; }
 
     public PackageConfig()
     {
         Cache = new CacheConfiguration();
-        Log = new LogConfiguration();
         Client = new ClientConfiguration();
+        Log = new LogConfiguration();
+        Metrics = new MetricsConfiguration();
     }
 
     public class LogConfiguration
@@ -26,6 +28,12 @@ internal class PackageConfig
         public bool AppendCorrelationId { get; set; } = true;
         public bool AppendCookieInfo { get; set; } = false;
         public string Format { get; set; }  // json | null
+    }
+
+    public class MetricsConfiguration
+    {
+        public bool EnablePrometheus { get; set; } = true;
+        public string AuthorizationValue { get; set; } = "";
     }
 
     public class ClientConfiguration

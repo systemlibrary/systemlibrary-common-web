@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
@@ -11,6 +12,8 @@ partial class Client
     {
         public HttpMethod Method;
         public string Url;
+        public Uri Uri;
+        public string UriLabel;
         public JsonSerializerOptions JsonSerializerOptions;
         public object Data;
         public int Timeout;

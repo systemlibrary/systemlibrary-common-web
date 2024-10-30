@@ -45,26 +45,26 @@ class HttpBin : Client
 
     public async Task<ClientResponse<string>> PostAsync(string data)
     {
-        return await PostAsync<string>(clientUrl + "/post", data, MediaType.plain, 10000);
+        return await PostAsync<string>(clientUrl + "/post", data, MediaType.plain, null, 10000);
     }
 
     public ClientResponse<string> Get_Retry_Request_Against_Firewall(CancellationToken cancellationToken = default)
     {
-        return Get<string>(firewallClientUrl, MediaType.json, 200, null, null, cancellationToken);
+        return Get<string>(firewallClientUrl, MediaType.json, null, 200, null, cancellationToken);
     }
 
     public ClientResponse<string> Post_Retry_Request_Against_Firewall()
     {
-        return Post<string>(firewallClientUrl, "hello world", MediaType.json, 300);
+        return Post<string>(firewallClientUrl, "hello world", MediaType.json, null, 300);
     }
 
     public ClientResponse<string> GetWithCancellationToken(CancellationToken token)
     {
-        return Get<string>(clientUrl + "/delay/2", MediaType.json, 4000, null, null, token);
+        return Get<string>(clientUrl + "/delay/2", MediaType.json, null, 4000, null, token);
     }
 
     public ClientResponse<string> GetWithTimeout(int timeoutMilliseconds, int sleep = 3)
     {
-        return Get<string>(clientUrl + "/delay/" + sleep, MediaType.json, timeoutMilliseconds);
+        return Get<string>(clientUrl + "/delay/" + sleep, MediaType.json, null, timeoutMilliseconds);
     }
 }

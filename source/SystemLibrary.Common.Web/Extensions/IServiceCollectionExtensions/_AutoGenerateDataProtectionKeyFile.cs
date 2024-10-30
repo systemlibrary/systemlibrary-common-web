@@ -47,7 +47,7 @@ partial class IServiceCollectionExtensions
                .ReplaceAllWith("-", ",", ".", " ", "=", "/", "\\")?
                .MaxLength(4);
 
-        var type = Type.GetType(typeName: "SystemLibrary.Common.Net.CryptationKey, SystemLibrary.Common.Net");
+        var type = Type.GetType("SystemLibrary.Common.Net.CryptationKey, SystemLibrary.Common.Net");
 
         if (type == null)
             throw new Exception("SystemLibrary.Common.Net.CryptationKey is not loaded or type is renamed in version you are using");

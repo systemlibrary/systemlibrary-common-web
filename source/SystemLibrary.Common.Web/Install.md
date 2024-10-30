@@ -87,6 +87,11 @@ public class Startup
 			"appendBrowser": false,
 			"appendCookieInfo": false,
 			"format": null // "json" or null, null is default
+		},
+
+		"metrics": {
+			"enablePrometheus": true,
+			"authorizationValue": ""
 		}
 	}
 }

@@ -13,11 +13,13 @@ namespace SystemLibrary.Common.Web;
 
 partial class Client
 {
+    static Type HttpResponseMessageType = typeof(HttpResponseMessage);
+
     static async Task<T> ReadResponseAsync<T>(Type type, string url, HttpResponseMessage response, CancellationToken cancellationToken, JsonSerializerOptions jsonSerializerOptions)
     {
         if (response?.Content == null) return default;
 
-        if (type == typeof(HttpResponseMessage))
+        if (type == HttpResponseMessageType)
         {
             return (T)(object)response;
         }
