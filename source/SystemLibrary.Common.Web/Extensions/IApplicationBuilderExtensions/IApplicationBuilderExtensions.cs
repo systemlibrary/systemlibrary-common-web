@@ -200,14 +200,6 @@ public static partial class IApplicationBuilderExtensions
 
                     await Prometheus.Metrics.DefaultRegistry.CollectAndExportAsTextAsync(context.Response.Body);
                 });
-
-                endpoints.MapGet("/metrics/", async context =>
-                {
-                    if (!MetricsAuthorizationMiddleware.AuthorizeMetricsRequest(context))
-                        return;
-
-                    await Prometheus.Metrics.DefaultRegistry.CollectAndExportAsTextAsync(context.Response.Body);
-                });
             });
         }
 
