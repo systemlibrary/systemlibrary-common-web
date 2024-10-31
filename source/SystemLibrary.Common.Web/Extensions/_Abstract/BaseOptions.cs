@@ -1,4 +1,8 @@
-﻿namespace SystemLibrary.Common.Web.Extensions;
+﻿using System;
+
+using Microsoft.AspNetCore.Routing;
+
+namespace SystemLibrary.Common.Web.Extensions;
 
 public abstract class BaseOptions
 {
@@ -13,6 +17,11 @@ public abstract class BaseOptions
     /// Set to true to add services and middleware for controllers
     /// </summary>
     public bool UseControllers = true;
+
+    /// <summary>
+    /// Optional: Additional endpoints configuration that is registered in front of Controllers, RazorPages and ApiControllers 
+    /// </summary>
+    public Action<IEndpointRouteBuilder> PrecedenceEndpoints { get; set; }
 
     /// <summary>
     /// Set to true to add services and middleware for /api/ controllers
