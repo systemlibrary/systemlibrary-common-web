@@ -30,12 +30,9 @@ Library with classes and methods for every &gt;= .NET 8 web application
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Release Notes
-- 8.1.0.1
-- Updated deps
-- Added Metrics (Prometheus-net) which is auto on for Client and Cache invocations, can opt-out in through appSettings (feature)
-- Client: Timeout and header arguments swapped, as headers are often specified per function (breaking change)
-- Cache: auto generate cache keys adds url's now limited to 2048 characters down from infinite (breaking change)
-- Cache: increases container size limit from 40K to 60K by default (feature)
+- 8.1.0.2
+- Removed Prometheus-AspnetCore dependency which hijacks everything even without registering middlewares and services (fix)
+- Added Prometheus-net only as a mean to metric client and cache invocations (fix)
 
 #### Major Breaking Versions
 - 7.8.0.1
