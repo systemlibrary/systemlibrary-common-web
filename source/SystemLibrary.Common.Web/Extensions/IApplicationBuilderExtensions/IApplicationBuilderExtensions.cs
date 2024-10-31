@@ -186,12 +186,9 @@ public static partial class IApplicationBuilderExtensions
 
             if (options.UseApiControllers)
                 endpoints.MapControllerRoute("api/{controller}/{action}/{id?}", "api/{controller}/{action}/{id?}");
-        });
 
-        var enablePrometheusMetrics = AppSettings.Current.SystemLibraryCommonWeb.Metrics.EnablePrometheus;
-        if (enablePrometheusMetrics)
-        {
-            app.UseEndpoints(endpoints =>
+            var enablePrometheusMetrics = AppSettings.Current.SystemLibraryCommonWeb.Metrics.EnablePrometheus;
+            if (enablePrometheusMetrics)
             {
                 endpoints.MapGet("/metrics", async context =>
                 {
@@ -200,8 +197,16 @@ public static partial class IApplicationBuilderExtensions
 
                     await Prometheus.Metrics.DefaultRegistry.CollectAndExportAsTextAsync(context.Response.Body);
                 });
-            });
-        }
+
+                endpoints.MapGet("/metrics/", async context =>
+                {
+                    if (!MetricsAuthorizationMiddleware.AuthorizeMetricsRequest(context))
+                        return;
+
+                    await Prometheus.Metrics.DefaultRegistry.CollectAndExportAsTextAsync(context.Response.Body);
+                });
+            }
+        });
 
         HttpContextInstance.HttpContextAccessor = app.ApplicationServices.GetRequiredService<IHttpContextAccessor>();
 

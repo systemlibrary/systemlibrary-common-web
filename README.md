@@ -30,9 +30,9 @@ Library with classes and methods for every &gt;= .NET 8 web application
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Release Notes
-- 8.1.0.4
-- CommonWebApp builder added a option PrecedenceEndpoints to register your own endpoints before UseController, but after all other middlewares (feature)
-- endpoints.MapDefaultControllerRoute() removed, breaking, but 8.1.0.1 just released 1 hour ago (breaking change)
+- 8.1.0.5
+- Added /metrics/ back again (fix)
+- 
 
 #### Major Breaking Versions
 - 7.8.0.1
