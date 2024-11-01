@@ -71,7 +71,7 @@ partial class Cache
         {
             if (_EnablePrometheusConfig == null)
             {
-                _EnablePrometheusConfig = AppSettings.Current.SystemLibraryCommonWeb.Metrics.EnablePrometheus;
+                _EnablePrometheusConfig = AppSettings.Current?.SystemLibraryCommonWeb?.Metrics?.EnablePrometheus;
 
                 if (_EnablePrometheusConfig == null)
                 {

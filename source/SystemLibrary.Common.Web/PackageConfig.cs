@@ -33,7 +33,7 @@ internal class PackageConfig
     public class MetricsConfiguration
     {
         public bool EnablePrometheus { get; set; } = true;
-        public string AuthorizationValue { get; set; } = "";
+        public string AuthorizationValue { get; set; } = "Demo";
     }
 
     public class ClientConfiguration

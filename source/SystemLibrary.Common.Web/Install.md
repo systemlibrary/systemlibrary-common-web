@@ -91,7 +91,7 @@ public class Startup
 
 		"metrics": {
 			"enablePrometheus": true,
-			"authorizationValue": ""
+			"authorizationValue": "Demo"
 		}
 	}
 }

@@ -6,10 +6,10 @@ public static class MetricsAuthorizationMiddleware
 {
     public static bool AuthorizeMetricsRequest(HttpContext context)
     {
-        var authorizationValue = AppSettings.Current?.SystemLibraryCommonWeb?.Metrics?.AuthorizationValue;
+        var authorizationValue = AppSettings.Current.SystemLibraryCommonWeb.Metrics.AuthorizationValue;
         var authorization = context.Request.Headers["Authorization"].ToString();
 
-        if(authorizationValue == null || "Basic " + authorizationValue == authorization)
+        if(authorizationValue.IsNot() || "Basic " + authorizationValue == authorization)
         {
             return true;
         }

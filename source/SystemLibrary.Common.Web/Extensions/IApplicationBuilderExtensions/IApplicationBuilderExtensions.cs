@@ -187,21 +187,20 @@ public static partial class IApplicationBuilderExtensions
             if (options.UseApiControllers)
                 endpoints.MapControllerRoute("api/{controller}/{action}/{id?}", "api/{controller}/{action}/{id?}");
 
-            var enablePrometheusMetrics = AppSettings.Current.SystemLibraryCommonWeb.Metrics.EnablePrometheus;
-            if (enablePrometheusMetrics)
+            var enablePrometheusMetrics = AppSettings.Current?.SystemLibraryCommonWeb?.Metrics?.EnablePrometheus;
+            if (enablePrometheusMetrics == true)
             {
+                Debug.Log("[IApplicationBuilder] Adding /metrics and /metrics/ endpoints");
+
                 endpoints.MapGet("/metrics", async context =>
                 {
                     if (!MetricsAuthorizationMiddleware.AuthorizeMetricsRequest(context))
+                    {
+                        Debug.Log("[MetricsAuthorizationMiddleware] not authorized");
                         return;
+                    }
 
-                    await Prometheus.Metrics.DefaultRegistry.CollectAndExportAsTextAsync(context.Response.Body);
-                });
-
-                endpoints.MapGet("/metrics/", async context =>
-                {
-                    if (!MetricsAuthorizationMiddleware.AuthorizeMetricsRequest(context))
-                        return;
+                    Debug.Log("[MetricsAuthorizationMiddleware] reading metrics...");
 
                     await Prometheus.Metrics.DefaultRegistry.CollectAndExportAsTextAsync(context.Response.Body);
                 });
