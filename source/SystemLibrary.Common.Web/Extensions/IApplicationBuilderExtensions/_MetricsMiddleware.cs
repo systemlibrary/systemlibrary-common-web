@@ -13,9 +13,14 @@ public static class MetricsAuthorizationMiddleware
         {
             return true;
         }
-            
+
         context.Response.Headers["WWW-Authenticate"] = "Basic";
         context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+        context.Response.WriteAsync(StatusCodes.Status401Unauthorized.ToString())
+            .ConfigureAwait(false)
+            .GetAwaiter()
+            .GetResult();
+
         return false;
     }
 }

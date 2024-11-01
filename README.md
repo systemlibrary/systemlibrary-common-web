@@ -30,8 +30,8 @@ Library with classes and methods for every &gt;= .NET 8 web application
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Release Notes
-- 8.1.0.7
-- /metrics endpoint default authorization value is now 'Demo', setting it in appSettings now overrides it, and null and blank is treat as 'no auth' (fix)
+- 8.1.0.8
+- /metrics suppresses all default metrics and gauges by default (fix)
 
 #### Major Breaking Versions
 - 7.8.0.1
