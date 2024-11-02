@@ -6,38 +6,13 @@ namespace SystemLibrary.Common.Web;
 
 partial class Client
 {
-    static readonly Counter ClientSuccessCounter = Metrics.CreateCounter(
-        "client_requests_success_total",
-        "Counts successful requests",
+    static readonly Counter ClientRequestCounter = Metrics.CreateCounter(
+        "client_requests_total",
+        "Counts client requests by result",
         new CounterConfiguration
         {
-            LabelNames = new[] { "uri" }
+            LabelNames = new[] { "uri", "status" }
         });
-
-    static readonly Counter ClientRetrySuccessCounter = Metrics.CreateCounter(
-        "client_requests_retry_success_total",
-        "Counts successful retries",
-        new CounterConfiguration
-        {
-            LabelNames = new[] { "uri" }
-        });
-
-    static readonly Counter ClientFailureCounter = Metrics.CreateCounter(
-        "client_requests_failure_total",
-        "Counts failed requests",
-        new CounterConfiguration
-        {
-            LabelNames = new[] { "uri" }
-        });
-
-    static readonly Counter ClientCircuitBreakCounter = Metrics.CreateCounter(
-        "client_circuit_break_total",
-        "Counts circuit breaking events",
-        new CounterConfiguration
-        {
-            LabelNames = new[] { "uri" }
-        });
-
 
     string GetUriLabel(string typeName, Uri uri)
     {
@@ -45,27 +20,42 @@ partial class Client
         {
             typeName = uri.Host.ToLowerInvariant();
         }
-
-        if (uri.AbsolutePath.Length <= 1)
+        else
         {
-            return typeName;
+            typeName = typeName.ToLowerInvariant();
         }
 
-        var path = uri.AbsolutePath.ToLowerInvariant();
+        string path = uri.AbsolutePath;
 
-        if (path.EndsWith("/"))
-            path = path.Substring(0, path.Length - 1);
-
-        var parts = path.Split('/');
-
-        // Append the first up to 2 segments to the normalized URI
-        for (int i = 0; i < Math.Min(parts.Length, 2); i++)
+        if (path.Length <= 1)
         {
-            if (parts[i].IsNot()) continue;
-
-            typeName += $"/{parts[i]}";
+            return typeName.ToLowerInvariant();
         }
+
+        if (path[^1] == '/')
+        {
+            path = path[..^1];
+        }
+
+        // Split path on '/' and take only the first three non-empty segments.
+        int slashCount = 0;
+        for (int i = 1; i < path.Length && slashCount < 3; i++)
+        {
+            if (path[i] == '/')
+            {
+                slashCount++;
+                continue;
+            }
+
+            int end = path.IndexOf('/', i); 
+
+            if (end == -1) end = path.Length;
+
+            typeName += $"/{path[i..end].ToLowerInvariant()}";
+
+            i = end - 1;
+        }
+
         return typeName;
-
     }
 }
