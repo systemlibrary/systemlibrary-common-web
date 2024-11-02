@@ -61,13 +61,13 @@ partial class Client
                             if (response?.IsSuccessStatusCode == true)
                             {
                                 if (retry == 0)
-                                    ClientSuccessCounter.WithLabels(options.UriLabel).Inc();
+                                    ClientRequestCounter.WithLabels(options.UriLabel, "success").Inc();
                                 else
-                                    ClientRetrySuccessCounter.WithLabels(options.UriLabel).Inc();
+                                    ClientRequestCounter.WithLabels(options.UriLabel, "retry_success").Inc();
                             }
                             else
                             {
-                                ClientFailureCounter.WithLabels(options.UriLabel).Inc();
+                                ClientRequestCounter.WithLabels(options.UriLabel, "failed").Inc();
                             }
                         }
 
@@ -88,11 +88,11 @@ partial class Client
                         // Successful on last retry or still in error
                         if (response?.IsSuccessStatusCode == true)
                         {
-                            ClientRetrySuccessCounter.WithLabels(options.UriLabel).Inc();
+                            ClientRequestCounter.WithLabels(options.UriLabel, "retry_success").Inc();
                         }
                         else
                         {
-                            ClientFailureCounter.WithLabels(options.UriLabel).Inc();
+                            ClientRequestCounter.WithLabels(options.UriLabel, "failed").Inc();
                         }
                     }
                 }
