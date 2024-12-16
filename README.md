@@ -30,8 +30,8 @@ Library with classes and methods for every &gt;= .NET 8 web application
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Release Notes
-- 8.1.1.2
-- Client retry_success now counted properly (status, failure, etc) (fix)
+- 8.1.1.4
+- Updated deps (patch)
 
 #### Major Breaking Versions
 - 7.8.0.1
