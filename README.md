@@ -30,11 +30,9 @@ Library with classes and methods for every &gt;= .NET 8 web application
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Release Notes
-- 8.2.0.1
-- PrecedenceEndpoints renamed to PrecededEndpoints (breaking change)
-- CookiePolicy registered globally is now reused instead of new policy every request (optimization)
-- AddRazorPages() is only invoked once if MVC and RazorPages is both enabled (optimization)
-- UseControllers, UseApiControllers and UseRazorPages is now in this order, instead RazorPages first (optimization)
+- 8.3.0.1
+- Options.UseApiControllers removed, UseControllers registered api and mvc controllers together (breaking change)
+- Options.UseMvc, UseRazorPages or UseControllers, if either is true, default JSON converters from SystemLibrary.Common.Net is used (breaking change)
 
 #### Major Breaking Versions
 - 7.8.0.1

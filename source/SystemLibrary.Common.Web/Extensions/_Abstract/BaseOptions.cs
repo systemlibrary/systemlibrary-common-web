@@ -14,7 +14,7 @@ public abstract class BaseOptions
     public bool UseRazorPages = true;
 
     /// <summary>
-    /// Set to true to add services and middleware for controllers
+    /// Set to true to add services and middleware for controllers and api controllers
     /// </summary>
     public bool UseControllers = true;
 
@@ -22,11 +22,6 @@ public abstract class BaseOptions
     /// Optional: Additional endpoints configuration that is registered in front of RazorPages, Controllers and ApiControllers
     /// </summary>
     public Action<IEndpointRouteBuilder> PrecededEndpoints = null;
-
-    /// <summary>
-    /// Set to true to add services and middleware for /api/ controllers
-    /// </summary>
-    public bool UseApiControllers = true;
 
     /// <summary>
     /// Set to true to add services and middleware for cookie policies

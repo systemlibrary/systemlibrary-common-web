@@ -175,10 +175,12 @@ public static partial class IApplicationBuilderExtensions
         }
 
         if (options.UseControllers)
-            app.UseEndpoints(endpoints => endpoints.MapControllers());
-
-        if (options.UseApiControllers)
-            app.UseEndpoints(endpoints => endpoints.MapControllerRoute("api/{controller}/{action}/{id?}", "api/{controller}/{action}/{id?}"));
+        {
+            app.UseEndpoints(endpoints => {
+                endpoints.MapControllers();
+                endpoints.MapControllerRoute("api/{controller}/{action}/{id?}", "api/{controller}/{action}/{id?}");
+            });
+        }
 
         if (options.UseRazorPages)
             app.UseEndpoints(endpoints => endpoints.MapRazorPages());
