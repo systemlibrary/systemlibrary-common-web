@@ -1,7 +1,6 @@
 ﻿using System;
 
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
@@ -134,14 +133,7 @@ public static partial class IApplicationBuilderExtensions
             app.UseRouting();
 
         if (options.UseCookiePolicy)
-        {
-            var cookieOptions = new CookiePolicyOptions() { };
-            cookieOptions.Secure = CookieSecurePolicy.SameAsRequest;
-            cookieOptions.HttpOnly = HttpOnlyPolicy.None;
-            cookieOptions.MinimumSameSitePolicy = SameSiteMode.Lax;
-            cookieOptions.CheckConsentNeeded = context => false;
-            app.UseCookiePolicy(cookieOptions);
-        }
+            app.UseCookiePolicy();
 
         if (options.UseOutputCache && !options.UseOutputCacheAfterAuthentication)
             app.UseOutputCache();
@@ -177,22 +169,24 @@ public static partial class IApplicationBuilderExtensions
         if (options.UseAuthorization)
             app.UseAuthorization();
 
-        app.UseEndpoints(endpoints =>
+        if (options.PrecededEndpoints != null)
         {
-            if (options.PrecedenceEndpoints != null)
-                options.PrecedenceEndpoints(endpoints);
+            app.UseEndpoints(endpoints => options.PrecededEndpoints(endpoints));
+        }
 
-            if (options.UseControllers)
-                endpoints.MapControllers();
+        if (options.UseControllers)
+            app.UseEndpoints(endpoints => endpoints.MapControllers());
 
-            if (options.UseRazorPages)
-                endpoints.MapRazorPages();
+        if (options.UseApiControllers)
+            app.UseEndpoints(endpoints => endpoints.MapControllerRoute("api/{controller}/{action}/{id?}", "api/{controller}/{action}/{id?}"));
 
-            if (options.UseApiControllers)
-                endpoints.MapControllerRoute("api/{controller}/{action}/{id?}", "api/{controller}/{action}/{id?}");
+        if (options.UseRazorPages)
+            app.UseEndpoints(endpoints => endpoints.MapRazorPages());
 
-            var enablePrometheusMetrics = AppSettings.Current?.SystemLibraryCommonWeb?.Metrics?.EnablePrometheus;
-            if (enablePrometheusMetrics == true)
+        var enablePrometheusMetrics = AppSettings.Current?.SystemLibraryCommonWeb?.Metrics?.EnablePrometheus;
+        if (enablePrometheusMetrics == true)
+        {
+            app.UseEndpoints(endpoints =>
             {
                 Debug.Log("[IApplicationBuilder] Adding /metrics and /metrics/ endpoints");
 
@@ -210,19 +204,17 @@ public static partial class IApplicationBuilderExtensions
 
                     try
                     {
-                        
-
                         await Metrics.DefaultRegistry.CollectAndExportAsTextAsync(context.Response.Body);
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         Log.Error(ex);
 
                         throw;
                     }
                 });
-            }
-        });
+            });
+        }
 
         HttpContextInstance.HttpContextAccessor = app.ApplicationServices.GetRequiredService<IHttpContextAccessor>();
 

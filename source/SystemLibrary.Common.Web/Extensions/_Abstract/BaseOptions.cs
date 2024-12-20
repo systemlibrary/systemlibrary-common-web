@@ -19,9 +19,9 @@ public abstract class BaseOptions
     public bool UseControllers = true;
 
     /// <summary>
-    /// Optional: Additional endpoints configuration that is registered in front of Controllers, RazorPages and ApiControllers 
+    /// Optional: Additional endpoints configuration that is registered in front of RazorPages, Controllers and ApiControllers
     /// </summary>
-    public Action<IEndpointRouteBuilder> PrecedenceEndpoints { get; set; }
+    public Action<IEndpointRouteBuilder> PrecededEndpoints = null;
 
     /// <summary>
     /// Set to true to add services and middleware for /api/ controllers

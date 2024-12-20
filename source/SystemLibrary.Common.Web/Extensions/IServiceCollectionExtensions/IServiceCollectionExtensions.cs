@@ -109,14 +109,18 @@ public static partial class IServiceCollectionExtensions
 
         IMvcBuilder builder = null;
 
-        if (options.UseMvc)
-            builder = services.AddMvc();
-
-        if (options.UseRazorPages)
-            builder = services.UseAddRazorPages(options);
-
         if (options.UseControllers)
             builder = services.UseAddControllers(options);
+
+        if (options.UseMvc)
+        {
+            builder = services.AddMvc();
+
+            if (options.UseRazorPages)
+                builder = services.UseAddRazorPages(options, builder);
+        }
+        else if (options.UseRazorPages)
+            builder = services.UseAddRazorPages(options);
 
         if (options.AddApplicationAsPart)
         {
