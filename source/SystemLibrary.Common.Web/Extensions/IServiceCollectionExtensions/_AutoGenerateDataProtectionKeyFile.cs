@@ -26,6 +26,13 @@ partial class IServiceCollectionExtensions
 
             return found != null;
         }
+      
+        if (AlreadyRegisteredDataProtectionServices())
+        {
+            Log.Warning("UseAutomaticDataProtectionPolicy is set to True, but AddDataProtection() has already been registered as a service, doing nothing...");
+            
+            return services;
+        }
 
         var type = Type.GetType("SystemLibrary.Common.Net.CryptationKey, SystemLibrary.Common.Net");
 
@@ -36,20 +43,9 @@ partial class IServiceCollectionExtensions
             .Where(x => x.Name == "TryGetKeyFromDataRingKeyFile")
             .FirstOrDefault();
 
+
         if (method == null)
             throw new Exception("Method 'TryGetKeyFromDataRingKeyFile' is renamed or do not exist from type SystemLibrary.Common.Net.CryptationKey");
-
-
-        if (AlreadyRegisteredDataProtectionServices())
-        {
-            Log.Warning("UseAutomaticDataProtectionPolicy is set to True, but it seems that data protection is already registered through UseDataProtection(), doing nothing...");
-
-            var outputKeyRingFilePath = (string)method.Invoke(null, new object[0]);
-
-            Debug.Log("Key ring file: " + outputKeyRingFilePath);
-            
-            return services;
-        }
 
         var keyFileName = (string)method.Invoke(null, new object[0]);
 
@@ -74,14 +70,13 @@ partial class IServiceCollectionExtensions
               .ReplaceAllWith("-", ",", ".", " ", "=", "/", "\\")?
               .MaxLength(4);
 
-
         if (keyFileName.Is())
         {
             var keyFileFullName = keyFileFullNameField.GetValue(null).ToString();
 
             var directory = Path.GetDirectoryName(keyFileFullName);
 
-            Debug.Log("Key file already exists at: " + directory + "/");
+            Debug.Log("Key file already exists at: " + directory);
 
             return services.AddDataProtection()
                 .DisableAutomaticKeyGeneration()

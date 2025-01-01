@@ -211,10 +211,10 @@ public static partial class IServiceCollectionExtensions
     /// </example>
     public static IServiceCollection AddCommonWebServices<TLogWriter>(this IServiceCollection services, ServicesCollectionOptions options = null) where TLogWriter : class, ILogWriter
     {
-        services = AddCommonWebServices(services, options);
-
         // NOTE: Was transient, now scoped, but probably can be a singleton as it gets all input
         services = services.AddScoped<ILogWriter, TLogWriter>();
+
+        services = AddCommonWebServices(services, options);
 
         return services;
     }

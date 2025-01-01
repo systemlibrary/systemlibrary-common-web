@@ -30,8 +30,9 @@ Library with classes and methods for every &gt;= .NET 8 web application
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Release Notes
-- 8.4.0.2
-- Debug info of the key ring file
+- 8.4.0.3
+- Removing debug info of key ring file (fix)
+- Adding ILogWriter before common services (fix)
 
 #### Major Breaking Versions
 - 7.8.0.1

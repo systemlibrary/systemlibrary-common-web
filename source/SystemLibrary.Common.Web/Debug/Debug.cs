@@ -18,7 +18,7 @@ internal static class Debug
     {
         if (Debugging)
         {
-            global::Log.Debug("Web debug is 'true': " + msg);
+            global::Log.Debug("Debug Web 'true': " + msg);
         }
     }
 }
