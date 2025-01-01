@@ -30,14 +30,8 @@ Library with classes and methods for every &gt;= .NET 8 web application
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Release Notes
-- 8.4.0.1
-- Options.AddForwardStandardLogging renamed to ForwardStandardLogging (breaking change)
-- Metric counter for successful status codes, now splits 301, 302 apart from 200 (breaking change)
-- Metric counter now increases if last retry is success (fix)
-- Metric counter adds a dimension "statusCode" (new)
-- Added BaseApiController (new)
-- Added UserAgent, Origin and ApiToken filter attributes for your api controllers (new)
-- Updated deps
+- 8.4.0.2
+- Debug info of the key ring file
 
 #### Major Breaking Versions
 - 7.8.0.1

@@ -27,26 +27,6 @@ partial class IServiceCollectionExtensions
             return found != null;
         }
 
-        if (AlreadyRegisteredDataProtectionServices())
-        {
-            Log.Warning("UseAutomaticDataProtectionPolicy is set to True, but it seems that data protection is already registered through UseDataProtection(), doing nothing...");
-            return services;
-        }
-
-        var appName = "AppName" +
-               Assembly.GetEntryAssembly()?
-               .GetName()?
-               .Name?
-               .ToLower()?
-               .ReplaceAllWith("-", ",", ".", " ", "=", "/", "\\")?
-               .MaxLength(32) +
-               Assembly.GetCallingAssembly()?
-               .GetName()?
-               .Name?
-               .ToLower()
-               .ReplaceAllWith("-", ",", ".", " ", "=", "/", "\\")?
-               .MaxLength(4);
-
         var type = Type.GetType("SystemLibrary.Common.Net.CryptationKey, SystemLibrary.Common.Net");
 
         if (type == null)
@@ -59,6 +39,18 @@ partial class IServiceCollectionExtensions
         if (method == null)
             throw new Exception("Method 'TryGetKeyFromDataRingKeyFile' is renamed or do not exist from type SystemLibrary.Common.Net.CryptationKey");
 
+
+        if (AlreadyRegisteredDataProtectionServices())
+        {
+            Log.Warning("UseAutomaticDataProtectionPolicy is set to True, but it seems that data protection is already registered through UseDataProtection(), doing nothing...");
+
+            var outputKeyRingFilePath = (string)method.Invoke(null, new object[0]);
+
+            Debug.Log("Key ring file: " + outputKeyRingFilePath);
+            
+            return services;
+        }
+
         var keyFileName = (string)method.Invoke(null, new object[0]);
 
         var fields = type.GetFields(BindingFlags.Static | BindingFlags.NonPublic);
@@ -67,6 +59,21 @@ partial class IServiceCollectionExtensions
 
         if (keyFileFullNameField == null)
             throw new Exception("Private static string '_KeyFileFullName' is renamed or do not exist from type SystemLibrary.Common.Net.CryptationKey");
+
+        var appName = "AppName" +
+              Assembly.GetEntryAssembly()?
+              .GetName()?
+              .Name?
+              .ToLower()?
+              .ReplaceAllWith("-", ",", ".", " ", "=", "/", "\\")?
+              .MaxLength(32) +
+              Assembly.GetCallingAssembly()?
+              .GetName()?
+              .Name?
+              .ToLower()
+              .ReplaceAllWith("-", ",", ".", " ", "=", "/", "\\")?
+              .MaxLength(4);
+
 
         if (keyFileName.Is())
         {
