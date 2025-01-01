@@ -126,7 +126,7 @@ public class ServicesCollectionOptions : BaseOptions
     /// Add an internal logger that forwards errors to the ILogWriter of your own choice
     /// <para>Standard output is forwarded to your own ILogWriter</para>
     /// </summary>
-    public bool AddForwardStandardLogging = false;
+    public bool ForwardStandardLogging = false;
 
     /// <summary>
     /// Set to true to add ResponseCaching services

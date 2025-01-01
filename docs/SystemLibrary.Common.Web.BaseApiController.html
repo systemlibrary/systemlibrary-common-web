@@ -1,22 +1,22 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>PackageConfig.ClientConfiguration
+    <title>BaseApiController
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="PackageConfig.ClientConfiguration
+    <meta name="title" content="BaseApiController
    ">
     <meta name="generator" content="docfx 2.59.4.0">
     
-    <link rel="shortcut icon" href="[%relativeHostingPath%]favicon.ico">
-    <link rel="stylesheet" href="[%relativeHostingPath%]styles/docfx.vendor.css">
-    <link rel="stylesheet" href="[%relativeHostingPath%]styles/docfx.css">
-    <link rel="stylesheet" href="[%relativeHostingPath%]styles/main.css">
-    <link rel="stylesheet" href="[%relativeHostingPath%]styles/custom.css">
+    <link rel="shortcut icon" href="/systemlibrary-common-web/favicon.ico">
+    <link rel="stylesheet" href="/systemlibrary-common-web/styles/docfx.vendor.css">
+    <link rel="stylesheet" href="/systemlibrary-common-web/styles/docfx.css">
+    <link rel="stylesheet" href="/systemlibrary-common-web/styles/main.css">
+    <link rel="stylesheet" href="/systemlibrary-common-web/styles/custom.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
@@ -50,9 +50,9 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="../[%relativeHostingPath%]index.html">
-                <img id="logo" class="svg" src="../[%relativeHostingPath%]logo.png" alt="">
-                <span class="navbar-title">[%siteTitle%]</span>
+              <a class="navbar-brand" href="..//systemlibrary-common-web/index.html">
+                <img id="logo" class="svg" src="..//systemlibrary-common-web/logo.png" alt="">
+                <span class="navbar-title">System Library Common Web</span>
               </a>
               
             </div>
@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="overflow: hidden;font-size: 1px;max-width: 1px; visibility: hidden; position: absolute; margin-left: -4000px;">
-        [%custom-skipDocumentationFor%]</div>
+        MediaType,BaseOptions,LogLevel,PackageConfig.CacheConfiguration,PackageConfig.ClientConfiguration,PackageConfig.LogConfiguration,ClientResponse__-1_T__-2_,CacheConfiguration,ClientConfiguration,CalleeCancelledRequestException,RetryRequestException,GlobalEnumConverter,LogConfiguration,PackageConfig</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -189,7 +189,7 @@
         <div class="article row grid-right">
         <div class="article row grid">
           <div class="col-md-10">
-            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Web.PackageConfig.ClientConfiguration">
+            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Web.BaseApiController">
   
   
   <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Web.html">SystemLibrary.Common.Web</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Web.dll</span></h6>
@@ -200,19 +200,542 @@
     <div class="markdown level0 summary h1-class-summary"></div>
   </div>
   
-  <h1 id="SystemLibrary_Common_Web_PackageConfig_ClientConfiguration" data-uid="SystemLibrary.Common.Web.PackageConfig.ClientConfiguration" class="text-break h1-class-header">PackageConfig.ClientConfiguration
+  <h1 id="SystemLibrary_Common_Web_BaseApiController" data-uid="SystemLibrary.Common.Web.BaseApiController" class="text-break h1-class-header">BaseApiController
   </h1>
-  <h1 id="SystemLibrary_Common_Web_PackageConfig_ClientConfiguration" data-uid="SystemLibrary.Common.Web.PackageConfig.ClientConfiguration" class="h1-custom-display className">public class ClientConfiguration</h1>
+  <h1 id="SystemLibrary_Common_Web_BaseApiController" data-uid="SystemLibrary.Common.Web.BaseApiController" class="h1-custom-display className">public class BaseApiController : ControllerBase</h1>
   
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">PackageConfig.ClientConfiguration</span></div>
+    <div class="level1"><span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase</span></div>
+    <div class="level2"><span class="xref">BaseApiController</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.StatusCode(System.Int32)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.StatusCode(System.Int32, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Content(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Content(System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Content(System.String, System.String, System.Text.Encoding)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Content(System.String, Microsoft.Net.Http.Headers.MediaTypeHeaderValue)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.NoContent()</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Ok()</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Ok(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Redirect(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectPermanent(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectPreserveMethod(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectPermanentPreserveMethod(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirect(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirectPermanent(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirectPreserveMethod(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirectPermanentPreserveMethod(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToAction()</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToAction(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToAction(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToAction(System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToAction(System.String, System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToAction(System.String, System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToAction(System.String, System.String, System.Object, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToActionPreserveMethod(System.String, System.String, System.Object, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToActionPermanent(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToActionPermanent(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToActionPermanent(System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToActionPermanent(System.String, System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToActionPermanent(System.String, System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToActionPermanent(System.String, System.String, System.Object, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToActionPermanentPreserveMethod(System.String, System.String, System.Object, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToRoute(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToRoute(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToRoute(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToRoute(System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToRoute(System.String, System.Object, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToRoutePreserveMethod(System.String, System.Object, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToRoutePermanent(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToRoutePermanent(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToRoutePermanent(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToRoutePermanent(System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToRoutePermanent(System.String, System.Object, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToRoutePermanentPreserveMethod(System.String, System.Object, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToPage(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToPage(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToPage(System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToPage(System.String, System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToPage(System.String, System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToPage(System.String, System.String, System.Object, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToPagePermanent(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToPagePermanent(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToPagePermanent(System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToPagePermanent(System.String, System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToPagePermanent(System.String, System.String, System.Object, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToPagePreserveMethod(System.String, System.String, System.Object, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToPagePermanentPreserveMethod(System.String, System.String, System.Object, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.Byte[], System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.Byte[], System.String, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.Byte[], System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.Byte[], System.String, System.String, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.Byte[], System.String, System.Nullable&lt;System.DateTimeOffset&gt;, Microsoft.Net.Http.Headers.EntityTagHeaderValue)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.Byte[], System.String, System.Nullable&lt;System.DateTimeOffset&gt;, Microsoft.Net.Http.Headers.EntityTagHeaderValue, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.Byte[], System.String, System.String, System.Nullable&lt;System.DateTimeOffset&gt;, Microsoft.Net.Http.Headers.EntityTagHeaderValue)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.Byte[], System.String, System.String, System.Nullable&lt;System.DateTimeOffset&gt;, Microsoft.Net.Http.Headers.EntityTagHeaderValue, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.IO.Stream, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.IO.Stream, System.String, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.IO.Stream, System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.IO.Stream, System.String, System.String, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.IO.Stream, System.String, System.Nullable&lt;System.DateTimeOffset&gt;, Microsoft.Net.Http.Headers.EntityTagHeaderValue)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.IO.Stream, System.String, System.Nullable&lt;System.DateTimeOffset&gt;, Microsoft.Net.Http.Headers.EntityTagHeaderValue, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.IO.Stream, System.String, System.String, System.Nullable&lt;System.DateTimeOffset&gt;, Microsoft.Net.Http.Headers.EntityTagHeaderValue)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.IO.Stream, System.String, System.String, System.Nullable&lt;System.DateTimeOffset&gt;, Microsoft.Net.Http.Headers.EntityTagHeaderValue, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.String, System.String, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.String, System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.String, System.String, System.String, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.String, System.String, System.Nullable&lt;System.DateTimeOffset&gt;, Microsoft.Net.Http.Headers.EntityTagHeaderValue)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.String, System.String, System.Nullable&lt;System.DateTimeOffset&gt;, Microsoft.Net.Http.Headers.EntityTagHeaderValue, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.String, System.String, System.String, System.Nullable&lt;System.DateTimeOffset&gt;, Microsoft.Net.Http.Headers.EntityTagHeaderValue)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.String, System.String, System.String, System.Nullable&lt;System.DateTimeOffset&gt;, Microsoft.Net.Http.Headers.EntityTagHeaderValue, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.PhysicalFile(System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.PhysicalFile(System.String, System.String, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.PhysicalFile(System.String, System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.PhysicalFile(System.String, System.String, System.String, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.PhysicalFile(System.String, System.String, System.Nullable&lt;System.DateTimeOffset&gt;, Microsoft.Net.Http.Headers.EntityTagHeaderValue)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.PhysicalFile(System.String, System.String, System.Nullable&lt;System.DateTimeOffset&gt;, Microsoft.Net.Http.Headers.EntityTagHeaderValue, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.PhysicalFile(System.String, System.String, System.String, System.Nullable&lt;System.DateTimeOffset&gt;, Microsoft.Net.Http.Headers.EntityTagHeaderValue)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.PhysicalFile(System.String, System.String, System.String, System.Nullable&lt;System.DateTimeOffset&gt;, Microsoft.Net.Http.Headers.EntityTagHeaderValue, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Unauthorized()</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Unauthorized(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.NotFound()</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.NotFound(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest()</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.UnprocessableEntity()</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.UnprocessableEntity(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.UnprocessableEntity(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Conflict()</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Conflict(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Conflict(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Problem(System.String, System.String, System.Nullable&lt;System.Int32&gt;, System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem(Microsoft.AspNetCore.Mvc.ValidationProblemDetails)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem()</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem(System.String, System.String, System.Nullable&lt;System.Int32&gt;, System.String, System.String, Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Created()</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Created(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Created(System.Uri, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction(System.String, System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction(System.String, System.String, System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtRoute(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtRoute(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtRoute(System.String, System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Accepted()</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Accepted(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Accepted(System.Uri)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Accepted(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Accepted(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Accepted(System.Uri, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.AcceptedAtAction(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.AcceptedAtAction(System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.AcceptedAtAction(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.AcceptedAtAction(System.String, System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.AcceptedAtAction(System.String, System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.AcceptedAtAction(System.String, System.String, System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.AcceptedAtRoute(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.AcceptedAtRoute(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.AcceptedAtRoute(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.AcceptedAtRoute(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.AcceptedAtRoute(System.String, System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Challenge()</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Challenge(System.String[])</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Challenge(Microsoft.AspNetCore.Authentication.AuthenticationProperties)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Challenge(Microsoft.AspNetCore.Authentication.AuthenticationProperties, System.String[])</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Forbid()</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Forbid(System.String[])</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Forbid(Microsoft.AspNetCore.Authentication.AuthenticationProperties)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Forbid(Microsoft.AspNetCore.Authentication.AuthenticationProperties, System.String[])</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.SignIn(System.Security.Claims.ClaimsPrincipal)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.SignIn(System.Security.Claims.ClaimsPrincipal, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.SignIn(System.Security.Claims.ClaimsPrincipal, Microsoft.AspNetCore.Authentication.AuthenticationProperties)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.SignIn(System.Security.Claims.ClaimsPrincipal, Microsoft.AspNetCore.Authentication.AuthenticationProperties, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.SignOut()</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.SignOut(Microsoft.AspNetCore.Authentication.AuthenticationProperties)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.SignOut(System.String[])</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.SignOut(Microsoft.AspNetCore.Authentication.AuthenticationProperties, System.String[])</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync&lt;TModel&gt;(TModel)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync&lt;TModel&gt;(TModel, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync&lt;TModel&gt;(TModel, System.String, Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync&lt;TModel&gt;(TModel, System.String, System.Linq.Expressions.Expression&lt;System.Func&lt;TModel, System.Object&gt;&gt;[])</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync&lt;TModel&gt;(TModel, System.String, System.Func&lt;Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata, System.Boolean&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync&lt;TModel&gt;(TModel, System.String, Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider, System.Linq.Expressions.Expression&lt;System.Func&lt;TModel, System.Object&gt;&gt;[])</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync&lt;TModel&gt;(TModel, System.String, Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider, System.Func&lt;Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata, System.Boolean&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync(System.Object, System.Type, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync(System.Object, System.Type, System.String, Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider, System.Func&lt;Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata, System.Boolean&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.TryValidateModel(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.TryValidateModel(System.Object, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.HttpContext</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Request</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Response</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RouteData</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.ModelState</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.ControllerContext</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.MetadataProvider</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.ModelBinderFactory</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Url</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.ObjectValidator</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.ProblemDetailsFactory</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.User</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Empty</span>
+    </div>
   </div>
   
   
   <div class="custom-menu-data custom-menu-data-first">
-    <h5 id="SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
+    <h5 id="SystemLibrary_Common_Web_BaseApiController_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
   
     <div class="custom-menu-data-container custom-menu-data-container--example">
     </div>
@@ -220,7 +743,7 @@
   
   
   <div class="custom-menu-data">
-    <h5 id="SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
+    <h5 id="SystemLibrary_Common_Web_BaseApiController_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
   
     <div class="custom-menu-data-container">
       <div class="custom-menu-data-class-arguments" style="display: none;">
@@ -232,21 +755,22 @@
   </div>
   
   <div class='custom-class-content-inline'>
-  <h3 id="properties">Properties
+  <h3 id="methods">Methods
   </h3>
   
   <div class="custom-container">
   
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_ClientCacheDuration">
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_BaseApiController_Docs">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/PackageConfig.cs/#L37">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Api/ApiController/_Docs.cs/#L424">View Source</a>
   		</span>
   	</div>
-  	<a id="SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_ClientCacheDuration_" data-uid="SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.ClientCacheDuration*"></a>
+  	<a id="SystemLibrary_Common_Web_BaseApiController_Docs_" data-uid="SystemLibrary.Common.Web.BaseApiController.Docs*"></a>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_ClientCacheDuration" data-uid="SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.ClientCacheDuration" class="h4-custom-functionName">public int ClientCacheDuration { get; set; }</h4>
+  		<h4 id="SystemLibrary_Common_Web_BaseApiController_Docs" data-uid="SystemLibrary.Common.Web.BaseApiController.Docs" class="h4-custom-functionName">[HttpGet]
+public ActionResult Docs()</h4>
   		<div class="custom-menu-data-container">
   
   			<div class="custom-menu-data-arguments" style="display: none;">
@@ -254,272 +778,29 @@
   
   			</div>
   
-  		</div>
-  	</div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Int32</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  
-  <div class="custom-container">
-  
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_IgnoreSslErrors">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/PackageConfig.cs/#L35">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_IgnoreSslErrors_" data-uid="SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.IgnoreSslErrors*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_IgnoreSslErrors" data-uid="SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.IgnoreSslErrors" class="h4-custom-functionName">public bool IgnoreSslErrors { get; set; }</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="custom-menu-data-returntype" style="display: none;">
   				<div class="syslib-tab-menu-data--close">X</div>
   
+  				<table class="table table-bordered table-striped table-condensed table-return">
+  					<thead>
+  						<tr>
+  							<th>Type</th>
+  							<th>Description</th>
+  						</tr>
+  					</thead>
+  					<tbody>
+  						<tr>
+  							<td><span class="xref">Microsoft.AspNetCore.Mvc.ActionResult</span></td>
+  							<td></td>
+  						</tr>
+  					</tbody>
+  				</table>
   			</div>
-  
   		</div>
   	</div>
   </div>
   
   
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Boolean</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  
-  <div class="custom-container">
-  
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_RetryTimeout">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/PackageConfig.cs/#L34">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_RetryTimeout_" data-uid="SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.RetryTimeout*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_RetryTimeout" data-uid="SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.RetryTimeout" class="h4-custom-functionName">public int RetryTimeout { get; set; }</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Int32</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  
-  <div class="custom-container">
-  
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_ThrowOnUnsuccessful">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/PackageConfig.cs/#L38">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_ThrowOnUnsuccessful_" data-uid="SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.ThrowOnUnsuccessful*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_ThrowOnUnsuccessful" data-uid="SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.ThrowOnUnsuccessful" class="h4-custom-functionName">public bool ThrowOnUnsuccessful { get; set; }</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Boolean</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  
-  <div class="custom-container">
-  
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_Timeout">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/PackageConfig.cs/#L33">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_Timeout_" data-uid="SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.Timeout*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_Timeout" data-uid="SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.Timeout" class="h4-custom-functionName">public int Timeout { get; set; }</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Int32</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  
-  <div class="custom-container">
-  
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_UseRequestBreakerPolicy">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/PackageConfig.cs/#L39">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_UseRequestBreakerPolicy_" data-uid="SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.UseRequestBreakerPolicy*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_UseRequestBreakerPolicy" data-uid="SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.UseRequestBreakerPolicy" class="h4-custom-functionName">public bool UseRequestBreakerPolicy { get; set; }</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Boolean</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  
-  <div class="custom-container">
-  
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_UseRetryPolicy">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/PackageConfig.cs/#L36">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_UseRetryPolicy_" data-uid="SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.UseRetryPolicy*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_PackageConfig_ClientConfiguration_UseRetryPolicy" data-uid="SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.UseRetryPolicy" class="h4-custom-functionName">public bool UseRetryPolicy { get; set; }</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Boolean</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
   
   
   
@@ -1196,7 +1477,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/PackageConfig.cs/#L31" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Api/ApiController/_Docs.cs/#L18" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -1214,16 +1495,16 @@
         <div class="grad-bottom"></div>
         <div class="footer">
           <div class="container">
-            <span>Package: <a href="[%footerNugetUrl%]">nuget</a></span><br>
-            <span>Source: <a href="[%footerGithubUrl%]">github</a></span><br>
-            <span>Website: <a href="[%footerWebsiteUrl%]">[%footerSiteTitle%]</a></span>
+            <span>Package: <a href="https://www.nuget.org/packages/SystemLibrary.Common.Web/">nuget</a></span><br>
+            <span>Source: <a href="https://github.com/systemlibrary/systemlibrary-common-web/">github</a></span><br>
+            <span>Website: <a href="https://www.systemlibrary.com/">System Library Common Web</a></span>
           </div>
         </div>
       </footer>
     </div>
     
-    <script type="text/javascript" src="../[%relativeHostingPath%]styles/docfx.vendor.js"></script>
-    <script type="text/javascript" src="../[%relativeHostingPath%]styles/docfx.js"></script>
-    <script type="text/javascript" src="../[%relativeHostingPath%]styles/main.js"></script>
+    <script type="text/javascript" src="..//systemlibrary-common-web/styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="..//systemlibrary-common-web/styles/docfx.js"></script>
+    <script type="text/javascript" src="..//systemlibrary-common-web/styles/main.js"></script>
   </body>
 </html>

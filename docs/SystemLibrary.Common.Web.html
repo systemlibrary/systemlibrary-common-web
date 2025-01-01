@@ -199,8 +199,29 @@
     <h3 id="classes">Classes
   </h3>
       <h4><a class="xref" href="SystemLibrary.Common.Web.ActionContextInstance.html">ActionContextInstance</a></h4>
-      <section id="SystemLibrary.Common.Web.ActionContextInstance--description"><p>A class that has a reference to the ActionContext instance</p>
+      <section id="SystemLibrary.Common.Web.ActionContextInstance--description"><p>An implementation of the 'old' thread safe singleton ActionContext we all know and love from .NET Framework</p>
 </section>
+      <h4><a class="xref" href="SystemLibrary.Common.Web.ApiTokenFilterAttribute.html">ApiTokenFilterAttribute</a></h4>
+      <section id="SystemLibrary.Common.Web.ApiTokenFilterAttribute--description"><p>Filters access based on <code>api-token</code> header</p>
+<p>Optional: set a custom token header name</p>
+<p>Input:</p>
+`null`: Allows all
+<p>`*`: Allows all</p>
+- A regex: Value must satisfy the regex pattern
+<p>- A pipe separated list: Any part is within the Value in a case insensitive check</p>
+`text`: Value must match, case sensitive
+<example>
+<pre><code>[ApiTokenFilter(null)] // Allows all
+[ApiTokenFilter(&quot;*&quot;)] // Allows all
+[ApiTokenFilter(&quot;^[ab0-4]{4,}$&quot;)] // Allow any tokens containing `a, b, 0, 1, 2, 3 or 4` with a minimum length of 4
+[ApiTokenFilter(&quot;SystemLibrary\.com&quot;)] // Exact match of SystemLibrary.com, case sensitive
+[ApiTokenFilter(&quot;test.systemlibrary\.com|test2.systemlibrary.com&quot;)] // Allow tokens containing test.systemlibrary.com or test2.systemlibrary.com, case insensitive</code></pre>
+</example>
+</section>
+      <h4><a class="xref" href="SystemLibrary.Common.Web.BaseApiController.html">BaseApiController</a></h4>
+      <section id="SystemLibrary.Common.Web.BaseApiController--description"></section>
+      <h4><a class="xref" href="SystemLibrary.Common.Web.BaseApiFilterAttribute.html">BaseApiFilterAttribute</a></h4>
+      <section id="SystemLibrary.Common.Web.BaseApiFilterAttribute--description"></section>
       <h4><a class="xref" href="SystemLibrary.Common.Web.Cache.html">Cache</a></h4>
       <section id="SystemLibrary.Common.Web.Cache--description"><p>Caching for web applications</p>
 <p>Default duration is 180 seconds</p>
@@ -234,8 +255,15 @@ useRetryPolicy:
 <p>- retries once on 404, 500, 502 504 file request</p>
 - retries once on OPTION, PATCH, HEAD, CONNECT, TRACE
 </section>
+      <h4><a class="xref" href="SystemLibrary.Common.Web.ClientResponse.html">ClientResponse</a></h4>
+      <section id="SystemLibrary.Common.Web.ClientResponse--description"><p>Base class of a ClientResponse</p>
+<p>- Contains the HttpResponseMessage itself </p>
+Used when you do not want to return &apos;object&apos; nor generic type, but you want to be clear in what object is returned in your C# functions
+<p>- Contains &apos;data&apos; variable for serializing purposes so it is not undefined</p>
+</section>
       <h4><a class="xref" href="SystemLibrary.Common.Web.ClientResponse-1.html">ClientResponse&lt;T&gt;</a></h4>
       <section id="SystemLibrary.Common.Web.ClientResponse`1--description"><p>The response that all Client methods returns</p>
+<p>Note that a response statuscode might be 200 OK, but the IsSuccess might be false in scenarios where no response were returned</p>
 </section>
       <h4><a class="xref" href="SystemLibrary.Common.Web.GlobalEnumConverter.html"></a></h4>
       <section id="SystemLibrary.Common.Web.GlobalEnumConverter--description"></section>
@@ -245,14 +273,39 @@ useRetryPolicy:
       <h4><a class="xref" href="SystemLibrary.Common.Web.HttpContextInstance.html">HttpContextInstance</a></h4>
       <section id="SystemLibrary.Common.Web.HttpContextInstance--description"><p>A class that has a reference to the HttpContext instance</p>
 </section>
-      <h4><a class="xref" href="SystemLibrary.Common.Web.PackageConfig.html"></a></h4>
-      <section id="SystemLibrary.Common.Web.PackageConfig--description"></section>
-      <h4><a class="xref" href="SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.html"></a></h4>
-      <section id="SystemLibrary.Common.Web.PackageConfig.CacheConfiguration--description"></section>
-      <h4><a class="xref" href="SystemLibrary.Common.Web.PackageConfig.ClientConfiguration.html"></a></h4>
-      <section id="SystemLibrary.Common.Web.PackageConfig.ClientConfiguration--description"></section>
-      <h4><a class="xref" href="SystemLibrary.Common.Web.PackageConfig.LogConfiguration.html"></a></h4>
-      <section id="SystemLibrary.Common.Web.PackageConfig.LogConfiguration--description"></section>
+      <h4><a class="xref" href="SystemLibrary.Common.Web.OriginFilterAttribute.html">OriginFilterAttribute</a></h4>
+      <section id="SystemLibrary.Common.Web.OriginFilterAttribute--description"><p>Filters access based on <code>Origin</code> header</p>
+<p>Input:</p>
+`null`: Allows all
+<p>`*`: Allows all</p>
+- A regex: Value must satisfy the regex pattern
+<p>- A pipe separated list: Any part is within the Value in a case insensitive check</p>
+`text`: Value must match, case sensitive
+<example>
+<pre><code>[OriginFilter(null)] // Allows all
+[OriginFilter(&quot;*&quot;)] // Allows all
+[OriginFilter(&quot;^[ab0-4]{4,}$&quot;)] // Allow origin containing `a, b, 0, 1, 2, 3 or 4` with a minimum length of 4
+[OriginFilter(&quot;SystemLibrary\.com&quot;)] // Exact match of SystemLibrary.com, case sensitive
+[OriginFilter(&quot;test.systemlibrary\.com|test2.systemlibrary.com&quot;)] // Allow origins containing test.systemlibrary.com or test2.systemlibrary.com, case insensitive</code></pre>
+</example>
+</section>
+      <h4><a class="xref" href="SystemLibrary.Common.Web.UserAgentFilterAttribute.html">UserAgentFilterAttribute</a></h4>
+      <section id="SystemLibrary.Common.Web.UserAgentFilterAttribute--description"><p>Filters access based on <code>User-Agent</code> header</p>
+<p>NOTE: If attribute is added it blocks most known spiders, crawlers and bots even if you allow all</p>
+<p>Input:</p>
+`null`: Allows all
+<p>`*`: Allows all</p>
+- A regex: Value must satisfy the regex pattern
+<p>- A pipe separated list: Any part is within the Value in a case insensitive check</p>
+`text`: Value must match, case sensitive
+<example>
+<pre><code>[UserAgentFilter(null)] // Allows all
+[UserAgentFilter(&quot;*&quot;)] // Allows all
+[UserAgentFilter(&quot;^[ab0-4]{4,}$&quot;)] // Allow user agents containing only `a, b, 0, 1, 2, 3 or 4` with a minimum length of 4
+[UserAgentFilter(&quot;User Agent&quot;)] // Exact match of &apos;User Agent&apos;, case sensitive
+[UserAgentFilter(&quot;firefox|edg|chrome&quot;)] // Allow user agents containing firefox or edg or chrome, case insensitive</code></pre>
+</example>
+</section>
     <h3 id="interfaces">Interfaces
   </h3>
       <h4><a class="xref" href="SystemLibrary.Common.Web.ILogWriter.html">ILogWriter</a></h4>

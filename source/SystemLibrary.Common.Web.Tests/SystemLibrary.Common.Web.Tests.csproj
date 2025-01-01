@@ -21,10 +21,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<None Remove="Api\Output.txt" />
 		<None Remove="ClientTests\Files\icon.png" />
 		<None Remove="ClientTests\Files\text.json" />
 		<None Remove="ClientTests\_PostGraphqlData.txt" />
 		<None Remove="testhost.deps.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Api\Output.txt" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -37,10 +42,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.10" />
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
-		<PackageReference Include="MSTest.TestAdapter" Version="3.6.2" />
-		<PackageReference Include="MSTest.TestFramework" Version="3.6.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.11" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+		<PackageReference Include="MSTest.TestAdapter" Version="3.6.4" />
+		<PackageReference Include="MSTest.TestFramework" Version="3.6.4" />
 	</ItemGroup>
 
 	<ItemGroup>

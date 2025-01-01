@@ -27,4 +27,12 @@ public class Car : IVehicle
 
     public IVehicle Vehicle { get; set; }
     public List<IVehicle> Interfaces { get; set; }
+
+    public CarOwner Owner { get; set; }
+}
+
+public class CarOwner
+{
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
 }

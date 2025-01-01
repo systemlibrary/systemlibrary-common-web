@@ -68,8 +68,8 @@ public static partial class IServiceCollectionExtensions
         if (options.UseCustomTypeConverters)
         {
             var enumType = typeof(Enum);
-            var converters = TypeDescriptor.GetConverter(enumType);
-            if (converters == null || !(converters is GlobalEnumConverter))
+            var enumTypeConverter = TypeDescriptor.GetConverter(enumType);
+            if (enumTypeConverter == null || !(enumTypeConverter is GlobalEnumConverter))
             {
                 TypeDescriptor.AddAttributes(enumType, new TypeConverterAttribute(typeof(GlobalEnumConverter)));
             }
@@ -151,7 +151,7 @@ public static partial class IServiceCollectionExtensions
         if (options.UseCookiePolicy)
             services = services.UseCookiePolicy();
 
-        if (options.AddForwardStandardLogging)
+        if (options.ForwardStandardLogging)
             services.AddLogging(builder =>
             {
                 builder.AddProvider(new InternalLogProvider());

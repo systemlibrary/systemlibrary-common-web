@@ -214,13 +214,13 @@ Skip options:
       </div>
       <div class="custom-remarks custom-remarks1 text">
         <div class="custom-remarks-menu-data--close">X</div>
-        <div class="markdown level0 remarks"><p>Cache is configured to a max capacity of 240.000 items, divided by 4 containers, where any item added takes up 1 size</p>
-<p>Each container is configured to a max capacity of 60.000 items, once reached 33% of the oldest are removed, ready to be GC&apos;ed</p>
+        <div class="markdown level0 remarks"><p>Cache is configured to a max capacity of 320.000 items, divided by 8 cache containers, where any item added takes up 1 size</p>
+<p>Each container is configured to a max capacity of 40.000 items, once reached 33% of the oldest are removed, ready to be GC&apos;ed</p>
 A null value is never added to cache
 <p>Overwrite default cache configurations in appSettings.json:</p>
 - duration: 180, minimum 1
-<p>- fallbackDuration: 600, set to 0 to disable fallback cache globally</p>
-- containerSizeLimit: 60000, minimum 100
+<p>- fallbackDuration: 300, set to 0 or negative to disable fallback cache globally</p>
+- containerSizeLimit: 60000, minimum 10
 <p>Auto-generating cache key adds namespace, class, method, method-scoped variables of types such as bool, string, int, datetime, enum and few others</p>
 <p>- If a method-scoped variable is a class, its public members of same types are also appended as cacheKey</p>
 - IsAuthenticated is always appended to cacheKey
@@ -253,7 +253,7 @@ A null value is never added to cache
     &quot;systemLibraryCommonWeb&quot;: {
         &quot;cache&quot; { 
             &quot;duration&quot;: 180,
-            &quot;fallbackDuration&quot;: 600,
+            &quot;fallbackDuration&quot;: 300,
             &quot;containerSizeLimit&quot;: 60000
         }
     }
@@ -302,16 +302,16 @@ var item = Cache.Get(cacheKey);
   		<div class="custom-remarks custom-remarks2 text">
   			<div class="custom-remarks-menu-data--close">X</div>
   			<div class="markdown level1 remarks"><p>Only entries set through either TryGet, Get or Set will be cleared</p>
-<ul>
-<li>other cache mechanisms you might use are not touched</li>
-</ul>
+<p>- other cache mechanisms that you are using are not touched</p>
+Clearing cache is not thread safe as it null&apos;s out the cache containers and recreates them all
+<p>- null checks exists before the cache containers are used, but it does not gurantee thread safety</p>
 </div>
   		</div>
   	</div>
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Cache_Clear">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L582">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L619">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_Cache_Clear_" data-uid="SystemLibrary.Common.Web.Cache.Clear*"></a>
@@ -367,7 +367,7 @@ Skip options:
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Cache_Get__1_System_Func___0__System_String_System_TimeSpan_System_Func___0_System_Boolean__System_Boolean_System_Boolean_System_Func_System_Boolean__">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L434">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L443">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_Cache_Get_" data-uid="SystemLibrary.Common.Web.Cache.Get*"></a>
@@ -565,7 +565,7 @@ Skip options:
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Cache_Get__1_System_Func___0__System_TimeSpan_System_Func___0_System_Boolean__System_Boolean_System_Boolean_System_Func_System_Boolean__">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L336">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L345">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_Cache_Get_" data-uid="SystemLibrary.Common.Web.Cache.Get*"></a>
@@ -688,7 +688,7 @@ Skip options:
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Cache_Get__1_System_String_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L109">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L116">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_Cache_Get_" data-uid="SystemLibrary.Common.Web.Cache.Get*"></a>
@@ -796,7 +796,7 @@ Skip options:
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Cache_Get__1_System_String_System_Func___0__System_TimeSpan_System_Func___0_System_Boolean__System_Boolean_System_Boolean_System_Func_System_Boolean__">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L298">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L307">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_Cache_Get_" data-uid="SystemLibrary.Common.Web.Cache.Get*"></a>
@@ -927,7 +927,7 @@ Skip options:
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Cache_Lock_System_TimeSpan_System_String_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L519">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L550">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_Cache_Lock_" data-uid="SystemLibrary.Common.Web.Cache.Lock*"></a>
@@ -937,7 +937,7 @@ Skip options:
   		<div class="custom-menu-data-container">
   			<div class="custom-menu-data-name" style="display: none;">
   				<div class="syslib-tab-menu-data--close">X</div>
-  				<div class="codewrapper"><pre><code>if(Cache.Break(&quot;send-email&quot;, TimeSpan.FromSeconds(60)) 
+  				<div class="codewrapper"><pre><code>if(Cache.Lock(TimeSpan.FromSeconds(60), &quot;send-email&quot;) 
 {
     new Email(...).Send(); // Pseudo code
     // Example: invoking this code 66 times, one time per second, where first invocation is one second from &quot;now&quot;, will send two emails: one at second 1, and another at second 61
@@ -1021,7 +1021,7 @@ Skip options:
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Cache_Remove_System_String_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L558">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L591">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_Cache_Remove_" data-uid="SystemLibrary.Common.Web.Cache.Remove*"></a>
@@ -1087,7 +1087,7 @@ Cache.Remove(cacheKey);</code></pre>
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Cache_Set__1_System_String___0_System_TimeSpan_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L128">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L137">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_Cache_Set_" data-uid="SystemLibrary.Common.Web.Cache.Set*"></a>
@@ -1181,7 +1181,7 @@ Skip options:
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Cache_TryGet__1_System_Func___0__System_String_System_TimeSpan_System_Func___0_System_Boolean__System_Boolean_System_Boolean_System_Func_System_Boolean__">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L250">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L259">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_Cache_TryGet_" data-uid="SystemLibrary.Common.Web.Cache.TryGet*"></a>
@@ -1325,7 +1325,7 @@ Skip options:
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Cache_TryGet__1_System_Func___0__System_TimeSpan_System_Func___0_System_Boolean__System_Boolean_System_Boolean_System_Func_System_Boolean__">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L209">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L218">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_Cache_TryGet_" data-uid="SystemLibrary.Common.Web.Cache.TryGet*"></a>
@@ -1462,7 +1462,7 @@ Skip options:
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Cache_TryGet__1_System_String_System_Func___0__System_TimeSpan_System_Func___0_System_Boolean__System_Boolean_System_Boolean_System_Func_System_Boolean__">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L170">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Cache/Cache.cs/#L179">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_Cache_TryGet_" data-uid="SystemLibrary.Common.Web.Cache.TryGet*"></a>

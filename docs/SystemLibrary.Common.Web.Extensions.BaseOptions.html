@@ -239,20 +239,20 @@
   
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Set to true to add services and middleware for /api/ controllers</p>
+  		<div class="markdown level1 summary member-summary"><p>Optional: Additional endpoints configuration that is registered in front of RazorPages, Controllers and ApiControllers</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_BaseOptions_UseApiControllers">
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_BaseOptions_PrecededEndpoints">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/_Abstract/BaseOptions.cs/#L20">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/_Abstract/BaseOptions.cs/#L24">View Source</a>
   		</span>
   	</div>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_Extensions_BaseOptions_UseApiControllers" data-uid="SystemLibrary.Common.Web.Extensions.BaseOptions.UseApiControllers" class="h4-custom-functionName">public bool UseApiControllers</h4>
+  		<h4 id="SystemLibrary_Common_Web_Extensions_BaseOptions_PrecededEndpoints" data-uid="SystemLibrary.Common.Web.Extensions.BaseOptions.PrecededEndpoints" class="h4-custom-functionName">public Action&lt;IEndpointRouteBuilder&gt; PrecededEndpoints</h4>
   		<div class="custom-menu-data-container">
   
   			<div class="custom-menu-data-arguments" style="display: none;">
@@ -275,7 +275,7 @@
   	</thead>
   	<tbody>
   		<tr>
-  			<td><span class="xref">System.Boolean</span></td>
+  			<td><span class="xref">System.Action</span>&lt;<span class="xref">Microsoft.AspNetCore.Routing.IEndpointRouteBuilder</span>&gt;</td>
   			<td></td>
   		</tr>
   	</tbody>
@@ -292,7 +292,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_BaseOptions_UseBrotliResponseCompression">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/_Abstract/BaseOptions.cs/#L56">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/_Abstract/BaseOptions.cs/#L60">View Source</a>
   		</span>
   	</div>
   
@@ -329,7 +329,7 @@
   
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Set to true to add services and middleware for controllers</p>
+  		<div class="markdown level1 summary member-summary"><p>Set to true to add services and middleware for controllers and api controllers</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
@@ -337,7 +337,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_BaseOptions_UseControllers">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/_Abstract/BaseOptions.cs/#L15">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/_Abstract/BaseOptions.cs/#L19">View Source</a>
   		</span>
   	</div>
   
@@ -382,7 +382,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_BaseOptions_UseCookiePolicy">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/_Abstract/BaseOptions.cs/#L25">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/_Abstract/BaseOptions.cs/#L29">View Source</a>
   		</span>
   	</div>
   
@@ -427,7 +427,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_BaseOptions_UseForwardedHeaders">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/_Abstract/BaseOptions.cs/#L30">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/_Abstract/BaseOptions.cs/#L34">View Source</a>
   		</span>
   	</div>
   
@@ -472,7 +472,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_BaseOptions_UseGzipResponseCompression">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/_Abstract/BaseOptions.cs/#L51">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/_Abstract/BaseOptions.cs/#L55">View Source</a>
   		</span>
   	</div>
   
@@ -517,7 +517,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_BaseOptions_UseHttpsRedirection">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/_Abstract/BaseOptions.cs/#L35">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/_Abstract/BaseOptions.cs/#L39">View Source</a>
   		</span>
   	</div>
   
@@ -562,7 +562,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_BaseOptions_UseOutputCache">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/_Abstract/BaseOptions.cs/#L40">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/_Abstract/BaseOptions.cs/#L44">View Source</a>
   		</span>
   	</div>
   
@@ -608,7 +608,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_BaseOptions_UseOutputCacheAfterAuthentication">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/_Abstract/BaseOptions.cs/#L46">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/_Abstract/BaseOptions.cs/#L50">View Source</a>
   		</span>
   	</div>
   
@@ -654,7 +654,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_Extensions_BaseOptions_UseRazorPages">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/_Abstract/BaseOptions.cs/#L10">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/_Abstract/BaseOptions.cs/#L14">View Source</a>
   		</span>
   	</div>
   
@@ -1363,7 +1363,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/_Abstract/BaseOptions.cs/#L3" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Extensions/_Abstract/BaseOptions.cs/#L7" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

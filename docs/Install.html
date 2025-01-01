@@ -390,19 +390,18 @@
         <div id='md-content'></div>
     </div>
     <script>var mdcontent = `# Installation
+- Open Project/Solution in Visual Studio
+- Open Nuget Project Manager
+- Search SystemLibrary.Common.Web
+- Install SystemLibrary.Common.Web
+
+[![Latest version](https://img.shields.io/nuget/v/SystemLibrary.Common.Web)](https://www.nuget.org/packages/SystemLibrary.Common.Web)
 
 ## Requirements
-* &amp;gt;= .NET 7
-
-## Install nuget package
-
-* Open your project/solution in Visual Studio
-* Open Nuget Project Manager
-* Search for SystemLibrary.Common.Web
-* Install SystemLibrary.Common.Web
+* &amp;gt;= .NET 8
 
 ## First time usage
-1. Create a new Asp.Net Core Empty .NET 7 project
+1. Create a new Asp.Net Core Empty .NET 8 project
 2. Add SystemLibrary.Common.Web nuget package
 3. Add Startup.cs at root of the web project
 4. Add appSettings.json at root of the web project
@@ -478,6 +477,11 @@ public class Startup
 			!????!appendBrowser!????!: false,
 			!????!appendCookieInfo!????!: false,
 			!????!format!????!: null // !????!json!????! or null, null is default
+		},
+
+		!????!metrics!????!: {
+			!????!enablePrometheus!????!: true,
+			!????!authorizationValue!????!: !????!Demo!????!
 		}
 	}
 }

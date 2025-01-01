@@ -198,21 +198,32 @@
   
   <div class="h1-class-summary-container">
     <div class="markdown level0 summary h1-class-summary"><p>The response that all Client methods returns</p>
+<p>Note that a response statuscode might be 200 OK, but the IsSuccess might be false in scenarios where no response were returned</p>
 </div>
   </div>
   
   <h1 id="SystemLibrary_Common_Web_ClientResponse_1" data-uid="SystemLibrary.Common.Web.ClientResponse`1" class="text-break h1-class-header">ClientResponse&lt;T&gt;
   </h1>
-  <h1 id="SystemLibrary_Common_Web_ClientResponse_1" data-uid="SystemLibrary.Common.Web.ClientResponse`1" class="h1-custom-display className">public class ClientResponse&lt;T&gt; : IDisposable</h1>
+  <h1 id="SystemLibrary_Common_Web_ClientResponse_1" data-uid="SystemLibrary.Common.Web.ClientResponse`1" class="h1-custom-display className">public class ClientResponse&lt;T&gt; : ClientResponse, IDisposable</h1>
   
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">ClientResponse&lt;T&gt;</span></div>
+    <div class="level1"><a class="xref" href="SystemLibrary.Common.Web.ClientResponse.html">ClientResponse</a></div>
+    <div class="level2"><span class="xref">ClientResponse&lt;T&gt;</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
     <div class="implements-content"><span class="xref">System.IDisposable</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="SystemLibrary.Common.Web.ClientResponse.html#SystemLibrary_Common_Web_ClientResponse_Response">ClientResponse.Response</a>
+    </div>
+    <div>
+      <a class="xref" href="SystemLibrary.Common.Web.ClientResponse.html#SystemLibrary_Common_Web_ClientResponse_IsSuccess">ClientResponse.IsSuccess</a>
+    </div>
   </div>
   <h5 class="typeParameters class-header-tmpl-partial-typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed class-header-tmpl-partial-typeParameters">
@@ -269,6 +280,159 @@
   </div>
   
   <div class='custom-class-content-inline'>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Optional: pass in a default data with response status code of 500</p>
+<p>Useful if you want to give some custom messages/data upwards to the callee</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
+  
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_ClientResponse_1__ctor__0_">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Client/Response/ClientResponseT.cs/#L36">View Source</a>
+  		</span>
+  	</div>
+  	<a id="SystemLibrary_Common_Web_ClientResponse_1__ctor_" data-uid="SystemLibrary.Common.Web.ClientResponse`1.#ctor*"></a>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Web_ClientResponse_1__ctor__0_" data-uid="SystemLibrary.Common.Web.ClientResponse`1.#ctor(`0)" class="h4-custom-functionName">public ClientResponse(T defaultData = null)</h4>
+  		<div class="custom-menu-data-container">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  				<table class="table table-bordered table-striped table-condensed">
+  					<thead>
+  						<tr>
+  							<th>Type</th>
+  							<th>Name</th>
+  							<th>Description</th>
+  						</tr>
+  					</thead>
+  					<tbody>
+  						<tr>
+  							<td><span class="xref">T</span></td>
+  							<td><span class="parametername">defaultData</span></td>
+  							<td></td>
+  						</tr>
+  					</tbody>
+  				</table>
+  			</div>
+  
+  		</div>
+  	</div>
+  </div>
+  
+  
+  
+  
+  <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Pass in a default data with response status code</p>
+<p>Useful if you want to give some custom messages/data and custom status code upwards to the callee</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
+  
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_ClientResponse_1__ctor__0_System_Net_HttpStatusCode_">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Client/Response/ClientResponseT.cs/#L47">View Source</a>
+  		</span>
+  	</div>
+  	<a id="SystemLibrary_Common_Web_ClientResponse_1__ctor_" data-uid="SystemLibrary.Common.Web.ClientResponse`1.#ctor*"></a>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Web_ClientResponse_1__ctor__0_System_Net_HttpStatusCode_" data-uid="SystemLibrary.Common.Web.ClientResponse`1.#ctor(`0,System.Net.HttpStatusCode)" class="h4-custom-functionName">public ClientResponse(T defaultData, HttpStatusCode statusCode)</h4>
+  		<div class="custom-menu-data-container">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  				<table class="table table-bordered table-striped table-condensed">
+  					<thead>
+  						<tr>
+  							<th>Type</th>
+  							<th>Name</th>
+  							<th>Description</th>
+  						</tr>
+  					</thead>
+  					<tbody>
+  						<tr>
+  							<td><span class="xref">T</span></td>
+  							<td><span class="parametername">defaultData</span></td>
+  							<td></td>
+  						</tr>
+  						<tr>
+  							<td><span class="xref">System.Net.HttpStatusCode</span></td>
+  							<td><span class="parametername">statusCode</span></td>
+  							<td></td>
+  						</tr>
+  					</tbody>
+  				</table>
+  			</div>
+  
+  		</div>
+  	</div>
+  </div>
+  
+  
+  
+  
+  <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Pass in a custom status code of your own choice</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
+  
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_ClientResponse_1__ctor_System_Net_HttpStatusCode_">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Client/Response/ClientResponseT.cs/#L57">View Source</a>
+  		</span>
+  	</div>
+  	<a id="SystemLibrary_Common_Web_ClientResponse_1__ctor_" data-uid="SystemLibrary.Common.Web.ClientResponse`1.#ctor*"></a>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Web_ClientResponse_1__ctor_System_Net_HttpStatusCode_" data-uid="SystemLibrary.Common.Web.ClientResponse`1.#ctor(System.Net.HttpStatusCode)" class="h4-custom-functionName">public ClientResponse(HttpStatusCode statusCode)</h4>
+  		<div class="custom-menu-data-container">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  				<table class="table table-bordered table-striped table-condensed">
+  					<thead>
+  						<tr>
+  							<th>Type</th>
+  							<th>Name</th>
+  							<th>Description</th>
+  						</tr>
+  					</thead>
+  					<tbody>
+  						<tr>
+  							<td><span class="xref">System.Net.HttpStatusCode</span></td>
+  							<td><span class="parametername">statusCode</span></td>
+  							<td></td>
+  						</tr>
+  					</tbody>
+  				</table>
+  			</div>
+  
+  		</div>
+  	</div>
+  </div>
+  
+  
+  
   <h3 id="properties">Properties
   </h3>
   
@@ -277,7 +441,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_ClientResponse_1_Data">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Client/Response/HttpClientResponse.cs/#L20">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Client/Response/ClientResponseT.cs/#L70">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_ClientResponse_1_Data_" data-uid="SystemLibrary.Common.Web.ClientResponse`1.Data*"></a>
@@ -316,50 +480,9 @@
   <div class="custom-container">
   
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_ClientResponse_1_IsSuccess">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Client/Response/HttpClientResponse.cs/#L22">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Web_ClientResponse_1_IsSuccess_" data-uid="SystemLibrary.Common.Web.ClientResponse`1.IsSuccess*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_ClientResponse_1_IsSuccess" data-uid="SystemLibrary.Common.Web.ClientResponse`1.IsSuccess" class="h4-custom-functionName">public bool IsSuccess { get; }</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Boolean</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  
-  <div class="custom-container">
-  
-  
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_ClientResponse_1_Message">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Client/Response/HttpClientResponse.cs/#L23">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Client/Response/ClientResponseT.cs/#L75">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_ClientResponse_1_Message_" data-uid="SystemLibrary.Common.Web.ClientResponse`1.Message*"></a>
@@ -398,50 +521,9 @@
   <div class="custom-container">
   
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_ClientResponse_1_Response">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Client/Response/HttpClientResponse.cs/#L19">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Web_ClientResponse_1_Response_" data-uid="SystemLibrary.Common.Web.ClientResponse`1.Response*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_ClientResponse_1_Response" data-uid="SystemLibrary.Common.Web.ClientResponse`1.Response" class="h4-custom-functionName">public HttpResponseMessage Response { get; }</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Net.Http.HttpResponseMessage</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  
-  <div class="custom-container">
-  
-  
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_ClientResponse_1_StatusCode">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Client/Response/HttpClientResponse.cs/#L21">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Client/Response/ClientResponseT.cs/#L74">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_ClientResponse_1_StatusCode_" data-uid="SystemLibrary.Common.Web.ClientResponse`1.StatusCode*"></a>
@@ -484,7 +566,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_ClientResponse_1_Dispose">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Client/Response/HttpClientResponse.cs/#L25">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Client/Response/ClientResponseT.cs/#L77">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Web_ClientResponse_1_Dispose_" data-uid="SystemLibrary.Common.Web.ClientResponse`1.Dispose*"></a>
@@ -1183,7 +1265,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Client/Response/HttpClientResponse.cs/#L11" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Client/Response/ClientResponseT.cs/#L13" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

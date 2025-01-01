@@ -30,9 +30,14 @@ Library with classes and methods for every &gt;= .NET 8 web application
 - Microsoft.AspNetCore.App Framework
 
 ## Latest Release Notes
-- 8.3.0.1
-- Options.UseApiControllers removed, UseControllers registered api and mvc controllers together (breaking change)
-- Options.UseMvc, UseRazorPages or UseControllers, if either is true, default JSON converters from SystemLibrary.Common.Net is used (breaking change)
+- 8.4.0.1
+- Options.AddForwardStandardLogging renamed to ForwardStandardLogging (breaking change)
+- Metric counter for successful status codes, now splits 301, 302 apart from 200 (breaking change)
+- Metric counter now increases if last retry is success (fix)
+- Metric counter adds a dimension "statusCode" (new)
+- Added BaseApiController (new)
+- Added UserAgent, Origin and ApiToken filter attributes for your api controllers (new)
+- Updated deps
 
 #### Major Breaking Versions
 - 7.8.0.1
@@ -42,18 +47,17 @@ Library with classes and methods for every &gt;= .NET 8 web application
 - Log.Level is read from Microsofts 'Logging' in appSettings if not existing in the 'packageConfig'
 - Requires minimum SystemLibrary.Common.Net 7.13.0.7
  
-#### Version history
+#### Version history 
 - View git history of this file if interested
 
 ## Installation
-- Simply install the nuget package
 - [Installation guide](https://systemlibrary.github.io/systemlibrary-common-web/Install.html)
 
 ## Documentation
 - [Documentation with code samples](https://systemlibrary.github.io/systemlibrary-common-web/)
 
 ## Nuget
-- [Nuget package page](https://www.nuget.org/packages/SystemLibrary.Common.Web/)
+- [![Latest version](https://img.shields.io/nuget/v/SystemLibrary.Common.Web)](https://www.nuget.org/packages/SystemLibrary.Common.Web)
 
 ## Source
 - [Github](https://github.com/systemlibrary/systemlibrary-common-web)

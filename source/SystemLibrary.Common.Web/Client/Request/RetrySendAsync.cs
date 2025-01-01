@@ -57,19 +57,7 @@ partial class Client
                     if (!IsEligibleForRetry(options, response, retry, ex))
                     {
                         if (EnablePrometheusConfig)
-                        {
-                            if (response?.IsSuccessStatusCode == true)
-                            {
-                                if (retry == 0)
-                                    ClientRequestCounter.WithLabels(options.UriLabel, "success").Inc();
-                                else
-                                    ClientRequestCounter.WithLabels(options.UriLabel, "retry_success").Inc();
-                            }
-                            else
-                            {
-                                ClientRequestCounter.WithLabels(options.UriLabel, "failed").Inc();
-                            }
-                        }
+                            IncrementMetric(options, response, retry);
 
                         // Response is success or no more retries so we break
                         break;
@@ -84,21 +72,29 @@ partial class Client
                 else
                 {
                     if (EnablePrometheusConfig)
-                    {
-                        // Successful on last retry or still in error
-                        if (response?.IsSuccessStatusCode == true)
-                        {
-                            ClientRequestCounter.WithLabels(options.UriLabel, "retry_success").Inc();
-                        }
-                        else
-                        {
-                            ClientRequestCounter.WithLabels(options.UriLabel, "failed").Inc();
-                        }
-                    }
+                        IncrementMetric(options, response, retry);
                 }
             }
 
             return (response, ex);
+        }
+
+        static void IncrementMetric(RequestOptions options, HttpResponseMessage response, int retry)
+        {
+            if (response?.IsSuccessStatusCode == true)
+            {
+                var statusCode = (int)(response?.StatusCode ?? 0);
+
+                var status = retry == 0 ? "success" : "retry_success";
+
+                var statusCodeLabel = (statusCode == 301 || statusCode == 302) ? statusCode.ToString() : "200";
+
+                ClientRequestCounter.WithLabels(options.UriLabel, status, statusCodeLabel).Inc();
+            }
+            else
+            {
+                ClientRequestCounter.WithLabels(options.UriLabel, "failed", response?.StatusCode.ToString() ?? "0").Inc();
+            }
         }
     }
 }

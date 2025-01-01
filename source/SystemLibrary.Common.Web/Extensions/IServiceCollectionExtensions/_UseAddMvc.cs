@@ -6,6 +6,10 @@ partial class IServiceCollectionExtensions
 {
     static IMvcBuilder UseAddMvc(this IServiceCollection services, ServicesCollectionOptions options)
     {
-        return services.AddMvc(ConfigureSupportedMediaTypes(options));
+        var builder = services.AddMvc();
+
+        builder.Services.Configure(ConfigureSupportedMediaTypes(options));
+
+        return builder;
     }
 }

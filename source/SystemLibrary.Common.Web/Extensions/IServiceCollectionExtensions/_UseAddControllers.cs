@@ -26,7 +26,7 @@ partial class IServiceCollectionExtensions
             .FirstOrDefault();
 
         if (defaultJsonSerializerOptionMethod == null)
-            throw new Exception("SystemLibrary.Common.Net._JsonSerializerOptions no longer contains method 'Default', not compatible versions, either upgrade SystemLibrary.Common.Web, or downgrade SystemLibrary.Common.Net most likely.");
+            throw new Exception("SystemLibrary.Common.Net._JsonSerializerOptions no longer contains method 'Default', not a compatible version, either upgrade SystemLibrary.Common.Web, or downgrade SystemLibrary.Common.Net most likely.");
 
         var defaultJsonSerializerOptions = (JsonSerializerOptions)defaultJsonSerializerOptionMethod.Invoke(null, new object[] { null, null });
 

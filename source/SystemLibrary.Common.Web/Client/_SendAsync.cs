@@ -120,7 +120,7 @@ partial class Client
         catch (BrokenCircuitException bce)
         {
             if (EnablePrometheusConfig)
-                ClientRequestCounter.WithLabels(options.UriLabel, "circuit_broken").Inc();
+                ClientRequestCounter.WithLabels(options.UriLabel, "circuit_broken", "0").Inc();
 
             return (response, bce);
         }

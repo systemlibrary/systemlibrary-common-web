@@ -1,14 +1,13 @@
 ﻿# Installation
+- Open Project/Solution in Visual Studio
+- Open Nuget Project Manager
+- Search SystemLibrary.Common.Web
+- Install SystemLibrary.Common.Web
+
+[![Latest version](https://img.shields.io/nuget/v/SystemLibrary.Common.Web)](https://www.nuget.org/packages/SystemLibrary.Common.Web)
 
 ## Requirements
 * &gt;= .NET 8
-
-## Install nuget package
-
-* Open your project/solution in Visual Studio
-* Open Nuget Project Manager
-* Search for SystemLibrary.Common.Web
-* Install SystemLibrary.Common.Web
 
 ## First time usage
 1. Create a new Asp.Net Core Empty .NET 8 project

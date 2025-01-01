@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>ActionContextInstance
+    <title>ClientResponse
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="ActionContextInstance
+    <meta name="title" content="ClientResponse
    ">
     <meta name="generator" content="docfx 2.59.4.0">
     
@@ -189,7 +189,7 @@
         <div class="article row grid-right">
         <div class="article row grid">
           <div class="col-md-10">
-            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Web.ActionContextInstance">
+            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Web.ClientResponse">
   
   
   <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Web.html">SystemLibrary.Common.Web</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Web.dll</span></h6>
@@ -197,23 +197,27 @@
   <div class="markdown level0 conceptual h1-class-conceptual"></div>
   
   <div class="h1-class-summary-container">
-    <div class="markdown level0 summary h1-class-summary"><p>An implementation of the 'old' thread safe singleton ActionContext we all know and love from .NET Framework</p>
+    <div class="markdown level0 summary h1-class-summary"><p>Base class of a ClientResponse</p>
+<p>- Contains the HttpResponseMessage itself </p>
+Used when you do not want to return &apos;object&apos; nor generic type, but you want to be clear in what object is returned in your C# functions
+<p>- Contains &apos;data&apos; variable for serializing purposes so it is not undefined</p>
 </div>
   </div>
   
-  <h1 id="SystemLibrary_Common_Web_ActionContextInstance" data-uid="SystemLibrary.Common.Web.ActionContextInstance" class="text-break h1-class-header">ActionContextInstance
+  <h1 id="SystemLibrary_Common_Web_ClientResponse" data-uid="SystemLibrary.Common.Web.ClientResponse" class="text-break h1-class-header">ClientResponse
   </h1>
-  <h1 id="SystemLibrary_Common_Web_ActionContextInstance" data-uid="SystemLibrary.Common.Web.ActionContextInstance" class="h1-custom-display className">public static class ActionContextInstance</h1>
+  <h1 id="SystemLibrary_Common_Web_ClientResponse" data-uid="SystemLibrary.Common.Web.ClientResponse" class="h1-custom-display className">public class ClientResponse</h1>
   
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">ActionContextInstance</span></div>
+    <div class="level1"><span class="xref">ClientResponse</span></div>
+      <div class="level2"><a class="xref" href="SystemLibrary.Common.Web.ClientResponse-1.html">ClientResponse&lt;T&gt;</a></div>
   </div>
   
   
   <div class="custom-menu-data custom-menu-data-first">
-    <h5 id="SystemLibrary_Common_Web_ActionContextInstance_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
+    <h5 id="SystemLibrary_Common_Web_ClientResponse_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
   
     <div class="custom-menu-data-container custom-menu-data-container--example">
     </div>
@@ -221,7 +225,7 @@
   
   
   <div class="custom-menu-data">
-    <h5 id="SystemLibrary_Common_Web_ActionContextInstance_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
+    <h5 id="SystemLibrary_Common_Web_ClientResponse_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
   
     <div class="custom-menu-data-container">
       <div class="custom-menu-data-class-arguments" style="display: none;">
@@ -238,39 +242,22 @@
   
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Get the current Action Context instance</p>
+  		<div class="markdown level1 summary member-summary"><p>NOTE: Variable is always null, it exists so serializing data will not give 'undefined' in javascript-world</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
-  	<div class="custom-remarks-container">
-  		<div class="custom-remarks custom-remarks2">
-  			<h5 id="SystemLibrary_Common_Web_ActionContextInstance_Current_remarks">Remarks</h5>
-  		</div>
   
-  		<div class="custom-remarks custom-remarks2 text">
-  			<div class="custom-remarks-menu-data--close">X</div>
-  			<div class="markdown level1 remarks"><p>Do note that Action Context can be null in a console application or in a 'Unit' Test Application or if MVC is not yet registered as a service/invoked</p>
-</div>
-  		</div>
-  	</div>
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_ActionContextInstance_Current">
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_ClientResponse_Data">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/ActionContextInstance/ActionContextInstanceStatic.cs/#L24">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Client/Response/ClientResponse.cs/#L22">View Source</a>
   		</span>
   	</div>
-  	<a id="SystemLibrary_Common_Web_ActionContextInstance_Current_" data-uid="SystemLibrary.Common.Web.ActionContextInstance.Current*"></a>
+  	<a id="SystemLibrary_Common_Web_ClientResponse_Data_" data-uid="SystemLibrary.Common.Web.ClientResponse.Data*"></a>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_ActionContextInstance_Current" data-uid="SystemLibrary.Common.Web.ActionContextInstance.Current" class="h4-custom-functionName">public static ActionContext Current { get; }</h4>
+  		<h4 id="SystemLibrary_Common_Web_ClientResponse_Data" data-uid="SystemLibrary.Common.Web.ClientResponse.Data" class="h4-custom-functionName">public object Data { get; }</h4>
   		<div class="custom-menu-data-container">
-  			<div class="custom-menu-data-name" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  				<div class="codewrapper"><pre><code>var actionContext = ActionContextInstance.Current;</code></pre>
-</div>
-  				<div class="comment-examples-container-bottom"></div>
-  			</div>
   
   			<div class="custom-menu-data-arguments" style="display: none;">
   				<div class="syslib-tab-menu-data--close">X</div>
@@ -292,7 +279,90 @@
   	</thead>
   	<tbody>
   		<tr>
-  			<td><span class="xref">Microsoft.AspNetCore.Mvc.ActionContext</span></td>
+  			<td><span class="xref">System.Object</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  
+  <div class="custom-container">
+  
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_ClientResponse_IsSuccess">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Client/Response/ClientResponse.cs/#L17">View Source</a>
+  		</span>
+  	</div>
+  	<a id="SystemLibrary_Common_Web_ClientResponse_IsSuccess_" data-uid="SystemLibrary.Common.Web.ClientResponse.IsSuccess*"></a>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Web_ClientResponse_IsSuccess" data-uid="SystemLibrary.Common.Web.ClientResponse.IsSuccess" class="h4-custom-functionName">public bool IsSuccess { get; }</h4>
+  		<div class="custom-menu-data-container">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  			</div>
+  
+  		</div>
+  	</div>
+  </div>
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Boolean</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  
+  <div class="custom-container">
+  
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_ClientResponse_Response">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Client/Response/ClientResponse.cs/#L14">View Source</a>
+  		</span>
+  	</div>
+  	<a id="SystemLibrary_Common_Web_ClientResponse_Response_" data-uid="SystemLibrary.Common.Web.ClientResponse.Response*"></a>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Web_ClientResponse_Response" data-uid="SystemLibrary.Common.Web.ClientResponse.Response" class="h4-custom-functionName">[JsonIgnore]
+public HttpResponseMessage Response { get; }</h4>
+  		<div class="custom-menu-data-container">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  			</div>
+  
+  		</div>
+  	</div>
+  </div>
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Net.Http.HttpResponseMessage</span></td>
   			<td></td>
   		</tr>
   	</tbody>
@@ -973,7 +1043,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/ActionContextInstance/ActionContextInstanceStatic.cs/#L8" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Client/Response/ClientResponse.cs/#L12" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

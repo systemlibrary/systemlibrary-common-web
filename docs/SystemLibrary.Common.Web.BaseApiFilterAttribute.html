@@ -1,22 +1,22 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>PackageConfig.LogConfiguration
+    <title>BaseApiFilterAttribute
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="PackageConfig.LogConfiguration
+    <meta name="title" content="BaseApiFilterAttribute
    ">
     <meta name="generator" content="docfx 2.59.4.0">
     
-    <link rel="shortcut icon" href="[%relativeHostingPath%]favicon.ico">
-    <link rel="stylesheet" href="[%relativeHostingPath%]styles/docfx.vendor.css">
-    <link rel="stylesheet" href="[%relativeHostingPath%]styles/docfx.css">
-    <link rel="stylesheet" href="[%relativeHostingPath%]styles/main.css">
-    <link rel="stylesheet" href="[%relativeHostingPath%]styles/custom.css">
+    <link rel="shortcut icon" href="/systemlibrary-common-web/favicon.ico">
+    <link rel="stylesheet" href="/systemlibrary-common-web/styles/docfx.vendor.css">
+    <link rel="stylesheet" href="/systemlibrary-common-web/styles/docfx.css">
+    <link rel="stylesheet" href="/systemlibrary-common-web/styles/main.css">
+    <link rel="stylesheet" href="/systemlibrary-common-web/styles/custom.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
@@ -50,9 +50,9 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="../[%relativeHostingPath%]index.html">
-                <img id="logo" class="svg" src="../[%relativeHostingPath%]logo.png" alt="">
-                <span class="navbar-title">[%siteTitle%]</span>
+              <a class="navbar-brand" href="..//systemlibrary-common-web/index.html">
+                <img id="logo" class="svg" src="..//systemlibrary-common-web/logo.png" alt="">
+                <span class="navbar-title">System Library Common Web</span>
               </a>
               
             </div>
@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="overflow: hidden;font-size: 1px;max-width: 1px; visibility: hidden; position: absolute; margin-left: -4000px;">
-        [%custom-skipDocumentationFor%]</div>
+        MediaType,BaseOptions,LogLevel,PackageConfig.CacheConfiguration,PackageConfig.ClientConfiguration,PackageConfig.LogConfiguration,ClientResponse__-1_T__-2_,CacheConfiguration,ClientConfiguration,CalleeCancelledRequestException,RetryRequestException,GlobalEnumConverter,LogConfiguration,PackageConfig</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -189,7 +189,7 @@
         <div class="article row grid-right">
         <div class="article row grid">
           <div class="col-md-10">
-            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Web.PackageConfig.LogConfiguration">
+            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Web.BaseApiFilterAttribute">
   
   
   <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Web.html">SystemLibrary.Common.Web</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Web.dll</span></h6>
@@ -200,19 +200,57 @@
     <div class="markdown level0 summary h1-class-summary"></div>
   </div>
   
-  <h1 id="SystemLibrary_Common_Web_PackageConfig_LogConfiguration" data-uid="SystemLibrary.Common.Web.PackageConfig.LogConfiguration" class="text-break h1-class-header">PackageConfig.LogConfiguration
+  <h1 id="SystemLibrary_Common_Web_BaseApiFilterAttribute" data-uid="SystemLibrary.Common.Web.BaseApiFilterAttribute" class="text-break h1-class-header">BaseApiFilterAttribute
   </h1>
-  <h1 id="SystemLibrary_Common_Web_PackageConfig_LogConfiguration" data-uid="SystemLibrary.Common.Web.PackageConfig.LogConfiguration" class="h1-custom-display className">public class LogConfiguration</h1>
+  <h1 id="SystemLibrary_Common_Web_BaseApiFilterAttribute" data-uid="SystemLibrary.Common.Web.BaseApiFilterAttribute" class="h1-custom-display className">public class BaseApiFilterAttribute : ActionFilterAttribute, IActionFilter, IAsyncActionFilter, IResultFilter, IAsyncResultFilter, IOrderedFilter, IFilterMetadata</h1>
   
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">PackageConfig.LogConfiguration</span></div>
+    <div class="level1"><span class="xref">System.Attribute</span></div>
+    <div class="level2"><span class="xref">Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute</span></div>
+    <div class="level3"><span class="xref">BaseApiFilterAttribute</span></div>
+      <div class="level4"><a class="xref" href="SystemLibrary.Common.Web.ApiTokenFilterAttribute.html">ApiTokenFilterAttribute</a></div>
+      <div class="level4"><a class="xref" href="SystemLibrary.Common.Web.OriginFilterAttribute.html">OriginFilterAttribute</a></div>
+      <div class="level4"><a class="xref" href="SystemLibrary.Common.Web.UserAgentFilterAttribute.html">UserAgentFilterAttribute</a></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div class="implements-content"><span class="xref">Microsoft.AspNetCore.Mvc.Filters.IActionFilter</span></div>
+    <div class="implements-content"><span class="xref">Microsoft.AspNetCore.Mvc.Filters.IAsyncActionFilter</span></div>
+    <div class="implements-content"><span class="xref">Microsoft.AspNetCore.Mvc.Filters.IResultFilter</span></div>
+    <div class="implements-content"><span class="xref">Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter</span></div>
+    <div class="implements-content"><span class="xref">Microsoft.AspNetCore.Mvc.Filters.IOrderedFilter</span></div>
+    <div class="implements-content"><span class="xref">Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute.OnActionExecutionAsync(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext, Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute.OnResultExecuting(Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute.OnResultExecuted(Microsoft.AspNetCore.Mvc.Filters.ResultExecutedContext)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute.OnResultExecutionAsync(Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext, Microsoft.AspNetCore.Mvc.Filters.ResultExecutionDelegate)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute.Order</span>
+    </div>
   </div>
   
   
   <div class="custom-menu-data custom-menu-data-first">
-    <h5 id="SystemLibrary_Common_Web_PackageConfig_LogConfiguration_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
+    <h5 id="SystemLibrary_Common_Web_BaseApiFilterAttribute_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
   
     <div class="custom-menu-data-container custom-menu-data-container--example">
     </div>
@@ -220,7 +258,7 @@
   
   
   <div class="custom-menu-data">
-    <h5 id="SystemLibrary_Common_Web_PackageConfig_LogConfiguration_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
+    <h5 id="SystemLibrary_Common_Web_BaseApiFilterAttribute_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
   
     <div class="custom-menu-data-container">
       <div class="custom-menu-data-class-arguments" style="display: none;">
@@ -232,26 +270,48 @@
   </div>
   
   <div class='custom-class-content-inline'>
-  <h3 id="properties">Properties
+  <h3 id="methods">Methods
   </h3>
   
   <div class="custom-container">
   
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_PackageConfig_LogConfiguration_AppendBrowser">
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_BaseApiFilterAttribute_OnAccessDenied_Microsoft_AspNetCore_Mvc_Filters_ActionExecutingContext_System_String_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/PackageConfig.cs/#L25">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Api/ApiFilterAttribute/_BaseApiFilterAttribute.cs/#L71">View Source</a>
   		</span>
   	</div>
-  	<a id="SystemLibrary_Common_Web_PackageConfig_LogConfiguration_AppendBrowser_" data-uid="SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendBrowser*"></a>
+  	<a id="SystemLibrary_Common_Web_BaseApiFilterAttribute_OnAccessDenied_" data-uid="SystemLibrary.Common.Web.BaseApiFilterAttribute.OnAccessDenied*"></a>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_PackageConfig_LogConfiguration_AppendBrowser" data-uid="SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendBrowser" class="h4-custom-functionName">public bool AppendBrowser { get; set; }</h4>
+  		<h4 id="SystemLibrary_Common_Web_BaseApiFilterAttribute_OnAccessDenied_Microsoft_AspNetCore_Mvc_Filters_ActionExecutingContext_System_String_" data-uid="SystemLibrary.Common.Web.BaseApiFilterAttribute.OnAccessDenied(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext,System.String)" class="h4-custom-functionName">protected void OnAccessDenied(ActionExecutingContext context, string message)</h4>
   		<div class="custom-menu-data-container">
   
   			<div class="custom-menu-data-arguments" style="display: none;">
   				<div class="syslib-tab-menu-data--close">X</div>
   
+  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  				<table class="table table-bordered table-striped table-condensed">
+  					<thead>
+  						<tr>
+  							<th>Type</th>
+  							<th>Name</th>
+  							<th>Description</th>
+  						</tr>
+  					</thead>
+  					<tbody>
+  						<tr>
+  							<td><span class="xref">Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext</span></td>
+  							<td><span class="parametername">context</span></td>
+  							<td></td>
+  						</tr>
+  						<tr>
+  							<td><span class="xref">System.String</span></td>
+  							<td><span class="parametername">message</span></td>
+  							<td></td>
+  						</tr>
+  					</tbody>
+  				</table>
   			</div>
   
   		</div>
@@ -259,309 +319,92 @@
   </div>
   
   
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Boolean</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
   
   
   <div class="custom-container">
   
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_PackageConfig_LogConfiguration_AppendCookieInfo">
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_BaseApiFilterAttribute_RequestHasValidHeaderValue_System_String_System_String_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/PackageConfig.cs/#L27">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Api/ApiFilterAttribute/_BaseApiFilterAttribute.cs/#L28">View Source</a>
   		</span>
   	</div>
-  	<a id="SystemLibrary_Common_Web_PackageConfig_LogConfiguration_AppendCookieInfo_" data-uid="SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendCookieInfo*"></a>
+  	<a id="SystemLibrary_Common_Web_BaseApiFilterAttribute_RequestHasValidHeaderValue_" data-uid="SystemLibrary.Common.Web.BaseApiFilterAttribute.RequestHasValidHeaderValue*"></a>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_PackageConfig_LogConfiguration_AppendCookieInfo" data-uid="SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendCookieInfo" class="h4-custom-functionName">public bool AppendCookieInfo { get; set; }</h4>
+  		<h4 id="SystemLibrary_Common_Web_BaseApiFilterAttribute_RequestHasValidHeaderValue_System_String_System_String_" data-uid="SystemLibrary.Common.Web.BaseApiFilterAttribute.RequestHasValidHeaderValue(System.String,System.String)" class="h4-custom-functionName">protected bool RequestHasValidHeaderValue(string match, string value)</h4>
   		<div class="custom-menu-data-container">
   
   			<div class="custom-menu-data-arguments" style="display: none;">
   				<div class="syslib-tab-menu-data--close">X</div>
   
+  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  				<table class="table table-bordered table-striped table-condensed">
+  					<thead>
+  						<tr>
+  							<th>Type</th>
+  							<th>Name</th>
+  							<th>Description</th>
+  						</tr>
+  					</thead>
+  					<tbody>
+  						<tr>
+  							<td><span class="xref">System.String</span></td>
+  							<td><span class="parametername">match</span></td>
+  							<td></td>
+  						</tr>
+  						<tr>
+  							<td><span class="xref">System.String</span></td>
+  							<td><span class="parametername">value</span></td>
+  							<td></td>
+  						</tr>
+  					</tbody>
+  				</table>
   			</div>
   
-  		</div>
-  	</div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Boolean</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  
-  <div class="custom-container">
-  
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_PackageConfig_LogConfiguration_AppendCorrelationId">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/PackageConfig.cs/#L26">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Web_PackageConfig_LogConfiguration_AppendCorrelationId_" data-uid="SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendCorrelationId*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_PackageConfig_LogConfiguration_AppendCorrelationId" data-uid="SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendCorrelationId" class="h4-custom-functionName">public bool AppendCorrelationId { get; set; }</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="custom-menu-data-returntype" style="display: none;">
   				<div class="syslib-tab-menu-data--close">X</div>
   
+  				<table class="table table-bordered table-striped table-condensed table-return">
+  					<thead>
+  						<tr>
+  							<th>Type</th>
+  							<th>Description</th>
+  						</tr>
+  					</thead>
+  					<tbody>
+  						<tr>
+  							<td><span class="xref">System.Boolean</span></td>
+  							<td></td>
+  						</tr>
+  					</tbody>
+  				</table>
   			</div>
-  
   		</div>
   	</div>
   </div>
   
   
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Boolean</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
   
-  
-  <div class="custom-container">
-  
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_PackageConfig_LogConfiguration_AppendIp">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/PackageConfig.cs/#L22">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Web_PackageConfig_LogConfiguration_AppendIp_" data-uid="SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendIp*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_PackageConfig_LogConfiguration_AppendIp" data-uid="SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendIp" class="h4-custom-functionName">public bool AppendIp { get; set; }</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
+  <h3 id="implements">Implements</h3>
+  <div class="implements-content">
+  	<span class="xref">Microsoft.AspNetCore.Mvc.Filters.IActionFilter</span>
   </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Boolean</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  
-  <div class="custom-container">
-  
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_PackageConfig_LogConfiguration_AppendLoggedInState">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/PackageConfig.cs/#L21">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Web_PackageConfig_LogConfiguration_AppendLoggedInState_" data-uid="SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendLoggedInState*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_PackageConfig_LogConfiguration_AppendLoggedInState" data-uid="SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendLoggedInState" class="h4-custom-functionName">public bool AppendLoggedInState { get; set; }</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
+  <div class="implements-content">
+  	<span class="xref">Microsoft.AspNetCore.Mvc.Filters.IAsyncActionFilter</span>
   </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Boolean</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  
-  <div class="custom-container">
-  
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_PackageConfig_LogConfiguration_AppendPath">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/PackageConfig.cs/#L24">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Web_PackageConfig_LogConfiguration_AppendPath_" data-uid="SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendPath*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_PackageConfig_LogConfiguration_AppendPath" data-uid="SystemLibrary.Common.Web.PackageConfig.LogConfiguration.AppendPath" class="h4-custom-functionName">public bool AppendPath { get; set; }</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
+  <div class="implements-content">
+  	<span class="xref">Microsoft.AspNetCore.Mvc.Filters.IResultFilter</span>
   </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Boolean</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  
-  <div class="custom-container">
-  
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_PackageConfig_LogConfiguration_Format">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/PackageConfig.cs/#L28">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Web_PackageConfig_LogConfiguration_Format_" data-uid="SystemLibrary.Common.Web.PackageConfig.LogConfiguration.Format*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_PackageConfig_LogConfiguration_Format" data-uid="SystemLibrary.Common.Web.PackageConfig.LogConfiguration.Format" class="h4-custom-functionName">public string Format { get; set; }</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
+  <div class="implements-content">
+  	<span class="xref">Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter</span>
   </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.String</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  
-  <div class="custom-container">
-  
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_PackageConfig_LogConfiguration_Level">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/PackageConfig.cs/#L19">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Web_PackageConfig_LogConfiguration_Level_" data-uid="SystemLibrary.Common.Web.PackageConfig.LogConfiguration.Level*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_PackageConfig_LogConfiguration_Level" data-uid="SystemLibrary.Common.Web.PackageConfig.LogConfiguration.Level" class="h4-custom-functionName">public LogLevel? Level { get; set; }</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
+  <div class="implements-content">
+  	<span class="xref">Microsoft.AspNetCore.Mvc.Filters.IOrderedFilter</span>
   </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Nullable</span>&lt;<span class="xref">LogLevel</span>&gt;</td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
+  <div class="implements-content">
+  	<span class="xref">Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata</span>
+  </div>
   
   
   <script>
@@ -1237,7 +1080,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/PackageConfig.cs/#L17" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Api/ApiFilterAttribute/_BaseApiFilterAttribute.cs/#L13" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -1255,16 +1098,16 @@
         <div class="grad-bottom"></div>
         <div class="footer">
           <div class="container">
-            <span>Package: <a href="[%footerNugetUrl%]">nuget</a></span><br>
-            <span>Source: <a href="[%footerGithubUrl%]">github</a></span><br>
-            <span>Website: <a href="[%footerWebsiteUrl%]">[%footerSiteTitle%]</a></span>
+            <span>Package: <a href="https://www.nuget.org/packages/SystemLibrary.Common.Web/">nuget</a></span><br>
+            <span>Source: <a href="https://github.com/systemlibrary/systemlibrary-common-web/">github</a></span><br>
+            <span>Website: <a href="https://www.systemlibrary.com/">System Library Common Web</a></span>
           </div>
         </div>
       </footer>
     </div>
     
-    <script type="text/javascript" src="../[%relativeHostingPath%]styles/docfx.vendor.js"></script>
-    <script type="text/javascript" src="../[%relativeHostingPath%]styles/docfx.js"></script>
-    <script type="text/javascript" src="../[%relativeHostingPath%]styles/main.js"></script>
+    <script type="text/javascript" src="..//systemlibrary-common-web/styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="..//systemlibrary-common-web/styles/docfx.js"></script>
+    <script type="text/javascript" src="..//systemlibrary-common-web/styles/main.js"></script>
   </body>
 </html>

@@ -539,7 +539,7 @@ public static partial class Cache
     /// <param name="duration">The time span for which subsequent executions are prevented.</param>
     /// <example>
     /// <code>
-    /// if(Cache.Break("send-email", TimeSpan.FromSeconds(60)) 
+    /// if(Cache.Lock(TimeSpan.FromSeconds(60), "send-email") 
     /// {
     ///     new Email(...).Send(); // Pseudo code
     ///     // Example: invoking this code 66 times, one time per second, where first invocation is one second from "now", will send two emails: one at second 1, and another at second 61

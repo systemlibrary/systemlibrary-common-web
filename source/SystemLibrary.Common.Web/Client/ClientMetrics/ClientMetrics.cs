@@ -11,7 +11,7 @@ partial class Client
         "Counts client requests by result",
         new CounterConfiguration
         {
-            LabelNames = new[] { "uri", "status" }
+            LabelNames = new[] { "uri", "status", "statusCode" }
         });
 
     string GetUriLabel(string typeName, Uri uri)

@@ -1,22 +1,22 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>PackageConfig.CacheConfiguration
+    <title>OriginFilterAttribute
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="PackageConfig.CacheConfiguration
+    <meta name="title" content="OriginFilterAttribute
    ">
     <meta name="generator" content="docfx 2.59.4.0">
     
-    <link rel="shortcut icon" href="[%relativeHostingPath%]favicon.ico">
-    <link rel="stylesheet" href="[%relativeHostingPath%]styles/docfx.vendor.css">
-    <link rel="stylesheet" href="[%relativeHostingPath%]styles/docfx.css">
-    <link rel="stylesheet" href="[%relativeHostingPath%]styles/main.css">
-    <link rel="stylesheet" href="[%relativeHostingPath%]styles/custom.css">
+    <link rel="shortcut icon" href="/systemlibrary-common-web/favicon.ico">
+    <link rel="stylesheet" href="/systemlibrary-common-web/styles/docfx.vendor.css">
+    <link rel="stylesheet" href="/systemlibrary-common-web/styles/docfx.css">
+    <link rel="stylesheet" href="/systemlibrary-common-web/styles/main.css">
+    <link rel="stylesheet" href="/systemlibrary-common-web/styles/custom.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
@@ -50,9 +50,9 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="../[%relativeHostingPath%]index.html">
-                <img id="logo" class="svg" src="../[%relativeHostingPath%]logo.png" alt="">
-                <span class="navbar-title">[%siteTitle%]</span>
+              <a class="navbar-brand" href="..//systemlibrary-common-web/index.html">
+                <img id="logo" class="svg" src="..//systemlibrary-common-web/logo.png" alt="">
+                <span class="navbar-title">System Library Common Web</span>
               </a>
               
             </div>
@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="overflow: hidden;font-size: 1px;max-width: 1px; visibility: hidden; position: absolute; margin-left: -4000px;">
-        [%custom-skipDocumentationFor%]</div>
+        MediaType,BaseOptions,LogLevel,PackageConfig.CacheConfiguration,PackageConfig.ClientConfiguration,PackageConfig.LogConfiguration,ClientResponse__-1_T__-2_,CacheConfiguration,ClientConfiguration,CalleeCancelledRequestException,RetryRequestException,GlobalEnumConverter,LogConfiguration,PackageConfig</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -189,7 +189,7 @@
         <div class="article row grid-right">
         <div class="article row grid">
           <div class="col-md-10">
-            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Web.PackageConfig.CacheConfiguration">
+            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Web.OriginFilterAttribute">
   
   
   <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Web.html">SystemLibrary.Common.Web</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Web.dll</span></h6>
@@ -197,22 +197,87 @@
   <div class="markdown level0 conceptual h1-class-conceptual"></div>
   
   <div class="h1-class-summary-container">
-    <div class="markdown level0 summary h1-class-summary"></div>
+    <div class="markdown level0 summary h1-class-summary"><p>Filters access based on <code>Origin</code> header</p>
+<p>Input:</p>
+`null`: Allows all
+<p>`*`: Allows all</p>
+- A regex: Value must satisfy the regex pattern
+<p>- A pipe separated list: Any part is within the Value in a case insensitive check</p>
+`text`: Value must match, case sensitive
+<example>
+<pre><code>[OriginFilter(null)] // Allows all
+[OriginFilter(&quot;*&quot;)] // Allows all
+[OriginFilter(&quot;^[ab0-4]{4,}$&quot;)] // Allow origin containing `a, b, 0, 1, 2, 3 or 4` with a minimum length of 4
+[OriginFilter(&quot;SystemLibrary\.com&quot;)] // Exact match of SystemLibrary.com, case sensitive
+[OriginFilter(&quot;test.systemlibrary\.com|test2.systemlibrary.com&quot;)] // Allow origins containing test.systemlibrary.com or test2.systemlibrary.com, case insensitive</code></pre>
+</example>
+</div>
+    <div class="custom-remarks-container">
+      <div class="custom-remarks custom-remarks1">
+        <h5 id="SystemLibrary_Common_Web_OriginFilterAttribute_remarks">Remarks</h5>
+      </div>
+      <div class="custom-remarks custom-remarks1 text">
+        <div class="custom-remarks-menu-data--close">X</div>
+        <div class="markdown level0 remarks"><p>Validating as a regex expression requires any of these characters: ^$*?[</p>
+<p>Validate case insensitive with a string.Contains match requires at least one delimiter |</p>
+<p>Falls back to normal string equals comparison, case sensitive</p>
+</div>
+      </div>
+    </div>
   </div>
   
-  <h1 id="SystemLibrary_Common_Web_PackageConfig_CacheConfiguration" data-uid="SystemLibrary.Common.Web.PackageConfig.CacheConfiguration" class="text-break h1-class-header">PackageConfig.CacheConfiguration
+  <h1 id="SystemLibrary_Common_Web_OriginFilterAttribute" data-uid="SystemLibrary.Common.Web.OriginFilterAttribute" class="text-break h1-class-header">OriginFilterAttribute
   </h1>
-  <h1 id="SystemLibrary_Common_Web_PackageConfig_CacheConfiguration" data-uid="SystemLibrary.Common.Web.PackageConfig.CacheConfiguration" class="h1-custom-display className">public class CacheConfiguration</h1>
+  <h1 id="SystemLibrary_Common_Web_OriginFilterAttribute" data-uid="SystemLibrary.Common.Web.OriginFilterAttribute" class="h1-custom-display className">public class OriginFilterAttribute : BaseApiFilterAttribute, IActionFilter, IAsyncActionFilter, IResultFilter, IAsyncResultFilter, IOrderedFilter, IFilterMetadata</h1>
   
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">PackageConfig.CacheConfiguration</span></div>
+    <div class="level1"><span class="xref">System.Attribute</span></div>
+    <div class="level2"><span class="xref">Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute</span></div>
+    <div class="level3"><a class="xref" href="SystemLibrary.Common.Web.BaseApiFilterAttribute.html">BaseApiFilterAttribute</a></div>
+    <div class="level4"><span class="xref">OriginFilterAttribute</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div class="implements-content"><span class="xref">Microsoft.AspNetCore.Mvc.Filters.IActionFilter</span></div>
+    <div class="implements-content"><span class="xref">Microsoft.AspNetCore.Mvc.Filters.IAsyncActionFilter</span></div>
+    <div class="implements-content"><span class="xref">Microsoft.AspNetCore.Mvc.Filters.IResultFilter</span></div>
+    <div class="implements-content"><span class="xref">Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter</span></div>
+    <div class="implements-content"><span class="xref">Microsoft.AspNetCore.Mvc.Filters.IOrderedFilter</span></div>
+    <div class="implements-content"><span class="xref">Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="SystemLibrary.Common.Web.BaseApiFilterAttribute.html#SystemLibrary_Common_Web_BaseApiFilterAttribute_RequestHasValidHeaderValue_System_String_System_String_">BaseApiFilterAttribute.RequestHasValidHeaderValue(String, String)</a>
+    </div>
+    <div>
+      <a class="xref" href="SystemLibrary.Common.Web.BaseApiFilterAttribute.html#SystemLibrary_Common_Web_BaseApiFilterAttribute_OnAccessDenied_Microsoft_AspNetCore_Mvc_Filters_ActionExecutingContext_System_String_">BaseApiFilterAttribute.OnAccessDenied(ActionExecutingContext, String)</a>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute.OnActionExecutionAsync(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext, Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute.OnResultExecuting(Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute.OnResultExecuted(Microsoft.AspNetCore.Mvc.Filters.ResultExecutedContext)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute.OnResultExecutionAsync(Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext, Microsoft.AspNetCore.Mvc.Filters.ResultExecutionDelegate)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute.Order</span>
+    </div>
   </div>
   
   
   <div class="custom-menu-data custom-menu-data-first">
-    <h5 id="SystemLibrary_Common_Web_PackageConfig_CacheConfiguration_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
+    <h5 id="SystemLibrary_Common_Web_OriginFilterAttribute_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
   
     <div class="custom-menu-data-container custom-menu-data-container--example">
     </div>
@@ -220,7 +285,7 @@
   
   
   <div class="custom-menu-data">
-    <h5 id="SystemLibrary_Common_Web_PackageConfig_CacheConfiguration_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
+    <h5 id="SystemLibrary_Common_Web_OriginFilterAttribute_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
   
     <div class="custom-menu-data-container">
       <div class="custom-menu-data-class-arguments" style="display: none;">
@@ -232,26 +297,93 @@
   </div>
   
   <div class='custom-class-content-inline'>
-  <h3 id="properties">Properties
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>match: either a regex, an exact string, or strings delimited by |</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
+  
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_OriginFilterAttribute__ctor_System_String_">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Api/ApiFilterAttribute/OriginFilterAttribute.cs/#L35">View Source</a>
+  		</span>
+  	</div>
+  	<a id="SystemLibrary_Common_Web_OriginFilterAttribute__ctor_" data-uid="SystemLibrary.Common.Web.OriginFilterAttribute.#ctor*"></a>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Web_OriginFilterAttribute__ctor_System_String_" data-uid="SystemLibrary.Common.Web.OriginFilterAttribute.#ctor(System.String)" class="h4-custom-functionName">public OriginFilterAttribute(string match = null)</h4>
+  		<div class="custom-menu-data-container">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  				<table class="table table-bordered table-striped table-condensed">
+  					<thead>
+  						<tr>
+  							<th>Type</th>
+  							<th>Name</th>
+  							<th>Description</th>
+  						</tr>
+  					</thead>
+  					<tbody>
+  						<tr>
+  							<td><span class="xref">System.String</span></td>
+  							<td><span class="parametername">match</span></td>
+  							<td></td>
+  						</tr>
+  					</tbody>
+  				</table>
+  			</div>
+  
+  		</div>
+  	</div>
+  </div>
+  
+  
+  
+  <h3 id="methods">Methods
   </h3>
   
   <div class="custom-container">
   
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_PackageConfig_CacheConfiguration_ContainerSizeLimit">
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_OriginFilterAttribute_OnActionExecuting_Microsoft_AspNetCore_Mvc_Filters_ActionExecutingContext_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/PackageConfig.cs/#L45">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Api/ApiFilterAttribute/OriginFilterAttribute.cs/#L40">View Source</a>
   		</span>
   	</div>
-  	<a id="SystemLibrary_Common_Web_PackageConfig_CacheConfiguration_ContainerSizeLimit_" data-uid="SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.ContainerSizeLimit*"></a>
+  	<a id="SystemLibrary_Common_Web_OriginFilterAttribute_OnActionExecuting_" data-uid="SystemLibrary.Common.Web.OriginFilterAttribute.OnActionExecuting*"></a>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_PackageConfig_CacheConfiguration_ContainerSizeLimit" data-uid="SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.ContainerSizeLimit" class="h4-custom-functionName">public int ContainerSizeLimit { get; set; }</h4>
+  		<h4 id="SystemLibrary_Common_Web_OriginFilterAttribute_OnActionExecuting_Microsoft_AspNetCore_Mvc_Filters_ActionExecutingContext_" data-uid="SystemLibrary.Common.Web.OriginFilterAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)" class="h4-custom-functionName">public override void OnActionExecuting(ActionExecutingContext context)</h4>
   		<div class="custom-menu-data-container">
   
   			<div class="custom-menu-data-arguments" style="display: none;">
   				<div class="syslib-tab-menu-data--close">X</div>
   
+  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  				<table class="table table-bordered table-striped table-condensed">
+  					<thead>
+  						<tr>
+  							<th>Type</th>
+  							<th>Name</th>
+  							<th>Description</th>
+  						</tr>
+  					</thead>
+  					<tbody>
+  						<tr>
+  							<td><span class="xref">Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext</span></td>
+  							<td><span class="parametername">context</span></td>
+  							<td></td>
+  						</tr>
+  					</tbody>
+  				</table>
   			</div>
   
   		</div>
@@ -259,104 +391,30 @@
   </div>
   
   
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Int32</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  
-  <div class="custom-container">
-  
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_PackageConfig_CacheConfiguration_Duration">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/PackageConfig.cs/#L44">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Web_PackageConfig_CacheConfiguration_Duration_" data-uid="SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.Duration*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_PackageConfig_CacheConfiguration_Duration" data-uid="SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.Duration" class="h4-custom-functionName">public int Duration { get; set; }</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
+  <h5 class="overrides">Overrides</h5>
+  <div class="overrides-content">
+  	<span class="xref">Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)</span>
   </div>
   
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Int32</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  
-  <div class="custom-container">
-  
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Web_PackageConfig_CacheConfiguration_FallbackDuration">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/PackageConfig.cs/#L46">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Web_PackageConfig_CacheConfiguration_FallbackDuration_" data-uid="SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.FallbackDuration*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Web_PackageConfig_CacheConfiguration_FallbackDuration" data-uid="SystemLibrary.Common.Web.PackageConfig.CacheConfiguration.FallbackDuration" class="h4-custom-functionName">public int FallbackDuration { get; set; }</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
+  <h3 id="implements">Implements</h3>
+  <div class="implements-content">
+  	<span class="xref">Microsoft.AspNetCore.Mvc.Filters.IActionFilter</span>
   </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Int32</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
+  <div class="implements-content">
+  	<span class="xref">Microsoft.AspNetCore.Mvc.Filters.IAsyncActionFilter</span>
+  </div>
+  <div class="implements-content">
+  	<span class="xref">Microsoft.AspNetCore.Mvc.Filters.IResultFilter</span>
+  </div>
+  <div class="implements-content">
+  	<span class="xref">Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter</span>
+  </div>
+  <div class="implements-content">
+  	<span class="xref">Microsoft.AspNetCore.Mvc.Filters.IOrderedFilter</span>
+  </div>
+  <div class="implements-content">
+  	<span class="xref">Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata</span>
+  </div>
   
   
   <script>
@@ -1032,7 +1090,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/PackageConfig.cs/#L42" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-web/blob/main/source/SystemLibrary.Common.Web/Api/ApiFilterAttribute/OriginFilterAttribute.cs/#L28" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -1050,16 +1108,16 @@
         <div class="grad-bottom"></div>
         <div class="footer">
           <div class="container">
-            <span>Package: <a href="[%footerNugetUrl%]">nuget</a></span><br>
-            <span>Source: <a href="[%footerGithubUrl%]">github</a></span><br>
-            <span>Website: <a href="[%footerWebsiteUrl%]">[%footerSiteTitle%]</a></span>
+            <span>Package: <a href="https://www.nuget.org/packages/SystemLibrary.Common.Web/">nuget</a></span><br>
+            <span>Source: <a href="https://github.com/systemlibrary/systemlibrary-common-web/">github</a></span><br>
+            <span>Website: <a href="https://www.systemlibrary.com/">System Library Common Web</a></span>
           </div>
         </div>
       </footer>
     </div>
     
-    <script type="text/javascript" src="../[%relativeHostingPath%]styles/docfx.vendor.js"></script>
-    <script type="text/javascript" src="../[%relativeHostingPath%]styles/docfx.js"></script>
-    <script type="text/javascript" src="../[%relativeHostingPath%]styles/main.js"></script>
+    <script type="text/javascript" src="..//systemlibrary-common-web/styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="..//systemlibrary-common-web/styles/docfx.js"></script>
+    <script type="text/javascript" src="..//systemlibrary-common-web/styles/main.js"></script>
   </body>
 </html>
